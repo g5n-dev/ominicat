@@ -1,4 +1,4 @@
-<p align="center"><img src="docs/assets/banner.svg" alt="OminiCat：Java 17 多模态会话微内核" width="100%"></p>
+<p align="center"><a href="docs/assets/banner.svg"><img src="docs/assets/previews/banner.png" alt="OminiCat：Java 17 多模态会话微内核" width="100%"></a></p>
 
 <p align="center"><a href="README.md">English</a> · <a href="#linux-框架性能实测">Linux 实测</a> · <a href="#高性能从哪里来">执行机制</a> · <a href="#先运行起来">快速开始</a> · <a href="docs/configuration.md">配置</a> · <a href="docs/plugins.md">插件开发</a> · <a href="docs/studio.md">Studio</a></p>
 
@@ -6,13 +6,13 @@
 
 内核仅依赖 JDK，负责有界调度、取消、排空与生命周期，媒体、模型和应用策略由插件提供。当前为 **0.1 开发预览版**；[验证报告](reports/verification.md)记录了 **297 项通过测试、512 个随机种子**及本地协议故障验证。真实服务兼容性与部署容量仍需在目标环境验证。
 
-![OminiCat 模块与接入边界](docs/assets/architecture-overview.svg)
+[![OminiCat 模块与接入边界](docs/assets/previews/architecture-overview.png)](docs/assets/architecture-overview.svg)
 
 ## Linux 框架性能实测
 
 在 **Ubuntu 24.04 原生运行器**和 **CentOS Stream 9 容器用户态**分别完成 OminiCat、Pipecat 1.15.0、Apache Camel 4.22.2 LTS 的无模型排队路径对比。两条作业共 **90 个独立进程、17,406,385 个测量输出**，全部通过逐帧输出、计数、拒绝与资源清理校验。
 
-![Ubuntu 24.04：单帧在途的框架执行对比](reports/comparison/linux-ubuntu24-java17-2026-10-31/overview.svg)
+[![Ubuntu 24.04：单帧在途的框架执行对比](docs/assets/previews/ubuntu-comparison.png)](reports/comparison/linux-ubuntu24-java17-2026-10-31/overview.svg)
 
 下表为**四阶段、单帧在途（W=1）**时，五个独立进程各项指标的中位数：
 
@@ -42,7 +42,7 @@
 <details>
 <summary>查看 CentOS Stream 9 用户态的完整对比图</summary>
 
-![CentOS Stream 9 用户态：单帧在途的框架执行对比](reports/comparison/linux-centos9-java17-2026-10-31/overview.svg)
+[![CentOS Stream 9 用户态：单帧在途的框架执行对比](docs/assets/previews/centos-comparison.png)](reports/comparison/linux-centos9-java17-2026-10-31/overview.svg)
 
 </details>
 
@@ -52,7 +52,7 @@
 
 OminiCat 将同步调用、会话排队和外部异步回调分开，减少不必要的阶段间转换，并把资源与取消边界放在明确的位置。这些机制可以直接从源码核验；上面的对比保留了整个运行时成本，未单独测定各机制带来的加速比例。
 
-![同步分发、会话工作线程与异步续接路径](docs/assets/execution-path.svg)
+[![同步分发、会话工作线程与异步续接路径](docs/assets/previews/execution-path.png)](docs/assets/execution-path.svg)
 
 | 机制 | 实际执行方式与成本边界 |
 | --- | --- |
@@ -62,7 +62,7 @@ OminiCat 将同步调用、会话排队和外部异步回调分开，减少不�
 | **线程与传输边界** | [WorkerThreads](ominicat-core/src/main/java/io/ominicat/core/WorkerThreads.java) 在 Java 17 使用平台线程，21+ 自动选择虚拟线程；线程工厂探测在初始化时完成。服务器的处理器工作在会话线程运行；[帧协议编解码](ominicat-server/src/main/java/io/ominicat/server/FrameCodec.java)和网络收发仍有各自成本。 |
 | **不可变媒体快照** | [Audio／Image](ominicat-core/src/main/java/io/ominicat/core/Frame.java) 构造时防御性复制输入，读取时提供独立只读视图，已构造帧可按引用经过各阶段。媒体复制、协议 JSON／Base64 和模型调用都有实际成本，数值帧对比不覆盖它们。 |
 
-![队列、异步句柄、分支与网络的独立资源边界](docs/assets/bounded-runtime.svg)
+[![队列、异步句柄、分支与网络的独立资源边界](docs/assets/previews/bounded-runtime.png)](docs/assets/bounded-runtime.svg)
 
 各层上限有不同单位：队列与分支缓冲约束待处理项或帧引用，网络出口约束待发送字节，它们不能合并解释为总内存预算。过载、取消与排空由[生命周期契约](docs/architecture.md)和[配置](docs/configuration.md)明确处理；虚拟线程也不会自动提高 CPU 计算性能。
 
@@ -70,24 +70,24 @@ OminiCat 将同步调用、会话排队和外部异步回调分开，减少不�
 
 以下来自 **Ubuntu 作业的 OminiCat 四阶段独立 JFR 诊断**。整段记录包含 JVM／框架启动、预热、5 秒 W=1 测量、测量程序及清理，共有 **41 个 CPU 栈采样、445 个分配采样**。它与前述未插桩的 45 轮计时分开，不能用来替换主表或推导精确 B/op。
 
-![Ubuntu OminiCat：CPU 叶节点采样分布](reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/cpu-hotspots.svg)
+[![Ubuntu OminiCat：CPU 叶节点采样分布](docs/assets/previews/ubuntu-cpu-hotspots.png)](reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/cpu-hotspots.svg)
 
-![Ubuntu OminiCat：按类型统计的分配采样权重](reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/allocation-hotspots.svg)
+[![Ubuntu OminiCat：按类型统计的分配采样权重](docs/assets/previews/ubuntu-allocation-hotspots.png)](reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/allocation-hotspots.svg)
 
 分配权重反映采样分布，包含测量程序的延迟数组；它不是存活堆或精确对象数量。CPU 采样也包含初始化和排序，少量样本不能证明某条路径没有成本。
 
-![Ubuntu OminiCat：整段 JFR 记录中的 GC 暂停合计](reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/gc-pauses.svg)
+[![Ubuntu OminiCat：整段 JFR 记录中的 GC 暂停合计](docs/assets/previews/ubuntu-gc-pauses.png)](reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/gc-pauses.svg)
 
 这份记录包含 **3 次 GC**，累计暂停 **4.876 ms**，单次暂停合计最大 **2.580 ms**；时间位置相对首个选定事件，包含预热和测量程序。
 
 <details>
 <summary>展开完整 CPU 与分配调用栈</summary>
 
-图中保留导出数据提供的全部正权重栈帧，并标明源记录截断或不可用的栈。打开 SVG 可查看方法提示。
+图中保留导出数据提供的全部正权重栈帧，并标明源记录截断或不可用的栈。点击预览打开 SVG 原图，可放大并查看方法提示。
 
-![Ubuntu OminiCat：CPU 采样完整调用栈](reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/cpu-flamegraph.svg)
+[![Ubuntu OminiCat：CPU 采样完整调用栈](docs/assets/previews/ubuntu-cpu-flamegraph.png)](reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/cpu-flamegraph.svg)
 
-![Ubuntu OminiCat：分配采样完整调用栈](reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/allocation-flamegraph.svg)
+[![Ubuntu OminiCat：分配采样完整调用栈](docs/assets/previews/ubuntu-allocation-flamegraph.png)](reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/allocation-flamegraph.svg)
 
 </details>
 

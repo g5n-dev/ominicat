@@ -1,0 +1,116 @@
+{
+  "scale": 2,
+  "renderer": "rsvg-convert version 2.58.0",
+  "figures": [
+    {
+      "source": "docs/assets/banner.svg",
+      "source_sha256": "d96d5445a29de6301e97f20bfbdf43f9d1f3d896ca3fd5b5b6faa337023fde6d",
+      "preview": "docs/assets/previews/banner.png",
+      "preview_sha256": "a43fae2f703a02e4282dec86a33a3f9eb37502bf8ed924d2233d1fade0ef951b",
+      "pixels": [
+        2560,
+        840
+      ]
+    },
+    {
+      "source": "docs/assets/architecture-overview.svg",
+      "source_sha256": "9d49e9c5ad5b4d44d0cb3074bb2f1ba6d5bdf8347c5d1fab6040e7ffb74ee26d",
+      "preview": "docs/assets/previews/architecture-overview.png",
+      "preview_sha256": "04dcd61cd9c02cc61478b47e56fdc17399b57243d47b01b17abd1fdb89ac5500",
+      "pixels": [
+        2880,
+        1860
+      ]
+    },
+    {
+      "source": "docs/assets/execution-path.svg",
+      "source_sha256": "8b4e2e36b425fa1607be2f8dde3f9b85c835f56c3f2437cd3edbbbbd80d7892e",
+      "preview": "docs/assets/previews/execution-path.png",
+      "preview_sha256": "1804b255ceaaa70b12c099705c0f5587068aa87066a6d1005915124518529914",
+      "pixels": [
+        2880,
+        2140
+      ]
+    },
+    {
+      "source": "docs/assets/bounded-runtime.svg",
+      "source_sha256": "7bcb2d3e0f6c6c1e60f7a560a0a9a7b19ded3100816f94b9c21ab82e9de4c5e0",
+      "preview": "docs/assets/previews/bounded-runtime.png",
+      "preview_sha256": "f1f18afcede6ddcde1892ef5e88d0c398507bd6cfd5523f9bb55795e60f6474b",
+      "pixels": [
+        2880,
+        2360
+      ]
+    },
+    {
+      "source": "reports/comparison/linux-ubuntu24-java17-2026-10-31/overview.svg",
+      "source_sha256": "1f6ccf509b15c4be416ffaa0eaaeba27c3227effab2d6ff086f42733c354bb31",
+      "preview": "docs/assets/previews/ubuntu-comparison.png",
+      "preview_sha256": "ace1261fea2fa1c0e5982e51fd40252b7d773178e6b1f3bc3b142930f909ba3f",
+      "pixels": [
+        2043,
+        1301
+      ]
+    },
+    {
+      "source": "reports/comparison/linux-centos9-java17-2026-10-31/overview.svg",
+      "source_sha256": "98e55b424ee3f1f0edeb1ed67c0947afd807c9e8036051da089f8bec27f7fae3",
+      "preview": "docs/assets/previews/centos-comparison.png",
+      "preview_sha256": "68ee5e04b7380ea3d9abc21c1a669aefdad79eaeb745e17f5fd33e2e18a0bb2f",
+      "pixels": [
+        2043,
+        1301
+      ]
+    },
+    {
+      "source": "reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/cpu-hotspots.svg",
+      "source_sha256": "5be0738c541761ba06ed89ee2caeae17c7c4e6d036b8b6f6ce8e18303f0d51b7",
+      "preview": "docs/assets/previews/ubuntu-cpu-hotspots.png",
+      "preview_sha256": "361f1ee6ce8c7f8cf5e2c51c99eb9917efae4e9fc348a67e5c63c18a4c5832fb",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/allocation-hotspots.svg",
+      "source_sha256": "7aeeda912fa5cb35a1eb2fd96915d075e8aa5e14825454c8345da6520607442e",
+      "preview": "docs/assets/previews/ubuntu-allocation-hotspots.png",
+      "preview_sha256": "f2056fe0a60f5a06ff6ce71427034c60d79f48700a54f0ccad43cfab2091e808",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/gc-pauses.svg",
+      "source_sha256": "a1134212306a661f7fcd58a537ec71fe50971fcb65e853954df7e0e406f2181e",
+      "preview": "docs/assets/previews/ubuntu-gc-pauses.png",
+      "preview_sha256": "454ab79dd97e0cb3771bb9c246cd69bf74085c5bf7478fd6fc44460e390318e9",
+      "pixels": [
+        2200,
+        840
+      ]
+    },
+    {
+      "source": "reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/cpu-flamegraph.svg",
+      "source_sha256": "457914a104fa37ad8cba5d52de17a1330c19825de816ecccda0b7f3665f25892",
+      "preview": "docs/assets/previews/ubuntu-cpu-flamegraph.png",
+      "preview_sha256": "7169c7c77873ddc65f7994d8f391cabaec63e4e08e5cb05011b2917f6c8c3a8d",
+      "pixels": [
+        2560,
+        2146
+      ]
+    },
+    {
+      "source": "reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/allocation-flamegraph.svg",
+      "source_sha256": "1fcbaf5ef2ae1d62f396083e23b24d3fa38014dacb873759f8f5cefe20b70532",
+      "preview": "docs/assets/previews/ubuntu-allocation-flamegraph.png",
+      "preview_sha256": "d69dfedc631de7772102b0cf1a7e5bbcf21822aa52a9c34f93d49744343e85dd",
+      "pixels": [
+        2560,
+        2338
+      ]
+    }
+  ]
+}

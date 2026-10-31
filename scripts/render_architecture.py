@@ -2,8 +2,8 @@
 """Render the three editable, dependency-free SVG architecture plates.
 
 Run from any directory with Python 3. Source of truth: docs/architecture.md and
-the core/server implementations. PNG previews are intentionally not generated
-or published by this script; use rsvg-convert separately for visual review.
+the core/server implementations. Run render_doc_previews.py afterwards to
+refresh the PNGs used by Markdown readers without SVG/diagram support.
 """
 from html import escape
 from pathlib import Path
