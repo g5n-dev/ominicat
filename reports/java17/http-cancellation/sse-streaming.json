@@ -1,0 +1,14 @@
+{
+  "schema" : "ominicat-sse-cr-streaming-v1",
+  "requestedEvents" : 6000,
+  "deliveredEvents" : 6000,
+  "producerEventsPerSecond" : 100,
+  "elapsedSeconds" : 60.07124,
+  "firstTextAfterProducerStartMillis" : 13.584208,
+  "maximumInterTextGapMillis" : 23.069208,
+  "eventsObservedBeforeFollowingWrite" : 6000,
+  "exactUnicodeAndOrder" : true,
+  "doneCompletedWithoutProducerEof" : true,
+  "providerTimeoutSeconds" : 120,
+  "rawResponseBudgetBytes" : 4194304
+}

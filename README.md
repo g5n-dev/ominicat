@@ -17,7 +17,7 @@ OminiCat is a configurable **Java microkernel for multimodal conversation pipeli
 
 **Runtime:** Java 17 is the minimum for building and running every module. Java 21+ automatically uses virtual workers. See [Java compatibility and verification](docs/java-compatibility.md).
 
-[Java 17 verification](reports/java17/README.md): **244 passing tests**, 512-seed lifecycle checks, real protocol faults, CPU/allocation profiles and a **120-second exact-artifact mixed-media run** with 138,388 validated frames, zero failures and complete resource drain. [Historical Java 21 evidence](reports/deep/README.md) retains its original source/artifact boundaries.
+[Java 17 verification](reports/verification.md): **256 passing tests**, 512-seed lifecycle checks and real protocol faults, including cancellation while HTTP response bodies remain open. [Recorded kernel/resource profiles](reports/java17/README.md) and [historical Java 21 evidence](reports/deep/README.md) retain their source/artifact boundaries.
 
 ## Quick start
 
