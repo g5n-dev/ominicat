@@ -1,15 +1,40 @@
 name: Model-free framework comparison
 on:
   workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'comparison/**'
+      - 'ominicat-core/**'
+      - 'pom.xml'
+      - '.mvn/**'
+      - 'mvnw'
+      - 'scripts/package_profiles.py'
+      - 'scripts/summarize_profiles.py'
+      - '.github/actions/framework-comparison/**'
+      - '.github/workflows/framework-comparison.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'comparison/**'
+      - 'ominicat-core/**'
+      - 'pom.xml'
+      - '.mvn/**'
+      - 'mvnw'
+      - 'scripts/package_profiles.py'
+      - 'scripts/summarize_profiles.py'
+      - '.github/actions/framework-comparison/**'
+      - '.github/workflows/framework-comparison.yml'
 permissions:
   contents: read
 concurrency:
-  group: framework-comparison-${{ github.ref }}
-  cancel-in-progress: false
+  group: framework-comparison-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
-  compare:
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
+  ubuntu:
+    name: Ubuntu 24.04 / Java 17
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
@@ -22,47 +47,42 @@ jobs:
           python-version: '3.12'
           cache: pip
           cache-dependency-path: comparison/requirements.lock
-      - name: Build and verify native Java adapters
+      - name: Install native audio and font dependencies
         run: |
-          ./mvnw -B -ntp -pl ominicat-core -am install -DskipTests
-          ./mvnw -B -ntp -f comparison/benchmarks/pom.xml clean verify
-      - name: Create pinned benchmark environment
-        run: |
-          python -m venv reports/local/framework-env
-          reports/local/framework-env/bin/python -m pip install -r comparison/requirements.lock
-      - name: Verify oracle and evidence failure controls
-        run: |
-          reports/local/framework-env/bin/python -m unittest discover -s comparison/tests -v
-          reports/local/framework-env/bin/python -m unittest discover -s comparison/pipecat -p 'test_*.py' -v
-          reports/local/framework-env/bin/python -m unittest discover -s comparison/profile_tests -p 'test_*.py' -v
-      - name: Collect every fresh-process cell
-        run: |
-          reports/local/framework-env/bin/python comparison/run.py \
-            --java "$JAVA_HOME/bin/java" \
-            --python reports/local/framework-env/bin/python \
-            --output reports/local/framework-run
-      - name: Validate and render the complete report
-        run: |
-          reports/local/framework-env/bin/python comparison/report.py \
-            reports/local/framework-run reports/local/framework-publish
-      - name: Collect separate instrumented diagnostics
-        run: |
-          reports/local/framework-env/bin/python comparison/profile_java.py \
-            --java "$JAVA_HOME/bin/java" --output reports/local/framework-java-profiles
-          reports/local/framework-env/bin/python comparison/profile_python.py \
-            --output reports/local/framework-python-profile
-      - name: Publish allowlisted profiles and refresh report checksums
-        run: |
-          reports/local/framework-env/bin/python comparison/package_diagnostics.py \
-            --suite reports/local/framework-run \
-            --java-input reports/local/framework-java-profiles \
-            --python-input reports/local/framework-python-profile \
-            --output reports/local/framework-publish/profiles
-          reports/local/framework-env/bin/python comparison/report.py \
-            reports/local/framework-run reports/local/framework-publish
-      - uses: actions/upload-artifact@v4
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends libsndfile1 libgomp1 fontconfig fonts-dejavu-core
+      - uses: ./.github/actions/framework-comparison
         with:
-          name: model-free-framework-comparison-${{ github.run_id }}-${{ github.run_attempt }}
-          path: reports/local/framework-publish/
-          if-no-files-found: error
-          retention-days: 30
+          target: ubuntu-24.04
+          distro-id: ubuntu
+          distro-version: '24.04'
+          python: python
+  centos:
+    name: CentOS Stream 9 userspace / Java 17
+    runs-on: ubuntu-24.04
+    container: quay.io/centos/centos:stream9@sha256:6f8045fc4f552544d8a401d61848bafc8d06ca7c11897c5b54a2c37fc419a20a
+    timeout-minutes: 35
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Install native CentOS build and runtime tools
+        run: |
+          dnf install -y git-core curl-minimal tar gzip unzip findutils which ca-certificates python3.12 python3.12-pip java-17-openjdk-devel libsndfile libgomp libstdc++ fontconfig dejavu-sans-fonts
+          java_home="$(dirname "$(dirname "$(readlink -f /usr/bin/javac)")")"
+          test -x "$java_home/bin/jfr"
+          echo "JAVA_HOME=$java_home" >> "$GITHUB_ENV"
+          echo "$java_home/bin" >> "$GITHUB_PATH"
+      - uses: actions/checkout@v4
+      - name: Trust only this mounted checkout for container shell Git commands
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git rev-parse --verify HEAD
+          git status --porcelain
+      - uses: ./.github/actions/framework-comparison
+        with:
+          target: centos-stream-9
+          distro-id: centos
+          distro-version: '9'
+          python: python3.12
+          container-image: quay.io/centos/centos:stream9@sha256:6f8045fc4f552544d8a401d61848bafc8d06ca7c11897c5b54a2c37fc419a20a

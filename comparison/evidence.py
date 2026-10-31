@@ -66,6 +66,13 @@ def validate_suite(suite):
         raise ValueError('manifest hash mismatch')
     if manifest.get('schemaVersion') != 1 or manifest.get('protocol') != 'model-free-framework-path-v1':
         raise ValueError('unsupported measurement protocol')
+    environment = manifest.get('environment', {})
+    if 'ci' in environment:
+        from ci_context import validate_context
+        context = validate_context(environment['ci'])
+        if (environment.get('os') != 'Linux' or context['machine'] != environment.get('arch')
+                or context['kernelRelease'] != environment.get('osRelease') or context['sourceSha'] != manifest.get('sourceRevision')):
+            raise ValueError('CI provenance disagrees with the measured host/source')
     fingerprint = manifest.get('sourceFingerprint', {})
     files = fingerprint.get('files', {})
     if not files or digest(canonical(files)) != fingerprint.get('aggregate'):

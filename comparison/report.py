@@ -40,6 +40,7 @@ def summarize(suite):
             cells.append({'engine': engine, 'stages': stages, 'metrics': metrics})
     return {'schemaVersion': 1, 'manifestSha256': suite['manifestSha256'], 'settings': settings,
             'recordedAt': suite['manifest']['recordedAt'],
+            'environment': suite['manifest']['environment'],
             'rendererSha256': digest(Path(__file__).read_bytes()),
             'intervalMeaning': 'observed minimum and maximum across fresh processes; not confidence intervals', 'cells': cells}
 
@@ -48,7 +49,7 @@ def render(summary, destination):
     import matplotlib
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
-    from matplotlib.ticker import FuncFormatter
+    from matplotlib.ticker import FuncFormatter, LogLocator, NullFormatter
     plt.rcParams.update({'font.family': 'DejaVu Sans', 'font.size': 11, 'text.color': TEXT,
         'axes.labelcolor': MUTED, 'xtick.color': MUTED, 'ytick.color': MUTED,
         'axes.facecolor': PANEL, 'figure.facecolor': BG, 'savefig.facecolor': BG,
@@ -57,6 +58,12 @@ def render(summary, destination):
     lookup = {(c['engine'], c['stages']): c['metrics'] for c in summary['cells']}
 
     def save(fig, name):
+        ci = summary['environment'].get('ci')
+        if ci:
+            scope = 'container userspace' if ci['containerImage'] else 'native runner'
+            x, y = (.055, .018) if name == 'overview' else (.125, -.105)
+            fig.text(x, y, f"{ci['distro']['prettyName']} / {scope} / {ci['machine']} / GitHub Actions / {ci['sourceSha'][:12]}",
+                     color=MUTED, fontsize=9)
         for extension in ('svg', 'png'):
             path = destination / f'{name}.{extension}'
             fig.savefig(path, dpi=180, bbox_inches='tight', pad_inches=.25,
@@ -70,6 +77,11 @@ def render(summary, destination):
         ax.grid(axis='x', zorder=0)
         ax.set_axisbelow(True)
         ax.tick_params(length=0, pad=9)
+
+    def log_ticks(axis, formatter):
+        axis.set_major_locator(LogLocator(base=10, subs=(1, 2, 5)))
+        axis.set_major_formatter(FuncFormatter(formatter))
+        axis.set_minor_formatter(NullFormatter())
 
     def point(ax, metric, stages=4, labels=True):
         for y, engine in enumerate(ENGINES):
@@ -93,7 +105,8 @@ def render(summary, destination):
                         ha='center', va='top' if engine == 'camel' else 'bottom', color=COLORS[engine], fontsize=10)
     ax.set_xscale('log', base=2); ax.set_yscale('log')
     ax.set_xticks((1, 4, 16), ('1 stage', '4 stages', '16 stages'))
-    ax.yaxis.set_major_formatter(FuncFormatter(lambda value, _: f'{value/1000:g}k'))
+    log_ticks(ax.yaxis, lambda value, _: f'{value/1000:g}k')
+    ax.xaxis.set_minor_formatter(NullFormatter())
     ax.set_ylabel('Validated frames / second · W=1 loop · log scale')
     ax.set_title('Native queued execution paths', loc='left', pad=27, fontsize=22, fontweight='bold')
     ax.legend(frameon=False, loc='lower left', labelcolor=TEXT)
@@ -104,6 +117,7 @@ def render(summary, destination):
     fig, axes = plt.subplots(1, 2, figsize=(12, 4.7), gridspec_kw={'wspace': .46})
     for ax, metric, title in zip(axes, ('p50Micros', 'p99Micros'), ('Median terminal latency (p50)', 'Tail terminal latency (p99)')):
         point(ax, metric); ax.set_xscale('log'); ax.set_xlabel('Microseconds · log scale · lower is better')
+        log_ticks(ax.xaxis, lambda value, _: f'{value:g}')
         ax.set_title(title, loc='left', pad=20, fontsize=14)
     fig.suptitle('4 stages / 1 outstanding frame', x=.125, ha='left', y=1.05, fontsize=21, fontweight='bold')
     fig.text(.125, -.04, 'Per-input timer ends after terminal validation, before caller acknowledgment. Ranges span 5 processes.', color=MUTED, fontsize=10)
@@ -111,6 +125,7 @@ def render(summary, destination):
 
     fig, axes = plt.subplots(1, 2, figsize=(12, 4.7), gridspec_kw={'wspace': .46})
     point(axes[0], 'cpuMicrosPerFrame'); axes[0].set_xscale('log'); axes[0].set_xlabel('Process CPU µs / validated frame · log scale')
+    log_ticks(axes[0].xaxis, lambda value, _: f'{value:g}')
     axes[0].set_title('CPU cost of the measured process', loc='left', pad=20, fontsize=14)
     point(axes[1], 'measuredRssMiB'); axes[1].set_xlim(left=0); axes[1].set_xlabel('Sampled measurement-phase peak RSS · MiB')
     axes[1].set_title('Whole-process resident memory', loc='left', pad=20, fontsize=14)
@@ -134,10 +149,12 @@ def render(summary, destination):
         ax.text(.07, .10, f"p99 {metrics['p99Micros']['median']:,.1f} µs   /   RSS {metrics['measuredRssMiB']['median']:,.0f} MiB",
                 fontsize=10, color=TEXT, transform=ax.transAxes)
     ax1 = fig.add_axes([.055, .16, .405, .32]); point(ax1, 'throughput')
-    ax1.set_xscale('log'); ax1.set_xlabel('W=1 frame rate · log scale'); ax1.xaxis.set_major_formatter(FuncFormatter(lambda v, _: f'{v/1000:g}k'))
+    ax1.set_xscale('log'); ax1.set_xlabel('W=1 frame rate · log scale')
+    log_ticks(ax1.xaxis, lambda value, _: f'{value/1000:g}k')
     ax1.set_title('Throughput with fork-to-fork variation', loc='left', pad=18, fontsize=13)
     ax2 = fig.add_axes([.585, .16, .35, .32]); point(ax2, 'p99Micros')
     ax2.set_xscale('log'); ax2.set_xlabel('Terminal p99 · microseconds · log scale')
+    log_ticks(ax2.xaxis, lambda value, _: f'{value:g}')
     ax2.set_title('Tail latency with fork-to-fork variation', loc='left', pad=18, fontsize=13)
     fig.text(.055, .075, '5 fresh processes per cell  /  3 s warm-up + 5 s measured  /  whiskers: min–max, not confidence intervals', color=MUTED, fontsize=10)
     fig.text(.055, .045, 'Same host; JVM/Python, native scheduling, input/stage allocations and validation included. W=1 is not saturated capacity.', color=MUTED, fontsize=9)
@@ -146,6 +163,19 @@ def render(summary, destination):
 
 def write_report(summary, suite, folder):
     env = suite['manifest']['environment']
+    ci = env.get('ci')
+    context = ''
+    if ci:
+        scope = ('CentOS container user space on an Ubuntu 24.04 runner; the kernel is shared with the runner.'
+                 if ci['containerImage'] else f"Native {ci['distro']['prettyName']} GitHub-hosted runner.")
+        context = f"\n## Linux CI environment\n\n**{ci['distro']['prettyName']} / {ci['machine']}**. {scope} " \
+                  f"Kernel: `{ci['kernelRelease']}`. CPU: `{env.get('cpuModel', 'unavailable')}`. " \
+                  f"[Workflow run]({ci['githubRunUrl']}); measured revision `{ci['sourceSha']}`. " \
+                  "Java/Python versions, libc, affinity and readable cgroup limits are in the manifest. " \
+                  "The three engines run sequentially within this job. Separate platform jobs use independent hosts; " \
+                  "their measurements are not an isolated experiment on distribution/kernel differences.\n"
+        if ci['containerImage']:
+            context += f"\nDeclared image: `{ci['containerImage']}`.\n"
     rows = []
     for c in summary['cells']:
         m = c['metrics']
@@ -154,6 +184,7 @@ def write_report(summary, suite, folder):
     content = f'''# Model-free framework comparison
 
 Recorded {suite['manifest']['recordedAt'][:10]} on {env['os']} / {env['arch']}, {env['logicalProcessors']} logical processors. The [manifest](manifest.json) binds every result to the protocol, measured JAR, verified installed Python dependency inventory and exact source fingerprints. All **{len(suite['results'])} fresh processes** passed output, count, rejection and cleanup checks; no failed fork was omitted.
+{context}
 
 ![Framework comparison overview](overview.svg)
 
@@ -183,7 +214,7 @@ Pipecat is the multimodal frame-pipeline peer. Camel is a Java routing-framework
 
 The figures do not compare OminiCat's synchronous dispatch headline against another framework's queued path. They do not measure models, codecs, transport, audio quality, interruption latency, saturation or production session capacity. This controlled synthetic profile cannot establish universal framework superiority.
 
-RSS is sampled using the same OS collector every 50 ms during measurement and includes runtime, imported dependencies and a pre-touched 16 MiB sample buffer. Java uses -Xms128m -Xmx512m; Python has no equivalent managed-heap limit. RSS is not framework-only allocation, retained heap, native footprint or B/op, and brief peaks may be missed. The shared development host has no exclusive CPU isolation. Engine order rotates between repetitions; JIT, GC, host load and thermal effects remain confounders.
+RSS is sampled using the same OS collector every 50 ms during measurement and includes runtime, imported dependencies and a pre-touched 16 MiB sample buffer. Java uses -Xms128m -Xmx512m; Python has no equivalent managed-heap limit. RSS is not framework-only allocation, retained heap, native footprint or B/op, and brief peaks may be missed. The shared host has no exclusive CPU isolation. Engine order rotates between repetitions; JIT, GC, host load and thermal effects remain confounders.
 
 ## Reproduce and inspect
 
@@ -193,7 +224,31 @@ Official sources: [Pipecat release](https://github.com/pipecat-ai/pipecat/releas
 '''
     if (folder / 'profiles/README.md').is_file():
         content += '\n## Separate instrumented diagnostics\n\n[CPU samples, allocation stacks, GC and Python call profiles](profiles/README.md) are collected in additional runs. Their instrumented timings are excluded from the 45-process comparison above. Java JFR and Python cProfile retain their different collection scopes.\n'
+    if ci:
+        repository = ci['githubRunUrl'].split('/actions/runs/')[0]
+        content = content.replace('](../../../comparison/', f"]({repository}/blob/{ci['sourceSha']}/comparison/")
     (folder / 'README.md').write_text(content)
+
+
+def write_ci_summary(summary, suite, path):
+    ci = suite['manifest']['environment']['ci']
+    count = sum(item['result']['measuredFrames'] for item in suite['results'])
+    lines = [f"## {ci['distro']['prettyName']} / framework comparison", '',
+             f"All **45 fresh processes** passed; **{count:,} measured outputs** validated. "
+             'Same-job native queued paths, 1/4/16 stages, W=1; models/network excluded.', '',
+             '| Four stages | Frames/s | Terminal p99 µs | Phase peak RSS MiB |',
+             '| --- | ---: | ---: | ---: |']
+    for cell in summary['cells']:
+        if cell['stages'] == 4:
+            m = cell['metrics']
+            lines.append(f"| {LABELS[cell['engine']]} | {m['throughput']['median']:,.0f} | {m['p99Micros']['median']:,.2f} | {m['measuredRssMiB']['median']:,.1f} |")
+    lines += ['', 'Five-process medians; full observed ranges, every raw result, SVG/PNG figures and separate '
+              'CPU/allocation/GC or Python call diagnostics are in this job’s checksummed artifact. '
+              'Download it from this run’s Artifacts section. No failed fork is dropped; profiled timings are excluded.', '',
+              f"Scope: `{ci['kernelScope']}`. Distribution jobs run on independent hosts; these numbers do not isolate OS differences. "
+              f"Source: `{ci['sourceSha']}`. [Run]({ci['githubRunUrl']}).", '']
+    with path.open('a', encoding='utf-8') as output:
+        output.write('\n'.join(lines))
 
 
 def check_publication_directory(folder, suite):
@@ -217,9 +272,12 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('input', type=Path)
     parser.add_argument('output', type=Path)
+    parser.add_argument('--github-summary', type=Path)
     args = parser.parse_args()
     suite = load_suite(args.input)
     summary = summarize(suite)
+    if args.github_summary and 'ci' not in suite['manifest']['environment']:
+        raise ValueError('GitHub summary requires validated Linux CI provenance')
     destination = args.output
     check_publication_directory(destination, suite)
     if destination.exists() and any(destination.iterdir()):
@@ -247,6 +305,8 @@ def main():
         if path.is_file() and path.name != 'SHA256SUMS':
             checksums.append(f'{digest(path.read_bytes())}  {path.relative_to(destination).as_posix()}')
     (destination / 'SHA256SUMS').write_text('\n'.join(checksums) + '\n')
+    if args.github_summary:
+        write_ci_summary(summary, suite, args.github_summary)
     print(f'Validated and rendered {len(suite["results"])} processes into {destination}')
 
 

@@ -1,0 +1,166 @@
+{
+  "schemaVersion": 1,
+  "status": "complete",
+  "engine": "camel",
+  "stages": 4,
+  "kind": "separate-profiled-diagnostics",
+  "headlineTiming": false,
+  "scope": "Whole selected recording: JVM/framework startup, setup, 3-second warmup, 5-second W=1 measurement, harness and teardown. No phase filtering. Separate profiled diagnostics; not headline timings, framework-only allocation, retained heap, or a shared cross-language bytes-per-operation axis.",
+  "recordedAtUtc": "2026-10-31T17:08:20.336401+00:00",
+  "benchmarkArtifact": "benchmark.jar",
+  "benchmarkArtifactSha256": "899910a83affc2237a23a20ee06aba8b867d31fb2ba98e3a36aa0ded594c2938",
+  "stackDepthRequested": 64,
+  "executionSamplePeriodRequested": "1 ms",
+  "exportStackDepth": 64,
+  "selectedEventTypes": [
+    "jdk.ExecutionSample",
+    "jdk.ObjectAllocationSample",
+    "jdk.GarbageCollection",
+    "jdk.JavaMonitorEnter",
+    "jdk.VirtualThreadPinned"
+  ],
+  "profileWrapperSha256": "338ef0157437838596119bfa31bc1f9242721b44dee4e6b8a4cadb746de90c6b",
+  "observedPhases": {
+    "observation": "Parent receipt/launch/exit UTC; asynchronous observations, not exact child boundaries.",
+    "processStartedAtUtc": "2026-10-31T17:08:09.957076+00:00",
+    "processExitedAtUtc": "2026-10-31T17:08:18.896394+00:00",
+    "phaseEvents": [
+      {
+        "phase": "warmup",
+        "observedAtUtc": "2026-10-31T17:08:10.792083+00:00",
+        "parentElapsedSeconds": 0.835018405
+      },
+      {
+        "phase": "measure",
+        "observedAtUtc": "2026-10-31T17:08:13.792586+00:00",
+        "parentElapsedSeconds": 3.835515359
+      },
+      {
+        "phase": "teardown",
+        "observedAtUtc": "2026-10-31T17:08:18.792826+00:00",
+        "parentElapsedSeconds": 8.835759964
+      }
+    ],
+    "phaseWindows": [
+      {
+        "phase": "startup",
+        "startObservedAtUtc": "2026-10-31T17:08:09.957076+00:00",
+        "endObservedAtUtc": "2026-10-31T17:08:10.792083+00:00",
+        "parentElapsedStartSeconds": 0.0,
+        "parentElapsedEndSeconds": 0.835018405
+      },
+      {
+        "phase": "warmup",
+        "startObservedAtUtc": "2026-10-31T17:08:10.792083+00:00",
+        "endObservedAtUtc": "2026-10-31T17:08:13.792586+00:00",
+        "parentElapsedStartSeconds": 0.835018405,
+        "parentElapsedEndSeconds": 3.835515359
+      },
+      {
+        "phase": "measure",
+        "startObservedAtUtc": "2026-10-31T17:08:13.792586+00:00",
+        "endObservedAtUtc": "2026-10-31T17:08:18.792826+00:00",
+        "parentElapsedStartSeconds": 3.835515359,
+        "parentElapsedEndSeconds": 8.835759964
+      },
+      {
+        "phase": "teardown",
+        "startObservedAtUtc": "2026-10-31T17:08:18.792826+00:00",
+        "endObservedAtUtc": "2026-10-31T17:08:18.896394+00:00",
+        "parentElapsedStartSeconds": 8.835759964,
+        "parentElapsedEndSeconds": 8.939323841
+      }
+    ]
+  },
+  "result": {
+    "schemaVersion": 1,
+    "engine": "camel",
+    "version": "4.22.2",
+    "mode": "queued-w1",
+    "stages": 4,
+    "sessions": 1,
+    "inflight": 1,
+    "warmupSeconds": 3.000002333,
+    "warmupFrames": 108072,
+    "measuredFrames": 215782,
+    "elapsedSeconds": 5.00001306,
+    "throughputFramesPerSecond": 43156.287275777635,
+    "latencyMicros": {
+      "p95": 14.176,
+      "max": 2161.33,
+      "p99": 24.732,
+      "p50": 11.448
+    },
+    "processCpuSeconds": 4.9,
+    "checks": {
+      "exactOutputCount": true,
+      "noRejections": true,
+      "cleanupComplete": true,
+      "drained": true,
+      "allOutputsValidated": true
+    },
+    "sampleCapacity": 2000000,
+    "harnessBufferBytes": 16777216,
+    "environment": {
+      "runtime": "Java",
+      "version": "17.0.21+9",
+      "vendor": "Eclipse Adoptium",
+      "availableProcessors": 4,
+      "maxHeapBytes": 536870912,
+      "architecture": "amd64",
+      "backend": "platform",
+      "os": "Linux"
+    },
+    "instrumented": true,
+    "headlineEligible": false,
+    "profileType": "JFR"
+  },
+  "selectedEventCounts": {
+    "jdk.ExecutionSample": 200,
+    "jdk.GarbageCollection": 14,
+    "jdk.ObjectAllocationSample": 1942
+  },
+  "gcCollectionCount": 14,
+  "gcPauseSumMillis": 29.379515,
+  "maxCollectionPauseSumMillis": 3.5345910000000003,
+  "artifactSha256": {
+    "report.md": "eca1be566ea5b00c3bdbbc0ac7a28e822990f6e64f94f40c9978e245c6d0bb04",
+    "profiles.md": "a49e321aeba1efc7b4b17aa2de4a67fd42e0ed46a3767824a44a5493efe8d0ff",
+    "cpu-flamegraph.svg": "7ef49e40604e5a21677ad22ff2ffa4d170e2e91a3e5496c4bb75fb1c642b3aed",
+    "allocation-flamegraph.svg": "13d24f5b1bdd8d77b03a1e1d72cbc24853cdb80162d539f95255beee83851b5e",
+    "cpu-hotspots.svg": "730f3a547b4240aa77485fa22f9308c7d603794bf80d347fcfc67dcccd57d944",
+    "allocation-hotspots.svg": "602f05ca92c2f37daee99ee8ad0a4d3a94be80845db6b67bc7bc6c696759fa2b",
+    "gc-pauses.svg": "763359347c8e0bea2dc20eb894335d5b9af498e14895918e1a4343d5d585a127",
+    "jfr-events.json.gz": "dad04827170937eb1dc9bf18dc558879fef04b60a1426ce10c2a76f722debccd",
+    "load.json": "e1c4f13b0e5d7c528096443165b8aaf338d95312ddf71c85e4b898c07536a53a",
+    "result.json": "e06ca4a5f852a226aa8e229437a04f212920012cd091dada71f4c19c46f6d2c2",
+    "jfr-summary.txt": "7608461ea6fa978c74193cca7f603c37c30a106e6edbac34d8f3be68cf373da4"
+  },
+  "sourceCapturedArtifacts": {
+    "report.md": "eca1be566ea5b00c3bdbbc0ac7a28e822990f6e64f94f40c9978e245c6d0bb04",
+    "profiles.md": "8d42d16c83ecaf4b0206b9c3208fe8e6662a723f6bebc07351dcd2cc24f4c346",
+    "cpu-flamegraph.svg": "7ef49e40604e5a21677ad22ff2ffa4d170e2e91a3e5496c4bb75fb1c642b3aed",
+    "allocation-flamegraph.svg": "13d24f5b1bdd8d77b03a1e1d72cbc24853cdb80162d539f95255beee83851b5e",
+    "cpu-hotspots.svg": "730f3a547b4240aa77485fa22f9308c7d603794bf80d347fcfc67dcccd57d944",
+    "allocation-hotspots.svg": "602f05ca92c2f37daee99ee8ad0a4d3a94be80845db6b67bc7bc6c696759fa2b",
+    "gc-pauses.svg": "763359347c8e0bea2dc20eb894335d5b9af498e14895918e1a4343d5d585a127",
+    "jfr-events.json.gz": "dad04827170937eb1dc9bf18dc558879fef04b60a1426ce10c2a76f722debccd",
+    "load.json": "e1c4f13b0e5d7c528096443165b8aaf338d95312ddf71c85e4b898c07536a53a",
+    "result.json": "e06ca4a5f852a226aa8e229437a04f212920012cd091dada71f4c19c46f6d2c2",
+    "jfr-summary.txt": "646a75254d18b8eac0bfe69f5515fa73e0c9caf82046f0af5dcc28808fa9244c"
+  },
+  "publicationPostprocessorSha256": "79216a3e19196fbd4cd5af5f111a08a1db89ad1715b39914760fe8fc5fa3a3a0",
+  "publicationInputArtifacts": {
+    "report.md": "eca1be566ea5b00c3bdbbc0ac7a28e822990f6e64f94f40c9978e245c6d0bb04",
+    "profiles.md": "8d42d16c83ecaf4b0206b9c3208fe8e6662a723f6bebc07351dcd2cc24f4c346",
+    "cpu-flamegraph.svg": "7ef49e40604e5a21677ad22ff2ffa4d170e2e91a3e5496c4bb75fb1c642b3aed",
+    "allocation-flamegraph.svg": "13d24f5b1bdd8d77b03a1e1d72cbc24853cdb80162d539f95255beee83851b5e",
+    "cpu-hotspots.svg": "730f3a547b4240aa77485fa22f9308c7d603794bf80d347fcfc67dcccd57d944",
+    "allocation-hotspots.svg": "602f05ca92c2f37daee99ee8ad0a4d3a94be80845db6b67bc7bc6c696759fa2b",
+    "gc-pauses.svg": "763359347c8e0bea2dc20eb894335d5b9af498e14895918e1a4343d5d585a127",
+    "jfr-events.json.gz": "dad04827170937eb1dc9bf18dc558879fef04b60a1426ce10c2a76f722debccd",
+    "load.json": "e1c4f13b0e5d7c528096443165b8aaf338d95312ddf71c85e4b898c07536a53a",
+    "result.json": "e06ca4a5f852a226aa8e229437a04f212920012cd091dada71f4c19c46f6d2c2",
+    "jfr-summary.txt": "7608461ea6fa978c74193cca7f603c37c30a106e6edbac34d8f3be68cf373da4"
+  }
+}

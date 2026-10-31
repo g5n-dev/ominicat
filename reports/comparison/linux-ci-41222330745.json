@@ -1,0 +1,200 @@
+{
+  "schemaVersion": 1,
+  "githubRunUrl": "https://github.com/g5n-dev/ominicat/actions/runs/41222330745",
+  "runAttempt": 1,
+  "event": "pull_request",
+  "headRevision": "9c911d9da619fd7f58b801dd920d1e6a1a26bc56",
+  "measuredRevision": "fbd3c610eb4e2c8ad0c4bc53fcebfdb903bbb96a",
+  "measuredSourceTree": "28d1616db87f27155370257b825c72a15e06a27d",
+  "note": "Raw measurement results/manifests, selected JFR events and numeric diagnostic observations are unchanged. Derived charts, navigation, checksums and diagnostic publication metadata are regenerated; exact per-file publication changes are recorded.",
+  "artifacts": [
+    {
+      "target": "ubuntu-24.04",
+      "directory": "linux-ubuntu24-java17-2026-10-31",
+      "artifactId": 13050857058,
+      "artifactName": "framework-ubuntu-24.04-java17-41222330745-1",
+      "artifactZipSha256": "e614159c6fb0bb38c6e0c5d55ecaa1c83070750835cd8d703401b8ad0c31cde4",
+      "manifestSha256": "68cd25e8674fca13c8cbf7e661d9e21224e788a425b289fb3b1e9a73605181fe",
+      "measuredFrames": 7198018,
+      "capturedRendererSha256": "d581a742de6d9e7ce08d3ce48d0a58326b8980e04a5c9ae25a016ac9a3108eea",
+      "publishedRendererSha256": "9e72f486d7287e0a3f741ed93cbc7b3b899c367b8ca00e5bb4dfebd4bdae02f7",
+      "publicationChanges": [
+        {
+          "file": "SHA256SUMS",
+          "capturedSha256": "fae22d65d20e7cbd6758c96d2ba5338b2f9c315e9ab636037aab3972a61c183d",
+          "publishedSha256": "821a51c31f8ee924d172edba7e27e045d3ee62610581e1bbf61a17f8753ba709"
+        },
+        {
+          "file": "latency.png",
+          "capturedSha256": "2ccd8191cc8b96b7dc91a8fe38d9ed8bc506cd44aded327fba83d20e4f425207",
+          "publishedSha256": "81d9934798f145029e1ec5897105b5a81b0ee4fbe24b7dfdec643c6f02c17fc8"
+        },
+        {
+          "file": "latency.svg",
+          "capturedSha256": "6bd16f80df2e7c929e9732979cb81094997406adbacb46991ab583cff7f4ec23",
+          "publishedSha256": "fc3b63ef4701abb60ec532e9662584ddfedbd1b52bf363b5ca84a393a2c2cfba"
+        },
+        {
+          "file": "overview.png",
+          "capturedSha256": "4f04216920a7c9a55be6bc6724f435f974451f1c32cfea9c8f10dc5afb1d400e",
+          "publishedSha256": "945c8a5c494a7220afe0e782188131984b0c8f351707e03f73ffb3f6588b5c78"
+        },
+        {
+          "file": "overview.svg",
+          "capturedSha256": "474405cf870e257ed1f14838d84808d526121891820fd94d20fd9f9bd5ee76b0",
+          "publishedSha256": "1f6ccf509b15c4be416ffaa0eaaeba27c3227effab2d6ff086f42733c354bb31"
+        },
+        {
+          "file": "profiles/SHA256SUMS",
+          "capturedSha256": "34928651b74fd59c655f4dbdf8fa4ac093230b60fbd26f52e8f7607fc13f0191",
+          "publishedSha256": "8523d528bc02da20e5852259ef71a0f4a0310baeed72db68b6648314903dce95"
+        },
+        {
+          "file": "profiles/camel/diagnostic-summary.json",
+          "capturedSha256": "cc75a8edf044b443964c24d5cc6f220b10fcfce92422ada37498c06c4b33cf3e",
+          "publishedSha256": "718e7d74eaf7ab95992524f60b439170ad16c1b77555b4f19730984d3c006dab"
+        },
+        {
+          "file": "profiles/camel/profiles.md",
+          "capturedSha256": "8d42d16c83ecaf4b0206b9c3208fe8e6662a723f6bebc07351dcd2cc24f4c346",
+          "publishedSha256": "a49e321aeba1efc7b4b17aa2de4a67fd42e0ed46a3767824a44a5493efe8d0ff"
+        },
+        {
+          "file": "profiles/ominicat/diagnostic-summary.json",
+          "capturedSha256": "72275fbc192bcb6d2f912904d18fb8de097635ed3e5d1afc8f6217bfcfa42db5",
+          "publishedSha256": "6ac50961f930b726166baee93f3f0d2b80b207fdbca823bda90848c7b3823f54"
+        },
+        {
+          "file": "profiles/ominicat/profiles.md",
+          "capturedSha256": "ca3c0614889d9a97472ea5b32c4a47b7e56128e6fdf7e3f1a51a4a537c65eee2",
+          "publishedSha256": "b0252925a5cd2e14ad0372679183fc2d218623821ff9691ffe580ac4b4bdfc96"
+        },
+        {
+          "file": "profiles/pipecat/call-hotspots.png",
+          "capturedSha256": "2d205660115d2bf58f1b7681c6742c083e895667eb33d3ff9de41f37aecf21c9",
+          "publishedSha256": "aabea20eaf1a8544f6773fed6b67b351a7906df3ca58e65880fa0c2324f39967"
+        },
+        {
+          "file": "resources.png",
+          "capturedSha256": "a1870ac8ea6ee421b3010b487653495f4324d4268ca13d971f03bf80e19a02ba",
+          "publishedSha256": "2a31f79f2954deecc4e4f35b465990b8af1a49a96067d913eb36b6f0a0b5e45b"
+        },
+        {
+          "file": "resources.svg",
+          "capturedSha256": "c14f14c30fdcd48cfcd8b258ba9157797a2df3010df0ae210d81b406be10528c",
+          "publishedSha256": "567fb231ab3e54f1640e80b35988c9bea930b2e6acf53d311039ae64dbb232e9"
+        },
+        {
+          "file": "summary.json",
+          "capturedSha256": "72b0a2de7a963cb3c0d9dbb57c4a7acc91dbebd204a6b7a260ea5f6d2754ce9c",
+          "publishedSha256": "d9a6ac4b759afc452934c7b83793dd3586a85f84291e552952ba8a7c35d9654f"
+        },
+        {
+          "file": "throughput.png",
+          "capturedSha256": "18ab357cb9d5430006ede59a696d32bdfb972d9131b5aca0ed3db4cdfe6c3939",
+          "publishedSha256": "88bf5ec8116f1e44c00f8a807267c12a5830511033a9bbe09bdedcdc04a74186"
+        },
+        {
+          "file": "throughput.svg",
+          "capturedSha256": "a5b8d199cdb9227ac27ac414fc4a323afbe0fd39cc2086b5a2c6d3227828ad5e",
+          "publishedSha256": "052cc106cfe6d401b8089a8381f8d4b6cc363d6415af57c22e81d1bdd3d93ba6"
+        }
+      ]
+    },
+    {
+      "target": "centos-stream-9",
+      "directory": "linux-centos9-java17-2026-10-31",
+      "artifactId": 13050493653,
+      "artifactName": "framework-centos-stream-9-java17-41222330745-1",
+      "artifactZipSha256": "a2673906dbda06859e8ab6a78e71cdfc5efa4da7b5a3a66c8cd25e4bee7797f1",
+      "manifestSha256": "cb4dc6c5e2651de7ce484fc83f5632e5bba531960413f797da2388026ff0cc01",
+      "measuredFrames": 10208367,
+      "capturedRendererSha256": "d581a742de6d9e7ce08d3ce48d0a58326b8980e04a5c9ae25a016ac9a3108eea",
+      "publishedRendererSha256": "9e72f486d7287e0a3f741ed93cbc7b3b899c367b8ca00e5bb4dfebd4bdae02f7",
+      "publicationChanges": [
+        {
+          "file": "SHA256SUMS",
+          "capturedSha256": "10f87d65aa779829a540c2322284d472b4c8fd48628410414c205c938391b85e",
+          "publishedSha256": "54216e9f25ab2fb0612f7615b98d8249e244d22d4beaa63772738832ec98eec2"
+        },
+        {
+          "file": "latency.png",
+          "capturedSha256": "9c0417b815778ade409c635195441ad6eedcc6255f54527e637704bef4162cb9",
+          "publishedSha256": "4b845285bf6270f0425629b941c4b1695533077d669b8deddab583bdcc09d0c5"
+        },
+        {
+          "file": "latency.svg",
+          "capturedSha256": "ea623d77948b0e697f880d6a047d7da1d4f37c12d9b7b00b9e37be079392d34e",
+          "publishedSha256": "8c9cbb3fac0e135bb21d64277b83f71394073ad1198d57f69ddc4b9d1932e4cd"
+        },
+        {
+          "file": "overview.png",
+          "capturedSha256": "ceb025b4f187f434ec2fa9b528331d891b03ca37aa1b45f7fcfac515aad25d86",
+          "publishedSha256": "f16430ae969682dda1c6dd595790c7ed9ed19a2cf94cd83c5a719302961a3bb2"
+        },
+        {
+          "file": "overview.svg",
+          "capturedSha256": "3a0fac1f7b6aad2ede0a9dbf4552f72673daf868a68e08d2d31d79096aaee92e",
+          "publishedSha256": "98e55b424ee3f1f0edeb1ed67c0947afd807c9e8036051da089f8bec27f7fae3"
+        },
+        {
+          "file": "profiles/SHA256SUMS",
+          "capturedSha256": "daee3aa9817934781138ba3426aa10ce8fc9ffc8d6ef1905ebea015c6908a7e2",
+          "publishedSha256": "b0c3acb3693832dbb4a2ae00f958214ac2b4c4ffa7f3aea4e7c7a3bfc19b22ec"
+        },
+        {
+          "file": "profiles/camel/diagnostic-summary.json",
+          "capturedSha256": "95d175f8581f7cd3d4d30e633ff0988544b99964eaa892ae2f5476da151de489",
+          "publishedSha256": "fbcd521d4f015a4d7ddd07f70a409f9f4205f641ac47d561566abca521084d60"
+        },
+        {
+          "file": "profiles/camel/profiles.md",
+          "capturedSha256": "850334276b4ba805bce02bdf5e61b7ea7589ba23f71e074e4b1801f1aa028272",
+          "publishedSha256": "f7f84f4a2be3531ed3c5b36a4e5a35e59e4cdb961ae30011dc014295e188112e"
+        },
+        {
+          "file": "profiles/ominicat/diagnostic-summary.json",
+          "capturedSha256": "22693df61c411e66bb5845588e0d6c758bd5edc9ffd08f1aa2748508dea804e9",
+          "publishedSha256": "b1ae4b8bc3b594910d11681d6e5e4de60852a0f7e0611e386b85b9b3064a0b0c"
+        },
+        {
+          "file": "profiles/ominicat/profiles.md",
+          "capturedSha256": "57575a9e81f74e67b32250a909428a9d660cc23eb4b953e24f3876847d4f1f70",
+          "publishedSha256": "f1585a1f86f1e5eac6cf6f6aeb23bbcd367b6f3ea95ffb969ca1c94139387a1b"
+        },
+        {
+          "file": "profiles/pipecat/call-hotspots.png",
+          "capturedSha256": "1dc887517f12397b5eff95965a60b4f19ed14cae002c7e76c07975b7e281bdcd",
+          "publishedSha256": "3c9f937aa1aa0a272c41d669a023f6f58f8da9d316783d597aeb20a0505d7a0c"
+        },
+        {
+          "file": "resources.png",
+          "capturedSha256": "01f397956cb130dfb9a434d34ee625d2c6ff9a741557298b4786c02322bc75cb",
+          "publishedSha256": "a85533d763c8126f1596b8d27790918b36f0c45799f5d0dcc6251e342021d34c"
+        },
+        {
+          "file": "resources.svg",
+          "capturedSha256": "b22b86e5c5d06248fd748a1c039528d9449934f283bad0956afc30e8045cbbbd",
+          "publishedSha256": "a3f804669c100896d0874a6870dda738972a3e164d0e9c0281d7f53c776b31ef"
+        },
+        {
+          "file": "summary.json",
+          "capturedSha256": "022a90b1e870bc839a0e1fc84a9d9acad9b0b627e5ef2ef78cb2c802e1bd3e31",
+          "publishedSha256": "81bdacbfef46b0c0456bc653a180b03464d0947b9a906d0b7491692d2e731e42"
+        },
+        {
+          "file": "throughput.png",
+          "capturedSha256": "48272a2a79a6a3a3b8158db4550b2432b03523a4eec6af61ed8acf4c023cea9b",
+          "publishedSha256": "4acd72366f9d26766fc465ea0dc49c8c6dcd25630992fea21c9abf2ff2b188a4"
+        },
+        {
+          "file": "throughput.svg",
+          "capturedSha256": "94093fb876f7953305535a36b9b4cb07f2856b515a50001566388f910a6d1f6b",
+          "publishedSha256": "fae77cda15b21b7c0bd8cb34e085f07dedc806ab1833aaa0080ad72437e6628a"
+        }
+      ]
+    }
+  ],
+  "publicationRendererSha256": "9e72f486d7287e0a3f741ed93cbc7b3b899c367b8ca00e5bb4dfebd4bdae02f7",
+  "publicationPostprocessorSha256": "79216a3e19196fbd4cd5af5f111a08a1db89ad1715b39914760fe8fc5fa3a3a0"
+}

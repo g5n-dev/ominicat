@@ -52,9 +52,47 @@ def source_fingerprint():
     paths = list((ROOT / 'ominicat-core/src/main/java').rglob('*.java'))
     paths += list((ROOT / 'comparison/benchmarks/src').rglob('*.java'))
     paths += [ROOT / p for p in ('comparison/benchmarks/pom.xml', 'comparison/pipecat/benchmark.py',
-              'comparison/run.py', 'comparison/evidence.py', 'comparison/protocol.md', 'comparison/requirements.lock')]
+              'comparison/run.py', 'comparison/evidence.py', 'comparison/ci_context.py',
+              'comparison/protocol.md', 'comparison/requirements.lock')]
     files = {p.relative_to(ROOT).as_posix(): digest(p.read_bytes()) for p in sorted(set(paths))}
     return {'aggregate': digest(canonical(files)), 'files': files}
+
+
+def host_resources():
+    """Read only fixed, public CPU/resource fields; never export host identity."""
+    if platform.system() == 'Darwin':
+        return {'cpuModel': subprocess.run(['sysctl', '-n', 'machdep.cpu.brand_string'],
+                capture_output=True, text=True, check=True).stdout.strip()}
+    result = {'cpuModel': platform.processor()}
+    if platform.system() != 'Linux':
+        return result
+    try:
+        for line in Path('/proc/cpuinfo').read_text().splitlines():
+            key, separator, value = line.partition(':')
+            if separator and key.strip() == 'model name':
+                model = value.strip()
+                if re.fullmatch(r'[A-Za-z0-9 ()@.,+_/-]{1,160}', model):
+                    result['cpuModel'] = model
+                break
+    except OSError:
+        pass
+    result['cpuAffinityCount'] = len(os.sched_getaffinity(0)) if hasattr(os, 'sched_getaffinity') else None
+    result['libc'] = list(platform.libc_ver())
+    limits = {'cpuQuotaMicros': None, 'cpuPeriodMicros': None, 'memoryMaxBytes': None}
+    try:
+        quota, period = Path('/sys/fs/cgroup/cpu.max').read_text().split()
+        limits['cpuQuotaMicros'] = None if quota == 'max' else int(quota)
+        limits['cpuPeriodMicros'] = int(period)
+    except (OSError, ValueError):
+        pass
+    try:
+        memory = Path('/sys/fs/cgroup/memory.max').read_text().strip()
+        limits['memoryMaxBytes'] = None if memory == 'max' else int(memory)
+    except (OSError, ValueError):
+        pass
+    result['cgroupV2Limits'] = limits
+    result['resourceScope'] = 'OS-reported host memory/CPUs; affinity and readable cgroup-v2 limits separate; null is unlimited or unavailable.'
+    return result
 
 
 def stop_owned(process):
@@ -176,13 +214,21 @@ def run(args):
         'javaArtifactSha256': digest(artifact.read_bytes()),
         'environment': {'os': platform.system(), 'osRelease': platform.release(), 'arch': platform.machine(),
             'logicalProcessors': os.cpu_count(), 'collectorPython': platform.python_version(), 'psutil': psutil.__version__,
-            'cpuModel': subprocess.run(['sysctl', '-n', 'machdep.cpu.brand_string'], capture_output=True, text=True, check=True).stdout.strip() if platform.system() == 'Darwin' else platform.processor(),
+            **host_resources(),
             'physicalMemoryBytes': psutil.virtual_memory().total,
             'javaVersion': subprocess.run([args.java, '-version'], capture_output=True, text=True, check=True).stderr.strip(),
             'pythonVersion': subprocess.run([args.python, '--version'], capture_output=True, text=True, check=True).stdout.strip(),
             'context': 'Shared development host; framework order rotated; no exclusive CPU isolation'},
         'commands': {'java': ['${JAVA17}', '-Xms128m', '-Xmx512m', '-jar', 'comparison/benchmarks/target/benchmark.jar'],
             'pipecat': ['${BENCH_PYTHON}', '-u', 'comparison/pipecat/benchmark.py']}}
+    if args.ci_context:
+        from ci_context import validate_context
+        context = validate_context(json.loads(Path(args.ci_context).read_text()))
+        if (context['sourceSha'] != manifest['sourceRevision'] or context['machine'] != manifest['environment']['arch']
+                or context['kernelRelease'] != manifest['environment']['osRelease'] or platform.system() != 'Linux'):
+            raise ValueError('CI context does not match the measured checkout or host')
+        manifest['environment']['ci'] = context
+        manifest['environment']['context'] = 'Shared GitHub Actions runner; sequential frameworks in each job; independent hosts across targets; no exclusive CPU isolation.'
     manifest_hash = digest(canonical(manifest))
     (folder / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
     results = []
@@ -224,6 +270,7 @@ def main():
     parser.add_argument('--java', default='java')
     parser.add_argument('--python', default=sys.executable)
     parser.add_argument('--jar', default='comparison/benchmarks/target/benchmark.jar')
+    parser.add_argument('--ci-context', help='Validated Linux CI provenance JSON; optional for local recordings')
     parser.add_argument('--forks', type=int, choices=range(1, 10), default=5)
     parser.add_argument('--stages', default='1,4,16')
     parser.add_argument('--engines', default=','.join(ENGINES))

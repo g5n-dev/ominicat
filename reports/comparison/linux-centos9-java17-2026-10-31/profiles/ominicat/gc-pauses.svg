@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="420" viewBox="0 0 1100 420" role="img">
+<title>GC collection pause timeline</title><desc>Whole selected JFR export; warmup/harness included. Bars show sumOfPauses per collection, not GC duration.</desc>
+<rect width="1100" height="420" fill="#101e28"/>
+<text x="28" y="34" font-family="sans-serif" font-size="22" fill="#f2eee1">GC collection pause timeline</text>
+<text x="28" y="61" font-family="sans-serif" font-size="13" fill="#b8cbd1">Whole selected JFR export; warmup/harness included. Bars show sumOfPauses per collection, not GC duration.</text>
+<text x="28" y="87" font-family="sans-serif" font-size="14" fill="#b8cbd1">5 collections; pause sum 6.457 ms; maximum collection pause sum 2.389 ms.</text>
+<text x="28" y="109" font-family="sans-serif" font-size="12" fill="#b8cbd1">Time zero: first timestamped selected event. Positions do not identify the measured-load interval.</text>
+<line x1="85" y1="330.0" x2="1040" y2="330.0" stroke="#304754"/><text x="75" y="335.0" text-anchor="end" font-family="sans-serif" font-size="13" fill="#b8cbd1">0.000</text>
+<text x="85.0" y="353" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#b8cbd1">0.000</text>
+<line x1="85" y1="278.75" x2="1040" y2="278.75" stroke="#304754"/><text x="75" y="283.75" text-anchor="end" font-family="sans-serif" font-size="13" fill="#b8cbd1">0.597</text>
+<text x="323.75" y="353" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#b8cbd1">2.026</text>
+<line x1="85" y1="227.5" x2="1040" y2="227.5" stroke="#304754"/><text x="75" y="232.5" text-anchor="end" font-family="sans-serif" font-size="13" fill="#b8cbd1">1.194</text>
+<text x="562.5" y="353" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#b8cbd1">4.053</text>
+<line x1="85" y1="176.25" x2="1040" y2="176.25" stroke="#304754"/><text x="75" y="181.25" text-anchor="end" font-family="sans-serif" font-size="13" fill="#b8cbd1">1.791</text>
+<text x="801.25" y="353" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#b8cbd1">6.079</text>
+<line x1="85" y1="125.0" x2="1040" y2="125.0" stroke="#304754"/><text x="75" y="130.0" text-anchor="end" font-family="sans-serif" font-size="13" fill="#b8cbd1">2.389</text>
+<text x="1040.0" y="353" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#b8cbd1">8.105</text>
+<g data-start-seconds="0.275823" data-pause-ms="2.388618"><title>GC 1: 0.275823 s; collection pause sum 2.388618 ms; G1New; G1 Evacuation Pause</title><line x1="117.499742" y1="330" x2="117.499742" y2="125" stroke="#efb56f" stroke-width="3"/><circle cx="117.499742" cy="125" r="3" fill="#efb56f"/></g>
+<g data-start-seconds="1.296863" data-pause-ms="1.091998"><title>GC 2: 1.296863 s; collection pause sum 1.091998 ms; G1New; G1 Evacuation Pause</title><line x1="237.807103" y1="330" x2="237.807103" y2="236.280707" stroke="#efb56f" stroke-width="3"/><circle cx="237.807103" cy="236.280707" r="3" fill="#efb56f"/></g>
+<g data-start-seconds="3.337535" data-pause-ms="1.103075"><title>GC 3: 3.337535 s; collection pause sum 1.103075 ms; G1New; G1 Evacuation Pause</title><line x1="478.255921" y1="330" x2="478.255921" y2="235.330038" stroke="#efb56f" stroke-width="3"/><circle cx="478.255921" cy="235.330038" r="3" fill="#efb56f"/></g>
+<g data-start-seconds="5.516316" data-pause-ms="0.984829"><title>GC 4: 5.516316 s; collection pause sum 0.984829 ms; G1New; G1 Evacuation Pause</title><line x1="734.977882" y1="330" x2="734.977882" y2="245.478346" stroke="#efb56f" stroke-width="3"/><circle cx="734.977882" cy="245.478346" r="3" fill="#efb56f"/></g>
+<g data-start-seconds="7.541114" data-pause-ms="0.888225"><title>GC 5: 7.541114 s; collection pause sum 0.888225 ms; G1New; G1 Evacuation Pause</title><line x1="973.556294" y1="330" x2="973.556294" y2="253.769257" stroke="#efb56f" stroke-width="3"/><circle cx="973.556294" cy="253.769257" r="3" fill="#efb56f"/></g>
+<text x="562.5" y="386" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#f2eee1">Seconds since first selected event</text>
+<text x="25" y="230" text-anchor="middle" transform="rotate(-90 25 230)" font-family="sans-serif" font-size="15" fill="#f2eee1">Collection pause sum (ms)</text>
+</svg>

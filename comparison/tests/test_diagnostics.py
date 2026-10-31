@@ -8,6 +8,7 @@ import gzip
 import io
 import json
 from pathlib import Path
+import re
 import sys
 import tempfile
 import unittest
@@ -35,6 +36,9 @@ def java_fixture(folder, suite, engine):
         elif name == "load.json":
             data = json_bytes({"schemaVersion": 1, "kind": "queued-comparison-jfr-context", "engine": engine,
                                "environment": {"javaVersion": "17.0.21"}})
+        elif name == "profiles.md":
+            data = (b"# Separate diagnostic profiles\n\n[CPU stacks](cpu-flamegraph.svg)\n"
+                    b"[Allocation stacks](allocation-flamegraph.svg)\n[GC log](gc.log).\n")
         elif name.endswith(".svg"):
             data = b'<svg xmlns="http://www.w3.org/2000/svg"><text>synthetic diagnostic</text></svg>\n'
         else:
@@ -243,6 +247,60 @@ class DiagnosticTest(unittest.TestCase):
         for line in (output / "SHA256SUMS").read_text().splitlines():
             checksum, name = line.split("  ", 1)
             self.assertEqual(evidence.digest((output / name).read_bytes()), checksum)
+
+    def test_republication_repairs_gc_link_and_preserves_original_capture_provenance(self):
+        source = self.root / "suite"
+        source.mkdir()
+        write_suite(source, self.suite)
+        java_fixture(self.root / "java" / "camel", self.suite, "camel")
+        java_input = self.root / "java"
+        originals = {path.relative_to(java_input): path.read_bytes() for path in java_input.rglob("*") if path.is_file()}
+        captured = {engine: json.loads((java_input / engine / "diagnostic-summary.json").read_text())["artifactSha256"]
+                    for engine in ("ominicat", "camel")}
+
+        def plot(context, destination):
+            (destination / "call-hotspots.svg").write_text('<svg xmlns="http://www.w3.org/2000/svg"/>')
+            (destination / "call-hotspots.png").write_bytes(b"synthetic generated figure")
+
+        first = self.root / "first-publication"
+        second = self.root / "republication"
+        previous = captured
+        for output in (first, second):
+            input_before = {path.relative_to(java_input): path.read_bytes() for path in java_input.rglob("*") if path.is_file()}
+            arguments = ["package_diagnostics.py", "--suite", str(source), "--java-input", str(java_input),
+                         "--python-input", str(self.python), "--output", str(output)]
+            with mock.patch.object(sys, "argv", arguments), mock.patch.object(sys, "path", sys.path.copy()), \
+                    mock.patch.object(diagnostics, "plot_python", side_effect=plot), mock.patch("sys.stdout", new_callable=io.StringIO):
+                diagnostics.main()
+            self.assertEqual({path.relative_to(java_input): path.read_bytes()
+                              for path in java_input.rglob("*") if path.is_file()}, input_before)
+            current = {}
+            for engine in ("ominicat", "camel"):
+                folder = output / engine
+                content = (folder / "profiles.md").read_text()
+                self.assertIn("[GC pause timeline](gc-pauses.svg)", content)
+                self.assertNotIn("[GC log](gc.log)", content)
+                allowed = {(folder / name).resolve() for name in diagnostics.JAVA_FILES}
+                for link in re.findall(r"!?\[[^\]]*\]\(([^)]+)\)", content):
+                    target = (folder / link).resolve()
+                    self.assertIn(target, allowed)
+                    self.assertTrue(target.is_file(), "every published profile link must resolve to an allowlisted artifact")
+                context = json.loads((folder / "diagnostic-summary.json").read_text())
+                self.assertEqual(context["sourceCapturedArtifacts"], captured[engine])
+                self.assertEqual(context["publicationInputArtifacts"], previous[engine])
+                self.assertEqual(context["publicationPostprocessorSha256"], evidence.digest(Path(diagnostics.__file__).read_bytes()))
+                self.assertEqual(set(context["artifactSha256"]), set(diagnostics.JAVA_FILES))
+                for name, checksum in context["artifactSha256"].items():
+                    self.assertEqual(evidence.digest((folder / name).read_bytes()), checksum)
+                current[engine] = context["artifactSha256"]
+            previous = current
+            java_input = output
+        self.assertEqual({path.relative_to(self.root / "java"): path.read_bytes()
+                          for path in (self.root / "java").rglob("*") if path.is_file()}, originals)
+        for engine in ("ominicat", "camel"):
+            self.assertNotEqual(captured[engine]["profiles.md"], previous[engine]["profiles.md"])
+            self.assertEqual(json.loads((first / engine / "result.json").read_text()),
+                             json.loads((second / engine / "result.json").read_text()))
 
 
 if __name__ == "__main__":
