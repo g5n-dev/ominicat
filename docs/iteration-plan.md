@@ -14,6 +14,20 @@ Scheduled profiling is a separate evidence collection job. It runs weekly on Jav
 
 ## Ready queue
 
+### Integration compatibility
+
+The [cross-project contract proposal](integration-contracts.md) defines the next functional increments and three fixture families. These are planned capabilities, not shipped APIs. Prioritize one bounded item at a time; retain Java 17 and the existing default API/protocol behavior. I1 establishes fixtures with current APIs; I2/I3 extend them as their contracts ship.
+
+| Order | Increment | Acceptance boundary |
+| --- | --- | --- |
+| I1 | Optional plugin descriptions and compatibility fixtures | Preserve old plugin binaries; query metadata without calling `ProcessorFactory.create` or network code; explicitly handle unknown capabilities; reject a known utterance/streaming mismatch. Establish streaming/replay/aggregation baseline fixtures with current APIs; I2/I3 extend them later. |
+| I2 | Opt-in namespaced result schemas and provenance | Preserve default wire fixtures; distinguish same-named frame classes; reject duplicate/unsupported schema registrations; retain evidence time units, causal IDs and window scope. Measure codec cost separately. |
+| I3 | External run manifest and checkpoint binding | Reject mismatched input/definition contents on resume before state changes; allow new-policy reevaluation as a new run. Sink failure must not advance the cursor. Storage and durable effects remain external. |
+
+### Performance evidence
+
+Continue these measurement increments alongside the integration work when their workload is needed to assess a change. Allocation experiments depend on the relevant baselines rather than preceding them.
+
 | Order | Increment | Evidence and scope | Acceptance |
 | --- | --- | --- | --- |
 | 1 | Async continuation and envelope cost | Existing JMH covers synchronous numeric dispatch and session round trips. Add bounded external-callback benchmarks with raw-frame and envelope variants; keep runtime contracts unchanged. | Validate nonce, causation and frame output; one request in flight; executor/session resources drained on teardown. Record Java 17 warmup, at least two forks, latency, B/op, source hash and timer boundaries. Include executor, identifier and clock overhead in the stated scope. Compile and verify on 17/21/25. |
@@ -26,6 +40,7 @@ Scheduled profiling is a separate evidence collection job. It runs weekly on Jav
 | --- | --- | --- |
 | Live compatible-provider trial | Explicit endpoint, selected model and credential environment-variable name supplied by the operator. Local protocol fixtures are already available and do not satisfy this dependency. | Bounded opt-in calls; verify streamed content, cancellation before peer EOF/deadline, error handling and slot/resource drain. Publish only sanitized evidence with service/runtime/source context. Record actual failures and supported capabilities. |
 | Further transport or provider optimization | A reproducible regression, profile hotspot or workload gap in current evidence. | Define workload, resource budget and failure injection before changing runtime behavior. Re-run relevant integration tests and attach evidence tied to the changed artifact. |
+| Resource-budget consolidation | Evidence that the documented per-layer limits cannot express a required integration budget. Parameter duplication alone is insufficient. | Model media copies, queues/branches/outlets, native/JVM overhead and plugin limits; validate contradictions and drain with a defined workload. Keep identity, tenant quotas, billing and distributed admission in applications/edge services. |
 
 ## Completed increments
 
@@ -34,5 +49,6 @@ Scheduled profiling is a separate evidence collection job. It runs weekly on Jav
 | Java 17 baseline and interruptible HTTP response-body reads | Java 17 minimum with 17/21/25 verification; cancellation releases blocked local HTTP reads without waiting for peer EOF. | [PR #12](https://github.com/g5n-dev/ominicat/pull/12), [PR #14](https://github.com/g5n-dev/ominicat/pull/14), [current Java 17 validation](../reports/java17/http-cancellation/README.md) |
 | Performance and profile documentation | README exposes measured throughput, allocation, CPU stacks, GC and resource drain with distinct workload scopes. | [PR #13](https://github.com/g5n-dev/ominicat/pull/13), [PR #15](https://github.com/g5n-dev/ominicat/pull/15), [kernel profiles](../reports/java17/kernel/profiles.md) |
 | Repeatable planning and evidence collection | A durable acceptance queue, weekly profiling, complete-result validation, allowlisted/checksummed diagnostics and privacy-checked failure output. | [Workflow](../.github/workflows/performance.yml), [report validation](../scripts/test_report.py), [packaging controls](../scripts/test_package_profiles.py), [failure controls](../scripts/test_profile_failure.py) |
+| Cross-project contract review | Source-backed separation of existing mechanisms, proposed compatibility contracts and external responsibilities, with explicit negative acceptance cases. Implementation remains queued as I1–I3. | [Design and acceptance plan](integration-contracts.md) |
 
 This queue proposes work; it does not assert that an unimplemented optimization is correct or faster. Recorded headline results remain tied to their original source, workload and host until a reviewed replacement measurement exists.

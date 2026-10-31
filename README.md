@@ -229,6 +229,7 @@ The [inline profiles above](#profiles) show CPU, allocation, GC and resource evi
 - [Scenario coverage and current limits](docs/scenario-coverage.md)
 - [Performance methodology](docs/performance.md) and [Java 17 measurements](reports/java17/kernel/report.md)
 - [Iteration plan and acceptance criteria](docs/iteration-plan.md)
+- [Cross-project integration contract proposal](docs/integration-contracts.md)
 - [Conversation primitives](ominicat-conversation/README.md)
 
 ## License

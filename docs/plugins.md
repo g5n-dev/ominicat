@@ -64,3 +64,5 @@ Capabilities vary by adapter. Declare them in the plugin's documentation: input/
 Use `ParallelProcessor` for independent branches with bounded ordered join, `FallbackProcessor` for pre-output failover, and `AsyncOutlet` for an independently bounded destination. Resource cleanup remains owned by the composing node. Persistent acknowledgment, deduplication and retry policy belong in a destination plugin that uses envelope IDs and external storage.
 
 See [architecture](architecture.md), [configuration](configuration.md), [wire protocol](protocol.md) and the [provider reference](../ominicat-providers/README.md).
+
+The [cross-project integration proposal](integration-contracts.md) plans optional machine-readable plugin descriptions, versioned result codecs and run/checkpoint manifests. These are future compatibility contracts; they do not add configuration fields or change the current SPI.
