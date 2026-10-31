@@ -34,14 +34,15 @@ import static org.junit.jupiter.api.Assertions.*;
 class OminiCatServerTest {
     private static final HttpResponse.BodyHandler<String> STRING = HttpResponse.BodyHandlers.ofString();
 
-    @Test void servesHealthDemoAndPrometheusMetrics() throws Exception {
+    @Test void servesHealthConsoleAndPrometheusMetrics() throws Exception {
         try (var server = server(config(), () -> (frame, next) -> next.accept(frame)).start(); var http = TestHttpClient.create()) {
             var health = http.send(HttpRequest.newBuilder(http(server, "/health")).GET().build(), STRING);
             assertEquals(200, health.statusCode());
             assertEquals("{\"status\":\"up\"}", health.body());
             var demo = http.send(HttpRequest.newBuilder(http(server, "/")).GET().build(), STRING);
             assertEquals(200, demo.statusCode());
-            assertTrue(demo.body().contains("Realtime playground"));
+            assertTrue(demo.body().contains("/console.js"));
+            assertTrue(demo.body().contains("/console.css"));
             var metrics = http.send(HttpRequest.newBuilder(http(server, "/metrics")).GET().build(), STRING);
             assertEquals(200, metrics.statusCode());
             assertTrue(metrics.body().contains("ominicat_active_sessions 0"));

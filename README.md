@@ -17,7 +17,7 @@ OminiCat is a **high-performance Java microkernel for multimodal conversation pi
 
 **Runtime:** Java 17 is the minimum for building and running every module. Java 21+ automatically uses virtual workers. See [Java compatibility and verification](docs/java-compatibility.md).
 
-[Java 17 verification](reports/verification.md): **276 passing tests**, 512-seed lifecycle checks and real protocol faults, including cancellation while HTTP response bodies remain open. [Recorded kernel/resource profiles](reports/java17/http-cancellation/README.md) and [historical Java 21 evidence](reports/deep/README.md) retain their source/artifact boundaries.
+[Java 17 verification](reports/verification.md): **297 passing tests**, 512-seed lifecycle checks and real protocol faults, including cancellation while HTTP response bodies remain open. [Recorded kernel/resource profiles](reports/java17/http-cancellation/README.md) and [historical Java 21 evidence](reports/deep/README.md) retain their source/artifact boundaries.
 
 ## Performance on Java 17
 
@@ -110,7 +110,11 @@ cd ominicat
 java -jar ominicat-server/target/ominicat-server.jar --config config/demo.yaml
 ```
 
-Open **[localhost:8080](http://127.0.0.1:8080)**. The bundled playground sends text, a microphone recording, images, and speaker-attributed transcripts. The default `echo` pipeline returns your input, so the entire path can be checked without an external model.
+Open **[localhost:8080](http://127.0.0.1:8080)**. **OminiCat Studio** starts with a task execution board: inspect content, actual processing stages, observed outputs and animated handoffs, then enter the separate pipeline debugger to send text, a microphone utterance, images or transcripts. The default `echo` pipeline returns your input without an external model.
+
+![OminiCat Studio operation overview](docs/assets/studio-overview.jpg)
+
+[Studio guide and debugger](docs/studio.md) · [Three-stage offline example](config/studio.yaml) · [Browser and resource verification](reports/studio/README.md).
 
 ```sh
 curl http://127.0.0.1:8080/health
@@ -243,6 +247,7 @@ The [inline profiles above](#profiles) show CPU, allocation, GC and resource evi
 - [Plugin development](docs/plugins.md)
 - [Scenario coverage and current limits](docs/scenario-coverage.md)
 - [Immutable media references and import/export](docs/media-references.md)
+- [Studio operation overview and pipeline debugger](docs/studio.md)
 - [Performance methodology](docs/performance.md) and [Java 17 measurements](reports/java17/kernel/report.md)
 - [Iteration plan and acceptance criteria](docs/iteration-plan.md)
 - [Cross-project integration contract proposal](docs/integration-contracts.md)

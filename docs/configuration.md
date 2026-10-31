@@ -70,7 +70,7 @@ Ordinary configuration failures identify the stage and option keys while suppres
 tokenEnv: OMINICAT_TOKEN
 ```
 
-Set `OMINICAT_TOKEN` in the runtime's environment. If the configured variable is missing or blank, startup fails. `/ws` and `/metrics` then require `Authorization: Bearer <token>`. `/` and `/health` remain public.
+Set `OMINICAT_TOKEN` in the runtime's environment. If the configured variable is missing or blank, startup fails. `/ws`, `/metrics`, `/api/runtime` and `/api/activity` then require `Authorization: Bearer <token>`. `/`, `/console.css`, `/console.js` and `/health` remain public. The [Studio guide](studio.md) describes its separate overview/debugger views and metadata allowlist.
 
 An unauthenticated listener bound to loopback also validates `Host` before routing: `localhost`, canonical `127/8` IPv4 literals and bracketed `::1` are allowed. Arbitrary matching `Host`/`Origin` values are rejected without a DNS lookup. This server-side check complements browser local-network restrictions. Configure `tokenEnv` for a reverse proxy or external hostname; wildcard/public listeners still require explicit deployment authentication and quotas.
 

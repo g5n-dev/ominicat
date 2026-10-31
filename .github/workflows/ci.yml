@@ -64,6 +64,10 @@ jobs:
           bash -n scripts/profile.sh scripts/server_soak.sh
       - name: Performance evidence failure controls
         run: python3 -m unittest discover -s scripts -p 'test_*.py' -v
+      - name: Browser console syntax and lifecycle controls
+        run: |
+          node --check ominicat-server/src/main/resources/web/console.js
+          node --test scripts/test_console.cjs
   container:
     runs-on: ubuntu-latest
     timeout-minutes: 15
