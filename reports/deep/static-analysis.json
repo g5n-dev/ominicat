@@ -220,7 +220,21 @@
     },
     "limitations": "Static patterns are not exhaustive correctness or security evidence. Remaining warnings are retained in the report, not suppressed to produce a zero-warning badge."
   },
-  "sourceRevision": "f66c2d5af76d9d19c997f41bcd0292aafb1434c7",
   "measuredArtifactSha256": "081520dcc8c78baea46c013f78a3be0878bcba1c24789bce3b8c6c535710978f",
-  "entryEquivalenceVerified": true
+  "entryEquivalenceVerified": true,
+  "baselineSourceRevision": "f66c2d5af76d9d19c997f41bcd0292aafb1434c7",
+  "postCrRefresh": {
+    "modules": [
+      "ominicat-core",
+      "ominicat-providers"
+    ],
+    "providerSourceSha256": "5ad587fb28bbdc1f093f25fd9c7c6b35ef8f16003e52515a3f4ff4cc9f20946b",
+    "unchangedModules": [
+      "ominicat-conversation",
+      "ominicat-server"
+    ],
+    "releaseArtifactSha256": "f2173e5c2dc519d963d0868b62e6f23f94b5259e1d24465d6db4fac90387cbf4",
+    "classesComparedAgainstReleaseArtifact": 87,
+    "allCurrentProductionClassesEqualToReleaseArtifact": true
+  }
 }

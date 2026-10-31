@@ -54,10 +54,11 @@ public final class ChatFactory implements ProcessorFactory {
                         .onUnmappableCharacter(CodingErrorAction.REPORT))), 1);
         int first = reader.read();
         if (first != -1 && first != 0xfeff) reader.unread(first);
+        SseLines lines = new SseLines(reader);
         StringBuilder event = new StringBuilder();
         int consumed = 0;
         while (true) {
-            String line = boundedLine(reader);
+            String line = lines.readLine();
             if (line == null) throw new IOException("provider stream ended before DONE");
             consumed += line.length() + 1;
             if (consumed > response.maxBytes() / 4) throw new IOException("provider stream exceeded character budget");
@@ -78,19 +79,28 @@ public final class ChatFactory implements ProcessorFactory {
             }
         }
     }
-    private static String boundedLine(PushbackReader reader) throws IOException {
-        StringBuilder line = new StringBuilder();
-        int character;
-        while ((character = reader.read()) != -1) {
-            if (character == '\n') return line.toString();
-            if (character == '\r') {
-                int following = reader.read();
-                if (following != -1 && following != '\n') reader.unread(following);
-                return line.toString();
+    private static final class SseLines {
+        private final PushbackReader reader;
+        private boolean skipLf;
+        private SseLines(PushbackReader reader) { this.reader = reader; }
+        private String readLine() throws IOException {
+            StringBuilder line = new StringBuilder();
+            int character;
+            while ((character = reader.read()) != -1) {
+                if (skipLf) {
+                    skipLf = false;
+                    if (character == '\n') continue;
+                }
+                if (character == '\n') return line.toString();
+                if (character == '\r') {
+                    // CR already terminates the line; defer optional LF handling to the next read.
+                    skipLf = true;
+                    return line.toString();
+                }
+                line.append((char) character);
+                if (line.length() > 65536) throw new IOException("provider SSE line too large");
             }
-            line.append((char) character);
-            if (line.length() > 65536) throw new IOException("provider SSE line too large");
+            return line.isEmpty() ? null : line.toString();
         }
-        return line.isEmpty() ? null : line.toString();
     }
 }

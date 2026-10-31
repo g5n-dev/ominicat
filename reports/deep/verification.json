@@ -65,12 +65,12 @@
   },
   {
     "module": "ominicat-providers",
-    "tests": 55,
+    "tests": 57,
     "failures": 0,
     "skipped": 0,
     "coverage": {
       "INSTRUCTION": {
-        "covered": 2465,
+        "covered": 2478,
         "missed": 71
       },
       "BRANCH": {
@@ -78,19 +78,19 @@
         "missed": 32
       },
       "LINE": {
-        "covered": 359,
+        "covered": 363,
         "missed": 4
       },
       "COMPLEXITY": {
-        "covered": 193,
+        "covered": 194,
         "missed": 32
       },
       "METHOD": {
-        "covered": 66,
+        "covered": 67,
         "missed": 2
       },
       "CLASS": {
-        "covered": 17,
+        "covered": 18,
         "missed": 0
       }
     }

@@ -1,0 +1,21 @@
+{
+  "resourceRunArtifactSha256": "081520dcc8c78baea46c013f78a3be0878bcba1c24789bce3b8c6c535710978f",
+  "releaseArtifactSha256": "f2173e5c2dc519d963d0868b62e6f23f94b5259e1d24465d6db4fac90387cbf4",
+  "changedEntries": [
+    "io/ominicat/providers/ChatFactory.class"
+  ],
+  "addedEntries": [
+    "io/ominicat/providers/ChatFactory$SseLines.class"
+  ],
+  "removedEntries": [],
+  "identicalCoreServerConversationClasses": 69,
+  "unchangedCoreServerConversationBytecode": true,
+  "fullResourceRunRepeatedOnReleaseArtifact": false,
+  "validationScope": "The 20-minute mixed-media/resource run exercises unchanged core/server/conversation bytecode. The subsequent CR-only stream parser change is separately regression-tested and exercised by a 60-second incremental real local HTTP stream. No whole-binary 20-minute claim is made for the release delta.",
+  "changedSourceFiles": [
+    {
+      "path": "ominicat-providers/src/main/java/io/ominicat/providers/ChatFactory.java",
+      "sha256": "5ad587fb28bbdc1f093f25fd9c7c6b35ef8f16003e52515a3f4ff4cc9f20946b"
+    }
+  ]
+}

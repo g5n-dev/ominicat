@@ -52,3 +52,54 @@ mvn -f "$task_verify_dir/pom.xml" -B \
 ```
 
 The clean verification on Java 21 passed 55 provider tests and 40 conversation tests with no failures or errors. The 19 fault/oracle test methods were then repeated three additional times without failure. Provider line coverage was 359/363 (98.90%) and branch coverage 282/314 (89.81%); conversation line coverage was 416/434 (95.85%) and branch coverage 297/360 (82.50%). Test-method counts are distinct from the generated cases and operations listed above. Timing assertions provide generous test watchdogs and timeout checks; they are not service latency objectives.
+
+## Release addendum: held-open CR streaming liveness
+
+The counts above describe the earlier provider source. A subsequent held-open-stream probe found an additional liveness defect: after reading a CR line terminator, the parser eagerly read one more character to distinguish CRLF. A complete `data: ...\r\r` event therefore waited for the following event or EOF before delivering its text. A complete `[DONE]\r\r` could similarly wait for more bytes instead of terminating. The earlier finite-body CR fixtures closed the stream and did not expose this delay.
+
+Two new local HTTP controls failed against the old source, with two failures and zero errors. Each peer flushed a complete event and then waited on a latch; text delivery or successful completion had to occur before that latch was released. Neither reproduction depended on deadline expiry.
+
+The correction changes only production `ChatFactory.java`: a per-stream line reader now returns immediately on CR and defers skipping an optional LF until the next read. UTF-8 validation, BOM handling, byte/character budgets and other adapter behavior are retained.
+
+### Provenance of this delta
+
+The completed 20-minute echo/resource run belongs to artifact SHA-256 `081520dcc8c78baea46c013f78a3be0878bcba1c24789bce3b8c6c535710978f`. That artifact is unchanged and did not contain this SSE correction. Its echo measurements must not be relabeled as a sustained SSE test of the corrected release.
+
+| Item | Before | Corrected isolated build |
+| --- | --- | --- |
+| `ChatFactory.java` SHA-256 | `150edf64c285a6b09febe6518a43e3230e69a83b65fa88dd898231893bb4ca0b` | `5ad587fb28bbdc1f093f25fd9c7c6b35ef8f16003e52515a3f4ff4cc9f20946b` |
+| `ChatFactory.class` SHA-256 | `a740d1bd94132947647580b91768c67878033211621e3d281f386e2d6ea466e7` | `ebbaddfc4950b288dddfc3058852318a04be08c559f5d08c200ee5051771ba91` |
+| `ChatFactory$SseLines.class` SHA-256 | Absent | `5e78363c7d4bb526a8b2ad8331a10a99b2a5ab0322f8a2b2e36222c60afceba3` |
+
+Comparing provider production classes from the isolated build to that frozen artifact found only those two changed/added entries. Whole-distribution hashes and the archive-entry comparison are recorded separately in the final release evidence; this module comparison does not assign new bytes to the old artifact hash.
+
+### Completed checks after the correction
+
+| Check | Observed result |
+| --- | --- |
+| Clean owned-module suite | 57 provider tests and 40 conversation tests; zero failures, errors or skips |
+| Provider coverage | 363/367 lines (98.91%); 282/314 branches (89.81%) |
+| Conversation coverage | Unchanged: 416/434 lines (95.85%); 297/360 branches (82.50%) |
+| Held-open boundary regressions | Text and DONE, each with LF/CRLF/CR and with/without BOM; all 12 configurations passed |
+| Additional repeats | Five runs of both held-open methods plus the finite-body SSE boundary suite; all passed, including 60 additional held-open configurations |
+
+The opt-in CR streaming fixture then ran for **60.061915583 seconds** with a producer paced at 100 events/s. It delivered **6,000 of 6,000 exact, ordered Unicode text chunks**. For every chunk, the producer waited for client observation before writing the following event; all 6,000 acknowledgments arrived. The producer held its response body open after `[DONE]\r\r`, and the client completed without requiring producer EOF. Its provider deadline was 120 seconds and its raw response budget was 4 MiB.
+
+First text arrived 12.591667 ms after producer start; the maximum observed inter-text gap was 51.422292 ms. These are workstation observations from the paced fixture, not latency objectives or a saturation benchmark. The [raw CR streaming result](../reports/deep/sse-cr-streaming.json) records the counters and timing.
+
+Reproduce after preparing an isolated checkout as above:
+
+```sh
+mvn -f "$task_verify_dir/pom.xml" -B -Pcoverage \
+  -pl ominicat-providers,ominicat-conversation -am clean verify
+
+mvn -f "$task_verify_dir/pom.xml" -B -pl ominicat-providers -am \
+  -Dtest=SseOpenStreamTest,SseBoundaryTest \
+  -Dsurefire.failIfNoSpecifiedTests=false test
+
+mvn -f "$task_verify_dir/pom.xml" -B -pl ominicat-providers -am \
+  -Dtest=SseCrStreamingSoakIT -Dsurefire.failIfNoSpecifiedTests=false \
+  -Dominicat.sse.soak.report="$task_verify_dir/cr-streaming-60s.json" test
+```
+
+`SseCrStreamingSoakIT` is explicitly selected and is not part of the ordinary short test suite. This addendum validates the affected local streaming path; it does not claim a new 20-minute distribution run or a live cloud-provider result.

@@ -15,7 +15,7 @@ OminiCat is a configurable **Java microkernel for multimodal conversation pipeli
 
 **Status:** early 0.1 development preview. APIs and configuration may evolve. The repository includes executable tests and reproducible profiling tools; the recorded kernel baseline is not a production capacity claim.
 
-[Deep verification](reports/deep/README.md): **232 passing tests**, 512-seed lifecycle oracles, fault injection and a **20-minute constrained-heap mixed-media run** with 1,405,303 validated frames and zero unexpected failures. The report includes resource drain, callback reachability, GC/native-memory evidence and explicit live-provider limits.
+[Deep verification](reports/deep/README.md): **234 passing tests**, 512-seed lifecycle oracles, fault injection and a **20-minute constrained-heap mixed-media run** with 1,405,303 validated frames and zero unexpected failures. The report includes resource drain, callback reachability, GC/native-memory evidence and explicit live-provider limits. The long run precedes a localized SSE parser fix; the final release has separate 60-second streaming validation, with [artifact boundaries recorded](reports/deep/release-delta.json).
 
 ## Quick start
 

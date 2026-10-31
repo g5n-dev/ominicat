@@ -2,9 +2,9 @@
 
 Recorded on **2026-10-31, Asia/Shanghai**. This report separates completed verification from work that has not yet produced a result. Inputs are generated test data; no production conversations are used.
 
-**Completed:** 232 tests passed with zero failures, errors or skips, including 512-seed kernel stress tests, independent state/media oracles and real local TCP/HTTP/WebSocket fault fixtures. [Java21/25 and container CI](https://github.com/g5n-dev/ominicat/actions/runs/41175697513) passed. Two earlier native transport resource runs completed for 180 seconds and 60 seconds respectively, on their identified source variant.
+**Completed:** 234 final-release tests passed with zero failures, errors or skips, including 512-seed kernel stress tests, independent state/media oracles and real local TCP/HTTP/WebSocket fault fixtures. [Java 21/25 and container CI](https://github.com/g5n-dev/ominicat/actions/workflows/ci.yml) passed. Two earlier native transport resource runs completed for 180 seconds and 60 seconds respectively, on their identified source variant.
 
-**Completed — final-distribution sustained run:** 60 seconds of warmup followed by **1,200.174 measured seconds**, **1,405,303 validated frames**, **42,729 new connections**, **zero unexpected failures**, and complete session/worker/output drain. All eleven predeclared numeric checks passed.
+**Completed — fixed-artifact resource run:** 60 seconds of warmup followed by **1,200.174 measured seconds**, **1,405,303 validated frames**, **42,729 new connections**, **zero unexpected failures**, and complete session/worker/output drain. All eleven predeclared numeric checks passed.
 
 **PENDING — live compatible service:** the test endpoint, credential environment-variable name and model configuration have not been supplied. No live-service request or successful live-provider result is recorded.
 
@@ -22,25 +22,25 @@ Hardware/toolchain details are recorded in the [environment manifest](environmen
 | [Dependency audit](dependency-audit.json) | Recorded versioned dependency queries and returned advisory matches |
 | [Static analysis](static-analysis.json) | Final-source findings and retained review dispositions |
 
-The artifact reserved for the final sustained run has SHA-256:
+The artifact used for the sustained resource run has SHA-256:
 
 ```text
 081520dcc8c78baea46c013f78a3be0878bcba1c24789bce3b8c6c535710978f
 ```
 
-Its production-source aggregate SHA-256 is `f960008e9dd2b7a9da3eb2d8b934851f191e8d1d63c2ca546e51972797bc014d`. The recorded hardening sources match revision `f66c2d5af76d9d19c997f41bcd0292aafb1434c7` file by file. The manifest also retains the pre-hardening base revision. Incremental repackaging changed ZIP entry order; all 3,906 entry contents and metadata remained identical. The measured JAR itself is retained unchanged under the stated SHA-256. Evidence from earlier source variants is labeled separately and cannot substitute for a completed run of this artifact.
+Its production-source aggregate SHA-256 is `f960008e9dd2b7a9da3eb2d8b934851f191e8d1d63c2ca546e51972797bc014d`. The recorded hardening sources match revision `f66c2d5af76d9d19c997f41bcd0292aafb1434c7` file by file. The manifest also retains the pre-hardening base revision. Incremental repackaging changed ZIP entry order; all 3,906 entry contents and metadata remained identical. The measured JAR itself is retained unchanged under the stated SHA-256. Evidence from earlier source variants is labeled separately. A subsequent localized SSE CR-delivery fix is recorded separately with affected-path regression and bytecode equivalence evidence; it is not retroactively included in the resource-run artifact.
 
 ## Complete test verification
 
-The clean whole-repository verification completed with kernel stress repetition set to 512 seeds. [GitHub CI](https://github.com/g5n-dev/ominicat/actions/runs/41175697513) also passed on Java 21 and 25, including container lifecycle/authentication and a smoke run of the validation driver. Coverage describes the paths exercised in that run; it is not a probability of correctness.
+The clean whole-repository verification completed with kernel stress repetition set to 512 seeds. [GitHub CI](https://github.com/g5n-dev/ominicat/actions/workflows/ci.yml) also passed on Java 21 and 25, including container lifecycle/authentication and a smoke run of the validation driver. Coverage describes the paths exercised in that run; it is not a probability of correctness.
 
 | Module | Tests | Failures / errors / skips | Covered lines | Covered branches |
 | --- | ---: | --- | ---: | ---: |
 | Core | 80 | 0 / 0 / 0 | 617/655 — 94.20% | 322/400 — 80.50% |
 | Conversation | 40 | 0 / 0 / 0 | 416/434 — 95.85% | 297/360 — 82.50% |
-| Providers | 55 | 0 / 0 / 0 | 359/363 — 98.90% | 282/314 — 89.81% |
+| Providers | 57 | 0 / 0 / 0 | 363/367 — 98.91% | 282/314 — 89.81% |
 | Server | 57 | 0 / 0 / 0 | 463/498 — 92.97% | 296/370 — 80.00% |
-| **Total** | **232** | **0 / 0 / 0** | | |
+| **Total** | **234** | **0 / 0 / 0** | | |
 
 Builds used isolated source snapshots and their own output directories. They did not replace classes underneath a running validation process. Deliberately failing controls against the original implementation are retained as regression evidence and are not counted as successful verification.
 
@@ -89,7 +89,7 @@ The authority test proves transport-level acceptance and its correction; it does
 
 ## Completed native transport resource runs
 
-These earlier runs use the source hashes documented in the [server verification report](../../ominicat-server/DEEP_VERIFICATION.md). They precede the final loopback Host hardening and must remain distinct from the final-distribution run below.
+These earlier runs use the source hashes documented in the [server verification report](../../ominicat-server/DEEP_VERIFICATION.md). They precede the final loopback Host hardening and must remain distinct from the fixed-artifact run below.
 
 | Workload or result | 180-second run | 60-second task-sampling run |
 | --- | ---: | ---: |
@@ -106,7 +106,7 @@ Both used PARANOID Netty leak detection and a 512 MiB maximum heap. Pooled direc
 
 The separate task-sampling run observed 0–5 queued worker event-loop tasks and 0–15 scheduled tasks, both returning to zero after drain. Heap samples include temporary objects awaiting collection and must not be described as retained heap. An earlier unpaced client generator exhausted local ephemeral ports; that unsuccessful run is excluded from passing-soak and throughput claims.
 
-## Completed final-distribution sustained run
+## Completed fixed-artifact resource run
 
 | Requested condition | Configuration |
 | --- | --- |
@@ -143,11 +143,17 @@ The JFR recording covers **1,345 seconds** of whole-process execution, including
 
 The separate [kernel report](kernel/report.md) measures 4-stage direct dispatch at 40.01 million operations/s and session round trips at 8.229 µs/op. The [historical comparison](kernel/comparison.md) openly records increased allocation with invocation guards and lower direct-dispatch throughput; shared-host runs do not isolate causality. Correctness checks are not represented as free.
 
+## Post-resource-run CR streaming correction
+
+A final held-open-stream check reproduced a localized liveness defect: the CR parser looked ahead for an optional LF before dispatching an already-complete event. Finite-body fragmentation tests had not exposed it. The parser was corrected to return on CR immediately and defer optional LF consumption to the next read. Two new held-open test methods exercise LF/CRLF/CR with and without a BOM. The final whole-project clean suite passed 234 tests with 512 stress seeds. A [60.062-second real local HTTP stream](sse-cr-streaming.json) delivered all 6,000 ordered Unicode chunks; every chunk was observed before the producer wrote the next. DONE completed while the producer still held the body open. These local fixture results are not live-provider evidence.
+
+The [release delta manifest](release-delta.json) records the final JAR SHA-256 and exactly two changed/added bytecode entries: `ChatFactory.class` and `ChatFactory$SseLines.class`. All 69 core/server/conversation classes and every other existing entry remained byte-for-byte equal. The 20-minute resource run used artifact 081520... above; it was not rerun as a whole on the localized provider delta. The final release is 234-test verified with this affected-path stream check, while the immutable resource-run evidence remains separate.
+
 ## Dependency and static-analysis review
 
 The recorded OSV batch query checked **13 versioned third-party coordinates** and returned **zero matching advisories** on 2026-10-31. This is an as-of database result for that recorded set, not proof that the software or its dependencies have no vulnerabilities. The [audit](dependency-audit.json) retains package versions and query provenance.
 
-The completed final-source SpotBugs scan used maximum effort and a low reporting threshold. It reported **23 findings: zero high, five medium and eighteen low**, with no analysis errors or missing classes. The [recorded review](static-analysis.json) explains intentional registry synchronization, checked-exception SPI boundaries, ownership-aware cleanup and overflow validation. Warnings remain visible; they were not suppressed to manufacture a zero-warning result. The scanned entry contents are verified equal to the measured artifact. No analysis errors or missing classes were reported.
+The completed final-source SpotBugs scan used maximum effort and a low reporting threshold. It reported **23 findings: zero high, five medium and eighteen low**, with no analysis errors or missing classes. The [recorded review](static-analysis.json) explains intentional registry synchronization, checked-exception SPI boundaries, ownership-aware cleanup and overflow validation. Warnings remain visible; they were not suppressed to manufacture a zero-warning result. The affected core/provider scan was refreshed after the CR fix; conversation/server bytecode remained unchanged. All scanned production classes were compared against the final release JAR. The recorded review retains the earlier resource-run artifact hash and the final release hash separately.
 
 ## PENDING — live compatible-service verification
 
