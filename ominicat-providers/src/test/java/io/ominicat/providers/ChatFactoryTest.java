@@ -173,21 +173,24 @@ class ChatFactoryTest extends ProviderHttpTestSupport {
             exchange.getResponseBody().write(": pending\n".getBytes(StandardCharsets.UTF_8));
             exchange.getResponseBody().flush();
             headers.countDown();
-            try { release.await(5, TimeUnit.SECONDS); }
+            try { release.await(30, TimeUnit.SECONDS); }
             catch (InterruptedException interrupted) { Thread.currentThread().interrupt(); }
             exchange.close();
         });
-        Processor processor = new ChatFactory().create(options());
+        Processor processor = new ChatFactory().create(options("timeoutSeconds", "30"));
         CompletableFuture<Throwable> result = new CompletableFuture<>();
+        var interruptedAtFailure = new java.util.concurrent.atomic.AtomicBoolean();
         Thread worker = WorkerThreads.start("ominicat-provider-test-", () -> {
             try { processor.process(new Frame.Text("hello"), ignored -> {}); result.complete(null); }
-            catch (Throwable error) { result.complete(error); }
+            catch (Throwable error) { interruptedAtFailure.set(Thread.currentThread().isInterrupted()); result.complete(error); }
         });
         try {
             assertTrue(headers.await(2, TimeUnit.SECONDS));
+            awaitResponseRead(worker);
             worker.interrupt();
-            assertNotNull(result.get(2, TimeUnit.SECONDS));
-        } finally { release.countDown(); worker.interrupt(); }
+            assertInstanceOf(java.io.InterruptedIOException.class, result.get(2, TimeUnit.SECONDS));
+            assertTrue(interruptedAtFailure.get(), "the provider must preserve cancellation's interrupt status");
+        } finally { release.countDown(); worker.interrupt(); worker.join(3000); }
     }
 
     private static CompletableFuture<Throwable> processOnWorkerThread(Processor processor) {

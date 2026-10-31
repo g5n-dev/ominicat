@@ -1,0 +1,438 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO]
+[INFO] OminiCat                                                           [pom]
+[INFO] OminiCat · Microkernel                                             [jar]
+[INFO] OminiCat Conversation                                              [jar]
+[INFO] OminiCat · Providers                                               [jar]
+[INFO] OminiCat :: Server                                                 [jar]
+[INFO] OminiCat · Performance laboratory                                  [jar]
+[INFO]
+[INFO] --------------------< io.ominicat:ominicat-parent >---------------------
+[INFO] Building OminiCat 0.1.0-SNAPSHOT                                   [1/6]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO]
+[INFO] --- clean:3.2.0:clean (default-clean) @ ominicat-parent ---
+[INFO] Deleting [repository]/target
+[INFO]
+[INFO] --- enforcer:3.6.2:enforce (runtime) @ ominicat-parent ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO]
+[INFO] --- jacoco:0.8.16:prepare-agent (default) @ ominicat-parent ---
+[INFO] argLine set to -javaagent:[maven-cache]/repository/org/jacoco/org.jacoco.agent/0.8.16/org.jacoco.agent-0.8.16-runtime.jar=destfile=[repository]/target/jacoco.exec
+[INFO]
+[INFO] --- jacoco:0.8.16:report (report) @ ominicat-parent ---
+[INFO] Skipping JaCoCo execution due to missing execution data file.
+[INFO]
+[INFO] --- cyclonedx:2.9.1:makeAggregateBom (default) @ ominicat-parent ---
+[INFO] CycloneDX: Resolving Aggregated Dependencies
+[INFO] CycloneDX: Creating BOM version 1.6 with 22 component(s)
+[INFO] CycloneDX: Writing and validating BOM (XML): [repository]/target/bom.xml
+[INFO]            attaching as ominicat-parent-0.1.0-SNAPSHOT-cyclonedx.xml
+[INFO] CycloneDX: Writing and validating BOM (JSON): [repository]/target/bom.json
+[WARNING] Unknown keyword meta:enum - you should define your own Meta Schema. If the keyword is irrelevant for validation, just use a NonValidationKeyword or if it should generate annotations AnnotationKeyword
+[WARNING] Unknown keyword deprecated - you should define your own Meta Schema. If the keyword is irrelevant for validation, just use a NonValidationKeyword or if it should generate annotations AnnotationKeyword
+[INFO]            attaching as ominicat-parent-0.1.0-SNAPSHOT-cyclonedx.json
+[INFO]
+[INFO] ---------------------< io.ominicat:ominicat-core >----------------------
+[INFO] Building OminiCat · Microkernel 0.1.0-SNAPSHOT                     [2/6]
+[INFO]   from ominicat-core/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- clean:3.2.0:clean (default-clean) @ ominicat-core ---
+[INFO] Deleting [repository]/ominicat-core/target
+[INFO]
+[INFO] --- enforcer:3.6.2:enforce (runtime) @ ominicat-core ---
+[INFO]
+[INFO] --- jacoco:0.8.16:prepare-agent (default) @ ominicat-core ---
+[INFO] argLine set to -javaagent:[maven-cache]/repository/org/jacoco/org.jacoco.agent/0.8.16/org.jacoco.agent-0.8.16-runtime.jar=destfile=[repository]/ominicat-core/target/jacoco.exec
+[INFO]
+[INFO] --- resources:3.4.0:resources (default-resources) @ ominicat-core ---
+[INFO] skip non existing resourceDirectory [repository]/ominicat-core/src/main/resources
+[INFO]
+[INFO] --- compiler:3.14.1:compile (default-compile) @ ominicat-core ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 18 source files with javac [debug parameters release 17] to target/classes
+[INFO]
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ ominicat-core ---
+[INFO] skip non existing resourceDirectory [repository]/ominicat-core/src/test/resources
+[INFO]
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ ominicat-core ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 18 source files with javac [debug parameters release 17] to target/test-classes
+[INFO]
+[INFO] --- surefire:3.5.4:test (default-test) @ ominicat-core ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running io.ominicat.core.AsyncResourceModelTest
+Retained async resource oracle: baseSeed=51814211622, seeds=512, terminalScenarios=4, modes=raw+envelope
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.179 s -- in io.ominicat.core.AsyncResourceModelTest
+[INFO] Running io.ominicat.core.FrameTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in io.ominicat.core.FrameTest
+[INFO] Running io.ominicat.core.CompositeLifetimeTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.045 s -- in io.ominicat.core.CompositeLifetimeTest
+[INFO] Running io.ominicat.core.KernelModelStressTest
+Concurrent lifecycle stress: baseSeed=104372206247974, seeds=512, actors=4, operations=524288
+Independent queue oracle: baseSeed=104372206247974, seeds=512, operations=524288
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.793 s -- in io.ominicat.core.KernelModelStressTest
+[INFO] Running io.ominicat.core.PipelineTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in io.ominicat.core.PipelineTest
+[INFO] Running io.ominicat.core.SinkLifetimeTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in io.ominicat.core.SinkLifetimeTest
+[INFO] Running io.ominicat.core.FrameEnvelopeTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in io.ominicat.core.FrameEnvelopeTest
+[INFO] Running io.ominicat.core.FallbackProcessorTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in io.ominicat.core.FallbackProcessorTest
+[INFO] Running io.ominicat.core.spi.PluginRegistryTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.014 s -- in io.ominicat.core.spi.PluginRegistryTest
+[INFO] Running io.ominicat.core.EnvelopeProcessorTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in io.ominicat.core.EnvelopeProcessorTest
+[INFO] Running io.ominicat.core.AsyncRaceStressTest
+Async callback/lifecycle stress: baseSeed=2770083878, seeds=512, actors=3, modes=raw+envelope, operations=524288
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.554 s -- in io.ominicat.core.AsyncRaceStressTest
+[INFO] Running io.ominicat.core.ParallelProcessorTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.064 s -- in io.ominicat.core.ParallelProcessorTest
+[INFO] Running io.ominicat.core.AsyncOutletTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in io.ominicat.core.AsyncOutletTest
+[INFO] Running io.ominicat.core.WorkerThreadsTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.123 s -- in io.ominicat.core.WorkerThreadsTest
+[INFO] Running io.ominicat.core.ParallelModelStressTest
+Parallel fork/join resource oracle: baseSeed=775891984422, seeds=512, branches=1..4, buffers=1..4
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.094 s -- in io.ominicat.core.ParallelModelStressTest
+[INFO] Running io.ominicat.core.RetiredCallbackRetentionTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.580 s -- in io.ominicat.core.RetiredCallbackRetentionTest
+[INFO] Running io.ominicat.core.AsyncSessionTest
+[INFO] Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.016 s -- in io.ominicat.core.AsyncSessionTest
+[INFO] Running io.ominicat.core.PipelineSessionTest
+[INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.016 s -- in io.ominicat.core.PipelineSessionTest
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 89, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] --- jar:3.4.2:jar (default-jar) @ ominicat-core ---
+[INFO] Building jar: [repository]/ominicat-core/target/ominicat-core-0.1.0-SNAPSHOT.jar
+[INFO]
+[INFO] --- jacoco:0.8.16:report (report) @ ominicat-core ---
+[INFO] Loading execution data file [repository]/ominicat-core/target/jacoco.exec
+[INFO] Analyzed bundle 'OminiCat · Microkernel' with 38 classes
+[INFO]
+[INFO] --- cyclonedx:2.9.1:makeAggregateBom (default) @ ominicat-core ---
+[INFO] CycloneDX: Resolving Dependencies
+[INFO] CycloneDX: Creating BOM version 1.6 with 0 component(s)
+[INFO] CycloneDX: Writing and validating BOM (XML): [repository]/ominicat-core/target/bom.xml
+[INFO]            attaching as ominicat-core-0.1.0-SNAPSHOT-cyclonedx.xml
+[INFO] CycloneDX: Writing and validating BOM (JSON): [repository]/ominicat-core/target/bom.json
+[INFO]            attaching as ominicat-core-0.1.0-SNAPSHOT-cyclonedx.json
+[INFO]
+[INFO] -----------------< io.ominicat:ominicat-conversation >------------------
+[INFO] Building OminiCat Conversation 0.1.0-SNAPSHOT                      [3/6]
+[INFO]   from ominicat-conversation/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- clean:3.2.0:clean (default-clean) @ ominicat-conversation ---
+[INFO] Deleting [repository]/ominicat-conversation/target
+[INFO]
+[INFO] --- enforcer:3.6.2:enforce (runtime) @ ominicat-conversation ---
+[INFO]
+[INFO] --- jacoco:0.8.16:prepare-agent (default) @ ominicat-conversation ---
+[INFO] argLine set to -javaagent:[maven-cache]/repository/org/jacoco/org.jacoco.agent/0.8.16/org.jacoco.agent-0.8.16-runtime.jar=destfile=[repository]/ominicat-conversation/target/jacoco.exec
+[INFO]
+[INFO] --- resources:3.4.0:resources (default-resources) @ ominicat-conversation ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO]
+[INFO] --- compiler:3.14.1:compile (default-compile) @ ominicat-conversation ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 16 source files with javac [debug parameters release 17] to target/classes
+[INFO]
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ ominicat-conversation ---
+[INFO] skip non existing resourceDirectory [repository]/ominicat-conversation/src/test/resources
+[INFO]
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ ominicat-conversation ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 6 source files with javac [debug parameters release 17] to target/test-classes
+[INFO]
+[INFO] --- surefire:3.5.4:test (default-test) @ ominicat-conversation ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running io.ominicat.conversation.ConversationEvaluatorTest
+[INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.065 s -- in io.ominicat.conversation.ConversationEvaluatorTest
+[INFO] Running io.ominicat.conversation.PromptTemplateTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in io.ominicat.conversation.PromptTemplateTest
+[INFO] Running io.ominicat.conversation.StateAtomicityTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in io.ominicat.conversation.StateAtomicityTest
+[INFO] Running io.ominicat.conversation.ConversationWindowTest
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in io.ominicat.conversation.ConversationWindowTest
+[INFO] Running io.ominicat.conversation.ConversationOracleTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.133 s -- in io.ominicat.conversation.ConversationOracleTest
+[INFO] Running io.ominicat.conversation.flow.StepFlowProcessorTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in io.ominicat.conversation.flow.StepFlowProcessorTest
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 40, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] --- jar:3.4.2:jar (default-jar) @ ominicat-conversation ---
+[INFO] Building jar: [repository]/ominicat-conversation/target/ominicat-conversation-0.1.0-SNAPSHOT.jar
+[INFO]
+[INFO] --- jacoco:0.8.16:report (report) @ ominicat-conversation ---
+[INFO] Loading execution data file [repository]/ominicat-conversation/target/jacoco.exec
+[INFO] Analyzed bundle 'OminiCat Conversation' with 20 classes
+[INFO]
+[INFO] --- cyclonedx:2.9.1:makeAggregateBom (default) @ ominicat-conversation ---
+[INFO] CycloneDX: Resolving Dependencies
+[INFO] CycloneDX: Creating BOM version 1.6 with 1 component(s)
+[INFO] CycloneDX: Writing and validating BOM (XML): [repository]/ominicat-conversation/target/bom.xml
+[INFO]            attaching as ominicat-conversation-0.1.0-SNAPSHOT-cyclonedx.xml
+[INFO] CycloneDX: Writing and validating BOM (JSON): [repository]/ominicat-conversation/target/bom.json
+[INFO]            attaching as ominicat-conversation-0.1.0-SNAPSHOT-cyclonedx.json
+[INFO]
+[INFO] -------------------< io.ominicat:ominicat-providers >-------------------
+[INFO] Building OminiCat · Providers 0.1.0-SNAPSHOT                       [4/6]
+[INFO]   from ominicat-providers/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- clean:3.2.0:clean (default-clean) @ ominicat-providers ---
+[INFO] Deleting [repository]/ominicat-providers/target
+[INFO]
+[INFO] --- enforcer:3.6.2:enforce (runtime) @ ominicat-providers ---
+[INFO]
+[INFO] --- jacoco:0.8.16:prepare-agent (default) @ ominicat-providers ---
+[INFO] argLine set to -javaagent:[maven-cache]/repository/org/jacoco/org.jacoco.agent/0.8.16/org.jacoco.agent-0.8.16-runtime.jar=destfile=[repository]/ominicat-providers/target/jacoco.exec
+[INFO]
+[INFO] --- resources:3.4.0:resources (default-resources) @ ominicat-providers ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO]
+[INFO] --- compiler:3.14.1:compile (default-compile) @ ominicat-providers ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 10 source files with javac [debug parameters release 17] to target/classes
+[INFO]
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ ominicat-providers ---
+[INFO] skip non existing resourceDirectory [repository]/ominicat-providers/src/test/resources
+[INFO]
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ ominicat-providers ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 15 source files with javac [debug parameters release 17] to target/test-classes
+[INFO]
+[INFO] --- surefire:3.5.4:test (default-test) @ ominicat-providers ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running io.ominicat.providers.TranscriptGateOracleTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.213 s -- in io.ominicat.providers.TranscriptGateOracleTest
+[INFO] Running io.ominicat.providers.OfflineProvidersTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.020 s -- in io.ominicat.providers.OfflineProvidersTest
+[INFO] Running io.ominicat.providers.AudioChannelSplitTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in io.ominicat.providers.AudioChannelSplitTest
+[INFO] Running io.ominicat.providers.ChatFactoryTest
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.409 s -- in io.ominicat.providers.ChatFactoryTest
+[INFO] Running io.ominicat.providers.TranscriptGateTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in io.ominicat.providers.TranscriptGateTest
+[INFO] Running io.ominicat.providers.SseBoundaryTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.016 s -- in io.ominicat.providers.SseBoundaryTest
+[INFO] Running io.ominicat.providers.SpeechFactoryTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.017 s -- in io.ominicat.providers.SpeechFactoryTest
+[INFO] Running io.ominicat.providers.TranscriptionFactoryTest
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.051 s -- in io.ominicat.providers.TranscriptionFactoryTest
+[INFO] Running io.ominicat.providers.PublisherInputStreamTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in io.ominicat.providers.PublisherInputStreamTest
+[INFO] Running io.ominicat.providers.SseOpenStreamTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.017 s -- in io.ominicat.providers.SseOpenStreamTest
+[INFO] Running io.ominicat.providers.TranscriptionTimelineOracleTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.079 s -- in io.ominicat.providers.TranscriptionTimelineOracleTest
+[INFO] Running io.ominicat.providers.ProviderOptionsTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in io.ominicat.providers.ProviderOptionsTest
+[INFO] Running io.ominicat.providers.ProviderFaultMatrixTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.185 s -- in io.ominicat.providers.ProviderFaultMatrixTest
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 67, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] --- jar:3.4.2:jar (default-jar) @ ominicat-providers ---
+[INFO] Building jar: [repository]/ominicat-providers/target/ominicat-providers-0.1.0-SNAPSHOT.jar
+[INFO]
+[INFO] --- jacoco:0.8.16:report (report) @ ominicat-providers ---
+[INFO] Loading execution data file [repository]/ominicat-providers/target/jacoco.exec
+[INFO] Analyzed bundle 'OminiCat · Providers' with 20 classes
+[INFO]
+[INFO] --- cyclonedx:2.9.1:makeAggregateBom (default) @ ominicat-providers ---
+[INFO] CycloneDX: Resolving Dependencies
+[INFO] CycloneDX: Creating BOM version 1.6 with 4 component(s)
+[INFO] CycloneDX: Writing and validating BOM (XML): [repository]/ominicat-providers/target/bom.xml
+[INFO]            attaching as ominicat-providers-0.1.0-SNAPSHOT-cyclonedx.xml
+[INFO] CycloneDX: Writing and validating BOM (JSON): [repository]/ominicat-providers/target/bom.json
+[INFO]            attaching as ominicat-providers-0.1.0-SNAPSHOT-cyclonedx.json
+[INFO]
+[INFO] --------------------< io.ominicat:ominicat-server >---------------------
+[INFO] Building OminiCat :: Server 0.1.0-SNAPSHOT                         [5/6]
+[INFO]   from ominicat-server/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- clean:3.2.0:clean (default-clean) @ ominicat-server ---
+[INFO] Deleting [repository]/ominicat-server/target
+[INFO]
+[INFO] --- enforcer:3.6.2:enforce (runtime) @ ominicat-server ---
+[INFO]
+[INFO] --- jacoco:0.8.16:prepare-agent (default) @ ominicat-server ---
+[INFO] argLine set to -javaagent:[maven-cache]/repository/org/jacoco/org.jacoco.agent/0.8.16/org.jacoco.agent-0.8.16-runtime.jar=destfile=[repository]/ominicat-server/target/jacoco.exec
+[INFO]
+[INFO] --- resources:3.4.0:resources (default-resources) @ ominicat-server ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO]
+[INFO] --- compiler:3.14.1:compile (default-compile) @ ominicat-server ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 4 source files with javac [debug parameters release 17] to target/classes
+[INFO]
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ ominicat-server ---
+[INFO] skip non existing resourceDirectory [repository]/ominicat-server/src/test/resources
+[INFO]
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ ominicat-server ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 13 source files with javac [debug parameters release 17] to target/test-classes
+[INFO]
+[INFO] --- surefire:3.5.4:test (default-test) @ ominicat-server ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running io.ominicat.server.HttpBodyCancellationTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.629 s -- in io.ominicat.server.HttpBodyCancellationTest
+[INFO] Running io.ominicat.server.ConfiguredVoicePipelineTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.034 s -- in io.ominicat.server.ConfiguredVoicePipelineTest
+[INFO] Running io.ominicat.server.RuntimeConfigTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.088 s -- in io.ominicat.server.RuntimeConfigTest
+[INFO] Running io.ominicat.server.ServerAdversarialTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.954 s -- in io.ominicat.server.ServerAdversarialTest
+[INFO] Running io.ominicat.server.StalledProviderRecoveryTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.041 s -- in io.ominicat.server.StalledProviderRecoveryTest
+[INFO] Running io.ominicat.server.FrameCodecTest
+[INFO] Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.034 s -- in io.ominicat.server.FrameCodecTest
+[INFO] Running io.ominicat.server.LoopbackHostGuardTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.049 s -- in io.ominicat.server.LoopbackHostGuardTest
+[INFO] Running io.ominicat.server.OminiCatServerTest
+[INFO] Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.089 s -- in io.ominicat.server.OminiCatServerTest
+[INFO] Running io.ominicat.server.WorkerRuntimeCompatibilityTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.022 s -- in io.ominicat.server.WorkerRuntimeCompatibilityTest
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 60, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] --- jar:3.4.2:jar (default-jar) @ ominicat-server ---
+[INFO] Building jar: [repository]/ominicat-server/target/ominicat-server.jar
+[INFO]
+[INFO] --- shade:3.6.1:shade (default) @ ominicat-server ---
+[WARNING] jackson-annotations-2.22.jar, jackson-core-2.22.4.jar, jackson-databind-2.22.4.jar, jackson-dataformat-yaml-2.22.4.jar, netty-buffer-4.1.139.Final.jar, netty-codec-4.1.139.Final.jar, netty-codec-http-4.1.139.Final.jar, netty-common-4.1.139.Final.jar, netty-handler-4.1.139.Final.jar, netty-resolver-4.1.139.Final.jar, netty-transport-4.1.139.Final.jar, netty-transport-native-unix-common-4.1.139.Final.jar, ominicat-conversation-0.1.0-SNAPSHOT.jar, ominicat-core-0.1.0-SNAPSHOT.jar, ominicat-providers-0.1.0-SNAPSHOT.jar, ominicat-server.jar, snakeyaml-2.5.jar define 1 overlapping resource:
+[WARNING]   - META-INF/MANIFEST.MF
+[WARNING] netty-buffer-4.1.139.Final.jar, netty-codec-4.1.139.Final.jar, netty-codec-http-4.1.139.Final.jar, netty-common-4.1.139.Final.jar, netty-handler-4.1.139.Final.jar, netty-resolver-4.1.139.Final.jar, netty-transport-4.1.139.Final.jar, netty-transport-native-unix-common-4.1.139.Final.jar define 1 overlapping resource:
+[WARNING]   - META-INF/io.netty.versions.properties
+[WARNING] jackson-annotations-2.22.jar, jackson-core-2.22.4.jar, jackson-databind-2.22.4.jar, jackson-dataformat-yaml-2.22.4.jar define 2 overlapping resources:
+[WARNING]   - META-INF/LICENSE
+[WARNING]   - META-INF/NOTICE
+[WARNING] maven-shade-plugin has detected that some files are
+[WARNING] present in two or more JARs. When this happens, only one
+[WARNING] single version of the file is copied to the uber jar.
+[WARNING] Usually this is not harmful and you can skip these warnings,
+[WARNING] otherwise try to manually exclude artifacts based on
+[WARNING] mvn dependency:tree -Ddetail=true and the above output.
+[WARNING] See https://maven.apache.org/plugins/maven-shade-plugin/
+[INFO] Replacing original artifact with shaded artifact.
+[INFO]
+[INFO] --- jacoco:0.8.16:report (report) @ ominicat-server ---
+[INFO] Loading execution data file [repository]/ominicat-server/target/jacoco.exec
+[INFO] Analyzed bundle 'OminiCat :: Server' with 10 classes
+[INFO]
+[INFO] --- cyclonedx:2.9.1:makeAggregateBom (default) @ ominicat-server ---
+[INFO] CycloneDX: Resolving Dependencies
+[INFO] CycloneDX: Creating BOM version 1.6 with 16 component(s)
+[INFO] CycloneDX: Writing and validating BOM (XML): [repository]/ominicat-server/target/bom.xml
+[INFO]            attaching as ominicat-server-0.1.0-SNAPSHOT-cyclonedx.xml
+[INFO] CycloneDX: Writing and validating BOM (JSON): [repository]/ominicat-server/target/bom.json
+[INFO]            attaching as ominicat-server-0.1.0-SNAPSHOT-cyclonedx.json
+[INFO]
+[INFO] ------------------< io.ominicat:ominicat-benchmarks >-------------------
+[INFO] Building OminiCat · Performance laboratory 0.1.0-SNAPSHOT          [6/6]
+[INFO]   from ominicat-benchmarks/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- clean:3.2.0:clean (default-clean) @ ominicat-benchmarks ---
+[INFO] Deleting [repository]/ominicat-benchmarks/target
+[INFO]
+[INFO] --- enforcer:3.6.2:enforce (runtime) @ ominicat-benchmarks ---
+[INFO]
+[INFO] --- jacoco:0.8.16:prepare-agent (default) @ ominicat-benchmarks ---
+[INFO] argLine set to -javaagent:[maven-cache]/repository/org/jacoco/org.jacoco.agent/0.8.16/org.jacoco.agent-0.8.16-runtime.jar=destfile=[repository]/ominicat-benchmarks/target/jacoco.exec
+[INFO]
+[INFO] --- resources:3.4.0:resources (default-resources) @ ominicat-benchmarks ---
+[INFO] skip non existing resourceDirectory [repository]/ominicat-benchmarks/src/main/resources
+[INFO]
+[INFO] --- compiler:3.14.1:compile (default-compile) @ ominicat-benchmarks ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 3 source files with javac [debug parameters release 17] to target/classes
+[INFO]
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ ominicat-benchmarks ---
+[INFO] skip non existing resourceDirectory [repository]/ominicat-benchmarks/src/test/resources
+[INFO]
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ ominicat-benchmarks ---
+[INFO] No sources to compile
+[INFO]
+[INFO] --- surefire:3.5.4:test (default-test) @ ominicat-benchmarks ---
+[INFO] No tests to run.
+[INFO]
+[INFO] --- jar:3.4.2:jar (default-jar) @ ominicat-benchmarks ---
+[INFO] Building jar: [repository]/ominicat-benchmarks/target/ominicat-benchmarks.jar
+[INFO]
+[INFO] --- shade:3.6.1:shade (default) @ ominicat-benchmarks ---
+[WARNING] commons-math3-3.6.1.jar, jmh-core-1.37.jar, jopt-simple-5.0.4.jar, ominicat-benchmarks.jar, ominicat-core-0.1.0-SNAPSHOT.jar define 1 overlapping resource:
+[WARNING]   - META-INF/MANIFEST.MF
+[WARNING] maven-shade-plugin has detected that some files are
+[WARNING] present in two or more JARs. When this happens, only one
+[WARNING] single version of the file is copied to the uber jar.
+[WARNING] Usually this is not harmful and you can skip these warnings,
+[WARNING] otherwise try to manually exclude artifacts based on
+[WARNING] mvn dependency:tree -Ddetail=true and the above output.
+[WARNING] See https://maven.apache.org/plugins/maven-shade-plugin/
+[INFO] Replacing original artifact with shaded artifact.
+[INFO]
+[INFO] --- jacoco:0.8.16:report (report) @ ominicat-benchmarks ---
+[INFO] Skipping JaCoCo execution due to missing execution data file.
+[INFO]
+[INFO] --- cyclonedx:2.9.1:makeAggregateBom (default) @ ominicat-benchmarks ---
+[INFO] CycloneDX: Resolving Dependencies
+[INFO] CycloneDX: Creating BOM version 1.6 with 5 component(s)
+[INFO] CycloneDX: Writing and validating BOM (XML): [repository]/ominicat-benchmarks/target/bom.xml
+[INFO]            attaching as ominicat-benchmarks-0.1.0-SNAPSHOT-cyclonedx.xml
+[INFO] CycloneDX: Writing and validating BOM (JSON): [repository]/ominicat-benchmarks/target/bom.json
+[INFO]            attaching as ominicat-benchmarks-0.1.0-SNAPSHOT-cyclonedx.json
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for OminiCat 0.1.0-SNAPSHOT:
+[INFO]
+[INFO] OminiCat ........................................... SUCCESS [  1.085 s]
+[INFO] OminiCat · Microkernel ............................. SUCCESS [  4.470 s]
+[INFO] OminiCat Conversation .............................. SUCCESS [  1.051 s]
+[INFO] OminiCat · Providers ............................... SUCCESS [  8.416 s]
+[INFO] OminiCat :: Server ................................. SUCCESS [ 12.902 s]
+[INFO] OminiCat · Performance laboratory .................. SUCCESS [  0.418 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  28.413 s
+[INFO] Finished at: 2026-10-31T16:14:24+08:00
+[INFO] ------------------------------------------------------------------------

@@ -75,4 +75,19 @@ abstract class ProviderHttpTestSupport {
         return "data: " + CompatibleClient.JSON.writeValueAsString(Map.of("choices",
                 java.util.List.of(Map.of("delta", Map.of("content", text))))) + "\n\n";
     }
+
+    /** Wait for a real body-queue read, rather than only a server-side header flush. */
+    static void awaitResponseRead(Thread worker) throws InterruptedException {
+        long deadline = System.nanoTime() + java.util.concurrent.TimeUnit.SECONDS.toNanos(2);
+        while (System.nanoTime() < deadline) {
+            var trace = java.util.Arrays.asList(worker.getStackTrace());
+            boolean providerRead = trace.stream().anyMatch(frame -> frame.getClassName().startsWith("io.ominicat.providers.CompatibleClient"));
+            boolean bodyQueue = trace.stream().anyMatch(frame -> frame.getClassName().equals("java.util.concurrent.ArrayBlockingQueue")
+                    && frame.getMethodName().equals("take"));
+            if (providerRead && bodyQueue) return;
+            if (!worker.isAlive()) throw new AssertionError("provider exited before entering its body read");
+            Thread.sleep(1);
+        }
+        throw new AssertionError("provider did not enter a blocking body-queue read");
+    }
 }

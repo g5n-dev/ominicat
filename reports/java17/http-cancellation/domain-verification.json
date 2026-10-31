@@ -1,0 +1,119 @@
+{
+  "scope": "public Flow publisher HTTP-body interruption repair",
+  "negativeControl": {
+    "jdk": "17.0.21.0.3",
+    "tests": 2,
+    "expectedTimeouts": 2,
+    "log": "before-provider-java17.txt"
+  },
+  "sourceSha256": {
+    "ominicat-providers/src/main/java/io/ominicat/providers/CompatibleClient.java": "16876011b18d3aa22cc5992fee23bd5d315603b0f47aa1ea1e77b77b3257effb",
+    "ominicat-providers/src/test/java/io/ominicat/providers/ChatFactoryTest.java": "04810d573c3c6b34927cbf2c9f7261ca12b2169694bcd40b18341dcd3d880023",
+    "ominicat-providers/src/test/java/io/ominicat/providers/ProviderHttpTestSupport.java": "7cf8b59ceaa3929636d46431599bb2c1c2b85a8259f73b945bb95913dfe9226b",
+    "ominicat-providers/src/test/java/io/ominicat/providers/SpeechFactoryTest.java": "b142fd873fa3aba92dc9f1875f5b4db2da73bd46669cdd528e70757f49ebd3de",
+    "ominicat-providers/src/test/java/io/ominicat/providers/PublisherInputStreamTest.java": "15cba7f0a667c65a58240599b3844f5f44b21812390fc02a5ba727545e5990ad"
+  },
+  "runs": {
+    "java17": {
+      "modules": {
+        "ominicat-core": {
+          "tests": 89,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "ominicat-providers": {
+          "tests": 67,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "ominicat-conversation": {
+          "tests": 40,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      },
+      "javaVersion": "17.0.21.0.3",
+      "log": "Isolated full-module verification; selected completed counters retained here.",
+      "environment": {
+        "JAVA_HOME": "/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home"
+      },
+      "command": [
+        "/opt/homebrew/bin/mvn",
+        "-Dmaven.repo.local=[isolated-workspace]/maven-cache",
+        "-f",
+        "[isolated-workspace]/pom.xml",
+        "-pl",
+        "ominicat-providers,ominicat-conversation",
+        "-am",
+        "clean",
+        "verify",
+        "-q"
+      ],
+      "runtimeVersionOutput": "openjdk version \"17.0.21.0.3\" 2026-10-24\nOpenJDK Runtime Environment Homebrew (build 17.0.21.0.3+0)\nOpenJDK 64-Bit Server VM Homebrew (build 17.0.21.0.3+0, mixed mode, sharing)"
+    },
+    "java21": {
+      "modules": {
+        "ominicat-core": {
+          "tests": 89,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "ominicat-providers": {
+          "tests": 67,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "ominicat-conversation": {
+          "tests": 40,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      },
+      "javaVersion": "21.0.13.0.3",
+      "log": "Isolated full-module verification; selected completed counters retained here.",
+      "environment": {
+        "JAVA_HOME": "/opt/homebrew/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home"
+      },
+      "command": [
+        "/opt/homebrew/bin/mvn",
+        "-Dmaven.repo.local=[isolated-workspace]/maven-cache",
+        "-f",
+        "[isolated-workspace]/pom.xml",
+        "-pl",
+        "ominicat-providers,ominicat-conversation",
+        "-am",
+        "clean",
+        "verify",
+        "-q"
+      ],
+      "runtimeVersionOutput": "openjdk version \"21.0.13.0.3\" 2026-10-24\nOpenJDK Runtime Environment Homebrew (build 21.0.13.0.3)\nOpenJDK 64-Bit Server VM Homebrew (build 21.0.13.0.3, mixed mode, sharing)"
+    }
+  },
+  "sseJava17": {
+    "report": "[isolated-workspace]/sse-cr-streaming-java17-publisher.json",
+    "environment": {
+      "JAVA_HOME": "/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home"
+    },
+    "command": [
+      "/opt/homebrew/bin/mvn",
+      "-Dmaven.repo.local=[isolated-workspace]/maven-cache",
+      "-f",
+      "[isolated-workspace]/pom.xml",
+      "-pl",
+      "ominicat-providers",
+      "-am",
+      "-Dtest=SseCrStreamingSoakIT",
+      "-Dsurefire.failIfNoSpecifiedTests=false",
+      "-Dominicat.sse.soak.report=[isolated-workspace]/sse-cr-streaming-java17-publisher.json",
+      "test",
+      "-q"
+    ]
+  },
+  "baseRevision": "f3204f13deb3b39dd119b1530e5ffef1aceb6d24"
+}

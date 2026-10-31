@@ -1,0 +1,6 @@
+{
+  "scope": "After mixed-media drain; NMT includes heap, native thread stacks, JVM internals and profiling, and is not RSS.",
+  "reservedKiB": 1827410,
+  "committedKiB": 496290,
+  "nettyLeakWarnings": 0
+}

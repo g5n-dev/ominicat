@@ -1,5 +1,7 @@
 # Java 17 compatibility verification
 
+This records the initial Java 17 compatibility artifact (preview.3). The subsequent [HTTP-body cancellation correction](http-cancellation/README.md) has separate source, test and distribution evidence.
+
 Recorded on **2026-10-31, Asia/Shanghai**. Java 17 is the build/runtime baseline for every module; Java 21+ selects virtual workers automatically. Inputs are synthetic local fixtures. No external model service was called.
 
 ## Whole-project verification

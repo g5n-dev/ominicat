@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import io.ominicat.core.Frame;
 import io.ominicat.core.Processor;
+import io.ominicat.core.WorkerThreads;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -78,5 +79,38 @@ class SpeechFactoryTest extends ProviderHttpTestSupport {
         assertThrows(ProviderException.class, () -> limited.process(new Frame.Control(Frame.Signal.END), ignored -> {}));
         limited.process(new Frame.Text("a"), ignored -> {});
         assertThrows(ProviderException.class, () -> limited.process(new Frame.Control(Frame.Signal.END), ignored -> {}));
+    }
+
+    @Test
+    void interruptionCancelsBlockedBinaryBodyWithoutEmittingPartialAudio() throws Exception {
+        var headers = new java.util.concurrent.CountDownLatch(1);
+        var release = new java.util.concurrent.CountDownLatch(1);
+        route("/audio/speech", exchange -> {
+            exchange.getRequestBody().readAllBytes();
+            exchange.sendResponseHeaders(200, 0);
+            exchange.getResponseBody().write(new byte[]{1, 0});
+            exchange.getResponseBody().flush();
+            headers.countDown();
+            try { release.await(30, java.util.concurrent.TimeUnit.SECONDS); }
+            catch (InterruptedException error) { Thread.currentThread().interrupt(); }
+            exchange.close();
+        });
+        Processor speech = new SpeechFactory().create(options("timeoutSeconds", "30"));
+        speech.process(new Frame.Text("synthetic"), ignored -> {});
+        var output = new java.util.concurrent.CopyOnWriteArrayList<Frame>();
+        var result = new java.util.concurrent.CompletableFuture<Throwable>();
+        var interruptedAtFailure = new java.util.concurrent.atomic.AtomicBoolean();
+        Thread worker = WorkerThreads.start("ominicat-speech-cancel-", () -> {
+            try { speech.process(new Frame.Control(Frame.Signal.TURN_END), output::add); result.complete(null); }
+            catch (Throwable error) { interruptedAtFailure.set(Thread.currentThread().isInterrupted()); result.complete(error); }
+        });
+        try {
+            assertTrue(headers.await(2, java.util.concurrent.TimeUnit.SECONDS));
+            awaitResponseRead(worker);
+            worker.interrupt();
+            assertInstanceOf(java.io.InterruptedIOException.class, result.get(2, java.util.concurrent.TimeUnit.SECONDS));
+            assertTrue(interruptedAtFailure.get());
+            assertTrue(output.isEmpty(), "partial PCM must never become a successful audio frame");
+        } finally { release.countDown(); worker.interrupt(); worker.join(3000); speech.close(); }
     }
 }
