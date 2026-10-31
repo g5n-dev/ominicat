@@ -8,6 +8,7 @@ from pathlib import Path
 import tempfile
 from types import SimpleNamespace
 import unittest
+from unittest.mock import patch
 
 
 spec = importlib.util.spec_from_file_location("profile_python", Path(__file__).resolve().parents[1] / "profile_python.py")
@@ -104,10 +105,13 @@ class ProfileSanitizerTest(unittest.TestCase):
         self.assertEqual("'=formula", module._csv_cell("=formula"))
 
     def test_raw_output_rejects_public_locations_and_nonempty_reuse(self):
-        with self.assertRaises(module.ProfileError):
-            module.local_output(module.ROOT / "reports/public/profile")
-        with tempfile.TemporaryDirectory(dir=module.ROOT / "reports/local") as directory:
-            output = Path(directory)
+        with tempfile.TemporaryDirectory() as directory, patch.object(module, "ROOT", Path(directory).resolve()):
+            with self.assertRaises(module.ProfileError):
+                module.local_output(module.ROOT / "reports/public/profile")
+            output = module.ROOT / "reports/local/profile"
+            self.assertEqual(output, module.local_output(output))
+            self.assertFalse(output.exists())
+            output.mkdir(parents=True)
             self.assertEqual(output, module.local_output(output))
             (output / "old.prof").write_text("old", encoding="utf-8")
             with self.assertRaises(module.ProfileError):
