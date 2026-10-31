@@ -6,7 +6,7 @@
 
 当前为 **0.1 开发预览版**。核心机制有本地测试和可复跑的性能证据，真实厂商长连接、长稳运行和部署容量仍需在目标环境验证。
 
-[Java 17 验证报告](reports/verification.md)包含 **276 项通过测试、512 个随机种子和真实协议故障验证**，覆盖响应体保持打开时的中断、资源释放与下一轮恢复。[内核与资源剖析](reports/java17/http-cancellation/README.md)及[Java 21 历史报告](reports/deep/README.md)保留原始产物与测量范围。
+[Java 17 验证报告](reports/verification.md)包含 **297 项通过测试、512 个随机种子和真实协议故障验证**，覆盖响应体保持打开时的中断、资源释放与下一轮恢复。[内核与资源剖析](reports/java17/http-cancellation/README.md)及[Java 21 历史报告](reports/deep/README.md)保留原始产物与测量范围。
 
 ## Java 17 性能实测
 
@@ -99,7 +99,11 @@ cd ominicat
 java -jar ominicat-server/target/ominicat-server.jar --config config/demo.yaml
 ```
 
-打开 [本地体验页](http://127.0.0.1:8080)，发送文字、麦克风录音、图片或带说话人的转写。默认 `echo` 配置不需要模型密钥，直接验证输入到输出的完整通路。
+打开 [OminiCat Studio](http://127.0.0.1:8080)：首页按输入、实际处理阶段和产出分列展示任务，通过动态交接查看内容流转；点击任务逐层展开记录，再进入独立调试页，发送文字、麦克风录音、图片或转写。默认 `echo` 配置不需要模型密钥。
+
+![OminiCat Studio 动态运行大盘](docs/assets/studio-overview.jpg)
+
+[大盘与调试使用说明](docs/studio.md) · [三阶段离线示例](config/studio.yaml) · [浏览器与资源验证](reports/studio/README.md)。
 
 ## 小内核，可组合的能力
 
@@ -163,6 +167,7 @@ java scripts/WebSocketLoad.java ws://127.0.0.1:8080/ws 32 5000
 - [帧协议](docs/protocol.md)与[插件开发](docs/plugins.md)
 - [通用场景覆盖矩阵](docs/scenario-coverage.md)
 - [不可变媒体引用与导入导出 API](docs/media-references.md)
+- [Studio 运行大盘与独立流程调试](docs/studio.md)
 - [迭代计划与验收标准](docs/iteration-plan.md)
 - [跨项目接入契约提案](docs/integration-contracts.md)
 - [时间区间、分段与注释契约提案](docs/temporal-annotations.md)

@@ -1,0 +1,357 @@
+{
+  "scope": "Same-build synthetic functional/resource-drain trials with optional activity observation; finite noisy shared-host samples, not a benchmark baseline, causal A/B result, production-capacity or task-completion guarantee",
+  "benchmarkArtifact": "ominicat-server.jar",
+  "benchmarkArtifactSha256": "7a362f1ec760142d1dc47b752ccbfc09384da09f8d04eaa19665ebcf010cb997",
+  "artifactUnchanged": true,
+  "probeSourceSha256": "0df751a399a0cef5b94ffda14c1dd70b08165427b6a1fe4606f1c65a20c76901",
+  "javaVersion": "17.0.21.0.3",
+  "workerBackend": "platform",
+  "stages": [
+    "rms-vad",
+    "transcript-gate",
+    "echo"
+  ],
+  "measurementOrder": [
+    "off-1",
+    "on-1",
+    "on-2",
+    "off-2"
+  ],
+  "runtimePollHz": 10,
+  "activityPollHz": 2,
+  "measuredFrames": 320000,
+  "totalFramesIncludingProbeWarmups": 361600,
+  "modeIntervals": {
+    "off": {
+      "seconds": {
+        "min": 1.228386,
+        "max": 1.260771
+      },
+      "framesPerSecond": {
+        "min": 63453.219,
+        "max": 65126.1
+      },
+      "p50Micros": {
+        "min": 212.792,
+        "max": 218.125
+      },
+      "p95Micros": {
+        "min": 376.667,
+        "max": 393.541
+      },
+      "p99Micros": {
+        "min": 486.5,
+        "max": 521.209
+      },
+      "maxMicros": {
+        "min": 2430.625,
+        "max": 2800.75
+      }
+    },
+    "on": {
+      "seconds": {
+        "min": 1.348608,
+        "max": 1.393052
+      },
+      "framesPerSecond": {
+        "min": 57427.867,
+        "max": 59320.427
+      },
+      "p50Micros": {
+        "min": 229.417,
+        "max": 235.792
+      },
+      "p95Micros": {
+        "min": 433.667,
+        "max": 458.875
+      },
+      "p99Micros": {
+        "min": 615.5,
+        "max": 634.375
+      },
+      "maxMicros": {
+        "min": 2686.083,
+        "max": 5579.917
+      }
+    }
+  },
+  "establishedTcpEntriesAfterPollsStopped": 0,
+  "passed": true,
+  "recordedDate": "2026-10-31",
+  "hostContext": "Shared macOS/aarch64 development host; Java17 platform workers, 256 MiB heap and 128 MiB direct-memory limit",
+  "artifactScope": "Server adapter/transport check before final UI assets were packaged; each trial uses the same server JAR. Source browser resources were served separately and the test tab was inactive.",
+  "sourceSha256": {
+    "ominicat-server/src/main/java/io/ominicat/server/ActivityJournal.java": "68a63051bd0c8c50e599c150aa532b1b6d9cd6aae4f4daf0b6fe88a606c9261a",
+    "ominicat-server/src/main/java/io/ominicat/server/ActivitySession.java": "48f4d13980eafb96b83073e5dda3ad8a296a222e99f9942ff23bb2ee097a9c89",
+    "ominicat-server/src/main/java/io/ominicat/server/FrameCodec.java": "934d429b89ee606e2373f9045b196f91256f5e26edc776108e98bdb68abff1bb",
+    "ominicat-server/src/main/java/io/ominicat/server/OminiCat.java": "b1068f291abf5c51d5b10674462a007e27eebf9761ad4e1a5c298ee53b84f2e3",
+    "ominicat-server/src/main/java/io/ominicat/server/OminiCatServer.java": "6cb4413f6dc2c3588c0aedcf5d96be74db977d62ce9e3a36f3b019cf90231392",
+    "ominicat-server/src/main/java/io/ominicat/server/RuntimeConfig.java": "8d2c07dc471497f9d83a0e16e17ec199a67146ed513e1aa7f9981969a59e2360",
+    "ominicat-server/src/main/java/io/ominicat/server/RuntimeSnapshot.java": "fe3011f07b004c454202a4cf547cdb8147ea526ed06516c051c51d4b268a01de"
+  },
+  "trials": [
+    {
+      "name": "off-1",
+      "observe": false,
+      "measuredComparison": true,
+      "connections": 16,
+      "framesPerConnection": 5000,
+      "expectedFramesIncludingWarmup": 81600,
+      "load": {
+        "workload": "WebSocket JSON text echo; closed-loop, one in-flight frame per connection",
+        "connections": 16,
+        "measuredFrames": 80000,
+        "warmupFramesPerConnection": 100,
+        "seconds": 1.260771,
+        "framesPerSecond": 63453.219,
+        "p50Micros": 218.125,
+        "p95Micros": 393.541,
+        "p99Micros": 521.209,
+        "maxMicros": 2800.75,
+        "failedFrames": 0,
+        "javaVersion": "17.0.21.0.3",
+        "architecture": "aarch64"
+      },
+      "activitySeqDelta": 0,
+      "activityRingRetained": 1024,
+      "activityCursorGapSamples": 0,
+      "reportedLostDuringPolling": 0,
+      "observerRuntimeSamples": 23,
+      "observerActivitySamples": 5,
+      "maxActivityResponseBytes": 224,
+      "peaks": {
+        "metrics.activeSessions": 16,
+        "metrics.admittedSessions": 16,
+        "metrics.pipelineWorkers": 16,
+        "metrics.pendingOutputBytes": 252,
+        "metrics.connections": 17,
+        "memory.heapUsedBytes": 142086576,
+        "memory.directUsedBytes": 16777224,
+        "threads.live": 27
+      },
+      "checks": {
+        "loadExitZero": true,
+        "noFrameFailures": true,
+        "observerSchemaValid": true,
+        "exactInputOutputDelta": true,
+        "exactSessionDelta": true,
+        "noRuntimeRejectOrFailure": true,
+        "resourcesDrained": true,
+        "expectedTraceMode": true
+      },
+      "passed": true,
+      "afterDrain": {
+        "connections": 1,
+        "activeSessions": 0,
+        "admittedSessions": 0,
+        "pipelineWorkers": 0,
+        "pendingOutputBytes": 0,
+        "sessionsTotal": 48,
+        "framesInTotal": 116800,
+        "framesOutTotal": 116800,
+        "rejectedTotal": 0,
+        "failuresTotal": 0,
+        "bytesOutTotal": 3634840
+      }
+    },
+    {
+      "name": "on-1",
+      "observe": true,
+      "measuredComparison": true,
+      "connections": 16,
+      "framesPerConnection": 5000,
+      "expectedFramesIncludingWarmup": 81600,
+      "load": {
+        "workload": "WebSocket JSON text echo; closed-loop, one in-flight frame per connection",
+        "connections": 16,
+        "measuredFrames": 80000,
+        "warmupFramesPerConnection": 100,
+        "seconds": 1.348608,
+        "framesPerSecond": 59320.427,
+        "p50Micros": 229.417,
+        "p95Micros": 433.667,
+        "p99Micros": 634.375,
+        "maxMicros": 5579.917,
+        "failedFrames": 0,
+        "javaVersion": "17.0.21.0.3",
+        "architecture": "aarch64"
+      },
+      "activitySeqDelta": 979216,
+      "activityRingRetained": 1024,
+      "activityCursorGapSamples": 4,
+      "reportedLostDuringPolling": 977808,
+      "observerRuntimeSamples": 23,
+      "observerActivitySamples": 5,
+      "maxActivityResponseBytes": 49694,
+      "peaks": {
+        "metrics.activeSessions": 16,
+        "metrics.admittedSessions": 16,
+        "metrics.pipelineWorkers": 16,
+        "metrics.pendingOutputBytes": 188,
+        "metrics.connections": 17,
+        "memory.heapUsedBytes": 149819680,
+        "memory.directUsedBytes": 16777224,
+        "threads.live": 27
+      },
+      "checks": {
+        "loadExitZero": true,
+        "noFrameFailures": true,
+        "observerSchemaValid": true,
+        "exactInputOutputDelta": true,
+        "exactSessionDelta": true,
+        "noRuntimeRejectOrFailure": true,
+        "resourcesDrained": true,
+        "expectedTraceMode": true
+      },
+      "passed": true,
+      "afterDrain": {
+        "connections": 1,
+        "activeSessions": 0,
+        "admittedSessions": 0,
+        "pipelineWorkers": 0,
+        "pendingOutputBytes": 0,
+        "sessionsTotal": 64,
+        "framesInTotal": 198400,
+        "framesOutTotal": 198400,
+        "rejectedTotal": 0,
+        "failuresTotal": 0,
+        "bytesOutTotal": 6185120
+      }
+    },
+    {
+      "name": "on-2",
+      "observe": true,
+      "measuredComparison": true,
+      "connections": 16,
+      "framesPerConnection": 5000,
+      "expectedFramesIncludingWarmup": 81600,
+      "load": {
+        "workload": "WebSocket JSON text echo; closed-loop, one in-flight frame per connection",
+        "connections": 16,
+        "measuredFrames": 80000,
+        "warmupFramesPerConnection": 100,
+        "seconds": 1.393052,
+        "framesPerSecond": 57427.867,
+        "p50Micros": 235.792,
+        "p95Micros": 458.875,
+        "p99Micros": 615.5,
+        "maxMicros": 2686.083,
+        "failedFrames": 0,
+        "javaVersion": "17.0.21.0.3",
+        "architecture": "aarch64"
+      },
+      "activitySeqDelta": 979216,
+      "activityRingRetained": 1024,
+      "activityCursorGapSamples": 4,
+      "reportedLostDuringPolling": 977808,
+      "observerRuntimeSamples": 24,
+      "observerActivitySamples": 5,
+      "maxActivityResponseBytes": 50163,
+      "peaks": {
+        "metrics.activeSessions": 16,
+        "metrics.admittedSessions": 16,
+        "metrics.pipelineWorkers": 16,
+        "metrics.pendingOutputBytes": 219,
+        "metrics.connections": 17,
+        "memory.heapUsedBytes": 156820880,
+        "memory.directUsedBytes": 16777224,
+        "threads.live": 27
+      },
+      "checks": {
+        "loadExitZero": true,
+        "noFrameFailures": true,
+        "observerSchemaValid": true,
+        "exactInputOutputDelta": true,
+        "exactSessionDelta": true,
+        "noRuntimeRejectOrFailure": true,
+        "resourcesDrained": true,
+        "expectedTraceMode": true
+      },
+      "passed": true,
+      "afterDrain": {
+        "connections": 1,
+        "activeSessions": 0,
+        "admittedSessions": 0,
+        "pipelineWorkers": 0,
+        "pendingOutputBytes": 0,
+        "sessionsTotal": 80,
+        "framesInTotal": 280000,
+        "framesOutTotal": 280000,
+        "rejectedTotal": 0,
+        "failuresTotal": 0,
+        "bytesOutTotal": 8735400
+      }
+    },
+    {
+      "name": "off-2",
+      "observe": false,
+      "measuredComparison": true,
+      "connections": 16,
+      "framesPerConnection": 5000,
+      "expectedFramesIncludingWarmup": 81600,
+      "load": {
+        "workload": "WebSocket JSON text echo; closed-loop, one in-flight frame per connection",
+        "connections": 16,
+        "measuredFrames": 80000,
+        "warmupFramesPerConnection": 100,
+        "seconds": 1.228386,
+        "framesPerSecond": 65126.1,
+        "p50Micros": 212.792,
+        "p95Micros": 376.667,
+        "p99Micros": 486.5,
+        "maxMicros": 2430.625,
+        "failedFrames": 0,
+        "javaVersion": "17.0.21.0.3",
+        "architecture": "aarch64"
+      },
+      "activitySeqDelta": 0,
+      "activityRingRetained": 1024,
+      "activityCursorGapSamples": 0,
+      "reportedLostDuringPolling": 0,
+      "observerRuntimeSamples": 22,
+      "observerActivitySamples": 5,
+      "maxActivityResponseBytes": 227,
+      "peaks": {
+        "metrics.activeSessions": 16,
+        "metrics.admittedSessions": 16,
+        "metrics.pipelineWorkers": 16,
+        "metrics.pendingOutputBytes": 190,
+        "metrics.connections": 17,
+        "memory.heapUsedBytes": 151021424,
+        "memory.directUsedBytes": 16777224,
+        "threads.live": 27
+      },
+      "checks": {
+        "loadExitZero": true,
+        "noFrameFailures": true,
+        "observerSchemaValid": true,
+        "exactInputOutputDelta": true,
+        "exactSessionDelta": true,
+        "noRuntimeRejectOrFailure": true,
+        "resourcesDrained": true,
+        "expectedTraceMode": true
+      },
+      "passed": true,
+      "afterDrain": {
+        "connections": 1,
+        "activeSessions": 0,
+        "admittedSessions": 0,
+        "pipelineWorkers": 0,
+        "pendingOutputBytes": 0,
+        "sessionsTotal": 96,
+        "framesInTotal": 361600,
+        "framesOutTotal": 361600,
+        "rejectedTotal": 0,
+        "failuresTotal": 0,
+        "bytesOutTotal": 11285680
+      }
+    }
+  ],
+  "limits": "Two measurement samples per mode after short warmups in one JVM; changing JIT/GC and shared-host load remain confounders. No causal overhead ratio, independent-fork uncertainty, allocation/retained-heap or production-capacity claim. Fast observed workloads overwrite history; the ring is an inspection window.",
+  "finalUiBundleSha256": "ca4aa974dc88a30fa3dc9a37312639cbc9468edde799b140558ec28d856a7b31",
+  "uiSourceSha256": {
+    "ominicat-server/src/main/resources/web/console.css": "9955b517ae08bbc6e6fe255b610ee2a5ec99c647e579414b44fd4ddd928c7e12",
+    "ominicat-server/src/main/resources/web/console.js": "31c3d203072519fcfa693c0985be94568a43c56f817d0c87e56a7acce282bc71",
+    "ominicat-server/src/main/resources/web/index.html": "c95e3de2cbfaa72a785c9d41c6864a43ac1d427727e6aeb0bf05e4d265defea7"
+  }
+}

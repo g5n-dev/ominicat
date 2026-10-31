@@ -68,6 +68,8 @@ public final class OminiCatServer implements AutoCloseable {
     private final PluginRegistry plugins;
     private final byte[] token;
     private final FrameCodec codec = new FrameCodec();
+    private final RuntimeSnapshot runtimeSnapshot;
+    private final ActivityJournal activityJournal = new ActivityJournal();
     private final NioEventLoopGroup acceptors;
     private final NioEventLoopGroup ioWorkers;
     private final ChannelGroup connections = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE, true);
@@ -101,6 +103,7 @@ public final class OminiCatServer implements AutoCloseable {
             if (secret == null || secret.isBlank()) throw new IllegalArgumentException("Required bearer-token environment variable is missing: " + config.tokenEnv());
             token = secret.getBytes(StandardCharsets.UTF_8);
         }
+        runtimeSnapshot = new RuntimeSnapshot(config, token != null);
         acceptors = new NioEventLoopGroup(1);
         ioWorkers = new NioEventLoopGroup(Math.min(4, Math.max(1, Runtime.getRuntime().availableProcessors())));
     }
@@ -185,14 +188,16 @@ public final class OminiCatServer implements AutoCloseable {
         ioWorkers.shutdownGracefully(0, 5, java.util.concurrent.TimeUnit.SECONDS).awaitUninterruptibly();
     }
 
-    private PipelineSession session(io.ominicat.core.FrameSink output) {
+    private PipelineSession session(io.ominicat.core.FrameSink output, ActivitySession activity) {
         List<Processor> processors = new ArrayList<>();
         try {
             var builder = Pipeline.builder();
-            for (RuntimeConfig.Stage stage : config.stages()) {
+            for (int index = 0; index < config.stages().size(); index++) {
+                RuntimeConfig.Stage stage = config.stages().get(index);
                 Processor processor = plugins.create(stage.type(), stage.options());
                 processors.add(processor);
-                builder.add(EnvelopeProcessor.wrap(processor));
+                Processor decorated = EnvelopeProcessor.wrap(processor);
+                builder.add(activity == null ? decorated : activity.wrap(decorated, index, stage.type()));
             }
             return builder.build().openSession(new SessionOptions(config.queueCapacity()), output);
         } catch (Throwable failure) {
@@ -349,14 +354,45 @@ public final class OminiCatServer implements AutoCloseable {
                     if (!authorized(request)) { unauthorized(context); return; }
                     respond(context, HttpResponseStatus.OK, "text/plain; version=0.0.4", metrics());
                 }
-                case "/" -> {
-                    try (var input = OminiCatServer.class.getResourceAsStream("/web/index.html")) {
-                        if (input == null) throw new IOException("Missing web resource");
-                        respond(context, HttpResponseStatus.OK, "text/html; charset=utf-8", new String(input.readAllBytes(), StandardCharsets.UTF_8));
-                    } catch (IOException failure) {
-                        respond(context, HttpResponseStatus.INTERNAL_SERVER_ERROR, "text/plain", "Demo unavailable");
+                case "/api/runtime" -> {
+                    if (!authorized(request)) { unauthorized(context); return; }
+                    if (!sameOrigin(request)) {
+                        respond(context, HttpResponseStatus.FORBIDDEN, "text/plain", "Cross-origin runtime access denied");
+                        return;
+                    }
+                    try {
+                        var counters = new RuntimeSnapshot.Counters(sessionsTotal.sum(), framesIn.sum(), framesOut.sum(),
+                                rejected.sum(), failures.sum(), bytesOut.sum());
+                        respond(context, HttpResponseStatus.OK, "application/json", runtimeSnapshot.json(resources(), counters));
+                    } catch (IOException | RuntimeException unavailable) {
+                        respond(context, HttpResponseStatus.INTERNAL_SERVER_ERROR, "text/plain", "Runtime snapshot unavailable");
                     }
                 }
+                case "/api/activity" -> {
+                    if (!authorized(request)) { unauthorized(context); return; }
+                    if (!sameOrigin(request)) {
+                        respond(context, HttpResponseStatus.FORBIDDEN, "text/plain", "Cross-origin activity access denied");
+                        return;
+                    }
+                    var values = new QueryStringDecoder(request.uri()).parameters().get("after");
+                    long after = 0;
+                    try {
+                        if (values != null) {
+                            if (values.size() != 1 || !values.get(0).matches("[0-9]{1,19}")) throw new IllegalArgumentException();
+                            after = Long.parseLong(values.get(0));
+                        }
+                    } catch (IllegalArgumentException invalid) {
+                        respond(context, HttpResponseStatus.BAD_REQUEST, "text/plain", "Invalid activity cursor");
+                        return;
+                    }
+                    try { respond(context, HttpResponseStatus.OK, "application/json", activityJournal.json(after)); }
+                    catch (IOException unavailable) {
+                        respond(context, HttpResponseStatus.INTERNAL_SERVER_ERROR, "text/plain", "Activity snapshot unavailable");
+                    }
+                }
+                case "/" -> resource(context, "/web/index.html", "text/html; charset=utf-8");
+                case "/console.css" -> resource(context, "/web/console.css", "text/css; charset=utf-8");
+                case "/console.js" -> resource(context, "/web/console.js", "application/javascript; charset=utf-8");
                 case "/ws" -> upgrade(context, request);
                 default -> respond(context, HttpResponseStatus.NOT_FOUND, "text/plain", "Not found");
             }
@@ -367,6 +403,11 @@ public final class OminiCatServer implements AutoCloseable {
             if (!sameOrigin(request)) { respond(context, HttpResponseStatus.FORBIDDEN, "text/plain", "Cross-origin WebSocket access denied"); return; }
             if (!"websocket".equalsIgnoreCase(request.headers().get(HttpHeaderNames.UPGRADE))) {
                 respond(context, HttpResponseStatus.BAD_REQUEST, "text/plain", "WebSocket upgrade required"); return;
+            }
+            var observation = new QueryStringDecoder(request.uri()).parameters().get("observe");
+            if (observation != null && (observation.size() != 1
+                    || !(observation.get(0).equals("1") || observation.get(0).equals("0")))) {
+                respond(context, HttpResponseStatus.BAD_REQUEST, "text/plain", "Invalid observation setting"); return;
             }
             var factory = new WebSocketServerHandshakerFactory("ws://localhost/ws", "ominicat", true, config.maxFrameBytes());
             WebSocketServerHandshaker handshaker = factory.newHandshaker(request);
@@ -379,7 +420,7 @@ public final class OminiCatServer implements AutoCloseable {
                 respond(context, HttpResponseStatus.SERVICE_UNAVAILABLE, "text/plain", "Session capacity reached"); return;
             }
             activeSessions.incrementAndGet();
-            WsHandler socket = new WsHandler();
+            WsHandler socket = new WsHandler(observation != null && observation.get(0).equals("1") ? activityJournal.openSession() : null);
             context.pipeline().addLast("websocket-aggregate", new WebSocketFrameAggregator(config.maxFrameBytes()));
             context.pipeline().addLast("websocket-session", socket);
             handshaker.handshake(context.channel(), request).addListener(future -> {
@@ -393,7 +434,18 @@ public final class OminiCatServer implements AutoCloseable {
         @Override public void exceptionCaught(ChannelHandlerContext context, Throwable cause) { context.close(); }
     }
 
+    /** Only constant, explicitly routed assets are served; request paths never become resource paths. */
+    private static void resource(ChannelHandlerContext context, String path, String contentType) {
+        try (var input = OminiCatServer.class.getResourceAsStream(path)) {
+            if (input == null) throw new IOException("Missing web resource");
+            respond(context, HttpResponseStatus.OK, contentType, new String(input.readAllBytes(), StandardCharsets.UTF_8));
+        } catch (IOException failure) {
+            respond(context, HttpResponseStatus.INTERNAL_SERVER_ERROR, "text/plain", "Console asset unavailable");
+        }
+    }
+
     private final class WsHandler extends SimpleChannelInboundHandler<WebSocketFrame> {
+        private final ActivitySession activity;
         private final AtomicLong pendingBytes = new AtomicLong();
         private final AtomicBoolean terminating = new AtomicBoolean();
         private final AtomicBoolean socketInactive = new AtomicBoolean();
@@ -403,16 +455,23 @@ public final class OminiCatServer implements AutoCloseable {
         private volatile PipelineSession pipeline;
         private volatile Channel channel;
         private volatile ScheduledFuture<?> closeDeadline;
+        private volatile boolean endAccepted;
+        private volatile boolean cancellationRequested;
+
+        private WsHandler(ActivitySession activity) { this.activity = activity; }
 
         private void open(Channel connection) {
             channel = connection;
             if (terminating.get() || !connection.isActive()) return;
             try {
-                pipeline = session(frame -> send(codec.encode(frame)));
+                pipeline = session(this::sendOutput, activity);
                 pipelineWorkers.incrementAndGet();
                 pipeline.completion().whenComplete((ignored, failure) -> {
                     pipelineWorkers.decrementAndGet();
                     workerComplete.set(true);
+                    if (activity != null) activity.record("session_settled", failure != null
+                            && !(cancellationRequested && cancellationOnly(failure)) ? "failed"
+                            : endAccepted && !cancellationRequested ? "drained" : "closed_or_cancelled");
                     releaseAdmission();
                     if (failure != null && !terminating.get()) {
                         failures.increment();
@@ -422,6 +481,7 @@ public final class OminiCatServer implements AutoCloseable {
                     }
                 });
             } catch (Throwable failure) {
+                if (activity != null) activity.record("session_settled", "initialization_failed");
                 workerComplete.set(true);
                 releaseAdmission();
                 failures.increment();
@@ -444,14 +504,15 @@ public final class OminiCatServer implements AutoCloseable {
                     Frame payload = frame instanceof FrameEnvelope envelope ? envelope.frame() : frame;
                     if (payload instanceof Frame.Control control && control.signal() == Frame.Signal.INTERRUPT) {
                         pipeline.interrupt();
-                        send(codec.encode(frame));
+                        if (activity != null) activity.record("interrupt", frame, "requested");
+                        sendOutput(frame);
                     } else if (payload instanceof Frame.Control control && control.signal() == Frame.Signal.END) {
-                        if (pipeline.trySubmit(frame)) pipeline.finish();
+                        if (submit(frame)) { endAccepted = true; pipeline.finish(); }
                         else {
                             rejected.increment();
                             send(codec.error("overloaded", "Session input queue is full or closed; retry end after draining"));
                         }
-                    } else if (!pipeline.trySubmit(frame)) {
+                    } else if (!submit(frame)) {
                         rejected.increment();
                         send(codec.error("overloaded", "Session input queue is full or closed"));
                     }
@@ -462,6 +523,26 @@ public final class OminiCatServer implements AutoCloseable {
             } else {
                 terminate(1003, "JSON text frames required");
             }
+        }
+
+        private boolean submit(Frame frame) {
+            boolean accepted = pipeline.trySubmit(frame);
+            if (activity != null) activity.record(accepted ? "ingress_accepted" : "ingress_rejected", frame,
+                    accepted ? "accepted" : "rejected");
+            return accepted;
+        }
+
+        private void sendOutput(Frame frame) throws IOException {
+            if (activity == null) { send(codec.encode(frame)); return; }
+            ActivityJournal.Description description = ActivityJournal.describe(frame);
+            String message = codec.encode(frame);
+            if (terminating.get()) { activity.transport("transport_output_failed", description, "closed"); return; }
+            int size = ByteBufUtil.utf8Bytes(message);
+            if (size > config.maxFrameBytes()) {
+                activity.transport("transport_output_failed", description, "capacity_rejected");
+                rejected.increment(); terminate(1013, "Output capacity reached"); return;
+            }
+            sendFrame(new TextWebSocketFrame(message), size, description);
         }
 
         private void send(String message) {
@@ -476,11 +557,16 @@ public final class OminiCatServer implements AutoCloseable {
         }
 
         private void sendFrame(WebSocketFrame frame, int size) {
+            sendFrame(frame, size, null);
+        }
+
+        private void sendFrame(WebSocketFrame frame, int size, ActivityJournal.Description description) {
             boolean overloaded = false;
             synchronized (outputLock) {
                 Channel connection = channel;
                 if (connection == null || terminating.get() || !connection.isActive()) {
                     frame.release();
+                    if (description != null) activity.transport("transport_output_failed", description, "closed");
                     return;
                 }
                 if (pendingBytes.get() + size > 4L * config.maxFrameBytes() || !connection.isWritable()) {
@@ -490,14 +576,18 @@ public final class OminiCatServer implements AutoCloseable {
                     pendingBytes.addAndGet(size);
                     pendingOutputBytes.addAndGet(size);
                     framesOut.increment(); bytesOut.add(size);
+                    if (description != null) activity.transport("transport_output_queued", description, "queued");
                     connection.writeAndFlush(frame).addListener(future -> {
                         pendingBytes.addAndGet(-size);
                         pendingOutputBytes.addAndGet(-size);
+                        if (description != null) activity.transport(future.isSuccess() ? "transport_output_written" : "transport_output_failed",
+                                description, future.isSuccess() ? "netty_write" : "write_failed");
                         if (!future.isSuccess()) terminate(1011, "Output failed");
                     });
                 }
             }
             if (overloaded) {
+                if (description != null) activity.transport("transport_output_failed", description, "capacity_rejected");
                 rejected.increment();
                 terminate(1013, "Output capacity reached");
             }
@@ -513,6 +603,7 @@ public final class OminiCatServer implements AutoCloseable {
                 close.release();
                 return;
             }
+            cancellationRequested = true;
             PipelineSession active = pipeline;
             if (active != null) active.close();
             synchronized (outputLock) {
@@ -533,6 +624,7 @@ public final class OminiCatServer implements AutoCloseable {
         }
 
         @Override public void channelInactive(ChannelHandlerContext context) {
+            cancellationRequested = true;
             terminating.set(true);
             socketInactive.set(true);
             ScheduledFuture<?> deadline = closeDeadline;
@@ -548,6 +640,19 @@ public final class OminiCatServer implements AutoCloseable {
             if (channel == null) context.close();
             else terminate(1009, "Invalid, oversized, or idle connection");
         }
+    }
+
+    /** A cooperative close is not a processor failure; suppressed cleanup errors still are failures. */
+    private static boolean cancellationOnly(Throwable failure) {
+        Throwable current = failure;
+        int depth = 0;
+        while (current instanceof java.util.concurrent.CompletionException
+                || current instanceof java.util.concurrent.ExecutionException) {
+            if (++depth > 16 || current.getSuppressed().length != 0 || current.getCause() == null || current.getCause() == current) return false;
+            current = current.getCause();
+        }
+        return current instanceof java.util.concurrent.CancellationException
+                && current.getSuppressed().length == 0 && current.getCause() == null;
     }
 
     private static void unauthorized(ChannelHandlerContext context) {

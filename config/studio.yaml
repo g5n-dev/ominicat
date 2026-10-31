@@ -1,0 +1,11 @@
+# Offline Studio example: energy events, transcript revisions and multimodal echo.
+host: 127.0.0.1
+port: 8080
+queueCapacity: 256
+maxSessions: 64
+maxFrameBytes: 1048576
+idleTimeoutSeconds: 60
+stages:
+  - type: rms-vad
+  - type: transcript-gate
+  - type: echo

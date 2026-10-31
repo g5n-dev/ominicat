@@ -1,0 +1,66 @@
+{
+  "scope": "Synthetic WebSocket traffic with concurrent read-only observation; functional resource-drain check, not a throughput baseline or A/B comparison",
+  "recordedDate": "2026-10-31",
+  "javaVersion": "17.0.21.0.3",
+  "hostContext": "Shared macOS/aarch64 development host; Java17 platform workers, 256 MiB heap and 128 MiB direct-memory limit",
+  "runtimeSourceSha256": {
+    "ominicat-server/src/main/java/io/ominicat/server/OminiCatServer.java": "5ccf3de33589ee4330c3e8c671f52379d7146d3b1fe8405e7841baf185ccd78d",
+    "ominicat-server/src/main/java/io/ominicat/server/RuntimeSnapshot.java": "71c4b31f9cb0114c995c57ace4af33ef12ce172b16a55df95546dc748b6eab9c"
+  },
+  "previewJarSha256": "3b879f349a7ee904e9cea23beb197dfd1d862de9fdfef076f68a0b0094cb342a",
+  "previewArtifactScope": "API/transport check before the final UI bundle; browser assets were not part of this load check",
+  "probeSource": "scripts/WebSocketLoad.java",
+  "probeSourceSha256": "0df751a399a0cef5b94ffda14c1dd70b08165427b6a1fe4606f1c65a20c76901",
+  "stages": [
+    "rms-vad",
+    "transcript-gate",
+    "echo"
+  ],
+  "workload": {
+    "connections": 16,
+    "measuredFrames": 80000,
+    "warmupFramesPerConnection": 100,
+    "inFlightPerConnection": 1,
+    "failedFrames": 0
+  },
+  "observer": {
+    "requestedHz": 10,
+    "samples": 100,
+    "spanSeconds": 9.91
+  },
+  "observedPeaks": {
+    "activeSessions": 16,
+    "pipelineWorkers": 16,
+    "connections": 17,
+    "pendingOutputBytes": 219
+  },
+  "afterDrain": {
+    "connections": 1,
+    "activeSessions": 0,
+    "admittedSessions": 0,
+    "pipelineWorkers": 0,
+    "pendingOutputBytes": 0,
+    "sessionsTotal": 16,
+    "framesInTotal": 81600,
+    "framesOutTotal": 81600,
+    "rejectedTotal": 0,
+    "failuresTotal": 0,
+    "bytesOutTotal": 2550280
+  },
+  "establishedConnectionsAfterObserverStopped": 0,
+  "checks": {
+    "loadExitZero": true,
+    "loadFrameCount": true,
+    "noFailedFrames": true,
+    "observerSamplesValid": true,
+    "observedConcurrentSessions": true,
+    "resourcesDrained": true,
+    "tcpDrainedExceptObserver": true,
+    "counterDeltaExact": true,
+    "sessionDeltaExact": true,
+    "noRuntimeRejectOrFailure": true,
+    "noEstablishedTcpAfterObserverStops": true
+  },
+  "passed": true,
+  "limits": "Snapshots are concurrent gauges and include the observer HTTP connection. No GC/retained-heap, production capacity, model quality or per-node execution claim."
+}
