@@ -1,10 +1,31 @@
 # Performance methodology
 
-OminiCat includes separate measurements for synchronous dispatch, session scheduling, sustained bounded concurrency and WebSocket transport. Read the [actual baseline](../reports/baseline/report.md), [CPU/allocation/GC analysis](../reports/baseline/profiles.md), [transport result](../reports/baseline/websocket.json) and [verification summary](../reports/verification.md).
+OminiCat is designed for high throughput, low dispatch overhead and bounded work under load. The current [Java 17 measurements](../reports/java17/kernel/report.md) expose throughput, scheduling latency and allocation together; [CPU/allocation flame graphs and GC](../reports/java17/kernel/profiles.md) link those results to execution costs.
 
-The [recorded Java 21 deep verification](../reports/deep/README.md) adds a 20-minute fixed-artifact mixed-media run, native slow-consumer attacks, callback-reachability checks, [resource timeline](../reports/deep/soak-resources.svg), JFR views and native-memory counters. The [recorded kernel profile](../reports/deep/kernel/report.md) and [historical comparison](../reports/deep/kernel/comparison.md) retain observed guard/allocation costs instead of replacing earlier results.
+## Recorded Java 17 performance
 
-Java 17 uses platform workers; Java 21+ uses virtual workers. The existing baseline and deep reports identify their earlier Java 21 sources and artifacts. They are not Java 17 measurements or measurements of the compatibility changes. Run profiles on the JDK used for deployment; compare matching worker backends and report their thread/native-memory costs.
+| Probe | Result | Scope |
+| --- | ---: | --- |
+| Four-stage synchronous dispatch | **40.54M ops/s**, **328 B/op** | One JMH thread; local numeric frames |
+| Four-stage session round trip | **7.104 µs/op** | Average; one outstanding frame, including queue/worker/output handoff |
+| 16-session bounded load | **2.706M frames/s**, p99 **1.436 ms** | Four stages, max 32 outstanding frames/session; 25M measured frames; zero rejections |
+
+Java 17.0.21, Apple M2 Pro / macOS arm64, 512 MiB heap, platform workers. JMH uses two forks, three 1-second warmup iterations and five 1-second measurement iterations. The full report retains uncertainty, maximum latency and [raw data](../reports/java17/kernel/jmh.json). The shared development host also ran paced validation, so these results describe the recorded workload and environment.
+
+## Performance design
+
+| Mechanism | Execution and resource behavior |
+| --- | --- |
+| Direct typed-frame pipeline | Synchronous stages call the next processor directly; the kernel introduces no JSON boundary between stages. `Pipeline.process` supports embedding without session queue/scheduling overhead. |
+| Single session owner | A session worker serializes linear stages, reset hooks and cleanup; explicit parallel branches use bounded branch workers. Async continuations rejoin the session ingress queue. Separate sessions can advance concurrently. |
+| Explicit work limits | Ingress capacity, live async work, branch parallelism and buffered outputs are bounded; producers receive explicit rejection on saturation. |
+| Transport isolation | The container runs processor work on session workers while Netty handles network events. Socket output has a byte budget and a writability boundary; admission remains retained through worker cleanup. |
+| Runtime worker selection | Java 17 uses platform workers; Java 21+ uses virtual workers. Reflection occurs during factory discovery, outside frame dispatch. |
+| Observable costs | JMH GC profiling reports B/op; JFR exposes CPU, allocation and GC; metrics and sustained probes report queue/output pressure and resource drain. |
+
+The [Java 17 mixed-media resource report](../reports/java17/http-cancellation/README.md) separately checks text, audio, transcripts, images and envelopes over real local WebSockets. Its paced workload and [resource timeline](../reports/java17/http-cancellation/soak-resources.svg) have a different timing scope from kernel benchmarks. Choose thread/session limits for the selected JDK and profile the actual processing chain.
+
+The [historical Java 21 baseline](../reports/baseline/report.md) and [20-minute deep run](../reports/deep/README.md) retain their original source and artifact hashes. Their [historical comparison](../reports/deep/kernel/comparison.md) records invocation-guard allocation and throughput costs. Compare matching revisions, worker backends and workloads when evaluating a change.
 
 ## Reproduce
 
@@ -28,7 +49,7 @@ Core load uses 100,000 warmup frames followed by 25 million measured frames in q
 
 ## CPU, memory, GC and contention
 
-JFR captures sampled CPU stacks, allocation weights, collection pauses and monitor contention; virtual-thread pinning is available only on runtimes that provide that event. [The summary](../reports/baseline/profiles.md) includes sampled flame graphs. Allocation weights are estimates, not retained heap. JMH `gc.alloc.rate.norm` estimates allocated bytes per operation. Zero recorded pinning or contention events does not prove absence in another workload or below recording thresholds.
+JFR captures sampled CPU stacks, allocation weights, collection pauses and monitor contention; virtual-thread pinning is available only on runtimes that provide that event. [The Java 17 summary](../reports/java17/kernel/profiles.md) includes sampled flame graphs. Allocation weights are estimates, not retained heap. JMH `gc.alloc.rate.norm` estimates allocated bytes per operation. Zero recorded pinning or contention events does not prove absence in another workload or below recording thresholds.
 
 The profiling script disables environment/system-property/process-inventory events and exports selected diagnostic event categories. Raw JFR remains local and is excluded from Git. Public evidence includes compact data and sanitized selected events. Real application recordings may contain sensitive data and should stay private.
 

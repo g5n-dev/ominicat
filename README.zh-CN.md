@@ -1,12 +1,34 @@
-<p align="center"><img src="docs/assets/banner.svg" alt="OminiCat：Java 多模态会话微内核" width="100%"></p>
+<p align="center"><img src="docs/assets/banner.svg" alt="OminiCat：高性能 Java 17 多模态会话微内核" width="100%"></p>
 
-<p align="center"><a href="README.md">English</a> · <a href="docs/architecture.md">架构</a> · <a href="docs/configuration.md">配置</a> · <a href="docs/plugins.md">插件开发</a> · <a href="reports/baseline/report.md">性能报告</a></p>
+<p align="center"><a href="README.md">English</a> · <a href="docs/architecture.md">架构</a> · <a href="docs/configuration.md">配置</a> · <a href="docs/plugins.md">插件开发</a> · <a href="#java-17-性能实测">性能实测</a></p>
 
-**OminiCat 是可配置、可嵌入的 Java 多模态实时会话运行时。** 用统一帧契约连接音频、文本、图像、转写、模型和会话处理器；既能放进现有 Java 应用，也能独立启动为 WebSocket 服务容器。
+**OminiCat 是高性能 Java 多模态会话微内核，面向高吞吐与低调度开销设计。** 用统一帧契约连接音频、文本、图像、转写、模型和会话处理器；既能放进现有 Java 应用，也能独立启动为 WebSocket 服务容器。
 
 当前为 **0.1 开发预览版**。核心机制有本地测试和可复跑的性能证据，真实厂商长连接、长稳运行和部署容量仍需在目标环境验证。
 
-[Java 17 验证报告](reports/verification.md)包含 **256 项通过测试、512 个随机种子和真实协议故障验证**，覆盖响应体保持打开时的中断、资源释放与下一轮恢复。[内核与资源剖析](reports/java17/README.md)及[Java 21 历史报告](reports/deep/README.md)保留原始产物与测量范围。
+[Java 17 验证报告](reports/verification.md)包含 **256 项通过测试、512 个随机种子和真实协议故障验证**，覆盖响应体保持打开时的中断、资源释放与下一轮恢复。[内核与资源剖析](reports/java17/http-cancellation/README.md)及[Java 21 历史报告](reports/deep/README.md)保留原始产物与测量范围。
+
+## Java 17 性能实测
+
+高性能是运行时的核心设计目标，已有[可复跑的基准数据](reports/java17/kernel/report.md)：
+
+| 测量项 | 实测结果 | 负载范围 |
+| --- | ---: | --- |
+| 同步内核分发 | **4,054 万次/秒** | 四阶段数值变换，单个 JMH 测试线程 |
+| 会话平均往返 | **7.104 微秒/次** | 四阶段、单帧在途，包含入队、工作线程调度与输出交接 |
+| 同步分发分配量 | **328 B/次** | 四阶段本地数值帧负载 |
+| 有界并发处理 | **270.6 万帧/秒** | 16 会话 × 四阶段，p99 **1.436 毫秒**；2,500 万测量帧，0 拒绝 |
+
+测量环境：Java 17.0.21、Apple M2 Pro / macOS arm64、512 MiB 堆、平台工作线程；JMH 使用两个独立进程，每个进程预热 3 × 1 秒、测量 5 × 1 秒。主机同时承担开发和验证任务。这些指标对应本地数值帧的分发与调度；网络往返和模型调用有独立的测量范围。[JMH 原始数据](reports/java17/kernel/jmh.json) · [并发负载数据](reports/java17/kernel/load.json) · [CPU / 分配 / GC 剖析](reports/java17/kernel/profiles.md)。
+
+性能设计落在具体机制上：
+
+- **直接分发**：核心仅依赖 JDK，统一帧直接经过处理器调用；同步嵌入路径无需会话调度或 JSON 转换。
+- **会话独占**：线性阶段由会话工作线程串行调度，显式并行分支使用受限分支工作线程；异步回调回到会话队列，各会话可并行推进。
+- **显式背压**：输入、异步在途任务、分支并行度与缓冲、网络待发送字节均有上限，过载可观察、可配置。
+- **跨版本线程后端**：Java 17 使用平台线程，Java 21 及以上自动使用虚拟线程；容器中的阻塞处理器工作与 Netty 网络事件循环分开执行。
+
+[性能设计与测量方法](docs/performance.md) · [资源曲线与故障验证](reports/java17/http-cancellation/README.md)。
 
 ## 先运行起来
 
@@ -73,7 +95,7 @@ scripts/profile.sh quick reports/local/run
 java scripts/WebSocketLoad.java ws://127.0.0.1:8080/ws 32 5000
 ```
 
-查看[测量方法](docs/performance.md)、[实际基线](reports/baseline/report.md)、[CPU / 分配 / GC 分析](reports/baseline/profiles.md)和[验证摘要](reports/verification.md)。报告标明 JVM、负载、预热、采样和限制，区分内核分发、队列延迟与网络往返；它们不代表模型推理延迟或生产容量。
+查看[测量方法](docs/performance.md)、[Java 17 实测](reports/java17/kernel/report.md)、[CPU / 分配 / GC 分析](reports/java17/kernel/profiles.md)和[验证摘要](reports/verification.md)。报告标明 JVM、负载、预热、采样和限制，区分内核分发、队列延迟与网络往返；它们不代表模型推理延迟或生产容量。
 
 ## 继续阅读
 
