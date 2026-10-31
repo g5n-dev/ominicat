@@ -168,6 +168,7 @@ Using the environment installed from [comparison/requirements.lock](../compariso
 
 ```sh
 python scripts/render_performance_explainer.py
+python scripts/localize_readme.py
 python scripts/render_doc_previews.py
 ```
 

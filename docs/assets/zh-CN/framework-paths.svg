@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1130" viewBox="0 0 1440 1130" role="img" aria-labelledby="title desc" xml:lang="zh-CN">
+<title id="title" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">OminiCat — 三套框架的实际执行路径</title>
+<desc id="desc" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">OminiCat 使用一个会话 FIFO，随后由同一工作线程同步调用各阶段。Camel 使用一个 SEDA 队列、Exchange 副本与路由处理器，并保留完成确认。Pipecat 的每个排队应用阶段经过两个队列和两个处理任务，源汇使用直接模式。整循环吞吐保留各自的原生确认路径；此图根据源码绘制，不是单项优化消融实验。</desc>
+<defs><linearGradient id="background" x2="1" y2="1"><stop stop-color="#101e28" /><stop offset="1" stop-color="#0b1220" /></linearGradient>
+<pattern id="dots" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#6a91a8" opacity=".13" /></pattern>
+<marker id="arrow-teal" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L7 4L1 7" fill="none" stroke="#64d8c3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></marker>
+<marker id="arrow-blue" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L7 4L1 7" fill="none" stroke="#76adf7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></marker>
+<marker id="arrow-amber" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L7 4L1 7" fill="none" stroke="#e9b96e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></marker>
+<marker id="arrow-muted" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L7 4L1 7" fill="none" stroke="#9badc2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></marker>
+</defs>
+<rect width="1440" height="100%" rx="22" fill="url(#background)" />
+<rect width="1440" height="100%" rx="22" fill="url(#dots)" />
+<g font-family="Arial,Helvetica,DejaVu Sans,sans-serif">
+<text x="56" y="55" font-size="14" font-weight="700" fill="#64d8c3" letter-spacing="2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">OMINICAT / 架构</text>
+<text x="1384" y="55" font-size="14" font-weight="400" fill="#9badc2" text-anchor="end" letter-spacing="2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">04 / 路径对比</text>
+<text x="56" y="111" font-size="40" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">三套框架的实际执行路径</text>
+<text x="56" y="150" font-size="19" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">实际数值处理适配器：使用原生排队接口，每次仅一帧在途。</text>
+<rect x="56" y="190" width="1328" height="64" rx="15" fill="#142536" stroke="#2a3f53" stroke-width="1.2" />
+<text x="80" y="229" font-size="14" font-weight="700" fill="#64d8c3" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">固定测试模式</text>
+<text x="260" y="229" font-size="20" font-weight="400" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">Java 17 平台线程  /  CPython 3.12 asyncio  /  N = 1、4、16</text>
+<rect x="56" y="286" width="1328" height="182" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2" />
+<text x="80" y="322" font-size="26" font-weight="700" fill="#64d8c3">OminiCat</text>
+<text x="342" y="322" font-size="19" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">PipelineSession · 同步处理链由一个工作线程推进</text>
+<rect x="80" y="347" width="160" height="55" rx="15" fill="#142536" stroke="#2a3f53" stroke-width="1.2" />
+<text x="96" y="382" font-size="19" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">输入帧</text>
+<rect x="284" y="347" width="190" height="55" rx="15" fill="#142536" stroke="#2a3f53" stroke-width="1.2" />
+<text x="300" y="382" font-size="19" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">会话 FIFO</text>
+<rect x="518" y="347" width="502" height="55" rx="15" fill="#142536" stroke="#2a3f53" stroke-width="1.2" />
+<text x="534" y="382" font-size="19" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">同一线程：P1 → P2 → … → PN</text>
+<rect x="1064" y="347" width="296" height="55" rx="15" fill="#142536" stroke="#2a3f53" stroke-width="1.2" />
+<text x="1080" y="382" font-size="19" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">终端校验与确认</text>
+<path d="M240 375H284" fill="none" stroke="#64d8c3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)" />
+<path d="M474 375H518" fill="none" stroke="#64d8c3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)" />
+<path d="M1020 375H1064" fill="none" stroke="#64d8c3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)" />
+<text x="80" y="443" font-size="18" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">同步阶段之间不再排队；仍保留取消校验、调用作用域保护及对象分配。</text>
+<rect x="56" y="500" width="1328" height="182" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2" />
+<text x="80" y="536" font-size="26" font-weight="700" fill="#e9b96e">Apache Camel 4.22.2</text>
+<text x="440" y="536" font-size="19" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">一个 SEDA 入口 · 通用 Exchange 与路由机制</text>
+<rect x="80" y="561" width="238" height="55" rx="15" fill="#142536" stroke="#2a3f53" stroke-width="1.2" />
+<text x="96" y="596" font-size="19" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">请求与 Exchange</text>
+<rect x="362" y="561" width="190" height="55" rx="15" fill="#142536" stroke="#2a3f53" stroke-width="1.2" />
+<text x="378" y="596" font-size="19" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">SEDA 队列</text>
+<rect x="596" y="561" width="424" height="55" rx="15" fill="#142536" stroke="#2a3f53" stroke-width="1.2" />
+<text x="612" y="596" font-size="19" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">路由：P1 → P2 → … → PN</text>
+<rect x="1064" y="561" width="296" height="55" rx="15" fill="#142536" stroke="#2a3f53" stroke-width="1.2" />
+<text x="1080" y="596" font-size="19" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">完成与应答</text>
+<path d="M318 589H362" fill="none" stroke="#e9b96e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-amber)" />
+<path d="M552 589H596" fill="none" stroke="#e9b96e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-amber)" />
+<path d="M1020 589H1064" fill="none" stroke="#e9b96e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-amber)" />
+<text x="80" y="657" font-size="18" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">每请求保留 Exchange 副本与应答同步，不是每阶段一个 SEDA 队列。</text>
+<rect x="56" y="714" width="1328" height="238" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2" />
+<text x="80" y="750" font-size="26" font-weight="700" fill="#76adf7">Pipecat 1.15.0</text>
+<text x="360" y="750" font-size="19" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">排队应用处理器 · enable_direct_mode=False</text>
+<rect x="80" y="788" width="220" height="106" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2" />
+<rect x="80" y="806" width="3" height="70" rx="1.5" fill="#76adf7" />
+<text x="102" y="822" font-size="19" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">入口 FIFO</text>
+<text x="102" y="851" font-size="16" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">原生 PipelineWorker</text>
+<text x="102" y="876" font-size="16" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">源与汇：直接模式</text>
+<rect x="344" y="788" width="776" height="106" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2" />
+<rect x="344" y="806" width="3" height="70" rx="1.5" fill="#76adf7" />
+<text x="366" y="822" font-size="21" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">应用阶段 1 → … → 应用阶段 N</text>
+<text x="366" y="851" font-size="17" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">每阶段：输入队列 → 输入任务 → FrameQueue → 处理任务</text>
+<text x="366" y="876" font-size="17" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">原生 Frame ＋ 不可变数值载荷适配</text>
+<rect x="1164" y="788" width="196" height="106" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2" />
+<rect x="1164" y="806" width="3" height="70" rx="1.5" fill="#76adf7" />
+<text x="1186" y="822" font-size="19" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">输出事件</text>
+<text x="1186" y="851" font-size="14" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">异步事件处理</text>
+<text x="1186" y="876" font-size="14" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">调用方确认</text>
+<path d="M300 841H344" fill="none" stroke="#76adf7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-blue)" />
+<path d="M1120 841H1164" fill="none" stroke="#76adf7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-blue)" />
+<text x="80" y="926" font-size="18" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">队列与任务交接属于 asyncio 协作调度，不是每阶段切换一次操作系统线程。</text>
+<text x="56" y="995" font-size="18" font-weight="400" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">三条路径均包含输入构造、不可变数值变换、输出校验和原生确认。</text>
+<text x="56" y="1027" font-size="17" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">路径图说明成本边界；跨框架计时无法单独测定某一个机制的收益。</text>
+<path d="M56 1057H1384" fill="none" stroke="#9badc2" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" />
+<text x="56" y="1085" font-size="14" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">04 / 源码、诊断与取舍：docs/performance.md</text>
+<text x="1384" y="1085" font-size="14" font-weight="400" fill="#9badc2" text-anchor="end" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">仅针对所选适配器，不是框架的全面排名</text>
+</g>
+<metadata id="ominicat-locale-source">{"language": "zh-CN", "sha256": "6c7334abe2e979f1b0624da809c32cd2af0f3f5b52351ee30805e9a73afba77d", "source": "docs/assets/framework-paths.svg"}</metadata></svg>

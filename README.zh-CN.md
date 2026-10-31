@@ -1,12 +1,14 @@
-<p align="center"><a href="docs/assets/banner.svg"><img src="docs/assets/previews/banner.png" alt="OminiCat：Java 17 多模态会话微内核" width="100%"></a></p>
+<p align="center"><strong>简体中文（当前）</strong> · <a href="README.md">English</a></p>
 
-<p align="center"><a href="README.md">English</a> · <a href="#linux-框架性能实测">Linux 实测</a> · <a href="#高性能从哪里来">执行机制</a> · <a href="#先运行起来">快速开始</a> · <a href="docs/configuration.md">配置</a> · <a href="docs/plugins.md">插件开发</a> · <a href="docs/studio.md">Studio</a></p>
+<p align="center"><a href="docs/assets/zh-CN/banner.svg"><img src="docs/assets/previews/banner-zh-CN.png" alt="OminiCat：Java 17 多模态会话微内核" width="100%"></a></p>
+
+<p align="center"><a href="#先运行起来">快速开始</a> · <a href="#嵌入-java-应用">嵌入应用</a> · <a href="#开发插件">开发插件</a> · <a href="#linux-框架性能实测">Linux 实测</a> · <a href="#高性能从哪里来">执行机制</a> · <a href="docs/configuration.md">配置</a> · <a href="docs/studio.md">Studio</a></p>
 
 **OminiCat 是 Java 17+ 多模态会话微内核。** 用统一帧连接音频、文本、图像、转写、模型与会话处理器；通过配置组合插件，可嵌入现有 Java 应用，也可独立运行为 WebSocket 服务容器。
 
 内核仅依赖 JDK，负责有界调度、取消、排空与生命周期，媒体、模型和应用策略由插件提供。当前为 **0.1 开发预览版**；[验证报告](reports/verification.md)记录了 **297 项通过测试、512 个随机种子**及本地协议故障验证。真实服务兼容性与部署容量仍需在目标环境验证。
 
-[![OminiCat 模块与接入边界](docs/assets/previews/architecture-overview.png)](docs/assets/architecture-overview.svg)
+[![OminiCat 模块与接入边界](docs/assets/previews/architecture-overview-zh-CN.png)](docs/assets/zh-CN/architecture-overview.svg)
 
 ## Linux 框架性能实测
 
@@ -60,9 +62,9 @@
 | **Pipecat 1.15.0** | Worker 输入队列 → 每个排队应用阶段：输入优先队列 → input 协程 → 处理队列 → process 协程 → 下一阶段 | 每阶段两个常驻协程任务、原生 Frame 元数据、事件循环、输出事件，以及测试程序的载荷不可变保护；源汇使用 direct mode |
 | **Apache Camel 4.22.2 LTS** | 一个 SEDA 入口 → consumer → 同一路由的 `process` 链 → 请求应答完成 | Exchange 关联副本、完成回调和同步，以及通用路由／生命周期机制；并非每阶段都有 SEDA 队列 |
 
-[![三套框架实际排队路径与保留的成本](docs/assets/previews/framework-paths.png)](docs/assets/framework-paths.svg)
+[![三套框架实际排队路径与保留的成本](docs/assets/previews/framework-paths-zh-CN.png)](docs/assets/zh-CN/framework-paths.svg)
 
-因此，OminiCat 的优势原理是**缩短同步阶段之间的框架路径，同时保留会话所有权和取消保护**。与 Pipecat 的这个排队模式相比，它省去了同步应用阶段之间的队列／协程交接；与 Camel 相比，两者都有单入口队列，差别在类型化处理器合同与通用 Exchange／路由／应答机制。源码说明结构差异，Linux 测试记录这些完整路径的实际结果。
+因此，OminiCat 的优势原理是**缩短同步阶段之间的框架路径，同时保留会话所有权和取消保护**。与 Pipecat 的这个排队模式相比，它省去了同步应用阶段之间的队列／协程交接；与 Camel 相比，两者都有单入口队列，差别在类型化处理器契约与通用 Exchange／路由／应答机制。源码说明结构差异，Linux 测试记录这些完整路径的实际结果。
 
 Pipecat 也提供 direct mode，Camel 也有 `direct:` 端点；这些直接调用模式未纳入本次排队矩阵，不能套用这里的比值。[固定版本源码与模式边界](docs/performance.md#why-the-measured-paths-differ)。
 
@@ -140,6 +142,15 @@ java -jar ominicat-server/target/ominicat-server.jar --config config/demo.yaml
 
 [大盘与调试使用说明](docs/studio.md) · [三阶段离线示例](config/studio.yaml) · [浏览器与资源验证](reports/studio/README.md)。
 
+默认配置还提供健康检查和 Prometheus 指标：
+
+```bash
+curl http://127.0.0.1:8080/health
+curl http://127.0.0.1:8080/metrics
+```
+
+也可使用已安装的 Maven 3.9+ 执行 `mvn -B verify`。配置鉴权后，指标和会话入口需要相应凭据，详见[配置与部署](docs/configuration.md)。
+
 ## 小内核，可组合的能力
 
 | 层 | 提供的机制 |
@@ -151,6 +162,18 @@ java -jar ominicat-server/target/ominicat-server.jar --config config/demo.yaml
 | 可选媒体引用 | 来源、轨道、时间基准、生产者作用域和片段版本；明确区间/点/未知位置、显式帧映射与有界导入导出 |
 | 可配置策略 | 带版本和证据的结构化评估、提示模板、可寻址步骤与条件路由 |
 | 容器 | Netty WebSocket、YAML 配置、SPI 发现、鉴权、容量限制、Prometheus 指标 |
+
+模块依赖保持分离，内核的零第三方依赖不等于整个服务没有依赖：
+
+| 模块 | 职责 | 生产依赖 |
+| --- | --- | --- |
+| `ominicat-core` | 帧、管线、会话生命周期与插件 SPI | 仅 JDK |
+| `ominicat-conversation` | 转写窗口、评估、提示模板、步骤流程与可选媒体引用 | Core |
+| `ominicat-providers` | 兼容模型适配器、回显与 PCM 工具 | Core、Jackson |
+| `ominicat-server` | Netty 容器、YAML 组装与 Studio | 运行时模块、Netty、Jackson YAML |
+| `ominicat-benchmarks` | JMH、分配率与会话负载测量 | Core、JMH |
+
+### 配置管线
 
 ```yaml
 host: 127.0.0.1
@@ -166,11 +189,118 @@ stages:
       policyVersion: "example-v1"
 ```
 
-每个会话创建独立处理器实例。新能力实现 `ProcessorFactory`，在 `META-INF/services/io.ominicat.core.spi.ProcessorFactory` 注册，再由 YAML 选择；插件依赖核心，内核无需依赖具体厂商或应用策略。构建并安装本仓库后即可使用，当前尚未发布到 Maven Central。详见[插件开发](docs/plugins.md)。
+每个会话创建独立处理器实例。YAML 的 `type` 选择已安装工厂，`options` 的值为字符串；模型配置通过环境变量名引用凭据。服务器在绑定端口前创建并关闭配置中的处理器进行预检。工厂构造应快速完成，不应发起模型请求。详见[配置与鉴权](docs/configuration.md)。
 
-嵌入应用可用 `Pipeline.process` 同步处理，或用 `openSession` 获得排队、取消与排空语义；同步调用方自行管理处理器生命周期。`FrameEnvelope` 为帧携带会话、轮次、关联、因果和时间信息，`EnvelopeProcessor.wrap` 保留同步与异步阶段的元数据。
+`Frame` 是开放接口，支持自定义事件，也提供 `Text`、`Audio`、`Image`、`Transcript`、`Failure` 与 `Cancel`。可选 `FrameEnvelope` 为帧携带会话、轮次、关联、因果和时间信息，`EnvelopeProcessor.wrap` 保留同步与异步阶段的元数据。
 
 音频为 PCM16LE，带流标识和每通道采样位置；转写带稳定片段标识、修订号、说话人、角色、起止时间及 final 标记。持久化、跨进程恢复身份和外部作用的提交点由应用管理。
+
+## 嵌入 Java 应用
+
+无需启动 WebSocket 服务，即可直接使用核心 API。将下面代码保存为仓库根目录的 `EmbedDemo.java`；示例接纳一帧，等待输出与处理器清理完成后退出：
+
+```java
+import io.ominicat.core.Frame;
+import io.ominicat.core.Pipeline;
+import io.ominicat.core.SessionOptions;
+
+public final class EmbedDemo {
+    public static void main(String[] args) {
+        var pipeline = Pipeline.builder()
+            .add((frame, next) -> next.accept(frame))
+            .build();
+
+        try (var session = pipeline.openSession(
+                SessionOptions.defaults(), System.out::println)) {
+            if (!session.trySubmit(new Frame.Text("Hello, OminiCat."))) {
+                throw new IllegalStateException("Session input is full or closed");
+            }
+            session.finish();
+            session.completion().join();
+        }
+    }
+}
+```
+
+前面的构建已生成包含核心模块的服务 JAR，可用 JDK 17 的源码启动方式运行：
+
+```bash
+java --class-path ominicat-server/target/ominicat-server.jar EmbedDemo.java
+```
+
+处理器可以输出零帧、一帧或多帧。`trySubmit()` 返回 `false` 时，调用方处理满队列或入口关闭；`finish()` 关闭外部入口并排空已接纳工作及活跃异步调用，`completion()` 在逆序清理结束后完成。`interrupt()` 隔离旧 generation 并准备下一轮，不撤销已发生的外部作用；`close()` 发起协作式取消，等待清理仍需使用 `completion()`。每个会话应新建管线和处理器实例。
+
+纯同步嵌入也可调用 `Pipeline.process(frame, sink)`，省去会话队列；调用方自行串行访问并关闭处理器。同步 `next` 仅在当前调用中有效，不能在返回后或其他线程调用。外部回调使用 `AsyncProcessor`，通过 `openSession` 运行；必须处理 `tryEmit()` 拒绝，并在结束或失败时调用 `complete()`／`fail()`。详见[生命周期](docs/architecture.md)与[异步插件契约](docs/plugins.md#streaming-callbacks)。
+
+## 开发插件
+
+实现 `ProcessorFactory` 并通过 Java `ServiceLoader` 注册，无需改动内核。下面的插件仅将文本转为大写，其他帧原样传递。保存为 `UppercaseFactory.java`：
+
+```java
+package example;
+
+import io.ominicat.core.Frame;
+import io.ominicat.core.FrameSink;
+import io.ominicat.core.Processor;
+import io.ominicat.core.spi.ProcessorFactory;
+import java.util.Locale;
+import java.util.Map;
+
+public final class UppercaseFactory implements ProcessorFactory {
+    @Override public String type() { return "uppercase"; }
+
+    @Override public Processor create(Map<String, String> options) {
+        if (!options.isEmpty()) {
+            throw new IllegalArgumentException("uppercase accepts no options");
+        }
+        return new Processor() {
+            @Override public void process(Frame frame, FrameSink next) throws Exception {
+                if (frame instanceof Frame.Text text) {
+                    next.accept(new Frame.Text(text.text().toUpperCase(Locale.ROOT)));
+                } else {
+                    next.accept(frame);
+                }
+            }
+        };
+    }
+}
+```
+
+在仓库根目录准备编译与打包目录：
+
+```bash
+mkdir -p plugin-classes/META-INF/services plugins
+javac --release 17 -cp ominicat-server/target/ominicat-server.jar \
+  -d plugin-classes UppercaseFactory.java
+```
+
+将以下单行保存到 `plugin-classes/META-INF/services/io.ominicat.core.spi.ProcessorFactory`：
+
+```text
+example.UppercaseFactory
+```
+
+再将下面配置保存为 `config/custom.yaml`：
+
+```yaml
+host: 127.0.0.1
+port: 8080
+stages:
+  - type: uppercase
+    options: {}
+```
+
+打包插件后，以 classpath 方式启动容器；若前面的示例仍占用 8080 端口，先停止它：
+
+```bash
+jar --create --file plugins/uppercase.jar -C plugin-classes .
+java -cp 'ominicat-server/target/ominicat-server.jar:plugins/*' \
+  io.ominicat.server.OminiCat --config config/custom.yaml
+```
+
+在 Studio 调试页连接并发送 `hello`，输出为 `HELLO`。以上 classpath 分隔符适用于 Linux／macOS，Windows 使用 `;`。作为 Maven 依赖时，插件使用 `io.ominicat:ominicat-core:0.1.0-SNAPSHOT`；先在本仓库运行 `./mvnw install`，当前产物尚未发布到 Maven Central。
+
+工厂应拒绝未知或无效选项，每次 `create()` 返回独立处理器。处理器需配合中断，并在 `close()` 释放其资源。更完整的回调、组合与部署契约见[插件开发文档](docs/plugins.md)。
 
 ## 适配器与示例
 
@@ -180,7 +310,7 @@ stages:
 - [独立音轨](config/dual-stream.yaml)：声道拆分、各流隔离及可配置归属。
 - [会话策略](config/conversation.yaml)、[步骤流程](config/steps.yaml)和[确定性回放](examples/README.md)。
 
-现有兼容 HTTP 转写适配器处理有界语音片段，语音合成按轮次缓冲；文本模型通过 SSE 输出。厂商原生双向语音流可通过 `AsyncProcessor` 接入，具体适配器需要独立实现和验证。WebRTC、自动说话人分离、回声消除、持久化消息投递与自动重连不包含在当前发行物中。
+现有兼容 HTTP 转写适配器将有界 PCM 语音片段封装为 WAV 上传，产出最终转写；语音合成收集文字至轮次边界，再返回 24 kHz 单声道 PCM；文本模型通过 SSE 输出。RMS 检测器提供可配置静音时长的能量事件。厂商原生双向语音流可通过 `AsyncProcessor` 接入，具体适配器需要独立实现和验证。WebRTC、自动说话人分离、回声消除、持久化消息投递与自动重连不包含在当前发行物中。
 
 ## 复跑与验证
 
@@ -200,6 +330,8 @@ java scripts/WebSocketLoad.java ws://127.0.0.1:8080/ws 32 5000
 本地 `profile.sh` 生成 `report.md`、`profiles.md`、CPU／分配分布图、完整栈图、GC 时间图及原始诊断。保留选定事件后可用 `python3 scripts/summarize_profiles.py reports/local/run` 重生成图；`full` 增加 JMH 预热与测量时间。发布前仅打包经过隐私检查的白名单文件。[测量方法](docs/performance.md) · [持续资源验证复跑](validation/README.md)。
 
 ## 继续阅读
+
+以下深入文档目前主要为英文，API、配置项与示例可直接对应本页：
 
 - [架构、所有权与生命周期](docs/architecture.md)
 - [配置、鉴权与部署](docs/configuration.md)

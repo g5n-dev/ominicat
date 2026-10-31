@@ -27,6 +27,8 @@ SOURCES = {
     'bounded-runtime': 'docs/assets/bounded-runtime.svg',
     'framework-paths': 'docs/assets/framework-paths.svg',
     'framework-cost-scaling': 'docs/assets/framework-cost-scaling.svg',
+    **{f'{name}-zh-CN': f'docs/assets/zh-CN/{name}.svg'
+       for name in ('banner', 'architecture-overview', 'framework-paths')},
     'ubuntu-comparison': f'{UBUNTU}/overview.svg',
     'centos-comparison': 'reports/comparison/linux-centos9-java17-2026-10-31/overview.svg',
     **{f'ubuntu-{name}': f'{UBUNTU}/profiles/ominicat/{name}.svg'

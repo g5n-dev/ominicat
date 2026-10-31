@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="420" viewBox="0 0 1280 420" role="img" aria-labelledby="title desc" xml:lang="zh-CN">
+  <title id="title" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">OminiCat — Java 17+ 高性能多模态流水线</title>
+  <desc id="desc" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">深色背景上的几何猫形标识、流动音频与模块化流水线。</desc>
+  <defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#293b48" stroke-width=".6" /></pattern></defs>
+  <rect width="1280" height="420" rx="20" fill="#101e28" />
+  <rect width="1280" height="420" rx="20" fill="url(#grid)" opacity=".55" />
+  <path d="M0 325H210Q240 325 240 295V270Q240 240 270 240H1020Q1050 240 1050 210V165Q1050 135 1080 135H1280" fill="none" stroke="#344b58" stroke-width="2" />
+  <g transform="translate(78 78)">
+    <path d="M0 102V18L50 47Q85 31 120 47L170 18V102Q170 165 85 165Q0 165 0 102Z" fill="#182f3b" stroke="#92e4c1" stroke-width="4" stroke-linejoin="round" />
+    <path d="M40 94H57M113 94H130M76 121L85 128L94 121" fill="none" stroke="#f2eee1" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M27 120H-10M143 120H180" stroke="#92e4c1" stroke-width="3" stroke-linecap="round" />
+  </g>
+  <text x="298" y="151" font-family="Arial,Helvetica,sans-serif" font-size="76" font-weight="700" letter-spacing="-3" fill="#f2eee1">OminiCat<tspan fill="#92e4c1">.</tspan></text>
+  <text x="302" y="201" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" font-size="25" letter-spacing=".5" fill="#b8cbd1">高性能多模态会话流水线</text>
+  <text x="302" y="270" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" font-size="17" fill="#92e4c1" letter-spacing="2">JAVA 17+  /  高吞吐  /  微内核</text>
+  <g transform="translate(78 325)" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c2d5db">
+    <rect width="110" height="34" rx="5" fill="#213744" /><text x="21" y="22" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">音频</text>
+    <rect x="126" width="110" height="34" rx="5" fill="#213744" /><text x="156" y="22" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">文本</text>
+    <rect x="252" width="110" height="34" rx="5" fill="#213744" /><text x="277" y="22" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">视觉</text>
+    <rect x="378" width="146" height="34" rx="5" fill="#213744" /><text x="400" y="22" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">你的插件</text>
+  </g>
+  <g transform="translate(1030 282)" stroke="#92e4c1" stroke-width="4" stroke-linecap="round">
+    <path d="M0 25V45M14 12V58M28 0V70M42 19V51M56 28V42M70 10V60M84 21V49M98 30V40" />
+  </g>
+  <text x="1200" y="387" text-anchor="end" font-family="Arial,Helvetica,sans-serif" font-size="13" fill="#708e9c">g5n-dev / ominicat</text>
+<metadata id="ominicat-locale-source">{"language": "zh-CN", "sha256": "d96d5445a29de6301e97f20bfbdf43f9d1f3d896ca3fd5b5b6faa337023fde6d", "source": "docs/assets/banner.svg"}</metadata></svg>
