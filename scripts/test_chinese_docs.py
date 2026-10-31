@@ -22,6 +22,8 @@ class ChineseGraphTest(unittest.TestCase):
                             'FIGURES': self.root / 'docs/i18n/figures.json'}.items():
             self.stack.enter_context(patch.object(docs, name, value))
         self.stack.enter_context(patch.object(docs, 'inventory', lambda: ['README.md', 'docs/a.md', 'docs/b.md']))
+        self.stack.enter_context(patch.object(docs, 'tracked_files', lambda: {
+            str(path.relative_to(self.root)) for path in self.root.rglob('*') if path.is_file()}))
         self.write('README.md', '# Project\n')
         self.write('README.zh-CN.md', '# 项目\n')
         self.write('docs/a.md', '# Guide\n\n[Limits](b.md#queue-limits)\n\n| Count |\n| --- |\n| 10 |\n\n```java\nint value = 1;\n```\n')
@@ -103,6 +105,15 @@ class ChineseGraphTest(unittest.TestCase):
         self.mutate('docs/zh-CN/a.md', '(b.md#队列限制)', '(../b.md#queue-limits)')
         with self.assertRaisesRegex(ValueError, 'escaped to English'):
             self.check()
+
+    def test_ignored_local_artifact_cannot_hide_a_broken_published_link(self):
+        self.write('reports/local-only.log', 'synthetic evidence')
+        path = self.root / 'docs/zh-CN/a.md'
+        path.write_text(path.read_text() + '\n[证据](../../reports/local-only.log)\n')
+        with patch.object(docs, 'tracked_files', lambda: {str(p.relative_to(self.root))
+                for p in self.root.rglob('*') if p.is_file() and p.name != 'local-only.log'}):
+            with self.assertRaisesRegex(ValueError, 'Untracked Chinese-page link'):
+                self.check()
 
     def test_broken_chinese_heading_is_rejected(self):
         self.mutate('docs/zh-CN/a.md', '#队列限制)', '#不存在)')

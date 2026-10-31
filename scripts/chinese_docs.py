@@ -93,6 +93,10 @@ def inventory():
     return sorted(p for p in tracked if not p.startswith('docs/zh-CN/') and p != 'README.zh-CN.md')
 
 
+def tracked_files():
+    return set(subprocess.check_output(['git', 'ls-files'], cwd=ROOT, text=True).splitlines())
+
+
 def translated(source):
     if source == 'README.md':
         return 'README.zh-CN.md'
@@ -235,6 +239,7 @@ def check(manifest, graph):
     if set(graph.pairs) != set(inventory()):
         raise ValueError('Chinese document inventory is incomplete; update the page catalog.')
     recorded = {item['source']: item for item in manifest['documents']}
+    published = tracked_files()
     links = 0
     for source, target in graph.pairs.items():
         original = strip_nav((ROOT / source).read_text(encoding='utf-8'))
@@ -258,6 +263,11 @@ def check(manifest, graph):
             path = path.resolve(); links += 1
             if not path.exists():
                 raise ValueError(f'Missing Chinese-page link: {target}: {url}')
+            relative = path.relative_to(ROOT).as_posix()
+            prefix = '' if relative == '.' else relative.rstrip('/') + '/'
+            if (path.is_file() and relative not in published) or (path.is_dir() and
+                    not any(name.startswith(prefix) for name in published)):
+                raise ValueError(f'Untracked Chinese-page link: {target}: {url}; stage the published artifact.')
             if path.suffix == '.md':
                 if str(path) not in graph.chinese:
                     raise ValueError(f'Chinese navigation escaped to English: {target}: {url}')
@@ -272,7 +282,7 @@ def check(manifest, graph):
         if parsed.scheme or parsed.netloc:
             continue
         target = (INDEX.parent / unquote(parsed.path)).resolve()
-        if not target.is_file() or str(target) not in graph.chinese:
+        if not target.is_file() or str(target) not in graph.chinese or target.relative_to(ROOT).as_posix() not in published:
             raise ValueError(f'Chinese catalog link escaped or is missing: {url}')
         links += 1
     print(f'Checked {len(graph.pairs)} Chinese document pairs, executable examples, table numbers and {links} local links.')
