@@ -2,7 +2,7 @@
 
 OminiCat is a Java 17+ microkernel for multimodal conversations. The kernel provides scheduling and lifecycle mechanisms; plugins provide media processing, model calls and application policy. A new provider does not require a kernel change.
 
-![OminiCat module boundaries and assembly](assets/architecture-overview.svg)
+[![OminiCat module boundaries and assembly](assets/previews/architecture-overview.png)](assets/architecture-overview.svg)
 
 The diagram separates dependencies and assembly from frame flow. The kernel can be used directly from Java. Server YAML and factory discovery add a configurable container experience; providers and conversation state depend on the core contract rather than becoming kernel policy. Factories are discovered at startup and configured processors are created for each WebSocket session.
 
@@ -16,7 +16,7 @@ The diagram separates dependencies and assembly from frame flow. The kernel can 
 
 ## Two execution paths
 
-![Direct calls, session ownership and async re-entry](assets/execution-path.svg)
+[![Direct calls, session ownership and async re-entry](assets/previews/execution-path.png)](assets/execution-path.svg)
 
 | Entry | Execution and ownership | Cost boundary |
 | --- | --- | --- |
@@ -53,7 +53,7 @@ Ordinary control frames have no hidden kernel effects. `finish()` closes intake 
 
 ## Independent resource limits
 
-![Queue, async, branch and transport boundaries](assets/bounded-runtime.svg)
+[![Queue, async, branch and transport boundaries](assets/previews/bounded-runtime.png)](assets/bounded-runtime.svg)
 
 | Boundary | Implemented limit | Unit and important scope |
 | --- | --- | --- |
@@ -85,4 +85,4 @@ Stateful plugins can be composed in-process. External model services, message qu
 
 The [Linux performance guide](performance.md) connects these implementation mechanisms to explicit workload and diagnostic scopes. Current public figures use [Ubuntu and CentOS CI recordings](../reports/comparison/README.md); the measurements do not assign causal speedup ratios to individual architectural choices.
 
-All three diagrams are editable SVG with accessible titles/descriptions and no external assets. Regenerate them with `python3 scripts/render_architecture.py` from the repository root. [Diagram source](../scripts/render_architecture.py).
+All three diagrams have editable SVG originals with accessible titles/descriptions and no external assets. Documentation embeds pre-rendered PNGs so readers do not need Mermaid or SVG support; click a diagram to open its vector original. Regenerate the SVGs with `python3 scripts/render_architecture.py`, then refresh the 2× PNG previews with `python3 scripts/render_doc_previews.py` (requires `rsvg-convert` from librsvg). The same previews serve both READMEs and this guide; performance-recording originals remain unchanged. CI runs `python3 scripts/render_doc_previews.py --check` to reject missing images, stale source hashes or diagram fences in these presentation pages. [Diagram source](../scripts/render_architecture.py) · [Preview exporter](../scripts/render_doc_previews.py).

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/banner.svg" alt="OminiCat — high-performance multimodal pipelines for Java 17+" width="100%">
+  <a href="docs/assets/banner.svg"><img src="docs/assets/previews/banner.png" alt="OminiCat — high-performance multimodal pipelines for Java 17+" width="100%"></a>
 </p>
 
 <p align="center">
@@ -33,7 +33,7 @@ Four available logical processors, AMD EPYC 9V74, Temurin 17.0.21 and CPython 3.
 | Pipecat 1.15.0 | 5,300 | 220.35 µs | **93.5 MiB** |
 | Apache Camel 4.22.2 LTS | 42,756 | 20.41 µs | 188.7 MiB |
 
-![Ubuntu Linux framework execution, throughput and tail latency](reports/comparison/linux-ubuntu24-java17-2026-10-31/overview.svg)
+[![Ubuntu Linux framework execution, throughput and tail latency](docs/assets/previews/ubuntu-comparison.png)](reports/comparison/linux-ubuntu24-java17-2026-10-31/overview.svg)
 
 Each cell contains five independent processes, each with three seconds warmup and five seconds measured. Tables show medians; plots retain observed min–max ranges. W=1 frame rate measures a closed client loop, not saturated throughput or production session capacity. RSS includes each runtime, dependencies and a common 16 MiB sample buffer; it is not framework-only allocation or B/op.
 
@@ -52,7 +52,7 @@ Compare frameworks within each environment. The jobs use different CPU models an
 <details>
 <summary>View the CentOS comparison figure</summary>
 
-![CentOS Stream 9 user-space framework comparison](reports/comparison/linux-centos9-java17-2026-10-31/overview.svg)
+[![CentOS Stream 9 user-space framework comparison](docs/assets/previews/centos-comparison.png)](reports/comparison/linux-centos9-java17-2026-10-31/overview.svg)
 
 </details>
 
@@ -62,7 +62,7 @@ Compare frameworks within each environment. The jobs use different CPU models an
 
 The kernel keeps execution mechanisms separate from capabilities. Applications can call a typed pipeline directly or open a bounded session; the standalone container adds Netty transport, wire codecs and YAML assembly. Conversation logic and provider adapters remain optional modules.
 
-![Microkernel boundaries, embedding and container assembly](docs/assets/architecture-overview.svg)
+[![Microkernel boundaries, embedding and container assembly](docs/assets/previews/architecture-overview.png)](docs/assets/architecture-overview.svg)
 
 ## Why the execution path stays small
 
@@ -74,7 +74,7 @@ The kernel keeps execution mechanisms separate from capabilities. Applications c
 | **Assembly outside frame dispatch** | Pipeline stages are selected and created before processing their frames. JDK worker capability discovery happens during factory initialization. | [PluginRegistry](ominicat-core/src/main/java/io/ominicat/core/spi/PluginRegistry.java) and [WorkerThreads](ominicat-core/src/main/java/io/ominicat/core/WorkerThreads.java); Java 17 uses platform workers, 21+ selects virtual workers. |
 | **Immutable media ownership** | Existing frame instances can cross stages by reference without exposing mutable payload storage. | [Media constructors](ominicat-core/src/main/java/io/ominicat/core/Frame.java) defensively copy bytes; getters create read-only views. This has allocation costs and is not end-to-end zero-copy. |
 
-![Direct synchronous calls and queued session execution with asynchronous re-entry](docs/assets/execution-path.svg)
+[![Direct synchronous calls and queued session execution with asynchronous re-entry](docs/assets/previews/execution-path.png)](docs/assets/execution-path.svg)
 
 In the container, processor work runs on session workers. JSON decoding and connection assembly still occur on Netty's I/O callbacks; the runtime does not move every operation off the event loop. The Linux numbers above use Java 17 platform workers and therefore do not demonstrate a virtual-thread speedup.
 
@@ -84,7 +84,7 @@ These mechanisms explain where the implementation controls work and overhead. Th
 
 Pending frames, active async invocations, branch workers/buffers and transport output each have their own limit. In an open session, an interrupt advances its generation, clears pending work and fences late callbacks. `finish()` waits for accepted work and outstanding async invocations; plugin cooperation determines how promptly cancellation completes.
 
-![Independent queue, asynchronous, branch and transport resource boundaries](docs/assets/bounded-runtime.svg)
+[![Independent queue, asynchronous, branch and transport resource boundaries](docs/assets/previews/bounded-runtime.png)](docs/assets/bounded-runtime.svg)
 
 [Source-backed architecture and lifecycle](docs/architecture.md) · [Performance mechanisms and measurement scope](docs/performance.md) · [Configuration and limits](docs/configuration.md).
 
@@ -92,11 +92,11 @@ Pending frames, active async invocations, branch workers/buffers and transport o
 
 The following **Ubuntu / Java 17** JFR diagnostics were collected in a separate instrumented run: **41 CPU stack samples, 445 allocation samples and three garbage collections**. Their scope includes JVM/framework startup, warmup, measurement, harness work and teardown. Sample counts are observations, not method-duration percentages; allocation weights estimate allocated bytes, not retained heap or exact B/op.
 
-![Ubuntu Java 17 sampled CPU leaf methods](reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/cpu-hotspots.svg)
+[![Ubuntu Java 17 sampled CPU leaf methods](docs/assets/previews/ubuntu-cpu-hotspots.png)](reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/cpu-hotspots.svg)
 
-![Ubuntu Java 17 sampled allocation classes](reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/allocation-hotspots.svg)
+[![Ubuntu Java 17 sampled allocation classes](docs/assets/previews/ubuntu-allocation-hotspots.png)](reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/allocation-hotspots.svg)
 
-![Ubuntu Java 17 collection pause timeline](reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/gc-pauses.svg)
+[![Ubuntu Java 17 collection pause timeline](docs/assets/previews/ubuntu-gc-pauses.png)](reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/gc-pauses.svg)
 
 The recorded GC pause sum is **4.876 ms**, with a largest per-collection pause sum of **2.580 ms**. Sparse CPU samples and sampled allocations identify observations to investigate; they do not prove the causal contribution of an optimization. Instrumented timings are excluded from the 90-process comparison.
 

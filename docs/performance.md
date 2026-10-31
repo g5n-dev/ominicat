@@ -17,13 +17,13 @@ Each environment ran three native queued implementations: OminiCat, Pipecat 1.15
 
 Ubuntu used an AMD EPYC 9V74 with four available logical processors, Temurin 17.0.21, CPython 3.12.15 and glibc 2.39. CentOS used an AMD EPYC 9V45 with four available logical processors, distribution OpenJDK 17.0.20.1, CPython 3.12.15 and glibc 2.34. CentOS is a digest-pinned official container on an Ubuntu runner and shares its kernel. These are independent hosts: compare frameworks within each job, not operating systems across jobs.
 
-![Ubuntu native queued-path comparison](../reports/comparison/linux-ubuntu24-java17-2026-10-31/overview.svg)
+[![Ubuntu native queued-path comparison](assets/previews/ubuntu-comparison.png)](../reports/comparison/linux-ubuntu24-java17-2026-10-31/overview.svg)
 
 [Ubuntu figures and raw results](../reports/comparison/linux-ubuntu24-java17-2026-10-31/README.md) · [CentOS figures and raw results](../reports/comparison/linux-centos9-java17-2026-10-31/README.md) · [Recorded CI run](https://github.com/g5n-dev/ominicat/actions/runs/41222330745) · [Publication and archive provenance](../reports/comparison/linux-ci-41222330745.json).
 
 ## How the implementation controls cost
 
-![Typed direct calls and session execution](assets/execution-path.svg)
+[![Typed direct calls and session execution](assets/previews/execution-path.png)](assets/execution-path.svg)
 
 | Mechanism and source | Work avoided or controlled | Costs and boundaries that remain |
 | --- | --- | --- |
