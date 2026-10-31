@@ -33,34 +33,34 @@
     }
   },
   {
-    "tests": 40,
+    "tests": 60,
     "failures": 0,
     "errors": 0,
     "skipped": 0,
     "module": "ominicat-conversation",
     "coverage": {
       "INSTRUCTION": {
-        "covered": 2560,
-        "missed": 140
+        "covered": 3622,
+        "missed": 167
       },
       "BRANCH": {
-        "covered": 297,
-        "missed": 63
+        "covered": 421,
+        "missed": 87
       },
       "LINE": {
-        "covered": 416,
-        "missed": 18
+        "covered": 591,
+        "missed": 21
       },
       "COMPLEXITY": {
-        "covered": 189,
-        "missed": 66
+        "covered": 264,
+        "missed": 90
       },
       "METHOD": {
-        "covered": 72,
+        "covered": 93,
         "missed": 3
       },
       "CLASS": {
-        "covered": 20,
+        "covered": 27,
         "missed": 0
       }
     }

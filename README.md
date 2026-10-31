@@ -17,7 +17,7 @@ OminiCat is a **high-performance Java microkernel for multimodal conversation pi
 
 **Runtime:** Java 17 is the minimum for building and running every module. Java 21+ automatically uses virtual workers. See [Java compatibility and verification](docs/java-compatibility.md).
 
-[Java 17 verification](reports/verification.md): **256 passing tests**, 512-seed lifecycle checks and real protocol faults, including cancellation while HTTP response bodies remain open. [Recorded kernel/resource profiles](reports/java17/http-cancellation/README.md) and [historical Java 21 evidence](reports/deep/README.md) retain their source/artifact boundaries.
+[Java 17 verification](reports/verification.md): **276 passing tests**, 512-seed lifecycle checks and real protocol faults, including cancellation while HTTP response bodies remain open. [Recorded kernel/resource profiles](reports/java17/http-cancellation/README.md) and [historical Java 21 evidence](reports/deep/README.md) retain their source/artifact boundaries.
 
 ## Performance on Java 17
 
@@ -134,7 +134,7 @@ flowchart LR
 | Module | Responsibility | Production dependencies |
 | --- | --- | --- |
 | `ominicat-core` | Frames, envelopes, pipelines, session lifecycle, plugin SPI | JDK only |
-| `ominicat-conversation` | Bounded transcript windows, policies, prompt composition | Core |
+| `ominicat-conversation` | Bounded transcript windows, policies, prompt composition, optional media references | Core |
 | `ominicat-providers` | Compatible model adapters, echo, energy-based VAD | Core, Jackson |
 | `ominicat-server` | Embedded/standalone Netty container, YAML, browser playground | Runtime modules, Netty, Jackson YAML |
 | `ominicat-benchmarks` | JMH, allocation measurements, queue-inclusive load driver | Core, JMH |
@@ -164,6 +164,7 @@ Swap stages without changing the kernel. For a model pipeline, select provider p
 | Speech synthesis | Text collected until a turn boundary, then returned as 24 kHz mono PCM |
 | Voice activity | Deterministic RMS energy detector with configurable silence duration |
 | Conversation state | Bounded final transcript windows, stable segment IDs, policy evidence, prompt templates |
+| Media references | Optional source/producer-scoped range versions, explicit frame boundaries and bounded binary import/export; [Java API](docs/media-references.md) |
 | Transport | JSON over WebSocket, explicit overload handling, bearer authentication, Prometheus metrics |
 
 Speech recognition and synthesis adapters use **utterance/turn requests**. They do not provide continuous provider-native streaming ASR/TTS, WebRTC, acoustic echo cancellation, or automatic speaker diarization. The browser supports manual interruption. The [scenario coverage matrix](docs/scenario-coverage.md) distinguishes implemented behavior from extension points.
@@ -241,6 +242,7 @@ The [inline profiles above](#profiles) show CPU, allocation, GC and resource evi
 - [Frame protocol and metadata](docs/protocol.md)
 - [Plugin development](docs/plugins.md)
 - [Scenario coverage and current limits](docs/scenario-coverage.md)
+- [Immutable media references and import/export](docs/media-references.md)
 - [Performance methodology](docs/performance.md) and [Java 17 measurements](reports/java17/kernel/report.md)
 - [Iteration plan and acceptance criteria](docs/iteration-plan.md)
 - [Cross-project integration contract proposal](docs/integration-contracts.md)
