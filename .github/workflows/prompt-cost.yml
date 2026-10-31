@@ -1,0 +1,55 @@
+name: Prompt rendering cost
+on:
+  workflow_dispatch:
+    inputs:
+      baseline:
+        description: Baseline Git revision
+        required: true
+        default: '208b0c48416b663de06d82f2e072a923b0ecf569'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'ominicat-conversation/**'
+      - 'ominicat-benchmarks/**'
+      - 'scripts/prompt_cost.py'
+      - '.github/workflows/prompt-cost.yml'
+permissions:
+  contents: read
+concurrency:
+  group: prompt-cost-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  paired:
+    name: Ubuntu 24.04 / Java 17 paired prompt cost
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: candidate
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/checkout@v4
+        with:
+          path: baseline
+          ref: ${{ github.event.pull_request.base.sha || inputs.baseline }}
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+      - name: Build baseline runtime
+        working-directory: baseline
+        run: ./mvnw -B -ntp -pl ominicat-conversation -am package -DskipTests
+      - name: Build candidate runtime and shared probe
+        working-directory: candidate
+        run: ./mvnw -B -ntp -pl ominicat-benchmarks -am package -DskipTests
+      - name: Measure sequential baseline / candidate / candidate / baseline forks
+        run: |
+          python3 candidate/scripts/prompt_cost.py collect --baseline baseline --candidate candidate --output "$RUNNER_TEMP/prompt-cost"
+          cat "$RUNNER_TEMP/prompt-cost/summary.md" >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: prompt-cost-java17-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/prompt-cost/
+          if-no-files-found: error
+          retention-days: 30

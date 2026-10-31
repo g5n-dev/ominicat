@@ -42,6 +42,8 @@ The [cross-project contract proposal](integration-contracts.md) defines supporti
 
 ### Performance evidence
 
+The [deep performance audit](performance-audit.md) selects redundant prompt metrics/history construction as a bounded experiment. The paired Ubuntu workflow must validate exact output and runtime origins across the full omitted/full/truncated history matrix before a benefit is claimed. Other source-confirmed candidates remain hypotheses requiring their own workloads.
+
 Continue these measurement increments alongside the integration work when their workload is needed to assess a change. Allocation experiments depend on the relevant baselines rather than preceding them.
 
 | Order | Increment | Evidence and scope | Acceptance |

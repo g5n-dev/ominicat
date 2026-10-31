@@ -288,6 +288,7 @@ The [Linux profiles above](#linux-profiles) expose the recorded execution and al
 - [Immutable media references and import/export](docs/media-references.md)
 - [Studio operation overview and pipeline debugger](docs/studio.md)
 - [Performance methodology](docs/performance.md) and [Linux measurements](reports/comparison/README.md)
+- [Performance audit and bounded prompt experiment](docs/performance-audit.md)
 - [Iteration plan and acceptance criteria](docs/iteration-plan.md)
 - [Cross-project integration contract proposal](docs/integration-contracts.md)
 - [Temporal segment and annotation contract proposal](docs/temporal-annotations.md)

@@ -12,6 +12,7 @@
 - [迭代计划 · docs/iteration-plan](iteration-plan.md)
 - [Java 兼容性 · docs/java-compatibility](java-compatibility.md)
 - [不可变媒体引用 · docs/media-references](media-references.md)
+- [性能深度审计 · docs/performance-audit](performance-audit.md)
 - [性能设计与 Linux 证据 · docs/performance](performance.md)
 - [添加插件 · docs/plugins](plugins.md)
 - [帧协议 · docs/protocol](protocol.md)

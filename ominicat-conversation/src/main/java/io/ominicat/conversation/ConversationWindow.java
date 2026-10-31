@@ -68,8 +68,13 @@ public final class ConversationWindow {
     }
 
     public ConversationSnapshot snapshot() {
-        List<Turn> retained = List.copyOf(turns);
+        List<Turn> retained = retainedTurns();
         return new ConversationSnapshot(retained, evictedTurns, ConversationMetrics.from(retained));
+    }
+
+    /** Immutable retained data for consumers that do not need interval metrics. */
+    List<Turn> retainedTurns() {
+        return List.copyOf(turns);
     }
 
     /** Drops retained state and resets the eviction count for a new conversation segment. */
