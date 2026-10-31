@@ -35,7 +35,7 @@ Java 17.0.21, Apple M2 Pro / macOS arm64, 512 MiB heap, platform workers. JMH us
 The design keeps the execution path small and overload explicit:
 
 - **Direct typed-frame dispatch:** the JDK-only kernel passes frames through processor calls; synchronous embedding can use the path without session scheduling or JSON conversion.
-- **One owner per session:** stateful stages run serially on one worker; asynchronous callbacks rejoin the same bounded queue. Independent sessions progress concurrently.
+- **One owner per session:** linear stages run serially on the session worker; explicit parallel branches use bounded branch workers. Asynchronous callbacks rejoin the session queue. Independent sessions progress concurrently.
 - **Bounded work and backpressure:** ingress, active async work, branch parallelism/buffers and transport output have explicit limits. Saturation produces observable rejection or closure.
 - **Workers for the selected JDK:** Java 17 uses platform threads; Java 21+ automatically uses virtual threads. The container runs blocking processor work outside Netty's transport event loops.
 

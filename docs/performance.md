@@ -17,7 +17,7 @@ Java 17.0.21, Apple M2 Pro / macOS arm64, 512 MiB heap, platform workers. JMH us
 | Mechanism | Execution and resource behavior |
 | --- | --- |
 | Direct typed-frame pipeline | Synchronous stages call the next processor directly; the kernel introduces no JSON boundary between stages. `Pipeline.process` supports embedding without session queue/scheduling overhead. |
-| Single session owner | A session worker serializes stateful stages, reset hooks and cleanup; async continuations rejoin its bounded ingress queue. Separate sessions can advance concurrently. |
+| Single session owner | A session worker serializes linear stages, reset hooks and cleanup; explicit parallel branches use bounded branch workers. Async continuations rejoin the session ingress queue. Separate sessions can advance concurrently. |
 | Explicit work limits | Ingress capacity, live async work, branch parallelism and buffered outputs are bounded; producers receive explicit rejection on saturation. |
 | Transport isolation | The container runs processor work on session workers while Netty handles network events. Socket output has a byte budget and a writability boundary; admission remains retained through worker cleanup. |
 | Runtime worker selection | Java 17 uses platform workers; Java 21+ uses virtual workers. Reflection occurs during factory discovery, outside frame dispatch. |
