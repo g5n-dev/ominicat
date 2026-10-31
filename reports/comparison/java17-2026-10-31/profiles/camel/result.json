@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "engine": "camel",
+  "version": "4.22.2",
+  "mode": "queued-w1",
+  "stages": 4,
+  "sessions": 1,
+  "inflight": 1,
+  "warmupSeconds": 3.000036792,
+  "warmupFrames": 291574,
+  "measuredFrames": 528122,
+  "elapsedSeconds": 5.000004958,
+  "throughputFramesPerSecond": 105624.29526294881,
+  "latencyMicros": {
+    "p99": 12.917,
+    "p50": 4.708,
+    "p95": 8.75,
+    "max": 2337.917
+  },
+  "processCpuSeconds": 5.323474,
+  "checks": {
+    "cleanupComplete": true,
+    "drained": true,
+    "allOutputsValidated": true,
+    "exactOutputCount": true,
+    "noRejections": true
+  },
+  "sampleCapacity": 2000000,
+  "harnessBufferBytes": 16777216,
+  "environment": {
+    "maxHeapBytes": 536870912,
+    "architecture": "aarch64",
+    "backend": "platform",
+    "os": "Mac OS X",
+    "runtime": "Java",
+    "version": "17.0.21.0.3+0",
+    "vendor": "Homebrew",
+    "availableProcessors": 10
+  },
+  "instrumented": true,
+  "headlineEligible": false,
+  "profileType": "JFR"
+}

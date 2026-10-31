@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "engine": "ominicat",
+  "version": "0.1.0-SNAPSHOT",
+  "mode": "queued-w1",
+  "stages": 4,
+  "sessions": 1,
+  "inflight": 1,
+  "warmupSeconds": 3.00003925,
+  "warmupFrames": 408635,
+  "measuredFrames": 705374,
+  "elapsedSeconds": 5.000002833,
+  "throughputFramesPerSecond": 141074.7200670636,
+  "latencyMicros": {
+    "p99": 9.792,
+    "max": 3032.333,
+    "p95": 6.166,
+    "p50": 3.583
+  },
+  "processCpuSeconds": 5.286354,
+  "checks": {
+    "cleanupComplete": true,
+    "noRejections": true,
+    "exactOutputCount": true,
+    "allOutputsValidated": true,
+    "drained": true
+  },
+  "sampleCapacity": 2000000,
+  "harnessBufferBytes": 16777216,
+  "environment": {
+    "maxHeapBytes": 536870912,
+    "availableProcessors": 10,
+    "vendor": "Homebrew",
+    "version": "17.0.21.0.3+0",
+    "runtime": "Java",
+    "os": "Mac OS X",
+    "backend": "platform",
+    "architecture": "aarch64"
+  },
+  "instrumented": true,
+  "headlineEligible": false,
+  "profileType": "JFR"
+}

@@ -392,6 +392,54 @@ class ReportTest(unittest.TestCase):
                 self.assertFalse(destination.exists(), "a smoke profile must not create successful publication artifacts")
                 self.assertEqual({p.relative_to(source): p.read_bytes() for p in source.rglob("*") if p.is_file()}, before)
 
+    def test_same_manifest_redraw_rejects_unapproved_recording_before_any_write(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            source, destination = root / "collected", root / "published"
+            source.mkdir()
+            suite = suite_fixture()
+            write_suite(source, suite)
+            destination.mkdir()
+            (destination / "summary.json").write_text(json.dumps({"manifestSha256": suite["manifestSha256"]}))
+            (destination / "unexpected.jfr").write_bytes(b"synthetic recording must never become an uploaded artifact")
+            before = {path.relative_to(root): path.read_bytes() for path in root.rglob("*") if path.is_file()}
+            package = load_module("comparison_redraw_allowlist_fixture", "package_diagnostics.py", {"evidence": evidence})
+            with mock.patch.object(sys, "argv", ["report.py", str(source), str(destination)]), \
+                    mock.patch.dict(sys.modules, {"package_diagnostics": package}), \
+                    mock.patch.object(report, "render") as render, mock.patch.object(report, "write_report") as write:
+                with self.assertRaises(ValueError):
+                    report.main()
+            render.assert_not_called()
+            write.assert_not_called()
+            self.assertEqual({path.relative_to(root): path.read_bytes() for path in root.rglob("*") if path.is_file()}, before,
+                             "refusing a redraw must not overwrite or checksum unapproved content")
+
+    def test_same_manifest_redraw_rejects_symlink_summary_without_touching_its_target(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            source, destination = root / "collected", root / "published"
+            source.mkdir()
+            suite = suite_fixture()
+            write_suite(source, suite)
+            destination.mkdir()
+            external = root / "synthetic-external-summary.json"
+            external.write_text(json.dumps({"manifestSha256": suite["manifestSha256"], "preserve": "untouched"}))
+            (destination / "summary.json").symlink_to(external)
+            original_target = external.read_bytes()
+            source_before = {path.relative_to(source): path.read_bytes() for path in source.rglob("*") if path.is_file()}
+            package = load_module("comparison_redraw_symlink_fixture", "package_diagnostics.py", {"evidence": evidence})
+            with mock.patch.object(sys, "argv", ["report.py", str(source), str(destination)]), \
+                    mock.patch.dict(sys.modules, {"package_diagnostics": package}), \
+                    mock.patch.object(report, "render") as render, mock.patch.object(report, "write_report") as write:
+                with self.assertRaises(ValueError):
+                    report.main()
+            render.assert_not_called()
+            write.assert_not_called()
+            self.assertEqual(external.read_bytes(), original_target)
+            self.assertTrue((destination / "summary.json").is_symlink())
+            self.assertEqual([path.name for path in destination.iterdir()], ["summary.json"])
+            self.assertEqual({path.relative_to(source): path.read_bytes() for path in source.rglob("*") if path.is_file()}, source_before)
+
 
 def collector_fixture():
     """Import the real collector with only its OS-specific memory probe faked."""

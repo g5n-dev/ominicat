@@ -15,6 +15,9 @@ BG, PANEL, TEXT, MUTED, GRID = '#0b1220', '#111d2e', '#e4edf8', '#98abc2', '#2a3
 
 
 def summarize(suite):
+    if any(r['result'].get('instrumented') is True or r['result'].get('headlineEligible') is False
+           or r['result'].get('headlineTiming') is False for r in suite['results']):
+        raise ValueError('instrumented diagnostics cannot become headline performance evidence')
     settings = suite['manifest']['settings']
     if set(settings['engines']) != set(ENGINES) or set(settings['stages']) != {1, 4, 16} or settings['forks'] != 5:
         raise ValueError('published comparison requires all three engines, all three stages and five fresh processes')
@@ -37,6 +40,7 @@ def summarize(suite):
             cells.append({'engine': engine, 'stages': stages, 'metrics': metrics})
     return {'schemaVersion': 1, 'manifestSha256': suite['manifestSha256'], 'settings': settings,
             'recordedAt': suite['manifest']['recordedAt'],
+            'rendererSha256': digest(Path(__file__).read_bytes()),
             'intervalMeaning': 'observed minimum and maximum across fresh processes; not confidence intervals', 'cells': cells}
 
 
@@ -54,8 +58,11 @@ def render(summary, destination):
 
     def save(fig, name):
         for extension in ('svg', 'png'):
-            fig.savefig(destination / f'{name}.{extension}', dpi=180, bbox_inches='tight', pad_inches=.25,
+            path = destination / f'{name}.{extension}'
+            fig.savefig(path, dpi=180, bbox_inches='tight', pad_inches=.25,
                         metadata={'Date': summary['recordedAt']})
+            if extension == 'svg':
+                path.write_text('\n'.join(line.rstrip() for line in path.read_text().splitlines()).rstrip() + '\n')
         plt.close(fig)
 
     def clean(ax):
@@ -82,8 +89,8 @@ def render(summary, destination):
         ax.errorbar((1, 4, 16), values, yerr=[lows, highs], marker='o', markersize=7,
             linewidth=2, capsize=4, label=LABELS[engine], color=COLORS[engine])
         for x, y in zip((1, 4, 16), values):
-            ax.annotate(f'{y:,.0f}', (x, y), xytext=(0, 10), textcoords='offset points',
-                        ha='center', color=COLORS[engine], fontsize=10)
+            ax.annotate(f'{y:,.0f}', (x, y), xytext=(0, -18 if engine == 'camel' else 10), textcoords='offset points',
+                        ha='center', va='top' if engine == 'camel' else 'bottom', color=COLORS[engine], fontsize=10)
     ax.set_xscale('log', base=2); ax.set_yscale('log')
     ax.set_xticks((1, 4, 16), ('1 stage', '4 stages', '16 stages'))
     ax.yaxis.set_major_formatter(FuncFormatter(lambda value, _: f'{value/1000:g}k'))
@@ -113,7 +120,7 @@ def render(summary, destination):
 
     fig = plt.figure(figsize=(14, 9))
     fig.text(.055, .95, 'OMINICAT / PERFORMANCE EVIDENCE', color=COLORS['ominicat'], fontsize=11, fontweight='bold')
-    fig.text(.055, .895, 'Framework overhead, measured.', fontsize=28, fontweight='bold')
+    fig.text(.055, .895, 'Framework execution, measured.', fontsize=28, fontweight='bold')
     fig.text(.055, .855, 'Native queued paths · 4 application stages · one outstanding frame · models and network excluded', color=MUTED, fontsize=11)
     for i, engine in enumerate(ENGINES):
         left = .055 + i*.305
@@ -184,7 +191,26 @@ See [benchmark instructions](../../../comparison/README.md), the [protocol](../.
 
 Official sources: [Pipecat release](https://github.com/pipecat-ai/pipecat/releases/tag/v1.15.0), [queued processor source](https://github.com/pipecat-ai/pipecat/blob/v1.15.0/src/pipecat/processors/frame_processor.py), [worker source](https://github.com/pipecat-ai/pipecat/blob/v1.15.0/src/pipecat/pipeline/worker.py), [Camel 4.22.2 / Java compatibility](https://camel.apache.org/releases/release-4.22.2/), [SEDA semantics](https://camel.apache.org/components/4.22.x/seda-component.html).
 '''
+    if (folder / 'profiles/README.md').is_file():
+        content += '\n## Separate instrumented diagnostics\n\n[CPU samples, allocation stacks, GC and Python call profiles](profiles/README.md) are collected in additional runs. Their instrumented timings are excluded from the 45-process comparison above. Java JFR and Python cProfile retain their different collection scopes.\n'
     (folder / 'README.md').write_text(content)
+
+
+def check_publication_directory(folder, suite):
+    if folder.is_symlink():
+        raise ValueError('publication folder must not be a symlink')
+    if not folder.exists():
+        return
+    from package_diagnostics import JAVA_FILES, PYTHON_FILES
+    allowed = {'manifest.json', 'suite.json', 'summary.json', 'README.md', 'SHA256SUMS',
+               'profiles/README.md', 'profiles/SHA256SUMS'}
+    allowed.update(item['file'] for item in suite['results'])
+    allowed.update(f'{name}.{extension}' for name in ('overview', 'throughput', 'latency', 'resources') for extension in ('svg', 'png'))
+    allowed.update(f'profiles/{engine}/{name}' for engine in ('ominicat', 'camel') for name in JAVA_FILES + ('diagnostic-summary.json',))
+    allowed.update(f'profiles/pipecat/{name}' for name in PYTHON_FILES + ('call-hotspots.svg', 'call-hotspots.png'))
+    for path in folder.rglob('*'):
+        if path.is_symlink() or (path.is_file() and path.relative_to(folder).as_posix() not in allowed):
+            raise ValueError('unapproved file in publication directory; choose a clean destination')
 
 
 def main():
@@ -195,6 +221,7 @@ def main():
     suite = load_suite(args.input)
     summary = summarize(suite)
     destination = args.output
+    check_publication_directory(destination, suite)
     if destination.exists() and any(destination.iterdir()):
         existing = destination / 'summary.json'
         if not existing.exists() or json.loads(existing.read_text()).get('manifestSha256') != suite['manifestSha256']:

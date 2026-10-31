@@ -1,0 +1,396 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="977" viewBox="0 0 1280 977" role="img">
+<title>Sampled allocation stacks</title><desc>Width: sampled bytes. Whole selected JFR export; warmup and measurement harness included.</desc>
+<rect width="1280" height="977" fill="#101e28"/>
+<text x="28" y="34" font-family="sans-serif" font-size="22" fill="#f2eee1">Sampled allocation stacks</text>
+<text x="28" y="61" font-family="sans-serif" font-size="13" fill="#b8cbd1">Width: sampled bytes. Whole selected JFR export; warmup and measurement harness included.</text>
+<text x="28" y="86" font-family="sans-serif" font-size="13" fill="#b8cbd1">1,462 events; total 688,558,176 sampled bytes; observed depth 32; source-marked truncated stacks 0.</text>
+<text x="28" y="109" font-family="sans-serif" font-size="13" fill="#b8cbd1">All positive-weight supplied stack frames retained. Open this SVG directly for tooltips and zoom.</text>
+<text x="28" y="130" font-family="sans-serif" font-size="12" fill="#b8cbd1">Unavailable stacks: 1; zero-weight events: 0. Export/recording limits cannot be inferred from observed depth.</text>
+<g data-depth="0" data-weight="688558176"><title>all samples: 688,558,176 sampled bytes (100.000%)</title><rect x="28" y="913" width="1224" height="22" fill="#38576b" stroke="#101e28" stroke-width="0.35"/>
+<text x="32" y="929" font-family="monospace" font-size="12" fill="#f2eee1">all samples</text>
+</g>
+<g data-depth="1" data-weight="2744"><title>[stack unavailable]: 2,744 sampled bytes (0.000%)</title><rect x="28" y="889" width="0.00487781006321" height="22" fill="hsl(170,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="1" data-weight="142489136"><title>io.ominicat.comparison.BenchmarkMain.main: 142,489,136 sampled bytes (20.694%)</title><rect x="28.0048778" y="889" width="253.292617157" height="22" fill="hsl(161,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="32.0048778" y="905" font-family="monospace" font-size="12" fill="#152430">BenchmarkMain.main</text>
+</g>
+<g data-depth="2" data-weight="312792"><title>io.ominicat.comparison.BenchmarkMain.json: 312,792 sampled bytes (0.045%)</title><rect x="28.0048778" y="865" width="0.556027684144" height="22" fill="hsl(164,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="3" data-weight="312792"><title>io.ominicat.comparison.BenchmarkMain.json: 312,792 sampled bytes (0.045%)</title><rect x="28.0048778" y="841" width="0.556027684144" height="22" fill="hsl(164,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="4" data-weight="312792"><title>java.lang.Double.toString: 312,792 sampled bytes (0.045%)</title><rect x="28.0048778" y="817" width="0.556027684144" height="22" fill="hsl(167,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="5" data-weight="312792"><title>java.lang.Double.toString: 312,792 sampled bytes (0.045%)</title><rect x="28.0048778" y="793" width="0.556027684144" height="22" fill="hsl(167,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="6" data-weight="312792"><title>jdk.internal.math.FloatingDecimal.toJavaFormatString: 312,792 sampled bytes (0.045%)</title><rect x="28.0048778" y="769" width="0.556027684144" height="22" fill="hsl(169,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="7" data-weight="312792"><title>jdk.internal.math.FloatingDecimal.getBinaryToASCIIConverter: 312,792 sampled bytes (0.045%)</title><rect x="28.0048778" y="745" width="0.556027684144" height="22" fill="hsl(163,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="8" data-weight="312792"><title>jdk.internal.math.FloatingDecimal.getBinaryToASCIIConverter: 312,792 sampled bytes (0.045%)</title><rect x="28.0048778" y="721" width="0.556027684144" height="22" fill="hsl(163,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="9" data-weight="312792"><title>jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer.dtoa: 312,792 sampled bytes (0.045%)</title><rect x="28.0048778" y="697" width="0.556027684144" height="22" fill="hsl(187,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="10" data-weight="312792"><title>jdk.internal.math.FDBigInteger.&lt;clinit&gt;: 312,792 sampled bytes (0.045%)</title><rect x="28.0048778" y="673" width="0.556027684144" height="22" fill="hsl(165,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="11" data-weight="312792"><title>jdk.internal.math.FDBigInteger.mult: 312,792 sampled bytes (0.045%)</title><rect x="28.0048778" y="649" width="0.556027684144" height="22" fill="hsl(162,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="2" data-weight="482312"><title>io.ominicat.comparison.BenchmarkMain.phase: 482,312 sampled bytes (0.070%)</title><rect x="28.5609055" y="865" width="0.857371110499" height="22" fill="hsl(160,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="3" data-weight="482312"><title>java.lang.invoke.MethodHandleNatives.linkCallSite: 482,312 sampled bytes (0.070%)</title><rect x="28.5609055" y="841" width="0.857371110499" height="22" fill="hsl(167,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="4" data-weight="482312"><title>java.lang.invoke.MethodHandleNatives.linkCallSiteImpl: 482,312 sampled bytes (0.070%)</title><rect x="28.5609055" y="817" width="0.857371110499" height="22" fill="hsl(175,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="5" data-weight="482312"><title>java.lang.invoke.CallSite.makeSite: 482,312 sampled bytes (0.070%)</title><rect x="28.5609055" y="793" width="0.857371110499" height="22" fill="hsl(190,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="6" data-weight="482312"><title>java.lang.invoke.BootstrapMethodInvoker.invoke: 482,312 sampled bytes (0.070%)</title><rect x="28.5609055" y="769" width="0.857371110499" height="22" fill="hsl(188,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="7" data-weight="482312"><title>java.lang.invoke.Invokers$Holder.invokeExact_MT: 482,312 sampled bytes (0.070%)</title><rect x="28.5609055" y="745" width="0.857371110499" height="22" fill="hsl(179,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="8" data-weight="482312"><title>java.lang.invoke.DelegatingMethodHandle$Holder.delegate: 482,312 sampled bytes (0.070%)</title><rect x="28.5609055" y="721" width="0.857371110499" height="22" fill="hsl(176,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="9" data-weight="482312"><title>java.lang.invoke.DirectMethodHandle$Holder.invokeStatic: 482,312 sampled bytes (0.070%)</title><rect x="28.5609055" y="697" width="0.857371110499" height="22" fill="hsl(169,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="10" data-weight="482312"><title>java.lang.invoke.StringConcatFactory.makeConcatWithConstants: 482,312 sampled bytes (0.070%)</title><rect x="28.5609055" y="673" width="0.857371110499" height="22" fill="hsl(184,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="11" data-weight="482312"><title>java.lang.invoke.StringConcatFactory.generateMHInlineCopy: 482,312 sampled bytes (0.070%)</title><rect x="28.5609055" y="649" width="0.857371110499" height="22" fill="hsl(178,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="12" data-weight="482312"><title>java.lang.invoke.MethodHandles.filterArguments: 482,312 sampled bytes (0.070%)</title><rect x="28.5609055" y="625" width="0.857371110499" height="22" fill="hsl(174,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="13" data-weight="482312"><title>java.lang.invoke.MethodHandles.filterArgument: 482,312 sampled bytes (0.070%)</title><rect x="28.5609055" y="601" width="0.857371110499" height="22" fill="hsl(169,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="14" data-weight="482312"><title>java.lang.invoke.BoundMethodHandle$Species_LLLL.copyWithExtendL: 482,312 sampled bytes (0.070%)</title><rect x="28.5609055" y="577" width="0.857371110499" height="22" fill="hsl(179,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="15" data-weight="482312"><title>java.lang.invoke.DirectMethodHandle$Holder.invokeStatic: 482,312 sampled bytes (0.070%)</title><rect x="28.5609055" y="553" width="0.857371110499" height="22" fill="hsl(169,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="16" data-weight="482312"><title>java.lang.invoke.BoundMethodHandle$Species_LLLLL.make: 482,312 sampled bytes (0.070%)</title><rect x="28.5609055" y="529" width="0.857371110499" height="22" fill="hsl(188,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="17" data-weight="482312"><title>java.lang.invoke.BoundMethodHandle$Species_LLLLL.&lt;init&gt;: 482,312 sampled bytes (0.070%)</title><rect x="28.5609055" y="505" width="0.857371110499" height="22" fill="hsl(180,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="18" data-weight="482312"><title>java.lang.invoke.BoundMethodHandle.&lt;init&gt;: 482,312 sampled bytes (0.070%)</title><rect x="28.5609055" y="481" width="0.857371110499" height="22" fill="hsl(174,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="19" data-weight="482312"><title>java.lang.invoke.MethodHandle.&lt;init&gt;: 482,312 sampled bytes (0.070%)</title><rect x="28.5609055" y="457" width="0.857371110499" height="22" fill="hsl(167,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="20" data-weight="482312"><title>java.lang.invoke.LambdaForm.prepare: 482,312 sampled bytes (0.070%)</title><rect x="28.5609055" y="433" width="0.857371110499" height="22" fill="hsl(182,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="21" data-weight="482312"><title>java.lang.invoke.LambdaForm.compileToBytecode: 482,312 sampled bytes (0.070%)</title><rect x="28.5609055" y="409" width="0.857371110499" height="22" fill="hsl(170,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="22" data-weight="482312"><title>java.lang.invoke.InvokerBytecodeGenerator.generateCustomizedCode: 482,312 sampled bytes (0.070%)</title><rect x="28.5609055" y="385" width="0.857371110499" height="22" fill="hsl(184,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="23" data-weight="482312"><title>java.lang.invoke.InvokerBytecodeGenerator.generateCustomizedCodeBytes: 482,312 sampled bytes (0.070%)</title><rect x="28.5609055" y="361" width="0.857371110499" height="22" fill="hsl(170,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="24" data-weight="482312"><title>java.lang.invoke.InvokerBytecodeGenerator.clinit: 482,312 sampled bytes (0.070%)</title><rect x="28.5609055" y="337" width="0.857371110499" height="22" fill="hsl(173,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="25" data-weight="482312"><title>jdk.internal.org.objectweb.asm.MethodWriter.visitTypeInsn: 482,312 sampled bytes (0.070%)</title><rect x="28.5609055" y="313" width="0.857371110499" height="22" fill="hsl(185,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="26" data-weight="482312"><title>jdk.internal.org.objectweb.asm.SymbolTable.addConstantClass: 482,312 sampled bytes (0.070%)</title><rect x="28.5609055" y="289" width="0.857371110499" height="22" fill="hsl(175,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="27" data-weight="482312"><title>jdk.internal.org.objectweb.asm.SymbolTable.addConstantUtf8Reference: 482,312 sampled bytes (0.070%)</title><rect x="28.5609055" y="265" width="0.857371110499" height="22" fill="hsl(183,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="2" data-weight="124436312"><title>io.ominicat.comparison.BenchmarkMain.runPhase: 124,436,312 sampled bytes (18.072%)</title><rect x="29.4182766" y="865" width="221.201419425" height="22" fill="hsl(165,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="33.4182766" y="881" font-family="monospace" font-size="12" fill="#152430">BenchmarkMain.runPhase</text>
+</g>
+<g data-depth="3" data-weight="74498888"><title>io.ominicat.comparison.OminiCatAdapter.invoke: 74,498,888 sampled bytes (10.820%)</title><rect x="29.4182766" y="841" width="132.431277545" height="22" fill="hsl(165,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="33.4182766" y="857" font-family="monospace" font-size="12" fill="#152430">OminiCatAdapter.…</text>
+</g>
+<g data-depth="4" data-weight="38755560"><title>io.ominicat.core.PipelineSession.trySubmit: 38,755,560 sampled bytes (5.629%)</title><rect x="29.4182766" y="817" width="68.892952104" height="22" fill="hsl(175,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="33.4182766" y="833" font-family="monospace" font-size="12" fill="#152430">Pipelin…</text>
+</g>
+<g data-depth="5" data-weight="38755560"><title>io.ominicat.core.PipelineSession.enqueue: 38,755,560 sampled bytes (5.629%)</title><rect x="29.4182766" y="793" width="68.892952104" height="22" fill="hsl(184,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="33.4182766" y="809" font-family="monospace" font-size="12" fill="#152430">Pipelin…</text>
+</g>
+<g data-depth="4" data-weight="35743328"><title>java.util.concurrent.ArrayBlockingQueue.poll: 35,743,328 sampled bytes (5.191%)</title><rect x="98.3112287" y="817" width="63.5383254414" height="22" fill="hsl(187,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="102.311229" y="833" font-family="monospace" font-size="12" fill="#152430">ArrayB…</text>
+</g>
+<g data-depth="5" data-weight="35743328"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos: 35,743,328 sampled bytes (5.191%)</title><rect x="98.3112287" y="793" width="63.5383254414" height="22" fill="hsl(163,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="102.311229" y="809" font-family="monospace" font-size="12" fill="#152430">Abstra…</text>
+</g>
+<g data-depth="2" data-weight="16777232"><title>io.ominicat.comparison.NumericWorkload$Terminal.&lt;init&gt;: 16,777,232 sampled bytes (2.437%)</title><rect x="250.619696" y="865" width="29.8236702196" height="22" fill="hsl(166,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="2" data-weight="480488"><title>io.ominicat.comparison.QueuedAdapter.create: 480,488 sampled bytes (0.070%)</title><rect x="280.443366" y="865" width="0.854128717804" height="22" fill="hsl(174,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="3" data-weight="480488"><title>io.ominicat.comparison.OminiCatAdapter.&lt;init&gt;: 480,488 sampled bytes (0.070%)</title><rect x="280.443366" y="841" width="0.854128717804" height="22" fill="hsl(172,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="4" data-weight="480488"><title>io.ominicat.core.Pipeline.openSession: 480,488 sampled bytes (0.070%)</title><rect x="280.443366" y="817" width="0.854128717804" height="22" fill="hsl(180,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="5" data-weight="480488"><title>java.lang.ClassLoader.loadClass: 480,488 sampled bytes (0.070%)</title><rect x="280.443366" y="793" width="0.854128717804" height="22" fill="hsl(187,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="6" data-weight="480488"><title>jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass: 480,488 sampled bytes (0.070%)</title><rect x="280.443366" y="769" width="0.854128717804" height="22" fill="hsl(171,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="7" data-weight="480488"><title>jdk.internal.loader.BuiltinClassLoader.loadClass: 480,488 sampled bytes (0.070%)</title><rect x="280.443366" y="745" width="0.854128717804" height="22" fill="hsl(184,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="8" data-weight="480488"><title>jdk.internal.loader.BuiltinClassLoader.loadClassOrNull: 480,488 sampled bytes (0.070%)</title><rect x="280.443366" y="721" width="0.854128717804" height="22" fill="hsl(188,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="9" data-weight="480488"><title>jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull: 480,488 sampled bytes (0.070%)</title><rect x="280.443366" y="697" width="0.854128717804" height="22" fill="hsl(162,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="10" data-weight="480488"><title>jdk.internal.loader.BuiltinClassLoader.defineClass: 480,488 sampled bytes (0.070%)</title><rect x="280.443366" y="673" width="0.854128717804" height="22" fill="hsl(164,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="11" data-weight="480488"><title>jdk.internal.loader.URLClassPath$JarLoader$2.getBytes: 480,488 sampled bytes (0.070%)</title><rect x="280.443366" y="649" width="0.854128717804" height="22" fill="hsl(178,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="12" data-weight="480488"><title>jdk.internal.loader.Resource.getBytes: 480,488 sampled bytes (0.070%)</title><rect x="280.443366" y="625" width="0.854128717804" height="22" fill="hsl(179,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="13" data-weight="480488"><title>java.util.Arrays.copyOf: 480,488 sampled bytes (0.070%)</title><rect x="280.443366" y="601" width="0.854128717804" height="22" fill="hsl(175,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="1" data-weight="525786512"><title>java.lang.Thread.run: 525,786,512 sampled bytes (76.361%)</title><rect x="281.297495" y="889" width="934.652601798" height="22" fill="hsl(160,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="285.297495" y="905" font-family="monospace" font-size="12" fill="#152430">Thread.run</text>
+</g>
+<g data-depth="2" data-weight="525785848"><title>io.ominicat.core.PipelineSession$$Lambda$92+0x000000e00100a9f8.1422222071.run: 525,785,848 sampled bytes (76.360%)</title><rect x="281.297495" y="865" width="934.651421454" height="22" fill="hsl(189,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="285.297495" y="881" font-family="monospace" font-size="12" fill="#152430">PipelineSession$$Lambda$92.run</text>
+</g>
+<g data-depth="3" data-weight="525785848"><title>io.ominicat.core.PipelineSession.run: 525,785,848 sampled bytes (76.360%)</title><rect x="281.297495" y="841" width="934.651421454" height="22" fill="hsl(190,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="285.297495" y="857" font-family="monospace" font-size="12" fill="#152430">PipelineSession.run</text>
+</g>
+<g data-depth="4" data-weight="450992248"><title>io.ominicat.core.Pipeline.dispatchSession: 450,992,248 sampled bytes (65.498%)</title><rect x="281.297495" y="817" width="801.696255731" height="22" fill="hsl(176,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="285.297495" y="833" font-family="monospace" font-size="12" fill="#152430">Pipeline.dispatchSession</text>
+</g>
+<g data-depth="5" data-weight="411244376"><title>io.ominicat.core.Pipeline.invoke: 411,244,376 sampled bytes (59.725%)</title><rect x="281.297495" y="793" width="731.039342453" height="22" fill="hsl(188,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="285.297495" y="809" font-family="monospace" font-size="12" fill="#152430">Pipeline.invoke</text>
+</g>
+<g data-depth="6" data-weight="395096928"><title>io.ominicat.comparison.OminiCatAdapter$$Lambda$86+0x000000e001009720.1157726741.process: 395,096,928 sampled bytes (57.380%)</title><rect x="281.297495" y="769" width="702.335193638" height="22" fill="hsl(186,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="285.297495" y="785" font-family="monospace" font-size="12" fill="#152430">OminiCatAdapter$$Lambda$86.process</text>
+</g>
+<g data-depth="7" data-weight="395096928"><title>io.ominicat.comparison.OminiCatAdapter.lambda$new$0: 395,096,928 sampled bytes (57.380%)</title><rect x="281.297495" y="745" width="702.335193638" height="22" fill="hsl(191,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="285.297495" y="761" font-family="monospace" font-size="12" fill="#152430">OminiCatAdapter.lambda$new$0</text>
+</g>
+<g data-depth="8" data-weight="60644248"><title>io.ominicat.comparison.NumericWorkload$Value.transform: 60,644,248 sampled bytes (8.807%)</title><rect x="281.297495" y="721" width="107.802887453" height="22" fill="hsl(191,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="285.297495" y="737" font-family="monospace" font-size="12" fill="#152430">NumericWorkl…</text>
+</g>
+<g data-depth="8" data-weight="334452680"><title>io.ominicat.core.SynchronousSink.accept: 334,452,680 sampled bytes (48.573%)</title><rect x="389.100382" y="721" width="594.532306185" height="22" fill="hsl(171,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="393.100382" y="737" font-family="monospace" font-size="12" fill="#152430">SynchronousSink.accept</text>
+</g>
+<g data-depth="9" data-weight="334452680"><title>io.ominicat.core.Pipeline$$Lambda$95+0x000000e00100c870.1787577678.accept: 334,452,680 sampled bytes (48.573%)</title><rect x="389.100382" y="697" width="594.532306185" height="22" fill="hsl(180,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="393.100382" y="713" font-family="monospace" font-size="12" fill="#152430">Pipeline$$Lambda$95.accept</text>
+</g>
+<g data-depth="10" data-weight="334452680"><title>io.ominicat.core.Pipeline.lambda$dispatchSession$2: 334,452,680 sampled bytes (48.573%)</title><rect x="389.100382" y="673" width="594.532306185" height="22" fill="hsl(184,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="393.100382" y="689" font-family="monospace" font-size="12" fill="#152430">Pipeline.lambda$dispatchSession$2</text>
+</g>
+<g data-depth="11" data-weight="334452680"><title>io.ominicat.core.Pipeline.dispatchSession: 334,452,680 sampled bytes (48.573%)</title><rect x="389.100382" y="649" width="594.532306185" height="22" fill="hsl(176,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="393.100382" y="665" font-family="monospace" font-size="12" fill="#152430">Pipeline.dispatchSession</text>
+</g>
+<g data-depth="12" data-weight="292007400"><title>io.ominicat.core.Pipeline.invoke: 292,007,400 sampled bytes (42.409%)</title><rect x="389.100382" y="625" width="519.080406069" height="22" fill="hsl(188,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="393.100382" y="641" font-family="monospace" font-size="12" fill="#152430">Pipeline.invoke</text>
+</g>
+<g data-depth="13" data-weight="270284592"><title>io.ominicat.comparison.OminiCatAdapter$$Lambda$86+0x000000e001009720.1157726741.process: 270,284,592 sampled bytes (39.254%)</title><rect x="389.100382" y="601" width="480.465343582" height="22" fill="hsl(186,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="393.100382" y="617" font-family="monospace" font-size="12" fill="#152430">OminiCatAdapter$$Lambda$86.process</text>
+</g>
+<g data-depth="14" data-weight="270284592"><title>io.ominicat.comparison.OminiCatAdapter.lambda$new$0: 270,284,592 sampled bytes (39.254%)</title><rect x="389.100382" y="577" width="480.465343582" height="22" fill="hsl(191,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="393.100382" y="593" font-family="monospace" font-size="12" fill="#152430">OminiCatAdapter.lambda$new$0</text>
+</g>
+<g data-depth="15" data-weight="49788768"><title>io.ominicat.comparison.NumericWorkload$Value.transform: 49,788,768 sampled bytes (7.231%)</title><rect x="389.100382" y="553" width="88.5058868751" height="22" fill="hsl(191,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="393.100382" y="569" font-family="monospace" font-size="12" fill="#152430">NumericWor…</text>
+</g>
+<g data-depth="15" data-weight="220495824"><title>io.ominicat.core.SynchronousSink.accept: 220,495,824 sampled bytes (32.023%)</title><rect x="477.606269" y="553" width="391.959456707" height="22" fill="hsl(171,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="481.606269" y="569" font-family="monospace" font-size="12" fill="#152430">SynchronousSink.accept</text>
+</g>
+<g data-depth="16" data-weight="220495824"><title>io.ominicat.core.Pipeline$$Lambda$95+0x000000e00100c870.1787577678.accept: 220,495,824 sampled bytes (32.023%)</title><rect x="477.606269" y="529" width="391.959456707" height="22" fill="hsl(180,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="481.606269" y="545" font-family="monospace" font-size="12" fill="#152430">Pipeline$$Lambda$95.accept</text>
+</g>
+<g data-depth="17" data-weight="220495824"><title>io.ominicat.core.Pipeline.lambda$dispatchSession$2: 220,495,824 sampled bytes (32.023%)</title><rect x="477.606269" y="505" width="391.959456707" height="22" fill="hsl(184,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="481.606269" y="521" font-family="monospace" font-size="12" fill="#152430">Pipeline.lambda$dispatchSession$2</text>
+</g>
+<g data-depth="18" data-weight="220495824"><title>io.ominicat.core.Pipeline.dispatchSession: 220,495,824 sampled bytes (32.023%)</title><rect x="477.606269" y="481" width="391.959456707" height="22" fill="hsl(176,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="481.606269" y="497" font-family="monospace" font-size="12" fill="#152430">Pipeline.dispatchSession</text>
+</g>
+<g data-depth="19" data-weight="180603968"><title>io.ominicat.core.Pipeline.invoke: 180,603,968 sampled bytes (26.229%)</title><rect x="477.606269" y="457" width="321.046593501" height="22" fill="hsl(188,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="481.606269" y="473" font-family="monospace" font-size="12" fill="#152430">Pipeline.invoke</text>
+</g>
+<g data-depth="20" data-weight="155189608"><title>io.ominicat.comparison.OminiCatAdapter$$Lambda$86+0x000000e001009720.1157726741.process: 155,189,608 sampled bytes (22.538%)</title><rect x="477.606269" y="433" width="275.869326388" height="22" fill="hsl(186,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="481.606269" y="449" font-family="monospace" font-size="12" fill="#152430">OminiCatAdapter$$Lambda$86.process</text>
+</g>
+<g data-depth="21" data-weight="155189608"><title>io.ominicat.comparison.OminiCatAdapter.lambda$new$0: 155,189,608 sampled bytes (22.538%)</title><rect x="477.606269" y="409" width="275.869326388" height="22" fill="hsl(191,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="481.606269" y="425" font-family="monospace" font-size="12" fill="#152430">OminiCatAdapter.lambda$new$0</text>
+</g>
+<g data-depth="22" data-weight="50237496"><title>io.ominicat.comparison.NumericWorkload$Value.transform: 50,237,496 sampled bytes (7.296%)</title><rect x="477.606269" y="385" width="89.3035581412" height="22" fill="hsl(191,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="481.606269" y="401" font-family="monospace" font-size="12" fill="#152430">NumericWor…</text>
+</g>
+<g data-depth="22" data-weight="104952112"><title>io.ominicat.core.SynchronousSink.accept: 104,952,112 sampled bytes (15.242%)</title><rect x="566.909827" y="385" width="186.565768247" height="22" fill="hsl(171,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="570.909827" y="401" font-family="monospace" font-size="12" fill="#152430">SynchronousSink.accept</text>
+</g>
+<g data-depth="23" data-weight="104952112"><title>io.ominicat.core.Pipeline$$Lambda$95+0x000000e00100c870.1787577678.accept: 104,952,112 sampled bytes (15.242%)</title><rect x="566.909827" y="361" width="186.565768247" height="22" fill="hsl(180,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="570.909827" y="377" font-family="monospace" font-size="12" fill="#152430">Pipeline$$Lambda$95.acc…</text>
+</g>
+<g data-depth="24" data-weight="104952112"><title>io.ominicat.core.Pipeline.lambda$dispatchSession$2: 104,952,112 sampled bytes (15.242%)</title><rect x="566.909827" y="337" width="186.565768247" height="22" fill="hsl(184,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="570.909827" y="353" font-family="monospace" font-size="12" fill="#152430">Pipeline.lambda$dispatc…</text>
+</g>
+<g data-depth="25" data-weight="104952112"><title>io.ominicat.core.Pipeline.dispatchSession: 104,952,112 sampled bytes (15.242%)</title><rect x="566.909827" y="313" width="186.565768247" height="22" fill="hsl(176,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="570.909827" y="329" font-family="monospace" font-size="12" fill="#152430">Pipeline.dispatchSession</text>
+</g>
+<g data-depth="26" data-weight="66894544"><title>io.ominicat.core.Pipeline.invoke: 66,894,544 sampled bytes (9.715%)</title><rect x="566.909827" y="289" width="118.913585968" height="22" fill="hsl(188,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="570.909827" y="305" font-family="monospace" font-size="12" fill="#152430">Pipeline.invoke</text>
+</g>
+<g data-depth="27" data-weight="38319280"><title>io.ominicat.comparison.OminiCatAdapter$$Lambda$86+0x000000e001009720.1157726741.process: 38,319,280 sampled bytes (5.565%)</title><rect x="566.909827" y="265" width="68.117408746" height="22" fill="hsl(186,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="570.909827" y="281" font-family="monospace" font-size="12" fill="#152430">OminiCa…</text>
+</g>
+<g data-depth="28" data-weight="38319280"><title>io.ominicat.comparison.OminiCatAdapter.lambda$new$0: 38,319,280 sampled bytes (5.565%)</title><rect x="566.909827" y="241" width="68.117408746" height="22" fill="hsl(191,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="570.909827" y="257" font-family="monospace" font-size="12" fill="#152430">OminiCa…</text>
+</g>
+<g data-depth="29" data-weight="38319280"><title>io.ominicat.comparison.NumericWorkload$Value.transform: 38,319,280 sampled bytes (5.565%)</title><rect x="566.909827" y="217" width="68.117408746" height="22" fill="hsl(191,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="570.909827" y="233" font-family="monospace" font-size="12" fill="#152430">Numeric…</text>
+</g>
+<g data-depth="26" data-weight="38057568"><title>java.lang.invoke.LambdaForm$MH+0x000000e001083800.2040935174.linkToTargetMethod: 38,057,568 sampled bytes (5.527%)</title><rect x="685.823413" y="289" width="67.6521822783" height="22" fill="hsl(191,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="689.823413" y="305" font-family="monospace" font-size="12" fill="#152430">LambdaF…</text>
+</g>
+<g data-depth="27" data-weight="38057568"><title>java.lang.invoke.LambdaForm$DMH+0x000000e001083000.1326362511.newInvokeSpecial: 38,057,568 sampled bytes (5.527%)</title><rect x="685.823413" y="265" width="67.6521822783" height="22" fill="hsl(176,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="689.823413" y="281" font-family="monospace" font-size="12" fill="#152430">LambdaF…</text>
+</g>
+<g data-depth="28" data-weight="38057568"><title>java.lang.invoke.DirectMethodHandle.allocateInstance: 38,057,568 sampled bytes (5.527%)</title><rect x="685.823413" y="241" width="67.6521822783" height="22" fill="hsl(179,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="689.823413" y="257" font-family="monospace" font-size="12" fill="#152430">DirectM…</text>
+</g>
+<g data-depth="19" data-weight="39891856"><title>java.lang.invoke.LambdaForm$MH+0x000000e001083800.2040935174.linkToTargetMethod: 39,891,856 sampled bytes (5.794%)</title><rect x="798.652863" y="457" width="70.9128632059" height="22" fill="hsl(191,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="802.652863" y="473" font-family="monospace" font-size="12" fill="#152430">LambdaF…</text>
+</g>
+<g data-depth="20" data-weight="39891856"><title>java.lang.invoke.LambdaForm$DMH+0x000000e001083000.1326362511.newInvokeSpecial: 39,891,856 sampled bytes (5.794%)</title><rect x="798.652863" y="433" width="70.9128632059" height="22" fill="hsl(176,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="802.652863" y="449" font-family="monospace" font-size="12" fill="#152430">LambdaF…</text>
+</g>
+<g data-depth="21" data-weight="39891856"><title>java.lang.invoke.DirectMethodHandle.allocateInstance: 39,891,856 sampled bytes (5.794%)</title><rect x="798.652863" y="409" width="70.9128632059" height="22" fill="hsl(179,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="802.652863" y="425" font-family="monospace" font-size="12" fill="#152430">DirectM…</text>
+</g>
+<g data-depth="12" data-weight="42445280"><title>java.lang.invoke.LambdaForm$MH+0x000000e001083800.2040935174.linkToTargetMethod: 42,445,280 sampled bytes (6.164%)</title><rect x="908.180788" y="625" width="75.4519001166" height="22" fill="hsl(191,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="912.180788" y="641" font-family="monospace" font-size="12" fill="#152430">LambdaFo…</text>
+</g>
+<g data-depth="13" data-weight="42445280"><title>java.lang.invoke.LambdaForm$DMH+0x000000e001083000.1326362511.newInvokeSpecial: 42,445,280 sampled bytes (6.164%)</title><rect x="908.180788" y="601" width="75.4519001166" height="22" fill="hsl(176,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="912.180788" y="617" font-family="monospace" font-size="12" fill="#152430">LambdaFo…</text>
+</g>
+<g data-depth="14" data-weight="42445280"><title>java.lang.invoke.DirectMethodHandle.allocateInstance: 42,445,280 sampled bytes (6.164%)</title><rect x="908.180788" y="577" width="75.4519001166" height="22" fill="hsl(179,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="912.180788" y="593" font-family="monospace" font-size="12" fill="#152430">DirectMe…</text>
+</g>
+<g data-depth="5" data-weight="39677272"><title>java.lang.invoke.LambdaForm$MH+0x000000e001083800.2040935174.linkToTargetMethod: 39,677,272 sampled bytes (5.762%)</title><rect x="1012.33684" y="793" width="70.5314127706" height="22" fill="hsl(191,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="1016.33684" y="809" font-family="monospace" font-size="12" fill="#152430">LambdaF…</text>
+</g>
+<g data-depth="6" data-weight="39677272"><title>java.lang.invoke.LambdaForm$DMH+0x000000e001083000.1326362511.newInvokeSpecial: 39,677,272 sampled bytes (5.762%)</title><rect x="1012.33684" y="769" width="70.5314127706" height="22" fill="hsl(176,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="1016.33684" y="785" font-family="monospace" font-size="12" fill="#152430">LambdaF…</text>
+</g>
+<g data-depth="7" data-weight="39677272"><title>java.lang.invoke.DirectMethodHandle.allocateInstance: 39,677,272 sampled bytes (5.762%)</title><rect x="1012.33684" y="745" width="70.5314127706" height="22" fill="hsl(179,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="1016.33684" y="761" font-family="monospace" font-size="12" fill="#152430">DirectM…</text>
+</g>
+<g data-depth="5" data-weight="70600"><title>java.lang.invoke.MethodHandleNatives.linkCallSite: 70,600 sampled bytes (0.010%)</title><rect x="1082.86825" y="793" width="0.125500506728" height="22" fill="hsl(167,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="6" data-weight="70600"><title>java.lang.invoke.MethodHandleNatives.linkCallSiteImpl: 70,600 sampled bytes (0.010%)</title><rect x="1082.86825" y="769" width="0.125500506728" height="22" fill="hsl(175,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="7" data-weight="70600"><title>java.lang.invoke.Invokers.linkToTargetMethod: 70,600 sampled bytes (0.010%)</title><rect x="1082.86825" y="745" width="0.125500506728" height="22" fill="hsl(168,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="8" data-weight="70600"><title>java.lang.invoke.Invokers.callSiteForm: 70,600 sampled bytes (0.010%)</title><rect x="1082.86825" y="721" width="0.125500506728" height="22" fill="hsl(167,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="9" data-weight="70600"><title>java.lang.invoke.LambdaForm$Name.&lt;init&gt;: 70,600 sampled bytes (0.010%)</title><rect x="1082.86825" y="697" width="0.125500506728" height="22" fill="hsl(174,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="10" data-weight="70600"><title>java.lang.invoke.LambdaForm$NamedFunction.&lt;init&gt;: 70,600 sampled bytes (0.010%)</title><rect x="1082.86825" y="673" width="0.125500506728" height="22" fill="hsl(165,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="11" data-weight="70600"><title>java.lang.invoke.Invokers.basicInvoker: 70,600 sampled bytes (0.010%)</title><rect x="1082.86825" y="649" width="0.125500506728" height="22" fill="hsl(164,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="12" data-weight="70600"><title>java.lang.invoke.DirectMethodHandle.make: 70,600 sampled bytes (0.010%)</title><rect x="1082.86825" y="625" width="0.125500506728" height="22" fill="hsl(180,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="13" data-weight="70600"><title>java.lang.invoke.DirectMethodHandle.make: 70,600 sampled bytes (0.010%)</title><rect x="1082.86825" y="601" width="0.125500506728" height="22" fill="hsl(180,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="14" data-weight="70600"><title>java.lang.invoke.DirectMethodHandle.make: 70,600 sampled bytes (0.010%)</title><rect x="1082.86825" y="577" width="0.125500506728" height="22" fill="hsl(180,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="15" data-weight="70600"><title>java.lang.invoke.DirectMethodHandle.preparedLambdaForm: 70,600 sampled bytes (0.010%)</title><rect x="1082.86825" y="553" width="0.125500506728" height="22" fill="hsl(190,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="16" data-weight="70600"><title>java.lang.invoke.DirectMethodHandle.preparedLambdaForm: 70,600 sampled bytes (0.010%)</title><rect x="1082.86825" y="529" width="0.125500506728" height="22" fill="hsl(190,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="17" data-weight="70600"><title>java.lang.invoke.DirectMethodHandle.preparedLambdaForm: 70,600 sampled bytes (0.010%)</title><rect x="1082.86825" y="505" width="0.125500506728" height="22" fill="hsl(190,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="18" data-weight="70600"><title>java.lang.invoke.DirectMethodHandle.makePreparedLambdaForm: 70,600 sampled bytes (0.010%)</title><rect x="1082.86825" y="481" width="0.125500506728" height="22" fill="hsl(164,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="19" data-weight="70600"><title>java.lang.invoke.LambdaForm.compileToBytecode: 70,600 sampled bytes (0.010%)</title><rect x="1082.86825" y="457" width="0.125500506728" height="22" fill="hsl(170,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="20" data-weight="70600"><title>java.lang.invoke.InvokerBytecodeGenerator.generateCustomizedCode: 70,600 sampled bytes (0.010%)</title><rect x="1082.86825" y="433" width="0.125500506728" height="22" fill="hsl(184,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="21" data-weight="70600"><title>java.lang.invoke.InvokerBytecodeGenerator.generateCustomizedCodeBytes: 70,600 sampled bytes (0.010%)</title><rect x="1082.86825" y="409" width="0.125500506728" height="22" fill="hsl(170,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="22" data-weight="70600"><title>java.lang.invoke.InvokerBytecodeGenerator.addMethod: 70,600 sampled bytes (0.010%)</title><rect x="1082.86825" y="385" width="0.125500506728" height="22" fill="hsl(178,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="23" data-weight="70600"><title>java.lang.invoke.InvokerBytecodeGenerator.emitStaticInvoke: 70,600 sampled bytes (0.010%)</title><rect x="1082.86825" y="361" width="0.125500506728" height="22" fill="hsl(176,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="24" data-weight="70600"><title>java.lang.invoke.MethodType.toMethodDescriptorString: 70,600 sampled bytes (0.010%)</title><rect x="1082.86825" y="337" width="0.125500506728" height="22" fill="hsl(188,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="25" data-weight="70600"><title>sun.invoke.util.BytecodeDescriptor.unparseMethod: 70,600 sampled bytes (0.010%)</title><rect x="1082.86825" y="313" width="0.125500506728" height="22" fill="hsl(190,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="26" data-weight="70600"><title>sun.invoke.util.BytecodeDescriptor.unparseSig: 70,600 sampled bytes (0.010%)</title><rect x="1082.86825" y="289" width="0.125500506728" height="22" fill="hsl(185,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="27" data-weight="70600"><title>java.lang.Class.descriptorString: 70,600 sampled bytes (0.010%)</title><rect x="1082.86825" y="265" width="0.125500506728" height="22" fill="hsl(165,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="28" data-weight="70600"><title>java.lang.String.replace: 70,600 sampled bytes (0.010%)</title><rect x="1082.86825" y="241" width="0.125500506728" height="22" fill="hsl(174,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="29" data-weight="70600"><title>java.lang.StringLatin1.replace: 70,600 sampled bytes (0.010%)</title><rect x="1082.86825" y="217" width="0.125500506728" height="22" fill="hsl(165,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="30" data-weight="70600"><title>java.lang.StringConcatHelper.newArray: 70,600 sampled bytes (0.010%)</title><rect x="1082.86825" y="193" width="0.125500506728" height="22" fill="hsl(180,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="31" data-weight="70600"><title>jdk.internal.misc.Unsafe.allocateUninitializedArray: 70,600 sampled bytes (0.010%)</title><rect x="1082.86825" y="169" width="0.125500506728" height="22" fill="hsl(168,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="32" data-weight="70600"><title>jdk.internal.misc.Unsafe.allocateUninitializedArray0: 70,600 sampled bytes (0.010%)</title><rect x="1082.86825" y="145" width="0.125500506728" height="22" fill="hsl(189,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="4" data-weight="44941536"><title>io.ominicat.core.PipelineSession.take: 44,941,536 sampled bytes (6.527%)</title><rect x="1082.99375" y="817" width="79.8893136141" height="22" fill="hsl(176,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="1086.99375" y="833" font-family="monospace" font-size="12" fill="#152430">Pipeline…</text>
+</g>
+<g data-depth="5" data-weight="44941536"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await: 44,941,536 sampled bytes (6.527%)</title><rect x="1082.99375" y="793" width="79.8893136141" height="22" fill="hsl(167,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="1086.99375" y="809" font-family="monospace" font-size="12" fill="#152430">Abstract…</text>
+</g>
+<g data-depth="4" data-weight="29852064"><title>java.lang.invoke.Invokers$Holder.linkToTargetMethod: 29,852,064 sampled bytes (4.335%)</title><rect x="1162.88306" y="817" width="53.0658521089" height="22" fill="hsl(174,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="1166.88306" y="833" font-family="monospace" font-size="12" fill="#152430">Invok…</text>
+</g>
+<g data-depth="5" data-weight="29852064"><title>java.lang.invoke.DirectMethodHandle$Holder.newInvokeSpecial: 29,852,064 sampled bytes (4.335%)</title><rect x="1162.88306" y="793" width="53.0658521089" height="22" fill="hsl(172,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="1166.88306" y="809" font-family="monospace" font-size="12" fill="#152430">Direc…</text>
+</g>
+<g data-depth="6" data-weight="29852064"><title>java.lang.invoke.DirectMethodHandle.allocateInstance: 29,852,064 sampled bytes (4.335%)</title><rect x="1162.88306" y="769" width="53.0658521089" height="22" fill="hsl(179,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="1166.88306" y="785" font-family="monospace" font-size="12" fill="#152430">Direc…</text>
+</g>
+<g data-depth="7" data-weight="481368"><title>jdk.internal.misc.Unsafe.allocateInstance: 481,368 sampled bytes (0.070%)</title><rect x="1162.88306" y="745" width="0.855693030069" height="22" fill="hsl(183,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="2" data-weight="648"><title>jdk.jfr.internal.PlatformRecorder$$Lambda$66+0x000000e001042338.315860201.run: 648 sampled bytes (0.000%)</title><rect x="1215.94892" y="865" width="0.00115190266799" height="22" fill="hsl(165,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="3" data-weight="648"><title>jdk.jfr.internal.PlatformRecorder.lambda$startDiskMonitor$1: 648 sampled bytes (0.000%)</title><rect x="1215.94892" y="841" width="0.00115190266799" height="22" fill="hsl(191,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="4" data-weight="648"><title>jdk.jfr.internal.PlatformRecorder.periodicTask: 648 sampled bytes (0.000%)</title><rect x="1215.94892" y="817" width="0.00115190266799" height="22" fill="hsl(191,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="5" data-weight="648"><title>jdk.jfr.internal.RequestEngine.doPeriodic: 648 sampled bytes (0.000%)</title><rect x="1215.94892" y="793" width="0.00115190266799" height="22" fill="hsl(162,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="6" data-weight="648"><title>jdk.jfr.internal.RequestEngine.run_requests: 648 sampled bytes (0.000%)</title><rect x="1215.94892" y="769" width="0.00115190266799" height="22" fill="hsl(171,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="7" data-weight="248"><title>java.util.concurrent.CopyOnWriteArrayList.iterator: 248 sampled bytes (0.000%)</title><rect x="1215.94892" y="745" width="0.000440851638366" height="22" fill="hsl(182,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="7" data-weight="400"><title>jdk.jfr.internal.RequestEngine$RequestHook.execute: 400 sampled bytes (0.000%)</title><rect x="1215.94936" y="745" width="0.000711051029623" height="22" fill="hsl(161,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="8" data-weight="400"><title>jdk.jfr.internal.instrument.JDKEvents$$Lambda$37+0x000000e00106ed08.636718812.run: 400 sampled bytes (0.000%)</title><rect x="1215.94936" y="721" width="0.000711051029623" height="22" fill="hsl(179,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="9" data-weight="400"><title>jdk.jfr.internal.instrument.JDKEvents.emitExceptionStatistics: 400 sampled bytes (0.000%)</title><rect x="1215.94936" y="697" width="0.000711051029623" height="22" fill="hsl(160,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="2" data-weight="16"><title>jdk.jfr.internal.ShutdownHook.run: 16 sampled bytes (0.000%)</title><rect x="1215.95007" y="865" width="2.84420411849e-05" height="22" fill="hsl(172,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="3" data-weight="16"><title>jdk.jfr.internal.PlatformRecorder.getRecordings: 16 sampled bytes (0.000%)</title><rect x="1215.95007" y="841" width="2.84420411849e-05" height="22" fill="hsl(177,68%,66%)" stroke="#101e28" stroke-width="0"/>
+</g>
+<g data-depth="1" data-weight="20279784"><title>sun.launcher.LauncherHelper.checkAndLoadMain: 20,279,784 sampled bytes (2.945%)</title><rect x="1215.9501" y="889" width="36.0499032343" height="22" fill="hsl(173,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="2" data-weight="20279784"><title>sun.launcher.LauncherHelper.loadMainClass: 20,279,784 sampled bytes (2.945%)</title><rect x="1215.9501" y="865" width="36.0499032343" height="22" fill="hsl(181,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="3" data-weight="20279784"><title>java.lang.Class.forName: 20,279,784 sampled bytes (2.945%)</title><rect x="1215.9501" y="841" width="36.0499032343" height="22" fill="hsl(172,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="4" data-weight="20279784"><title>java.lang.Class.forName0: 20,279,784 sampled bytes (2.945%)</title><rect x="1215.9501" y="817" width="36.0499032343" height="22" fill="hsl(187,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="5" data-weight="20279784"><title>java.lang.ClassLoader.loadClass: 20,279,784 sampled bytes (2.945%)</title><rect x="1215.9501" y="793" width="36.0499032343" height="22" fill="hsl(187,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="6" data-weight="20279784"><title>jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass: 20,279,784 sampled bytes (2.945%)</title><rect x="1215.9501" y="769" width="36.0499032343" height="22" fill="hsl(171,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="7" data-weight="20279784"><title>jdk.internal.loader.BuiltinClassLoader.loadClass: 20,279,784 sampled bytes (2.945%)</title><rect x="1215.9501" y="745" width="36.0499032343" height="22" fill="hsl(184,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="8" data-weight="20279784"><title>jdk.internal.loader.BuiltinClassLoader.loadClassOrNull: 20,279,784 sampled bytes (2.945%)</title><rect x="1215.9501" y="721" width="36.0499032343" height="22" fill="hsl(188,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="9" data-weight="20279784"><title>jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull: 20,279,784 sampled bytes (2.945%)</title><rect x="1215.9501" y="697" width="36.0499032343" height="22" fill="hsl(162,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="10" data-weight="20279784"><title>jdk.internal.loader.BuiltinClassLoader.defineClass: 20,279,784 sampled bytes (2.945%)</title><rect x="1215.9501" y="673" width="36.0499032343" height="22" fill="hsl(164,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="11" data-weight="20279784"><title>jdk.internal.loader.Resource.getByteBuffer: 20,279,784 sampled bytes (2.945%)</title><rect x="1215.9501" y="649" width="36.0499032343" height="22" fill="hsl(173,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="12" data-weight="20279784"><title>jdk.internal.loader.Resource.cachedInputStream: 20,279,784 sampled bytes (2.945%)</title><rect x="1215.9501" y="625" width="36.0499032343" height="22" fill="hsl(162,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="13" data-weight="20279784"><title>jdk.internal.loader.URLClassPath$JarLoader$2.getInputStream: 20,279,784 sampled bytes (2.945%)</title><rect x="1215.9501" y="601" width="36.0499032343" height="22" fill="hsl(180,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="14" data-weight="20279784"><title>java.util.jar.JarFile.getInputStream: 20,279,784 sampled bytes (2.945%)</title><rect x="1215.9501" y="577" width="36.0499032343" height="22" fill="hsl(171,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="15" data-weight="20279784"><title>java.util.zip.ZipFile.getInputStream: 20,279,784 sampled bytes (2.945%)</title><rect x="1215.9501" y="553" width="36.0499032343" height="22" fill="hsl(191,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="16" data-weight="20279784"><title>java.util.zip.ZipFile$ZipFileInflaterInputStream.&lt;init&gt;: 20,279,784 sampled bytes (2.945%)</title><rect x="1215.9501" y="529" width="36.0499032343" height="22" fill="hsl(178,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="17" data-weight="20279784"><title>java.util.zip.ZipFile$ZipFileInflaterInputStream.&lt;init&gt;: 20,279,784 sampled bytes (2.945%)</title><rect x="1215.9501" y="505" width="36.0499032343" height="22" fill="hsl(178,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="18" data-weight="20279784"><title>java.util.zip.InflaterInputStream.&lt;init&gt;: 20,279,784 sampled bytes (2.945%)</title><rect x="1215.9501" y="481" width="36.0499032343" height="22" fill="hsl(161,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+</svg>
