@@ -1,3 +1,7 @@
+<!-- ominicat-language-nav -->
+[简体中文](../docs/zh-CN/ominicat-providers/DEEP_VERIFICATION.md) · **English**
+<!-- /ominicat-language-nav -->
+
 # Adversarial verification
 
 The provider and conversation suites use local HTTP peers and deterministic generated media. They make no cloud requests and require no credentials. This verification covers the checked-in Java adapters and state primitives; it does not establish a vendor's model accuracy, live API compatibility, production capacity or long-term reliability.

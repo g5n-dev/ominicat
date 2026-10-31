@@ -1,3 +1,7 @@
+<!-- ominicat-language-nav -->
+[简体中文](docs/zh-CN/CONTRIBUTING.md) · **English**
+<!-- /ominicat-language-nav -->
+
 # Contributing
 
 The [iteration plan](docs/iteration-plan.md) tracks ready work and acceptance criteria. Repository automation follows [AGENTS.md](AGENTS.md) and the same review and validation requirements as other changes.

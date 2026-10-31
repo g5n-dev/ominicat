@@ -1,3 +1,7 @@
+<!-- ominicat-language-nav -->
+[简体中文](../docs/zh-CN/comparison/profile_java.md) · **English**
+<!-- /ominicat-language-nav -->
+
 # Separate Java JFR diagnostics
 
 Run this **after the unprofiled comparison has finished**, serially on the same host. The wrapper does not build or modify the measured JAR. Use the Java 17 executable and optionally bind the exact JAR SHA-256 from the comparison manifest:

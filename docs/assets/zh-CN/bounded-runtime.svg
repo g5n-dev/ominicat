@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1180" viewBox="0 0 1440 1180" role="img" aria-labelledby="title desc" xml:lang="zh-CN">
+<title id="title">OminiCat — 有界工作与明确所有权</title>
+<desc id="desc">每个会话独立持有队列、活动异步句柄和全新处理器实例。队列容量与异步句柄容量分别受限，共用配置值 C。可选并行分支使用固定工作线程、有界任务队列和每分支输出引用上限。Netty 单独计算待输出载荷字节。中断隔离旧代次；取消仍依赖协作。</desc>
+<defs><linearGradient id="background" x2="1" y2="1"><stop stop-color="#101e28" /><stop offset="1" stop-color="#0b1220" /></linearGradient>
+<pattern id="dots" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#6a91a8" opacity=".13" /></pattern>
+<marker id="arrow-teal" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L7 4L1 7" fill="none" stroke="#64d8c3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></marker>
+<marker id="arrow-blue" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L7 4L1 7" fill="none" stroke="#76adf7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></marker>
+<marker id="arrow-amber" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L7 4L1 7" fill="none" stroke="#e9b96e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></marker>
+<marker id="arrow-muted" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L7 4L1 7" fill="none" stroke="#9badc2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></marker>
+</defs>
+<rect width="1440" height="100%" rx="22" fill="url(#background)" />
+<rect width="1440" height="100%" rx="22" fill="url(#dots)" />
+<g font-family="Arial,Helvetica,DejaVu Sans,sans-serif">
+<text x="56" y="55" font-size="14" font-weight="700" fill="#64d8c3" letter-spacing="2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">OMINICAT / 架构</text>
+<text x="1384" y="55" font-size="14" font-weight="400" fill="#9badc2" text-anchor="end" letter-spacing="2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">03 / 所有权</text>
+<text x="56" y="111" font-size="40" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">有界工作与明确所有权</text>
+<text x="56" y="150" font-size="19" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">各边界独立设限，取消隔离会话代次。</text>
+<rect x="56" y="194" width="1328" height="86" rx="15" fill="#142536" stroke="#2a3f53" stroke-width="1.2" />
+<text x="80" y="226" font-size="13" font-weight="700" fill="#e9b96e" letter-spacing="1.2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">容器准入</text>
+<text x="80" y="255" font-size="21" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">连接数与会话数均有限额</text>
+<text x="662" y="227" font-size="18" font-weight="700" fill="#e9b96e">M = maxFrameBytes</text>
+<text x="662" y="255" font-size="17" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">帧大小检查与每连接输出预算分别执行。</text>
+<rect x="56" y="318" width="742" height="590" rx="18" fill="#0e202d" stroke="#365463" stroke-width="1.2" />
+<text x="80" y="358" font-size="27" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">会话 A</text>
+<text x="80" y="389" font-size="18" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">独立新管线与私有处理器实例</text>
+<rect x="80" y="423" width="304" height="113" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2" />
+<rect x="80" y="441" width="3" height="77" rx="1.5" fill="#64d8c3" />
+<text x="102" y="457" font-size="21" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">待处理工作 ≤ C</text>
+<text x="102" y="486" font-size="15" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">外部输入与续传项</text>
+<text x="102" y="511" font-size="15" font-weight="400" fill="#9badc2">ReentrantLock + ArrayDeque</text>
+<rect x="410" y="423" width="364" height="113" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2" />
+<rect x="410" y="441" width="3" height="77" rx="1.5" fill="#76adf7" />
+<text x="432" y="457" font-size="21" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">活动异步操作 ≤ C</text>
+<text x="432" y="486" font-size="16" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">独立限额，使用相同配置值 C</text>
+<text x="432" y="511" font-size="16" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">tryEmit → 同一 FIFO 的 nextStage</text>
+<path d="M410 480H384" fill="none" stroke="#76adf7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-blue)" />
+<rect x="80" y="576" width="694" height="76" rx="12" fill="#153039" stroke="#3e8f85" stroke-width="1.2" />
+<text x="102" y="608" font-size="23" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">一个串行会话工作线程</text>
+<text x="102" y="635" font-size="17" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">阶段调用 · 取消句柄 · 重置钩子 · 逆序清理</text>
+<path d="M232 536V576" fill="none" stroke="#64d8c3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)" />
+<circle cx="232" cy="536" r="4" fill="#0b1220" stroke="#64d8c3" stroke-width="1.5" />
+<rect x="80" y="692" width="694" height="192" rx="12" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2" stroke-dasharray="6 6" />
+<text x="100" y="722" font-size="17" font-weight="700" fill="#76adf7" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">可选 ParallelProcessor</text>
+<rect x="100" y="741" width="278" height="100" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2" />
+<rect x="100" y="759" width="3" height="64" rx="1.5" fill="#76adf7" />
+<text x="122" y="775" font-size="20" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">P 个分支工作线程</text>
+<text x="122" y="804" font-size="15" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">P 槽位任务队列</text>
+<text x="122" y="829" font-size="15" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">每分支输出引用 ≤ B</text>
+<rect x="422" y="741" width="330" height="100" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2" />
+<rect x="422" y="759" width="3" height="64" rx="1.5" fill="#76adf7" />
+<text x="444" y="775" font-size="20" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">有序合并</text>
+<text x="444" y="804" font-size="16" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">所有分支先成功</text>
+<text x="444" y="829" font-size="16" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">所属线程按声明顺序输出</text>
+<path d="M378 791H422" fill="none" stroke="#76adf7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-blue)" />
+<path d="M232 652V692" fill="none" stroke="#76adf7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-blue)" stroke-dasharray="6 6" />
+<text x="100" y="865" font-size="15" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">共享截止时间约束分支调度与等待；合并交付可能耗时更长。</text>
+<rect x="836" y="318" width="548" height="218" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2" />
+<text x="860" y="358" font-size="27" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">会话 B</text>
+<text x="860" y="389" font-size="18" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">独立的所有权边界</text>
+<rect x="860" y="417" width="182" height="56" rx="15" fill="#142536" stroke="#2a3f53" stroke-width="1.2" />
+<text x="881" y="452" font-size="20" font-weight="700" fill="#64d8c3" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">独立 FIFO</text>
+<rect x="1090" y="417" width="270" height="56" rx="15" fill="#142536" stroke="#2a3f53" stroke-width="1.2" />
+<text x="1111" y="452" font-size="20" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">独立工作线程与阶段</text>
+<path d="M1042 445H1090" fill="none" stroke="#64d8c3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)" />
+<circle cx="1042" cy="445" r="4" fill="#0b1220" stroke="#64d8c3" stroke-width="1.5" />
+<text x="860" y="510" font-size="17" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">独立异步句柄，不与 A 共享可变阶段。</text>
+<rect x="836" y="576" width="548" height="332" rx="15" fill="#111d2e" stroke="#715b42" stroke-width="1.2" />
+<text x="860" y="615" font-size="25" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">Netty 输出边界</text>
+<text x="860" y="646" font-size="18" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">编码 → 预留预算 → writeAndFlush</text>
+<rect x="860" y="684" width="500" height="91" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2" />
+<rect x="860" y="702" width="3" height="55" rx="1.5" fill="#e9b96e" />
+<text x="882" y="718" font-size="23" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">待输出载荷字节 ≤ 4 × M</text>
+<text x="882" y="747" font-size="16" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">每次写入前还要检查通道可写性</text>
+<path d="M774 614H816V729H860" fill="none" stroke="#e9b96e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-amber)" />
+<circle cx="774" cy="614" r="4" fill="#0b1220" stroke="#e9b96e" stroke-width="1.5" />
+<text x="860" y="811" font-size="17" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">写入 future 完成后释放预算预留。</text>
+<text x="860" y="840" font-size="17" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">过载时显式关闭连接。</text>
+<text x="860" y="877" font-size="16" font-weight="400" fill="#e9b96e" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">载荷预算 ≠ 全部 Netty 任务或原生内存。</text>
+<rect x="56" y="946" width="1328" height="102" rx="14" fill="#17282f" stroke="#3e686b" stroke-width="1.2" />
+<text x="80" y="979" font-size="23" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">中断推进代次</text>
+<text x="80" y="1012" font-size="18" font-weight="700" fill="#64d8c3" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">使旧工作失效</text>
+<path d="M273 1006H318" fill="none" stroke="#64d8c3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)" />
+<text x="340" y="1012" font-size="18" font-weight="400" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">清空队列并中断 I/O</text>
+<path d="M610 1006H655" fill="none" stroke="#64d8c3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)" />
+<text x="677" y="1012" font-size="18" font-weight="400" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">下一代次前重置</text>
+<path d="M963 1006H1008" fill="none" stroke="#64d8c3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)" />
+<text x="1030" y="1012" font-size="18" font-weight="700" fill="#76adf7" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">拒绝过期回调</text>
+<text x="56" y="1080" font-size="17" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">取消依赖协作。帧数上限不等于字节或 RSS 上限；已发生的外部副作用无法撤销。</text>
+<path d="M56 1107H1384" fill="none" stroke="#9badc2" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" />
+<text x="56" y="1135" font-size="14" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">03 / C：会话容量 · P：分支数 · B：每分支输出引用上限</text>
+<text x="1384" y="1135" font-size="14" font-weight="400" fill="#9badc2" text-anchor="end" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">P = 1…64 · 不提供持久化或原子外部提交</text>
+</g>
+<metadata id="ominicat-locale-source">{"geometrySha256": "1a5ac8538e0fc43b3d9962e1d03368e645bbbe08c9f277fe98f7501b4b13244e", "language": "zh-CN", "recoveredGlyphLabels": 0, "sha256": "7bcb2d3e0f6c6c1e60f7a560a0a9a7b19ded3100816f94b9c21ab82e9de4c5e0", "source": "docs/assets/bounded-runtime.svg"}</metadata></svg>

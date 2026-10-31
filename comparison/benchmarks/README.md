@@ -1,3 +1,7 @@
+<!-- ominicat-language-nav -->
+[简体中文](../../docs/zh-CN/comparison/benchmarks/README.md) · **English**
+<!-- /ominicat-language-nav -->
+
 # Java queued adapters
 
 An optional standalone project implementing [comparison protocol 1](../protocol.md). It is outside the production Maven reactor. Dependencies are current OminiCat core and Apache Camel **4.22.2 LTS** ([official Java 17 support](https://camel.apache.org/releases/release-4.22.2/)).

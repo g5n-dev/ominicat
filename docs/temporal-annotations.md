@@ -1,3 +1,7 @@
+<!-- ominicat-language-nav -->
+[简体中文](zh-CN/temporal-annotations.md) · **English**
+<!-- /ominicat-language-nav -->
+
 # Temporal segments and annotations
 
 Status: the minimal T1a reference/import-export profile is implemented in the optional conversation module; see [API and runnable fixtures](media-references.md). T1b, T2 and T3 remain design proposals and acceptance criteria, not shipped APIs, configuration fields or wire types. This extends the [integration contract proposal](integration-contracts.md); the [scenario matrix](scenario-coverage.md) tracks the implemented scope.

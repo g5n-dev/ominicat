@@ -1,3 +1,7 @@
+<!-- ominicat-language-nav -->
+[简体中文](docs/zh-CN/SECURITY.md) · **English**
+<!-- /ominicat-language-nav -->
+
 # Security
 
 Report a suspected vulnerability privately through GitHub's security advisory feature when available. Avoid putting credentials or conversation payloads in public issues.

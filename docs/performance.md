@@ -1,3 +1,7 @@
+<!-- ominicat-language-nav -->
+[简体中文](zh-CN/performance.md) · **English**
+<!-- /ominicat-language-nav -->
+
 # Performance design and Linux evidence
 
 OminiCat controls dispatch overhead, queued work and ownership boundaries through a small Java 17+ kernel. Public performance figures use **Ubuntu 24.04 and CentOS Stream 9 user-space CI recordings**. The [complete evidence](../reports/comparison/README.md) contains every process result, source/runtime/dependency manifest, plot and checksum.

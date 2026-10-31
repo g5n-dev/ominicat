@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="208" viewBox="0 0 1280 208" role="img" xml:lang="zh-CN">
+<title>分配采样权重</title><rect width="1280" height="208" fill="#101e28" />
+<text x="24" y="32" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" font-size="20" fill="#f2eee1" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">分配采样权重</text>
+<text x="24" y="57" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" font-size="13" fill="#b8cbd1" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">宽度表示采样权重，悬停查看方法与计数；包含测试驱动栈帧。</text>
+<g><title>全部样本: 3,156,101,112</title><rect x="24.00" y="168" width="1231.50" height="17" rx="1" fill="hsl(28,75%,65%)" />
+<text x="27.00" y="180" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" font-size="10" fill="#152430" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">全部样本</text>
+</g>
+<g><title>io.ominicat.benchmarks.CoreLoad$$Lambda.0x000000e80100b110.run: 27,578,984</title><rect x="24.00" y="150" width="10.27" height="17" rx="1" fill="hsl(35,75%,65%)" />
+</g>
+<g><title>io.ominicat.benchmarks.CoreLoad.lambda$runPhase$4: 27,578,984</title><rect x="24.00" y="132" width="10.27" height="17" rx="1" fill="hsl(31,75%,65%)" />
+</g>
+<g><title>java.util.concurrent.Semaphore.tryAcquire: 27,578,984</title><rect x="24.00" y="114" width="10.27" height="17" rx="1" fill="hsl(50,75%,65%)" />
+</g>
+<g><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.tryAcquireSharedNanos: 27,578,984</title><rect x="24.00" y="96" width="10.27" height="17" rx="1" fill="hsl(39,75%,65%)" />
+</g>
+<g><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire: 27,578,984</title><rect x="24.00" y="78" width="10.27" height="17" rx="1" fill="hsl(22,75%,65%)" />
+</g>
+<g><title>io.ominicat.benchmarks.CoreLoad.main: 221,827,080</title><rect x="34.77" y="150" width="86.09" height="17" rx="1" fill="hsl(20,75%,65%)" />
+<text x="37.77" y="162" font-family="monospace" font-size="10" fill="#152430">io.ominicat</text>
+</g>
+<g><title>io.ominicat.core.Pipeline.dispatchSession: 3,987,024</title><rect x="121.36" y="150" width="1.06" height="17" rx="1" fill="hsl(27,75%,65%)" />
+</g>
+<g><title>java.lang.invoke.LambdaForm$MH.0x000000e801012800.linkToTargetMethod: 3,987,024</title><rect x="121.36" y="132" width="1.06" height="17" rx="1" fill="hsl(28,75%,65%)" />
+</g>
+<g><title>java.lang.invoke.LambdaForm$DMH.0x000000e801010c00.newInvokeSpecial: 3,987,024</title><rect x="121.36" y="114" width="1.06" height="17" rx="1" fill="hsl(23,75%,65%)" />
+</g>
+<g><title>java.lang.invoke.DirectMethodHandle.allocateInstance: 3,987,024</title><rect x="121.36" y="96" width="1.06" height="17" rx="1" fill="hsl(33,75%,65%)" />
+</g>
+<g><title>jdk.internal.misc.Unsafe.allocateInstance: 3,987,024</title><rect x="121.36" y="78" width="1.06" height="17" rx="1" fill="hsl(37,75%,65%)" />
+</g>
+<g><title>io.ominicat.core.PipelineSession$$Lambda.0x000000e80100aee8.run: 558,390,192</title><rect x="122.98" y="150" width="217.47" height="17" rx="1" fill="hsl(45,75%,65%)" />
+<text x="125.98" y="162" font-family="monospace" font-size="10" fill="#152430">io.ominicat.core.PipelineSessi</text>
+</g>
+<g><title>io.ominicat.core.PipelineSession.run: 558,390,192</title><rect x="122.98" y="132" width="217.47" height="17" rx="1" fill="hsl(41,75%,65%)" />
+<text x="125.98" y="144" font-family="monospace" font-size="10" fill="#152430">io.ominicat.core.PipelineSessi</text>
+</g>
+<g><title>io.ominicat.core.PipelineSession.take: 17,810,784</title><rect x="122.98" y="114" width="6.45" height="17" rx="1" fill="hsl(36,75%,65%)" />
+</g>
+<g><title>java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await: 17,810,784</title><rect x="122.98" y="96" width="6.45" height="17" rx="1" fill="hsl(47,75%,65%)" />
+</g>
+<g><title>java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.newConditionNode: 17,810,784</title><rect x="122.98" y="78" width="6.45" height="17" rx="1" fill="hsl(27,75%,65%)" />
+</g>
+<g><title>java.lang.invoke.Invokers$Holder.linkToTargetMethod: 540,579,408</title><rect x="129.94" y="114" width="210.52" height="17" rx="1" fill="hsl(31,75%,65%)" />
+<text x="132.94" y="126" font-family="monospace" font-size="10" fill="#152430">java.lang.invoke.Invokers$Hol</text>
+</g>
+<g><title>java.lang.invoke.DirectMethodHandle$Holder.newInvokeSpecial: 540,579,408</title><rect x="129.94" y="96" width="210.52" height="17" rx="1" fill="hsl(46,75%,65%)" />
+<text x="132.94" y="108" font-family="monospace" font-size="10" fill="#152430">java.lang.invoke.DirectMethod</text>
+</g>
+<g><title>java.lang.invoke.DirectMethodHandle.allocateInstance: 540,579,408</title><rect x="129.94" y="78" width="210.52" height="17" rx="1" fill="hsl(33,75%,65%)" />
+<text x="132.94" y="90" font-family="monospace" font-size="10" fill="#152430">java.lang.invoke.DirectMethod</text>
+</g>
+<g><title>io.ominicat.core.PipelineSession.run: 32,605,096</title><rect x="340.96" y="150" width="12.23" height="17" rx="1" fill="hsl(41,75%,65%)" />
+</g>
+<g><title>java.lang.invoke.Invokers$Holder.linkToTargetMethod: 13,699,704</title><rect x="341.03" y="132" width="4.85" height="17" rx="1" fill="hsl(31,75%,65%)" />
+</g>
+<g><title>java.lang.invoke.DirectMethodHandle$Holder.newInvokeSpecial: 13,699,704</title><rect x="341.03" y="114" width="4.85" height="17" rx="1" fill="hsl(46,75%,65%)" />
+</g>
+<g><title>java.lang.invoke.DirectMethodHandle.allocateInstance: 13,699,704</title><rect x="341.03" y="96" width="4.85" height="17" rx="1" fill="hsl(33,75%,65%)" />
+</g>
+<g><title>jdk.internal.misc.Unsafe.allocateInstance: 13,699,704</title><rect x="341.03" y="78" width="4.85" height="17" rx="1" fill="hsl(37,75%,65%)" />
+</g>
+<g><title>java.util.concurrent.locks.ReentrantLock.lock: 18,721,608</title><rect x="346.37" y="132" width="6.81" height="17" rx="1" fill="hsl(22,75%,65%)" />
+</g>
+<g><title>java.util.concurrent.locks.ReentrantLock$Sync.lock: 18,721,608</title><rect x="346.37" y="114" width="6.81" height="17" rx="1" fill="hsl(38,75%,65%)" />
+</g>
+<g><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire: 18,721,608</title><rect x="346.37" y="96" width="6.81" height="17" rx="1" fill="hsl(22,75%,65%)" />
+</g>
+<g><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire: 18,721,608</title><rect x="346.37" y="78" width="6.81" height="17" rx="1" fill="hsl(22,75%,65%)" />
+</g>
+<g><title>io.ominicat.core.PipelineSession.submit: 41,685,464</title><rect x="353.68" y="150" width="15.77" height="17" rx="1" fill="hsl(36,75%,65%)" />
+</g>
+<g><title>java.util.concurrent.locks.ReentrantLock.lockInterruptibly: 41,685,464</title><rect x="353.68" y="132" width="15.77" height="17" rx="1" fill="hsl(40,75%,65%)" />
+</g>
+<g><title>java.util.concurrent.locks.ReentrantLock$Sync.lockInterruptibly: 41,685,464</title><rect x="353.68" y="114" width="15.77" height="17" rx="1" fill="hsl(36,75%,65%)" />
+</g>
+<g><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.acquireInterruptibly: 41,685,464</title><rect x="353.68" y="96" width="15.77" height="17" rx="1" fill="hsl(33,75%,65%)" />
+</g>
+<g><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire: 41,685,464</title><rect x="353.68" y="78" width="15.77" height="17" rx="1" fill="hsl(22,75%,65%)" />
+</g>
+<g><title>io.ominicat.core.PipelineSession.valid: 34,713,888</title><rect x="370.36" y="150" width="13.05" height="17" rx="1" fill="hsl(47,75%,65%)" />
+</g>
+<g><title>java.util.concurrent.locks.ReentrantLock.lock: 34,713,888</title><rect x="370.36" y="132" width="13.05" height="17" rx="1" fill="hsl(22,75%,65%)" />
+</g>
+<g><title>java.util.concurrent.locks.ReentrantLock$Sync.lock: 34,713,888</title><rect x="370.36" y="114" width="13.05" height="17" rx="1" fill="hsl(38,75%,65%)" />
+</g>
+<g><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire: 34,713,888</title><rect x="370.36" y="96" width="13.05" height="17" rx="1" fill="hsl(22,75%,65%)" />
+</g>
+<g><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire: 34,713,888</title><rect x="370.36" y="78" width="13.05" height="17" rx="1" fill="hsl(22,75%,65%)" />
+</g>
+<g><title>java.lang.Thread.runWith: 1,283,489,280</title><rect x="383.91" y="150" width="500.52" height="17" rx="1" fill="hsl(32,75%,65%)" />
+<text x="386.91" y="162" font-family="monospace" font-size="10" fill="#152430">java.lang.Thread.runWith</text>
+</g>
+<g><title>java.util.concurrent.FutureTask.run: 1,283,489,280</title><rect x="383.91" y="132" width="500.52" height="17" rx="1" fill="hsl(30,75%,65%)" />
+<text x="386.91" y="144" font-family="monospace" font-size="10" fill="#152430">java.util.concurrent.FutureTask.run</text>
+</g>
+<g><title>java.util.concurrent.Executors$RunnableAdapter.call: 1,283,489,280</title><rect x="383.91" y="114" width="500.52" height="17" rx="1" fill="hsl(26,75%,65%)" />
+<text x="386.91" y="126" font-family="monospace" font-size="10" fill="#152430">java.util.concurrent.Executors$RunnableAdapter.call</text>
+</g>
+<g><title>io.ominicat.benchmarks.CoreLoad$$Lambda.0x000000e80100b110.run: 1,283,489,280</title><rect x="383.91" y="96" width="500.52" height="17" rx="1" fill="hsl(35,75%,65%)" />
+<text x="386.91" y="108" font-family="monospace" font-size="10" fill="#152430">io.ominicat.benchmarks.CoreLoad$$Lambda.0x000000e80100b110.run</text>
+</g>
+<g><title>io.ominicat.benchmarks.CoreLoad.lambda$runPhase$4: 1,283,489,280</title><rect x="383.91" y="78" width="500.52" height="17" rx="1" fill="hsl(31,75%,65%)" />
+<text x="386.91" y="90" font-family="monospace" font-size="10" fill="#152430">io.ominicat.benchmarks.CoreLoad.lambda$runPhase$4</text>
+</g>
+<g><title>java.lang.VirtualThread$$Lambda.0x000000e80103b938.run: 46,212,184</title><rect x="884.93" y="150" width="17.54" height="17" rx="1" fill="hsl(41,75%,65%)" />
+</g>
+<g><title>java.lang.VirtualThread.runContinuation: 46,212,184</title><rect x="884.93" y="132" width="17.54" height="17" rx="1" fill="hsl(41,75%,65%)" />
+</g>
+<g><title>java.lang.VirtualThread.afterYield: 46,212,184</title><rect x="884.93" y="114" width="17.54" height="17" rx="1" fill="hsl(39,75%,65%)" />
+</g>
+<g><title>java.lang.VirtualThread.lazySubmitRunContinuation: 46,212,184</title><rect x="884.93" y="96" width="17.54" height="17" rx="1" fill="hsl(35,75%,65%)" />
+</g>
+<g><title>java.util.concurrent.ForkJoinTask.adapt: 46,212,184</title><rect x="884.93" y="78" width="17.54" height="17" rx="1" fill="hsl(32,75%,65%)" />
+</g>
+<g><title>java.lang.VirtualThread.parkNanos: 38,275,280</title><rect x="903.01" y="150" width="14.44" height="17" rx="1" fill="hsl(21,75%,65%)" />
+</g>
+<g><title>java.lang.VirtualThread.scheduleUnpark: 37,901,880</title><rect x="903.01" y="132" width="14.30" height="17" rx="1" fill="hsl(40,75%,65%)" />
+</g>
+<g><title>java.lang.invoke.Invokers$Holder.linkToTargetMethod: 37,901,880</title><rect x="903.01" y="114" width="14.30" height="17" rx="1" fill="hsl(31,75%,65%)" />
+</g>
+<g><title>java.lang.invoke.DirectMethodHandle$Holder.newInvokeSpecial: 37,901,880</title><rect x="903.01" y="96" width="14.30" height="17" rx="1" fill="hsl(46,75%,65%)" />
+</g>
+<g><title>java.lang.invoke.DirectMethodHandle.allocateInstance: 37,901,880</title><rect x="903.01" y="78" width="14.30" height="17" rx="1" fill="hsl(33,75%,65%)" />
+</g>
+<g><title>java.lang.VirtualThread.scheduleUnpark: 3,116,680</title><rect x="917.95" y="150" width="0.72" height="17" rx="1" fill="hsl(40,75%,65%)" />
+</g>
+<g><title>java.util.concurrent.ScheduledThreadPoolExecutor.schedule: 3,116,680</title><rect x="917.95" y="132" width="0.72" height="17" rx="1" fill="hsl(23,75%,65%)" />
+</g>
+<g><title>java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.&lt;init&gt;: 3,116,680</title><rect x="917.95" y="114" width="0.72" height="17" rx="1" fill="hsl(28,75%,65%)" />
+</g>
+<g><title>java.util.concurrent.FutureTask.&lt;init&gt;: 3,116,680</title><rect x="917.95" y="96" width="0.72" height="17" rx="1" fill="hsl(36,75%,65%)" />
+</g>
+<g><title>java.util.concurrent.Executors.callable: 3,116,680</title><rect x="917.95" y="78" width="0.72" height="17" rx="1" fill="hsl(32,75%,65%)" />
+</g>
+<g><title>java.util.concurrent.Executors$RunnableAdapter.call: 768,254,688</title><rect x="919.37" y="150" width="299.39" height="17" rx="1" fill="hsl(26,75%,65%)" />
+<text x="922.37" y="162" font-family="monospace" font-size="10" fill="#152430">java.util.concurrent.Executors$RunnableAd</text>
+</g>
+<g><title>io.ominicat.benchmarks.CoreLoad$$Lambda.0x000000e80100b110.run: 768,254,688</title><rect x="919.37" y="132" width="299.39" height="17" rx="1" fill="hsl(35,75%,65%)" />
+<text x="922.37" y="144" font-family="monospace" font-size="10" fill="#152430">io.ominicat.benchmarks.CoreLoad$$Lambda.0</text>
+</g>
+<g><title>io.ominicat.benchmarks.CoreLoad.lambda$runPhase$4: 768,254,688</title><rect x="919.37" y="114" width="299.39" height="17" rx="1" fill="hsl(31,75%,65%)" />
+<text x="922.37" y="126" font-family="monospace" font-size="10" fill="#152430">io.ominicat.benchmarks.CoreLoad.lambda$ru</text>
+</g>
+<g><title>io.ominicat.core.PipelineSession.submit: 768,254,688</title><rect x="919.37" y="96" width="299.39" height="17" rx="1" fill="hsl(36,75%,65%)" />
+<text x="922.37" y="108" font-family="monospace" font-size="10" fill="#152430">io.ominicat.core.PipelineSession.submit</text>
+</g>
+<g><title>io.ominicat.core.PipelineSession.enqueue: 768,254,688</title><rect x="919.37" y="78" width="299.39" height="17" rx="1" fill="hsl(44,75%,65%)" />
+<text x="922.37" y="90" font-family="monospace" font-size="10" fill="#152430">io.ominicat.core.PipelineSession.enqueue</text>
+</g>
+<g><title>jdk.internal.misc.VirtualThreads.park: 60,123,136</title><rect x="1220.09" y="150" width="22.97" height="17" rx="1" fill="hsl(36,75%,65%)" />
+</g>
+<g><title>java.lang.System$2.parkVirtualThread: 60,123,136</title><rect x="1220.09" y="132" width="22.97" height="17" rx="1" fill="hsl(32,75%,65%)" />
+</g>
+<g><title>java.lang.VirtualThread.parkNanos: 60,123,136</title><rect x="1220.09" y="114" width="22.97" height="17" rx="1" fill="hsl(21,75%,65%)" />
+</g>
+<g><title>java.lang.VirtualThread.scheduleUnpark: 60,123,136</title><rect x="1220.09" y="96" width="22.97" height="17" rx="1" fill="hsl(40,75%,65%)" />
+</g>
+<g><title>java.util.concurrent.ScheduledThreadPoolExecutor.schedule: 60,123,136</title><rect x="1220.09" y="78" width="22.97" height="17" rx="1" fill="hsl(23,75%,65%)" />
+</g>
+<g><title>jdk.internal.misc.VirtualThreads.unpark: 31,837,640</title><rect x="1243.56" y="150" width="11.93" height="17" rx="1" fill="hsl(46,75%,65%)" />
+</g>
+<g><title>java.lang.System$2.unparkVirtualThread: 31,837,640</title><rect x="1243.56" y="132" width="11.93" height="17" rx="1" fill="hsl(50,75%,65%)" />
+</g>
+<g><title>java.lang.VirtualThread.unpark: 31,837,640</title><rect x="1243.56" y="114" width="11.93" height="17" rx="1" fill="hsl(46,75%,65%)" />
+</g>
+<g><title>java.lang.VirtualThread.submitRunContinuation: 31,837,640</title><rect x="1243.56" y="96" width="11.93" height="17" rx="1" fill="hsl(48,75%,65%)" />
+</g>
+<g><title>java.util.concurrent.ForkJoinPool.execute: 31,837,640</title><rect x="1243.56" y="78" width="11.93" height="17" rx="1" fill="hsl(47,75%,65%)" />
+</g>
+<metadata id="ominicat-locale-source">{"geometrySha256": "b78a7d3e2ddbbf64798e8f37d82d460260ff6bf2c69949f4a1075704da99b0d3", "language": "zh-CN", "recoveredGlyphLabels": 0, "sha256": "620e2750df05efab434e52f80fe60ab8953388c84fec1537091d3d940091e88f", "source": "reports/baseline/allocation-flamegraph.svg"}</metadata></svg>

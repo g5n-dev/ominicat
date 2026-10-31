@@ -1,3 +1,7 @@
+<!-- ominicat-language-nav -->
+[简体中文](../docs/zh-CN/comparison/README.md) · **English**
+<!-- /ominicat-language-nav -->
+
 # Reproducible, model-free framework comparison
 
 This optional tool compares OminiCat, Pipecat **1.15.0** and Apache Camel **4.22.2 LTS** through their native queued public APIs. It adds no production dependency. The [protocol](protocol.md) fixes numeric work, exact output validation, timing, warmup, independent processes and resource scope before measurement.

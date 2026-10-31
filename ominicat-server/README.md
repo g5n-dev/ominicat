@@ -1,3 +1,7 @@
+<!-- ominicat-language-nav -->
+[简体中文](../docs/zh-CN/ominicat-server/README.md) · **English**
+<!-- /ominicat-language-nav -->
+
 # OminiCat server
 
 A Netty HTTP/WebSocket container around the OminiCat microkernel. Each connection gets fresh processor instances, a bounded input queue and one session worker (platform on Java 17; virtual on Java 21+). The bundled playground supports text, individual PCM16 microphone recordings, images, transcripts and PCM playback.

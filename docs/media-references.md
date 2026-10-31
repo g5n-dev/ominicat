@@ -1,3 +1,7 @@
+<!-- ominicat-language-nav -->
+[简体中文](zh-CN/media-references.md) · **English**
+<!-- /ominicat-language-nav -->
+
 # Immutable media references
 
 `ominicat-conversation` provides an optional Java 17 value contract for importing and exporting source-bound segment versions. It is usable independently of the conversation window, rule evaluator and transport. The kernel has no dependency on these types.

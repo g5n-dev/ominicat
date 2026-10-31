@@ -1,3 +1,7 @@
+<!-- ominicat-language-nav -->
+[简体中文](zh-CN/integration-contracts.md) · **English**
+<!-- /ominicat-language-nav -->
+
 # Cross-project integration contracts
 
 Status: design proposal and acceptance plan. The additions below are not implemented APIs, accepted YAML fields or new runtime guarantees. The current [scenario matrix](scenario-coverage.md) remains the implemented scope.
