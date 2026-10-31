@@ -53,6 +53,8 @@ Overall allocation grows by about 72 B per added direct stage and 80 B per added
 
 The new CPU recording contains 1,200 leaf samples, including 637 at LockSupport.unpark. Only 150 of those have session validity checks in their supplied stack; 302 come through the load driver's semaphore release and 77 through queue take. Counting every unpark sample as kernel validity cost would misattribute the harness. These counts cover warmup/load/sorting and are not time percentages.
 
+[Open the complete CPU, allocation and GC figures](../reports/performance-audit/linux-java17-2026-11-01/profiles.md).
+
 ## Remaining optimization candidates
 
 | Candidate | Confirmed work | Evidence needed before changing behavior |
