@@ -412,7 +412,9 @@ public final class OminiCatServer implements AutoCloseable {
             var factory = new WebSocketServerHandshakerFactory("ws://localhost/ws", "ominicat", true, config.maxFrameBytes());
             WebSocketServerHandshaker handshaker = factory.newHandshaker(request);
             if (handshaker == null) {
-                WebSocketServerHandshakerFactory.sendUnsupportedVersionResponse(context.channel()).addListener(ChannelFutureListener.CLOSE);
+                var response = response(HttpResponseStatus.UPGRADE_REQUIRED, "text/plain", "");
+                response.headers().set(HttpHeaderNames.SEC_WEBSOCKET_VERSION, "13");
+                context.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
                 return;
             }
             if (!reserve(admittedSessions, config.maxSessions())) {
@@ -672,6 +674,7 @@ public final class OminiCatServer implements AutoCloseable {
         response.headers().set(HttpHeaderNames.CACHE_CONTROL, "no-store");
         response.headers().set("X-Content-Type-Options", "nosniff");
         HttpUtil.setContentLength(response, content.readableBytes());
+        HttpUtil.setKeepAlive(response, false);
         return response;
     }
 }
