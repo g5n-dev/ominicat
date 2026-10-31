@@ -3,7 +3,7 @@ package io.ominicat.core;
 /**
  * A per-pipeline processing stage. Emit zero, one, or many frames to {@code next}.
  * Emission is synchronous and must finish before {@code process} returns. Blocking
- * I/O is supported on session virtual threads and should respond to interruption.
+ * I/O is supported on session workers and should respond to interruption.
  * The runtime rejects captured sinks after the invocation returns and any sink
  * emission from another thread; use AsyncProcessor for provider callbacks.
  */

@@ -1,0 +1,28 @@
+{
+  "measuredSeconds": 120,
+  "warmupSeconds": 10,
+  "persistentClients": 64,
+  "churnClients": 4,
+  "minimumSuccessfulFramesPerPersistentClientPerSecond": 10,
+  "unexpectedFailures": 0,
+  "requiredPositiveFrameTypes": [
+    "text",
+    "audio",
+    "transcript",
+    "image",
+    "envelope"
+  ],
+  "postDrainZeroGauges": [
+    "active_sessions",
+    "admitted_sessions",
+    "live_pipeline_workers",
+    "pending_output_bytes"
+  ],
+  "maximumPostFullGcHeapGrowthBytes": 8388608,
+  "maximumPostDrainNettyDirectGrowthBytes": 4194304,
+  "maximumPostDrainDescriptorGrowth": 8,
+  "maximumPostDrainPlatformThreadGrowth": 8,
+  "nettyLeakWarnings": 0,
+  "limitations": "Exploratory local resource guardrails, not proof of zero leaks or a production SLA. Warmup and drain have different live-connection counts; report raw observations as well as checks.",
+  "scope": "Java 17 constrained-memory mixed-media resource regression; separate from the historical 1200-second Java 21 run."
+}

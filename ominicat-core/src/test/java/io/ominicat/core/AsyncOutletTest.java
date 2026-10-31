@@ -19,7 +19,7 @@ class AsyncOutletTest {
         CountDownLatch release = new CountDownLatch(1);
         List<Frame> delivered = new CopyOnWriteArrayList<>();
         AsyncOutlet outlet = new AsyncOutlet(1, frame -> {
-            assertTrue(Thread.currentThread().isVirtual());
+            assertEquals(WorkerThreads.virtualThreadsAvailable(), WorkerThreads.isVirtual(Thread.currentThread()));
             entered.countDown(); release.await(); delivered.add(frame);
         });
         outlet.accept(new Frame.Text("active"));

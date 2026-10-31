@@ -11,7 +11,6 @@ import java.util.concurrent.CompletionService;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorCompletionService;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -80,7 +79,7 @@ public final class ParallelProcessor implements Processor {
             owned.add(new Owned(branch, new ReentrantLock()));
         }
         this.branches = List.copyOf(owned);
-        executor = Executors.newThreadPerTaskExecutor(Thread.ofVirtual().name("ominicat-branch-", 0).factory());
+        executor = WorkerThreads.executor("ominicat-branch-", branches.size());
     }
 
     @Override public void process(Frame frame, FrameSink next) throws Exception {

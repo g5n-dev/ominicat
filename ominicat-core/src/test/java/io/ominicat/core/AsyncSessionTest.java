@@ -36,7 +36,7 @@ class AsyncSessionTest {
         session.finish();
         assertFalse(session.completion().isDone());
         assertFalse(session.trySubmit(new Frame.Text("late-input")));
-        try (var provider = Executors.newSingleThreadExecutor()) {
+        try (var provider = WorkerThreads.executor("test-provider-", 1)) {
             provider.submit(() -> {
                 assertNotSame(worker.get(), Thread.currentThread());
                 assertTrue(emitter.tryEmit(new Frame.Text("first")));
@@ -249,7 +249,7 @@ class AsyncSessionTest {
         emitter.complete();
         session.finish();
         session.completion().get(2, TimeUnit.SECONDS);
-        FrameEnvelope result = assertInstanceOf(FrameEnvelope.class, output.getFirst());
+        FrameEnvelope result = assertInstanceOf(FrameEnvelope.class, output.get(0));
         assertEquals("derived-1", result.id());
         assertEquals("root", result.causationId());
         assertEquals("s", result.sessionId());

@@ -1,5 +1,7 @@
 # Deep verification report
 
+This is the historical Java 21 verification of the identified source revisions and artifacts. For the Java 17 baseline and current compatibility changes, see the [Java 17 report](../java17/README.md).
+
 Recorded on **2026-10-31, Asia/Shanghai**. This report separates completed verification from work that has not yet produced a result. Inputs are generated test data; no production conversations are used.
 
 **Completed:** 234 final-release tests passed with zero failures, errors or skips, including 512-seed kernel stress tests, independent state/media oracles and real local TCP/HTTP/WebSocket fault fixtures. [Java 21/25 and container CI](https://github.com/g5n-dev/ominicat/actions/runs/41178416003) passed. Two earlier native transport resource runs completed for 180 seconds and 60 seconds respectively, on their identified source variant.

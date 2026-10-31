@@ -19,7 +19,7 @@ class FallbackProcessorTest {
         var fallback = new FallbackProcessor((f, n) -> { throw new IllegalStateException("offline"); },
                 (f, n) -> n.accept(new Frame.Text("secondary")));
         fallback.process(new Frame.Text("input"), outputs::add);
-        assertEquals(new Frame.Text("secondary"), outputs.getFirst());
+        assertEquals(new Frame.Text("secondary"), outputs.get(0));
         var secondaryCalled = new AtomicBoolean();
         var partial = new FallbackProcessor((f, n) -> { n.accept(f); throw new IllegalStateException("midstream"); },
                 (f, n) -> secondaryCalled.set(true));

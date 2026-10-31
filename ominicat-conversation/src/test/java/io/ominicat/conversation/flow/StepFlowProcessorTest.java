@@ -25,7 +25,7 @@ class StepFlowProcessorTest {
         assertEquals("b", restored.snapshot().currentStep());
         restored.process(new Frame.Transcript("next", "person", 1, 2, true, -1, "seg2", 0, "user"), output::add);
         assertEquals("c", restored.snapshot().currentStep());
-        assertTrue(((StepFlowProcessor.StepEvent) output.getLast()).terminal());
+        assertTrue(((StepFlowProcessor.StepEvent) output.get(output.size() - 1)).terminal());
     }
     @Test void conditionalRoutesAndPartialRoleBoundaries() throws Exception {
         var flow = new StepFlowProcessor("v1", "a", "user", List.of(

@@ -3,6 +3,7 @@ package io.ominicat.providers;
 import static org.junit.jupiter.api.Assertions.*;
 
 import io.ominicat.core.Frame;
+import io.ominicat.core.WorkerThreads;
 import io.ominicat.core.Processor;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -156,7 +157,7 @@ class ChatFactoryTest extends ProviderHttpTestSupport {
             exchange.close();
         });
         Processor processor = new ChatFactory().create(options("timeoutSeconds", "1"));
-        CompletableFuture<Throwable> result = processOnVirtualThread(processor);
+        CompletableFuture<Throwable> result = processOnWorkerThread(processor);
         try {
             assertTrue(headers.await(2, TimeUnit.SECONDS));
             assertInstanceOf(IOException.class, result.get(3, TimeUnit.SECONDS));
@@ -178,7 +179,7 @@ class ChatFactoryTest extends ProviderHttpTestSupport {
         });
         Processor processor = new ChatFactory().create(options());
         CompletableFuture<Throwable> result = new CompletableFuture<>();
-        Thread worker = Thread.ofVirtual().start(() -> {
+        Thread worker = WorkerThreads.start("ominicat-provider-test-", () -> {
             try { processor.process(new Frame.Text("hello"), ignored -> {}); result.complete(null); }
             catch (Throwable error) { result.complete(error); }
         });
@@ -189,9 +190,9 @@ class ChatFactoryTest extends ProviderHttpTestSupport {
         } finally { release.countDown(); worker.interrupt(); }
     }
 
-    private static CompletableFuture<Throwable> processOnVirtualThread(Processor processor) {
+    private static CompletableFuture<Throwable> processOnWorkerThread(Processor processor) {
         CompletableFuture<Throwable> result = new CompletableFuture<>();
-        Thread.ofVirtual().start(() -> {
+        WorkerThreads.start("ominicat-provider-test-", () -> {
             try { processor.process(new Frame.Text("hello"), ignored -> {}); result.complete(null); }
             catch (Throwable error) { result.complete(error); }
         });

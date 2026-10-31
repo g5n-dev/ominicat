@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://github.com/g5n-dev/ominicat/actions/workflows/ci.yml"><img src="https://github.com/g5n-dev/ominicat/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
-  <img src="https://img.shields.io/badge/Java-21%2B-d5f68b?labelColor=19201c" alt="Java 21 or newer">
+  <img src="https://img.shields.io/badge/Java-17%2B-d5f68b?labelColor=19201c" alt="Java 17 or newer">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-d5f68b?labelColor=19201c" alt="Apache 2.0 license"></a>
 </p>
 
@@ -15,11 +15,13 @@ OminiCat is a configurable **Java microkernel for multimodal conversation pipeli
 
 **Status:** early 0.1 development preview. APIs and configuration may evolve. The repository includes executable tests and reproducible profiling tools; the recorded kernel baseline is not a production capacity claim.
 
-[Deep verification](reports/deep/README.md): **234 passing tests**, 512-seed lifecycle oracles, fault injection and a **20-minute constrained-heap mixed-media run** with 1,405,303 validated frames and zero unexpected failures. The report includes resource drain, callback reachability, GC/native-memory evidence and explicit live-provider limits. The long run precedes a localized SSE parser fix; the final release has separate 60-second streaming validation, with [artifact boundaries recorded](reports/deep/release-delta.json).
+**Runtime:** Java 17 is the minimum for building and running every module. Java 21+ automatically uses virtual workers. See [Java compatibility and verification](docs/java-compatibility.md).
+
+[Java 17 verification](reports/java17/README.md): **244 passing tests**, 512-seed lifecycle checks, real protocol faults, CPU/allocation profiles and a **120-second exact-artifact mixed-media run** with 138,388 validated frames, zero failures and complete resource drain. [Historical Java 21 evidence](reports/deep/README.md) retains its original source/artifact boundaries.
 
 ## Quick start
 
-Install **JDK 21 or newer**, then build and run the credential-free demo:
+Install **JDK 17 or newer**, then build and run the credential-free demo:
 
 ```sh
 git clone https://github.com/g5n-dev/ominicat.git
@@ -39,7 +41,7 @@ Using an existing Maven installation also works: `mvn -B verify` requires Maven 
 
 ## A kernel, with replaceable capabilities
 
-The core owns frame flow, session scheduling, bounded queues, cancellation fences, and processor lifecycle. Provider and transport code lives outside it. YAML selects plugins; Java `ServiceLoader` discovers them. Every WebSocket connection gets fresh processor instances and its own virtual worker.
+The core owns frame flow, session scheduling, bounded queues, cancellation fences, and processor lifecycle. Provider and transport code lives outside it. YAML selects plugins; Java `ServiceLoader` discovers them. Every WebSocket connection gets fresh processor instances and its own worker (platform thread on Java 17; virtual thread on Java 21+).
 
 ```mermaid
 flowchart LR
@@ -106,7 +108,7 @@ try (var session = pipeline.openSession(SessionOptions.defaults(), System.out::p
 }
 ```
 
-Processors can emit zero, one, or many frames. Blocking provider I/O runs on session virtual threads. `finish()` drains accepted work; `interrupt()` fences stale emissions and prepares a new generation; `close()` cancels cooperatively and `completion()` joins cleanup. Construct a fresh pipeline for each session.
+Processors can emit zero, one, or many frames. Blocking provider I/O runs on session workers. `finish()` drains accepted work; `interrupt()` fences stale emissions and prepares a new generation; `close()` cancels cooperatively and `completion()` joins cleanup. Construct a fresh pipeline for each session.
 
 ## Add a plugin
 

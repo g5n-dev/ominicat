@@ -24,7 +24,7 @@ class PipelineTest {
         Pipeline pipeline = Pipeline.builder().build();
         List<Frame> output = new ArrayList<>();
         pipeline.process(text, output::add);
-        assertSame(text, output.getFirst());
+        assertSame(text, output.get(0));
         Exception failure = new Exception("sink offline");
         assertSame(failure, assertThrows(Exception.class, () -> pipeline.process(text, frame -> { throw failure; })));
     }
@@ -35,7 +35,7 @@ class PipelineTest {
         builder.add((frame, next) -> next.accept(new Frame.Text("changed")));
         List<Frame> output = new ArrayList<>();
         empty.process(new Frame.Text("original"), output::add);
-        assertEquals(new Frame.Text("original"), output.getFirst());
+        assertEquals(new Frame.Text("original"), output.get(0));
         assertThrows(NullPointerException.class, () -> builder.add(null));
         Pipeline broken = Pipeline.builder().add((frame, next) -> next.accept(null)).build();
         assertThrows(NullPointerException.class, () -> broken.process(new Frame.Text("x"), output::add));

@@ -87,8 +87,8 @@ class TranscriptGateTest {
         gate.process(new Frame.Control(Frame.Signal.INTERRUPT), output::add);
         gate.process(transcript("s1", 0, "fresh", true), output::add);
         gate.process(new Frame.Text("other"), output::add);
-        assertEquals(new Frame.Control(Frame.Signal.INTERRUPT), output.getFirst());
-        assertEquals(new Frame.Text("other"), output.getLast());
+        assertEquals(new Frame.Control(Frame.Signal.INTERRUPT), output.get(0));
+        assertEquals(new Frame.Text("other"), output.get(output.size() - 1));
         assertEquals(3, output.size());
     }
 

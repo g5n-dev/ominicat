@@ -1,5 +1,6 @@
 package io.ominicat.server;
 
+import io.ominicat.core.WorkerThreads;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.netty.buffer.PooledByteBufAllocator;
 import io.ominicat.core.Frame;
@@ -12,10 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.atomic.AtomicReference;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -32,17 +33,19 @@ class ServerSoakIT {
         var running = new AtomicBoolean(true); var operations = new AtomicLong(); var pings = new AtomicLong();
         var rejections = new AtomicLong(); var slowReaders = new AtomicLong(); var failureCount = new AtomicLong();
         var failures = new ConcurrentLinkedQueue<String>(); var samples = new ArrayList<Sample>();
+        var observedWorkerBackend = new AtomicReference<String>();
         var config = new RuntimeConfig("127.0.0.1", 0, 8, capacity, frameBytes, 10, "PATH",
                 List.of(new RuntimeConfig.Stage("adversarial-test", Map.of())), capacity * 2);
         String authorization = "Authorization: Bearer " + System.getenv("PATH") + "\r\n";
         long started = System.nanoTime(); long deadline = started + TimeUnit.SECONDS.toNanos(seconds);
         OminiCatServer.Resources drained;
         try (var server = ServerAdversarialTest.server(config, () -> (frame, next) -> {
+            observedWorkerBackend.compareAndSet(null, WorkerThreads.isVirtual(Thread.currentThread()) ? "virtual" : "platform");
             if (frame instanceof Frame.Text text && text.text().equals("burst")) {
                 var chunk = new Frame.Text("x".repeat(16000));
                 for (int index = 0; index < 20_000 && !Thread.currentThread().isInterrupted(); index++) next.accept(chunk);
             } else next.accept(frame);
-        }).start(); var workers = Executors.newVirtualThreadPerTaskExecutor()) {
+        }).start(); var workers = WorkerThreads.executor("server-soak-client-", clients + 1)) {
             for (int worker = 0; worker < clients; worker++) {
                 int identity = worker;
                 workers.submit(() -> {
@@ -108,7 +111,11 @@ class ServerSoakIT {
                 Map.entry("operations", operations.get()), Map.entry("pings", pings.get()), Map.entry("slowReaderAttacks", slowReaders.get()),
                 Map.entry("admissionRejections", rejections.get()), Map.entry("failureCount", failureCount.get()), Map.entry("failures", failures),
                 Map.entry("drained", drained), Map.entry("samples", samples), Map.entry("java", System.getProperty("java.version")),
-                Map.entry("os", System.getProperty("os.name")), Map.entry("availableProcessors", Runtime.getRuntime().availableProcessors()));
+                Map.entry("javaVendor", System.getProperty("java.vendor")), Map.entry("javaVmName", System.getProperty("java.vm.name")),
+                Map.entry("virtualThreadsAvailable", WorkerThreads.virtualThreadsAvailable()),
+                Map.entry("workerBackendObserved", observedWorkerBackend.get() == null ? "not-observed" : observedWorkerBackend.get()),
+                Map.entry("os", System.getProperty("os.name")), Map.entry("osArch", System.getProperty("os.arch")),
+                Map.entry("availableProcessors", Runtime.getRuntime().availableProcessors()));
         new ObjectMapper().writerWithDefaultPrettyPrinter().writeValue(destination.toFile(), report);
         assertEquals(0, failureCount.get(), failures.toString()); assertTrue(operations.get() > clients * 10L);
         assertEquals(0, drained.connections()); assertEquals(0, drained.activeSessions()); assertEquals(0, drained.admittedSessions());

@@ -9,6 +9,7 @@ import java.net.InetSocketAddress;
 import java.nio.file.Path;
 import java.util.LinkedHashMap;
 import java.util.concurrent.Executors;
+import io.ominicat.core.WorkerThreads;
 
 /** Loopback-only validation observer; this is not part of the production distribution. */
 public class ValidationServer {
@@ -17,7 +18,7 @@ public class ValidationServer {
         var json = new ObjectMapper();
         var config = RuntimeConfig.load(Path.of(args[0]));
         var observer = HttpServer.create(new InetSocketAddress("127.0.0.1", Integer.parseInt(args[1])), 16);
-        var observers = Executors.newSingleThreadExecutor(Thread.ofPlatform().daemon().name("validation-observer").factory());
+        var observers = Executors.newSingleThreadExecutor(WorkerThreads.platformFactory("validation-observer-"));
         observer.setExecutor(observers);
         observer.createContext("/stats", exchange -> {
             byte[] body = json.writeValueAsBytes(stats());
@@ -43,6 +44,8 @@ public class ValidationServer {
         var result = new LinkedHashMap<String, Object>();
         var memory = ManagementFactory.getMemoryMXBean();
         result.put("uptimeMillis", ManagementFactory.getRuntimeMXBean().getUptime());
+        result.put("javaVersion", System.getProperty("java.version"));
+        result.put("workerBackend", WorkerThreads.virtualThreadsAvailable() ? "virtual" : "platform");
         result.put("heapUsedBytes", memory.getHeapMemoryUsage().getUsed());
         result.put("heapCommittedBytes", memory.getHeapMemoryUsage().getCommitted());
         result.put("heapMaxBytes", memory.getHeapMemoryUsage().getMax());

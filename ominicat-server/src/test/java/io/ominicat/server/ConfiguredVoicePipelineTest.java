@@ -1,5 +1,6 @@
 package io.ominicat.server;
 
+import io.ominicat.core.WorkerThreads;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.net.httpserver.HttpExchange;
@@ -11,7 +12,6 @@ import io.ominicat.core.spi.PluginRegistry;
 import io.ominicat.core.spi.ProcessorFactory;
 import java.net.InetSocketAddress;
 import java.net.URI;
-import java.net.http.HttpClient;
 import java.net.http.WebSocket;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -37,7 +36,7 @@ class ConfiguredVoicePipelineTest {
         var tapCloses = new AtomicInteger();
         byte[] synthesized = new byte[]{0, 1, 2, 3};
         var fixture = HttpServer.create(new InetSocketAddress("127.0.0.1", 0), 0);
-        try (var fixtureWorkers = Executors.newVirtualThreadPerTaskExecutor(); var http = HttpClient.newHttpClient()) {
+        try (var fixtureWorkers = WorkerThreads.executor("voice-http-fixture-", 3); var http = TestHttpClient.create()) {
             fixture.setExecutor(fixtureWorkers);
             fixture.createContext("/v1/", exchange -> {
                 byte[] input = exchange.getRequestBody().readAllBytes();
@@ -103,8 +102,8 @@ class ConfiguredVoicePipelineTest {
                 assertEquals(3, requests.size());
                 var all = new ArrayList<Request>(); requests.drainTo(all);
                 assertEquals(List.of("/v1/audio/transcriptions", "/v1/chat/completions", "/v1/audio/speech"), all.stream().map(Request::path).toList());
-                assertTrue(all.getFirst().contentType().startsWith("multipart/form-data; boundary="));
-                String multipart = new String(all.getFirst().body(), StandardCharsets.ISO_8859_1);
+                assertTrue(all.get(0).contentType().startsWith("multipart/form-data; boundary="));
+                String multipart = new String(all.get(0).body(), StandardCharsets.ISO_8859_1);
                 assertTrue(multipart.contains("stt-test")); assertTrue(multipart.contains("RIFF")); assertTrue(multipart.contains("WAVEfmt "));
                 JsonNode chat = json.readTree(all.get(1).body());
                 assertEquals("chat-test", chat.path("model").asText()); assertTrue(chat.path("stream").asBoolean());

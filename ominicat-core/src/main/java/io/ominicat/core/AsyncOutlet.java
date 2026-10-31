@@ -13,7 +13,7 @@ import java.util.concurrent.RejectedExecutionException;
 public final class AsyncOutlet implements FrameSink, AutoCloseable {
     private final PipelineSession delivery;
 
-    /** Start one virtual delivery worker with at most {@code capacity} pending frames. */
+    /** Start one delivery worker for this runtime with at most {@code capacity} pending frames. */
     public AsyncOutlet(int capacity, FrameSink delegate) {
         Objects.requireNonNull(delegate, "delegate");
         delivery = Pipeline.builder().build().openSession(new SessionOptions(capacity), delegate);

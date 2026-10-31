@@ -1,45 +1,47 @@
 [
   {
-    "module": "ominicat-core",
-    "tests": 80,
+    "tests": 89,
     "failures": 0,
+    "errors": 0,
     "skipped": 0,
+    "module": "ominicat-core",
     "coverage": {
       "INSTRUCTION": {
-        "covered": 3259,
-        "missed": 311
+        "covered": 3485,
+        "missed": 423
       },
       "BRANCH": {
-        "covered": 322,
-        "missed": 78
+        "covered": 341,
+        "missed": 87
       },
       "LINE": {
-        "covered": 617,
-        "missed": 38
+        "covered": 663,
+        "missed": 55
       },
       "COMPLEXITY": {
-        "covered": 263,
-        "missed": 72
+        "covered": 294,
+        "missed": 82
       },
       "METHOD": {
-        "covered": 125,
-        "missed": 10
+        "covered": 149,
+        "missed": 13
       },
       "CLASS": {
-        "covered": 30,
-        "missed": 4
+        "covered": 33,
+        "missed": 5
       }
     }
   },
   {
-    "module": "ominicat-conversation",
     "tests": 40,
     "failures": 0,
+    "errors": 0,
     "skipped": 0,
+    "module": "ominicat-conversation",
     "coverage": {
       "INSTRUCTION": {
-        "covered": 2558,
-        "missed": 136
+        "covered": 2560,
+        "missed": 140
       },
       "BRANCH": {
         "covered": 297,
@@ -64,13 +66,14 @@
     }
   },
   {
-    "module": "ominicat-providers",
     "tests": 57,
     "failures": 0,
+    "errors": 0,
     "skipped": 0,
+    "module": "ominicat-providers",
     "coverage": {
       "INSTRUCTION": {
-        "covered": 2478,
+        "covered": 2487,
         "missed": 71
       },
       "BRANCH": {
@@ -96,21 +99,22 @@
     }
   },
   {
-    "module": "ominicat-server",
-    "tests": 57,
+    "tests": 58,
     "failures": 0,
+    "errors": 0,
     "skipped": 0,
+    "module": "ominicat-server",
     "coverage": {
       "INSTRUCTION": {
-        "covered": 2846,
+        "covered": 2862,
         "missed": 211
       },
       "BRANCH": {
-        "covered": 296,
+        "covered": 303,
         "missed": 74
       },
       "LINE": {
-        "covered": 463,
+        "covered": 468,
         "missed": 35
       },
       "COMPLEXITY": {

@@ -16,7 +16,7 @@ class EnvelopeProcessorTest {
         var outputs = new ArrayList<Frame>();
         pipeline.process(new FrameEnvelope(new Frame.Text("source"), "source", "session", "turn", "correlation", "", 10, 20), outputs::add);
         assertEquals(2, outputs.size());
-        FrameEnvelope first = (FrameEnvelope) outputs.getFirst();
+        FrameEnvelope first = (FrameEnvelope) outputs.get(0);
         assertEquals("event-1", first.causationId());
         assertEquals("correlation", first.correlationId());
         assertEquals(40, first.emitTimeNanos());
@@ -25,7 +25,7 @@ class EnvelopeProcessorTest {
     @Test void rawFramesStayRawAndMetadataValidationRejectsNesting() throws Exception {
         var outputs = new ArrayList<Frame>();
         new EnvelopeProcessor((frame, next) -> next.accept(frame)).process(new Frame.Text("raw"), outputs::add);
-        assertEquals(new Frame.Text("raw"), outputs.getFirst());
+        assertEquals(new Frame.Text("raw"), outputs.get(0));
         var envelope = new FrameEnvelope(new Frame.Text("x"), "id", "s", "t", "c", "", 1, 2);
         assertThrows(IllegalArgumentException.class, () -> envelope.derive(envelope, "next", 3));
         assertThrows(IllegalArgumentException.class, () -> envelope.derive(new Frame.Text("x"), "next", 1));

@@ -13,7 +13,7 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * A bounded FIFO and one virtual-thread worker. The worker serializes all stage
+ * A bounded FIFO and one runtime-selected worker (virtual on Java 21+, daemon platform on Java 17). The worker serializes all stage
  * callbacks. Cancellation is cooperative: stages must honor interruption for prompt
  * shutdown, and a callback already entered cannot have its external effects revoked.
  * Completion means all stages have been closed, including on failure or cancellation.
@@ -47,7 +47,7 @@ public final class PipelineSession implements AutoCloseable {
         this.pipeline = pipeline;
         this.capacity = options.queueCapacity();
         this.output = output;
-        worker = Thread.ofVirtual().name("ominicat-session-", 0).unstarted(this::run);
+        worker = WorkerThreads.unstarted("ominicat-session-", this::run);
         worker.start();
     }
 

@@ -105,9 +105,9 @@ class ConversationWindowTest {
         assertTrue(window.add(first));
         assertFalse(window.add(new Frame.Transcript("ready", "track-3", 0, 10, true, .9,
                 "segment-1", 3, "participant")));
-        assertEquals("participant", window.snapshot().turns().getFirst().role());
-        assertEquals("track-3", window.snapshot().turns().getFirst().speaker());
-        assertEquals(2, window.snapshot().turns().getFirst().revision());
+        assertEquals("participant", window.snapshot().turns().get(0).role());
+        assertEquals("track-3", window.snapshot().turns().get(0).speaker());
+        assertEquals(2, window.snapshot().turns().get(0).revision());
         assertThrows(IllegalArgumentException.class, () -> window.add(new Frame.Transcript(
                 "changed", "track-3", 0, 10, true, .9, "segment-1", 4, "participant")));
         assertThrows(IllegalArgumentException.class, () -> window.add(new Frame.Transcript(
@@ -140,7 +140,7 @@ class ConversationWindowTest {
                 0, new ConversationMetrics(0, 0, 0, java.util.Map.of()))));
         assertEquals(before, window.snapshot());
         assertThrows(IllegalArgumentException.class, () -> window.restore(new ConversationSnapshot(
-                List.of(before.turns().getFirst(), before.turns().getFirst()), 0, before.metrics())));
+                List.of(before.turns().get(0), before.turns().get(0)), 0, before.metrics())));
         assertEquals(before, window.snapshot());
         assertThrows(IllegalArgumentException.class, () -> new ConversationWindow(1, 2, before));
     }

@@ -12,7 +12,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-/** Standalone JDK 21 closed-loop transport probe; run against config/demo.yaml. */
+/** Standalone JDK 17+ closed-loop transport probe; run against config/demo.yaml. */
 public class WebSocketLoad {
     private static final class Listener implements WebSocket.Listener {
         private final ArrayBlockingQueue<String> replies = new ArrayBlockingQueue<>(4);
@@ -42,7 +42,10 @@ public class WebSocketLoad {
         HttpClient http = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
         CountDownLatch ready = new CountDownLatch(connections), start = new CountDownLatch(1);
         List<CompletableFuture<Void>> results = new ArrayList<>();
-        try (var workers = Executors.newVirtualThreadPerTaskExecutor()) {
+        var workers = Executors.newFixedThreadPool(connections, task -> {
+            Thread thread = new Thread(task, "websocket-load"); thread.setDaemon(true); return thread;
+        });
+        try {
             for (int connection = 0; connection < connections; connection++) {
                 final int id = connection;
                 var result = new CompletableFuture<Void>(); results.add(result);
@@ -73,6 +76,11 @@ public class WebSocketLoad {
                 "{\n  \"workload\": \"WebSocket JSON text echo; closed-loop, one in-flight frame per connection\",\n  \"connections\": %d,\n  \"measuredFrames\": %d,\n  \"warmupFramesPerConnection\": 100,\n  \"seconds\": %.6f,\n  \"framesPerSecond\": %.3f,\n  \"p50Micros\": %.3f,\n  \"p95Micros\": %.3f,\n  \"p99Micros\": %.3f,\n  \"maxMicros\": %.3f,\n  \"failedFrames\": 0,\n  \"javaVersion\": \"%s\",\n  \"architecture\": \"%s\"\n}\n",
                 connections, total, seconds, total / seconds, percentile(latencies, .50), percentile(latencies, .95), percentile(latencies, .99),
                 latencies[latencies.length - 1] / 1000.0, System.getProperty("java.version"), System.getProperty("os.arch"));
+        } finally {
+            start.countDown();
+            workers.shutdownNow();
+            if (!workers.awaitTermination(15, TimeUnit.SECONDS)) throw new IllegalStateException("probe workers did not stop");
+            if ((Object) http instanceof AutoCloseable closeable) closeable.close();
         }
     }
     private static double percentile(long[] values, double percentile) { return values[(int) Math.ceil(values.length * percentile) - 1] / 1000.0; }

@@ -9,7 +9,7 @@ Build an immutable server artifact, then compile the observers/drivers against i
 ```bash
 ./mvnw -pl ominicat-server -am clean package -DskipTests
 mkdir -p reports/local/deep/classes
-javac --release 21 -cp ominicat-server/target/ominicat-server.jar \
+javac --release 17 -cp ominicat-server/target/ominicat-server.jar \
   -d reports/local/deep/classes validation/ValidationServer.java validation/Soak.java
 ```
 
@@ -32,11 +32,11 @@ The probe maintains 64 persistent connections at approximately20 frames/s each p
 
 Latency histograms are bounded:1µs buckets up to100ms, then1ms buckets, with overflow beyond10.1s; reported percentiles are bucket upper bounds. Measurement includes send/receive and payload validation, and is closed-loop/rate-limited. Churn latency excludes handshake time. Unexpected failures are counted separately and fail the run. This is a correctness/resource probe, not a saturation capacity benchmark.
 
-The loopback observer records heap, direct buffers, Netty allocator memory, classes, platform threads, GC time, CPU and open file descriptors. Prometheus samples track active sockets, retained admission and live pipeline workers. Virtual workers are not included in the JDK platform-thread count. Full GC is requested once after warmup and once after draining to compare retained heap. Full-GC endpoints are validation-only. Persistent metrics, full-GC comparisons and post-drain class histograms complement one another; stable sampled memory alone does not prove absence of all leaks.
+The loopback observer records heap, direct buffers, Netty allocator memory, classes, platform threads, GC time, CPU and open file descriptors. Prometheus samples track active sockets, retained admission and live pipeline workers. On Java 17, session workers are platform threads and appear in this count. On Java 21+, session workers are virtual threads and are not included in the JDK platform-thread count. Full GC is requested once after warmup and once after draining to compare retained heap. Full-GC endpoints are validation-only. Persistent metrics, full-GC comparisons and post-drain class histograms complement one another; stable sampled memory alone does not prove absence of all leaks.
 
 `soak-criteria.json` records exploratory guardrails before the run. The driver requires every persistent client to sustain at least10 successful validated frames/s, zero unexpected failures, and complete active/admitted/worker/output drain. The final analyzer checks all frame types were exercised, histogram/type counters balance, full-GC heap growth (8MiB), direct reservation growth (4MiB), and descriptor/platform-thread growth (8 each). These thresholds are local investigation limits, not production promises.
 
-Keep raw JFR, native-memory output and machine-specific logs under ignored `reports/local/`. Publish selected counters, workload, source/artifact hashes and actual failure counts. A 20-minute local run does not establish multi-day stability or a production SLA.
+Keep raw JFR, native-memory output and machine-specific logs under ignored `reports/local/`. Publish selected counters, workload, source/artifact hashes and actual failure counts. A 20-minute local run does not establish multi-day stability or a production SLA. The separate Java 17 compatibility regression uses 120 measured seconds and ten seconds of warmup; pass `validation/java17-soak-criteria.json` as the optional third analyzer argument instead of changing the historical 20-minute criteria.
 
 Optional class-histogram diagnostics request additional GC. JFR captures the entire process around the measurement window, including warmup, drain and those diagnostics. NMT committed/reserved memory is not RSS; a256MiB heap limit is not a256MiB process-memory limit.
 
@@ -49,7 +49,7 @@ Optional class-histogram diagnostics request additional GC. JFR captures the ent
 Copy `live-example.json` to an ignored `*.local.json` file, provide a test endpoint and the name of an already configured credential environment variable. Model fields are explicit. The probe makes one request per configured capability, with short synthetic input and bounded output; it does not auto-discover models or silently use a different account.
 
 ```bash
-javac --release 21 -cp ominicat-server/target/ominicat-server.jar \
+javac --release 17 -cp ominicat-server/target/ominicat-server.jar \
   -d reports/local/deep/classes validation/LiveCompatible.java
 java -cp ominicat-server/target/ominicat-server.jar:reports/local/deep/classes \
   LiveCompatible validation/test.local.json reports/local/deep/live-result.json

@@ -1,0 +1,2 @@
+Configuration written successfully to:
+[private snapshot]/reports/local/java17-kernel/safe-profile.jfc

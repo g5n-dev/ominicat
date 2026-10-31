@@ -1,0 +1,266 @@
+{
+  "builtAt": "2026-10-31T15:21:16.646752+08:00",
+  "baseRevision": "209803460a43c6b3c77d81cec871069da7d6a776",
+  "workingTreeCompatibilityChanges": true,
+  "builtWith": "Homebrew OpenJDK 17.0.21.0.3",
+  "compilerRelease": 17,
+  "artifactSha256": "370e4e056d2336526ffe5f4975470671b195235eeb43623efed873bc2e32883e",
+  "baseClassfileMajors": {
+    "61": 91,
+    "50": 2159,
+    "52": 1361
+  },
+  "allBaseClassesAtMostJava17": true,
+  "sourceAggregateSha256": "1d5f10c841306ca5871ada654e8ff72aae10604f20b893490e93a7237e2cb69b",
+  "sourceFiles": [
+    {
+      "path": "ominicat-benchmarks/pom.xml",
+      "sha256": "c4c722655f5f1f58d84a125ffa34c095aafd855ceff1a9c76cbc8b3983b0efda"
+    },
+    {
+      "path": "ominicat-benchmarks/src/main/java/io/ominicat/benchmarks/CoreLoad.java",
+      "sha256": "c3dfcc64c2188b99e0430f47e98d39d5a104e0487afb21c1cec4d09be5cd38fe"
+    },
+    {
+      "path": "ominicat-benchmarks/src/main/java/io/ominicat/benchmarks/PipelineBenchmark.java",
+      "sha256": "fc6c43c52f96d3ca753bf5f4f76ae61c1863791580b939f40659216b2260076e"
+    },
+    {
+      "path": "ominicat-benchmarks/src/main/java/io/ominicat/benchmarks/SessionBenchmark.java",
+      "sha256": "fc6eb96030dfed0df3203eadd285d36b51077c7f2fb561fc5216679c419e91d3"
+    },
+    {
+      "path": "ominicat-conversation/pom.xml",
+      "sha256": "b16552d745f999ea29a49f0fcfc206dbaade32394a4b1acf956c1612eeb45a09"
+    },
+    {
+      "path": "ominicat-conversation/src/main/java/io/ominicat/conversation/ConversationEvaluatorFactory.java",
+      "sha256": "4b0066198471c7830d78e1a82fe270d35f374cedecac60de5d9d8534e6af302c"
+    },
+    {
+      "path": "ominicat-conversation/src/main/java/io/ominicat/conversation/ConversationEvaluatorProcessor.java",
+      "sha256": "e62529eb0704514bb86eef8e43b3b0ebec7614e85aabf2c68b01c6e938a27bec"
+    },
+    {
+      "path": "ominicat-conversation/src/main/java/io/ominicat/conversation/ConversationMetrics.java",
+      "sha256": "cca0b37b73d38fd31941ed6ecc7c40cc2faffa6fdff67a7bfc934de2d5107010"
+    },
+    {
+      "path": "ominicat-conversation/src/main/java/io/ominicat/conversation/ConversationSnapshot.java",
+      "sha256": "451c9c7cd351be1b73a4cc2fce788b2c3bb99c3a9240386c36568fc3c4f2fca1"
+    },
+    {
+      "path": "ominicat-conversation/src/main/java/io/ominicat/conversation/ConversationWindow.java",
+      "sha256": "aea106e0bb748a1a468c65ac79deaa546685178adc74576010de8062ed5a4b6d"
+    },
+    {
+      "path": "ominicat-conversation/src/main/java/io/ominicat/conversation/EvaluationFrame.java",
+      "sha256": "9fa195b723c29643a2319a190010b3b2cda6f9e47a1a185d436d2c59745de310"
+    },
+    {
+      "path": "ominicat-conversation/src/main/java/io/ominicat/conversation/Evidence.java",
+      "sha256": "e7db2086d1913a70c434108692474f8f13e46569e0875df27836adab06af7957"
+    },
+    {
+      "path": "ominicat-conversation/src/main/java/io/ominicat/conversation/PluginOptions.java",
+      "sha256": "a1527b937374fd5433a63693b8b68f0262af963f177766aeeabfd058fe0bb60f"
+    },
+    {
+      "path": "ominicat-conversation/src/main/java/io/ominicat/conversation/PolicyRule.java",
+      "sha256": "f2f2fec75ac908abdfd526d61587c5d5a1b73423d1f24f01ab26a08520f9d865"
+    },
+    {
+      "path": "ominicat-conversation/src/main/java/io/ominicat/conversation/PolicyRules.java",
+      "sha256": "6488a726067edbc7f44624ea09c0e58ebae3a67cd7ae059237fdadc7bcb98cda"
+    },
+    {
+      "path": "ominicat-conversation/src/main/java/io/ominicat/conversation/PromptTemplateFactory.java",
+      "sha256": "d188da40998a6f9030a218ec4492c7dfec4c284d4eb0aae3cac14361036bf666"
+    },
+    {
+      "path": "ominicat-conversation/src/main/java/io/ominicat/conversation/PromptTemplateProcessor.java",
+      "sha256": "5eef01c4132abea03aeeec60f9340820ff1da09426db4a1d472823cdd5348de9"
+    },
+    {
+      "path": "ominicat-conversation/src/main/java/io/ominicat/conversation/RuleResult.java",
+      "sha256": "7ed3ad5c8252cc483d9f7aca64c7e1a890437ca4e6115a9cdbfe54b6ae3b516d"
+    },
+    {
+      "path": "ominicat-conversation/src/main/java/io/ominicat/conversation/Turn.java",
+      "sha256": "9d859f1a293019d9782d8eca08dff441271d13b9d6a1bbb3a7c742a087277155"
+    },
+    {
+      "path": "ominicat-conversation/src/main/java/io/ominicat/conversation/flow/StepFlowFactory.java",
+      "sha256": "8f2e1b271ce4fcf412e68a3a0c664febeef3421c4820ee9360e62e9b855ef434"
+    },
+    {
+      "path": "ominicat-conversation/src/main/java/io/ominicat/conversation/flow/StepFlowProcessor.java",
+      "sha256": "90f2f40dab2bfdabb2d98fc28a8f9262afaf3da420ff313cbcc92ba35c402a80"
+    },
+    {
+      "path": "ominicat-conversation/src/main/resources/META-INF/services/io.ominicat.core.spi.ProcessorFactory",
+      "sha256": "3a0ed4951547708719e75bfdeaa187894f382c48829cfddf94b2b5d013769aa3"
+    },
+    {
+      "path": "ominicat-core/pom.xml",
+      "sha256": "c54cdb223664b92c023c3e7bfa587c3a1a20eee67e1cf813d13479e1289708dc"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/AsyncEmitter.java",
+      "sha256": "44f9efb11ea681c9757f6b8775071da3a34f437877d5ed1cbb0b15c8bd381154"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/AsyncOutlet.java",
+      "sha256": "f29168544a4da9a827f776d2af03d09fe30e5a42e7a97a6adde4dc4a96ccc584"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/AsyncProcessor.java",
+      "sha256": "38c4854af52081b33f2037e7f6aaa8fde98972bda4f2564aae8346fb3fbe9fb1"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/EnvelopeProcessor.java",
+      "sha256": "cdb01f8141bff2762d1f8c75488160efac00ccf68d8a72af5267aa3a8dbbf69b"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/FallbackProcessor.java",
+      "sha256": "42f2b34a365931b85b783bbea10f2ee40d1eebbdcbad945f07ac9f214083cef7"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/Frame.java",
+      "sha256": "fdcc1ee0ba7e83a9b564f67a16b33e25673073f7265d0d832e38aafcf1de757a"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/FrameEnvelope.java",
+      "sha256": "977d8556417420128bcb4351f6ea57630edc621b8a36a75f87468c37468d52b3"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/FrameSink.java",
+      "sha256": "e1373e4404361b374b597a9bf1d0970102b662f410e11a6163fe62d67e4016fd"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/ParallelProcessor.java",
+      "sha256": "676d542294a265141588592877e25ae5baa0d356aefdb5de42824d530de2d751"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/Pipeline.java",
+      "sha256": "51912a2028db89ba280928c59964ba157034f172e27c4178e765601420d4777b"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/PipelineSession.java",
+      "sha256": "7207a387f18857cad9f26563d1169b96d0112637f5fe2276d6693d1148c4886e"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/Processor.java",
+      "sha256": "01d05e653b58ca5243f7f74c7f0389b4d5a1ae7837743afde04ca8d26357c356"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/SessionMetrics.java",
+      "sha256": "58b3279acc9f42c269709b36ecc3d037393d244f735aaac3cb23e382172787a0"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/SessionOptions.java",
+      "sha256": "5bed3b1247e246166192f6ba66c421099dcba5dbe77741c09e4fdd002634c414"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/SynchronousSink.java",
+      "sha256": "9d22b891c7efc690c348ce1fe5127b5074567d6750fdca10bd50f259d1f5a594"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/WorkerThreads.java",
+      "sha256": "046dd215331c3d7b9f98f29b2748a5c35231b4fc3d12c006ba4ce2f3be623499"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/spi/PluginRegistry.java",
+      "sha256": "a26c4c72e439426be594c811c6e1511bfb1a83920df62cc35c360320b74d2320"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/spi/ProcessorFactory.java",
+      "sha256": "1b76527adc33c7baf64c23ce32e755b96343a1253e8f56d3c6a6c9af9da6de20"
+    },
+    {
+      "path": "ominicat-providers/pom.xml",
+      "sha256": "45f6bfda9d43a509c7937c8ae81db1e40c7b6ea594fa5783d3144b0cf4f08f59"
+    },
+    {
+      "path": "ominicat-providers/src/main/java/io/ominicat/providers/AudioChannelSplitFactory.java",
+      "sha256": "230327822eeb5ae434fddc055ca76bf9b3bb43a4cd4244e265e9cf7c6131645c"
+    },
+    {
+      "path": "ominicat-providers/src/main/java/io/ominicat/providers/ChatFactory.java",
+      "sha256": "5ad587fb28bbdc1f093f25fd9c7c6b35ef8f16003e52515a3f4ff4cc9f20946b"
+    },
+    {
+      "path": "ominicat-providers/src/main/java/io/ominicat/providers/CompatibleClient.java",
+      "sha256": "a0e93881429289f9d607a74b04ddd3265ba913ca6908caaf83f5a1b7fb191ab8"
+    },
+    {
+      "path": "ominicat-providers/src/main/java/io/ominicat/providers/EchoFactory.java",
+      "sha256": "1f91151edb592c46081350878b918e850bfe4c95306912b31b7dac72d6b10a4b"
+    },
+    {
+      "path": "ominicat-providers/src/main/java/io/ominicat/providers/Options.java",
+      "sha256": "88f6046f499d34cda3d423deb96eececdfcfc32d7f6901c2e94d34be6f94a485"
+    },
+    {
+      "path": "ominicat-providers/src/main/java/io/ominicat/providers/ProviderException.java",
+      "sha256": "606b4f84436de3562311d6264d907b3dc84cda28b1c9b4915dcb7eeb67ce1fc9"
+    },
+    {
+      "path": "ominicat-providers/src/main/java/io/ominicat/providers/RmsVadFactory.java",
+      "sha256": "35d74325015916638253661c58a4a8903818c752aafa0deb3fb149ac2dc6edd0"
+    },
+    {
+      "path": "ominicat-providers/src/main/java/io/ominicat/providers/SpeechFactory.java",
+      "sha256": "a113a44ce340367d377e8f2cc21ce20e9872f538da074e10f882c899c51b8e3b"
+    },
+    {
+      "path": "ominicat-providers/src/main/java/io/ominicat/providers/TranscriptGateFactory.java",
+      "sha256": "12c0d7c18fc5d3ad8df26df6549d1f8470c4618b7698ec8a69617ee03efcffaa"
+    },
+    {
+      "path": "ominicat-providers/src/main/java/io/ominicat/providers/TranscriptionFactory.java",
+      "sha256": "7d1c9198e0b70ecdf92f6835457658f1dd826ede948120175389e89cc437fe0d"
+    },
+    {
+      "path": "ominicat-providers/src/main/resources/META-INF/services/io.ominicat.core.spi.ProcessorFactory",
+      "sha256": "e53f7d3ebe9ab63f1915e9737a5e86c4faa993b576a08e3387ec14356e09a31b"
+    },
+    {
+      "path": "ominicat-server/pom.xml",
+      "sha256": "069a1d8783afd83dab2986274d792fffd804a7025c73484d447b7458e795a56c"
+    },
+    {
+      "path": "ominicat-server/src/main/java/io/ominicat/server/FrameCodec.java",
+      "sha256": "934d429b89ee606e2373f9045b196f91256f5e26edc776108e98bdb68abff1bb"
+    },
+    {
+      "path": "ominicat-server/src/main/java/io/ominicat/server/OminiCat.java",
+      "sha256": "b1068f291abf5c51d5b10674462a007e27eebf9761ad4e1a5c298ee53b84f2e3"
+    },
+    {
+      "path": "ominicat-server/src/main/java/io/ominicat/server/OminiCatServer.java",
+      "sha256": "58a61b2f81dcdb26f9e51668b3447978cd55efcd7e2201f1c156fea0b5da8d38"
+    },
+    {
+      "path": "ominicat-server/src/main/java/io/ominicat/server/RuntimeConfig.java",
+      "sha256": "8d2c07dc471497f9d83a0e16e17ec199a67146ed513e1aa7f9981969a59e2360"
+    },
+    {
+      "path": "ominicat-server/src/main/resources/web/index.html",
+      "sha256": "dc0ef7110be5381cf1a7d6fb490ad3582dfdde146a357e6e590ca95a2d2b7ad6"
+    },
+    {
+      "path": "pom.xml",
+      "sha256": "edb54f636b19a4c8794761980258278a0a6de97a0b78e871f973ebfc5cc8ad49"
+    }
+  ],
+  "releaseSourceAggregateSha256": "38506f53a2f84e8de286f924e35cafbccc3cf3f35d98e596b163bca25dac89ff",
+  "postVerificationDocumentationDelta": {
+    "path": "ominicat-core/src/main/java/io/ominicat/core/AsyncOutlet.java",
+    "measuredSourceSha256": "f29168544a4da9a827f776d2af03d09fe30e5a42e7a97a6adde4dc4a96ccc584",
+    "releaseSourceSha256": "e268a2a7b966ee805dd515789dbfaaf24d003af3f427ea36f08aa29bf9901b36",
+    "change": "Correct the delivery-worker Javadoc to describe both Java 17 platform workers and Java 21+ virtual workers. One comment line only.",
+    "allRebuiltJarEntryContentsEqualToMeasuredArtifact": true,
+    "runtimeValidationRepeated": false
+  }
+}

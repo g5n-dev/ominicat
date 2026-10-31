@@ -3,6 +3,7 @@ package io.ominicat.providers;
 import static org.junit.jupiter.api.Assertions.*;
 
 import io.ominicat.core.Frame;
+import io.ominicat.core.WorkerThreads;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
 import java.net.http.HttpTimeoutException;
@@ -122,7 +123,7 @@ class ProviderFaultMatrixTest extends ProviderHttpTestSupport {
         try (var socket = new ServerSocket(0, 1, InetAddress.getByName("127.0.0.1"))) {
             CountDownLatch partialDelivered = new CountDownLatch(1);
             CompletableFuture<Void> peer = new CompletableFuture<>();
-            Thread.ofVirtual().start(() -> {
+            WorkerThreads.start("ominicat-provider-test-", () -> {
                 try (var connection = socket.accept()) {
                     connection.setSoTimeout(3000);
                     int matched = 0, character;

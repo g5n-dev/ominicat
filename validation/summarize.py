@@ -7,7 +7,7 @@ import sys
 import re
 
 
-def main(source, destination):
+def main(source, destination, criteria_path=None):
     root = pathlib.Path(source)
     target = pathlib.Path(destination)
     target.mkdir(parents=True, exist_ok=True)
@@ -17,7 +17,10 @@ def main(source, destination):
     resource_keys = ['heapUsedBytes', 'directBufferBytes', 'nettyDirectBytes', 'openFileDescriptors', 'platformThreads', 'loadedClasses']
     comparison = {key: {'afterWarmup': before.get(key), 'afterDrain': after.get(key),
                         'delta': after.get(key, 0) - before.get(key, 0)} for key in resource_keys}
-    criteria = json.loads(pathlib.Path(__file__).with_name('soak-criteria.json').read_text())
+    criteria_file = pathlib.Path(criteria_path) if criteria_path else pathlib.Path(__file__).with_name('soak-criteria.json')
+    criteria = json.loads(criteria_file.read_text())
+    if criteria_file.resolve() != (target / 'soak-criteria.json').resolve():
+        shutil.copyfile(criteria_file, target / 'soak-criteria.json')
     checks = {
         'measuredDuration': result['measuredSeconds'] >= criteria['measuredSeconds'],
         'zeroUnexpectedFailures': result['failures'] == 0,
@@ -31,7 +34,8 @@ def main(source, destination):
         'descriptorGrowth': comparison['openFileDescriptors']['delta'] <= criteria['maximumPostDrainDescriptorGrowth'],
         'platformThreadGrowth': comparison['platformThreads']['delta'] <= criteria['maximumPostDrainPlatformThreadGrowth']}
     checks = {name: bool(value) for name, value in checks.items()}
-    summary = {'workload': {'measuredSeconds': result['measuredSeconds'], 'warmupSeconds': result['warmupSeconds'],
+    summary = {'runtime': {key: before.get(key) for key in ('javaVersion', 'workerBackend')},
+               'workload': {'measuredSeconds': result['measuredSeconds'], 'warmupSeconds': result['warmupSeconds'],
                            'persistentClients': result['persistentClients'], 'churnClients': result['churnClients'],
                            'heapLimitMiB': 256, 'directMemoryLimitMiB': 128},
                'frames': result['measuredFrames'], 'frameTypes': result['validatedFramesByType'],
@@ -74,6 +78,6 @@ def main(source, destination):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) != 3:
-        raise SystemExit('Usage: summarize.py source-run-directory published-report-directory')
-    main(sys.argv[1], sys.argv[2])
+    if len(sys.argv) not in (3, 4):
+        raise SystemExit('Usage: summarize.py source-run-directory published-report-directory [criteria.json]')
+    main(sys.argv[1], sys.argv[2], sys.argv[3] if len(sys.argv) == 4 else None)

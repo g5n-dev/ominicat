@@ -60,7 +60,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Embedded, configurable WebSocket container. Netty owns socket I/O; each accepted session
- * owns its own microkernel pipeline and virtual worker. Instances are single-use.
+ * owns its own microkernel pipeline and worker. Instances are single-use.
  */
 public final class OminiCatServer implements AutoCloseable {
     private static final int CLOSE_TIMEOUT_SECONDS = 2;
@@ -196,7 +196,8 @@ public final class OminiCatServer implements AutoCloseable {
             }
             return builder.build().openSession(new SessionOptions(config.queueCapacity()), output);
         } catch (Throwable failure) {
-            for (Processor processor : processors.reversed()) {
+            for (int index = processors.size() - 1; index >= 0; index--) {
+                Processor processor = processors.get(index);
                 try { processor.close(); }
                 catch (Throwable cleanup) { if (cleanup != failure) failure.addSuppressed(cleanup); }
             }
@@ -286,7 +287,7 @@ public final class OminiCatServer implements AutoCloseable {
                 || address.getAddress() == null || !address.getAddress().isLoopbackAddress()) return true;
         List<String> hosts = request.headers().getAll(HttpHeaderNames.HOST);
         if (hosts.size() != 1) return false;
-        String authority = hosts.getFirst();
+        String authority = hosts.get(0);
         String host;
         String suffix;
         if (authority.startsWith("[")) {

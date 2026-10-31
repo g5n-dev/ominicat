@@ -10,7 +10,6 @@ import java.util.concurrent.CompletionException;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -19,11 +18,11 @@ import org.junit.jupiter.api.Timeout;
 
 @Timeout(10)
 class PipelineSessionTest {
-    @Test void drainsFifoOnOneVirtualWorkerWithoutSyntheticControlFrames() throws Exception {
+    @Test void drainsFifoOnOneCompatibleWorkerWithoutSyntheticControlFrames() throws Exception {
         List<Frame> output = new CopyOnWriteArrayList<>();
         AtomicBoolean virtual = new AtomicBoolean();
         PipelineSession session = Pipeline.builder().add((frame, next) -> {
-            virtual.set(Thread.currentThread().isVirtual());
+            virtual.set(WorkerThreads.isVirtual(Thread.currentThread()));
             next.accept(frame);
         }).build().openSession(new SessionOptions(128), output::add);
         for (int i = 0; i < 100; i++) assertTrue(session.submit(new Frame.Text("" + i), Duration.ofSeconds(1)));
@@ -31,7 +30,7 @@ class PipelineSessionTest {
         session.finish();
         assertFalse(session.trySubmit(new Frame.Text("late")));
         session.completion().get(3, TimeUnit.SECONDS);
-        assertTrue(virtual.get());
+        assertEquals(WorkerThreads.virtualThreadsAvailable(), virtual.get());
         assertEquals(100, output.size());
         for (int i = 0; i < 100; i++) assertEquals(new Frame.Text("" + i), output.get(i));
         SessionMetrics metrics = session.metrics();
@@ -67,7 +66,7 @@ class PipelineSessionTest {
         session.trySubmit(new Frame.Text("active"));
         await(entered);
         session.trySubmit(new Frame.Text("queued"));
-        try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+        try (var executor = WorkerThreads.executor("test-task-", 4, 1024)) {
             var waiting = executor.submit(() -> session.submit(new Frame.Text("late"), Duration.ofHours(1)));
             session.finish();
             assertFalse(waiting.get(2, TimeUnit.SECONDS));
@@ -82,7 +81,7 @@ class PipelineSessionTest {
         session.trySubmit(new Frame.Text("active"));
         await(entered);
         session.trySubmit(new Frame.Text("queued"));
-        try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+        try (var executor = WorkerThreads.executor("test-task-", 4, 1024)) {
             var waiting = executor.submit(() -> session.submit(new Frame.Text("next"), Duration.ofSeconds(2)));
             release.countDown();
             assertTrue(waiting.get(3, TimeUnit.SECONDS));
@@ -237,7 +236,7 @@ class PipelineSessionTest {
                 next.accept(new Frame.Text(buffer));
             }
             @Override public void onInterrupt() {
-                assertTrue(Thread.currentThread().isVirtual());
+                assertEquals(WorkerThreads.virtualThreadsAvailable(), WorkerThreads.isVirtual(Thread.currentThread()));
                 buffer = "";
                 hookEntered.countDown();
             }
@@ -277,7 +276,7 @@ class PipelineSessionTest {
         AtomicInteger output = new AtomicInteger();
         PipelineSession session = Pipeline.builder().build().openSession(new SessionOptions(16), frame -> output.incrementAndGet());
         List<java.util.concurrent.Future<?>> jobs = new ArrayList<>();
-        try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+        try (var executor = WorkerThreads.executor("test-task-", 4, 1024)) {
             for (int producer = 0; producer < 8; producer++) jobs.add(executor.submit(() -> {
                 for (int i = 0; i < 100; i++) {
                     try { assertTrue(session.submit(new Frame.Text("x"), Duration.ofSeconds(3))); }

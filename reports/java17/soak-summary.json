@@ -1,0 +1,86 @@
+{
+  "runtime": {
+    "javaVersion": "17.0.21.0.3",
+    "workerBackend": "platform"
+  },
+  "workload": {
+    "measuredSeconds": 120.117718833,
+    "warmupSeconds": 10,
+    "persistentClients": 64,
+    "churnClients": 4,
+    "heapLimitMiB": 256,
+    "directMemoryLimitMiB": 128
+  },
+  "frames": 138388,
+  "frameTypes": {
+    "text": 99529,
+    "audio": 20815,
+    "transcript": 13880,
+    "image": 2776,
+    "envelope": 1388
+  },
+  "newConnections": 4395,
+  "failures": 0,
+  "allClientsProgressed": true,
+  "steadyLatency": {
+    "count": 133993,
+    "p50MicrosUpperBound": 778,
+    "p95MicrosUpperBound": 3293,
+    "p99MicrosUpperBound": 6149,
+    "maximumMicros": 52464.625
+  },
+  "churnLatency": {
+    "count": 4395,
+    "p50MicrosUpperBound": 434,
+    "p95MicrosUpperBound": 1416,
+    "p99MicrosUpperBound": 2667,
+    "maximumMicros": 16555.125
+  },
+  "postGcResourceComparison": {
+    "heapUsedBytes": {
+      "afterWarmup": 11701216,
+      "afterDrain": 8092760,
+      "delta": -3608456
+    },
+    "directBufferBytes": {
+      "afterWarmup": 16818183,
+      "afterDrain": 16818183,
+      "delta": 0
+    },
+    "nettyDirectBytes": {
+      "afterWarmup": 16777216,
+      "afterDrain": 16777216,
+      "delta": 0
+    },
+    "openFileDescriptors": {
+      "afterWarmup": 96,
+      "afterDrain": 33,
+      "delta": -63
+    },
+    "platformThreads": {
+      "afterWarmup": 80,
+      "afterDrain": 17,
+      "delta": -63
+    },
+    "loadedClasses": {
+      "afterWarmup": 3869,
+      "afterDrain": 3902,
+      "delta": 33
+    }
+  },
+  "drainedMetrics": "# HELP ominicat_active_sessions Current WebSocket sessions.\n# TYPE ominicat_active_sessions gauge\nominicat_active_sessions 0\n# TYPE ominicat_sessions_total counter\nominicat_sessions_total 4806\n# TYPE ominicat_admitted_sessions gauge\nominicat_admitted_sessions 0\n# TYPE ominicat_connections gauge\nominicat_connections 1\n# TYPE ominicat_live_pipeline_workers gauge\nominicat_live_pipeline_workers 0\n# TYPE ominicat_pending_output_bytes gauge\nominicat_pending_output_bytes 0\n# TYPE ominicat_frames_in_total counter\nominicat_frames_in_total 149405\n# TYPE ominicat_frames_out_total counter\nominicat_frames_out_total 149405\n# TYPE ominicat_frames_rejected_total counter\nominicat_frames_rejected_total 0\n# TYPE ominicat_session_failures_total counter\nominicat_session_failures_total 0\n# TYPE ominicat_bytes_out_total counter\nominicat_bytes_out_total 94227898\n",
+  "checks": {
+    "measuredDuration": true,
+    "zeroUnexpectedFailures": true,
+    "allClientsProgressed": true,
+    "allFrameTypesExercised": true,
+    "frameTypeConservation": true,
+    "latencyCountConservation": true,
+    "resourcesDrained": true,
+    "retainedHeapGrowth": true,
+    "directMemoryGrowth": true,
+    "descriptorGrowth": true,
+    "platformThreadGrowth": true
+  },
+  "allCriteriaPassed": true
+}

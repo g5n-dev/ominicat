@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -71,7 +70,7 @@ class CompositeLifetimeTest {
         CountDownLatch releaseFirst = new CountDownLatch(1);
         AtomicInteger delivered = new AtomicInteger();
         ParallelProcessor parallel = parallel((frame, next) -> { next.accept(frame); next.accept(frame); }, (frame, next) -> { });
-        try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+        try (var executor = WorkerThreads.executor("test-task-", 4, 1024)) {
             var running = executor.submit(() -> {
                 parallel.process(new Frame.Text("result"), frame -> {
                     delivered.incrementAndGet(); deliveredFirst.countDown(); releaseFirst.await();
@@ -108,7 +107,7 @@ class CompositeLifetimeTest {
         ParallelProcessor parallel = new ParallelProcessor(List.of(new ParallelProcessor.Branch("slow", slow)), Duration.ofMillis(25), 1);
         assertThrows(TimeoutException.class, () -> parallel.process(new Frame.Text("request"), frame -> { }));
         assertTrue(entered.await(2, TimeUnit.SECONDS));
-        try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+        try (var executor = WorkerThreads.executor("test-task-", 4, 1024)) {
             var closing = executor.submit(() -> { closeAttempted.countDown(); parallel.close(); return null; });
             assertTrue(closeAttempted.await(2, TimeUnit.SECONDS));
             assertEquals(0, closed.get());

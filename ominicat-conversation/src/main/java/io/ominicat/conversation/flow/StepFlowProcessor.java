@@ -76,7 +76,7 @@ public final class StepFlowProcessor implements Processor {
             if (transition.condition().test(transcript)) { target = transition.target(); break; }
         }
         long nextRevision = target == null ? revision : Math.incrementExact(revision);
-        if (committed.size() == maxRememberedSegments) committed.removeFirst();
+        if (committed.size() == maxRememberedSegments) committed.remove(committed.iterator().next());
         committed.add(transcript.segmentId());
         if (target != null) { current = target; revision = nextRevision; enter(next); }
     }
