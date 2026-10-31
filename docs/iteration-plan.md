@@ -14,9 +14,21 @@ Scheduled profiling is a separate evidence collection job. It runs weekly on Jav
 
 ## Ready queue
 
+### Temporal and annotation semantics
+
+The [temporal contract proposal](temporal-annotations.md) defines foundation contracts that compatibility metadata or a result codec alone cannot establish. These are planned capabilities, not shipped segmentation algorithms, annotation workflows or APIs. Prioritize the following small increments before descriptor-only expansion; keep every implementation optional and preserve existing transcript finality.
+
+| Order | Increment | Acceptance boundary |
+| --- | --- | --- |
+| T1 | Source-bound ranges and explicit segment changes | Distinguish source/track/time basis and exact revision; test range adjustment plus bounded atomic split/merge. Reject stale parents, invalid units and partial application. Preserve old evidence references and legacy unknown-position frames. |
+| T2 | Independent, versioned annotations | Separate annotation edit revision from target segment revision; preserve multiple dimensions/values and producer provenance. Test manual/rule/model annotations, overlaps, concurrent edits, explicit validation policy and collection/byte limits. Do not impose a label vocabulary or review workflow. |
+| T3 | Evidence dependencies and result lifecycle | Distinguish current pointer from validity, comparison runs from replacements and processing finality from review eligibility. A failed replacement must not restore stale evidence to valid or imply rollback of external effects. Test reordered/repeated corrections, bounded retention and cleanup. |
+
+Establish in-process fixtures first. Reuse the minimum I2 codec registration when external round trips are needed; do not block a local semantic increment on the entire integration roadmap. I1 describes only capabilities supported by behavior probes, and I3 adds resume binding to the relevant versions after those contracts stabilize. Measure semantic/reducer costs separately from kernel dispatch and keep algorithm-quality evaluation independent from conformance.
+
 ### Integration compatibility
 
-The [cross-project contract proposal](integration-contracts.md) defines the next functional increments and three fixture families. These are planned capabilities, not shipped APIs. Prioritize one bounded item at a time; retain Java 17 and the existing default API/protocol behavior. I1 establishes fixtures with current APIs; I2/I3 extend them as their contracts ship.
+The [cross-project contract proposal](integration-contracts.md) defines supporting integration increments and three fixture families. These are planned capabilities, not shipped APIs. Prioritize one bounded item at a time; retain Java 17 and the existing default API/protocol behavior. I1 establishes compatibility fixtures with current APIs; I2/I3 extend them as their contracts ship.
 
 | Order | Increment | Acceptance boundary |
 | --- | --- | --- |
@@ -50,5 +62,6 @@ Continue these measurement increments alongside the integration work when their 
 | Performance and profile documentation | README exposes measured throughput, allocation, CPU stacks, GC and resource drain with distinct workload scopes. | [PR #13](https://github.com/g5n-dev/ominicat/pull/13), [PR #15](https://github.com/g5n-dev/ominicat/pull/15), [kernel profiles](../reports/java17/kernel/profiles.md) |
 | Repeatable planning and evidence collection | A durable acceptance queue, weekly profiling, complete-result validation, allowlisted/checksummed diagnostics and privacy-checked failure output. | [Workflow](../.github/workflows/performance.yml), [report validation](../scripts/test_report.py), [packaging controls](../scripts/test_package_profiles.py), [failure controls](../scripts/test_profile_failure.py) |
 | Cross-project contract review | Source-backed separation of existing mechanisms, proposed compatibility contracts and external responsibilities, with explicit negative acceptance cases. Implementation remains queued as I1–I3. | [Design and acceptance plan](integration-contracts.md) |
+| Temporal/annotation coverage review | Separates partial transcript revision from general segment changes, rule results from independent annotations, and local reduction from external publication guarantees. T1–T3 implementation remains queued. | [Semantics and acceptance plan](temporal-annotations.md) |
 
 This queue proposes work; it does not assert that an unimplemented optimization is correct or faster. Recorded headline results remain tied to their original source, workload and host until a reviewed replacement measurement exists.

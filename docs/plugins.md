@@ -66,3 +66,5 @@ Use `ParallelProcessor` for independent branches with bounded ordered join, `Fal
 See [architecture](architecture.md), [configuration](configuration.md), [wire protocol](protocol.md) and the [provider reference](../ominicat-providers/README.md).
 
 The [cross-project integration proposal](integration-contracts.md) plans optional machine-readable plugin descriptions, versioned result codecs and run/checkpoint manifests. These are future compatibility contracts; they do not add configuration fields or change the current SPI.
+
+The [temporal/annotation proposal](temporal-annotations.md) defines separate future semantics for source-bound ranges, segment changes and independent annotations. A capability description or registered wire type must not advertise those operations as implemented without executable conformance evidence.

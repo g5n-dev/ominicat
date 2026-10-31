@@ -149,6 +149,7 @@ java scripts/WebSocketLoad.java ws://127.0.0.1:8080/ws 32 5000
 - [通用场景覆盖矩阵](docs/scenario-coverage.md)
 - [迭代计划与验收标准](docs/iteration-plan.md)
 - [跨项目接入契约提案](docs/integration-contracts.md)
+- [时间区间、分段与注释契约提案](docs/temporal-annotations.md)
 - [会话扩展](ominicat-conversation/README.md)与[适配器能力](ominicat-providers/README.md)
 
 采用 [Apache License 2.0](LICENSE)。OminiCat 是独立 Java 实现，采用自身的 API 和线协议。

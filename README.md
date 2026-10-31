@@ -230,6 +230,7 @@ The [inline profiles above](#profiles) show CPU, allocation, GC and resource evi
 - [Performance methodology](docs/performance.md) and [Java 17 measurements](reports/java17/kernel/report.md)
 - [Iteration plan and acceptance criteria](docs/iteration-plan.md)
 - [Cross-project integration contract proposal](docs/integration-contracts.md)
+- [Temporal segment and annotation contract proposal](docs/temporal-annotations.md)
 - [Conversation primitives](ominicat-conversation/README.md)
 
 ## License
