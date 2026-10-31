@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "mode": "full",
+  "benchmarkPattern": "io.ominicat.benchmarks.*Benchmark.*",
+  "benchmarkArtifact": "ominicat-benchmarks.jar",
+  "benchmarkArtifactSha256": "a312af033f1f9886883479147e4d82ede152afba3628baf5fb12a48e2db87bc7",
+  "sourceSha256": "521ea6ea3ef70373aebd78c194f1fe464867dc734d244b11debc4416eeb8f809",
+  "expectedCases": [
+    {
+      "benchmark": "io.ominicat.benchmarks.PipelineBenchmark.dispatch",
+      "params": {
+        "stages": "1"
+      }
+    },
+    {
+      "benchmark": "io.ominicat.benchmarks.PipelineBenchmark.dispatch",
+      "params": {
+        "stages": "4"
+      }
+    },
+    {
+      "benchmark": "io.ominicat.benchmarks.PipelineBenchmark.dispatch",
+      "params": {
+        "stages": "16"
+      }
+    },
+    {
+      "benchmark": "io.ominicat.benchmarks.SessionBenchmark.roundTrip",
+      "params": {
+        "stages": "1"
+      }
+    },
+    {
+      "benchmark": "io.ominicat.benchmarks.SessionBenchmark.roundTrip",
+      "params": {
+        "stages": "4"
+      }
+    },
+    {
+      "benchmark": "io.ominicat.benchmarks.SessionBenchmark.roundTrip",
+      "params": {
+        "stages": "16"
+      }
+    }
+  ],
+  "expectedJmh": {
+    "forks": 3,
+    "warmupIterations": 5,
+    "measurementIterations": 8,
+    "threads": 1
+  },
+  "expectedLoad": {
+    "sessions": 16,
+    "stages": 4,
+    "inflightPerSession": 32,
+    "warmupFrames": 100000,
+    "measuredFrames": 50000000,
+    "maxHeapBytes": 536870912
+  }
+}

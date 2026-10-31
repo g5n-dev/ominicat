@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "gitCommit": "208b0c48416b663de06d82f2e072a923b0ecf569",
+  "sourceSha256": "521ea6ea3ef70373aebd78c194f1fe464867dc734d244b11debc4416eeb8f809",
+  "benchmarkArtifactSha256": "a312af033f1f9886883479147e4d82ede152afba3628baf5fb12a48e2db87bc7",
+  "profileMode": "full",
+  "javaVersion": "17.0.21",
+  "workerBackend": "platform",
+  "githubRunUrl": "https://github.com/g5n-dev/ominicat/actions/runs/41237014639",
+  "collectedAtUtc": "2026-10-31T20:11:05.862261Z",
+  "packagedAtUtc": "2026-10-31T20:11:54.894329Z",
+  "synthetic": true,
+  "crossRunPerformanceGate": false,
+  "scope": "In-memory kernel only; excludes model and network; not a capacity guarantee."
+}

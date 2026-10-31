@@ -291,6 +291,28 @@
     {
       "pattern": "p99 ([\\d.]+) µs   /   RSS ([\\d.]+) MiB",
       "replacement": "p99 \\1 微秒   /   RSS \\2 MiB"
+    },
+    {
+      "pattern": "No history · (\\d+)",
+      "replacement": "不含历史 · \\1"
+    },
+    {
+      "pattern": "Full history · (\\d+)",
+      "replacement": "完整历史 · \\1"
+    },
+    {
+      "pattern": "Truncated · (\\d+)",
+      "replacement": "截断历史 · \\1"
     }
-  ]
+  ],
+  "OMINICAT / PAIRED LINUX EVIDENCE": "OMINICAT / Linux 成对测量证据",
+  "Bounded prompt rendering": "有界提示词生成",
+  "Ubuntu 24.04 / Java 17 · same host · same probe · synthetic final transcripts": "Ubuntu 24.04 / Java 17 · 同一主机 · 同一探针 · 合成终稿转写",
+  "Baseline": "基线",
+  "Candidate": "候选",
+  "Time · µs/op · log scale": "时间 · 微秒/次 · 对数刻度",
+  "Allocation · B/op · log scale": "分配 · 字节/次 · 对数刻度",
+  "Dots: two-fork means · whiskers: min–max measured iteration means, not confidence intervals": "点：两个独立 JVM 的均值 · 误差线：测量迭代均值的最小—最大范围，非置信区间",
+  "36 fork trials · 9 cases · 3 × 1 s warmup + 5 × 1 s measurement per fork · GC allocation profiler": "36 次独立 JVM 运行 · 9 组用例 · 每次预热 3 × 1 秒 + 测量 5 × 1 秒 · GC 分配分析器",
+  "Includes transcript construction, window updates and exact output validation; excludes pipeline, model and network.": "包含转写对象构造、窗口更新与精确输出校验；不含管线、模型与网络。"
 }

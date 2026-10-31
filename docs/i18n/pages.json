@@ -14,7 +14,7 @@
     {
       "source": "README.md",
       "translation": "README.zh-CN.md",
-      "source_sha256": "44010c697a44b0eea877d981cf6399f9816b219279a314a6addbff808fbf9cbe"
+      "source_sha256": "a9a739d91174a80dfe4729c06e7dd700b6727f3150379acd57129357dac11655"
     },
     {
       "source": "SECURITY.md",
@@ -64,7 +64,7 @@
     {
       "source": "docs/iteration-plan.md",
       "translation": "docs/zh-CN/iteration-plan.md",
-      "source_sha256": "1c03623511325ecee628f16d117459e03f27019f2aa2accef9905022b57b1482"
+      "source_sha256": "9a772e500f4df45f0f0ce32964b36a286fd64fc38239255e7bd550a4adfd0d17"
     },
     {
       "source": "docs/java-compatibility.md",
@@ -75,6 +75,11 @@
       "source": "docs/media-references.md",
       "translation": "docs/zh-CN/media-references.md",
       "source_sha256": "f39775f808442cadd14226fa9e2d9d070309aa09dee673c856fd51b9ede04050"
+    },
+    {
+      "source": "docs/performance-audit.md",
+      "translation": "docs/zh-CN/performance-audit.md",
+      "source_sha256": "eea4e29f50abe99e99e04c8db6ab2eef4541f19b5f27ba7cf1f6fbe425f33f1d"
     },
     {
       "source": "docs/performance.md",
@@ -300,6 +305,21 @@
       "source": "reports/java17/kernel/report.md",
       "translation": "docs/zh-CN/reports/java17/kernel/report.md",
       "source_sha256": "299f25e68aab535770a1df29d349e2dbf1da2be97119471ef98b6da0f1c91016"
+    },
+    {
+      "source": "reports/performance-audit/linux-java17-2026-11-01/profiles.md",
+      "translation": "docs/zh-CN/reports/performance-audit/linux-java17-2026-11-01/profiles.md",
+      "source_sha256": "d17a453628150543165cab029a4308bc063399c294893073a3ce68bfb5c98b87"
+    },
+    {
+      "source": "reports/performance-audit/linux-java17-2026-11-01/report.md",
+      "translation": "docs/zh-CN/reports/performance-audit/linux-java17-2026-11-01/report.md",
+      "source_sha256": "0702416ed1fae601e58514cbbb6ee2304c318f2df4400aa791aefb73952e15e3"
+    },
+    {
+      "source": "reports/performance-audit/prompt-render-2026-11-01/summary.md",
+      "translation": "docs/zh-CN/reports/performance-audit/prompt-render-2026-11-01/summary.md",
+      "source_sha256": "adec4e91d128aea8a2e642173c377f7ae0d73135ce150f90eec70474fed129ca"
     },
     {
       "source": "reports/studio/README.md",

@@ -1,0 +1,585 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="1145" viewBox="0 0 1280 1145" role="img">
+<title>Sampled CPU stacks</title><desc>Width: samples. Whole selected JFR export; warmup and measurement harness included.</desc>
+<rect width="1280" height="1145" fill="#101e28"/>
+<text x="28" y="34" font-family="sans-serif" font-size="22" fill="#f2eee1">Sampled CPU stacks</text>
+<text x="28" y="61" font-family="sans-serif" font-size="13" fill="#b8cbd1">Width: samples. Whole selected JFR export; warmup and measurement harness included.</text>
+<text x="28" y="86" font-family="sans-serif" font-size="13" fill="#b8cbd1">1,200 events; total 1,200 samples; observed depth 39; source-marked truncated stacks 0.</text>
+<text x="28" y="109" font-family="sans-serif" font-size="13" fill="#b8cbd1">All positive-weight supplied stack frames retained. Open this SVG directly for tooltips and zoom.</text>
+<text x="28" y="130" font-family="sans-serif" font-size="12" fill="#b8cbd1">Unavailable stacks: 0; zero-weight events: 0. Export/recording limits cannot be inferred from observed depth.</text>
+<g data-depth="0" data-weight="1200"><title>all samples: 1,200 samples (100.000%)</title><rect x="28" y="1081" width="1224" height="22" fill="#38576b" stroke="#101e28" stroke-width="0.35"/>
+<text x="32" y="1097" font-family="monospace" font-size="12" fill="#f2eee1">all samples</text>
+</g>
+<g data-depth="1" data-weight="369"><title>io.ominicat.benchmarks.CoreLoad.main: 369 samples (30.750%)</title><rect x="28" y="1057" width="376.38" height="22" fill="hsl(33,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="32" y="1073" font-family="monospace" font-size="12" fill="#152430">CoreLoad.main</text>
+</g>
+<g data-depth="2" data-weight="1"><title>io.ominicat.core.Pipeline.openSession: 1 samples (0.083%)</title><rect x="28" y="1033" width="1.02" height="22" fill="hsl(38,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="3" data-weight="1"><title>io.ominicat.core.PipelineSession.&lt;init&gt;: 1 samples (0.083%)</title><rect x="28" y="1009" width="1.02" height="22" fill="hsl(38,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="4" data-weight="1"><title>io.ominicat.core.WorkerThreads.unstarted: 1 samples (0.083%)</title><rect x="28" y="985" width="1.02" height="22" fill="hsl(21,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="5" data-weight="1"><title>io.ominicat.core.WorkerThreads$$Lambda$96+0x00007b312c00b318.487075464.newThread: 1 samples (0.083%)</title><rect x="28" y="961" width="1.02" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="6" data-weight="1"><title>io.ominicat.core.WorkerThreads.lambda$platformFactory$1: 1 samples (0.083%)</title><rect x="28" y="937" width="1.02" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="7" data-weight="1"><title>java.lang.invoke.MethodHandleNatives.linkCallSite: 1 samples (0.083%)</title><rect x="28" y="913" width="1.02" height="22" fill="hsl(25,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="8" data-weight="1"><title>java.lang.invoke.MethodHandleNatives.linkCallSiteImpl: 1 samples (0.083%)</title><rect x="28" y="889" width="1.02" height="22" fill="hsl(33,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="9" data-weight="1"><title>java.lang.invoke.CallSite.makeSite: 1 samples (0.083%)</title><rect x="28" y="865" width="1.02" height="22" fill="hsl(48,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="10" data-weight="1"><title>java.lang.invoke.BootstrapMethodInvoker.invoke: 1 samples (0.083%)</title><rect x="28" y="841" width="1.02" height="22" fill="hsl(46,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="11" data-weight="1"><title>java.lang.invoke.Invokers$Holder.invokeExact_MT: 1 samples (0.083%)</title><rect x="28" y="817" width="1.02" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="12" data-weight="1"><title>java.lang.invoke.DelegatingMethodHandle$Holder.delegate: 1 samples (0.083%)</title><rect x="28" y="793" width="1.02" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="13" data-weight="1"><title>java.lang.invoke.DirectMethodHandle$Holder.invokeStatic: 1 samples (0.083%)</title><rect x="28" y="769" width="1.02" height="22" fill="hsl(27,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="14" data-weight="1"><title>java.lang.invoke.StringConcatFactory.makeConcatWithConstants: 1 samples (0.083%)</title><rect x="28" y="745" width="1.02" height="22" fill="hsl(42,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="15" data-weight="1"><title>java.lang.invoke.StringConcatFactory.generateMHInlineCopy: 1 samples (0.083%)</title><rect x="28" y="721" width="1.02" height="22" fill="hsl(36,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="16" data-weight="1"><title>java.lang.invoke.StringConcatFactory.mixer: 1 samples (0.083%)</title><rect x="28" y="697" width="1.02" height="22" fill="hsl(21,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="17" data-weight="1"><title>java.util.concurrent.ConcurrentHashMap.computeIfAbsent: 1 samples (0.083%)</title><rect x="28" y="673" width="1.02" height="22" fill="hsl(39,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="18" data-weight="1"><title>java.lang.invoke.StringConcatFactory$3.apply: 1 samples (0.083%)</title><rect x="28" y="649" width="1.02" height="22" fill="hsl(40,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="19" data-weight="1"><title>java.lang.invoke.StringConcatFactory$3.apply: 1 samples (0.083%)</title><rect x="28" y="625" width="1.02" height="22" fill="hsl(40,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="20" data-weight="1"><title>java.lang.invoke.DirectMethodHandle.rebind: 1 samples (0.083%)</title><rect x="28" y="601" width="1.02" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="21" data-weight="1"><title>java.lang.invoke.BoundMethodHandle.makeReinvoker: 1 samples (0.083%)</title><rect x="28" y="577" width="1.02" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="22" data-weight="1"><title>java.lang.invoke.DelegatingMethodHandle.makeReinvokerForm: 1 samples (0.083%)</title><rect x="28" y="553" width="1.02" height="22" fill="hsl(23,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="23" data-weight="1"><title>java.lang.invoke.DelegatingMethodHandle.makeReinvokerForm: 1 samples (0.083%)</title><rect x="28" y="529" width="1.02" height="22" fill="hsl(23,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="24" data-weight="1"><title>java.lang.invoke.LambdaForm$Name.&lt;init&gt;: 1 samples (0.083%)</title><rect x="28" y="505" width="1.02" height="22" fill="hsl(32,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="25" data-weight="1"><title>java.lang.invoke.LambdaForm$NamedFunction.&lt;init&gt;: 1 samples (0.083%)</title><rect x="28" y="481" width="1.02" height="22" fill="hsl(23,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="26" data-weight="1"><title>java.lang.invoke.Invokers.basicInvoker: 1 samples (0.083%)</title><rect x="28" y="457" width="1.02" height="22" fill="hsl(22,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="27" data-weight="1"><title>java.lang.invoke.DirectMethodHandle.make: 1 samples (0.083%)</title><rect x="28" y="433" width="1.02" height="22" fill="hsl(38,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="28" data-weight="1"><title>java.lang.invoke.DirectMethodHandle.make: 1 samples (0.083%)</title><rect x="28" y="409" width="1.02" height="22" fill="hsl(38,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="29" data-weight="1"><title>java.lang.invoke.DirectMethodHandle.make: 1 samples (0.083%)</title><rect x="28" y="385" width="1.02" height="22" fill="hsl(38,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="30" data-weight="1"><title>java.lang.invoke.DirectMethodHandle.preparedLambdaForm: 1 samples (0.083%)</title><rect x="28" y="361" width="1.02" height="22" fill="hsl(48,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="31" data-weight="1"><title>java.lang.invoke.DirectMethodHandle.preparedLambdaForm: 1 samples (0.083%)</title><rect x="28" y="337" width="1.02" height="22" fill="hsl(48,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="32" data-weight="1"><title>java.lang.invoke.DirectMethodHandle.preparedLambdaForm: 1 samples (0.083%)</title><rect x="28" y="313" width="1.02" height="22" fill="hsl(48,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="33" data-weight="1"><title>java.lang.invoke.DirectMethodHandle.makePreparedLambdaForm: 1 samples (0.083%)</title><rect x="28" y="289" width="1.02" height="22" fill="hsl(22,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="34" data-weight="1"><title>java.lang.invoke.LambdaForm.compileToBytecode: 1 samples (0.083%)</title><rect x="28" y="265" width="1.02" height="22" fill="hsl(28,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="35" data-weight="1"><title>java.lang.invoke.InvokerBytecodeGenerator.generateCustomizedCode: 1 samples (0.083%)</title><rect x="28" y="241" width="1.02" height="22" fill="hsl(42,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="36" data-weight="1"><title>java.lang.invoke.InvokerBytecodeGenerator.lookupPregenerated: 1 samples (0.083%)</title><rect x="28" y="217" width="1.02" height="22" fill="hsl(19,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="2" data-weight="368"><title>java.util.Arrays.sort: 368 samples (30.667%)</title><rect x="29.02" y="1033" width="375.36" height="22" fill="hsl(31,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="33.02" y="1049" font-family="monospace" font-size="12" fill="#152430">Arrays.sort</text>
+</g>
+<g data-depth="3" data-weight="368"><title>java.util.DualPivotQuicksort.sort: 368 samples (30.667%)</title><rect x="29.02" y="1009" width="375.36" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="33.02" y="1025" font-family="monospace" font-size="12" fill="#152430">DualPivotQuicksort.sort</text>
+</g>
+<g data-depth="4" data-weight="368"><title>java.util.DualPivotQuicksort.sort: 368 samples (30.667%)</title><rect x="29.02" y="985" width="375.36" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="33.02" y="1001" font-family="monospace" font-size="12" fill="#152430">DualPivotQuicksort.sort</text>
+</g>
+<g data-depth="5" data-weight="330"><title>java.util.DualPivotQuicksort.sort: 330 samples (27.500%)</title><rect x="29.02" y="961" width="336.6" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="33.02" y="977" font-family="monospace" font-size="12" fill="#152430">DualPivotQuicksort.sort</text>
+</g>
+<g data-depth="6" data-weight="310"><title>java.util.DualPivotQuicksort.sort: 310 samples (25.833%)</title><rect x="29.02" y="937" width="316.2" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="33.02" y="953" font-family="monospace" font-size="12" fill="#152430">DualPivotQuicksort.sort</text>
+</g>
+<g data-depth="7" data-weight="291"><title>java.util.DualPivotQuicksort.sort: 291 samples (24.250%)</title><rect x="29.02" y="913" width="296.82" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="33.02" y="929" font-family="monospace" font-size="12" fill="#152430">DualPivotQuicksort.sort</text>
+</g>
+<g data-depth="8" data-weight="264"><title>java.util.DualPivotQuicksort.sort: 264 samples (22.000%)</title><rect x="29.02" y="889" width="269.28" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="33.02" y="905" font-family="monospace" font-size="12" fill="#152430">DualPivotQuicksort.sort</text>
+</g>
+<g data-depth="9" data-weight="235"><title>java.util.DualPivotQuicksort.sort: 235 samples (19.583%)</title><rect x="29.02" y="865" width="239.7" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="33.02" y="881" font-family="monospace" font-size="12" fill="#152430">DualPivotQuicksort.sort</text>
+</g>
+<g data-depth="10" data-weight="211"><title>java.util.DualPivotQuicksort.sort: 211 samples (17.583%)</title><rect x="29.02" y="841" width="215.22" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="33.02" y="857" font-family="monospace" font-size="12" fill="#152430">DualPivotQuicksort.sort</text>
+</g>
+<g data-depth="11" data-weight="191"><title>java.util.DualPivotQuicksort.sort: 191 samples (15.917%)</title><rect x="29.02" y="817" width="194.82" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="33.02" y="833" font-family="monospace" font-size="12" fill="#152430">DualPivotQuicksort.sort</text>
+</g>
+<g data-depth="12" data-weight="171"><title>java.util.DualPivotQuicksort.sort: 171 samples (14.250%)</title><rect x="29.02" y="793" width="174.42" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="33.02" y="809" font-family="monospace" font-size="12" fill="#152430">DualPivotQuicksort.so…</text>
+</g>
+<g data-depth="13" data-weight="140"><title>java.util.DualPivotQuicksort.sort: 140 samples (11.667%)</title><rect x="29.02" y="769" width="142.8" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="33.02" y="785" font-family="monospace" font-size="12" fill="#152430">DualPivotQuicksor…</text>
+</g>
+<g data-depth="14" data-weight="112"><title>java.util.DualPivotQuicksort.sort: 112 samples (9.333%)</title><rect x="29.02" y="745" width="114.24" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="33.02" y="761" font-family="monospace" font-size="12" fill="#152430">DualPivotQuic…</text>
+</g>
+<g data-depth="15" data-weight="89"><title>java.util.DualPivotQuicksort.sort: 89 samples (7.417%)</title><rect x="29.02" y="721" width="90.78" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="33.02" y="737" font-family="monospace" font-size="12" fill="#152430">DualPivotQ…</text>
+</g>
+<g data-depth="16" data-weight="70"><title>java.util.DualPivotQuicksort.sort: 70 samples (5.833%)</title><rect x="29.02" y="697" width="71.4" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="33.02" y="713" font-family="monospace" font-size="12" fill="#152430">DualPiv…</text>
+</g>
+<g data-depth="17" data-weight="1"><title>java.util.DualPivotQuicksort.mixedInsertionSort: 1 samples (0.083%)</title><rect x="29.02" y="673" width="1.02" height="22" fill="hsl(22,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="17" data-weight="48"><title>java.util.DualPivotQuicksort.sort: 48 samples (4.000%)</title><rect x="30.04" y="673" width="48.96" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="34.04" y="689" font-family="monospace" font-size="12" fill="#152430">Dual…</text>
+</g>
+<g data-depth="18" data-weight="38"><title>java.util.DualPivotQuicksort.sort: 38 samples (3.167%)</title><rect x="30.04" y="649" width="38.76" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="19" data-weight="1"><title>java.util.DualPivotQuicksort.mixedInsertionSort: 1 samples (0.083%)</title><rect x="30.04" y="625" width="1.02" height="22" fill="hsl(22,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="19" data-weight="26"><title>java.util.DualPivotQuicksort.sort: 26 samples (2.167%)</title><rect x="31.06" y="625" width="26.52" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="20" data-weight="16"><title>java.util.DualPivotQuicksort.sort: 16 samples (1.333%)</title><rect x="31.06" y="601" width="16.32" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="21" data-weight="2"><title>java.util.DualPivotQuicksort.mixedInsertionSort: 2 samples (0.167%)</title><rect x="31.06" y="577" width="2.04" height="22" fill="hsl(22,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="21" data-weight="10"><title>java.util.DualPivotQuicksort.sort: 10 samples (0.833%)</title><rect x="33.1" y="577" width="10.2" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="22" data-weight="6"><title>java.util.DualPivotQuicksort.sort: 6 samples (0.500%)</title><rect x="33.1" y="553" width="6.12" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="23" data-weight="1"><title>java.util.DualPivotQuicksort.mixedInsertionSort: 1 samples (0.083%)</title><rect x="33.1" y="529" width="1.02" height="22" fill="hsl(22,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="23" data-weight="5"><title>java.util.DualPivotQuicksort.sort: 5 samples (0.417%)</title><rect x="34.12" y="529" width="5.1" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="24" data-weight="1"><title>java.util.DualPivotQuicksort.mixedInsertionSort: 1 samples (0.083%)</title><rect x="34.12" y="505" width="1.02" height="22" fill="hsl(22,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="24" data-weight="1"><title>java.util.DualPivotQuicksort.sort: 1 samples (0.083%)</title><rect x="35.14" y="505" width="1.02" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="25" data-weight="1"><title>java.util.DualPivotQuicksort.sort: 1 samples (0.083%)</title><rect x="35.14" y="481" width="1.02" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="26" data-weight="1"><title>java.util.DualPivotQuicksort.sort: 1 samples (0.083%)</title><rect x="35.14" y="457" width="1.02" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="27" data-weight="1"><title>java.util.DualPivotQuicksort.sort: 1 samples (0.083%)</title><rect x="35.14" y="433" width="1.02" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="28" data-weight="1"><title>java.util.DualPivotQuicksort.sort: 1 samples (0.083%)</title><rect x="35.14" y="409" width="1.02" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="29" data-weight="1"><title>java.util.DualPivotQuicksort.sort: 1 samples (0.083%)</title><rect x="35.14" y="385" width="1.02" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="30" data-weight="1"><title>java.util.DualPivotQuicksort.mixedInsertionSort: 1 samples (0.083%)</title><rect x="35.14" y="361" width="1.02" height="22" fill="hsl(22,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="1" data-weight="831"><title>java.lang.Thread.run: 831 samples (69.250%)</title><rect x="404.38" y="1057" width="847.62" height="22" fill="hsl(18,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="408.38" y="1073" font-family="monospace" font-size="12" fill="#152430">Thread.run</text>
+</g>
+<g data-depth="2" data-weight="812"><title>io.ominicat.core.PipelineSession$$Lambda$95+0x00007b312c00aee8.597190999.run: 812 samples (67.667%)</title><rect x="404.38" y="1033" width="828.24" height="22" fill="hsl(32,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="408.38" y="1049" font-family="monospace" font-size="12" fill="#152430">PipelineSession$$Lambda$95.run</text>
+</g>
+<g data-depth="3" data-weight="1"><title>io.ominicat.core.Pipeline.dispatchSession: 1 samples (0.083%)</title><rect x="404.38" y="1009" width="1.02" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="4" data-weight="1"><title>io.ominicat.core.PipelineSession$$Lambda$98+0x00007b312c00fa10.342683394.getAsBoolean: 1 samples (0.083%)</title><rect x="404.38" y="985" width="1.02" height="22" fill="hsl(24,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="5" data-weight="1"><title>io.ominicat.core.PipelineSession.lambda$run$2: 1 samples (0.083%)</title><rect x="404.38" y="961" width="1.02" height="22" fill="hsl(28,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="6" data-weight="1"><title>io.ominicat.core.PipelineSession.valid: 1 samples (0.083%)</title><rect x="404.38" y="937" width="1.02" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="7" data-weight="1"><title>java.util.concurrent.locks.ReentrantLock.unlock: 1 samples (0.083%)</title><rect x="404.38" y="913" width="1.02" height="22" fill="hsl(44,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="8" data-weight="1"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.release: 1 samples (0.083%)</title><rect x="404.38" y="889" width="1.02" height="22" fill="hsl(24,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="9" data-weight="1"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.signalNext: 1 samples (0.083%)</title><rect x="404.38" y="865" width="1.02" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="10" data-weight="1"><title>java.util.concurrent.locks.LockSupport.unpark: 1 samples (0.083%)</title><rect x="404.38" y="841" width="1.02" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="3" data-weight="811"><title>io.ominicat.core.PipelineSession.run: 811 samples (67.583%)</title><rect x="405.4" y="1009" width="827.22" height="22" fill="hsl(48,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="409.4" y="1025" font-family="monospace" font-size="12" fill="#152430">PipelineSession.run</text>
+</g>
+<g data-depth="4" data-weight="617"><title>io.ominicat.core.Pipeline.dispatchSession: 617 samples (51.417%)</title><rect x="405.4" y="985" width="629.34" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="409.4" y="1001" font-family="monospace" font-size="12" fill="#152430">Pipeline.dispatchSession</text>
+</g>
+<g data-depth="5" data-weight="65"><title>io.ominicat.benchmarks.CoreLoad$$Lambda$94+0x00007b312c00a460.667447085.accept: 65 samples (5.417%)</title><rect x="405.4" y="961" width="66.3" height="22" fill="hsl(27,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="409.4" y="977" font-family="monospace" font-size="12" fill="#152430">CoreLoa…</text>
+</g>
+<g data-depth="6" data-weight="65"><title>io.ominicat.benchmarks.CoreLoad.lambda$main$1: 65 samples (5.417%)</title><rect x="405.4" y="937" width="66.3" height="22" fill="hsl(48,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="409.4" y="953" font-family="monospace" font-size="12" fill="#152430">CoreLoa…</text>
+</g>
+<g data-depth="7" data-weight="65"><title>java.util.concurrent.Semaphore.release: 65 samples (5.417%)</title><rect x="405.4" y="913" width="66.3" height="22" fill="hsl(39,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="409.4" y="929" font-family="monospace" font-size="12" fill="#152430">Semapho…</text>
+</g>
+<g data-depth="8" data-weight="65"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.releaseShared: 65 samples (5.417%)</title><rect x="405.4" y="889" width="66.3" height="22" fill="hsl(32,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="409.4" y="905" font-family="monospace" font-size="12" fill="#152430">Abstrac…</text>
+</g>
+<g data-depth="9" data-weight="65"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.signalNext: 65 samples (5.417%)</title><rect x="405.4" y="865" width="66.3" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="409.4" y="881" font-family="monospace" font-size="12" fill="#152430">Abstrac…</text>
+</g>
+<g data-depth="10" data-weight="65"><title>java.util.concurrent.locks.LockSupport.unpark: 65 samples (5.417%)</title><rect x="405.4" y="841" width="66.3" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="409.4" y="857" font-family="monospace" font-size="12" fill="#152430">LockSup…</text>
+</g>
+<g data-depth="5" data-weight="541"><title>io.ominicat.core.Pipeline.invoke: 541 samples (45.083%)</title><rect x="471.7" y="961" width="551.82" height="22" fill="hsl(46,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="475.7" y="977" font-family="monospace" font-size="12" fill="#152430">Pipeline.invoke</text>
+</g>
+<g data-depth="6" data-weight="540"><title>io.ominicat.benchmarks.CoreLoad$$Lambda$89+0x00007b312c008470.1331923253.process: 540 samples (45.000%)</title><rect x="471.7" y="937" width="550.8" height="22" fill="hsl(39,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="475.7" y="953" font-family="monospace" font-size="12" fill="#152430">CoreLoad$$Lambda$89.process</text>
+</g>
+<g data-depth="7" data-weight="540"><title>io.ominicat.benchmarks.CoreLoad.lambda$main$0: 540 samples (45.000%)</title><rect x="471.7" y="913" width="550.8" height="22" fill="hsl(36,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="475.7" y="929" font-family="monospace" font-size="12" fill="#152430">CoreLoad.lambda$main$0</text>
+</g>
+<g data-depth="8" data-weight="540"><title>io.ominicat.core.SynchronousSink.accept: 540 samples (45.000%)</title><rect x="471.7" y="889" width="550.8" height="22" fill="hsl(29,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="475.7" y="905" font-family="monospace" font-size="12" fill="#152430">SynchronousSink.accept</text>
+</g>
+<g data-depth="9" data-weight="540"><title>io.ominicat.core.Pipeline$$Lambda$101+0x00007b312c014000.320929598.accept: 540 samples (45.000%)</title><rect x="471.7" y="865" width="550.8" height="22" fill="hsl(22,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="475.7" y="881" font-family="monospace" font-size="12" fill="#152430">Pipeline$$Lambda$101.accept</text>
+</g>
+<g data-depth="10" data-weight="540"><title>io.ominicat.core.Pipeline.lambda$dispatchSession$2: 540 samples (45.000%)</title><rect x="471.7" y="841" width="550.8" height="22" fill="hsl(42,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="475.7" y="857" font-family="monospace" font-size="12" fill="#152430">Pipeline.lambda$dispatchSession$2</text>
+</g>
+<g data-depth="11" data-weight="540"><title>io.ominicat.core.Pipeline.dispatchSession: 540 samples (45.000%)</title><rect x="471.7" y="817" width="550.8" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="475.7" y="833" font-family="monospace" font-size="12" fill="#152430">Pipeline.dispatchSession</text>
+</g>
+<g data-depth="12" data-weight="3"><title>io.ominicat.benchmarks.CoreLoad$$Lambda$94+0x00007b312c00a460.667447085.accept: 3 samples (0.250%)</title><rect x="471.7" y="793" width="3.06" height="22" fill="hsl(27,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="13" data-weight="3"><title>io.ominicat.benchmarks.CoreLoad.lambda$main$1: 3 samples (0.250%)</title><rect x="471.7" y="769" width="3.06" height="22" fill="hsl(48,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="14" data-weight="3"><title>java.util.concurrent.Semaphore.release: 3 samples (0.250%)</title><rect x="471.7" y="745" width="3.06" height="22" fill="hsl(39,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="15" data-weight="3"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.releaseShared: 3 samples (0.250%)</title><rect x="471.7" y="721" width="3.06" height="22" fill="hsl(32,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="16" data-weight="3"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.signalNext: 3 samples (0.250%)</title><rect x="471.7" y="697" width="3.06" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="17" data-weight="3"><title>java.util.concurrent.locks.LockSupport.unpark: 3 samples (0.250%)</title><rect x="471.7" y="673" width="3.06" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="12" data-weight="455"><title>io.ominicat.core.Pipeline.invoke: 455 samples (37.917%)</title><rect x="474.76" y="793" width="464.1" height="22" fill="hsl(46,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="478.76" y="809" font-family="monospace" font-size="12" fill="#152430">Pipeline.invoke</text>
+</g>
+<g data-depth="13" data-weight="455"><title>io.ominicat.benchmarks.CoreLoad$$Lambda$89+0x00007b312c008470.1331923253.process: 455 samples (37.917%)</title><rect x="474.76" y="769" width="464.1" height="22" fill="hsl(39,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="478.76" y="785" font-family="monospace" font-size="12" fill="#152430">CoreLoad$$Lambda$89.process</text>
+</g>
+<g data-depth="14" data-weight="455"><title>io.ominicat.benchmarks.CoreLoad.lambda$main$0: 455 samples (37.917%)</title><rect x="474.76" y="745" width="464.1" height="22" fill="hsl(36,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="478.76" y="761" font-family="monospace" font-size="12" fill="#152430">CoreLoad.lambda$main$0</text>
+</g>
+<g data-depth="15" data-weight="454"><title>io.ominicat.core.SynchronousSink.accept: 454 samples (37.833%)</title><rect x="474.76" y="721" width="463.08" height="22" fill="hsl(29,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="478.76" y="737" font-family="monospace" font-size="12" fill="#152430">SynchronousSink.accept</text>
+</g>
+<g data-depth="16" data-weight="453"><title>io.ominicat.core.Pipeline$$Lambda$101+0x00007b312c014000.320929598.accept: 453 samples (37.750%)</title><rect x="474.76" y="697" width="462.06" height="22" fill="hsl(22,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="478.76" y="713" font-family="monospace" font-size="12" fill="#152430">Pipeline$$Lambda$101.accept</text>
+</g>
+<g data-depth="17" data-weight="453"><title>io.ominicat.core.Pipeline.lambda$dispatchSession$2: 453 samples (37.750%)</title><rect x="474.76" y="673" width="462.06" height="22" fill="hsl(42,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="478.76" y="689" font-family="monospace" font-size="12" fill="#152430">Pipeline.lambda$dispatchSession$2</text>
+</g>
+<g data-depth="18" data-weight="442"><title>io.ominicat.core.Pipeline.dispatchSession: 442 samples (36.833%)</title><rect x="474.76" y="649" width="450.84" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="478.76" y="665" font-family="monospace" font-size="12" fill="#152430">Pipeline.dispatchSession</text>
+</g>
+<g data-depth="19" data-weight="68"><title>io.ominicat.benchmarks.CoreLoad$$Lambda$94+0x00007b312c00a460.667447085.accept: 68 samples (5.667%)</title><rect x="474.76" y="625" width="69.36" height="22" fill="hsl(27,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="478.76" y="641" font-family="monospace" font-size="12" fill="#152430">CoreLoa…</text>
+</g>
+<g data-depth="20" data-weight="68"><title>io.ominicat.benchmarks.CoreLoad.lambda$main$1: 68 samples (5.667%)</title><rect x="474.76" y="601" width="69.36" height="22" fill="hsl(48,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="478.76" y="617" font-family="monospace" font-size="12" fill="#152430">CoreLoa…</text>
+</g>
+<g data-depth="21" data-weight="68"><title>java.util.concurrent.Semaphore.release: 68 samples (5.667%)</title><rect x="474.76" y="577" width="69.36" height="22" fill="hsl(39,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="478.76" y="593" font-family="monospace" font-size="12" fill="#152430">Semapho…</text>
+</g>
+<g data-depth="22" data-weight="68"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.releaseShared: 68 samples (5.667%)</title><rect x="474.76" y="553" width="69.36" height="22" fill="hsl(32,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="478.76" y="569" font-family="monospace" font-size="12" fill="#152430">Abstrac…</text>
+</g>
+<g data-depth="23" data-weight="68"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.signalNext: 68 samples (5.667%)</title><rect x="474.76" y="529" width="69.36" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="478.76" y="545" font-family="monospace" font-size="12" fill="#152430">Abstrac…</text>
+</g>
+<g data-depth="24" data-weight="68"><title>java.util.concurrent.locks.LockSupport.unpark: 68 samples (5.667%)</title><rect x="474.76" y="505" width="69.36" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="478.76" y="521" font-family="monospace" font-size="12" fill="#152430">LockSup…</text>
+</g>
+<g data-depth="19" data-weight="368"><title>io.ominicat.core.Pipeline.invoke: 368 samples (30.667%)</title><rect x="544.12" y="625" width="375.36" height="22" fill="hsl(46,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="548.12" y="641" font-family="monospace" font-size="12" fill="#152430">Pipeline.invoke</text>
+</g>
+<g data-depth="20" data-weight="368"><title>io.ominicat.benchmarks.CoreLoad$$Lambda$89+0x00007b312c008470.1331923253.process: 368 samples (30.667%)</title><rect x="544.12" y="601" width="375.36" height="22" fill="hsl(39,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="548.12" y="617" font-family="monospace" font-size="12" fill="#152430">CoreLoad$$Lambda$89.process</text>
+</g>
+<g data-depth="21" data-weight="368"><title>io.ominicat.benchmarks.CoreLoad.lambda$main$0: 368 samples (30.667%)</title><rect x="544.12" y="577" width="375.36" height="22" fill="hsl(36,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="548.12" y="593" font-family="monospace" font-size="12" fill="#152430">CoreLoad.lambda$main$0</text>
+</g>
+<g data-depth="22" data-weight="368"><title>io.ominicat.core.SynchronousSink.accept: 368 samples (30.667%)</title><rect x="544.12" y="553" width="375.36" height="22" fill="hsl(29,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="548.12" y="569" font-family="monospace" font-size="12" fill="#152430">SynchronousSink.accept</text>
+</g>
+<g data-depth="23" data-weight="368"><title>io.ominicat.core.Pipeline$$Lambda$101+0x00007b312c014000.320929598.accept: 368 samples (30.667%)</title><rect x="544.12" y="529" width="375.36" height="22" fill="hsl(22,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="548.12" y="545" font-family="monospace" font-size="12" fill="#152430">Pipeline$$Lambda$101.accept</text>
+</g>
+<g data-depth="24" data-weight="368"><title>io.ominicat.core.Pipeline.lambda$dispatchSession$2: 368 samples (30.667%)</title><rect x="544.12" y="505" width="375.36" height="22" fill="hsl(42,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="548.12" y="521" font-family="monospace" font-size="12" fill="#152430">Pipeline.lambda$dispatchSession$2</text>
+</g>
+<g data-depth="25" data-weight="368"><title>io.ominicat.core.Pipeline.dispatchSession: 368 samples (30.667%)</title><rect x="544.12" y="481" width="375.36" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="548.12" y="497" font-family="monospace" font-size="12" fill="#152430">Pipeline.dispatchSession</text>
+</g>
+<g data-depth="26" data-weight="305"><title>io.ominicat.core.Pipeline.invoke: 305 samples (25.417%)</title><rect x="544.12" y="457" width="311.1" height="22" fill="hsl(46,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="548.12" y="473" font-family="monospace" font-size="12" fill="#152430">Pipeline.invoke</text>
+</g>
+<g data-depth="27" data-weight="305"><title>io.ominicat.benchmarks.CoreLoad$$Lambda$89+0x00007b312c008470.1331923253.process: 305 samples (25.417%)</title><rect x="544.12" y="433" width="311.1" height="22" fill="hsl(39,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="548.12" y="449" font-family="monospace" font-size="12" fill="#152430">CoreLoad$$Lambda$89.process</text>
+</g>
+<g data-depth="28" data-weight="305"><title>io.ominicat.benchmarks.CoreLoad.lambda$main$0: 305 samples (25.417%)</title><rect x="544.12" y="409" width="311.1" height="22" fill="hsl(36,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="548.12" y="425" font-family="monospace" font-size="12" fill="#152430">CoreLoad.lambda$main$0</text>
+</g>
+<g data-depth="29" data-weight="304"><title>io.ominicat.core.SynchronousSink.accept: 304 samples (25.333%)</title><rect x="544.12" y="385" width="310.08" height="22" fill="hsl(29,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="548.12" y="401" font-family="monospace" font-size="12" fill="#152430">SynchronousSink.accept</text>
+</g>
+<g data-depth="30" data-weight="304"><title>io.ominicat.core.Pipeline$$Lambda$101+0x00007b312c014000.320929598.accept: 304 samples (25.333%)</title><rect x="544.12" y="361" width="310.08" height="22" fill="hsl(22,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="548.12" y="377" font-family="monospace" font-size="12" fill="#152430">Pipeline$$Lambda$101.accept</text>
+</g>
+<g data-depth="31" data-weight="303"><title>io.ominicat.core.Pipeline.lambda$dispatchSession$2: 303 samples (25.250%)</title><rect x="544.12" y="337" width="309.06" height="22" fill="hsl(42,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="548.12" y="353" font-family="monospace" font-size="12" fill="#152430">Pipeline.lambda$dispatchSession$2</text>
+</g>
+<g data-depth="32" data-weight="290"><title>io.ominicat.core.Pipeline.dispatchSession: 290 samples (24.167%)</title><rect x="544.12" y="313" width="295.8" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="548.12" y="329" font-family="monospace" font-size="12" fill="#152430">Pipeline.dispatchSession</text>
+</g>
+<g data-depth="33" data-weight="273"><title>io.ominicat.benchmarks.CoreLoad$$Lambda$94+0x00007b312c00a460.667447085.accept: 273 samples (22.750%)</title><rect x="544.12" y="289" width="278.46" height="22" fill="hsl(27,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="548.12" y="305" font-family="monospace" font-size="12" fill="#152430">CoreLoad$$Lambda$94.accept</text>
+</g>
+<g data-depth="34" data-weight="273"><title>io.ominicat.benchmarks.CoreLoad.lambda$main$1: 273 samples (22.750%)</title><rect x="544.12" y="265" width="278.46" height="22" fill="hsl(48,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="548.12" y="281" font-family="monospace" font-size="12" fill="#152430">CoreLoad.lambda$main$1</text>
+</g>
+<g data-depth="35" data-weight="107"><title>java.util.concurrent.CountDownLatch.countDown: 107 samples (8.917%)</title><rect x="544.12" y="241" width="109.14" height="22" fill="hsl(23,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="548.12" y="257" font-family="monospace" font-size="12" fill="#152430">CountDownLat…</text>
+</g>
+<g data-depth="36" data-weight="107"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.releaseShared: 107 samples (8.917%)</title><rect x="544.12" y="217" width="109.14" height="22" fill="hsl(32,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="548.12" y="233" font-family="monospace" font-size="12" fill="#152430">AbstractQueu…</text>
+</g>
+<g data-depth="37" data-weight="3"><title>java.util.concurrent.CountDownLatch$Sync.tryReleaseShared: 3 samples (0.250%)</title><rect x="544.12" y="193" width="3.06" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="37" data-weight="103"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.signalNext: 103 samples (8.583%)</title><rect x="547.18" y="193" width="105.06" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="551.18" y="209" font-family="monospace" font-size="12" fill="#152430">AbstractQueu…</text>
+</g>
+<g data-depth="38" data-weight="103"><title>java.util.concurrent.locks.LockSupport.unpark: 103 samples (8.583%)</title><rect x="547.18" y="169" width="105.06" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="551.18" y="185" font-family="monospace" font-size="12" fill="#152430">LockSupport.…</text>
+</g>
+<g data-depth="35" data-weight="166"><title>java.util.concurrent.Semaphore.release: 166 samples (13.833%)</title><rect x="653.26" y="241" width="169.32" height="22" fill="hsl(39,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="657.26" y="257" font-family="monospace" font-size="12" fill="#152430">Semaphore.release</text>
+</g>
+<g data-depth="36" data-weight="166"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.releaseShared: 166 samples (13.833%)</title><rect x="653.26" y="217" width="169.32" height="22" fill="hsl(32,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="657.26" y="233" font-family="monospace" font-size="12" fill="#152430">AbstractQueuedSynchro…</text>
+</g>
+<g data-depth="37" data-weight="166"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.signalNext: 166 samples (13.833%)</title><rect x="653.26" y="193" width="169.32" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="657.26" y="209" font-family="monospace" font-size="12" fill="#152430">AbstractQueuedSynchro…</text>
+</g>
+<g data-depth="38" data-weight="166"><title>java.util.concurrent.locks.LockSupport.unpark: 166 samples (13.833%)</title><rect x="653.26" y="169" width="169.32" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="657.26" y="185" font-family="monospace" font-size="12" fill="#152430">LockSupport.unpark</text>
+</g>
+<g data-depth="33" data-weight="16"><title>io.ominicat.core.PipelineSession$$Lambda$98+0x00007b312c00fa10.342683394.getAsBoolean: 16 samples (1.333%)</title><rect x="822.58" y="289" width="16.32" height="22" fill="hsl(24,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="34" data-weight="16"><title>io.ominicat.core.PipelineSession.lambda$run$2: 16 samples (1.333%)</title><rect x="822.58" y="265" width="16.32" height="22" fill="hsl(28,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="35" data-weight="16"><title>io.ominicat.core.PipelineSession.valid: 16 samples (1.333%)</title><rect x="822.58" y="241" width="16.32" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="36" data-weight="13"><title>java.util.concurrent.locks.ReentrantLock.lock: 13 samples (1.083%)</title><rect x="822.58" y="217" width="13.26" height="22" fill="hsl(29,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="36" data-weight="3"><title>java.util.concurrent.locks.ReentrantLock.unlock: 3 samples (0.250%)</title><rect x="835.84" y="217" width="3.06" height="22" fill="hsl(44,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="37" data-weight="3"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.release: 3 samples (0.250%)</title><rect x="835.84" y="193" width="3.06" height="22" fill="hsl(24,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="38" data-weight="3"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.signalNext: 3 samples (0.250%)</title><rect x="835.84" y="169" width="3.06" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="39" data-weight="3"><title>java.util.concurrent.locks.LockSupport.unpark: 3 samples (0.250%)</title><rect x="835.84" y="145" width="3.06" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="33" data-weight="1"><title>java.lang.invoke.LambdaForm$MH+0x00007b312c011000.1557793041.linkToTargetMethod: 1 samples (0.083%)</title><rect x="838.9" y="289" width="1.02" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="34" data-weight="1"><title>java.lang.invoke.LambdaForm$DMH+0x00007b312c010800.501678890.newInvokeSpecial: 1 samples (0.083%)</title><rect x="838.9" y="265" width="1.02" height="22" fill="hsl(28,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="35" data-weight="1"><title>java.lang.invoke.DirectMethodHandle.allocateInstance: 1 samples (0.083%)</title><rect x="838.9" y="241" width="1.02" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="26" data-weight="60"><title>io.ominicat.core.PipelineSession$$Lambda$98+0x00007b312c00fa10.342683394.getAsBoolean: 60 samples (5.000%)</title><rect x="855.22" y="457" width="61.2" height="22" fill="hsl(24,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="859.22" y="473" font-family="monospace" font-size="12" fill="#152430">Pipeli…</text>
+</g>
+<g data-depth="27" data-weight="60"><title>io.ominicat.core.PipelineSession.lambda$run$2: 60 samples (5.000%)</title><rect x="855.22" y="433" width="61.2" height="22" fill="hsl(28,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="859.22" y="449" font-family="monospace" font-size="12" fill="#152430">Pipeli…</text>
+</g>
+<g data-depth="28" data-weight="60"><title>io.ominicat.core.PipelineSession.valid: 60 samples (5.000%)</title><rect x="855.22" y="409" width="61.2" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="859.22" y="425" font-family="monospace" font-size="12" fill="#152430">Pipeli…</text>
+</g>
+<g data-depth="29" data-weight="60"><title>java.util.concurrent.locks.ReentrantLock.unlock: 60 samples (5.000%)</title><rect x="855.22" y="385" width="61.2" height="22" fill="hsl(44,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="859.22" y="401" font-family="monospace" font-size="12" fill="#152430">Reentr…</text>
+</g>
+<g data-depth="30" data-weight="60"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.release: 60 samples (5.000%)</title><rect x="855.22" y="361" width="61.2" height="22" fill="hsl(24,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="859.22" y="377" font-family="monospace" font-size="12" fill="#152430">Abstra…</text>
+</g>
+<g data-depth="31" data-weight="60"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.signalNext: 60 samples (5.000%)</title><rect x="855.22" y="337" width="61.2" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="859.22" y="353" font-family="monospace" font-size="12" fill="#152430">Abstra…</text>
+</g>
+<g data-depth="32" data-weight="60"><title>java.util.concurrent.locks.LockSupport.unpark: 60 samples (5.000%)</title><rect x="855.22" y="313" width="61.2" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="859.22" y="329" font-family="monospace" font-size="12" fill="#152430">LockSu…</text>
+</g>
+<g data-depth="19" data-weight="3"><title>io.ominicat.core.PipelineSession$$Lambda$98+0x00007b312c00fa10.342683394.getAsBoolean: 3 samples (0.250%)</title><rect x="919.48" y="625" width="3.06" height="22" fill="hsl(24,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="20" data-weight="3"><title>io.ominicat.core.PipelineSession.lambda$run$2: 3 samples (0.250%)</title><rect x="919.48" y="601" width="3.06" height="22" fill="hsl(28,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="21" data-weight="2"><title>io.ominicat.core.PipelineSession.valid: 2 samples (0.167%)</title><rect x="919.48" y="577" width="2.04" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="22" data-weight="2"><title>java.util.concurrent.locks.ReentrantLock.unlock: 2 samples (0.167%)</title><rect x="919.48" y="553" width="2.04" height="22" fill="hsl(44,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="23" data-weight="2"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.release: 2 samples (0.167%)</title><rect x="919.48" y="529" width="2.04" height="22" fill="hsl(24,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="24" data-weight="2"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.signalNext: 2 samples (0.167%)</title><rect x="919.48" y="505" width="2.04" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="25" data-weight="2"><title>java.util.concurrent.locks.LockSupport.unpark: 2 samples (0.167%)</title><rect x="919.48" y="481" width="2.04" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="19" data-weight="3"><title>java.lang.invoke.LambdaForm$MH+0x00007b312c011000.1557793041.linkToTargetMethod: 3 samples (0.250%)</title><rect x="922.54" y="625" width="3.06" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="20" data-weight="3"><title>java.lang.invoke.LambdaForm$DMH+0x00007b312c010800.501678890.newInvokeSpecial: 3 samples (0.250%)</title><rect x="922.54" y="601" width="3.06" height="22" fill="hsl(28,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="21" data-weight="3"><title>java.lang.invoke.DirectMethodHandle.allocateInstance: 3 samples (0.250%)</title><rect x="922.54" y="577" width="3.06" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="12" data-weight="82"><title>io.ominicat.core.PipelineSession$$Lambda$98+0x00007b312c00fa10.342683394.getAsBoolean: 82 samples (6.833%)</title><rect x="938.86" y="793" width="83.64" height="22" fill="hsl(24,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="942.86" y="809" font-family="monospace" font-size="12" fill="#152430">PipelineS…</text>
+</g>
+<g data-depth="13" data-weight="82"><title>io.ominicat.core.PipelineSession.lambda$run$2: 82 samples (6.833%)</title><rect x="938.86" y="769" width="83.64" height="22" fill="hsl(28,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="942.86" y="785" font-family="monospace" font-size="12" fill="#152430">PipelineS…</text>
+</g>
+<g data-depth="14" data-weight="81"><title>io.ominicat.core.PipelineSession.valid: 81 samples (6.750%)</title><rect x="938.86" y="745" width="82.62" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="942.86" y="761" font-family="monospace" font-size="12" fill="#152430">PipelineS…</text>
+</g>
+<g data-depth="15" data-weight="81"><title>java.util.concurrent.locks.ReentrantLock.unlock: 81 samples (6.750%)</title><rect x="938.86" y="721" width="82.62" height="22" fill="hsl(44,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="942.86" y="737" font-family="monospace" font-size="12" fill="#152430">Reentrant…</text>
+</g>
+<g data-depth="16" data-weight="81"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.release: 81 samples (6.750%)</title><rect x="938.86" y="697" width="82.62" height="22" fill="hsl(24,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="942.86" y="713" font-family="monospace" font-size="12" fill="#152430">AbstractQ…</text>
+</g>
+<g data-depth="17" data-weight="81"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.signalNext: 81 samples (6.750%)</title><rect x="938.86" y="673" width="82.62" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="942.86" y="689" font-family="monospace" font-size="12" fill="#152430">AbstractQ…</text>
+</g>
+<g data-depth="18" data-weight="81"><title>java.util.concurrent.locks.LockSupport.unpark: 81 samples (6.750%)</title><rect x="938.86" y="649" width="82.62" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="942.86" y="665" font-family="monospace" font-size="12" fill="#152430">LockSuppo…</text>
+</g>
+<g data-depth="6" data-weight="1"><title>java.lang.ClassLoader.loadClass: 1 samples (0.083%)</title><rect x="1022.5" y="937" width="1.02" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="7" data-weight="1"><title>jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass: 1 samples (0.083%)</title><rect x="1022.5" y="913" width="1.02" height="22" fill="hsl(29,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="8" data-weight="1"><title>jdk.internal.loader.BuiltinClassLoader.loadClass: 1 samples (0.083%)</title><rect x="1022.5" y="889" width="1.02" height="22" fill="hsl(42,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="9" data-weight="1"><title>jdk.internal.loader.BuiltinClassLoader.loadClassOrNull: 1 samples (0.083%)</title><rect x="1022.5" y="865" width="1.02" height="22" fill="hsl(46,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="10" data-weight="1"><title>jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull: 1 samples (0.083%)</title><rect x="1022.5" y="841" width="1.02" height="22" fill="hsl(20,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="11" data-weight="1"><title>jdk.internal.loader.BuiltinClassLoader.defineClass: 1 samples (0.083%)</title><rect x="1022.5" y="817" width="1.02" height="22" fill="hsl(22,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="12" data-weight="1"><title>java.security.SecureClassLoader.defineClass: 1 samples (0.083%)</title><rect x="1022.5" y="793" width="1.02" height="22" fill="hsl(18,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="13" data-weight="1"><title>java.lang.ClassLoader.defineClass: 1 samples (0.083%)</title><rect x="1022.5" y="769" width="1.02" height="22" fill="hsl(32,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="14" data-weight="1"><title>java.lang.ClassLoader.defineClassSourceLocation: 1 samples (0.083%)</title><rect x="1022.5" y="745" width="1.02" height="22" fill="hsl(22,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="15" data-weight="1"><title>java.security.ProtectionDomain.getCodeSource: 1 samples (0.083%)</title><rect x="1022.5" y="721" width="1.02" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="5" data-weight="3"><title>io.ominicat.core.PipelineSession$$Lambda$98+0x00007b312c00fa10.342683394.getAsBoolean: 3 samples (0.250%)</title><rect x="1023.52" y="961" width="3.06" height="22" fill="hsl(24,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="6" data-weight="3"><title>io.ominicat.core.PipelineSession.lambda$run$2: 3 samples (0.250%)</title><rect x="1023.52" y="937" width="3.06" height="22" fill="hsl(28,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="7" data-weight="3"><title>io.ominicat.core.PipelineSession.valid: 3 samples (0.250%)</title><rect x="1023.52" y="913" width="3.06" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="8" data-weight="3"><title>java.util.concurrent.locks.ReentrantLock.unlock: 3 samples (0.250%)</title><rect x="1023.52" y="889" width="3.06" height="22" fill="hsl(44,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="9" data-weight="3"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.release: 3 samples (0.250%)</title><rect x="1023.52" y="865" width="3.06" height="22" fill="hsl(24,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="10" data-weight="3"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.signalNext: 3 samples (0.250%)</title><rect x="1023.52" y="841" width="3.06" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="11" data-weight="3"><title>java.util.concurrent.locks.LockSupport.unpark: 3 samples (0.250%)</title><rect x="1023.52" y="817" width="3.06" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="5" data-weight="6"><title>java.lang.invoke.LambdaForm$MH+0x00007b312c011000.1557793041.linkToTargetMethod: 6 samples (0.500%)</title><rect x="1026.58" y="961" width="6.12" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="6" data-weight="6"><title>java.lang.invoke.LambdaForm$DMH+0x00007b312c010800.501678890.newInvokeSpecial: 6 samples (0.500%)</title><rect x="1026.58" y="937" width="6.12" height="22" fill="hsl(28,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="7" data-weight="6"><title>java.lang.invoke.DirectMethodHandle.allocateInstance: 6 samples (0.500%)</title><rect x="1026.58" y="913" width="6.12" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="4" data-weight="93"><title>io.ominicat.core.PipelineSession.take: 93 samples (7.750%)</title><rect x="1034.74" y="985" width="94.86" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="1038.74" y="1001" font-family="monospace" font-size="12" fill="#152430">PipelineSe…</text>
+</g>
+<g data-depth="5" data-weight="7"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await: 7 samples (0.583%)</title><rect x="1034.74" y="961" width="7.14" height="22" fill="hsl(25,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="6" data-weight="7"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.enableWait: 7 samples (0.583%)</title><rect x="1034.74" y="937" width="7.14" height="22" fill="hsl(32,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="7" data-weight="7"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.release: 7 samples (0.583%)</title><rect x="1034.74" y="913" width="7.14" height="22" fill="hsl(24,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="8" data-weight="6"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.signalNext: 6 samples (0.500%)</title><rect x="1034.74" y="889" width="6.12" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="9" data-weight="6"><title>java.util.concurrent.locks.LockSupport.unpark: 6 samples (0.500%)</title><rect x="1034.74" y="865" width="6.12" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="5" data-weight="2"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.signalAll: 2 samples (0.167%)</title><rect x="1041.88" y="961" width="2.04" height="22" fill="hsl(40,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="5" data-weight="4"><title>java.util.concurrent.locks.ReentrantLock.lockInterruptibly: 4 samples (0.333%)</title><rect x="1043.92" y="961" width="4.08" height="22" fill="hsl(21,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="6" data-weight="4"><title>java.util.concurrent.locks.ReentrantLock$Sync.lockInterruptibly: 4 samples (0.333%)</title><rect x="1043.92" y="937" width="4.08" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="7" data-weight="4"><title>java.lang.Thread.interrupted: 4 samples (0.333%)</title><rect x="1043.92" y="913" width="4.08" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="5" data-weight="72"><title>java.util.concurrent.locks.ReentrantLock.unlock: 72 samples (6.000%)</title><rect x="1048" y="961" width="73.44" height="22" fill="hsl(44,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="1052" y="977" font-family="monospace" font-size="12" fill="#152430">Reentran…</text>
+</g>
+<g data-depth="6" data-weight="72"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.release: 72 samples (6.000%)</title><rect x="1048" y="937" width="73.44" height="22" fill="hsl(24,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="1052" y="953" font-family="monospace" font-size="12" fill="#152430">Abstract…</text>
+</g>
+<g data-depth="7" data-weight="71"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.signalNext: 71 samples (5.917%)</title><rect x="1048" y="913" width="72.42" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="1052" y="929" font-family="monospace" font-size="12" fill="#152430">Abstrac…</text>
+</g>
+<g data-depth="8" data-weight="71"><title>java.util.concurrent.locks.LockSupport.unpark: 71 samples (5.917%)</title><rect x="1048" y="889" width="72.42" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="1052" y="905" font-family="monospace" font-size="12" fill="#152430">LockSup…</text>
+</g>
+<g data-depth="7" data-weight="1"><title>java.util.concurrent.locks.ReentrantLock$Sync.tryRelease: 1 samples (0.083%)</title><rect x="1120.42" y="913" width="1.02" height="22" fill="hsl(39,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="4" data-weight="3"><title>java.lang.invoke.Invokers$Holder.linkToTargetMethod: 3 samples (0.250%)</title><rect x="1129.6" y="985" width="3.06" height="22" fill="hsl(32,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="5" data-weight="3"><title>java.lang.invoke.DirectMethodHandle$Holder.newInvokeSpecial: 3 samples (0.250%)</title><rect x="1129.6" y="961" width="3.06" height="22" fill="hsl(30,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="6" data-weight="3"><title>java.lang.invoke.DirectMethodHandle.allocateInstance: 3 samples (0.250%)</title><rect x="1129.6" y="937" width="3.06" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="4" data-weight="76"><title>java.util.concurrent.locks.ReentrantLock.lock: 76 samples (6.333%)</title><rect x="1132.66" y="985" width="77.52" height="22" fill="hsl(29,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="1136.66" y="1001" font-family="monospace" font-size="12" fill="#152430">Reentran…</text>
+</g>
+<g data-depth="5" data-weight="76"><title>java.util.concurrent.locks.ReentrantLock$Sync.lock: 76 samples (6.333%)</title><rect x="1132.66" y="961" width="77.52" height="22" fill="hsl(19,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="1136.66" y="977" font-family="monospace" font-size="12" fill="#152430">Reentran…</text>
+</g>
+<g data-depth="6" data-weight="75"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire: 75 samples (6.250%)</title><rect x="1132.66" y="937" width="76.5" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+<text x="1136.66" y="953" font-family="monospace" font-size="12" fill="#152430">Abstract…</text>
+</g>
+<g data-depth="4" data-weight="1"><title>java.util.concurrent.locks.ReentrantLock.unlock: 1 samples (0.083%)</title><rect x="1210.18" y="985" width="1.02" height="22" fill="hsl(44,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="5" data-weight="1"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.release: 1 samples (0.083%)</title><rect x="1210.18" y="961" width="1.02" height="22" fill="hsl(24,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="2" data-weight="19"><title>java.util.concurrent.ThreadPoolExecutor$Worker.run: 19 samples (1.583%)</title><rect x="1232.62" y="1033" width="19.38" height="22" fill="hsl(40,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="3" data-weight="19"><title>java.util.concurrent.ThreadPoolExecutor.runWorker: 19 samples (1.583%)</title><rect x="1232.62" y="1009" width="19.38" height="22" fill="hsl(22,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="4" data-weight="19"><title>java.util.concurrent.FutureTask.run: 19 samples (1.583%)</title><rect x="1232.62" y="985" width="19.38" height="22" fill="hsl(43,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="5" data-weight="19"><title>java.util.concurrent.Executors$RunnableAdapter.call: 19 samples (1.583%)</title><rect x="1232.62" y="961" width="19.38" height="22" fill="hsl(27,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="6" data-weight="19"><title>io.ominicat.benchmarks.CoreLoad$$Lambda$97+0x00007b312c00b868.990355670.run: 19 samples (1.583%)</title><rect x="1232.62" y="937" width="19.38" height="22" fill="hsl(24,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="7" data-weight="19"><title>io.ominicat.benchmarks.CoreLoad.lambda$runPhase$4: 19 samples (1.583%)</title><rect x="1232.62" y="913" width="19.38" height="22" fill="hsl(38,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="8" data-weight="8"><title>io.ominicat.core.PipelineSession.submit: 8 samples (0.667%)</title><rect x="1232.62" y="889" width="8.16" height="22" fill="hsl(49,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="9" data-weight="1"><title>io.ominicat.core.PipelineSession.enqueue: 1 samples (0.083%)</title><rect x="1232.62" y="865" width="1.02" height="22" fill="hsl(42,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="10" data-weight="1"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.signalAll: 1 samples (0.083%)</title><rect x="1232.62" y="841" width="1.02" height="22" fill="hsl(40,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="11" data-weight="1"><title>java.util.concurrent.locks.ReentrantLock$Sync.isHeldExclusively: 1 samples (0.083%)</title><rect x="1232.62" y="817" width="1.02" height="22" fill="hsl(41,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="9" data-weight="2"><title>java.util.concurrent.locks.ReentrantLock.lockInterruptibly: 2 samples (0.167%)</title><rect x="1233.64" y="865" width="2.04" height="22" fill="hsl(21,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="10" data-weight="2"><title>java.util.concurrent.locks.ReentrantLock$Sync.lockInterruptibly: 2 samples (0.167%)</title><rect x="1233.64" y="841" width="2.04" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="11" data-weight="1"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.acquireInterruptibly: 1 samples (0.083%)</title><rect x="1233.64" y="817" width="1.02" height="22" fill="hsl(31,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="11" data-weight="1"><title>java.util.concurrent.locks.ReentrantLock$NonfairSync.initialTryLock: 1 samples (0.083%)</title><rect x="1234.66" y="817" width="1.02" height="22" fill="hsl(21,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="9" data-weight="5"><title>java.util.concurrent.locks.ReentrantLock.unlock: 5 samples (0.417%)</title><rect x="1235.68" y="865" width="5.1" height="22" fill="hsl(44,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="10" data-weight="5"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.release: 5 samples (0.417%)</title><rect x="1235.68" y="841" width="5.1" height="22" fill="hsl(24,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="11" data-weight="5"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.signalNext: 5 samples (0.417%)</title><rect x="1235.68" y="817" width="5.1" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="12" data-weight="5"><title>java.util.concurrent.locks.LockSupport.unpark: 5 samples (0.417%)</title><rect x="1235.68" y="793" width="5.1" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="8" data-weight="8"><title>java.util.concurrent.Semaphore.tryAcquire: 8 samples (0.667%)</title><rect x="1240.78" y="889" width="8.16" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="9" data-weight="8"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.tryAcquireSharedNanos: 8 samples (0.667%)</title><rect x="1240.78" y="865" width="8.16" height="22" fill="hsl(46,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="10" data-weight="2"><title>java.util.concurrent.Semaphore$NonfairSync.tryAcquireShared: 2 samples (0.167%)</title><rect x="1240.78" y="841" width="2.04" height="22" fill="hsl(19,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="11" data-weight="1"><title>java.util.concurrent.Semaphore$Sync.nonfairTryAcquireShared: 1 samples (0.083%)</title><rect x="1240.78" y="817" width="1.02" height="22" fill="hsl(24,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+<g data-depth="10" data-weight="6"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire: 6 samples (0.500%)</title><rect x="1242.82" y="841" width="6.12" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35"/>
+</g>
+</svg>

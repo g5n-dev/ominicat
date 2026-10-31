@@ -42,6 +42,8 @@
 
 ### 性能证据
 
+[性能深度审计](performance-audit.md)以 Ubuntu 配对测量验证了有界的提示词统计／历史优化，完整的不使用历史／完整历史／截短历史矩阵均通过逐字输出和运行时来源检查。其他源码可确认的候选仍需各自负载验证。
+
 当相关负载有助于评估改动时，将这些测量增量与接入工作并行推进。分配实验依赖相应基线，不能先于基线。
 
 | 顺序 | 增量 | 证据与范围 | 验收 |
@@ -64,6 +66,7 @@
 
 | 增量 | 结果 | 证据 |
 | --- | --- | --- |
+| 有界提示词构造与性能深度审计 | 提示渲染跳过未使用的评估指标和多余历史实体化。Ubuntu／Java 17 配对测量覆盖九种窗口／历史用例，并逐字校验输出和运行时来源；独立的完整 Linux 内核 profile 为下一步分配假设提供依据。公开 API 与生命周期行为保持稳定。 | [PR #32](https://github.com/g5n-dev/ominicat/pull/32)、[审计与完整结果](performance-audit.md)、[配对原始证据](../../reports/performance-audit/prompt-render-2026-11-01/manifest.json)、[独立提示词回归](../../ominicat-conversation/src/test/java/io/ominicat/conversation/PromptTemplateOracleTest.java) |
 | 完整中文文档阅读路径 | 所有项目指南、协议、配置与部署、模块说明和报告叙述均有中文阅读版。内部页面与标题跳转保留中文；所有已发布图表均有中文标签和绑定源文件的 PNG 预览。CI 检查源文新鲜度、可执行示例、API 字面值、表格数值和导航；原始测量归档保持不变。 | [PR #31](https://github.com/g5n-dev/ominicat/pull/31), [中文目录](index.md)、[页面绑定](../i18n/pages.json)、[图表绑定](../i18n/figures.json)、[导航与证据保护测试](../../scripts/test_chinese_docs.py) |
 | 易发现的英文／简体中文 README | 主视觉之前提供语言切换。中文版本包含嵌入、插件打包和生命周期示例，并本地化横幅、组成与框架路径图。两版保留相同 Linux 证据；CI 检查译文新鲜度及绑定来源的 PNG。 | [PR #30](https://github.com/g5n-dev/ominicat/pull/30)、[项目首页](../../README.zh-CN.md)、[简体中文](../../README.zh-CN.md)、[翻译词表](../i18n/zh-CN.json)、[图形本地化检查](../../scripts/localize_readme.py) |
 | 性能原理与框架执行路径 | 根据源码说明 OminiCat、Pipecat 和 Camel 的同步交接、保留的生命周期成本及原生确认。阶段数 CPU 图和六组比值来自全部 90 个已校验 Linux 进程；README 公开内存取舍与重叠轮次范围。运行时和已记录基准数值均未改变。 | [PR #29](https://github.com/g5n-dev/ominicat/pull/29)、[机制、固定源码与完整比较](performance.md#实测路径为何不同)、[可复现推导与原始证据检查](../../scripts/render_performance_explainer.py)、[派生数据](../assets/framework-costs.json) |

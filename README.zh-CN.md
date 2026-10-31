@@ -341,6 +341,7 @@ java scripts/WebSocketLoad.java ws://127.0.0.1:8080/ws 32 5000
 - [通用场景覆盖矩阵](docs/zh-CN/scenario-coverage.md)
 - [不可变媒体引用与导入导出 API](docs/zh-CN/media-references.md)
 - [Studio 运行大盘与独立流程调试](docs/zh-CN/studio.md)
+- [性能深度审计与有界提示词实验](docs/zh-CN/performance-audit.md)
 - [迭代计划与验收标准](docs/zh-CN/iteration-plan.md)
 - [跨项目接入契约提案](docs/zh-CN/integration-contracts.md)
 - [时间区间、分段与注释契约提案](docs/zh-CN/temporal-annotations.md)

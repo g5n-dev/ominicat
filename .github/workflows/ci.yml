@@ -75,6 +75,10 @@ jobs:
           python3 scripts/localize_readme.py --check
           python3 scripts/render_doc_previews.py --check
           python3 scripts/chinese_docs.py --check
+          python3 scripts/prompt_cost.py check reports/performance-audit/prompt-render-2026-11-01
+      - name: Archived kernel audit checksums
+        working-directory: reports/performance-audit/linux-java17-2026-11-01
+        run: sha256sum --check SHA256SUMS
       - name: Performance evidence failure controls
         run: |
           python3 -m unittest discover -s scripts -p 'test_*.py' -v

@@ -3,7 +3,6 @@ package io.ominicat.conversation;
 import io.ominicat.core.Frame;
 import io.ominicat.core.FrameSink;
 import io.ominicat.core.Processor;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -30,6 +29,7 @@ public final class PromptTemplateProcessor implements Processor {
     private final String context;
     private final String instruction;
     private final int maxPromptChars;
+    private final int historyOccurrences;
 
     public PromptTemplateProcessor(String inputSpeaker, String template, String role, String context,
                                    String instruction, int maxTurns, int maxTextChars, int maxPromptChars) {
@@ -46,10 +46,12 @@ public final class PromptTemplateProcessor implements Processor {
             throw new IllegalArgumentException("role, context and instruction must not be null");
         }
         Matcher matcher = PLACEHOLDER.matcher(template);
+        int historyOccurrences = 0;
         while (matcher.find()) {
             if (!VARIABLES.contains(matcher.group(1))) {
                 throw new IllegalArgumentException("unknown template variable: " + matcher.group(1));
             }
+            if (matcher.group(1).equals("history")) historyOccurrences++;
         }
         this.window = new ConversationWindow(maxTurns, maxTextChars);
         this.inputSpeaker = inputSpeaker;
@@ -58,6 +60,7 @@ public final class PromptTemplateProcessor implements Processor {
         this.context = context;
         this.instruction = instruction;
         this.maxPromptChars = maxPromptChars;
+        this.historyOccurrences = historyOccurrences;
     }
 
     @Override
@@ -81,46 +84,39 @@ public final class PromptTemplateProcessor implements Processor {
     }
 
     private String render(Frame.Transcript transcript) {
-        List<Turn> turns = window.snapshot().turns();
-        StringBuilder history = new StringBuilder();
-        List<Integer> lineStarts = new ArrayList<>(turns.size());
-        for (Turn turn : turns) {
-            if (!history.isEmpty()) {
-                history.append('\n');
-            }
-            lineStarts.add(history.length());
-            history.append(turn.speaker()).append(": ").append(turn.text());
-        }
         Map<String, String> variables = Map.of("role", role, "context", context,
                 "instruction", instruction, "transcript", transcript.text(), "speaker", transcript.speaker(),
                 "history", "");
         String base = substitute(variables);
-        int historyOccurrences = 0;
-        Matcher matcher = PLACEHOLDER.matcher(template);
-        while (matcher.find()) {
-            if (matcher.group(1).equals("history")) {
-                historyOccurrences++;
-            }
-        }
         if (base.length() > maxPromptChars) {
             throw new IllegalArgumentException("prompt exceeds maxPromptChars even without history");
         }
-        int start = 0;
-        if (historyOccurrences > 0) {
-            int historyBudget = (maxPromptChars - base.length()) / historyOccurrences;
-            for (int lineStart : lineStarts) {
-                start = lineStart;
-                if (history.length() - start <= historyBudget) {
-                    break;
-                }
-            }
-            if (history.length() - start > historyBudget) {
-                throw new IllegalArgumentException("latest turn exceeds maxPromptChars");
-            }
+        if (historyOccurrences == 0) return base;
+
+        List<Turn> turns = window.retainedTurns();
+        int historyBudget = (maxPromptChars - base.length()) / historyOccurrences;
+        int first = turns.size();
+        int length = 0;
+        for (int index = turns.size() - 1; index >= 0; index--) {
+            Turn turn = turns.get(index);
+            long candidate = (long) length + turn.speaker().length() + 2 + turn.text().length()
+                    + (first == turns.size() ? 0 : 1);
+            if (candidate > historyBudget) break;
+            length = (int) candidate;
+            first = index;
+        }
+        if (first == turns.size() && !turns.isEmpty()) {
+            throw new IllegalArgumentException("latest turn exceeds maxPromptChars");
+        }
+        StringBuilder history = new StringBuilder(length);
+        for (int index = first; index < turns.size(); index++) {
+            if (index > first) history.append('\n');
+            Turn turn = turns.get(index);
+            history.append(turn.speaker()).append(": ").append(turn.text());
         }
         Map<String, String> values = Map.of("role", role, "context", context,
                 "instruction", instruction, "transcript", transcript.text(), "speaker", transcript.speaker(),
-                "history", history.substring(start));
+                "history", history.toString());
         return substitute(values);
     }
 
