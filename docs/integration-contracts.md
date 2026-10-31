@@ -4,6 +4,8 @@ Status: design proposal and acceptance plan. The additions below are not impleme
 
 The next integration goal is to reuse one Java 17+ runtime across streaming event processing, sequential replay and result aggregation adapters by changing configuration and plugins. Keep scheduling and lifecycle in the microkernel; add optional compatibility contracts at the integration boundary. Each implementation increment must include an executable contract fixture before advertising support.
 
+The [temporal/annotation proposal](temporal-annotations.md) adds source-bound ranges, segment changes, independent annotations and evidence-dependency semantics. These foundation contracts take priority over descriptor-only expansion. I1/I2/I3 remain supporting compatibility, encoding and resume contracts; carrying an event is not proof that its semantics have been implemented.
+
 ## Current mechanisms and remaining contracts
 
 | Area | Current, source-backed behavior | Next contract / owner |
