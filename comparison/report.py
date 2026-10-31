@@ -57,6 +57,11 @@ def render(summary, destination):
     lookup = {(c['engine'], c['stages']): c['metrics'] for c in summary['cells']}
 
     def save(fig, name):
+        ci = summary['environment'].get('ci')
+        if ci:
+            scope = 'container userspace' if ci['containerImage'] else 'native runner'
+            fig.text(.125, -.105, f"{ci['distro']['prettyName']} / {scope} / {ci['machine']} / GitHub Actions / {ci['sourceSha'][:12]}",
+                     color=MUTED, fontsize=9)
         for extension in ('svg', 'png'):
             path = destination / f'{name}.{extension}'
             fig.savefig(path, dpi=180, bbox_inches='tight', pad_inches=.25,
@@ -146,6 +151,19 @@ def render(summary, destination):
 
 def write_report(summary, suite, folder):
     env = suite['manifest']['environment']
+    ci = env.get('ci')
+    context = ''
+    if ci:
+        scope = ('CentOS container user space on an Ubuntu 24.04 runner; the kernel is shared with the runner.'
+                 if ci['containerImage'] else f"Native {ci['distro']['prettyName']} GitHub-hosted runner.")
+        context = f"\n## Linux CI environment\n\n**{ci['distro']['prettyName']} / {ci['machine']}**. {scope} " \
+                  f"Kernel: `{ci['kernelRelease']}`. CPU: `{env.get('cpuModel', 'unavailable')}`. " \
+                  f"[Workflow run]({ci['githubRunUrl']}); measured revision `{ci['sourceSha']}`. " \
+                  "Java/Python versions, libc, affinity and readable cgroup limits are in the manifest. " \
+                  "The three engines run sequentially within this job. Separate platform jobs use independent hosts; " \
+                  "their measurements are not an isolated experiment on distribution/kernel differences.\n"
+        if ci['containerImage']:
+            context += f"\nDeclared image: `{ci['containerImage']}`.\n"
     rows = []
     for c in summary['cells']:
         m = c['metrics']
@@ -154,6 +172,7 @@ def write_report(summary, suite, folder):
     content = f'''# Model-free framework comparison
 
 Recorded {suite['manifest']['recordedAt'][:10]} on {env['os']} / {env['arch']}, {env['logicalProcessors']} logical processors. The [manifest](manifest.json) binds every result to the protocol, measured JAR, verified installed Python dependency inventory and exact source fingerprints. All **{len(suite['results'])} fresh processes** passed output, count, rejection and cleanup checks; no failed fork was omitted.
+{context}
 
 ![Framework comparison overview](overview.svg)
 
@@ -183,7 +202,7 @@ Pipecat is the multimodal frame-pipeline peer. Camel is a Java routing-framework
 
 The figures do not compare OminiCat's synchronous dispatch headline against another framework's queued path. They do not measure models, codecs, transport, audio quality, interruption latency, saturation or production session capacity. This controlled synthetic profile cannot establish universal framework superiority.
 
-RSS is sampled using the same OS collector every 50 ms during measurement and includes runtime, imported dependencies and a pre-touched 16 MiB sample buffer. Java uses -Xms128m -Xmx512m; Python has no equivalent managed-heap limit. RSS is not framework-only allocation, retained heap, native footprint or B/op, and brief peaks may be missed. The shared development host has no exclusive CPU isolation. Engine order rotates between repetitions; JIT, GC, host load and thermal effects remain confounders.
+RSS is sampled using the same OS collector every 50 ms during measurement and includes runtime, imported dependencies and a pre-touched 16 MiB sample buffer. Java uses -Xms128m -Xmx512m; Python has no equivalent managed-heap limit. RSS is not framework-only allocation, retained heap, native footprint or B/op, and brief peaks may be missed. The shared host has no exclusive CPU isolation. Engine order rotates between repetitions; JIT, GC, host load and thermal effects remain confounders.
 
 ## Reproduce and inspect
 
@@ -193,7 +212,31 @@ Official sources: [Pipecat release](https://github.com/pipecat-ai/pipecat/releas
 '''
     if (folder / 'profiles/README.md').is_file():
         content += '\n## Separate instrumented diagnostics\n\n[CPU samples, allocation stacks, GC and Python call profiles](profiles/README.md) are collected in additional runs. Their instrumented timings are excluded from the 45-process comparison above. Java JFR and Python cProfile retain their different collection scopes.\n'
+    if ci:
+        repository = ci['githubRunUrl'].split('/actions/runs/')[0]
+        content = content.replace('](../../../comparison/', f"]({repository}/blob/{ci['sourceSha']}/comparison/")
     (folder / 'README.md').write_text(content)
+
+
+def write_ci_summary(summary, suite, path):
+    ci = suite['manifest']['environment']['ci']
+    count = sum(item['result']['measuredFrames'] for item in suite['results'])
+    lines = [f"## {ci['distro']['prettyName']} / framework comparison", '',
+             f"All **45 fresh processes** passed; **{count:,} measured outputs** validated. "
+             'Same-job native queued paths, 1/4/16 stages, W=1; models/network excluded.', '',
+             '| Four stages | Frames/s | Terminal p99 µs | Phase peak RSS MiB |',
+             '| --- | ---: | ---: | ---: |']
+    for cell in summary['cells']:
+        if cell['stages'] == 4:
+            m = cell['metrics']
+            lines.append(f"| {LABELS[cell['engine']]} | {m['throughput']['median']:,.0f} | {m['p99Micros']['median']:,.2f} | {m['measuredRssMiB']['median']:,.1f} |")
+    lines += ['', 'Five-process medians; full observed ranges, every raw result, SVG/PNG figures and separate '
+              'CPU/allocation/GC or Python call diagnostics are in this job’s checksummed artifact. '
+              'Download it from this run’s Artifacts section. No failed fork is dropped; profiled timings are excluded.', '',
+              f"Scope: `{ci['kernelScope']}`. Distribution jobs run on independent hosts; these numbers do not isolate OS differences. "
+              f"Source: `{ci['sourceSha']}`. [Run]({ci['githubRunUrl']}).", '']
+    with path.open('a', encoding='utf-8') as output:
+        output.write('\n'.join(lines))
 
 
 def check_publication_directory(folder, suite):
@@ -217,9 +260,12 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('input', type=Path)
     parser.add_argument('output', type=Path)
+    parser.add_argument('--github-summary', type=Path)
     args = parser.parse_args()
     suite = load_suite(args.input)
     summary = summarize(suite)
+    if args.github_summary and 'ci' not in suite['manifest']['environment']:
+        raise ValueError('GitHub summary requires validated Linux CI provenance')
     destination = args.output
     check_publication_directory(destination, suite)
     if destination.exists() and any(destination.iterdir()):
@@ -247,6 +293,8 @@ def main():
         if path.is_file() and path.name != 'SHA256SUMS':
             checksums.append(f'{digest(path.read_bytes())}  {path.relative_to(destination).as_posix()}')
     (destination / 'SHA256SUMS').write_text('\n'.join(checksums) + '\n')
+    if args.github_summary:
+        write_ci_summary(summary, suite, args.github_summary)
     print(f'Validated and rendered {len(suite["results"])} processes into {destination}')
 
 

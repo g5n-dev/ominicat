@@ -1,0 +1,83 @@
+name: Collect a complete Linux framework comparison
+description: Verify native adapters, measure 45 fresh processes and publish allowlisted diagnostics.
+inputs:
+  target:
+    description: Validated Linux execution target.
+    required: true
+  distro-id:
+    description: Expected /etc/os-release ID.
+    required: true
+  distro-version:
+    description: Expected /etc/os-release VERSION_ID.
+    required: true
+  python:
+    description: Native CPython 3.12 executable.
+    required: true
+  container-image:
+    description: Exact declared container image; empty for a native runner.
+    default: ''
+runs:
+  using: composite
+  steps:
+    - name: Verify actual Linux distribution and record CI provenance
+      shell: bash
+      env:
+        BENCH_TARGET: ${{ inputs.target }}
+        BENCH_DISTRO_ID: ${{ inputs.distro-id }}
+        BENCH_DISTRO_VERSION: ${{ inputs.distro-version }}
+        BENCH_PYTHON: ${{ inputs.python }}
+        BENCH_CONTAINER_IMAGE: ${{ inputs.container-image }}
+      run: |
+        "$BENCH_PYTHON" comparison/ci_context.py --target "$BENCH_TARGET" \
+          --expected-id "$BENCH_DISTRO_ID" --expected-version "$BENCH_DISTRO_VERSION" \
+          --container-image "$BENCH_CONTAINER_IMAGE" --output reports/local/framework-context.json
+    - name: Build and verify native Java adapters
+      shell: bash
+      run: |
+        ./mvnw -B -ntp -pl ominicat-core -am install -DskipTests
+        ./mvnw -B -ntp -f comparison/benchmarks/pom.xml clean verify
+    - name: Create pinned native Python environment
+      shell: bash
+      env:
+        BENCH_PYTHON: ${{ inputs.python }}
+      run: |
+        "$BENCH_PYTHON" -m venv reports/local/framework-env
+        reports/local/framework-env/bin/python -m pip install -r comparison/requirements.lock
+    - name: Verify oracle, evidence and provenance failure controls
+      shell: bash
+      run: |
+        reports/local/framework-env/bin/python -m unittest discover -s comparison/tests -v
+        reports/local/framework-env/bin/python -m unittest discover -s comparison/pipecat -p 'test_*.py' -v
+        reports/local/framework-env/bin/python -m unittest discover -s comparison/profile_tests -p 'test_*.py' -v
+    - name: Measure all 45 fresh processes sequentially
+      shell: bash
+      run: |
+        reports/local/framework-env/bin/python comparison/run.py \
+          --java "$JAVA_HOME/bin/java" --python reports/local/framework-env/bin/python \
+          --ci-context reports/local/framework-context.json --output reports/local/framework-run
+    - name: Validate and render the complete report
+      shell: bash
+      run: |
+        reports/local/framework-env/bin/python comparison/report.py \
+          reports/local/framework-run reports/local/framework-publish
+    - name: Collect separate instrumented diagnostics
+      shell: bash
+      run: |
+        reports/local/framework-env/bin/python comparison/profile_java.py \
+          --java "$JAVA_HOME/bin/java" --output reports/local/framework-java-profiles
+        reports/local/framework-env/bin/python comparison/profile_python.py \
+          --output reports/local/framework-python-profile
+    - name: Publish allowlisted profiles, checksums and job summary
+      shell: bash
+      run: |
+        reports/local/framework-env/bin/python comparison/package_diagnostics.py \
+          --suite reports/local/framework-run --java-input reports/local/framework-java-profiles \
+          --python-input reports/local/framework-python-profile --output reports/local/framework-publish/profiles
+        reports/local/framework-env/bin/python comparison/report.py \
+          reports/local/framework-run reports/local/framework-publish --github-summary "$GITHUB_STEP_SUMMARY"
+    - uses: actions/upload-artifact@v4
+      with:
+        name: framework-${{ inputs.target }}-java17-${{ github.run_id }}-${{ github.run_attempt }}
+        path: reports/local/framework-publish/
+        if-no-files-found: error
+        retention-days: 30

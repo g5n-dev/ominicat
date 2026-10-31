@@ -40,6 +40,8 @@ The [cross-project contract proposal](integration-contracts.md) defines supporti
 
 Continue these measurement increments alongside the integration work when their workload is needed to assess a change. Allocation experiments depend on the relevant baselines rather than preceding them.
 
+Active increment: extend the cross-framework comparison from its recorded Mac baseline to automatic Ubuntu 24.04 and CentOS Stream 9 user-space CI. Acceptance requires each environment's complete 45-process matrix and separate JFR/cProfile diagnostics, checked OS/source provenance, allowlisted/checksummed figures, actual successful run links and separate published reports. CentOS shares the Ubuntu runner kernel; independent hosts must not be ranked as an isolated OS experiment. Existing Java 17/21/25 and protected-main checks remain required.
+
 | Order | Increment | Evidence and scope | Acceptance |
 | --- | --- | --- | --- |
 | 1 | Async continuation and envelope cost | Existing JMH covers synchronous numeric dispatch and session round trips. Add bounded external-callback benchmarks with raw-frame and envelope variants; keep runtime contracts unchanged. | Validate nonce, causation and frame output; one request in flight; executor/session resources drained on teardown. Record Java 17 warmup, at least two forks, latency, B/op, source hash and timer boundaries. Include executor, identifier and clock overhead in the stated scope. Compile and verify on 17/21/25. |
