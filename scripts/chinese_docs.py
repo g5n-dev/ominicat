@@ -205,6 +205,8 @@ def urls(text):
     for code, block in chunks(strip_nav(text)):
         if code:
             continue
+        for match in re.finditer(r'\[!\[[^]]*\]\([^\s)]+\)\]\(([^\s)]+)\)', block):
+            yield match[1]
         for match in re.finditer(r'!?\[[^]]*\]\(([^\s)]+)\)|\b(?:href|src)="([^"]+)"', block):
             yield match[1] or match[2]
 
@@ -263,6 +265,8 @@ def check(manifest, graph):
                     raise ValueError(f'Broken Chinese heading link: {target}: {url}')
             if path.suffix == '.svg' and str(path) not in graph.local_assets:
                 raise ValueError(f'Untranslated figure linked from Chinese page: {target}: {url}')
+            if path.suffix == '.png' and path.relative_to(ROOT).as_posix() in graph.figures and str(path) not in graph.local_assets:
+                raise ValueError(f'Untranslated preview linked from Chinese page: {target}: {url}')
     for url in urls(INDEX.read_text(encoding='utf-8')):
         parsed = urlsplit(url)
         if parsed.scheme or parsed.netloc:

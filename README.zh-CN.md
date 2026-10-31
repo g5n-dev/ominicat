@@ -18,7 +18,7 @@
 
 [![Ubuntu 24.04：单帧在途的框架执行对比](docs/assets/previews/reports--comparison--linux-ubuntu24-java17-2026-10-31--overview-zh-CN.png)](docs/assets/zh-CN/reports/comparison/linux-ubuntu24-java17-2026-10-31/overview.svg)
 
-下表为**四阶段、单帧在途（W=1）**时，五个独立进程各项指标的中位数：
+下表为 **四阶段、单帧在途（W=1）** 时，五个独立进程各项指标的中位数：
 
 | 独立 Linux 作业 | 框架 | 处理速率 · 帧/秒 | 终点 p99 · µs | 采样进程峰值 RSS · MiB |
 | --- | --- | ---: | ---: | ---: |

@@ -74,6 +74,31 @@ class ChineseGraphTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'escaped to English repository'):
             self.check()
 
+    def figure_fixture(self):
+        self.write('docs/assets/plot.svg', '<svg/>')
+        self.write('docs/assets/zh-CN/plot.svg', '<svg/>')
+        self.write('docs/assets/previews/plot.png', 'original')
+        self.write('docs/assets/previews/plot-zh-CN.png', 'localized')
+        self.write('docs/i18n/figures.json', json.dumps({'figures': [{
+            'source': 'docs/assets/plot.svg', 'localized': 'docs/assets/zh-CN/plot.svg',
+            'preview': 'docs/assets/previews/plot-zh-CN.png'}]}))
+        self.write('docs/assets/previews/manifest.json', json.dumps({'figures': [{
+            'source': 'docs/assets/plot.svg', 'preview': 'docs/assets/previews/plot.png'}]}))
+
+    def test_english_preview_is_rejected_even_without_svg_link(self):
+        self.figure_fixture()
+        path = self.root / 'docs/zh-CN/a.md'
+        path.write_text(path.read_text() + '\n![图片](../assets/previews/plot.png)\n')
+        with self.assertRaisesRegex(ValueError, 'Untranslated preview'):
+            self.check()
+
+    def test_localized_preview_cannot_link_to_english_svg(self):
+        self.figure_fixture()
+        path = self.root / 'docs/zh-CN/a.md'
+        path.write_text(path.read_text() + '\n[![图片](../assets/previews/plot-zh-CN.png)](../assets/plot.svg)\n')
+        with self.assertRaisesRegex(ValueError, 'Untranslated figure'):
+            self.check()
+
     def test_plain_english_internal_link_is_rejected(self):
         self.mutate('docs/zh-CN/a.md', '(b.md#队列限制)', '(../b.md#queue-limits)')
         with self.assertRaisesRegex(ValueError, 'escaped to English'):
