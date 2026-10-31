@@ -60,7 +60,8 @@ def render(summary, destination):
         ci = summary['environment'].get('ci')
         if ci:
             scope = 'container userspace' if ci['containerImage'] else 'native runner'
-            fig.text(.125, -.105, f"{ci['distro']['prettyName']} / {scope} / {ci['machine']} / GitHub Actions / {ci['sourceSha'][:12]}",
+            x, y = (.055, .018) if name == 'overview' else (.125, -.105)
+            fig.text(x, y, f"{ci['distro']['prettyName']} / {scope} / {ci['machine']} / GitHub Actions / {ci['sourceSha'][:12]}",
                      color=MUTED, fontsize=9)
         for extension in ('svg', 'png'):
             path = destination / f'{name}.{extension}'
