@@ -9,7 +9,7 @@
 </p>
 
 <p align="center"><strong>High throughput. Measured latency. A small Java kernel.</strong><br>
-<a href="README.zh-CN.md">简体中文</a> · <a href="#quick-start">Quick start</a> · <a href="docs/architecture.md">Architecture</a> · <a href="docs/plugins.md">Build a plugin</a> · <a href="#performance-on-java-17">Performance</a> · <a href="#profiles">Profiles</a></p>
+<a href="README.zh-CN.md">简体中文</a> · <a href="#quick-start">Quick start</a> · <a href="docs/architecture.md">Architecture</a> · <a href="docs/plugins.md">Build a plugin</a> · <a href="#linux-performance-on-java-17">Performance</a> · <a href="#profiles">Profiles</a></p>
 
 OminiCat is a **high-performance Java microkernel for multimodal conversation pipelines**. Embed it in an application or run it as a standalone WebSocket container. Typed frames connect transport, speech, language, vision, and conversation processors through a small plugin contract.
 
@@ -17,116 +17,97 @@ OminiCat is a **high-performance Java microkernel for multimodal conversation pi
 
 **Runtime:** Java 17 is the minimum for building and running every module. Java 21+ automatically uses virtual workers. See [Java compatibility and verification](docs/java-compatibility.md).
 
-[Java 17 verification](reports/verification.md): **297 passing tests**, 512-seed lifecycle checks and real protocol faults, including cancellation while HTTP response bodies remain open. [Recorded kernel/resource profiles](reports/java17/http-cancellation/README.md) and [historical Java 21 evidence](reports/deep/README.md) retain their source/artifact boundaries.
+[Java 17 verification](reports/verification.md): **297 passing runtime tests** and 512-seed lifecycle checks. CI verifies Java 17, 21 and 25, the runnable distribution and container lifecycle.
 
-## Performance on Java 17
+## Linux performance on Java 17
 
-High throughput and low scheduling overhead, backed by [reproducible measurements](reports/java17/kernel/report.md):
+The published comparison runs **OminiCat, Pipecat 1.15.0 and Apache Camel 4.22.2 LTS** on Linux. Both environments passed their complete matrices: **90 fresh processes and 17,406,385 validated measured outputs**. Models, network and codecs are outside this numeric-frame workload; native runtime, scheduling, frame allocation and output validation remain included.
 
-| Measurement | Recorded result | Workload |
-| --- | ---: | --- |
-| Synchronous dispatch | **40.54M ops/s** | Four numeric-transform stages; one JMH thread |
-| Session round trip | **7.104 µs/op** | Four stages; one outstanding frame; average including queue, worker and output handoff |
-| Dispatch allocation | **328 B/op** | Four-stage synchronous numeric-frame workload |
-| Bounded concurrent load | **2.706M frames/s** | 16 sessions × four stages; p99 **1.436 ms**; 25M measured frames, zero rejections |
+### Ubuntu 24.04 / native x86_64
 
-Java 17.0.21, Apple M2 Pro / macOS arm64, 512 MiB heap, platform workers. JMH used two forks, three 1-second warmup iterations and five 1-second measurement iterations. The host was shared with development and validation work. These are in-memory numeric-frame measurements; network exchanges and model calls have separate timing scopes. [Raw JMH](reports/java17/kernel/jmh.json) · [Load data](reports/java17/kernel/load.json) · [CPU, allocation and GC profiles](reports/java17/kernel/profiles.md).
+Four available logical processors, AMD EPYC 9V74, Temurin 17.0.21 and CPython 3.12.15. Four application stages, one outstanding frame (**W=1**):
 
-The design keeps the execution path small and overload explicit:
-
-- **Direct typed-frame dispatch:** the JDK-only kernel passes frames through processor calls; synchronous embedding can use the path without session scheduling or JSON conversion.
-- **One owner per session:** linear stages run serially on the session worker; explicit parallel branches use bounded branch workers. Asynchronous callbacks rejoin the session queue. Independent sessions progress concurrently.
-- **Bounded work and backpressure:** ingress, active async work, branch parallelism/buffers and transport output have explicit limits. Saturation produces observable rejection or closure.
-- **Workers for the selected JDK:** Java 17 uses platform threads; Java 21+ automatically uses virtual threads. The container runs blocking processor work outside Netty's transport event loops.
-
-[Performance design and methodology](docs/performance.md) · [Resource timeline and fault verification](reports/java17/http-cancellation/README.md).
-
-## Framework comparison
-
-A separate **model-free queued-path comparison** runs OminiCat, Pipecat 1.15.0 and Apache Camel 4.22.2 LTS on the same Apple M2 Pro. Each uses immutable numeric frames, 1 / 4 / 16 application stages and one outstanding frame. Pipecat is the multimodal peer; Camel is the Java routing reference. All **45 fresh-process runs** passed exact output and cleanup checks, validating **18,659,525 measured frames**.
-
-![Model-free framework execution comparison](reports/comparison/java17-2026-10-31/overview.svg)
-
-| Four-stage native queued path | Frames/s · W=1 | Terminal p99 | Sampled peak process RSS |
+| Framework | Frames/s · W=1 | Terminal p99 | Sampled peak process RSS |
 | --- | ---: | ---: | ---: |
-| **OminiCat** | **140,089** | **9.79 µs** | 147.0 MiB |
-| Pipecat 1.15.0 | 3,906 | 455.29 µs | **85.0 MiB** |
-| Apache Camel 4.22.2 LTS | 107,210 | 12.54 µs | 205.4 MiB |
+| **OminiCat** | **49,084** | **17.30 µs** | 144.1 MiB |
+| Pipecat 1.15.0 | 5,300 | 220.35 µs | **93.5 MiB** |
+| Apache Camel 4.22.2 LTS | 42,756 | 20.41 µs | 188.7 MiB |
 
-Medians of five independent processes per cell, each with 3 seconds of warmup and 5 seconds of measurement; the figures retain min–max ranges. Java 17 and CPython 3.12 use their native queued implementations. Runtime, frame-object and scheduler differences remain included; W=1 frame rate is not saturated capacity. Pipecat uses less process RSS in this profile. RSS includes each runtime, dependencies and the common 16 MiB harness buffer; it is not B/op.
+![Ubuntu Linux framework execution, throughput and tail latency](reports/comparison/linux-ubuntu24-java17-2026-10-31/overview.svg)
 
-[Complete comparison, stage scaling and resources](reports/comparison/java17-2026-10-31/README.md) · [Raw results and source/runtime manifest](reports/comparison/java17-2026-10-31/suite.json) · [Reproduce](comparison/README.md) · [CPU / allocation / GC diagnostics](reports/comparison/java17-2026-10-31/profiles/README.md).
+Each cell contains five independent processes, each with three seconds warmup and five seconds measured. Tables show medians; plots retain observed min–max ranges. W=1 frame rate measures a closed client loop, not saturated throughput or production session capacity. RSS includes each runtime, dependencies and a common 16 MiB sample buffer; it is not framework-only allocation or B/op.
 
-### Linux CI evidence
+### CentOS Stream 9 / container user space
 
-Relevant pull requests and main pushes automatically run the full comparison on **Ubuntu 24.04** and **CentOS Stream 9 user space**, with manual dispatch available. Both Linux jobs passed: **90 fresh processes, 17,406,385 validated measured outputs**, plus separate CPU/allocation/GC and Python call diagnostics.
+Four available logical processors, AMD EPYC 9V45, distribution OpenJDK 17.0.20.1 and CPython 3.12.15. The official image is digest-pinned and shares its Ubuntu runner kernel.
 
-| Independent Linux job | OminiCat frames/s | Pipecat frames/s | Camel frames/s | Evidence |
-| --- | ---: | ---: | ---: | --- |
-| Ubuntu 24.04 native · EPYC 9V74 | **49,084** | 5,300 | 42,756 | [Figures and profiles](reports/comparison/linux-ubuntu24-java17-2026-10-31/README.md) |
-| CentOS Stream 9 user space · EPYC 9V45 | **66,567** | 10,019 | 59,527 | [Figures and profiles](reports/comparison/linux-centos9-java17-2026-10-31/README.md) |
+| Framework | Frames/s · W=1 | Terminal p99 | Sampled peak process RSS |
+| --- | ---: | ---: | ---: |
+| **OminiCat** | **66,567** | **12.44 µs** | 145.3 MiB |
+| Pipecat 1.15.0 | 10,019 | 130.88 µs | **88.0 MiB** |
+| Apache Camel 4.22.2 LTS | 59,527 | 13.78 µs | 188.9 MiB |
 
-Four-stage W=1 medians of five processes per cell. Compare frameworks within each row: different hosts and JDK builds prevent an isolated OS ranking. CentOS uses a digest-pinned official container and shares its Ubuntu runner kernel. [Linux figures, every raw result and CI provenance](reports/comparison/README.md) · [Workflow and downloadable artifacts](https://github.com/g5n-dev/ominicat/actions/workflows/framework-comparison.yml).
-
-![Ubuntu Linux CI framework comparison](reports/comparison/linux-ubuntu24-java17-2026-10-31/overview.svg)
-
-## Profiles
-
-### CPU, allocation and GC
-
-The recorded **Java 17 kernel profile** contains 524 CPU stack samples and 2,814 allocation samples. It covers warmup, the bounded numeric-frame load and the measurement harness, including percentile sorting. These summaries show CPU leaf samples and allocation classes. Allocation weights estimate allocated bytes, rather than retained heap or object counts.
-
-![Java 17 CPU leaf sample distribution](reports/java17/kernel/cpu-hotspots.svg)
-
-![Java 17 sampled allocation class distribution](reports/java17/kernel/allocation-hotspots.svg)
+Compare frameworks within each environment. The jobs use different CPU models and JDK builds, so the two tables do not isolate operating-system effects. Pipecat has lower process RSS in both recorded profiles.
 
 <details>
-<summary>Explore the full CPU and allocation stacks</summary>
+<summary>View the CentOS comparison figure</summary>
 
-The original recording was re-exported with an explicit 64-frame limit, recovering stacks up to 46 frames deep. The earlier export showed only five frames. Event counts, timestamps and measurement results are unchanged. Open the SVGs to inspect individual frames.
-
-[CPU flame graph](reports/java17/kernel/cpu-flamegraph.svg) · [Allocation flame graph](reports/java17/kernel/allocation-flamegraph.svg)
-
-![Java 17 CPU sampled stacks](reports/java17/kernel/cpu-flamegraph.svg)
-
-![Java 17 sampled allocation stacks](reports/java17/kernel/allocation-flamegraph.svg)
+![CentOS Stream 9 user-space framework comparison](reports/comparison/linux-centos9-java17-2026-10-31/overview.svg)
 
 </details>
 
-![GC pause totals per collection across the Java 17 kernel recording](reports/java17/kernel/gc-pauses.svg)
+[All Linux figures, ranges and raw processes](reports/comparison/README.md) · [Recorded CI run](https://github.com/g5n-dev/ominicat/actions/runs/41222330745) · [Reproduce](comparison/README.md) · [Automatic Linux workflow](https://github.com/g5n-dev/ominicat/actions/workflows/framework-comparison.yml).
 
-| Kernel JFR observation | Recorded value |
-| --- | ---: |
-| Garbage collections | **33** |
-| Cumulative GC pause time | **33.959 ms** |
-| Largest per-collection pause sum | **1.715 ms** |
+## Microkernel architecture
 
-GC values describe the whole kernel recording, including warmup and harness work. [Profile analysis](reports/java17/kernel/profiles.md) · [Selected JFR events](reports/java17/kernel/jfr-events.json.gz) · [GC log](reports/java17/kernel/gc.txt) · [Source/runtime context](reports/java17/kernel/measurement-context.json). The current distribution retains the same core bytecode, as recorded in the [artifact delta](reports/java17/http-cancellation/artifact-delta.json).
+The kernel keeps execution mechanisms separate from capabilities. Applications can call a typed pipeline directly or open a bounded session; the standalone container adds Netty transport, wire codecs and YAML assembly. Conversation logic and provider adapters remain optional modules.
 
-### Heap, direct memory and threads
+![Microkernel boundaries, embedding and container assembly](docs/assets/architecture-overview.svg)
 
-This separate **120.127-second mixed-media WebSocket echo probe** used 64 persistent clients paced at approximately 20 frames/s each, plus four churn workers with a 100 ms pause between cycles, after ten seconds of warmup. It validated **138,239 frames** and **4,377 new connections**, with zero failures and complete session/worker/output drain. It used a 256 MiB heap and a 128 MiB direct-memory limit.
+## Why the execution path stays small
 
-![Heap, direct memory, descriptors, threads, latency and rate during the mixed-media probe](reports/java17/http-cancellation/soak-resources.svg)
+| Mechanism | Cost it controls | Implementation and boundary |
+| --- | --- | --- |
+| **Direct typed-frame calls** | Synchronous stages call the next stage without an internal wire codec, stage queue or thread handoff. | [Pipeline](ominicat-core/src/main/java/io/ominicat/core/Pipeline.java) still allocates scoped sinks and continuations to enforce invocation lifetime. |
+| **One owner for linear session work** | A session worker runs synchronous stages, reset hooks and cleanup serially; callbacks rejoin that worker at the next stage. | [PipelineSession](ominicat-core/src/main/java/io/ominicat/core/PipelineSession.java) uses a lock and FIFO. Pending entries and active async handles have separate count limits. |
+| **Explicit parallelism and output pressure** | Branch worker/buffer limits and transport output checks make overload observable. | [ParallelProcessor](ominicat-core/src/main/java/io/ominicat/core/ParallelProcessor.java) buffers frame references; [server output](ominicat-server/src/main/java/io/ominicat/server/OminiCatServer.java) budgets pending payload bytes. These are separate limits, not a total-memory cap. |
+| **Assembly outside frame dispatch** | Pipeline stages are selected and created before processing their frames. JDK worker capability discovery happens during factory initialization. | [PluginRegistry](ominicat-core/src/main/java/io/ominicat/core/spi/PluginRegistry.java) and [WorkerThreads](ominicat-core/src/main/java/io/ominicat/core/WorkerThreads.java); Java 17 uses platform workers, 21+ selects virtual workers. |
+| **Immutable media ownership** | Existing frame instances can cross stages by reference without exposing mutable payload storage. | [Media constructors](ominicat-core/src/main/java/io/ominicat/core/Frame.java) defensively copy bytes; getters create read-only views. This has allocation costs and is not end-to-end zero-copy. |
 
-| Resource | After warmup | After drain |
-| --- | ---: | ---: |
-| Heap used after requested full GC | 12.687 MiB | 7.795 MiB |
-| Netty pooled direct reservation | 16 MiB | 16 MiB |
-| Open file descriptors | 96 | 32 |
-| Platform threads | 80 | 16 |
+![Direct synchronous calls and queued session execution with asynchronous re-entry](docs/assets/execution-path.svg)
 
-The timeline shows periodic traffic samples; heap samples include objects awaiting collection. Post-drain NMT committed memory was **484.658 MiB**, including the fixed heap, native thread stacks, JVM internals and profiling; this differs from RSS. [Resource report](reports/java17/http-cancellation/README.md) · [Numeric samples](reports/java17/http-cancellation/soak-samples.jsonl) · [Post-GC comparison](reports/java17/http-cancellation/soak-summary.json) · [Native-memory diagnostics](reports/java17/http-cancellation/resource-diagnostics.json). The kernel profiles and this resource probe retain their separate workloads and artifacts.
+In the container, processor work runs on session workers. JSON decoding and connection assembly still occur on Netty's I/O callbacks; the runtime does not move every operation off the event loop. The Linux numbers above use Java 17 platform workers and therefore do not demonstrate a virtual-thread speedup.
 
-### Generate profiles locally
+These mechanisms explain where the implementation controls work and overhead. The comparison measures the complete tested paths; it does not assign a measured speedup to each individual design choice.
 
-With JDK 17+ and Python 3:
+### Bounded work and cancellation
 
-```sh
-./scripts/profile.sh quick reports/local/profile
-```
+Pending frames, active async invocations, branch workers/buffers and transport output each have their own limit. In an open session, an interrupt advances its generation, clears pending work and fences late callbacks. `finish()` waits for accepted work and outstanding async invocations; plugin cooperation determines how promptly cancellation completes.
 
-This produces `report.md`, `profiles.md`, CPU/allocation summaries and full-stack SVGs, a GC pause timeline, and local JFR/GC evidence. To regenerate the figures from a retained selected-event export, run `python3 scripts/summarize_profiles.py reports/local/profile`. Use `full` for longer JMH warmup and measurement. [Profiling methodology](docs/performance.md) · [Sustained-resource reproduction](validation/README.md).
+![Independent queue, asynchronous, branch and transport resource boundaries](docs/assets/bounded-runtime.svg)
+
+[Source-backed architecture and lifecycle](docs/architecture.md) · [Performance mechanisms and measurement scope](docs/performance.md) · [Configuration and limits](docs/configuration.md).
+
+## Linux profiles
+
+The following **Ubuntu / Java 17** JFR diagnostics were collected in a separate instrumented run: **41 CPU stack samples, 445 allocation samples and three garbage collections**. Their scope includes JVM/framework startup, warmup, measurement, harness work and teardown. Sample counts are observations, not method-duration percentages; allocation weights estimate allocated bytes, not retained heap or exact B/op.
+
+![Ubuntu Java 17 sampled CPU leaf methods](reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/cpu-hotspots.svg)
+
+![Ubuntu Java 17 sampled allocation classes](reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/allocation-hotspots.svg)
+
+![Ubuntu Java 17 collection pause timeline](reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/gc-pauses.svg)
+
+The recorded GC pause sum is **4.876 ms**, with a largest per-collection pause sum of **2.580 ms**. Sparse CPU samples and sampled allocations identify observations to investigate; they do not prove the causal contribution of an optimization. Instrumented timings are excluded from the 90-process comparison.
+
+<details>
+<summary>Full exported stacks and peer diagnostics</summary>
+
+[Ubuntu CPU flame graph](reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/cpu-flamegraph.svg) · [Ubuntu allocation flame graph](reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/allocation-flamegraph.svg) · [Ubuntu OminiCat / Camel / Pipecat diagnostics](reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/README.md) · [CentOS diagnostics](reports/comparison/linux-centos9-java17-2026-10-31/profiles/README.md).
+
+</details>
+
+Relevant kernel, comparison, build and profiling changes trigger the Linux workflow for pull requests and main pushes. Each complete run publishes figures, raw numeric results, source/runtime manifests and checksums in a downloadable artifact retained for 30 days. The committed Linux baseline remains available independently of artifact expiry. [Collection and publication scope](comparison/README.md#linux-ci).
 
 ## Quick start
 
@@ -154,15 +135,7 @@ Using an existing Maven installation also works: `mvn -B verify` requires Maven 
 
 ## A kernel, with replaceable capabilities
 
-The core owns frame flow, session scheduling, bounded queues, cancellation fences, and processor lifecycle. Provider and transport code lives outside it. YAML selects plugins; Java `ServiceLoader` discovers them. Every WebSocket connection gets fresh processor instances and its own worker (platform thread on Java 17; virtual thread on Java 21+).
-
-```mermaid
-flowchart LR
-    I[WebSocket / embedded input] --> Q[Bounded session ingress]
-    Q --> P[Configured processor pipeline]
-    P --> O[Application / transport output]
-    S[ServiceLoader + YAML] -. creates per session .-> P
-```
+The core owns frame flow, session scheduling, cancellation generations and processor lifecycle. Provider and transport dependencies remain in separate modules. YAML selects configured stages; the Java SPI discovers factories at assembly time. Each session owns its pipeline and linear execution worker.
 
 | Module | Responsibility | Production dependencies |
 | --- | --- | --- |
@@ -261,12 +234,10 @@ The service file contains `example.UppercaseFactory`; a YAML stage with `type: u
 ./mvnw -B -Pcoverage,sbom verify
 
 # Forked JMH + allocation profiling, bounded-session load, JFR and GC logs
-./scripts/profile.sh quick reports/latest
+./scripts/profile.sh quick reports/local/profile
 ```
 
-The [inline profiles above](#profiles) show CPU, allocation, GC and resource evidence. The [Java 17 kernel report](reports/java17/kernel/report.md) records throughput, latency and allocation together. Its [CPU/allocation profiles](reports/java17/kernel/profiles.md) expose worker scheduling, invocation guards and harness costs; the [resource timeline](reports/java17/http-cancellation/soak-resources.svg) follows the separate mixed-media transport workload. The [performance guide](docs/performance.md) explains reproduction and sizing for the selected JDK.
-
-[Earlier Java 21 measurements](reports/deep/kernel/comparison.md) retain their original source/artifact scope and disclose the allocation and throughput cost of invocation guards.
+The [Linux profiles above](#linux-profiles) expose the recorded execution and allocation costs. Use the [Linux comparison guide](comparison/README.md#linux-ci) to run the same three-framework matrix on GitHub, or reproduce it on your own Linux host. The [performance guide](docs/performance.md) explains timing boundaries, worker selection and how to compare changes.
 
 ## Documentation
 
@@ -277,7 +248,7 @@ The [inline profiles above](#profiles) show CPU, allocation, GC and resource evi
 - [Scenario coverage and current limits](docs/scenario-coverage.md)
 - [Immutable media references and import/export](docs/media-references.md)
 - [Studio operation overview and pipeline debugger](docs/studio.md)
-- [Performance methodology](docs/performance.md) and [Java 17 measurements](reports/java17/kernel/report.md)
+- [Performance methodology](docs/performance.md) and [Linux measurements](reports/comparison/README.md)
 - [Iteration plan and acceptance criteria](docs/iteration-plan.md)
 - [Cross-project integration contract proposal](docs/integration-contracts.md)
 - [Temporal segment and annotation contract proposal](docs/temporal-annotations.md)

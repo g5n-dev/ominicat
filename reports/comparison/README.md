@@ -37,7 +37,3 @@ AMD EPYC 9V45, four available logical processors; distribution OpenJDK 17.0.20.1
 ![CentOS user-space framework comparison](linux-centos9-java17-2026-10-31/overview.svg)
 
 [Complete figures and ranges](linux-centos9-java17-2026-10-31/README.md) · [CPU / allocation / GC / Python diagnostics](linux-centos9-java17-2026-10-31/profiles/README.md) · [Manifest](linux-centos9-java17-2026-10-31/manifest.json) · [Checksums](linux-centos9-java17-2026-10-31/SHA256SUMS)
-
-## Recorded Apple baseline
-
-The earlier [Apple M2 Pro / Java 17 / CPython 3.12 recording](java17-2026-10-31/README.md) retains its own source, host, 45-process results and diagnostic scope. It is independent of these Linux jobs.

@@ -2,25 +2,9 @@
 
 OminiCat is a Java 17+ microkernel for multimodal conversations. The kernel provides scheduling and lifecycle mechanisms; plugins provide media processing, model calls and application policy. A new provider does not require a kernel change.
 
-```mermaid
-flowchart TB
-    subgraph Drivers
-      WS[WebSocket container]
-      APP[Embedded application / replay driver]
-    end
-    WS --> Q[Bounded session ingress]
-    APP --> Q
-    Q --> K[One worker per session]
-    K --> P1[Processor / AsyncProcessor]
-    P1 --> P2[Conversation / media / provider plugin]
-    P2 --> J[Optional parallel branches + ordered join]
-    J --> O[FrameSink]
-    O --> OUT[Bounded AsyncOutlet / transport]
-    CB[External streaming callback] --> CQ[Bounded continuation queue]
-    CQ --> K
-    SPI[ServiceLoader registry + YAML] -. creates owned instances .-> P1
-    SPI -. creates owned instances .-> P2
-```
+![OminiCat module boundaries and assembly](assets/architecture-overview.svg)
+
+The diagram separates dependencies and assembly from frame flow. The kernel can be used directly from Java. Server YAML and factory discovery add a configurable container experience; providers and conversation state depend on the core contract rather than becoming kernel policy. Factories are discovered at startup and configured processors are created for each WebSocket session.
 
 | Module | Responsibility | Production dependencies |
 |---|---|---|
@@ -29,6 +13,19 @@ flowchart TB
 | `ominicat-providers` | PCM utilities, transcript gate, compatible HTTP model adapters | Core, Jackson |
 | `ominicat-server` | Netty WebSocket/HTTP, YAML assembly, authentication, metrics, playground | Core, plugins, Netty, Jackson |
 | `ominicat-benchmarks` | JMH, allocation and bounded load measurement | Core, JMH |
+
+## Two execution paths
+
+![Direct calls, session ownership and async re-entry](assets/execution-path.svg)
+
+| Entry | Execution and ownership | Cost boundary |
+| --- | --- | --- |
+| `Pipeline.process(frame, sink)` | Synchronous processor calls on the caller thread. The caller serializes access and closes processors. A session-claimed pipeline or one containing `AsyncProcessor` rejects direct use. | No session FIFO or inter-stage codec; each invocation still creates a scoped `SynchronousSink` and continuation. |
+| `openSession(...).trySubmit(frame)` | A bounded FIFO feeds one owner worker. Accepted callbacks enqueue `(frame, generation, nextStage)` into the same FIFO; that worker resumes downstream stages. | Queue locking, pending records, generation checks and worker handoffs remain part of execution. Callback arrival order governs continuation order. |
+
+The standalone server uses Netty NIO event loops for transport. Frame decoding and connection/stage assembly occur on I/O callbacks; normal processor execution and output encoding occur on the session worker, followed by Netty writes. This is a processing boundary, not a claim that every expensive operation has been moved off the event loop.
+
+Source: [Pipeline](../ominicat-core/src/main/java/io/ominicat/core/Pipeline.java), [SynchronousSink](../ominicat-core/src/main/java/io/ominicat/core/SynchronousSink.java), [PipelineSession](../ominicat-core/src/main/java/io/ominicat/core/PipelineSession.java), [server callbacks and output](../ominicat-server/src/main/java/io/ominicat/server/OminiCatServer.java).
 
 ## Contracts
 
@@ -44,7 +41,7 @@ flowchart TB
 
 ## Scheduling and ownership
 
-The same Java 17 bytecode runs on Java 17, 21 and 25. `WorkerThreads` uses named daemon platform threads on Java 17 and discovers virtual-thread factories through the public JDK API on Java 21+. Reflection is confined to factory initialization, outside frame dispatch. Branch executors have explicit concurrency and queue bounds on both backends. See [Java compatibility](java-compatibility.md).
+The same Java 17 bytecode runs on Java 17, 21 and 25. `WorkerThreads` uses named daemon platform threads on Java 17 and discovers virtual-thread factories through the public JDK API on Java 21+. Worker capability discovery occurs during initialization, outside frame dispatch. Branch executors have explicit concurrency and queue bounds on both backends. See [Java compatibility](java-compatibility.md).
 
 Each session exclusively owns a fresh pipeline and its processor instances. Synchronous processor invocations, reset hooks and cleanup run serially on one session worker. A processor may emit zero, one or many frames synchronously. It must not retain a synchronous `FrameSink` for later use.
 
@@ -53,6 +50,22 @@ Each session exclusively owns a fresh pipeline and its processor instances. Sync
 Ordinary control frames have no hidden kernel effects. `finish()` closes intake and drains accepted work and outstanding asynchronous invocations; `completion()` resolves after reverse cleanup. With async processors, callback arrival order determines continuation order; an END payload is not an implicit cross-branch barrier. The server closes a drained connection only after session completion.
 
 `interrupt()` invalidates the previous generation, discards queued work, interrupts blocking I/O and serializes `onInterrupt()` before the next generation. Late callbacks are rejected. Already-started external effects cannot be revoked; plugins must cooperate with cancellation. `close()` is immediate cooperative cancellation; callers can await the completion future.
+
+## Independent resource limits
+
+![Queue, async, branch and transport boundaries](assets/bounded-runtime.svg)
+
+| Boundary | Implemented limit | Unit and important scope |
+| --- | --- | --- |
+| Pending session work | `queue.size() <= C`, using `ReentrantLock` and `ArrayDeque` | Queue entries, including accepted asynchronous continuations; the currently executing frame is not a pending queue entry. |
+| Live asynchronous invocations | `asyncHandles.size() <= C` | A separate count limit with the same configured `SessionOptions.queueCapacity`; it is not a shared queue-plus-in-flight budget. |
+| Explicit parallel branches | `P` workers, a `P`-slot executor task queue and at most `B` buffered output frame references per branch | Branch scheduling/wait uses a shared deadline. Joined delivery can run longer; counts do not bound payload bytes or total RSS. |
+| Network output | Pending encoded payload bytes at most `4 * maxFrameBytes`, plus channel writability checks | Reservation is released on write-future completion. This does not bound every Netty task or native allocation, and completion is not client consumption. |
+| Server admission | Configured connection/session capacity | Admission is released after both socket inactivity and worker cleanup, so slow cooperative cleanup continues to occupy capacity. |
+
+An open session's `interrupt()` advances its generation, discards pending work and fences stale callbacks. Processor reset and reverse cleanup run under the ownership contract. Cancellation cannot roll back an external effect already started. `finish()` drains accepted work and outstanding asynchronous invocations; applications need deadlines for callbacks that may never complete.
+
+Source: [session intake, handles and generation checks](../ominicat-core/src/main/java/io/ominicat/core/PipelineSession.java), [parallel composition](../ominicat-core/src/main/java/io/ominicat/core/ParallelProcessor.java), [bounded worker executors](../ominicat-core/src/main/java/io/ominicat/core/WorkerThreads.java), [server output/admission](../ominicat-server/src/main/java/io/ominicat/server/OminiCatServer.java).
 
 ## Composition and failure
 
@@ -67,3 +80,9 @@ The server bounds sessions, frame bytes, ingress capacity and pending outbound b
 Conversation and step-flow snapshots are validated runtime state. Applications choose a durable store, commit point, access controls and reconnection identity. Restore does not replay completed external effects. The runtime does not claim crash recovery, durable message delivery, a media echo canceller, WebRTC transport, distributed orchestration, or live provider-specific ASR implementations.
 
 Stateful plugins can be composed in-process. External model services, message queues and stores can scale separately. Keep credentials in environment variables or a deployment secret manager; include only environment variable names in YAML. The process loads plugins from its classpath at startup; runtime bundle hot-unload is not provided.
+
+## Performance evidence and diagram source
+
+The [Linux performance guide](performance.md) connects these implementation mechanisms to explicit workload and diagnostic scopes. Current public figures use [Ubuntu and CentOS CI recordings](../reports/comparison/README.md); the measurements do not assign causal speedup ratios to individual architectural choices.
+
+All three diagrams are editable SVG with accessible titles/descriptions and no external assets. Regenerate them with `python3 scripts/render_architecture.py` from the repository root. [Diagram source](../scripts/render_architecture.py).
