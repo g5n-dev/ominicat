@@ -1,6 +1,6 @@
 # Temporal segments and annotations
 
-Status: design proposal and acceptance criteria, not implemented APIs, configuration fields or wire types. This extends the [integration contract proposal](integration-contracts.md); the [scenario matrix](scenario-coverage.md) remains the implemented scope.
+Status: the minimal T1a reference/import-export profile is implemented in the optional conversation module; see [API and runnable fixtures](media-references.md). T1b, T2 and T3 remain design proposals and acceptance criteria, not shipped APIs, configuration fields or wire types. This extends the [integration contract proposal](integration-contracts.md); the [scenario matrix](scenario-coverage.md) tracks the implemented scope.
 
 Reusable temporal processing needs more than a text revision or a rule score. An integration may adjust a range, split or merge segments, attach several independent annotations and revise a result after new evidence arrives. These contracts belong in an optional module and adapters. They must not introduce an application entity model, label vocabulary or global state into the microkernel.
 
@@ -18,6 +18,8 @@ Choose only the behavior profile required by an integration. Existing raw-frame 
 | Open Java [Frame](../ominicat-core/src/main/java/io/ominicat/core/Frame.java) | Applications can implement additional events | An already implemented decoder, reducer or interoperable external schema for those events |
 
 ## T1a: Minimal source, range and version references
+
+Implemented: `MediaReference` supplies bounded immutable source/producer/segment-version references with explicit range, point and unknown positions; `FrameBoundaryMap` accepts driver-supplied integer-millisecond boundaries; `MediaReferenceIO` provides a bounded version-1 binary adapter. The [usage guide](media-references.md) states their exact limits. This does not add segment editing, a locator service or a default wire protocol extension.
 
 A source reference identifies an application-owned media asset/version, track and coordinate basis. Use an opaque qualified reference rather than an embedded recording, credential-bearing URL or a locally meaningful filename. A content fingerprint is caller-supplied when available; absence is explicit. Compute large media fingerprints at import/run boundaries, not per frame.
 
@@ -96,7 +98,7 @@ Acceptance for claimed dependency/publication behaviors:
 
 ## Compatibility and delivery
 
-Select the smallest profile needed by a concrete fixture. T1a and I1 can proceed independently; a source/range import-export fixture can establish T1a without T1b/T3. Subject-only T2 can also proceed without T1a. Add grouped ranges, local editing and dependency projections only for integrations declaring those behaviors. Each increment needs positive and negative cases using synthetic data; there is no universal T1a → T1b → T2 → T3 prerequisite chain.
+Select the smallest profile needed by a concrete fixture. The shipped source/range import-export fixture establishes minimal T1a without T1b/T3. I1 remains independent, and subject-only T2 can also proceed without T1a. Add grouped ranges, local editing and dependency projections only for integrations declaring those behaviors. Each increment needs positive and negative cases using synthetic data; there is no universal T1a → T1b → T2 → T3 prerequisite chain.
 
 Use I2 registration when selecting the proposed OminiCat versioned wire profile; other external codecs and file import/export need not depend on it. Preserve the default decoder, legacy messages and existing factory binaries. I1 descriptions can declare support only after a behavior probe verifies it. I3 checkpoint binding must capture the relevant source/definition versions while continuing to distinguish resume from reevaluation.
 

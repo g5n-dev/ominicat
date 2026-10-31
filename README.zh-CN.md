@@ -6,7 +6,7 @@
 
 当前为 **0.1 开发预览版**。核心机制有本地测试和可复跑的性能证据，真实厂商长连接、长稳运行和部署容量仍需在目标环境验证。
 
-[Java 17 验证报告](reports/verification.md)包含 **256 项通过测试、512 个随机种子和真实协议故障验证**，覆盖响应体保持打开时的中断、资源释放与下一轮恢复。[内核与资源剖析](reports/java17/http-cancellation/README.md)及[Java 21 历史报告](reports/deep/README.md)保留原始产物与测量范围。
+[Java 17 验证报告](reports/verification.md)包含 **276 项通过测试、512 个随机种子和真实协议故障验证**，覆盖响应体保持打开时的中断、资源释放与下一轮恢复。[内核与资源剖析](reports/java17/http-cancellation/README.md)及[Java 21 历史报告](reports/deep/README.md)保留原始产物与测量范围。
 
 ## Java 17 性能实测
 
@@ -109,6 +109,7 @@ java -jar ominicat-server/target/ominicat-server.jar --config config/demo.yaml
 | 流式扩展 | 同步处理器和独立的异步回调 SPI；回调重新进入有界调度队列 |
 | 编排 | 命名分支与确定顺序的汇合、截止时间、输出前降级、独立异步出口 |
 | 会话 | 稳定片段 ID、修订与最终提交、角色和说话人分离、时间区间、窗口与快照 |
+| 可选媒体引用 | 来源、轨道、时间基准、生产者作用域和片段版本；明确区间/点/未知位置、显式帧映射与有界导入导出 |
 | 可配置策略 | 带版本和证据的结构化评估、提示模板、可寻址步骤与条件路由 |
 | 容器 | Netty WebSocket、YAML 配置、SPI 发现、鉴权、容量限制、Prometheus 指标 |
 
@@ -161,6 +162,7 @@ java scripts/WebSocketLoad.java ws://127.0.0.1:8080/ws 32 5000
 - [配置、鉴权与部署](docs/configuration.md)
 - [帧协议](docs/protocol.md)与[插件开发](docs/plugins.md)
 - [通用场景覆盖矩阵](docs/scenario-coverage.md)
+- [不可变媒体引用与导入导出 API](docs/media-references.md)
 - [迭代计划与验收标准](docs/iteration-plan.md)
 - [跨项目接入契约提案](docs/integration-contracts.md)
 - [时间区间、分段与注释契约提案](docs/temporal-annotations.md)

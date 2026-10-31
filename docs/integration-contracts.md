@@ -4,7 +4,7 @@ Status: design proposal and acceptance plan. The additions below are not impleme
 
 The next integration goal is to reuse one Java 17+ runtime across streaming event processing, sequential replay and result aggregation adapters by changing configuration and plugins. Keep scheduling and lifecycle in the microkernel; add optional compatibility contracts at the integration boundary. Each implementation increment must include an executable contract fixture before advertising support.
 
-The [temporal/annotation proposal](temporal-annotations.md) adds optional source/range, editing, annotation and dependency profiles. Select them for a concrete integration; they are not a mandatory stack. I1 discovery is independent, subject-only annotations need no media timeline, and read-only imports need no editing reducer. I1/I2/I3 support compatibility, external encoding and resume as needed; carrying an event is not proof that its semantics have been implemented.
+The [temporal/annotation proposal](temporal-annotations.md) defines optional source/range, editing, annotation and dependency profiles. Minimal source/range references and binary import/export are [implemented](media-references.md); the remaining profiles are planned. Select them for a concrete integration; they are not a mandatory stack. I1 discovery is independent, subject-only annotations need no media timeline, and read-only imports need no editing reducer. I1/I2/I3 support compatibility, external encoding and resume as needed; carrying an event is not proof that its semantics have been implemented.
 
 ## Current mechanisms and remaining contracts
 

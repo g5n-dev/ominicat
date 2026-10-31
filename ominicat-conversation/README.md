@@ -4,6 +4,12 @@ See the [adversarial verification matrix](../ominicat-providers/DEEP_VERIFICATIO
 
 `ominicat-conversation` adds bounded transcript state, configurable policies and prompt composition to the microkernel. It depends only on `ominicat-core`; it requires no network service or model credentials. State is transient and confined to one session. This module does not provide durable storage, recovery or delivery guarantees.
 
+## Optional media references
+
+`io.ominicat.conversation.reference` provides immutable source/producer/segment-version values independently of the configured stages. `MediaReference` distinguishes half-open ranges, points and unknown positions; its PCM adapter counts samples per channel. `FrameBoundaryMap` uses explicit, strictly increasing integer-millisecond boundaries including the final end boundary. `MediaReferenceIO` offers bounded version-1 binary import/export with full Java `long` precision and strict UTF-8.
+
+See the [API guide and examples](../docs/media-references.md) for source/fingerprint checks, limits and failure cases. Applications supply identities, verified source metadata and mappings. These types neither edit committed transcripts nor change the default WebSocket codec or kernel dispatch.
+
 ## Configured stages
 
 The JAR registers three `ProcessorFactory` implementations through Java `ServiceLoader`. Each factory creates fresh state for each session.
