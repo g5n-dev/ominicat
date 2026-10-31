@@ -61,7 +61,7 @@ GC values describe the whole kernel recording, including warmup and harness work
 
 ### Heap, direct memory and threads
 
-This separate **120.127-second mixed-media WebSocket echo probe** used 64 persistent clients plus four churn workers, after ten seconds of warmup. It validated **138,239 frames** and **4,377 new connections**, with zero failures and complete session/worker/output drain. It used a 256 MiB heap and a 128 MiB direct-memory limit.
+This separate **120.127-second mixed-media WebSocket echo probe** used 64 persistent clients paced at approximately 20 frames/s each, plus four churn workers with a 100 ms pause between cycles, after ten seconds of warmup. It validated **138,239 frames** and **4,377 new connections**, with zero failures and complete session/worker/output drain. It used a 256 MiB heap and a 128 MiB direct-memory limit.
 
 ![Heap, direct memory, descriptors, threads, latency and rate during the mixed-media probe](reports/java17/http-cancellation/soak-resources.svg)
 
