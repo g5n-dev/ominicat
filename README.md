@@ -162,10 +162,6 @@ The [current kernel profile and historical comparison](reports/deep/kernel/compa
 - [Performance methodology](docs/performance.md) and [baseline report](reports/baseline/report.md)
 - [Conversation primitives](ominicat-conversation/README.md)
 
-## Related work
-
-[Pipecat](https://github.com/pipecat-ai/pipecat) demonstrates the power of frame-based multimodal pipelines. [Apache Tomcat](https://tomcat.apache.org/) informs the familiar embeddable Java-container experience. OminiCat is an independent implementation, with its own Java API and wire protocol.
-
 ## License
 
 [Apache License 2.0](LICENSE).
