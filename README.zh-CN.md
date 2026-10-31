@@ -2,7 +2,7 @@
 
 <p align="center"><a href="README.md">English</a> · <a href="docs/architecture.md">架构</a> · <a href="docs/configuration.md">配置</a> · <a href="docs/plugins.md">插件开发</a> · <a href="#java-17-性能实测">性能实测</a></p>
 
-**OminiCat 是面向高吞吐、低调度开销的 Java 多模态会话微内核。** 用统一帧契约连接音频、文本、图像、转写、模型和会话处理器；既能放进现有 Java 应用，也能独立启动为 WebSocket 服务容器。
+**OminiCat 是高性能 Java 多模态会话微内核，面向高吞吐与低调度开销设计。** 用统一帧契约连接音频、文本、图像、转写、模型和会话处理器；既能放进现有 Java 应用，也能独立启动为 WebSocket 服务容器。
 
 当前为 **0.1 开发预览版**。核心机制有本地测试和可复跑的性能证据，真实厂商长连接、长稳运行和部署容量仍需在目标环境验证。
 
