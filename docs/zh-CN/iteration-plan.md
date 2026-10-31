@@ -64,7 +64,7 @@
 
 | 增量 | 结果 | 证据 |
 | --- | --- | --- |
-| 完整中文文档阅读路径 | 所有项目指南、协议、配置与部署、模块说明和报告叙述均有中文阅读版。内部页面与标题跳转保留中文；所有已发布图表均有中文标签和绑定源文件的 PNG 预览。CI 检查源文新鲜度、可执行示例、API 字面值、表格数值和导航；原始测量归档保持不变。 | [中文目录](index.md)、[页面绑定](../i18n/pages.json)、[图表绑定](../i18n/figures.json)、[导航与证据保护测试](../../scripts/test_chinese_docs.py) |
+| 完整中文文档阅读路径 | 所有项目指南、协议、配置与部署、模块说明和报告叙述均有中文阅读版。内部页面与标题跳转保留中文；所有已发布图表均有中文标签和绑定源文件的 PNG 预览。CI 检查源文新鲜度、可执行示例、API 字面值、表格数值和导航；原始测量归档保持不变。 | [PR #31](https://github.com/g5n-dev/ominicat/pull/31), [中文目录](index.md)、[页面绑定](../i18n/pages.json)、[图表绑定](../i18n/figures.json)、[导航与证据保护测试](../../scripts/test_chinese_docs.py) |
 | 易发现的英文／简体中文 README | 主视觉之前提供语言切换。中文版本包含嵌入、插件打包和生命周期示例，并本地化横幅、组成与框架路径图。两版保留相同 Linux 证据；CI 检查译文新鲜度及绑定来源的 PNG。 | [PR #30](https://github.com/g5n-dev/ominicat/pull/30)、[项目首页](../../README.zh-CN.md)、[简体中文](../../README.zh-CN.md)、[翻译词表](../i18n/zh-CN.json)、[图形本地化检查](../../scripts/localize_readme.py) |
 | 性能原理与框架执行路径 | 根据源码说明 OminiCat、Pipecat 和 Camel 的同步交接、保留的生命周期成本及原生确认。阶段数 CPU 图和六组比值来自全部 90 个已校验 Linux 进程；README 公开内存取舍与重叠轮次范围。运行时和已记录基准数值均未改变。 | [PR #29](https://github.com/g5n-dev/ominicat/pull/29)、[机制、固定源码与完整比较](performance.md#实测路径为何不同)、[可复现推导与原始证据检查](../../scripts/render_performance_explainer.py)、[派生数据](../assets/framework-costs.json) |
 | 静态文档图片预览 | 两版 README 与架构／性能指南嵌入 11 张共享 2× PNG 预览，并链接到可编辑 SVG 原图。读者无需客户端图形引擎或 SVG 嵌入支持；Linux 测量归档未变。 | [PR #27](https://github.com/g5n-dev/ominicat/pull/27)、[预览导出器与来源／哈希／尺寸／链接检查](../../scripts/render_doc_previews.py)、[重生成指南](architecture.md#性能证据与图表源码)、必需的 source-hygiene CI |
