@@ -10,6 +10,11 @@ case "$MODE" in
   full) JMH_ARGS=(-wi 5 -i 8 -w 2s -r 2s -f 3); FRAMES=50000000 ;;
   *) printf 'Usage: %s [quick|full] [output-directory]\n' "$0" >&2; exit 2 ;;
 esac
+# A failed rerun must never leave an old successful report beside a new source hash.
+if [[ -e "$DESTINATION" ]] && [[ ! -d "$DESTINATION" || -n "$(ls -A "$DESTINATION")" ]]; then
+  printf 'Refusing nonempty profile destination: %s\nUse a new output directory for each run.\n' "$DESTINATION" >&2
+  exit 2
+fi
 mkdir -p "$DESTINATION"
 DESTINATION="$(cd "$DESTINATION" && pwd)"
 if [[ -x ./mvnw ]]; then MVN=./mvnw; else MVN=mvn; fi
@@ -18,8 +23,10 @@ python3 scripts/report.py --fingerprint "$DESTINATION"
 JAR="$ROOT/ominicat-benchmarks/target/ominicat-benchmarks.jar"
 JAVA_BIN="${JAVA_HOME:+$JAVA_HOME/bin/}java"
 JFR_BIN="${JAVA_HOME:+$JAVA_HOME/bin/}jfr"
+"$JAVA_BIN" -jar "$JAR" "io.ominicat.benchmarks.*Benchmark.*" -lp > "$DESTINATION/jmh-plan.txt"
+python3 scripts/report.py --prepare-run "$MODE" --artifact "$JAR" "$DESTINATION"
 "$JAVA_BIN" -Xms512m -Xmx512m -jar "$JAR" "io.ominicat.benchmarks.*Benchmark.*" \
-  "${JMH_ARGS[@]}" -t 1 -prof gc -rf json -rff "$DESTINATION/jmh.json" \
+  "${JMH_ARGS[@]}" -foe true -t 1 -prof gc -rf json -rff "$DESTINATION/jmh.json" \
   > "$DESTINATION/jmh.log" 2>&1
 "$JFR_BIN" configure --input profile.jfc --output "$DESTINATION/safe-profile.jfc" \
   'jdk.InitialEnvironmentVariable#enabled=false' 'jdk.InitialSystemProperty#enabled=false' \
@@ -36,7 +43,7 @@ JFR_BIN="${JAVA_HOME:+$JAVA_HOME/bin/}jfr"
 "$JFR_BIN" summary "$DESTINATION/kernel.jfr" > "$DESTINATION/jfr-summary.txt"
 "$JFR_BIN" print --json --events jdk.ExecutionSample,jdk.ObjectAllocationSample,jdk.GarbageCollection,jdk.JavaMonitorEnter,jdk.VirtualThreadPinned \
   "$DESTINATION/kernel.jfr" > "$DESTINATION/jfr-events.json"
-python3 scripts/report.py "$DESTINATION"
+python3 scripts/report.py --strict --check-source --artifact "$JAR" "$DESTINATION"
 mkdir -p "$ROOT/reports/local/$(basename "$DESTINATION")"
 LOCAL_EVENTS_DESTINATION="$ROOT/reports/local/$(basename "$DESTINATION")/jfr-events.json"
 if [[ ! "$DESTINATION/jfr-events.json" -ef "$LOCAL_EVENTS_DESTINATION" ]]; then

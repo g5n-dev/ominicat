@@ -3,9 +3,12 @@
 import json
 import math
 import hashlib
+import argparse
 from collections import Counter
 from pathlib import Path
 import sys
+
+from profile_evidence import prepare_run, validate_evidence
 
 
 def shown(value, digits=3):
@@ -22,16 +25,32 @@ def fingerprint():
 
 
 def main():
-    if len(sys.argv) == 3 and sys.argv[1] == "--fingerprint":
-        destination = Path(sys.argv[2])
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("folder", nargs="?", default="reports/latest", type=Path)
+    parser.add_argument("--fingerprint", action="store_true")
+    parser.add_argument("--prepare-run", choices=("quick", "full"))
+    parser.add_argument("--artifact", type=Path, help="verify the actual measured JAR when available")
+    parser.add_argument("--strict", action="store_true", help="require a dynamic run manifest; never fall back to historical mode")
+    parser.add_argument("--check-source", action="store_true", help="require current runtime sources to match the pre-run fingerprint")
+    parser.add_argument("--validate", action="store_true", help="validate evidence without changing report files")
+    args = parser.parse_args()
+    if args.fingerprint:
+        destination = args.folder
         destination.mkdir(parents=True, exist_ok=True)
         (destination / "source-sha256.json").write_text(json.dumps(fingerprint(), indent=2) + "\n")
         return
-    folder = Path(sys.argv[1] if len(sys.argv) > 1 else "reports/latest")
-    provenance_path = folder / "source-sha256.json"
-    provenance = json.loads(provenance_path.read_text()) if provenance_path.exists() else None
-    if provenance and provenance != fingerprint():
-        raise RuntimeError("runtime sources changed while profiling; rerun against a stable revision")
+    folder = args.folder
+    if args.prepare_run:
+        if args.artifact is None:
+            parser.error("--prepare-run requires --artifact")
+        prepare_run(folder, args.prepare_run, args.artifact)
+        return
+    jmh, load, provenance, validation_mode = validate_evidence(
+        folder, strict=args.strict, current_source=fingerprint() if args.check_source else None,
+        artifact=args.artifact)
+    print(f"Validated {len(jmh)} JMH cases and complete load counters ({validation_mode} mode).")
+    if args.validate:
+        return
     # Keep original local logs out of publication while removing repository/user paths.
     private = folder.parent / "local" / folder.name
     for name in ["jmh.log", "build.log", "load.log", "jfr-config.log"]:
@@ -43,8 +62,6 @@ def main():
                 private.mkdir(parents=True, exist_ok=True)
                 (private / name).write_text(original)
                 log.write_text(cleaned)
-    jmh = json.loads((folder / "jmh.json").read_text())
-    load = json.loads((folder / "load.json").read_text())
     environment = load["environment"]
     lines = [
         "# Local kernel performance evidence", "",
@@ -60,6 +77,9 @@ def main():
     ]
     if provenance:
         lines[4:4] = [f"Runtime/source fingerprint: `{provenance['aggregate']}`. [Per-file SHA-256 manifest](source-sha256.json).", ""]
+    lines[4:4] = [f"Evidence validation: {validation_mode} mode; complete benchmark/parameter matrix and load counters checked.", ""]
+    if (folder / "run-manifest.json").exists():
+        lines[4:4] = ["[Run manifest and measured benchmark JAR SHA-256](run-manifest.json).", ""]
     for result in jmh:
         metric = result["primaryMetric"]
         allocation = result.get("secondaryMetrics", {}).get("gc.alloc.rate.norm", {}).get("score")
@@ -116,4 +136,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except (ValueError, OSError, KeyError, TypeError) as error:
+        print(f"Profile evidence validation failed: {error}", file=sys.stderr)
+        sys.exit(1)
