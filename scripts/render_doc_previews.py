@@ -5,6 +5,7 @@ Rendering requires librsvg's rsvg-convert (Ubuntu: librsvg2-bin; macOS: librsvg)
 SVGs remain the editable originals and retain their diagnostic hover labels.
 """
 import argparse
+from collections import Counter
 import hashlib
 import json
 import re
@@ -86,12 +87,28 @@ def check():
             raise ValueError(f'Publish a static diagram instead of a Mermaid fence: {relative}')
         images = re.findall(r'!\[[^\]]*\]\(([^\s)]+)\)', text)
         images += re.findall(r'<img\b[^>]*\bsrc=["\']([^"\']+)', text)
+        pairs = re.findall(r'\[!\[[^\]]*\]\(([^\s)]+)\)\]\(([^\s)]+)\)', text)
+        pairs += [(image, source) for source, image in re.findall(
+            r'<a\b[^>]*\bhref=["\']([^"\']+)["\'][^>]*>\s*<img\b[^>]*\bsrc=["\']([^"\']+)', text)]
+        originals = {(ROOT / item['preview']).resolve(): (ROOT / item['source']).resolve()
+                     for item in manifest['figures']}
+        linked = Counter()
+        for image, source in pairs:
+            preview = (document.parent / image).resolve()
+            if preview in originals:
+                if (document.parent / source).resolve() != originals[preview]:
+                    raise ValueError(f'Preview links to the wrong SVG original: {relative}: {image}')
+                linked[image] += 1
         for image in images:
             if image.startswith(('https://', 'http://')):
                 continue
             target = document.parent / image
             if not target.is_file() or target.suffix.lower() == '.svg':
                 raise ValueError(f'Missing image or SVG without PNG preview: {relative}: {image}')
+            if target.resolve() in originals:
+                if linked[image] == 0:
+                    raise ValueError(f'Preview needs a link to its SVG original: {relative}: {image}')
+                linked[image] -= 1
     print(f'Checked {len(SOURCES)} source-bound PNG previews and {len(DOCUMENTS)} documents.')
 
 
