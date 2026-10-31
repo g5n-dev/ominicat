@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "engine": "camel",
+  "version": "4.22.2",
+  "mode": "queued-w1",
+  "stages": 4,
+  "sessions": 1,
+  "inflight": 1,
+  "warmupSeconds": 3.000064836,
+  "warmupFrames": 174001,
+  "measuredFrames": 300542,
+  "elapsedSeconds": 5.000004462,
+  "throughputFramesPerSecond": 60108.34635931171,
+  "latencyMicros": {
+    "p99": 16.019,
+    "max": 2892.079,
+    "p95": 9.784,
+    "p50": 8.152
+  },
+  "processCpuSeconds": 4.76,
+  "checks": {
+    "drained": true,
+    "cleanupComplete": true,
+    "noRejections": true,
+    "exactOutputCount": true,
+    "allOutputsValidated": true
+  },
+  "sampleCapacity": 2000000,
+  "harnessBufferBytes": 16777216,
+  "environment": {
+    "backend": "platform",
+    "architecture": "amd64",
+    "maxHeapBytes": 536870912,
+    "availableProcessors": 4,
+    "vendor": "Red Hat, Inc.",
+    "version": "17.0.20.1+1-LTS",
+    "runtime": "Java",
+    "os": "Linux"
+  },
+  "instrumented": true,
+  "headlineEligible": false,
+  "profileType": "JFR"
+}

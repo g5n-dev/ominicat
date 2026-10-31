@@ -46,6 +46,19 @@
 
 [完整对比、阶段扩展和资源图](reports/comparison/java17-2026-10-31/README.md) · [逐轮结果与来源清单](reports/comparison/java17-2026-10-31/suite.json) · [复跑步骤](comparison/README.md) · [CPU／分配／GC 诊断](reports/comparison/java17-2026-10-31/profiles/README.md)。
 
+### Linux CI 实测
+
+相关 PR 和 main 提交会自动在 **Ubuntu 24.04** 与 **CentOS Stream 9 用户态**运行完整对比，也支持手动触发。两条 Linux 作业均已通过：**90 个独立进程、17,406,385 个测量输出校验**，另有独立的 CPU／分配／GC 和 Python 调用剖析。
+
+| 独立 Linux 作业 | OminiCat 帧/秒 | Pipecat 帧/秒 | Camel 帧/秒 | 证据 |
+| --- | ---: | ---: | ---: | --- |
+| Ubuntu 24.04 原生 · EPYC 9V74 | **49,084** | 5,300 | 42,756 | [图表与剖析](reports/comparison/linux-ubuntu24-java17-2026-10-31/README.md) |
+| CentOS Stream 9 用户态 · EPYC 9V45 | **66,567** | 10,019 | 59,527 | [图表与剖析](reports/comparison/linux-centos9-java17-2026-10-31/README.md) |
+
+口径为四阶段、单帧在途，每项五个进程的中位数。每行内部比较三套框架；不同作业的硬件和 JDK 构建不同，不据此推断操作系统性能排名。CentOS 使用固定镜像摘要的官方容器，共享 Ubuntu 运行器内核。[Linux 完整图表、逐轮数据与 CI 来源](reports/comparison/README.md) · [工作流与可下载报告](https://github.com/g5n-dev/ominicat/actions/workflows/framework-comparison.yml)。
+
+![Ubuntu Linux CI 框架性能对比](reports/comparison/linux-ubuntu24-java17-2026-10-31/overview.svg)
+
 ## Profile
 
 ### CPU、内存分配与 GC

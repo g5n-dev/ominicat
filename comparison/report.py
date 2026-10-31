@@ -49,7 +49,7 @@ def render(summary, destination):
     import matplotlib
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
-    from matplotlib.ticker import FuncFormatter
+    from matplotlib.ticker import FuncFormatter, LogLocator, NullFormatter
     plt.rcParams.update({'font.family': 'DejaVu Sans', 'font.size': 11, 'text.color': TEXT,
         'axes.labelcolor': MUTED, 'xtick.color': MUTED, 'ytick.color': MUTED,
         'axes.facecolor': PANEL, 'figure.facecolor': BG, 'savefig.facecolor': BG,
@@ -78,6 +78,11 @@ def render(summary, destination):
         ax.set_axisbelow(True)
         ax.tick_params(length=0, pad=9)
 
+    def log_ticks(axis, formatter):
+        axis.set_major_locator(LogLocator(base=10, subs=(1, 2, 5)))
+        axis.set_major_formatter(FuncFormatter(formatter))
+        axis.set_minor_formatter(NullFormatter())
+
     def point(ax, metric, stages=4, labels=True):
         for y, engine in enumerate(ENGINES):
             value = lookup[engine, stages][metric]
@@ -100,7 +105,8 @@ def render(summary, destination):
                         ha='center', va='top' if engine == 'camel' else 'bottom', color=COLORS[engine], fontsize=10)
     ax.set_xscale('log', base=2); ax.set_yscale('log')
     ax.set_xticks((1, 4, 16), ('1 stage', '4 stages', '16 stages'))
-    ax.yaxis.set_major_formatter(FuncFormatter(lambda value, _: f'{value/1000:g}k'))
+    log_ticks(ax.yaxis, lambda value, _: f'{value/1000:g}k')
+    ax.xaxis.set_minor_formatter(NullFormatter())
     ax.set_ylabel('Validated frames / second · W=1 loop · log scale')
     ax.set_title('Native queued execution paths', loc='left', pad=27, fontsize=22, fontweight='bold')
     ax.legend(frameon=False, loc='lower left', labelcolor=TEXT)
@@ -111,6 +117,7 @@ def render(summary, destination):
     fig, axes = plt.subplots(1, 2, figsize=(12, 4.7), gridspec_kw={'wspace': .46})
     for ax, metric, title in zip(axes, ('p50Micros', 'p99Micros'), ('Median terminal latency (p50)', 'Tail terminal latency (p99)')):
         point(ax, metric); ax.set_xscale('log'); ax.set_xlabel('Microseconds · log scale · lower is better')
+        log_ticks(ax.xaxis, lambda value, _: f'{value:g}')
         ax.set_title(title, loc='left', pad=20, fontsize=14)
     fig.suptitle('4 stages / 1 outstanding frame', x=.125, ha='left', y=1.05, fontsize=21, fontweight='bold')
     fig.text(.125, -.04, 'Per-input timer ends after terminal validation, before caller acknowledgment. Ranges span 5 processes.', color=MUTED, fontsize=10)
@@ -118,6 +125,7 @@ def render(summary, destination):
 
     fig, axes = plt.subplots(1, 2, figsize=(12, 4.7), gridspec_kw={'wspace': .46})
     point(axes[0], 'cpuMicrosPerFrame'); axes[0].set_xscale('log'); axes[0].set_xlabel('Process CPU µs / validated frame · log scale')
+    log_ticks(axes[0].xaxis, lambda value, _: f'{value:g}')
     axes[0].set_title('CPU cost of the measured process', loc='left', pad=20, fontsize=14)
     point(axes[1], 'measuredRssMiB'); axes[1].set_xlim(left=0); axes[1].set_xlabel('Sampled measurement-phase peak RSS · MiB')
     axes[1].set_title('Whole-process resident memory', loc='left', pad=20, fontsize=14)
@@ -141,10 +149,12 @@ def render(summary, destination):
         ax.text(.07, .10, f"p99 {metrics['p99Micros']['median']:,.1f} µs   /   RSS {metrics['measuredRssMiB']['median']:,.0f} MiB",
                 fontsize=10, color=TEXT, transform=ax.transAxes)
     ax1 = fig.add_axes([.055, .16, .405, .32]); point(ax1, 'throughput')
-    ax1.set_xscale('log'); ax1.set_xlabel('W=1 frame rate · log scale'); ax1.xaxis.set_major_formatter(FuncFormatter(lambda v, _: f'{v/1000:g}k'))
+    ax1.set_xscale('log'); ax1.set_xlabel('W=1 frame rate · log scale')
+    log_ticks(ax1.xaxis, lambda value, _: f'{value/1000:g}k')
     ax1.set_title('Throughput with fork-to-fork variation', loc='left', pad=18, fontsize=13)
     ax2 = fig.add_axes([.585, .16, .35, .32]); point(ax2, 'p99Micros')
     ax2.set_xscale('log'); ax2.set_xlabel('Terminal p99 · microseconds · log scale')
+    log_ticks(ax2.xaxis, lambda value, _: f'{value:g}')
     ax2.set_title('Tail latency with fork-to-fork variation', loc='left', pad=18, fontsize=13)
     fig.text(.055, .075, '5 fresh processes per cell  /  3 s warm-up + 5 s measured  /  whiskers: min–max, not confidence intervals', color=MUTED, fontsize=10)
     fig.text(.055, .045, 'Same host; JVM/Python, native scheduling, input/stage allocations and validation included. W=1 is not saturated capacity.', color=MUTED, fontsize=9)

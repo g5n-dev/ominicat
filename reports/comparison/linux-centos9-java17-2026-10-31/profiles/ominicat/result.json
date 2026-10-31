@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "engine": "ominicat",
+  "version": "0.1.0-SNAPSHOT",
+  "mode": "queued-w1",
+  "stages": 4,
+  "sessions": 1,
+  "inflight": 1,
+  "warmupSeconds": 3.000068755,
+  "warmupFrames": 195201,
+  "measuredFrames": 314192,
+  "elapsedSeconds": 5.000002745,
+  "throughputFramesPerSecond": 62838.365501737346,
+  "latencyMicros": {
+    "p50": 7.415,
+    "p95": 8.993,
+    "max": 1327.115,
+    "p99": 14.722
+  },
+  "processCpuSeconds": 4.72,
+  "checks": {
+    "allOutputsValidated": true,
+    "exactOutputCount": true,
+    "noRejections": true,
+    "cleanupComplete": true,
+    "drained": true
+  },
+  "sampleCapacity": 2000000,
+  "harnessBufferBytes": 16777216,
+  "environment": {
+    "os": "Linux",
+    "runtime": "Java",
+    "version": "17.0.20.1+1-LTS",
+    "vendor": "Red Hat, Inc.",
+    "availableProcessors": 4,
+    "maxHeapBytes": 536870912,
+    "architecture": "amd64",
+    "backend": "platform"
+  },
+  "instrumented": true,
+  "headlineEligible": false,
+  "profileType": "JFR"
+}

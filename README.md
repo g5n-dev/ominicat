@@ -57,6 +57,19 @@ Medians of five independent processes per cell, each with 3 seconds of warmup an
 
 [Complete comparison, stage scaling and resources](reports/comparison/java17-2026-10-31/README.md) · [Raw results and source/runtime manifest](reports/comparison/java17-2026-10-31/suite.json) · [Reproduce](comparison/README.md) · [CPU / allocation / GC diagnostics](reports/comparison/java17-2026-10-31/profiles/README.md).
 
+### Linux CI evidence
+
+Relevant pull requests and main pushes automatically run the full comparison on **Ubuntu 24.04** and **CentOS Stream 9 user space**, with manual dispatch available. Both Linux jobs passed: **90 fresh processes, 17,406,385 validated measured outputs**, plus separate CPU/allocation/GC and Python call diagnostics.
+
+| Independent Linux job | OminiCat frames/s | Pipecat frames/s | Camel frames/s | Evidence |
+| --- | ---: | ---: | ---: | --- |
+| Ubuntu 24.04 native · EPYC 9V74 | **49,084** | 5,300 | 42,756 | [Figures and profiles](reports/comparison/linux-ubuntu24-java17-2026-10-31/README.md) |
+| CentOS Stream 9 user space · EPYC 9V45 | **66,567** | 10,019 | 59,527 | [Figures and profiles](reports/comparison/linux-centos9-java17-2026-10-31/README.md) |
+
+Four-stage W=1 medians of five processes per cell. Compare frameworks within each row: different hosts and JDK builds prevent an isolated OS ranking. CentOS uses a digest-pinned official container and shares its Ubuntu runner kernel. [Linux figures, every raw result and CI provenance](reports/comparison/README.md) · [Workflow and downloadable artifacts](https://github.com/g5n-dev/ominicat/actions/workflows/framework-comparison.yml).
+
+![Ubuntu Linux CI framework comparison](reports/comparison/linux-ubuntu24-java17-2026-10-31/overview.svg)
+
 ## Profiles
 
 ### CPU, allocation and GC

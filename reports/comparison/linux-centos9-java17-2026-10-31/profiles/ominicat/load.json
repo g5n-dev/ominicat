@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "kind": "queued-comparison-jfr-context",
+  "engine": "ominicat",
+  "mode": "queued-w1",
+  "stages": 4,
+  "scope": "Whole selected recording: JVM/framework startup, setup, 3-second warmup, 5-second W=1 measurement, harness and teardown. No phase filtering. Separate profiled diagnostics; not headline timings, framework-only allocation, retained heap, or a shared cross-language bytes-per-operation axis.",
+  "environment": {
+    "javaVersion": "17.0.20.1+1-LTS"
+  }
+}

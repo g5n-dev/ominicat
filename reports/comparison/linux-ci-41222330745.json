@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "githubRunUrl": "https://github.com/g5n-dev/ominicat/actions/runs/41222330745",
+  "runAttempt": 1,
+  "event": "pull_request",
+  "headRevision": "9c911d9da619fd7f58b801dd920d1e6a1a26bc56",
+  "measuredRevision": "fbd3c610eb4e2c8ad0c4bc53fcebfdb903bbb96a",
+  "measuredSourceTree": "28d1616db87f27155370257b825c72a15e06a27d",
+  "note": "Raw results, measurement manifests and diagnostic files preserve their original artifact bytes. Derived figures, summary and report are regenerated with the published renderer; measurements and statistics are unchanged.",
+  "artifacts": [
+    {
+      "target": "ubuntu-24.04",
+      "directory": "linux-ubuntu24-java17-2026-10-31",
+      "artifactId": 13050857058,
+      "artifactName": "framework-ubuntu-24.04-java17-41222330745-1",
+      "artifactZipSha256": "e614159c6fb0bb38c6e0c5d55ecaa1c83070750835cd8d703401b8ad0c31cde4",
+      "manifestSha256": "68cd25e8674fca13c8cbf7e661d9e21224e788a425b289fb3b1e9a73605181fe",
+      "measuredFrames": 7198018,
+      "capturedRendererSha256": "d581a742de6d9e7ce08d3ce48d0a58326b8980e04a5c9ae25a016ac9a3108eea",
+      "publishedRendererSha256": "9e72f486d7287e0a3f741ed93cbc7b3b899c367b8ca00e5bb4dfebd4bdae02f7"
+    },
+    {
+      "target": "centos-stream-9",
+      "directory": "linux-centos9-java17-2026-10-31",
+      "artifactId": 13050493653,
+      "artifactName": "framework-centos-stream-9-java17-41222330745-1",
+      "artifactZipSha256": "a2673906dbda06859e8ab6a78e71cdfc5efa4da7b5a3a66c8cd25e4bee7797f1",
+      "manifestSha256": "cb4dc6c5e2651de7ce484fc83f5632e5bba531960413f797da2388026ff0cc01",
+      "measuredFrames": 10208367,
+      "capturedRendererSha256": "d581a742de6d9e7ce08d3ce48d0a58326b8980e04a5c9ae25a016ac9a3108eea",
+      "publishedRendererSha256": "9e72f486d7287e0a3f741ed93cbc7b3b899c367b8ca00e5bb4dfebd4bdae02f7"
+    }
+  ],
+  "publicationRendererSha256": "9e72f486d7287e0a3f741ed93cbc7b3b899c367b8ca00e5bb4dfebd4bdae02f7"
+}

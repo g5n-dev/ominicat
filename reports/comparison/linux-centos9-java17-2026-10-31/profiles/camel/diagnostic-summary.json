@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "status": "complete",
+  "engine": "camel",
+  "stages": 4,
+  "kind": "separate-profiled-diagnostics",
+  "headlineTiming": false,
+  "scope": "Whole selected recording: JVM/framework startup, setup, 3-second warmup, 5-second W=1 measurement, harness and teardown. No phase filtering. Separate profiled diagnostics; not headline timings, framework-only allocation, retained heap, or a shared cross-language bytes-per-operation axis.",
+  "recordedAtUtc": "2026-10-31T17:08:23.538843+00:00",
+  "benchmarkArtifact": "benchmark.jar",
+  "benchmarkArtifactSha256": "b940d7aea441a0f784b6a34ea8f89b60646fa1bbc722d77c2d1684304efd1a83",
+  "stackDepthRequested": 64,
+  "executionSamplePeriodRequested": "1 ms",
+  "exportStackDepth": 64,
+  "selectedEventTypes": [
+    "jdk.ExecutionSample",
+    "jdk.ObjectAllocationSample",
+    "jdk.GarbageCollection",
+    "jdk.JavaMonitorEnter",
+    "jdk.VirtualThreadPinned"
+  ],
+  "profileWrapperSha256": "338ef0157437838596119bfa31bc1f9242721b44dee4e6b8a4cadb746de90c6b",
+  "observedPhases": {
+    "observation": "Parent receipt/launch/exit UTC; asynchronous observations, not exact child boundaries.",
+    "processStartedAtUtc": "2026-10-31T17:08:13.918053+00:00",
+    "processExitedAtUtc": "2026-10-31T17:08:22.551100+00:00",
+    "phaseEvents": [
+      {
+        "phase": "warmup",
+        "observedAtUtc": "2026-10-31T17:08:14.471102+00:00",
+        "parentElapsedSeconds": 0.553061151
+      },
+      {
+        "phase": "measure",
+        "observedAtUtc": "2026-10-31T17:08:17.471453+00:00",
+        "parentElapsedSeconds": 3.553405064
+      },
+      {
+        "phase": "teardown",
+        "observedAtUtc": "2026-10-31T17:08:22.471652+00:00",
+        "parentElapsedSeconds": 8.553609614
+      }
+    ],
+    "phaseWindows": [
+      {
+        "phase": "startup",
+        "startObservedAtUtc": "2026-10-31T17:08:13.918053+00:00",
+        "endObservedAtUtc": "2026-10-31T17:08:14.471102+00:00",
+        "parentElapsedStartSeconds": 0.0,
+        "parentElapsedEndSeconds": 0.553061151
+      },
+      {
+        "phase": "warmup",
+        "startObservedAtUtc": "2026-10-31T17:08:14.471102+00:00",
+        "endObservedAtUtc": "2026-10-31T17:08:17.471453+00:00",
+        "parentElapsedStartSeconds": 0.553061151,
+        "parentElapsedEndSeconds": 3.553405064
+      },
+      {
+        "phase": "measure",
+        "startObservedAtUtc": "2026-10-31T17:08:17.471453+00:00",
+        "endObservedAtUtc": "2026-10-31T17:08:22.471652+00:00",
+        "parentElapsedStartSeconds": 3.553405064,
+        "parentElapsedEndSeconds": 8.553609614
+      },
+      {
+        "phase": "teardown",
+        "startObservedAtUtc": "2026-10-31T17:08:22.471652+00:00",
+        "endObservedAtUtc": "2026-10-31T17:08:22.551100+00:00",
+        "parentElapsedStartSeconds": 8.553609614,
+        "parentElapsedEndSeconds": 8.633054642
+      }
+    ]
+  },
+  "result": {
+    "schemaVersion": 1,
+    "engine": "camel",
+    "version": "4.22.2",
+    "mode": "queued-w1",
+    "stages": 4,
+    "sessions": 1,
+    "inflight": 1,
+    "warmupSeconds": 3.000064836,
+    "warmupFrames": 174001,
+    "measuredFrames": 300542,
+    "elapsedSeconds": 5.000004462,
+    "throughputFramesPerSecond": 60108.34635931171,
+    "latencyMicros": {
+      "p99": 16.019,
+      "max": 2892.079,
+      "p95": 9.784,
+      "p50": 8.152
+    },
+    "processCpuSeconds": 4.76,
+    "checks": {
+      "drained": true,
+      "cleanupComplete": true,
+      "noRejections": true,
+      "exactOutputCount": true,
+      "allOutputsValidated": true
+    },
+    "sampleCapacity": 2000000,
+    "harnessBufferBytes": 16777216,
+    "environment": {
+      "backend": "platform",
+      "architecture": "amd64",
+      "maxHeapBytes": 536870912,
+      "availableProcessors": 4,
+      "vendor": "Red Hat, Inc.",
+      "version": "17.0.20.1+1-LTS",
+      "runtime": "Java",
+      "os": "Linux"
+    },
+    "instrumented": true,
+    "headlineEligible": false,
+    "profileType": "JFR"
+  },
+  "selectedEventCounts": {
+    "jdk.ExecutionSample": 125,
+    "jdk.GarbageCollection": 19,
+    "jdk.ObjectAllocationSample": 2427
+  },
+  "gcCollectionCount": 19,
+  "gcPauseSumMillis": 30.136793,
+  "maxCollectionPauseSumMillis": 5.311216,
+  "artifactSha256": {
+    "report.md": "eca1be566ea5b00c3bdbbc0ac7a28e822990f6e64f94f40c9978e245c6d0bb04",
+    "profiles.md": "850334276b4ba805bce02bdf5e61b7ea7589ba23f71e074e4b1801f1aa028272",
+    "cpu-flamegraph.svg": "68e1dbffefb8480a3e9d22de0fba82920b2ddb231e747d13d0f7f3eb9728550b",
+    "allocation-flamegraph.svg": "9cf2417dff1439023615cb0307783eda938fc95e2654a351c37842bf1053eaad",
+    "cpu-hotspots.svg": "b8aaa7f7367505c62ff8570249737b187ee4cafcf57492d3f9640b4790095718",
+    "allocation-hotspots.svg": "903c410d182a2da47f9a9d36d27e86a056fde5108076e1c142fee4ae86d68fe9",
+    "gc-pauses.svg": "c3a728b51dfe3de070314e7cf5ab13e41f2aac337f95ca5fd89f43b8b05977a0",
+    "jfr-events.json.gz": "41fa676154207e5acb3d7d8614d8568effa3b3ecb8819a76d84c1d52bb911dbc",
+    "load.json": "fa73f53f3dad660514a57eb854dfc49f7395012006afd47beda34d50c903e6a1",
+    "result.json": "8789fe4081d9ec7b2e5862d10200d48eb6a5e1bee697348c4aa337f05448a152",
+    "jfr-summary.txt": "40751a78364335cb4fac5b861bab05893630aeb361efec1a13b5eca753b95878"
+  },
+  "sourceCapturedArtifacts": {
+    "report.md": "eca1be566ea5b00c3bdbbc0ac7a28e822990f6e64f94f40c9978e245c6d0bb04",
+    "profiles.md": "850334276b4ba805bce02bdf5e61b7ea7589ba23f71e074e4b1801f1aa028272",
+    "cpu-flamegraph.svg": "68e1dbffefb8480a3e9d22de0fba82920b2ddb231e747d13d0f7f3eb9728550b",
+    "allocation-flamegraph.svg": "9cf2417dff1439023615cb0307783eda938fc95e2654a351c37842bf1053eaad",
+    "cpu-hotspots.svg": "b8aaa7f7367505c62ff8570249737b187ee4cafcf57492d3f9640b4790095718",
+    "allocation-hotspots.svg": "903c410d182a2da47f9a9d36d27e86a056fde5108076e1c142fee4ae86d68fe9",
+    "gc-pauses.svg": "c3a728b51dfe3de070314e7cf5ab13e41f2aac337f95ca5fd89f43b8b05977a0",
+    "jfr-events.json.gz": "41fa676154207e5acb3d7d8614d8568effa3b3ecb8819a76d84c1d52bb911dbc",
+    "load.json": "fa73f53f3dad660514a57eb854dfc49f7395012006afd47beda34d50c903e6a1",
+    "result.json": "8789fe4081d9ec7b2e5862d10200d48eb6a5e1bee697348c4aa337f05448a152",
+    "jfr-summary.txt": "3f869df0225913c6bb78a5608ec4a3562629520adc6cbbdd0e2cda923a00f165"
+  },
+  "publicationPostprocessorSha256": "e1d306362e9ed9375345a3ebe9641305e51544117f5f6b1573e0747313b9a849"
+}

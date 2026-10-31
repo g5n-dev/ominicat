@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "engine": "camel",
+  "version": "4.22.2",
+  "mode": "queued-w1",
+  "stages": 4,
+  "sessions": 1,
+  "inflight": 1,
+  "warmupSeconds": 3.000002333,
+  "warmupFrames": 108072,
+  "measuredFrames": 215782,
+  "elapsedSeconds": 5.00001306,
+  "throughputFramesPerSecond": 43156.287275777635,
+  "latencyMicros": {
+    "p95": 14.176,
+    "max": 2161.33,
+    "p99": 24.732,
+    "p50": 11.448
+  },
+  "processCpuSeconds": 4.9,
+  "checks": {
+    "exactOutputCount": true,
+    "noRejections": true,
+    "cleanupComplete": true,
+    "drained": true,
+    "allOutputsValidated": true
+  },
+  "sampleCapacity": 2000000,
+  "harnessBufferBytes": 16777216,
+  "environment": {
+    "runtime": "Java",
+    "version": "17.0.21+9",
+    "vendor": "Eclipse Adoptium",
+    "availableProcessors": 4,
+    "maxHeapBytes": 536870912,
+    "architecture": "amd64",
+    "backend": "platform",
+    "os": "Linux"
+  },
+  "instrumented": true,
+  "headlineEligible": false,
+  "profileType": "JFR"
+}

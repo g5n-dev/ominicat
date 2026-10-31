@@ -1,0 +1,101 @@
+ranking,rank,file,line,function,primitiveCalls,totalCalls,selfSeconds,cumulativeSeconds,selfSharePercent
+topSelf,1,comparison/pipecat/benchmark.py,74,__setattr__,537960,537960,0.34309194200000004,0.476141478,6.941719005442572
+topSelf,2,site-packages/pipecat/processors/frame_processor.py,1212,__internal_push_frame,44830,62762,0.281139435,1.417983446,5.688244811995281
+topSelf,3,stdlib/asyncio/base_events.py,1922,_run_once,98626,98626,0.268103965,4.972168579,5.424500436897493
+topSelf,4,site-packages/pipecat/processors/frame_processor.py,849,process_frame,89660,89660,0.26690255700000004,0.596037986,5.400192559836102
+topSelf,5,stdlib/asyncio/queues.py,149,get,161388,161388,0.170084211,0.45105678800000004,3.4412839693693655
+topSelf,6,[native],0,<built-in method builtins.isinstance>,887634,887634,0.161024103,0.161024103,3.2579723954270015
+topSelf,7,[native],0,<built-in method builtins.hasattr>,224150,224150,0.133049536,0.133049536,2.6919678944733576
+topSelf,8,site-packages/pipecat/processors/frame_processor.py,1330,__process_frame,44830,89660,0.124676483,2.7670178950000004,2.5225573836789135
+topSelf,9,site-packages/pipecat/processors/frame_processor.py,124,__getattribute__,304844,304844,0.12122874400000001,0.12122874400000001,2.452799886016361
+topSelf,10,site-packages/pipecat/frames/frames.py,108,__post_init__,44830,44830,0.116040867,0.40577379100000005,2.34783448181926
+topSelf,11,[native],0,<method 'poll' of 'select.epoll' objects>,98626,98626,0.107308185,0.107308185,2.171147660629253
+topSelf,12,site-packages/pipecat/utils/base_object.py,240,_call_event_handler,313810,313810,0.10418059900000001,0.17418096800000002,2.1078677623874107
+topSelf,13,comparison/pipecat/benchmark.py,238,process_frame,35864,35864,0.101203306,2.049948564,2.0476287160186937
+topSelf,14,stdlib/asyncio/queues.py,137,put_nowait,80694,80694,0.097629779,0.49184398500000004,1.975326171844216
+topSelf,15,stdlib/asyncio/base_events.py,818,_call_soon,107592,107592,0.09293816,0.16784659000000002,1.8804014686036041
+topSelf,16,site-packages/pipecat/processors/frame_processor.py,1035,push_frame,44830,62762,0.09209415200000001,1.5077794610000002,1.863324802972251
+topSelf,17,comparison/pipecat/benchmark.py,66,__init__,44830,44830,0.081857858,0.795678569,1.6562156642647679
+topSelf,18,stdlib/selectors.py,451,select,98626,98626,0.08036897200000001,0.235135906,1.6260912953189726
+topSelf,19,stdlib/asyncio/queues.py,58,_wakeup_next,161388,161388,0.07963070700000001,0.34076094100000004,1.6111541092350363
+topSelf,20,[native],0,<method 'run' of '_contextvars.Context' objects>,107592,107592,0.0769268,4.281893725000001,1.556446433789691
+topSelf,21,site-packages/pipecat/processors/frame_processor.py,707,get_clock,152422,152422,0.07090410300000001,0.152767641,1.4345902631515537
+topSelf,22,site-packages/pipecat/processors/frame_processor.py,726,queue_frame,44830,89660,0.07083276200000001,1.3333229560000002,1.4331468332281332
+topSelf,23,stdlib/asyncio/queues.py,175,get_nowait,80694,80694,0.068541846,0.132635195,1.3867951321524123
+topSelf,24,stdlib/asyncio/events.py,86,_run,107592,107592,0.067694507,4.349588232,1.369651070983081
+topSelf,25,stdlib/asyncio/base_events.py,789,call_soon,107592,107592,0.063149942,0.245358809,1.2777016854974577
+topSelf,26,stdlib/asyncio/base_events.py,446,create_future,89660,89660,0.058311718000000005,0.068479122,1.1798107490399983
+topSelf,27,site-packages/pipecat/processors/frame_processor.py,1352,__input_frame_task_handler,35864,35864,0.058305353000000004,0.57300308,1.1796819671128795
+topSelf,28,site-packages/pipecat/clocks/system_clock.py,30,get_time,152422,152422,0.058270548000000005,0.08404496,1.1789777636606622
+topSelf,29,site-packages/pipecat/processors/frame_processor.py,1380,__process_frame_task_handler,35864,35864,0.058059990000000006,2.408852587,1.1747175806268444
+topSelf,30,stdlib/asyncio/queues.py,110,put,80694,80694,0.051465966,0.55692175,1.0413018511395442
+topSelf,31,[native],0,<method 'set_result' of '_asyncio.Future' objects>,89660,89660,0.05118470000000001,0.25488924900000004,1.0356110455601324
+topSelf,32,[native],0,<method 'append' of 'collections.deque' objects>,242082,242082,0.048048425000000006,0.048048425000000006,0.9721553443073342
+topSelf,33,[native],0,<method 'popleft' of 'collections.deque' objects>,233116,233116,0.047914269,0.047914269,0.9694409895210765
+topSelf,34,site-packages/pipecat/processors/frame_processor.py,160,put,35864,35864,0.045324130000000004,0.305097397,0.9170351620387218
+topSelf,35,stdlib/asyncio/queues.py,186,task_done,80694,80694,0.043119395000000005,0.06343098800000001,0.8724271460000811
+topSelf,36,[native],0,<built-in method builtins.len>,295881,295881,0.042362167,0.042362167,0.8571062848676057
+topSelf,37,stdlib/asyncio/events.py,36,__init__,107592,107592,0.041966623,0.05391075100000001,0.8491033125847743
+topSelf,38,site-packages/pipecat/processors/frame_processor.py,181,get,71728,71728,0.040576025,0.236047746,0.8209675874807134
+topSelf,39,stdlib/asyncio/queues.py,95,empty,242082,242082,0.038347763,0.038347763,0.7758835537831064
+topSelf,40,site-packages/pipecat/pipeline/worker_observer.py,172,on_process_frame,89660,89660,0.037910405,0.050381816,0.7670345661820441
+topSelf,41,site-packages/pipecat/utils/base_object.py,302,__str__,125524,125524,0.036374634,0.052923139,0.7359615812656349
+topSelf,42,[native],0,<built-in method builtins.max>,98626,98626,0.033927272,0.033927272,0.6864445357484367
+topSelf,43,stdlib/asyncio/mixins.py,12,_get_loop,89660,89660,0.033888376000000005,0.048372866,0.6856575598117192
+topSelf,44,comparison/pipecat/benchmark.py,181,run_phase,8966,8966,0.033476843,0.299941769,0.6773310849000268
+topSelf,45,site-packages/pipecat/utils/utils.py,23,obj_id,44830,44830,0.033362541,0.049513597000000006,0.6750184326088223
+topSelf,46,site-packages/pipecat/utils/utils.py,33,obj_count,44830,44830,0.033202132,0.047094426,0.6717729054843642
+topSelf,47,stdlib/asyncio/locks.py,181,set,89660,89660,0.027710479000000003,0.055660881,0.5606612548312698
+topSelf,48,stdlib/asyncio/base_events.py,738,time,98626,98626,0.027337211,0.044609468,0.5531089889441171
+topSelf,49,site-packages/loguru/_logger.py,2068,trace,62762,62762,0.026239002,0.039754559,0.5308891191249417
+topSelf,50,[native],0,<built-in method time.monotonic_ns>,152422,152422,0.025774412,0.025774412,0.5214891512506202
+topCumulative,1,stdlib/asyncio/base_events.py,1922,_run_once,98626,98626,0.268103965,4.972168579,5.424500436897493
+topCumulative,2,stdlib/asyncio/events.py,86,_run,107592,107592,0.067694507,4.349588232,1.369651070983081
+topCumulative,3,[native],0,<method 'run' of '_contextvars.Context' objects>,107592,107592,0.0769268,4.281893725000001,1.556446433789691
+topCumulative,4,site-packages/pipecat/utils/asyncio/task_manager.py,189,run_coroutine,80694,80694,0.023678959000000003,3.750643172,0.47909221872484375
+topCumulative,5,site-packages/pipecat/processors/frame_processor.py,1330,__process_frame,44830,89660,0.124676483,2.7670178950000004,2.5225573836789135
+topCumulative,6,site-packages/pipecat/processors/frame_processor.py,1380,__process_frame_task_handler,35864,35864,0.058059990000000006,2.408852587,1.1747175806268444
+topCumulative,7,comparison/pipecat/benchmark.py,238,process_frame,35864,35864,0.101203306,2.049948564,2.0476287160186937
+topCumulative,8,site-packages/pipecat/processors/frame_processor.py,1035,push_frame,44830,62762,0.09209415200000001,1.5077794610000002,1.863324802972251
+topCumulative,9,site-packages/pipecat/processors/frame_processor.py,1212,__internal_push_frame,44830,62762,0.281139435,1.417983446,5.688244811995281
+topCumulative,10,site-packages/pipecat/processors/frame_processor.py,726,queue_frame,44830,89660,0.07083276200000001,1.3333229560000002,1.4331468332281332
+topCumulative,11,comparison/pipecat/benchmark.py,66,__init__,44830,44830,0.081857858,0.795678569,1.6562156642647679
+topCumulative,12,site-packages/pipecat/pipeline/worker.py,1526,_process_push_queue,8966,8966,0.019698726,0.7451085460000001,0.3985608634819109
+topCumulative,13,site-packages/pipecat/pipeline/pipeline.py,186,process_frame,8966,17932,0.024297894,0.630864427,0.4916150218766403
+topCumulative,14,site-packages/pipecat/processors/frame_processor.py,849,process_frame,89660,89660,0.26690255700000004,0.596037986,5.400192559836102
+topCumulative,15,site-packages/pipecat/processors/frame_processor.py,1352,__input_frame_task_handler,35864,35864,0.058305353000000004,0.57300308,1.1796819671128795
+topCumulative,16,stdlib/asyncio/queues.py,110,put,80694,80694,0.051465966,0.55692175,1.0413018511395442
+topCumulative,17,site-packages/pipecat/pipeline/pipeline.py,39,process_frame,8966,17932,0.023605934000000002,0.5311910000000001,0.4776147167251832
+topCumulative,18,stdlib/asyncio/queues.py,137,put_nowait,80694,80694,0.097629779,0.49184398500000004,1.975326171844216
+topCumulative,19,comparison/pipecat/benchmark.py,74,__setattr__,537960,537960,0.34309194200000004,0.476141478,6.941719005442572
+topCumulative,20,stdlib/asyncio/queues.py,149,get,161388,161388,0.170084211,0.45105678800000004,3.4412839693693655
+topCumulative,21,site-packages/pipecat/frames/frames.py,108,__post_init__,44830,44830,0.116040867,0.40577379100000005,2.34783448181926
+topCumulative,22,site-packages/pipecat/pipeline/pipeline.py,75,process_frame,8966,17932,0.024946180000000002,0.393639642,0.5047316786565373
+topCumulative,23,stdlib/asyncio/queues.py,58,_wakeup_next,161388,161388,0.07963070700000001,0.34076094100000004,1.6111541092350363
+topCumulative,24,comparison/pipecat/benchmark.py,209,execute,8966,8966,0.0029069910000000003,0.30590931400000004,0.05881663834981733
+topCumulative,25,site-packages/pipecat/processors/frame_processor.py,160,put,35864,35864,0.045324130000000004,0.305097397,0.9170351620387218
+topCumulative,26,stdlib/asyncio/tasks.py,472,wait_for,8966,8966,0.002991811,0.302944827,0.06053278651292877
+topCumulative,27,comparison/pipecat/benchmark.py,181,run_phase,8966,8966,0.033476843,0.299941769,0.6773310849000268
+topCumulative,28,[native],0,<method 'set_result' of '_asyncio.Future' objects>,89660,89660,0.05118470000000001,0.25488924900000004,1.0356110455601324
+topCumulative,29,stdlib/asyncio/base_events.py,789,call_soon,107592,107592,0.063149942,0.245358809,1.2777016854974577
+topCumulative,30,site-packages/pipecat/processors/frame_processor.py,181,get,71728,71728,0.040576025,0.236047746,0.8209675874807134
+topCumulative,31,stdlib/selectors.py,451,select,98626,98626,0.08036897200000001,0.235135906,1.6260912953189726
+topCumulative,32,site-packages/pipecat/utils/base_object.py,240,_call_event_handler,313810,313810,0.10418059900000001,0.17418096800000002,2.1078677623874107
+topCumulative,33,stdlib/asyncio/base_events.py,818,_call_soon,107592,107592,0.09293816,0.16784659000000002,1.8804014686036041
+topCumulative,34,[native],0,<built-in method builtins.isinstance>,887634,887634,0.161024103,0.161024103,3.2579723954270015
+topCumulative,35,site-packages/pipecat/processors/frame_processor.py,707,get_clock,152422,152422,0.07090410300000001,0.152767641,1.4345902631515537
+topCumulative,36,[native],0,<built-in method builtins.hasattr>,224150,224150,0.133049536,0.133049536,2.6919678944733576
+topCumulative,37,stdlib/asyncio/queues.py,175,get_nowait,80694,80694,0.068541846,0.132635195,1.3867951321524123
+topCumulative,38,site-packages/pipecat/pipeline/worker.py,1673,_sink_push_frame,8966,8966,0.025714733,0.132168108,0.5202816765250092
+topCumulative,39,site-packages/pipecat/processors/frame_processor.py,124,__getattribute__,304844,304844,0.12122874400000001,0.12122874400000001,2.452799886016361
+topCumulative,40,[native],0,<method 'poll' of 'select.epoll' objects>,98626,98626,0.107308185,0.107308185,2.171147660629253
+topCumulative,41,site-packages/pipecat/utils/base_object.py,271,_run_handler,8966,8966,0.011703352,0.101436995,0.23679186556291756
+topCumulative,42,site-packages/pipecat/clocks/system_clock.py,30,get_time,152422,152422,0.058270548000000005,0.08404496,1.1789777636606622
+topCumulative,43,site-packages/pipecat/pipeline/worker.py,934,queue_frame,8966,8966,0.005342169,0.069298013,0.10808716713488459
+topCumulative,44,stdlib/asyncio/base_events.py,446,create_future,89660,89660,0.058311718000000005,0.068479122,1.1798107490399983
+topCumulative,45,stdlib/asyncio/tasks.py,412,create_task,8966,8966,0.008961111,0.06480603900000001,0.1813085850281511
+topCumulative,46,stdlib/asyncio/queues.py,186,task_done,80694,80694,0.043119395000000005,0.06343098800000001,0.8724271460000811
+topCumulative,47,comparison/pipecat/benchmark.py,271,terminal,8966,8966,0.0043531180000000004,0.062283119000000005,0.08807587195835148
+topCumulative,48,comparison/pipecat/benchmark.py,147,accept,8966,8966,0.016189366,0.057930001,0.32755659894881983
+topCumulative,49,stdlib/asyncio/locks.py,181,set,89660,89660,0.027710479000000003,0.055660881,0.5606612548312698
+topCumulative,50,stdlib/asyncio/events.py,36,__init__,107592,107592,0.041966623,0.05391075100000001,0.8491033125847743
