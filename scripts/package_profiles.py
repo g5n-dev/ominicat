@@ -22,6 +22,7 @@ from urllib.parse import urlsplit
 
 FILES = (
     "report.md", "profiles.md", "cpu-flamegraph.svg", "allocation-flamegraph.svg",
+    "cpu-hotspots.svg", "allocation-hotspots.svg", "gc-pauses.svg",
     "jmh.json", "jmh.log", "load.json", "source-sha256.json",
     "jfr-hotspots.json", "jfr-events.json.gz", "gc.log", "jfr-summary.txt",
     "run-manifest.json",
@@ -112,7 +113,10 @@ def pause_ms(value):
     if not match or not any(match.groups()):
         fail("selected GC event has an invalid sumOfPauses duration")
     hours, minutes, seconds = (float(part or 0) for part in match.groups())
-    return (hours * 3600 + minutes * 60 + seconds) * 1000
+    result = (hours * 3600 + minutes * 60 + seconds) * 1000
+    if not math.isfinite(result):
+        fail("selected GC event has a non-finite sumOfPauses duration")
+    return result
 
 
 def summary(metadata, jmh, load, events):

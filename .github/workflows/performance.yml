@@ -23,9 +23,8 @@ jobs:
           distribution: temurin
           java-version: ${{ matrix.java }}
           cache: maven
-      - run: scripts/profile.sh full reports/local/ci
-      - name: Generate CPU, allocation and GC profiles
-        run: python3 scripts/summarize_profiles.py reports/local/ci
+      - name: Collect measurements and generate CPU, allocation and GC profiles
+        run: scripts/profile.sh full reports/local/ci
       - name: Package validated diagnostic evidence
         run: python3 scripts/package_profiles.py reports/local/ci reports/local/publish --summary "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@v4
