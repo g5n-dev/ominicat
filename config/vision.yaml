@@ -1,0 +1,9 @@
+host: 127.0.0.1
+port: 8080
+stages:
+  - type: openai-chat
+    options:
+      model: gpt-4o-mini
+      apiKeyEnv: OPENAI_API_KEY
+      imagePrompt: "Describe what is visible in the image."
+      maxOutputTokens: "512"

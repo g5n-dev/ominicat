@@ -1,0 +1,36 @@
+# Requires OPENAI_API_KEY and models available to that account.
+# This adapter transcribes utterances, not a live bidirectional ASR socket.
+# Send PCM chunks followed by turn_end; chat streams tokens, speech flushes at turn_end.
+host: 127.0.0.1
+port: 8080
+queueCapacity: 128
+maxSessions: 32
+maxFrameBytes: 1048576
+idleTimeoutSeconds: 120
+stages:
+  - type: openai-transcribe
+    options:
+      model: gpt-4o-mini-transcribe
+      apiKeyEnv: OPENAI_API_KEY
+      maxAudioBytes: "4194304"
+      timeoutSeconds: "30"
+  - type: transcript-gate
+  - type: prompt-template
+    options:
+      inputSpeaker: user
+      role: assistant
+      instruction: "Give a concise response to the latest turn."
+      maxTurns: "16"
+  - type: openai-chat
+    options:
+      model: gpt-4o-mini
+      apiKeyEnv: OPENAI_API_KEY
+      maxOutputTokens: "256"
+      timeoutSeconds: "30"
+  - type: openai-speech
+    options:
+      model: gpt-4o-mini-tts
+      apiKeyEnv: OPENAI_API_KEY
+      voice: alloy
+      maxTextChars: "4096"
+      timeoutSeconds: "30"

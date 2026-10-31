@@ -1,0 +1,12 @@
+# Send START once, then final transcripts with role=user to advance.
+host: 127.0.0.1
+port: 8080
+stages:
+  - type: transcript-gate
+  - type: step-flow
+    options:
+      steps: "welcome,details,complete"
+      definitionVersion: "example-v1"
+      step.welcome.prompt: "Hello. What would you like to discuss?"
+      step.details.prompt: "Please share one more detail."
+      step.complete.prompt: "Thank you. This sequence is complete."

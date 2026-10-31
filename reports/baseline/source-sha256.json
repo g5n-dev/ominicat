@@ -1,0 +1,94 @@
+{
+  "algorithm": "SHA-256",
+  "aggregate": "7e06420ee8e1911f75afc30a4fc687fecdf3c468dc7e805d73ced416c6e030aa",
+  "files": [
+    {
+      "path": "ominicat-benchmarks/src/main/java/io/ominicat/benchmarks/CoreLoad.java",
+      "sha256": "37a322f13c8e6d5790f9c74b302b20313742213b8a1e26cd2160e18b92f0b6a1"
+    },
+    {
+      "path": "ominicat-benchmarks/src/main/java/io/ominicat/benchmarks/PipelineBenchmark.java",
+      "sha256": "fc6c43c52f96d3ca753bf5f4f76ae61c1863791580b939f40659216b2260076e"
+    },
+    {
+      "path": "ominicat-benchmarks/src/main/java/io/ominicat/benchmarks/SessionBenchmark.java",
+      "sha256": "fc6eb96030dfed0df3203eadd285d36b51077c7f2fb561fc5216679c419e91d3"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/AsyncEmitter.java",
+      "sha256": "6291e8e125dd207c6aead8420660440370fbce14103b0493166d9126fec50a60"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/AsyncOutlet.java",
+      "sha256": "f29168544a4da9a827f776d2af03d09fe30e5a42e7a97a6adde4dc4a96ccc584"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/AsyncProcessor.java",
+      "sha256": "38c4854af52081b33f2037e7f6aaa8fde98972bda4f2564aae8346fb3fbe9fb1"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/EnvelopeProcessor.java",
+      "sha256": "27faa17509c1854f7f322b9703c6456f56bf79a9151a0d668a3a071273bf5d30"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/FallbackProcessor.java",
+      "sha256": "dfdfdb196f0ad4721b033d7cd7ada2aa1ab8d59cc99e5b959b3f2b532c635ac0"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/Frame.java",
+      "sha256": "fdcc1ee0ba7e83a9b564f67a16b33e25673073f7265d0d832e38aafcf1de757a"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/FrameEnvelope.java",
+      "sha256": "977d8556417420128bcb4351f6ea57630edc621b8a36a75f87468c37468d52b3"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/FrameSink.java",
+      "sha256": "e1373e4404361b374b597a9bf1d0970102b662f410e11a6163fe62d67e4016fd"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/ParallelProcessor.java",
+      "sha256": "f566e4e3a047264eb81385e0f3e8990f51639f7d8a817d6ef61221b527ab4cd2"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/Pipeline.java",
+      "sha256": "2fc347d0b475f4edbd3285611d091cd1186d947a64f52a91027fc240b24e1c50"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/PipelineSession.java",
+      "sha256": "a520b444f83e1cba7abcd2e3da66c86fb7e2047086a3dbe2f9cf87c33ac4761b"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/Processor.java",
+      "sha256": "68baa56eeba44cf0ecbc6778441346b4b45a3083053361ea944602c202b5360e"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/SessionMetrics.java",
+      "sha256": "58b3279acc9f42c269709b36ecc3d037393d244f735aaac3cb23e382172787a0"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/SessionOptions.java",
+      "sha256": "5bed3b1247e246166192f6ba66c421099dcba5dbe77741c09e4fdd002634c414"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/spi/PluginRegistry.java",
+      "sha256": "a26c4c72e439426be594c811c6e1511bfb1a83920df62cc35c360320b74d2320"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/spi/ProcessorFactory.java",
+      "sha256": "1b76527adc33c7baf64c23ce32e755b96343a1253e8f56d3c6a6c9af9da6de20"
+    },
+    {
+      "path": "pom.xml",
+      "sha256": "a74fb8d04e8292509fe4a30d2a036f448d64bb9fff2489d2e21cb682bbf5e55b"
+    },
+    {
+      "path": "ominicat-core/pom.xml",
+      "sha256": "c54cdb223664b92c023c3e7bfa587c3a1a20eee67e1cf813d13479e1289708dc"
+    },
+    {
+      "path": "ominicat-benchmarks/pom.xml",
+      "sha256": "c4c722655f5f1f58d84a125ffa34c095aafd855ceff1a9c76cbc8b3983b0efda"
+    }
+  ]
+}

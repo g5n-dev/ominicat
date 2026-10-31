@@ -1,0 +1,9 @@
+# Offline transport diagnostics. No model credentials required.
+host: 127.0.0.1
+port: 8080
+queueCapacity: 256
+maxSessions: 256
+maxFrameBytes: 1048576
+idleTimeoutSeconds: 60
+stages:
+  - type: echo

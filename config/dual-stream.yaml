@@ -1,0 +1,21 @@
+# The order in streamIds corresponds to PCM interleaved channel order.
+# Send a stereo Audio frame, then turn_end to flush both independent streams.
+host: 127.0.0.1
+port: 8080
+stages:
+  - type: audio-channel-split
+    options:
+      streamIds: "left,right"
+  - type: openai-transcribe
+    options:
+      model: gpt-4o-mini-transcribe
+      apiKeyEnv: OPENAI_API_KEY
+      speakers: "left=participant-a,right=participant-b"
+      roles: "left=user,right=assistant"
+      maxStreams: "2"
+  - type: transcript-gate
+  - type: conversation-evaluator
+    options:
+      speaker: participant-b
+      requiredPhrases: "hello"
+      policyVersion: "example-v1"

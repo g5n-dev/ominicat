@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-31T05:07:24.283691Z",
+  "workload": "local bounded-inflight closed-loop kernel load; no model or network",
+  "latencyScope": "before submit to output sink; includes ingress queue waiting; excludes permit waiting",
+  "sessions": 16,
+  "stages": 4,
+  "inflightPerSession": 32,
+  "warmupFrames": 100000,
+  "measuredFrames": 25000000,
+  "processedIncludingWarmup": 25100000,
+  "rejected": 0,
+  "elapsedSeconds": 7.371396959,
+  "throughputFramesPerSecond": 3391487.413,
+  "latencyMicros": {"p50": 32.334, "p95": 72.958, "p99": 257.958, "max": 20786.459},
+  "environment": {
+    "javaVersion": "21.0.13.0.3", "javaVendor": "Homebrew",
+    "os": "Mac OS X", "arch": "aarch64", "processors": 10, "maxHeapBytes": 536870912
+  }
+}

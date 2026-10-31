@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>io.ominicat</groupId><artifactId>ominicat-parent</artifactId><version>0.1.0-SNAPSHOT</version><packaging>pom</packaging>
+  <name>OminiCat</name><description>A configurable Java microkernel for real-time multimodal conversations.</description>
+  <url>https://github.com/g5n-dev/ominicat</url>
+  <licenses><license><name>Apache License, Version 2.0</name><url>https://www.apache.org/licenses/LICENSE-2.0.txt</url></license></licenses>
+  <scm><connection>scm:git:https://github.com/g5n-dev/ominicat.git</connection><url>https://github.com/g5n-dev/ominicat</url></scm>
+  <modules><module>ominicat-core</module><module>ominicat-conversation</module><module>ominicat-providers</module><module>ominicat-server</module><module>ominicat-benchmarks</module></modules>
+  <properties>
+    <maven.compiler.release>21</maven.compiler.release><project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding><project.build.outputTimestamp>2026-10-31T00:00:00Z</project.build.outputTimestamp>
+    <junit.version>5.14.4</junit.version><jackson.version>2.22.4</jackson.version><netty.version>4.1.139.Final</netty.version><argLine></argLine>
+  </properties>
+  <dependencyManagement><dependencies>
+    <dependency><groupId>io.netty</groupId><artifactId>netty-bom</artifactId><version>${netty.version}</version><type>pom</type><scope>import</scope></dependency>
+    <dependency><groupId>com.fasterxml.jackson</groupId><artifactId>jackson-bom</artifactId><version>${jackson.version}</version><type>pom</type><scope>import</scope></dependency>
+    <dependency><groupId>org.junit.jupiter</groupId><artifactId>junit-jupiter</artifactId><version>${junit.version}</version><scope>test</scope></dependency>
+  </dependencies></dependencyManagement>
+  <build><pluginManagement><plugins>
+    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><version>3.14.1</version><configuration><parameters>true</parameters><showWarnings>true</showWarnings></configuration></plugin>
+    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId><version>3.5.4</version><configuration><argLine>@{argLine}</argLine></configuration></plugin>
+    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-shade-plugin</artifactId><version>3.6.1</version></plugin>
+    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-jar-plugin</artifactId><version>3.4.2</version></plugin>
+    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-source-plugin</artifactId><version>3.3.1</version></plugin>
+    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId><version>3.11.3</version></plugin>
+  </plugins></pluginManagement>
+  <plugins>
+    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId></plugin>
+    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId></plugin>
+    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId><version>3.6.2</version><executions><execution><id>runtime</id><goals><goal>enforce</goal></goals><configuration><rules><requireJavaVersion><version>[21,)</version></requireJavaVersion><requireMavenVersion><version>[3.9,)</version></requireMavenVersion></rules></configuration></execution></executions></plugin>
+  </plugins></build>
+  <profiles>
+    <profile><id>coverage</id><build><plugins><plugin><groupId>org.jacoco</groupId><artifactId>jacoco-maven-plugin</artifactId><version>0.8.16</version><executions><execution><goals><goal>prepare-agent</goal></goals></execution><execution><id>report</id><phase>verify</phase><goals><goal>report</goal></goals></execution></executions></plugin></plugins></build></profile>
+    <profile><id>sbom</id><build><plugins><plugin><groupId>org.cyclonedx</groupId><artifactId>cyclonedx-maven-plugin</artifactId><version>2.9.1</version><executions><execution><phase>verify</phase><goals><goal>makeAggregateBom</goal></goals></execution></executions></plugin></plugins></build></profile>
+  </profiles>
+</project>

@@ -1,0 +1,7 @@
+io.ominicat.providers.EchoFactory
+io.ominicat.providers.RmsVadFactory
+io.ominicat.providers.AudioChannelSplitFactory
+io.ominicat.providers.TranscriptGateFactory
+io.ominicat.providers.ChatFactory
+io.ominicat.providers.TranscriptionFactory
+io.ominicat.providers.SpeechFactory

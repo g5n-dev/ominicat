@@ -1,0 +1,126 @@
+[
+  {
+    "module": "ominicat-core",
+    "tests": 59,
+    "failures": 0,
+    "coverage": {
+      "INSTRUCTION": {
+        "covered": 2809,
+        "missed": 320
+      },
+      "BRANCH": {
+        "covered": 263,
+        "missed": 67
+      },
+      "LINE": {
+        "covered": 505,
+        "missed": 46
+      },
+      "COMPLEXITY": {
+        "covered": 220,
+        "missed": 67
+      },
+      "METHOD": {
+        "covered": 106,
+        "missed": 16
+      },
+      "CLASS": {
+        "covered": 28,
+        "missed": 4
+      }
+    }
+  },
+  {
+    "module": "ominicat-conversation",
+    "tests": 35,
+    "failures": 0,
+    "coverage": {
+      "INSTRUCTION": {
+        "covered": 2504,
+        "missed": 140
+      },
+      "BRANCH": {
+        "covered": 284,
+        "missed": 62
+      },
+      "LINE": {
+        "covered": 410,
+        "missed": 18
+      },
+      "COMPLEXITY": {
+        "covered": 183,
+        "missed": 65
+      },
+      "METHOD": {
+        "covered": 72,
+        "missed": 3
+      },
+      "CLASS": {
+        "covered": 20,
+        "missed": 0
+      }
+    }
+  },
+  {
+    "module": "ominicat-providers",
+    "tests": 41,
+    "failures": 0,
+    "coverage": {
+      "INSTRUCTION": {
+        "covered": 2332,
+        "missed": 52
+      },
+      "BRANCH": {
+        "covered": 268,
+        "missed": 28
+      },
+      "LINE": {
+        "covered": 336,
+        "missed": 4
+      },
+      "COMPLEXITY": {
+        "covered": 181,
+        "missed": 30
+      },
+      "METHOD": {
+        "covered": 61,
+        "missed": 2
+      },
+      "CLASS": {
+        "covered": 16,
+        "missed": 0
+      }
+    }
+  },
+  {
+    "module": "ominicat-server",
+    "tests": 41,
+    "failures": 0,
+    "coverage": {
+      "INSTRUCTION": {
+        "covered": 2152,
+        "missed": 242
+      },
+      "BRANCH": {
+        "covered": 200,
+        "missed": 66
+      },
+      "LINE": {
+        "covered": 339,
+        "missed": 44
+      },
+      "COMPLEXITY": {
+        "covered": 135,
+        "missed": 62
+      },
+      "METHOD": {
+        "covered": 51,
+        "missed": 3
+      },
+      "CLASS": {
+        "covered": 8,
+        "missed": 1
+      }
+    }
+  }
+]

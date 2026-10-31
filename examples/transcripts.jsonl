@@ -1,0 +1,3 @@
+{"text":"Hello, how can I help?","speaker":"speaker-b","role":"agent","startMillis":0,"endMillis":1200,"segmentId":"segment-1","revision":1,"finalResult":true,"confidence":-1}
+{"text":"Please describe the document.","speaker":"speaker-a","role":"user","startMillis":1500,"endMillis":2600,"segmentId":"segment-2","revision":1,"finalResult":true,"confidence":-1}
+{"text":"Thank you. It contains three sections.","speaker":"speaker-b","role":"agent","startMillis":3000,"endMillis":4300,"segmentId":"segment-3","revision":1,"finalResult":true,"confidence":-1}

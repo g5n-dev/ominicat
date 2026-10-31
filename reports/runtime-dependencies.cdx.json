@@ -1,0 +1,1276 @@
+{
+  "bomFormat" : "CycloneDX",
+  "specVersion" : "1.6",
+  "serialNumber" : "urn:uuid:5d30aa71-299d-372f-a29b-0b183ef90237",
+  "version" : 1,
+  "metadata" : {
+    "lifecycles" : [
+      {
+        "phase" : "build"
+      }
+    ],
+    "tools" : {
+      "components" : [
+        {
+          "type" : "library",
+          "author" : "OWASP Foundation",
+          "group" : "org.cyclonedx",
+          "name" : "cyclonedx-maven-plugin",
+          "version" : "2.9.1",
+          "description" : "CycloneDX Maven plugin",
+          "hashes" : [
+            {
+              "alg" : "MD5",
+              "content" : "9c7a565cf28cce58557d0c621c5ea4b1"
+            },
+            {
+              "alg" : "SHA-1",
+              "content" : "be882d5a22050bfa9d19090b1420c188617d0e1c"
+            },
+            {
+              "alg" : "SHA-256",
+              "content" : "698e0f37184a5b28c245c4065fd036dfce253b52f82fbb7113d81d36326cc249"
+            },
+            {
+              "alg" : "SHA-512",
+              "content" : "c0f0b11026858166f872a2eb54719492e5cecaa0bc9cd6b30b3ecb4a174eed220f4a1b5829d18d6734128e778d3cb3db7ffed177c92866133129cb29081814a0"
+            },
+            {
+              "alg" : "SHA-384",
+              "content" : "d80964707dfe5caca8c70521d5066f57589304c0a657e6fbc7c0614ea0fc7b3b3dbe7778361eee0f54ba111e9cb0ffcb"
+            },
+            {
+              "alg" : "SHA3-384",
+              "content" : "80bc3a275d9514bc457461ff52a72add8c7ecbbc01d8912efce57139016c544ee776981851be0a58fa977ab4221f703f"
+            },
+            {
+              "alg" : "SHA3-256",
+              "content" : "142317d6f245390f4fd2d0c100b16281b8dfc5c0c2cff86943bdcc97039cb699"
+            },
+            {
+              "alg" : "SHA3-512",
+              "content" : "af0fb9137c90b65d1a07f72e4d51ae509956cdb8800f35c961b037cdda1fe4a14ce3b496cef71ba85f1621affcfe29cd42704ae4191ff0b090a9602087c8997b"
+            }
+          ]
+        }
+      ]
+    },
+    "component" : {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/io.ominicat/ominicat-server@0.1.0-SNAPSHOT?type=jar",
+      "group" : "io.ominicat",
+      "name" : "ominicat-server",
+      "version" : "0.1.0-SNAPSHOT",
+      "description" : "A configurable Java microkernel for real-time multimodal conversations.",
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/io.ominicat/ominicat-server@0.1.0-SNAPSHOT?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/g5n-dev/ominicat/ominicat-server"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/g5n-dev/ominicat/ominicat-server"
+        }
+      ]
+    },
+    "properties" : [
+      {
+        "name" : "maven.goal",
+        "value" : "makeBom"
+      },
+      {
+        "name" : "maven.scopes",
+        "value" : "compile,provided,runtime,system"
+      },
+      {
+        "name" : "cdx:reproducible",
+        "value" : "enabled"
+      }
+    ]
+  },
+  "components" : [
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/io.ominicat/ominicat-core@0.1.0-SNAPSHOT?type=jar",
+      "group" : "io.ominicat",
+      "name" : "ominicat-core",
+      "version" : "0.1.0-SNAPSHOT",
+      "description" : "Dependency-free typed frame runtime and processor SPI.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "5e4160f6e2cce4bf1ce137d578dd81c3"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "4e0ab45cb943f0b19a91531f8fd2a0a8443512c9"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "c9bac035fcdb46ea72af4f37909cb681b797a1b76f1d8b1ff4b27f8c170f42d2"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "6b35cc0dec0dbd57b86861a75f3e9aeeb29179fcf1a750b5b56922e8d0df1b35fef214f79076e88aa263ce27f22e28277cee4051f5c207be9f3accc21241d5c6"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "5cc95b09938ca19ce0ef0f5495a68f892b42093cb8423bcd5f308ca9c701c9f3ab28d6dbb32c46944fc656dc5b655907"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "a132ce0c0f0d8ab457a5fe713efb423ed72422e69b6fbb43cfa31b6f3dea96715aeac8c2afbe996a196e40a0977cbaed"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "549f5fbdab250950cbdc2eaefeaef70a2e9c4ab6b2fb958b06a6460cbd703a9d"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "5dbb81c2d2af943403e1a55b4c7f20b6fba759581fce3ec8443bde452faead9579b78bb4c919b1f5b7391679119e285e7de174982dfec642811682453b911b4a"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/io.ominicat/ominicat-core@0.1.0-SNAPSHOT?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/g5n-dev/ominicat/ominicat-core"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/g5n-dev/ominicat/ominicat-core"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/io.ominicat/ominicat-providers@0.1.0-SNAPSHOT?type=jar",
+      "group" : "io.ominicat",
+      "name" : "ominicat-providers",
+      "version" : "0.1.0-SNAPSHOT",
+      "description" : "A configurable Java microkernel for real-time multimodal conversations.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "b3f6fd9d73e1fd781ab4f5e625e95efe"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "fb384568585f83629fff7c999d7bd753016198f7"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "e33654e82217b15e3ebaeb455f55dfe126ffd59714070cd5bf4c77b89a1981ac"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "efefd70f130b7388137d5ad0f65c11182d2a87f1c12ed8237dc2f38dd3344829b4838afc79eae9f9ed3bb4f1469d918434ae1ea9c9ad4f504a5469b2c372cda3"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "109e1bd5e0e8b76530a646bb24d43300aad806807b3585a03ca1f0620c55b5493560e73cfbc6169126926bf0cb1c6252"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "b0b7df01f4f58a3036bdc6fc59ed22462770f845d6467883565bb75da0bb55bfd1f402833c0023db4d07a7dec7ddfd40"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "54239085baa82ace371809bf7760a7fc37b00c2095cf0da54ffe37a534ea938a"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "d5ace60afe0e15b490ce5f8982fdf5828fa4dbb39cc0e89a9acdffcf8470b8c2ce3ba58597d49f2ba093ea4b4a38a51cd2d1f304c3a96e4cf6dcf9a743234c25"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/io.ominicat/ominicat-providers@0.1.0-SNAPSHOT?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/g5n-dev/ominicat/ominicat-providers"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/g5n-dev/ominicat/ominicat-providers"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/io.ominicat/ominicat-conversation@0.1.0-SNAPSHOT?type=jar",
+      "group" : "io.ominicat",
+      "name" : "ominicat-conversation",
+      "version" : "0.1.0-SNAPSHOT",
+      "description" : "Bounded conversation state, extensible policies and role-aware prompt composition.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "b7e7486bf52a8cde528d1b7e00dc7c2a"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "79949dd4583a07c1f4633dce322c9ac725879179"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "ac84690bc15657dd9666ef55d7b158a1722367c80535a92dfa9e9ca3d4ba7917"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "8cc20bc54d019b4fac6548df074774ba7cb840157e1f0b88eb0db6f63bd5ac41db9d9982145ed548c3cc5099177cf715c5d5734121a0885cda014398d57e798b"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "c15efd6b1df4e4929506c481a639bf21df8ed31c842fad4a3200ed8e4a15a55ec2256bc7fa4e5e0e2e56f03005e6dc0c"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "f3c3e015ed826f5ce13e41bca71d7034716f2140a3b4a3945d2acd26909b4b8083ab50d8cbfa147253c19e87ee89017a"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "06c699451a5beb4edd7598ecab4dfc4e489a873c965a2353c437c80510d35bc2"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "d539cb21b4ad5324f3d0b9e72f1795fed7b5b110b3b1a5059a1de77bc3b2ade36bea0bd6e9de2fb2f37f74f5aaccbf811d06f17bc468347e37c10006b02c0c09"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/io.ominicat/ominicat-conversation@0.1.0-SNAPSHOT?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/g5n-dev/ominicat/ominicat-conversation"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/g5n-dev/ominicat/ominicat-conversation"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/io.netty/netty-codec-http@4.1.139.Final?type=jar",
+      "publisher" : "The Netty Project",
+      "group" : "io.netty",
+      "name" : "netty-codec-http",
+      "version" : "4.1.139.Final",
+      "description" : "Netty is an asynchronous event-driven network application framework for rapid development of maintainable high performance protocol servers and clients.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "93f2991d755e7b211dd0069ace84d749"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "f52d30aeadc0af8c0d1cad9970e5a9c5df62bdd1"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "627cfdac2cd5dbd8a33af85977fb81fa6b46f0c00389ab4c8677a415f0f85480"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "475f649183553df6baab5bfe298147c131a5abe1bd40326e95e1fb018d513a0205718717118dc1177000fcb8720ecb27d2d6e26f5a455e89fd54fb89bdd426c7"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "b57d8fbb916dc9e52b559023158aa5b879022d8cc410906f76f90b9769591483ccdba36965820a1b78c1a5b26e29c11a"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "2e1e021079dee6c6941e99cf8b31c9864aaa11d97caf7211dba2d9e612a030449e62332251717f10b4437ae4324ecef7"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "e41295a91c54853e741a5ef6e2e9da74cb7a7985d6a13c394d29e315466f41f1"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "e65d48018fe9a612c989df925758b18c0b6889f14336c07756917737c36772cb542f4336bdb07abcc0faf4a3f6f74607ddec87e9df74ba7fa4cee8efef329e40"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/io.netty/netty-codec-http@4.1.139.Final?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://netty.io/netty-codec-http/"
+        },
+        {
+          "type" : "distribution-intake",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/netty/netty/netty-codec-http"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/io.netty/netty-common@4.1.139.Final?type=jar",
+      "publisher" : "The Netty Project",
+      "group" : "io.netty",
+      "name" : "netty-common",
+      "version" : "4.1.139.Final",
+      "description" : "Netty is an asynchronous event-driven network application framework for rapid development of maintainable high performance protocol servers and clients.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "e15adda8e2610cc205d0abd6603118f5"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "c3d17ade6f80714ca28078706cbb33c9e8096cf8"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "50372d86e27b4b1cf0810d75eb534795966a199049a1e85a0c41bbd2bb97f519"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "ffaff98e6c977a40081c902c87ec4b27b986d497eb0b2f1ef1c466831c1c4d1cd72b902bd6a89497f84d1eed716c96ce90abda6f982103960434e6f25140c5f7"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "e8b2d4483b27bc7ec12ffa843649a3162dd9b7692498ff31b30146e159ba779441c0f073b9aaa7efb351bba2dd69459b"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "508b1556256e68350dc08677035239f66a64e3caf9530e48a3bbc664405f01f6f6754d5736a979821a5f0ea72b08efbe"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "425fa3b8abc7908530c1bd8c9c2cb3307211284272443b3e591cbdb342dbab09"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "12660770567251c5e7d1a19f1006d87de3e80dd0456a95a597e5d5c29d09a9b23746a85e8c710cba52fa5ca47ded6e677f7983422fc28a3cb7527e6fbd5ff84a"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/io.netty/netty-common@4.1.139.Final?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://netty.io/netty-common/"
+        },
+        {
+          "type" : "distribution-intake",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/netty/netty/netty-common"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/io.netty/netty-buffer@4.1.139.Final?type=jar",
+      "publisher" : "The Netty Project",
+      "group" : "io.netty",
+      "name" : "netty-buffer",
+      "version" : "4.1.139.Final",
+      "description" : "Netty is an asynchronous event-driven network application framework for rapid development of maintainable high performance protocol servers and clients.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "16f68bfe26f6ccc490698ee808adccaa"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "9bf302a4c01d89f42e633f55eb9ffd0bb6a0b92e"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "48d805b74e56dc5f92b1f288858185abc86db16d293e8da183542df6243427f2"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "9c1ab4ba621a9e1b3815ab308453ad3e5a7504189c2a4a85edf50c4902d819b946171d2ff05a1c97f8fceec22cf9893206d0273398e2e9f5f2e7b83e7fd6ad8f"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "a2671f8c9a951a3e867e8a23a5ee4438a46946f7c9e864eba8ca30af34c3358d3f47f9d5f4ee3ecfe354ae98bba5b8c7"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "c0c3ad7d0d42b147000c0e487a1fe4ff5319296fcac2171db0711d803c2d7a0f2decfbc81cc349f1b0154a0b5e2dcfec"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "4176b6f92d49a2cf62fe9d5f52923e8528a1bcf947f4ee02c3e1b07c643db633"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "5a4362c7259afd03d8bea205cbadeeefb6e46e265201b2f0ca84124168bc66bc28b665240190ba15bba87a9012efe1e89182f5e988fbfb60fd1d3e3d0af21732"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/io.netty/netty-buffer@4.1.139.Final?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://netty.io/netty-buffer/"
+        },
+        {
+          "type" : "distribution-intake",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/netty/netty/netty-buffer"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/io.netty/netty-transport@4.1.139.Final?type=jar",
+      "publisher" : "The Netty Project",
+      "group" : "io.netty",
+      "name" : "netty-transport",
+      "version" : "4.1.139.Final",
+      "description" : "Netty is an asynchronous event-driven network application framework for rapid development of maintainable high performance protocol servers and clients.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "35e32b9152e5e9ceabe9301e554fbca9"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "2cf7121cec6ec0b43d406adceec132cfcec6159a"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "be7bff8b6274e7fae12bbad3c565777539e9b069517e0b3acc06d9ac2cd6ec05"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "4b3960d64bee466f2895b3bdf2e6bc563ab72b2d45a1b25f9b209585d389c0747e925f0b3d8b55a8560ba1d3ba9720fb3f25a4c022f13c676c7bba2af6965557"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "6cd8ec4bceb24e78e4c6268ed9308ebfe2d45d8384e3f9324568d50d3137d606867fae59628ca412406c7a887ebf5a6f"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "842ddc09bc7e48430632523fe103e5dc926fbb3694a1cd098034c507d7c46879f1382e43d0a78db977816c9246ed56ba"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "f7217221ba935e8c5a2950ff6343f367e7c35df9a43ed1774eabb92c668eb4c2"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "dd22c9439838326e84445b6e473fd5263d8369d5a3cb4bfc4f88952f165ff18cc1ce4e8ff9474589856ca72bbe89d720845b0885dffdde68e40a7163c3988d47"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/io.netty/netty-transport@4.1.139.Final?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://netty.io/netty-transport/"
+        },
+        {
+          "type" : "distribution-intake",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/netty/netty/netty-transport"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/io.netty/netty-codec@4.1.139.Final?type=jar",
+      "publisher" : "The Netty Project",
+      "group" : "io.netty",
+      "name" : "netty-codec",
+      "version" : "4.1.139.Final",
+      "description" : "Netty is an asynchronous event-driven network application framework for rapid development of maintainable high performance protocol servers and clients.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "535c351a2dbc0f4cd93ac9ad2af04e8b"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "96d0fb427e53097d91934c15fdf97785f917706d"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "ad43f07219dfb757a87b9c2b4765002be478c5401971379954e3d182f285fe6b"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "1a784540a4b33d2dc0c86470534bb6b63339f92176439fab37b5ccdd8c9429bcdbd73366c824f274829e08a5dfe633bc6f565192554dc619858760d54098eb89"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "245e3466db58f9311936153e21c21499727641bde9da79a45a4b5f4e9a0452b125a8dc6e41b1c274e65bc643e9c6e009"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "d3b4afc16eb59850fb2e62f75a8f73d815d578e1ea1be472bf0cd005cdf0253f978352627c6c20fca28abb6a1670057f"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "7d61cd817976e976c5579c7707da4425be2b537cc8ed27739e6929647a0ce589"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "804e4c56618777a3cece531500eff6f343e88c38ee1220868866378c1b67b5fcf46f91f8ac318df10e5c17c385cd011e4d6784ae9c2344eead889c69290a54e1"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/io.netty/netty-codec@4.1.139.Final?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://netty.io/netty-codec/"
+        },
+        {
+          "type" : "distribution-intake",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/netty/netty/netty-codec"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/io.netty/netty-handler@4.1.139.Final?type=jar",
+      "publisher" : "The Netty Project",
+      "group" : "io.netty",
+      "name" : "netty-handler",
+      "version" : "4.1.139.Final",
+      "description" : "Netty is an asynchronous event-driven network application framework for rapid development of maintainable high performance protocol servers and clients.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "566e66484d5eca2f62c9cda325c4ec2b"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "436b4a15bb2fe4608996a08b6d69b22f075286a4"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "ff85f00781b956d618b20f33da076c839a5e43e0084108b07bab0c19737168ec"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "1e81b27389d2df851d8b73121b45ba3f38bc772e19930ca3bb76d331c9684a5a849cdb2a064284b4fccc39261586dcad47ef4951bb221f2775246ca25dcda64d"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "9c0b1e333dfaac27a6bfff64b4e6dc3306b85f05204582d5b8a3d032b02ab395c24a26f81310a9dfa5be1fb350c0a277"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "284c6db99ef6ba83fc5de54ef6d6a18355ffc43b965a88ef367eac940957f734fe4e08b752a190c59f613829cc9182de"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "a8b1382b07e869746c5e5d4ff598ffc30853749a255cb6710029a6ccb1f0c748"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "9f4cd9ec03fd241f0d955dfe9ec44b02fcee01cdb1516f1cc4331a33ecab73ceded86ff5e3430d1c6bd5c48ef293d1a1815da08657269e54a7c6bef97f1e85b6"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/io.netty/netty-handler@4.1.139.Final?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://netty.io/netty-handler/"
+        },
+        {
+          "type" : "distribution-intake",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/netty/netty/netty-handler"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/io.netty/netty-resolver@4.1.139.Final?type=jar",
+      "publisher" : "The Netty Project",
+      "group" : "io.netty",
+      "name" : "netty-resolver",
+      "version" : "4.1.139.Final",
+      "description" : "Netty is an asynchronous event-driven network application framework for rapid development of maintainable high performance protocol servers and clients.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "27f8e185e516d775393dcb7120dd6c6f"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "b3ad473303b5ccb9d0f22ef31c0306b229620c54"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "562a5388c88325b7d6ed05e8168736871ce0e64ab01e0ce52ea7710760b9b457"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "627ec3fcae96f6a73cbf2072ce8f920436cbe4510d4d7ba4de98fbb7d9211099644c7a7516ff919f798ad14c1b8b4b286ebeced3ac846d5a3bb68a1480b74d25"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "da96932314009bb56a3931f540784d3bd2ee0ca2627e19c3c9c1b4597258a70a93de50820b39002d59a07f3913a0d769"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "b89960d90af90f1baa0656abebe5d5f2cbe9c6805db5a8d75ac0dea140d4b0dff1a3517a7e07c7bec6f50259d88e7a32"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "1156d29cb5572de3fa7c66e4f6b34dccaa081b907f88fdc226fbbfbb7ccdd348"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "b3152733f65f396bb885acd3b923a6c9a98ab093f07a130791329fd8456b04f3d301ccf1635476c2c2b20b8bfc50097508a778d681e205f5b9de829edcff907c"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/io.netty/netty-resolver@4.1.139.Final?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://netty.io/netty-resolver/"
+        },
+        {
+          "type" : "distribution-intake",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/netty/netty/netty-resolver"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/io.netty/netty-transport-native-unix-common@4.1.139.Final?type=jar",
+      "publisher" : "The Netty Project",
+      "group" : "io.netty",
+      "name" : "netty-transport-native-unix-common",
+      "version" : "4.1.139.Final",
+      "description" : "Static library which contains common unix utilities.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "ee99561d15ea4ebdd25a8908db81c55c"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "58a873837fe16ab713a628530f2ef605f9a5b2e6"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "8e660ac8a485fc8d8b47d87d04ea33d19902dc6fc5a113e9353b762188b3f333"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "1c2f97b9994d9705141cdd988d58dc15353bb8c99d14938f8e772954a4c204ba4dfc2fa80d7bf3ea83ad443547d6c5cb55d2c3ae48b1aeb588e5a5f78c88a3c4"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "7b4ff15e1197e7f882e7bd152c6eb0afb1005e65caccb3e6ec6d398f51c94810880ca665ca0a5a749828eb6031a7ece5"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "b2658e68d5e1d91c0fafbebae723286cd95aba7e73ad1fc2414a85c7e9a273a4a60d795960830e316539274c17da835a"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "fc8d731277f30cf9975b58bdbfadfcc62d6343aa358f53e29da94215facc2cfd"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "e8d039820e9c590b34231eb3168aafcd4793248c343b3e1edeeb706a8af0fa427c31ba7fd68ae438004dd347c060805913897f07de0005f77cfd18bdf2f2185a"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/io.netty/netty-transport-native-unix-common@4.1.139.Final?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://netty.io/netty-transport-native-unix-common/"
+        },
+        {
+          "type" : "distribution-intake",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/netty/netty/netty-transport-native-unix-common"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.22.4?type=jar",
+      "publisher" : "FasterXML",
+      "group" : "com.fasterxml.jackson.core",
+      "name" : "jackson-databind",
+      "version" : "2.22.4",
+      "description" : "General data-binding functionality for Jackson: works on core streaming API",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "e782b43929d9cb465924a105bdbf2db8"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "1ff5a55d62432f57e8044394976e598af0c5b3b8"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "d4cbf8947087f305869826801913abdc50735a1fab2074a1993e7bc67ca974a3"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "688ee3a248895070623288bbbd1050e1c14f54d24ddac9be1e624e264eed8d88a6ca07ae90af6056bed1e5f1d0c9ac9db503cbcaaa45db7ba8ca213d3387dde6"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "82b6ee17013047935bf6da141a1084a625200883c04984c6d07b65ea41925b7eeee1674aeffcef37d1e724e6727951a6"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "39acae150a64e2fead35eecc17bd17f3fae8c003ff493899da4e540cd6af292e883b5d71102066efff91b83c256fcc27"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "a7729d3990f1a7ca650383073604455f172d267b0152465880ad5bc0efa6741f"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "8f01016a09ec87f9d182f006026d3c14d7098b3548aa34501db40a3b823c933ac278b7148c96606c8c441a746ea63f0f8ceb6fa7067546649816c678ab4a5962"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.22.4?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/FasterXML/jackson"
+        },
+        {
+          "type" : "distribution-intake",
+          "url" : "https://central.sonatype.com/api/v1/publisher"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/FasterXML/jackson-databind/issues"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/FasterXML/jackson-databind"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.fasterxml.jackson.core/jackson-annotations@2.22?type=jar",
+      "publisher" : "FasterXML",
+      "group" : "com.fasterxml.jackson.core",
+      "name" : "jackson-annotations",
+      "version" : "2.22",
+      "description" : "Core annotations used for value types, used by Jackson data binding package.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "04c11c456fd1e21b9a21c25c665109cc"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "15c67f9498d6934cff9510fc70c5a12e52290457"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "21ddb598807d3a51a876704eb979d9296e1c6a6f47ab1826ff88c6d6a127a2d0"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "63b597ec02b4e31c57266d9b96f05f301f217bc12ffb7ba046a5658d2829728930a559947b98eb6c3cc448413a96b4939427aa669ae1e2dc3597ab5d5d287f9f"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "35b6fe651afeed54d1e6f7a39ac6cf6fdbafacdf2e3bdff7b29b965ccb79a0c53342a56bf0ecea4d6c4c4651b1d6aa19"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "72267dc54c4175c42ca0dd430a87b12cc68619a8777be2048e1d2f0747db884a568b5c346c77c9c8c0714ab96018f5f7"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "6bfc7b4ba70779fe5f0b1e2af585abab982f7929a68beb2c0e62ea2e2a321de0"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "3f1bdfa32f7df76ac14cd2a3e689b65066fa0a6a760a9b8b1121773bb1b043a44587d4148c67f361dc6c630e6b31f29b2691a57d47caabea5ca23ae44af34a5e"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.fasterxml.jackson.core/jackson-annotations@2.22?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/FasterXML/jackson"
+        },
+        {
+          "type" : "distribution-intake",
+          "url" : "https://central.sonatype.com/api/v1/publisher"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/FasterXML/jackson-annotations/issues"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/FasterXML/jackson-annotations"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.fasterxml.jackson.core/jackson-core@2.22.4?type=jar",
+      "publisher" : "FasterXML",
+      "group" : "com.fasterxml.jackson.core",
+      "name" : "jackson-core",
+      "version" : "2.22.4",
+      "description" : "Core Jackson processing abstractions (aka Streaming API), implementation for JSON",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "fa9ba32880026c653cc151bed0c28498"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "d753ae59bae7dcb183f856da541c5b27272088ce"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "2d30c375cddea9657a1e1ef97547a2694b663b355facb4de53a097782b312d1a"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "3b0d500043699ce40fc6befc04c9dbf3e8067de453098fba53d1891793bd3da80955e44536d113fac6fc8fb58264e47b265ab3466b3c6fd4bca111487ac24700"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "8b3beecfc5464c704601fe9cfe90ccabb7090381676da9d7514b27c979c4580baa1a343c9724146fc86c0568cad6d53c"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "30e3394466b713fa98b37e6d98948d38b26e2be090f35902f3416fa93c69c78d7d5e69d035a8403d720bb7106f29e716"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "edc5681da0d239439298ed33621f4aa1991aeca9a29be0c1d6ba76036dd8dfdc"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "9e9e02839c0cbe5c5aafb5af23d25db2bc71754a10c18998aee1fe7d216fdf7dd6602859480d5e76991f9393587ac215633f9a1740329715db40904532aaf483"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.fasterxml.jackson.core/jackson-core@2.22.4?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/FasterXML/jackson-core"
+        },
+        {
+          "type" : "distribution-intake",
+          "url" : "https://central.sonatype.com/api/v1/publisher"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/FasterXML/jackson-core/issues"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/FasterXML/jackson-core"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml@2.22.4?type=jar",
+      "publisher" : "FasterXML",
+      "group" : "com.fasterxml.jackson.dataformat",
+      "name" : "jackson-dataformat-yaml",
+      "version" : "2.22.4",
+      "description" : "Support for reading and writing YAML-encoded data via Jackson abstractions.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "ec05ad0e0416f0b380d75d84176f6f91"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "ca03cc73f60b521973613e03acab671230e5802a"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "2f55e2b864f6354b24d4bcccd488f7c4a3fce4977f8c8dbad07242a68e11dde9"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "310245b9f1a29ebcb18c46fee339c9c296a0b1d2c1bde6a862091ac195b3605a60cc6915af975475036fb4c52cbc9e1f47e2270b9c176f50c39d3bf267556148"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "a0727abff1c4ed9be07a360e7ec8cde1d79aaa76edec38fffd28be95d12d56f7220cde168ceff3f9e2951a7ec93b795c"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "1035c0e7491756a79b4e4437b0d3c68346f6c6de2733bcec5212fa666d66349ee8ec732aff05b854499d4fa2b45601bf"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "67bcd45a6bbcdbe449935510a78ca9c82fc6b81c1c646d03c60c3c6ceccb293e"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "2db23ea476f39c503887eb8277fb83f825b67629ab855fe1e3b7f63d846964401c14170e8ac1834b8837b9f128ef015ec6bf30ae4e2a601ffac2b03e082ef8ba"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml@2.22.4?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/FasterXML/jackson-dataformats-text"
+        },
+        {
+          "type" : "distribution-intake",
+          "url" : "https://central.sonatype.com/api/v1/publisher"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/FasterXML/jackson-dataformats-text/issues"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/FasterXML/jackson-dataformats-text/jackson-dataformat-yaml"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.yaml/snakeyaml@2.5?type=jar",
+      "group" : "org.yaml",
+      "name" : "snakeyaml",
+      "version" : "2.5",
+      "description" : "YAML 1.1 parser and emitter for Java",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "8d3b7581db5c7620db55183f33a4f2ad"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "2d53ddec134280cb384c1e35d094e5f71c1f2316"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "e6682acf1ace77508ef13649cbf4f8d09d2cf5457bdb61d25ffb6ac0233d78dd"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "a69bea3ae0ed31b12d9fa23bf1cd3fb71bae88e231d9657f0291e3000ae17a1df50709e072134f9155158f488eba67a3f8daf879462499f07b07d9239e78933e"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "2fa12e4330d6da0a693a13588c8cdeff562c1bd1dc32e043d402ca1fc72d87a30dcc7bb31f9b582df3fe018eb6c6a3bb"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "8c5037c75bb2f464829ba38126a4773c88951705effc2b14289f3bbdef05bb598f10e4d9603dcd1b58efd7cb68d996a2"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "3aa9329b0eab5185331e526a011c74b45b4c4a506214e6c3ec2d2038c51cc261"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "f80ff702aee20a5150a11818985d659fffb1d5238e331aca2048524649e0270e5bca0186ce7caf04ecf85fd95c95c6b9d8ed1f362ed399fef624eb94b70dc6de"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.yaml/snakeyaml@2.5?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://bitbucket.org/snakeyaml/snakeyaml"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://bitbucket.org/snakeyaml/snakeyaml/issues"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://bitbucket.org/snakeyaml/snakeyaml/src"
+        }
+      ]
+    }
+  ],
+  "dependencies" : [
+    {
+      "ref" : "pkg:maven/io.ominicat/ominicat-server@0.1.0-SNAPSHOT?type=jar",
+      "dependsOn" : [
+        "pkg:maven/io.ominicat/ominicat-core@0.1.0-SNAPSHOT?type=jar",
+        "pkg:maven/io.ominicat/ominicat-providers@0.1.0-SNAPSHOT?type=jar",
+        "pkg:maven/io.ominicat/ominicat-conversation@0.1.0-SNAPSHOT?type=jar",
+        "pkg:maven/io.netty/netty-codec-http@4.1.139.Final?type=jar",
+        "pkg:maven/io.netty/netty-handler@4.1.139.Final?type=jar",
+        "pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.22.4?type=jar",
+        "pkg:maven/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml@2.22.4?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/io.ominicat/ominicat-core@0.1.0-SNAPSHOT?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/io.ominicat/ominicat-providers@0.1.0-SNAPSHOT?type=jar",
+      "dependsOn" : [
+        "pkg:maven/io.ominicat/ominicat-core@0.1.0-SNAPSHOT?type=jar",
+        "pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.22.4?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.22.4?type=jar",
+      "dependsOn" : [
+        "pkg:maven/com.fasterxml.jackson.core/jackson-annotations@2.22?type=jar",
+        "pkg:maven/com.fasterxml.jackson.core/jackson-core@2.22.4?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/com.fasterxml.jackson.core/jackson-annotations@2.22?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/com.fasterxml.jackson.core/jackson-core@2.22.4?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/io.ominicat/ominicat-conversation@0.1.0-SNAPSHOT?type=jar",
+      "dependsOn" : [
+        "pkg:maven/io.ominicat/ominicat-core@0.1.0-SNAPSHOT?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/io.netty/netty-codec-http@4.1.139.Final?type=jar",
+      "dependsOn" : [
+        "pkg:maven/io.netty/netty-common@4.1.139.Final?type=jar",
+        "pkg:maven/io.netty/netty-buffer@4.1.139.Final?type=jar",
+        "pkg:maven/io.netty/netty-transport@4.1.139.Final?type=jar",
+        "pkg:maven/io.netty/netty-codec@4.1.139.Final?type=jar",
+        "pkg:maven/io.netty/netty-handler@4.1.139.Final?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/io.netty/netty-common@4.1.139.Final?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/io.netty/netty-buffer@4.1.139.Final?type=jar",
+      "dependsOn" : [
+        "pkg:maven/io.netty/netty-common@4.1.139.Final?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/io.netty/netty-transport@4.1.139.Final?type=jar",
+      "dependsOn" : [
+        "pkg:maven/io.netty/netty-common@4.1.139.Final?type=jar",
+        "pkg:maven/io.netty/netty-buffer@4.1.139.Final?type=jar",
+        "pkg:maven/io.netty/netty-resolver@4.1.139.Final?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/io.netty/netty-resolver@4.1.139.Final?type=jar",
+      "dependsOn" : [
+        "pkg:maven/io.netty/netty-common@4.1.139.Final?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/io.netty/netty-codec@4.1.139.Final?type=jar",
+      "dependsOn" : [
+        "pkg:maven/io.netty/netty-common@4.1.139.Final?type=jar",
+        "pkg:maven/io.netty/netty-buffer@4.1.139.Final?type=jar",
+        "pkg:maven/io.netty/netty-transport@4.1.139.Final?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/io.netty/netty-handler@4.1.139.Final?type=jar",
+      "dependsOn" : [
+        "pkg:maven/io.netty/netty-common@4.1.139.Final?type=jar",
+        "pkg:maven/io.netty/netty-resolver@4.1.139.Final?type=jar",
+        "pkg:maven/io.netty/netty-buffer@4.1.139.Final?type=jar",
+        "pkg:maven/io.netty/netty-transport@4.1.139.Final?type=jar",
+        "pkg:maven/io.netty/netty-transport-native-unix-common@4.1.139.Final?type=jar",
+        "pkg:maven/io.netty/netty-codec@4.1.139.Final?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/io.netty/netty-transport-native-unix-common@4.1.139.Final?type=jar",
+      "dependsOn" : [
+        "pkg:maven/io.netty/netty-common@4.1.139.Final?type=jar",
+        "pkg:maven/io.netty/netty-buffer@4.1.139.Final?type=jar",
+        "pkg:maven/io.netty/netty-transport@4.1.139.Final?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml@2.22.4?type=jar",
+      "dependsOn" : [
+        "pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.22.4?type=jar",
+        "pkg:maven/org.yaml/snakeyaml@2.5?type=jar",
+        "pkg:maven/com.fasterxml.jackson.core/jackson-core@2.22.4?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/org.yaml/snakeyaml@2.5?type=jar",
+      "dependsOn" : [ ]
+    }
+  ]
+}

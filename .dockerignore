@@ -1,0 +1,7 @@
+.git
+**/target
+reports
+.env*
+.idea
+*.jfr
+*.hprof

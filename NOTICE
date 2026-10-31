@@ -1,0 +1,8 @@
+OminiCat
+Copyright 2026 OminiCat contributors
+
+OminiCat is an independent Java implementation. No Pipecat or Apache Tomcat
+source code is included. Product names belong to their respective owners.
+
+Third-party dependencies retain their own licenses. Generate a CycloneDX
+dependency inventory with ./mvnw -Psbom verify.

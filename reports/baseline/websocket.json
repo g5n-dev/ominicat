@@ -1,0 +1,15 @@
+{
+  "workload": "WebSocket JSON text echo; closed-loop, one in-flight frame per connection",
+  "connections": 32,
+  "measuredFrames": 160000,
+  "warmupFramesPerConnection": 100,
+  "seconds": 2.981334,
+  "framesPerSecond": 53667.246,
+  "p50Micros": 452.833,
+  "p95Micros": 1183.666,
+  "p99Micros": 2095.875,
+  "maxMicros": 6568.625,
+  "failedFrames": 0,
+  "javaVersion": "21.0.13.0.3",
+  "architecture": "aarch64"
+}

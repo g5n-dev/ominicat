@@ -1,0 +1,13 @@
+# Feed final transcript frames and then `end`. No cloud calls.
+host: 127.0.0.1
+port: 8080
+stages:
+  - type: transcript-gate
+  - type: conversation-evaluator
+    options:
+      speaker: agent
+      requiredPhrases: "hello,thank you"
+      prohibitedPhrases: "guaranteed"
+      policyVersion: "example-v1"
+      maxTurns: "256"
+      evaluateOnTurnEnd: "true"

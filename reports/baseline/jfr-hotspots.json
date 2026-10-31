@@ -1,0 +1,35 @@
+{
+  "eventCounts": {
+    "jdk.ObjectAllocationSample": 2191,
+    "jdk.GarbageCollection": 12,
+    "jdk.ExecutionSample": 889
+  },
+  "executionSampleLeaves": {
+    "java.util.concurrent.locks.LockSupport.unpark": 515,
+    "jdk.internal.misc.Unsafe.getAndBitwiseAndInt": 143,
+    "java.util.DualPivotQuicksort.sort": 67,
+    "java.lang.VirtualThread.parkNanos": 51,
+    "io.ominicat.core.PipelineSession.run": 16,
+    "java.util.concurrent.CountDownLatch$Sync.tryReleaseShared": 16,
+    "io.ominicat.benchmarks.CoreLoad.lambda$runPhase$4": 11,
+    "java.lang.System$2.unparkVirtualThread": 10,
+    "jdk.internal.vm.Continuation.yield": 8,
+    "java.util.concurrent.locks.ReentrantLock$Sync.lockInterruptibly": 8,
+    "java.lang.VirtualThread.unpark": 7,
+    "java.util.concurrent.locks.AbstractQueuedSynchronizer.acquireInterruptibly": 6
+  },
+  "sampledAllocationWeightBytes": {
+    "io.ominicat.benchmarks.CoreLoad$Probe": 1283489280,
+    "io.ominicat.core.PipelineSession$Pending": 768254688,
+    "io.ominicat.core.PipelineSession$$Lambda.0x000000e80100bba8": 554279112,
+    "[J": 221452336,
+    "java.util.concurrent.locks.AbstractQueuedSynchronizer$ExclusiveNode": 97716112,
+    "java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask": 60123136,
+    "java.util.concurrent.ForkJoinTask$AdaptedRunnableAction": 46212184,
+    "java.lang.VirtualThread$$Lambda.0x000000e80103e8c8": 37901880,
+    "java.util.concurrent.ForkJoinTask$RunnableExecuteAction": 31837640,
+    "java.util.concurrent.locks.AbstractQueuedSynchronizer$SharedNode": 27578984,
+    "java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionNode": 18371296,
+    "io.ominicat.core.Pipeline$$Lambda.0x000000e80100c8a0": 4354344
+  }
+}
