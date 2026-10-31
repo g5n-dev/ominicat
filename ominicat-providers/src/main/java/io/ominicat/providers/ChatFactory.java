@@ -8,7 +8,9 @@ import io.ominicat.core.spi.ProcessorFactory;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PushbackReader;
 import java.nio.charset.StandardCharsets;
+import java.nio.charset.CodingErrorAction;
 import java.util.Base64;
 import java.util.List;
 import java.util.Map;
@@ -47,7 +49,11 @@ public final class ChatFactory implements ProcessorFactory {
     }
 
     static void readStream(CompatibleClient.Response response, FrameSink next) throws Exception {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(response.stream(), StandardCharsets.UTF_8));
+        PushbackReader reader = new PushbackReader(new BufferedReader(new InputStreamReader(response.stream(),
+                StandardCharsets.UTF_8.newDecoder().onMalformedInput(CodingErrorAction.REPORT)
+                        .onUnmappableCharacter(CodingErrorAction.REPORT))), 1);
+        int first = reader.read();
+        if (first != -1 && first != 0xfeff) reader.unread(first);
         StringBuilder event = new StringBuilder();
         int consumed = 0;
         while (true) {
@@ -56,7 +62,7 @@ public final class ChatFactory implements ProcessorFactory {
             consumed += line.length() + 1;
             if (consumed > response.maxBytes() / 4) throw new IOException("provider stream exceeded character budget");
             if (Thread.currentThread().isInterrupted()) throw new InterruptedException("provider stream interrupted");
-            if (response.deadline().isDone()) throw new IOException("provider response deadline exceeded");
+            if (response.timedOut()) throw new IOException("provider response deadline exceeded");
             if (line.isEmpty()) {
                 if (event.isEmpty()) continue;
                 String payload = event.toString(); event.setLength(0);
@@ -72,12 +78,17 @@ public final class ChatFactory implements ProcessorFactory {
             }
         }
     }
-    private static String boundedLine(BufferedReader reader) throws IOException {
+    private static String boundedLine(PushbackReader reader) throws IOException {
         StringBuilder line = new StringBuilder();
         int character;
         while ((character = reader.read()) != -1) {
             if (character == '\n') return line.toString();
-            if (character != '\r') line.append((char) character);
+            if (character == '\r') {
+                int following = reader.read();
+                if (following != -1 && following != '\n') reader.unread(following);
+                return line.toString();
+            }
+            line.append((char) character);
             if (line.length() > 65536) throw new IOException("provider SSE line too large");
         }
         return line.isEmpty() ? null : line.toString();

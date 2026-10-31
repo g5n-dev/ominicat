@@ -1,0 +1,7 @@
+{
+  "ominicat-server/src/main/java/io/ominicat/server/FrameCodec.java": "0d5923610a03c225d5996d6d14ee5c0dee84507c801ea02717984239683c71ae",
+  "ominicat-server/src/main/java/io/ominicat/server/OminiCat.java": "b1068f291abf5c51d5b10674462a007e27eebf9761ad4e1a5c298ee53b84f2e3",
+  "ominicat-server/src/main/java/io/ominicat/server/OminiCatServer.java": "c6a766cc6d029387f35f33be9bc9a7150a4ed5d4854bc4599f8993e963700496",
+  "ominicat-server/src/main/java/io/ominicat/server/RuntimeConfig.java": "8d2c07dc471497f9d83a0e16e17ec199a67146ed513e1aa7f9981969a59e2360",
+  "ominicat-server/src/main/resources/web/index.html": "a6dc01538351f0fe9edafafd8561f5906355b2eeedaefa889c8a91fc0ad16c11"
+}

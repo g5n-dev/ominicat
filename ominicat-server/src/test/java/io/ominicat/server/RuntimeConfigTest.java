@@ -16,6 +16,7 @@ class RuntimeConfigTest {
         assertEquals(0, config.port());
         assertEquals("127.0.0.1", config.host());
         assertEquals(256, config.queueCapacity());
+        assertEquals(512, config.maxConnections());
         assertEquals("echo", config.stages().getFirst().type());
     }
 
@@ -49,6 +50,7 @@ class RuntimeConfigTest {
     @Test void explicitInvalidZeroIsNotReplacedByDefault() {
         assertThrows(IllegalArgumentException.class, () -> load("queueCapacity: 0\n"));
         assertThrows(IllegalArgumentException.class, () -> load("maxSessions: 0\n"));
+        assertThrows(IllegalArgumentException.class, () -> load("maxConnections: 0\n"));
         assertThrows(IllegalArgumentException.class, () -> load("maxFrameBytes: 0\n"));
         assertThrows(IllegalArgumentException.class, () -> load("idleTimeoutSeconds: 0\n"));
     }

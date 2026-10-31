@@ -55,22 +55,29 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.LongAdder;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Embedded, configurable WebSocket container. Netty owns socket I/O; each accepted session
  * owns its own microkernel pipeline and virtual worker. Instances are single-use.
  */
 public final class OminiCatServer implements AutoCloseable {
+    private static final int CLOSE_TIMEOUT_SECONDS = 2;
     private final RuntimeConfig config;
     private final PluginRegistry plugins;
     private final byte[] token;
     private final FrameCodec codec = new FrameCodec();
     private final NioEventLoopGroup acceptors;
     private final NioEventLoopGroup ioWorkers;
-    private final ChannelGroup connections = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
+    private final ChannelGroup connections = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE, true);
     private final AtomicBoolean started = new AtomicBoolean();
     private final AtomicBoolean closed = new AtomicBoolean();
     private final AtomicInteger activeSessions = new AtomicInteger();
+    private final AtomicInteger admittedSessions = new AtomicInteger();
+    private final AtomicInteger pipelineWorkers = new AtomicInteger();
+    private final AtomicInteger openConnections = new AtomicInteger();
+    private final AtomicLong pendingOutputBytes = new AtomicLong();
     private final LongAdder sessionsTotal = new LongAdder();
     private final LongAdder framesIn = new LongAdder();
     private final LongAdder framesOut = new LongAdder();
@@ -110,6 +117,12 @@ public final class OminiCatServer implements AutoCloseable {
                             new WriteBufferWaterMark(2 * config.maxFrameBytes(), 4 * config.maxFrameBytes()))
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override protected void initChannel(SocketChannel channel) {
+                            if (closed.get() || !reserve(openConnections, config.maxConnections())) {
+                                rejected.increment();
+                                channel.close();
+                                return;
+                            }
+                            channel.closeFuture().addListener(ignored -> openConnections.decrementAndGet());
                             connections.add(channel);
                             channel.pipeline().addLast(new ReadTimeoutHandler(config.idleTimeoutSeconds()));
                             channel.pipeline().addLast(new HttpServerCodec());
@@ -135,6 +148,24 @@ public final class OminiCatServer implements AutoCloseable {
         Channel channel = listener;
         if (channel == null) throw new IllegalStateException("Server has not started");
         return ((InetSocketAddress) channel.localAddress()).getPort();
+    }
+
+    /** Best-effort resource gauges; an abandoned noncooperative worker retains its admission slot. */
+    public Resources resources() {
+        return new Resources(openConnections.get(), activeSessions.get(), admittedSessions.get(),
+                pipelineWorkers.get(), pendingOutputBytes.get());
+    }
+
+    /** Counts owned resources, including workers whose socket closed before processor cleanup finished. */
+    public record Resources(int connections, int activeSessions, int admittedSessions,
+                            int pipelineWorkers, long pendingOutputBytes) { }
+
+    private static boolean reserve(AtomicInteger count, int limit) {
+        while (true) {
+            int current = count.get();
+            if (current >= limit) return false;
+            if (count.compareAndSet(current, current + 1)) return true;
+        }
     }
 
     /** Waits until the listening channel closes. */
@@ -164,35 +195,47 @@ public final class OminiCatServer implements AutoCloseable {
                 builder.add(EnvelopeProcessor.wrap(processor));
             }
             return builder.build().openSession(new SessionOptions(config.queueCapacity()), output);
-        } catch (RuntimeException failure) {
+        } catch (Throwable failure) {
             for (Processor processor : processors.reversed()) {
-                try { processor.close(); } catch (Exception cleanup) { failure.addSuppressed(cleanup); }
+                try { processor.close(); }
+                catch (Throwable cleanup) { if (cleanup != failure) failure.addSuppressed(cleanup); }
             }
-            throw failure;
+            if (failure instanceof Error error) throw error;
+            if (failure instanceof RuntimeException runtime) throw runtime;
+            throw new IllegalStateException("Processor initialization failed", failure);
         }
     }
 
     private void preflight() {
         List<Processor> instances = new ArrayList<>();
-        IllegalArgumentException rejectedConfiguration = null;
+        List<Throwable> problems = new ArrayList<>();
+        int rejectedStage = -1;
         int stageIndex = 0;
         try {
             for (RuntimeConfig.Stage stage : config.stages()) {
                 instances.add(plugins.create(stage.type(), stage.options()));
                 stageIndex++;
             }
-        } catch (RuntimeException rejected) {
-            rejectedConfiguration = configurationError(stageIndex);
+        } catch (Throwable rejected) {
+            problems.add(rejected);
+            rejectedStage = stageIndex;
         } finally {
             for (int index = instances.size() - 1; index >= 0; index--) {
                 try { instances.get(index).close(); }
-                catch (Exception cleanupFailure) {
+                catch (Throwable cleanupFailure) {
                     if (cleanupFailure instanceof InterruptedException) Thread.currentThread().interrupt();
-                    if (rejectedConfiguration == null) rejectedConfiguration = configurationError(index);
+                    problems.add(cleanupFailure);
+                    if (rejectedStage < 0) rejectedStage = index;
                 }
             }
         }
-        if (rejectedConfiguration != null) throw rejectedConfiguration;
+        for (Throwable problem : problems) {
+            if (problem instanceof Error fatal) {
+                for (Throwable other : problems) if (other != fatal) fatal.addSuppressed(other);
+                throw fatal;
+            }
+        }
+        if (!problems.isEmpty()) throw configurationError(rejectedStage);
     }
 
     private IllegalArgumentException configurationError(int index) {
@@ -236,9 +279,52 @@ public final class OminiCatServer implements AutoCloseable {
         } catch (IllegalArgumentException invalid) { return false; }
     }
 
+    private boolean allowedHost(Channel connection, FullHttpRequest request) {
+        if (token != null) return true;
+        Channel listening = connection.parent() == null ? connection : connection.parent();
+        if (!(listening.localAddress() instanceof InetSocketAddress address)
+                || address.getAddress() == null || !address.getAddress().isLoopbackAddress()) return true;
+        List<String> hosts = request.headers().getAll(HttpHeaderNames.HOST);
+        if (hosts.size() != 1) return false;
+        String authority = hosts.getFirst();
+        String host;
+        String suffix;
+        if (authority.startsWith("[")) {
+            int end = authority.indexOf(']');
+            if (end < 0 || !authority.substring(1, end).equals("::1")) return false;
+            host = "::1";
+            suffix = authority.substring(end + 1);
+        } else {
+            int colon = authority.indexOf(':');
+            host = colon < 0 ? authority : authority.substring(0, colon);
+            suffix = colon < 0 ? "" : authority.substring(colon);
+        }
+        if (!suffix.isEmpty() && (!suffix.startsWith(":") || !decimal(suffix.substring(1), 65535, false))) return false;
+        if (host.equalsIgnoreCase("localhost") || host.equals("::1")) return true;
+        String[] octets = host.split("\\.", -1);
+        if (octets.length != 4 || !octets[0].equals("127")) return false;
+        for (String octet : octets) if (!decimal(octet, 255, true)) return false;
+        return true;
+    }
+
+    private static boolean decimal(String value, int maximum, boolean canonical) {
+        if (value.isEmpty() || value.length() > 5 || canonical && value.length() > 1 && value.charAt(0) == '0') return false;
+        int parsed = 0;
+        for (int index = 0; index < value.length(); index++) {
+            char digit = value.charAt(index);
+            if (digit < '0' || digit > '9') return false;
+            parsed = parsed * 10 + digit - '0';
+        }
+        return parsed <= maximum;
+    }
+
     private String metrics() {
         return "# HELP ominicat_active_sessions Current WebSocket sessions.\n# TYPE ominicat_active_sessions gauge\nominicat_active_sessions " + activeSessions.get()
                 + "\n# TYPE ominicat_sessions_total counter\nominicat_sessions_total " + sessionsTotal.sum()
+                + "\n# TYPE ominicat_admitted_sessions gauge\nominicat_admitted_sessions " + admittedSessions.get()
+                + "\n# TYPE ominicat_connections gauge\nominicat_connections " + openConnections.get()
+                + "\n# TYPE ominicat_live_pipeline_workers gauge\nominicat_live_pipeline_workers " + pipelineWorkers.get()
+                + "\n# TYPE ominicat_pending_output_bytes gauge\nominicat_pending_output_bytes " + pendingOutputBytes.get()
                 + "\n# TYPE ominicat_frames_in_total counter\nominicat_frames_in_total " + framesIn.sum()
                 + "\n# TYPE ominicat_frames_out_total counter\nominicat_frames_out_total " + framesOut.sum()
                 + "\n# TYPE ominicat_frames_rejected_total counter\nominicat_frames_rejected_total " + rejected.sum()
@@ -249,6 +335,11 @@ public final class OminiCatServer implements AutoCloseable {
     private final class HttpHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
         @Override protected void channelRead0(ChannelHandlerContext context, FullHttpRequest request) {
             if (!request.decoderResult().isSuccess()) { respond(context, HttpResponseStatus.BAD_REQUEST, "text/plain", "Invalid HTTP request"); return; }
+            if (!allowedHost(context.channel(), request)) {
+                rejected.increment();
+                respond(context, HttpResponseStatus.FORBIDDEN, "text/plain", "Host is not allowed for this loopback listener");
+                return;
+            }
             String path = new QueryStringDecoder(request.uri()).path();
             if (!request.method().name().equals("GET")) { respond(context, HttpResponseStatus.METHOD_NOT_ALLOWED, "text/plain", "GET required"); return; }
             switch (path) {
@@ -282,12 +373,12 @@ public final class OminiCatServer implements AutoCloseable {
                 WebSocketServerHandshakerFactory.sendUnsupportedVersionResponse(context.channel()).addListener(ChannelFutureListener.CLOSE);
                 return;
             }
-            if (activeSessions.incrementAndGet() > config.maxSessions()) {
-                activeSessions.decrementAndGet();
+            if (!reserve(admittedSessions, config.maxSessions())) {
                 rejected.increment();
                 respond(context, HttpResponseStatus.SERVICE_UNAVAILABLE, "text/plain", "Session capacity reached"); return;
             }
-            WsHandler socket = new WsHandler(handshaker);
+            activeSessions.incrementAndGet();
+            WsHandler socket = new WsHandler();
             context.pipeline().addLast("websocket-aggregate", new WebSocketFrameAggregator(config.maxFrameBytes()));
             context.pipeline().addLast("websocket-session", socket);
             handshaker.handshake(context.channel(), request).addListener(future -> {
@@ -302,20 +393,26 @@ public final class OminiCatServer implements AutoCloseable {
     }
 
     private final class WsHandler extends SimpleChannelInboundHandler<WebSocketFrame> {
-        private final WebSocketServerHandshaker handshaker;
         private final AtomicLong pendingBytes = new AtomicLong();
         private final AtomicBoolean terminating = new AtomicBoolean();
-        private PipelineSession pipeline;
-        private Channel channel;
-
-        private WsHandler(WebSocketServerHandshaker handshaker) { this.handshaker = handshaker; }
+        private final AtomicBoolean socketInactive = new AtomicBoolean();
+        private final AtomicBoolean workerComplete = new AtomicBoolean();
+        private final AtomicBoolean admissionReleased = new AtomicBoolean();
+        private final Object outputLock = new Object();
+        private volatile PipelineSession pipeline;
+        private volatile Channel channel;
+        private volatile ScheduledFuture<?> closeDeadline;
 
         private void open(Channel connection) {
             channel = connection;
             if (terminating.get() || !connection.isActive()) return;
             try {
                 pipeline = session(frame -> send(codec.encode(frame)));
+                pipelineWorkers.incrementAndGet();
                 pipeline.completion().whenComplete((ignored, failure) -> {
+                    pipelineWorkers.decrementAndGet();
+                    workerComplete.set(true);
+                    releaseAdmission();
                     if (failure != null && !terminating.get()) {
                         failures.increment();
                         terminate(1011, "Processor failed");
@@ -323,7 +420,9 @@ public final class OminiCatServer implements AutoCloseable {
                         terminate(1000, "Pipeline complete");
                     }
                 });
-            } catch (RuntimeException failure) {
+            } catch (Throwable failure) {
+                workerComplete.set(true);
+                releaseAdmission();
                 failures.increment();
                 terminate(1011, "Pipeline initialization failed");
             }
@@ -331,10 +430,9 @@ public final class OminiCatServer implements AutoCloseable {
 
         @Override protected void channelRead0(ChannelHandlerContext context, WebSocketFrame incoming) {
             if (incoming instanceof CloseWebSocketFrame close) {
-                terminating.set(true);
-                handshaker.close(context.channel(), close.retain());
+                beginClose(close.retain());
             } else if (incoming instanceof PingWebSocketFrame ping) {
-                context.writeAndFlush(new PongWebSocketFrame(ping.content().retain()));
+                sendFrame(new PongWebSocketFrame(ping.content().retain()), ping.content().readableBytes());
             } else if (incoming instanceof PongWebSocketFrame) {
                 // ReadTimeoutHandler already records this activity.
             } else if (incoming instanceof TextWebSocketFrame text) {
@@ -366,33 +464,82 @@ public final class OminiCatServer implements AutoCloseable {
         }
 
         private void send(String message) {
-            Channel connection = channel;
-            if (connection == null || terminating.get() || !connection.isActive()) return;
+            if (terminating.get()) return;
             int size = ByteBufUtil.utf8Bytes(message);
-            if (size > config.maxFrameBytes() || pendingBytes.addAndGet(size) > 4L * config.maxFrameBytes() || !connection.isWritable()) {
+            if (size > config.maxFrameBytes()) {
                 rejected.increment();
                 terminate(1013, "Output capacity reached");
                 return;
             }
-            framesOut.increment();
-            bytesOut.add(size);
-            connection.writeAndFlush(new TextWebSocketFrame(message)).addListener(future -> {
-                pendingBytes.addAndGet(-size);
-                if (!future.isSuccess()) terminate(1011, "Output failed");
-            });
+            sendFrame(new TextWebSocketFrame(message), size);
+        }
+
+        private void sendFrame(WebSocketFrame frame, int size) {
+            boolean overloaded = false;
+            synchronized (outputLock) {
+                Channel connection = channel;
+                if (connection == null || terminating.get() || !connection.isActive()) {
+                    frame.release();
+                    return;
+                }
+                if (pendingBytes.get() + size > 4L * config.maxFrameBytes() || !connection.isWritable()) {
+                    frame.release();
+                    overloaded = true;
+                } else {
+                    pendingBytes.addAndGet(size);
+                    pendingOutputBytes.addAndGet(size);
+                    framesOut.increment(); bytesOut.add(size);
+                    connection.writeAndFlush(frame).addListener(future -> {
+                        pendingBytes.addAndGet(-size);
+                        pendingOutputBytes.addAndGet(-size);
+                        if (!future.isSuccess()) terminate(1011, "Output failed");
+                    });
+                }
+            }
+            if (overloaded) {
+                rejected.increment();
+                terminate(1013, "Output capacity reached");
+            }
         }
 
         private void terminate(int status, String reason) {
+            beginClose(new CloseWebSocketFrame(status, reason));
+        }
+
+        private void beginClose(CloseWebSocketFrame close) {
             Channel connection = channel;
-            if (connection != null && terminating.compareAndSet(false, true)) {
-                connection.writeAndFlush(new CloseWebSocketFrame(status, reason)).addListener(ChannelFutureListener.CLOSE);
+            if (connection == null || !terminating.compareAndSet(false, true)) {
+                close.release();
+                return;
+            }
+            PipelineSession active = pipeline;
+            if (active != null) active.close();
+            synchronized (outputLock) {
+                connection.writeAndFlush(close).addListener(ChannelFutureListener.CLOSE);
+            }
+            try {
+                ScheduledFuture<?> deadline = connection.eventLoop().schedule(() -> { connection.close(); },
+                        CLOSE_TIMEOUT_SECONDS, TimeUnit.SECONDS);
+                closeDeadline = deadline;
+                if (socketInactive.get()) deadline.cancel(false);
+            } catch (java.util.concurrent.RejectedExecutionException stopping) { connection.close(); }
+        }
+
+        private void releaseAdmission() {
+            if (socketInactive.get() && workerComplete.get() && admissionReleased.compareAndSet(false, true)) {
+                admittedSessions.decrementAndGet();
             }
         }
 
         @Override public void channelInactive(ChannelHandlerContext context) {
             terminating.set(true);
+            socketInactive.set(true);
+            ScheduledFuture<?> deadline = closeDeadline;
+            if (deadline != null) deadline.cancel(false);
             activeSessions.decrementAndGet();
             if (pipeline != null) pipeline.close();
+            else workerComplete.set(true);
+            releaseAdmission();
         }
 
         @Override public void exceptionCaught(ChannelHandlerContext context, Throwable cause) {

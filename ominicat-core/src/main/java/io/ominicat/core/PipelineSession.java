@@ -1,6 +1,7 @@
 package io.ominicat.core;
 
 import java.time.Duration;
+import java.lang.ref.WeakReference;
 import java.util.ArrayDeque;
 import java.util.Objects;
 import java.util.LinkedHashSet;
@@ -153,7 +154,7 @@ public final class PipelineSession implements AutoCloseable {
     private boolean valid(long frameGeneration) {
         lock.lock();
         try {
-            return generation == frameGeneration && state != State.CANCELLED && state != State.FAILED;
+            return generation == frameGeneration && (state == State.OPEN || state == State.DRAINING);
         } finally { lock.unlock(); }
     }
 
@@ -166,7 +167,7 @@ public final class PipelineSession implements AutoCloseable {
             if (asyncHandles.size() == capacity) {
                 throw new RejectedExecutionException("maximum live async operations reached: " + capacity);
             }
-            handle = new Handle(frameGeneration, nextStage);
+            handle = new Handle(this, frameGeneration, nextStage);
             asyncHandles.add(handle);
         } finally { lock.unlock(); }
         try { processor.processAsync(frame, handle); }
@@ -225,65 +226,82 @@ public final class PipelineSession implements AutoCloseable {
         } finally { lock.unlock(); }
     }
 
-    private final class Handle implements AsyncEmitter {
+    private static final class Handle implements AsyncEmitter {
+        // Provider SDKs may cache callbacks after completion. A retired callback must
+        // not keep the session, output sink, processor graph, or media payloads alive.
+        private final WeakReference<PipelineSession> owner;
         private final long frameGeneration;
         private final int nextStage;
         private boolean done;
-        private boolean cancelledHandle;
+        private volatile boolean cancelledHandle;
         private boolean registrationOpen = true;
         private AutoCloseable cancellation;
         private boolean cancellationRegistered;
-        private Handle(long frameGeneration, int nextStage) {
+        private Handle(PipelineSession owner, long frameGeneration, int nextStage) {
+            this.owner = new WeakReference<>(owner);
             this.frameGeneration = frameGeneration;
             this.nextStage = nextStage;
         }
         @Override public boolean tryEmit(Frame frame) {
             Objects.requireNonNull(frame, "frame");
-            lock.lock();
+            PipelineSession session = owner.get();
+            if (session == null) return false;
+            session.lock.lock();
             try {
-                if (done || frameGeneration != generation || (state != State.OPEN && state != State.DRAINING)
-                        || queue.size() == capacity) { rejected++; return false; }
-                queue.addLast(new Pending(frame, frameGeneration, nextStage));
-                accepted++;
-                changed.signalAll();
+                if (done || frameGeneration != session.generation || (session.state != State.OPEN && session.state != State.DRAINING)
+                        || session.queue.size() == session.capacity) { session.rejected++; return false; }
+                session.queue.addLast(new Pending(frame, frameGeneration, nextStage));
+                session.accepted++;
+                session.changed.signalAll();
                 return true;
-            } finally { lock.unlock(); }
+            } finally { session.lock.unlock(); }
         }
         @Override public void complete() {
-            lock.lock();
+            PipelineSession session = owner.get();
+            if (session == null) return;
+            session.lock.lock();
             try {
                 if (done) return;
                 done = true;
                 cancellation = null;
-                asyncHandles.remove(this);
-                changed.signalAll();
-            } finally { lock.unlock(); }
+                session.asyncHandles.remove(this);
+                session.changed.signalAll();
+            } finally { session.lock.unlock(); }
         }
         @Override public void fail(Throwable failure) {
             Objects.requireNonNull(failure, "failure");
-            lock.lock();
+            PipelineSession session = owner.get();
+            if (session == null) return;
+            session.lock.lock();
             try {
-                if (done || frameGeneration != generation || (state != State.OPEN && state != State.DRAINING)) return;
-                failLocked(failure);
-            } finally { lock.unlock(); }
+                if (done || frameGeneration != session.generation || (session.state != State.OPEN && session.state != State.DRAINING)) return;
+                session.failLocked(failure);
+            } finally { session.lock.unlock(); }
         }
         @Override public void onCancel(AutoCloseable action) {
             Objects.requireNonNull(action, "cancellation");
-            lock.lock();
+            PipelineSession session = owner.get();
+            if (session == null) throw new IllegalStateException("async operation no longer has a session");
+            session.lock.lock();
             try {
-                if (Thread.currentThread() != worker || !registrationOpen) {
+                if (Thread.currentThread() != session.worker || !registrationOpen) {
                     throw new IllegalStateException("register cancellation during processAsync on the session worker");
                 }
                 if (cancellationRegistered) throw new IllegalStateException("cancellation already registered");
                 cancellationRegistered = true;
-                if (cancelledHandle || frameGeneration != generation) cancellations.addLast(action);
+                if (cancelledHandle || frameGeneration != session.generation) session.cancellations.addLast(action);
                 else if (!done) cancellation = action;
-            } finally { lock.unlock(); }
+            } finally { session.lock.unlock(); }
         }
         @Override public boolean isCancelled() {
-            lock.lock();
-            try { return cancelledHandle || frameGeneration != generation || state == State.CANCELLED || state == State.FAILED; }
-            finally { lock.unlock(); }
+            PipelineSession session = owner.get();
+            if (session == null) return cancelledHandle;
+            session.lock.lock();
+            try {
+                // Completion wins permanently when it happens before invalidation.
+                return cancelledHandle || (!done && (frameGeneration != session.generation
+                        || session.state == State.CANCELLED || session.state == State.FAILED));
+            } finally { session.lock.unlock(); }
         }
     }
 

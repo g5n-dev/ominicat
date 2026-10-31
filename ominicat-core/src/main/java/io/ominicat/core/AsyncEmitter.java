@@ -26,6 +26,6 @@ public interface AsyncEmitter {
      */
     void onCancel(AutoCloseable cancellation);
 
-    /** True after turn invalidation or session cancellation/failure. */
+    /** True when this operation was invalidated or cancelled; an earlier normal completion stays complete. */
     boolean isCancelled();
 }

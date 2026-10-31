@@ -109,6 +109,7 @@ public final class ParallelProcessor implements Processor {
             }
             for (List<Frame> result : results) {
                 for (Frame emitted : result) {
+                    if (closed.get()) throw new CancellationException("parallel processor closed during join");
                     if (Thread.currentThread().isInterrupted()) throw new InterruptedException("parallel join interrupted");
                     next.accept(emitted);
                 }
@@ -124,13 +125,15 @@ public final class ParallelProcessor implements Processor {
         try {
             if (closed.get()) throw new CancellationException("parallel processor closed");
             List<Frame> output = new ArrayList<>();
-            owned.branch().processor().process(frame, emitted -> {
+            SynchronousSink invocation = new SynchronousSink(emitted -> {
                 if (Thread.currentThread().isInterrupted()) throw new InterruptedException("branch interrupted");
                 if (output.size() == maximumFrames) {
                     throw new IllegalStateException("branch '" + owned.branch().name() + "' exceeded max buffered frames " + maximumFrames);
                 }
                 output.add(Objects.requireNonNull(emitted, "branch emitted null frame"));
             });
+            try { owned.branch().processor().process(frame, invocation); }
+            finally { invocation.invalidate(); }
             return new Joined(position, List.copyOf(output));
         } catch (Exception failure) {
             throw new Exception("parallel branch '" + owned.branch().name() + "' failed", failure);
@@ -144,31 +147,31 @@ public final class ParallelProcessor implements Processor {
     }
 
     @Override public void onInterrupt() throws Exception {
-        Exception failure = null;
+        Throwable failure = null;
         for (Owned owned : branches) {
             owned.lock().lockInterruptibly();
             try { owned.branch().processor().onInterrupt(); }
-            catch (Exception error) {
+            catch (Throwable error) {
                 if (failure == null) failure = error;
                 else if (failure != error) failure.addSuppressed(error);
             } finally { owned.lock().unlock(); }
         }
-        if (failure != null) throw failure;
+        if (failure != null) throw branchFailure(failure);
     }
 
     @Override public void close() throws Exception {
         if (!closed.compareAndSet(false, true)) return;
         executor.shutdownNow();
-        Exception failure = null;
+        Throwable failure = null;
         for (int index = branches.size() - 1; index >= 0; index--) {
             Owned owned = branches.get(index);
             owned.lock().lock();
             try { owned.branch().processor().close(); }
-            catch (Exception error) {
+            catch (Throwable error) {
                 if (failure == null) failure = error;
                 else if (failure != error) failure.addSuppressed(error);
             } finally { owned.lock().unlock(); }
         }
-        if (failure != null) throw failure;
+        if (failure != null) throw branchFailure(failure);
     }
 }

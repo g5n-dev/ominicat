@@ -58,8 +58,9 @@ public final class ConversationWindow {
             return false;
         }
         if (turns.size() == maxTurns) {
+            long nextEvictedTurns = Math.incrementExact(evictedTurns);
             segments.remove(turns.removeFirst().segmentId());
-            evictedTurns++;
+            evictedTurns = nextEvictedTurns;
         }
         turns.addLast(turn);
         segments.put(turn.segmentId(), turn);

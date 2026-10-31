@@ -10,6 +10,7 @@
 .env.*
 __pycache__/
 *.pyc
+validation/*.local.json
 !.env.example
 reports/local/
 dependency-reduced-pom.xml

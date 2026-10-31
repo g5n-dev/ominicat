@@ -13,3 +13,5 @@ Open [localhost:8080](http://127.0.0.1:8080). The default `echo` pipeline requir
 - [Plugin development](../docs/plugins.md)
 
 Integration tests use actual loopback sockets and the JDK WebSocket client to check framing, per-connection state isolation, authorization, input/output limits, cancellation, preflight validation, failures and graceful completion.
+
+Resource protection covers raw TCP connections as well as WebSocket sessions. Optional `maxConnections` defaults to `max(32, 2 * maxSessions)`. Data and Pong frames share the same finite pending-output budget. Closing a pressured connection cancels its pipeline immediately and force-closes an unflushable socket after two seconds. An admission slot remains occupied until both the socket and its pipeline cleanup have completed: a noncooperative custom processor cannot create unlimited orphan workers through reconnect churn. Java cannot forcibly terminate such a processor; `resources()` and the admitted-session/live-worker gauges expose the retained work.

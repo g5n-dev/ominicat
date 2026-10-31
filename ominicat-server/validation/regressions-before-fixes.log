@@ -1,0 +1,191 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO]
+[INFO] OminiCat                                                           [pom]
+[INFO] OminiCat · Microkernel                                             [jar]
+[INFO] OminiCat Conversation                                              [jar]
+[INFO] OminiCat · Providers                                               [jar]
+[INFO] OminiCat :: Server                                                 [jar]
+[INFO]
+[INFO] --------------------< io.ominicat:ominicat-parent >---------------------
+[INFO] Building OminiCat 0.1.0-SNAPSHOT                                   [1/5]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO]
+[INFO] --- enforcer:3.6.2:enforce (runtime) @ ominicat-parent ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO]
+[INFO] ---------------------< io.ominicat:ominicat-core >----------------------
+[INFO] Building OminiCat · Microkernel 0.1.0-SNAPSHOT                     [2/5]
+[INFO]   from ominicat-core/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- enforcer:3.6.2:enforce (runtime) @ ominicat-core ---
+[INFO]
+[INFO] --- resources:3.4.0:resources (default-resources) @ ominicat-core ---
+[INFO] skip non existing resourceDirectory [isolated-workspace]/ominicat-core/src/main/resources
+[INFO]
+[INFO] --- compiler:3.14.1:compile (default-compile) @ ominicat-core ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 16 source files with javac [debug parameters release 21] to target/classes
+[INFO]
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ ominicat-core ---
+[INFO] skip non existing resourceDirectory [isolated-workspace]/ominicat-core/src/test/resources
+[INFO]
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ ominicat-core ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 10 source files with javac [debug parameters release 21] to target/test-classes
+[INFO]
+[INFO] --- surefire:3.5.4:test (default-test) @ ominicat-core ---
+[INFO]
+[INFO] -----------------< io.ominicat:ominicat-conversation >------------------
+[INFO] Building OminiCat Conversation 0.1.0-SNAPSHOT                      [3/5]
+[INFO]   from ominicat-conversation/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- enforcer:3.6.2:enforce (runtime) @ ominicat-conversation ---
+[INFO]
+[INFO] --- resources:3.4.0:resources (default-resources) @ ominicat-conversation ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO]
+[INFO] --- compiler:3.14.1:compile (default-compile) @ ominicat-conversation ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 16 source files with javac [debug parameters release 21] to target/classes
+[INFO]
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ ominicat-conversation ---
+[INFO] skip non existing resourceDirectory [isolated-workspace]/ominicat-conversation/src/test/resources
+[INFO]
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ ominicat-conversation ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 4 source files with javac [debug parameters release 21] to target/test-classes
+[INFO]
+[INFO] --- surefire:3.5.4:test (default-test) @ ominicat-conversation ---
+[INFO]
+[INFO] -------------------< io.ominicat:ominicat-providers >-------------------
+[INFO] Building OminiCat · Providers 0.1.0-SNAPSHOT                       [4/5]
+[INFO]   from ominicat-providers/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- enforcer:3.6.2:enforce (runtime) @ ominicat-providers ---
+[INFO]
+[INFO] --- resources:3.4.0:resources (default-resources) @ ominicat-providers ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO]
+[INFO] --- compiler:3.14.1:compile (default-compile) @ ominicat-providers ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 10 source files with javac [debug parameters release 21] to target/classes
+[INFO]
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ ominicat-providers ---
+[INFO] skip non existing resourceDirectory [isolated-workspace]/ominicat-providers/src/test/resources
+[INFO]
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ ominicat-providers ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 8 source files with javac [debug parameters release 21] to target/test-classes
+[INFO]
+[INFO] --- surefire:3.5.4:test (default-test) @ ominicat-providers ---
+[INFO]
+[INFO] --------------------< io.ominicat:ominicat-server >---------------------
+[INFO] Building OminiCat :: Server 0.1.0-SNAPSHOT                         [5/5]
+[INFO]   from ominicat-server/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- enforcer:3.6.2:enforce (runtime) @ ominicat-server ---
+[INFO]
+[INFO] --- resources:3.4.0:resources (default-resources) @ ominicat-server ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO]
+[INFO] --- compiler:3.14.1:compile (default-compile) @ ominicat-server ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 4 source files with javac [debug parameters release 21] to target/classes
+[INFO]
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ ominicat-server ---
+[INFO] skip non existing resourceDirectory [isolated-workspace]/ominicat-server/src/test/resources
+[INFO]
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ ominicat-server ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 6 source files with javac [debug parameters release 21] to target/test-classes
+[INFO]
+[INFO] --- surefire:3.5.4:test (default-test) @ ominicat-server ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running io.ominicat.server.ServerAdversarialTest
+[ERROR] Tests run: 4, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 9.008 s <<< FAILURE! -- in io.ominicat.server.ServerAdversarialTest
+[ERROR] io.ominicat.server.ServerAdversarialTest.pingFloodAgainstNonreadingTcpPeerIsBoundedAndRecovers -- Time elapsed: 4.036 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Pong writes must obey the same finite output budget as data frames ==> expected: <101> but was: <503>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:563)
+	at io.ominicat.server.ServerAdversarialTest.pingFloodAgainstNonreadingTcpPeerIsBoundedAndRecovers(ServerAdversarialTest.java:67)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] io.ominicat.server.ServerAdversarialTest.outputOverloadAgainstNonreadingTcpPeerRecoversAdmissionWithinDeadline -- Time elapsed: 3.017 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Output overload must not strand admission behind an unflushable close frame ==> expected: <101> but was: <503>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:563)
+	at io.ominicat.server.ServerAdversarialTest.outputOverloadAgainstNonreadingTcpPeerRecoversAdmissionWithinDeadline(ServerAdversarialTest.java:51)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] io.ominicat.server.ServerAdversarialTest.disconnectedNoncooperativeWorkerKeepsItsAdmissionSlotUntilCleanup -- Time elapsed: 0.116 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Socket churn must not create unbounded orphan pipeline workers ==> expected: <503> but was: <101>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:563)
+	at io.ominicat.server.ServerAdversarialTest.disconnectedNoncooperativeWorkerKeepsItsAdmissionSlotUntilCleanup(ServerAdversarialTest.java:36)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[INFO]
+[INFO] Results:
+[INFO]
+[ERROR] Failures:
+[ERROR]   ServerAdversarialTest.disconnectedNoncooperativeWorkerKeepsItsAdmissionSlotUntilCleanup:36 Socket churn must not create unbounded orphan pipeline workers ==> expected: <503> but was: <101>
+[ERROR]   ServerAdversarialTest.outputOverloadAgainstNonreadingTcpPeerRecoversAdmissionWithinDeadline:51 Output overload must not strand admission behind an unflushable close frame ==> expected: <101> but was: <503>
+[ERROR]   ServerAdversarialTest.pingFloodAgainstNonreadingTcpPeerIsBoundedAndRecovers:67 Pong writes must obey the same finite output budget as data frames ==> expected: <101> but was: <503>
+[INFO]
+[ERROR] Tests run: 4, Failures: 3, Errors: 0, Skipped: 0
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for OminiCat 0.1.0-SNAPSHOT:
+[INFO]
+[INFO] OminiCat ........................................... SUCCESS [  0.144 s]
+[INFO] OminiCat · Microkernel ............................. SUCCESS [  0.934 s]
+[INFO] OminiCat Conversation .............................. SUCCESS [  0.245 s]
+[INFO] OminiCat · Providers ............................... SUCCESS [  0.263 s]
+[INFO] OminiCat :: Server ................................. FAILURE [  9.577 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  11.248 s
+[INFO] Finished at: 2026-10-31T13:39:01+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.5.4:test (default-test) on project ominicat-server: There are test failures.
+[ERROR]
+[ERROR] See [isolated-workspace]/ominicat-server/target/surefire-reports for the individual test results.
+[ERROR] See dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR]
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR]
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR]
+[ERROR] After correcting the problems, you can resume the build with the command
+[ERROR]   mvn <args> -rf :ominicat-server

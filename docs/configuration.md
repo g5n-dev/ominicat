@@ -15,6 +15,7 @@ host: 127.0.0.1
 port: 8080
 queueCapacity: 256
 maxSessions: 256
+maxConnections: 512
 maxFrameBytes: 1048576
 idleTimeoutSeconds: 60
 # tokenEnv: OMINICAT_TOKEN
@@ -28,13 +29,16 @@ stages:
 | `host` | `127.0.0.1` | Bind address; nonblank |
 | `port` | `8080` | `0..65535`; zero selects an available port |
 | `queueCapacity` | `256` | `1..65536` pending input frames per session, plus active work |
-| `maxSessions` | `256` | `1..100000` concurrent admitted WebSocket sessions |
+| `maxSessions` | `256` | `1..100000` admitted WebSocket sessions; admission remains occupied until socket closure and worker cleanup both complete |
+| `maxConnections` | `max(32, 2 * maxSessions)` | `1..1000000` accepted TCP connections, including incomplete HTTP/WebSocket handshakes |
 | `maxFrameBytes` | `1048576` | `1024..16777216` bytes per complete WebSocket JSON message |
 | `idleTimeoutSeconds` | `60` | `1..86400` seconds without incoming socket activity |
 | `tokenEnv` | absent | Name of a required bearer-token environment variable |
 | `stages` | one `echo` stage | Ordered list of `1..64` plugin definitions |
 
 Limits are per session and do not establish a machine-wide memory budget. Media frames contain payload bytes; JSON/base64 adds overhead. A queue with 256 large frames consumes much more memory than 256 small text frames. Size limits, session admission and queue capacity should be tuned together for the workload. Output has its own finite pending-byte budget, and nonwritable connections are closed under pressure. Details are in the [protocol](protocol.md).
+
+Pong and data output share that finite budget. Output pressure cancels processing immediately, and a socket with an unflushable close frame is forcibly closed after two seconds. A plugin that ignores interruption keeps its admission slot until cleanup completes, so reconnecting cannot create unlimited orphan workers. Transport shutdown cannot forcibly kill arbitrary Java code; retained worker/admission gauges remain visible.
 
 `idleTimeoutSeconds` measures inbound activity. A long-running request with no incoming traffic can exceed this timeout; send WebSocket pings or increase the value when needed.
 
@@ -58,7 +62,7 @@ The built-in factories are `echo`, `rms-vad`, `audio-channel-split`, `transcript
 
 For a clip-based voice path, order stages as transcription → chat → speech. Send PCM chunks followed by `turn_end` to flush buffered transcription streams. Chat emits a `TURN_END` when its SSE response completes; speech buffers text until that boundary. This does not turn the HTTP transcription adapter into continuous streaming ASR. An RMS stage detects energy events; those events do not automatically interrupt playback.
 
-Startup failures identify the stage and option keys while suppressing the original factory exception, which may contain sensitive values. Inspect the named stage's documented requirements, numeric bounds and referenced environment variables. A successfully validated factory can still fail during actual provider I/O; that failure closes its session without sending provider details to the client.
+Ordinary configuration failures identify the stage and option keys while suppressing the original factory exception, which may contain sensitive values. Fatal errors propagate after all earlier owned resources have been offered cleanup. Inspect the named stage's documented requirements, numeric bounds and referenced environment variables. A successfully validated factory can still fail during actual provider I/O; that failure closes its session without sending provider details to the client.
 
 ## Authentication and browser origins
 
@@ -67,6 +71,8 @@ tokenEnv: OMINICAT_TOKEN
 ```
 
 Set `OMINICAT_TOKEN` in the runtime's environment. If the configured variable is missing or blank, startup fails. `/ws` and `/metrics` then require `Authorization: Bearer <token>`. `/` and `/health` remain public.
+
+An unauthenticated listener bound to loopback also validates `Host` before routing: `localhost`, canonical `127/8` IPv4 literals and bracketed `::1` are allowed. Arbitrary matching `Host`/`Origin` values are rejected without a DNS lookup. This server-side check complements browser local-network restrictions. Configure `tokenEnv` for a reverse proxy or external hostname; wildcard/public listeners still require explicit deployment authentication and quotas.
 
 Native browser WebSockets cannot set an arbitrary authorization header. The bundled playground offers subprotocols `ominicat` and `bearer.<base64url-encoded UTF-8 token>`. The server selects `ominicat` and checks the bearer value. Tokens are not stored by the playground or put in URLs. A reverse proxy must preserve the subprotocol header and avoid logging credential-bearing headers.
 

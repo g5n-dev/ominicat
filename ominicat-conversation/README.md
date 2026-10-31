@@ -1,5 +1,7 @@
 # Conversation primitives
 
+See the [adversarial verification matrix](../ominicat-providers/DEEP_VERIFICATION.md) for seeded interval, revision, evidence and snapshot checks.
+
 `ominicat-conversation` adds bounded transcript state, configurable policies and prompt composition to the microkernel. It depends only on `ominicat-core`; it requires no network service or model credentials. State is transient and confined to one session. This module does not provide durable storage, recovery or delivery guarantees.
 
 ## Configured stages

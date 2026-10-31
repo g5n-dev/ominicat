@@ -1,5 +1,7 @@
 # Processing adapters
 
+See [adversarial verification](DEEP_VERIFICATION.md) for the fault matrix, deterministic seeds, reproduced defects and isolated-build commands.
+
 This module registers optional `ProcessorFactory` implementations through Java `ServiceLoader`. Every factory creates independent session state. HTTP adapters use the JDK connection pool; the kernel remains independent of HTTP clients, JSON libraries and model vendors.
 
 | Type | Consumes | Produces |
@@ -24,11 +26,11 @@ All three HTTP factories accept the following options. A model name is always ex
 | `baseUrl` | `https://api.openai.com/v1` | HTTPS; loopback HTTP allowed for local services |
 | `apiKeyEnv` | `OPENAI_API_KEY` | Environment variable name; empty allowed only with loopback URL |
 | `timeoutSeconds` | `30` | 1–300; request timeout and a finite response-body deadline |
-| `maxResponseBytes` | `8388608` | 1024–67108864; binary/JSON response byte budget |
+| `maxResponseBytes` | `8388608` | 1024–67108864; raw response byte budget, including SSE |
 
 URLs containing credentials, query strings or fragments are rejected. Redirects are disabled. Non-success HTTP responses expose the status code without including response bodies or credentials. `ProviderException.retryable()` identifies 429 and 5xx statuses; adapters do not retry automatically.
 
-Streaming chat also applies conservative character budgets: total line characters may not exceed one quarter of `maxResponseBytes`, and each line/event is limited to 65536 characters. This bounds decoded UTF-8 memory as well as response data. Deadlines cover stalled response bodies after headers arrive. A session interruption cancels cooperative HTTP work and fences stale downstream emissions.
+Streaming chat also applies conservative character budgets: total line characters may not exceed one quarter of `maxResponseBytes`, and each line/event is limited to 65536 characters. Raw bytes are counted before decoding, including ignored fields and carriage returns. Invalid UTF-8 fails instead of altering text. LF, CRLF and CR line endings and an initial UTF-8 BOM are supported. This bounds decoded UTF-8 memory as well as response data. Deadlines cover stalled response bodies after headers arrive; a timeout is marked before closing the stream, and completed requests remove canceled deadline tasks immediately. A session interruption cancels cooperative HTTP work and fences stale downstream emissions.
 
 ## Separate audio streams
 

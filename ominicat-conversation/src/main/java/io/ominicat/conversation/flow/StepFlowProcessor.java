@@ -36,6 +36,7 @@ public final class StepFlowProcessor implements Processor {
     }
     private final String version;
     private final String inputRole;
+    private final String initialStep;
     private final Map<String, Step> steps;
     private final int maxRememberedSegments;
     private final LinkedHashSet<String> committed = new LinkedHashSet<>();
@@ -54,7 +55,7 @@ public final class StepFlowProcessor implements Processor {
         for (Step step : definition) for (Transition transition : step.transitions()) {
             if (!entries.containsKey(transition.target())) throw new IllegalArgumentException("unknown transition target: " + transition.target());
         }
-        this.version = version; this.current = initialStep; this.inputRole = inputRole;
+        this.version = version; this.current = initialStep; this.initialStep = initialStep; this.inputRole = inputRole;
         this.steps = Map.copyOf(entries); this.maxRememberedSegments = maxRememberedSegments;
     }
 
@@ -74,9 +75,10 @@ public final class StepFlowProcessor implements Processor {
         for (Transition transition : steps.get(current).transitions()) {
             if (transition.condition().test(transcript)) { target = transition.target(); break; }
         }
+        long nextRevision = target == null ? revision : Math.incrementExact(revision);
         if (committed.size() == maxRememberedSegments) committed.removeFirst();
         committed.add(transcript.segmentId());
-        if (target != null) { current = target; revision = Math.incrementExact(revision); enter(next); }
+        if (target != null) { current = target; revision = nextRevision; enter(next); }
     }
     private void enter(FrameSink next) throws Exception {
         Step step = steps.get(current);
@@ -89,6 +91,11 @@ public final class StepFlowProcessor implements Processor {
         Objects.requireNonNull(snapshot, "snapshot");
         if (!version.equals(snapshot.definitionVersion()) || !steps.containsKey(snapshot.currentStep()) || snapshot.revision() < 0
                 || snapshot.committedSegmentIds().size() > maxRememberedSegments) throw new IllegalArgumentException("incompatible flow snapshot");
+        if (!snapshot.started() && (snapshot.revision() != 0 || !snapshot.currentStep().equals(initialStep)
+                || !snapshot.committedSegmentIds().isEmpty())) throw new IllegalArgumentException("unstarted snapshot contains progressed state");
+        if (snapshot.revision() == 0 && !snapshot.currentStep().equals(initialStep)) {
+            throw new IllegalArgumentException("zero-revision snapshot must remain at the initial step");
+        }
         var unique = new LinkedHashSet<String>();
         for (String id : snapshot.committedSegmentIds()) { label(id, "segmentId"); if (!unique.add(id)) throw new IllegalArgumentException("duplicate snapshot segment"); }
         current = snapshot.currentStep(); revision = snapshot.revision(); started = snapshot.started();

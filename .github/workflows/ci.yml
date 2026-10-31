@@ -2,7 +2,17 @@ name: CI
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - '**/*.md'
+      - 'docs/**'
+      - 'reports/**'
+      - 'ominicat-server/validation/**'
   pull_request:
+    paths-ignore:
+      - '**/*.md'
+      - 'docs/**'
+      - 'reports/**'
+      - 'ominicat-server/validation/**'
   workflow_dispatch:
 permissions:
   contents: read
@@ -20,7 +30,7 @@ jobs:
           java-version: ${{ matrix.java }}
           cache: maven
       - name: Test, coverage and dependency inventory
-        run: ./mvnw -B -Pcoverage,sbom verify
+        run: ./mvnw -B -Pcoverage,sbom -Dominicat.stress.seeds=512 verify
       - name: Verify runnable distribution
         run: |
           java -jar ominicat-server/target/ominicat-server.jar --config config/demo.yaml > /tmp/ominicat.log 2>&1 &
@@ -32,6 +42,18 @@ jobs:
           done
           cat /tmp/ominicat.log
           exit 1
+      - name: Compile and smoke-test sustained-validation tooling
+        run: |
+          mkdir -p /tmp/ominicat-validation-classes
+          javac --release 21 -cp ominicat-server/target/ominicat-server.jar -d /tmp/ominicat-validation-classes validation/*.java
+          java -Xmx256m -XX:MaxDirectMemorySize=128m -cp ominicat-server/target/ominicat-server.jar:/tmp/ominicat-validation-classes ValidationServer validation/soak.yaml 18082 > /tmp/ominicat-validation.log 2>&1 &
+          pid=$!
+          trap 'kill "$pid" 2>/dev/null || true; cat /tmp/ominicat-validation.log' EXIT
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:18081/health; then break; fi
+            sleep 1
+          done
+          java -Xmx256m -cp ominicat-server/target/ominicat-server.jar:/tmp/ominicat-validation-classes Soak http://127.0.0.1:18081 http://127.0.0.1:18082 10 2 4 reports/local/ci-soak
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -40,6 +62,7 @@ jobs:
             **/target/surefire-reports/
             **/target/site/jacoco/
             target/bom.*
+            reports/local/ci-soak/
   source-hygiene:
     runs-on: ubuntu-latest
     steps:
@@ -47,4 +70,23 @@ jobs:
       - name: Whitespace and shell syntax
         run: |
           git show --format= --check HEAD
-          bash -n scripts/profile.sh
+          bash -n scripts/profile.sh scripts/server_soak.sh
+  container:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build non-root distribution
+        run: docker build -t ominicat:ci .
+      - name: Check container lifecycle and authentication
+        run: |
+          docker run --detach --name ominicat-ci -p 127.0.0.1:18080:8080 -e OMINICAT_TOKEN=synthetic-ci-token ominicat:ci
+          trap 'docker logs ominicat-ci; docker rm --force ominicat-ci' EXIT
+          test "$(docker exec ominicat-ci id -u)" != 0
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:18080/health; then break; fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:18080/health
+          test "$(curl --silent --output /dev/null --write-out '%{http_code}' http://127.0.0.1:18080/metrics)" = 401
+          curl --fail --silent -H 'Authorization: Bearer synthetic-ci-token' http://127.0.0.1:18080/metrics

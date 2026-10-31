@@ -1,0 +1,6 @@
+{
+  "baseUrl": "https://example.invalid/v1",
+  "apiKeyEnv": "OMINICAT_TEST_API_KEY",
+  "chatModel": "YOUR-TEXT-MODEL",
+  "vision": false
+}

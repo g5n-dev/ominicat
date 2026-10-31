@@ -47,14 +47,14 @@ public final class Pipeline {
 
     void dispatch(int index, Frame frame, FrameSink output) throws Exception {
         if (index == processors.length) output.accept(frame);
-        else processors[index].process(frame, emitted ->
+        else invoke(processors[index], frame, emitted ->
                 dispatch(index + 1, Objects.requireNonNull(emitted, "emitted frame"), output));
     }
 
     void dispatchSession(int index, Frame frame, FrameSink output, BooleanSupplier valid) throws Exception {
         if (!valid.getAsBoolean()) throw StaleFrameException.INSTANCE;
         if (index == processors.length) output.accept(frame);
-        else processors[index].process(frame, emitted ->
+        else invoke(processors[index], frame, emitted ->
                 dispatchSession(index + 1, Objects.requireNonNull(emitted, "emitted frame"), output, valid));
     }
 
@@ -69,8 +69,14 @@ public final class Pipeline {
         if (!valid.getAsBoolean()) throw StaleFrameException.INSTANCE;
         if (index == processors.length) output.accept(frame);
         else if (processors[index] instanceof AsyncProcessor processor) async.start(processor, frame, index + 1);
-        else processors[index].process(frame, emitted -> dispatchAsyncSession(index + 1,
+        else invoke(processors[index], frame, emitted -> dispatchAsyncSession(index + 1,
                 Objects.requireNonNull(emitted, "emitted frame"), output, valid, async));
+    }
+
+    private static void invoke(Processor processor, Frame frame, FrameSink next) throws Exception {
+        SynchronousSink invocation = new SynchronousSink(next);
+        try { processor.process(frame, invocation); }
+        finally { invocation.invalidate(); }
     }
 
     private static final class StaleFrameException extends RuntimeException {
@@ -99,9 +105,13 @@ public final class Pipeline {
     public static final class Builder {
         private final List<Processor> processors = new ArrayList<>();
         private Builder() { }
-        /** Append a processor. Instances must not be shared between active pipelines. */
+        /** Append a privately owned processor; duplicate identities in a chain are rejected. */
         public Builder add(Processor processor) {
-            processors.add(Objects.requireNonNull(processor, "processor"));
+            Objects.requireNonNull(processor, "processor");
+            if (processors.stream().anyMatch(existing -> existing == processor)) {
+                throw new IllegalArgumentException("each pipeline stage must own a distinct processor instance");
+            }
+            processors.add(processor);
             return this;
         }
         /** Construct the chain. */

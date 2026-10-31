@@ -12,13 +12,24 @@ import java.util.Objects;
 /** Validated, declarative server and per-connection pipeline configuration. */
 public record RuntimeConfig(
         String host, int port, int queueCapacity, int maxSessions, int maxFrameBytes,
-        int idleTimeoutSeconds, String tokenEnv, List<Stage> stages) {
+        int idleTimeoutSeconds, String tokenEnv, List<Stage> stages, int maxConnections) {
+    /** Source-compatible constructor with finite transport admission derived from session capacity. */
+    public RuntimeConfig(String host, int port, int queueCapacity, int maxSessions, int maxFrameBytes,
+                         int idleTimeoutSeconds, String tokenEnv, List<Stage> stages) {
+        this(host, port, queueCapacity, maxSessions, maxFrameBytes, idleTimeoutSeconds, tokenEnv,
+                stages, defaultConnections(maxSessions));
+    }
+
+    private static int defaultConnections(int sessions) {
+        return (int) Math.max(32, Math.min(1_000_000L, 2L * sessions));
+    }
     public RuntimeConfig {
         Objects.requireNonNull(host, "host");
         if (host.isBlank()) throw new IllegalArgumentException("host must not be blank");
         if (port < 0 || port > 65535) throw new IllegalArgumentException("port must be 0..65535");
         if (queueCapacity < 1 || queueCapacity > 65_536) throw new IllegalArgumentException("queueCapacity must be 1..65536");
         if (maxSessions < 1 || maxSessions > 100_000) throw new IllegalArgumentException("maxSessions must be 1..100000");
+        if (maxConnections < 1 || maxConnections > 1_000_000) throw new IllegalArgumentException("maxConnections must be 1..1000000");
         if (maxFrameBytes < 1024 || maxFrameBytes > 16 * 1024 * 1024) throw new IllegalArgumentException("maxFrameBytes must be 1024..16777216");
         if (idleTimeoutSeconds < 1 || idleTimeoutSeconds > 86400) throw new IllegalArgumentException("idleTimeoutSeconds must be 1..86400");
         if (tokenEnv != null && !tokenEnv.matches("[A-Za-z_][A-Za-z0-9_]*")) throw new IllegalArgumentException("tokenEnv must name an environment variable");
@@ -40,15 +51,17 @@ public record RuntimeConfig(
         Document document = mapper.readValue(path.toFile(), Document.class);
         if (document == null) throw new IllegalArgumentException("Configuration must be a YAML object");
         RuntimeConfig defaults = defaults();
+        int sessions = document.maxSessions == null ? defaults.maxSessions : document.maxSessions;
         return new RuntimeConfig(
                 document.host == null ? defaults.host : document.host,
                 document.port == null ? defaults.port : document.port,
                 document.queueCapacity == null ? defaults.queueCapacity : document.queueCapacity,
-                document.maxSessions == null ? defaults.maxSessions : document.maxSessions,
+                sessions,
                 document.maxFrameBytes == null ? defaults.maxFrameBytes : document.maxFrameBytes,
                 document.idleTimeoutSeconds == null ? defaults.idleTimeoutSeconds : document.idleTimeoutSeconds,
                 document.tokenEnv,
-                document.stages == null ? defaults.stages : document.stages);
+                document.stages == null ? defaults.stages : document.stages,
+                document.maxConnections == null ? defaultConnections(sessions) : document.maxConnections);
     }
 
     /** A plugin type and its own validated, string-valued options. */
@@ -65,6 +78,7 @@ public record RuntimeConfig(
         public Integer port;
         public Integer queueCapacity;
         public Integer maxSessions;
+        public Integer maxConnections;
         public Integer maxFrameBytes;
         public Integer idleTimeoutSeconds;
         public String tokenEnv;

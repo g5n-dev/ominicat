@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.FilterInputStream;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -11,9 +12,10 @@ import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /** Shared connection pool, finite response budget and body deadline for compatible HTTP APIs. */
 final class CompatibleClient {
@@ -21,8 +23,9 @@ final class CompatibleClient {
             .enable(com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_TRAILING_TOKENS);
     private static final HttpClient HTTP = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10))
             .followRedirects(HttpClient.Redirect.NEVER).build();
-    private static final java.util.concurrent.ScheduledExecutorService DEADLINES =
-            Executors.newSingleThreadScheduledExecutor(Thread.ofPlatform().daemon().name("ominicat-http-deadlines").factory());
+    private static final ScheduledThreadPoolExecutor DEADLINES = new ScheduledThreadPoolExecutor(1,
+            Thread.ofPlatform().daemon().name("ominicat-http-deadlines").factory());
+    static { DEADLINES.setRemoveOnCancelPolicy(true); }
     final String model;
     final int maxBytes;
     private final URI base;
@@ -63,13 +66,20 @@ final class CompatibleClient {
             throw new ProviderException("provider returned HTTP " + response.statusCode(), response.statusCode());
         }
         InputStream stream = response.body();
+        AtomicBoolean expired = new AtomicBoolean();
         ScheduledFuture<?> deadline = DEADLINES.schedule(() -> {
+            expired.set(true);
             try { stream.close(); } catch (IOException ignored) { /* best effort deadline */ }
         }, timeout.toMillis(), TimeUnit.MILLISECONDS);
-        return new Response(stream, deadline, maxBytes);
+        return new Response(stream, deadline, maxBytes, expired);
     }
 
-    record Response(InputStream stream, ScheduledFuture<?> deadline, int maxBytes) implements AutoCloseable {
+    record Response(InputStream stream, ScheduledFuture<?> deadline, int maxBytes, AtomicBoolean expired) implements AutoCloseable {
+        Response { stream = new BudgetedInputStream(stream, maxBytes); }
+        Response(InputStream stream, ScheduledFuture<?> deadline, int maxBytes) {
+            this(stream, deadline, maxBytes, new AtomicBoolean());
+        }
+        boolean timedOut() { return expired.get(); }
         byte[] bytes() throws IOException {
             ByteArrayOutputStream buffer = new ByteArrayOutputStream();
             byte[] chunk = new byte[8192];
@@ -79,9 +89,28 @@ final class CompatibleClient {
                 if ((long) buffer.size() + length > maxBytes) throw new IOException("provider response exceeded byte budget");
                 buffer.write(chunk, 0, length);
             }
-            if (deadline.isDone()) throw new IOException("provider response deadline exceeded");
+            if (timedOut()) throw new IOException("provider response deadline exceeded");
             return buffer.toByteArray();
         }
         @Override public void close() throws IOException { deadline.cancel(false); stream.close(); }
+    }
+
+    /** Counts raw bytes before UTF-8 decoding, including ignored SSE fields and carriage returns. */
+    private static final class BudgetedInputStream extends FilterInputStream {
+        private final int limit;
+        private long consumed;
+        private BudgetedInputStream(InputStream source, int limit) { super(source); this.limit = limit; }
+        @Override public int read() throws IOException {
+            int value = in.read();
+            if (value != -1 && ++consumed > limit) throw new IOException("provider response exceeded byte budget");
+            return value;
+        }
+        @Override public int read(byte[] bytes, int offset, int length) throws IOException {
+            if (length == 0) return 0;
+            int permitted = (int) Math.min(length, Math.max(1, limit - consumed + 1));
+            int count = in.read(bytes, offset, permitted);
+            if (count > 0 && (consumed += count) > limit) throw new IOException("provider response exceeded byte budget");
+            return count;
+        }
     }
 }

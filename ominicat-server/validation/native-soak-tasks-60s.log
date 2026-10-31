@@ -1,0 +1,141 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO]
+[INFO] OminiCat                                                           [pom]
+[INFO] OminiCat · Microkernel                                             [jar]
+[INFO] OminiCat Conversation                                              [jar]
+[INFO] OminiCat · Providers                                               [jar]
+[INFO] OminiCat :: Server                                                 [jar]
+[INFO]
+[INFO] --------------------< io.ominicat:ominicat-parent >---------------------
+[INFO] Building OminiCat 0.1.0-SNAPSHOT                                   [1/5]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO]
+[INFO] --- enforcer:3.6.2:enforce (runtime) @ ominicat-parent ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO]
+[INFO] ---------------------< io.ominicat:ominicat-core >----------------------
+[INFO] Building OminiCat · Microkernel 0.1.0-SNAPSHOT                     [2/5]
+[INFO]   from ominicat-core/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- enforcer:3.6.2:enforce (runtime) @ ominicat-core ---
+[INFO]
+[INFO] --- resources:3.4.0:resources (default-resources) @ ominicat-core ---
+[INFO] skip non existing resourceDirectory /private/var/folders/qv/kg_xkqjj551fq14nd6_734s80000gn/T/ominicat-server-soak.zaub97vb/ominicat-core/src/main/resources
+[INFO]
+[INFO] --- compiler:3.14.1:compile (default-compile) @ ominicat-core ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 16 source files with javac [debug parameters release 21] to target/classes
+[INFO]
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ ominicat-core ---
+[INFO] skip non existing resourceDirectory /private/var/folders/qv/kg_xkqjj551fq14nd6_734s80000gn/T/ominicat-server-soak.zaub97vb/ominicat-core/src/test/resources
+[INFO]
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ ominicat-core ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 10 source files with javac [debug parameters release 21] to target/test-classes
+[INFO]
+[INFO] --- surefire:3.5.4:test (default-test) @ ominicat-core ---
+[INFO]
+[INFO] -----------------< io.ominicat:ominicat-conversation >------------------
+[INFO] Building OminiCat Conversation 0.1.0-SNAPSHOT                      [3/5]
+[INFO]   from ominicat-conversation/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- enforcer:3.6.2:enforce (runtime) @ ominicat-conversation ---
+[INFO]
+[INFO] --- resources:3.4.0:resources (default-resources) @ ominicat-conversation ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO]
+[INFO] --- compiler:3.14.1:compile (default-compile) @ ominicat-conversation ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 16 source files with javac [debug parameters release 21] to target/classes
+[INFO]
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ ominicat-conversation ---
+[INFO] skip non existing resourceDirectory /private/var/folders/qv/kg_xkqjj551fq14nd6_734s80000gn/T/ominicat-server-soak.zaub97vb/ominicat-conversation/src/test/resources
+[INFO]
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ ominicat-conversation ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 4 source files with javac [debug parameters release 21] to target/test-classes
+[INFO]
+[INFO] --- surefire:3.5.4:test (default-test) @ ominicat-conversation ---
+[INFO]
+[INFO] -------------------< io.ominicat:ominicat-providers >-------------------
+[INFO] Building OminiCat · Providers 0.1.0-SNAPSHOT                       [4/5]
+[INFO]   from ominicat-providers/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- enforcer:3.6.2:enforce (runtime) @ ominicat-providers ---
+[INFO]
+[INFO] --- resources:3.4.0:resources (default-resources) @ ominicat-providers ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO]
+[INFO] --- compiler:3.14.1:compile (default-compile) @ ominicat-providers ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 10 source files with javac [debug parameters release 21] to target/classes
+[INFO]
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ ominicat-providers ---
+[INFO] skip non existing resourceDirectory /private/var/folders/qv/kg_xkqjj551fq14nd6_734s80000gn/T/ominicat-server-soak.zaub97vb/ominicat-providers/src/test/resources
+[INFO]
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ ominicat-providers ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 8 source files with javac [debug parameters release 21] to target/test-classes
+[INFO]
+[INFO] --- surefire:3.5.4:test (default-test) @ ominicat-providers ---
+[INFO]
+[INFO] --------------------< io.ominicat:ominicat-server >---------------------
+[INFO] Building OminiCat :: Server 0.1.0-SNAPSHOT                         [5/5]
+[INFO]   from ominicat-server/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- enforcer:3.6.2:enforce (runtime) @ ominicat-server ---
+[INFO]
+[INFO] --- resources:3.4.0:resources (default-resources) @ ominicat-server ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO]
+[INFO] --- compiler:3.14.1:compile (default-compile) @ ominicat-server ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 4 source files with javac [debug parameters release 21] to target/classes
+[INFO]
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ ominicat-server ---
+[INFO] skip non existing resourceDirectory /private/var/folders/qv/kg_xkqjj551fq14nd6_734s80000gn/T/ominicat-server-soak.zaub97vb/ominicat-server/src/test/resources
+[INFO]
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ ominicat-server ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 9 source files with javac [debug parameters release 21] to target/test-classes
+[INFO]
+[INFO] --- surefire:3.5.4:test (default-test) @ ominicat-server ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running io.ominicat.server.ServerAdversarialTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.368 s -- in io.ominicat.server.ServerAdversarialTest
+[INFO] Running io.ominicat.server.ServerSoakIT
+Native server soak evidence: [isolated-task-run]/result.json; operations=5744
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 60.51 s -- in io.ominicat.server.ServerSoakIT
+[INFO] Running io.ominicat.server.StalledProviderRecoveryTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.146 s -- in io.ominicat.server.StalledProviderRecoveryTest
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for OminiCat 0.1.0-SNAPSHOT:
+[INFO]
+[INFO] OminiCat ........................................... SUCCESS [  0.122 s]
+[INFO] OminiCat · Microkernel ............................. SUCCESS [  0.916 s]
+[INFO] OminiCat Conversation .............................. SUCCESS [  0.239 s]
+[INFO] OminiCat · Providers ............................... SUCCESS [  0.240 s]
+[INFO] OminiCat :: Server ................................. SUCCESS [01:12 min]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  01:13 min
+[INFO] Finished at: 2026-10-31T13:55:17+08:00
+[INFO] ------------------------------------------------------------------------

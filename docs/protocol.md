@@ -110,7 +110,7 @@ The example illustrates the shape; actual fields depend on the plugin. The type 
 
 Invalid JSON, unknown types and invalid modality fields return `invalid_frame` with a sanitized message. Each valid decoded incoming message increments the inbound frame counter, including controls and messages rejected for queue pressure. Rejections have a separate counter.
 
-Outgoing JSON messages are individually limited to `maxFrameBytes`. The runtime also bounds pending outgoing message bytes to at most four times that configured size, checks Netty writability, and closes under output pressure. This byte budget covers queued JSON payloads, not total JVM allocations. A slow consumer must read frames promptly.
+Outgoing JSON messages are individually limited to `maxFrameBytes`. Pending data and Pong payloads share a budget of at most four times that configured size, in addition to Netty writability checks. Pressure cancels processing immediately and forces a stalled socket closed after a two-second deadline. This payload budget excludes frame headers and total JVM allocations. A slow consumer must read frames promptly.
 
 | Outcome | Code / status |
 | --- | --- |
@@ -123,4 +123,4 @@ Outgoing JSON messages are individually limited to `maxFrameBytes`. The runtime 
 | Missing/invalid configured bearer token | HTTP `401` |
 | Unrelated browser origin | HTTP `403` |
 
-Authentication is described in [configuration](configuration.md). `/health` returns `{"status":"up"}`. `/metrics` exports aggregate Prometheus session/frame/byte counters and an active-session gauge, without conversation content or per-session labels. There is no durable delivery, retransmission, session resumption or exactly-once guarantee in this transport.
+Authentication is described in [configuration](configuration.md). `/health` returns `{"status":"up"}`. `/metrics` exports aggregate counters and gauges for raw connections, active sockets, retained admission, live pipeline workers and pending output payload bytes, without conversation content or per-session labels. Admission is released only after the socket closes and the worker completes cleanup. There is no durable delivery, retransmission, session resumption or exactly-once guarantee in this transport.
