@@ -40,6 +40,7 @@ def summarize(suite):
             cells.append({'engine': engine, 'stages': stages, 'metrics': metrics})
     return {'schemaVersion': 1, 'manifestSha256': suite['manifestSha256'], 'settings': settings,
             'recordedAt': suite['manifest']['recordedAt'],
+            'environment': suite['manifest']['environment'],
             'rendererSha256': digest(Path(__file__).read_bytes()),
             'intervalMeaning': 'observed minimum and maximum across fresh processes; not confidence intervals', 'cells': cells}
 

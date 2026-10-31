@@ -4,12 +4,14 @@ No Linux host, reports/local directory, framework, build or network is needed.
 Every output is confined to an independently owned TemporaryDirectory.
 """
 from copy import deepcopy
+import importlib.util
 import json
 from pathlib import Path
 import sys
 import tempfile
 import unittest
 from unittest import mock
+import xml.etree.ElementTree as ET
 
 from test_ci_context import UBUNTU, ci, collect
 from test_evidence import collector_fixture, evidence, report, rebind_manifest, suite_fixture, write_suite
@@ -41,6 +43,30 @@ def linux_fixture(target="ubuntu-24.04"):
 
 
 class LinuxEvidenceTest(unittest.TestCase):
+    @unittest.skipUnless(importlib.util.find_spec('matplotlib'), 'real rendering runs in the pinned benchmark environment')
+    def test_real_plot_exports_all_four_figures_with_actual_platform_labels(self):
+        for target in ('ubuntu-24.04', 'centos-stream-9'):
+            with self.subTest(target=target), tempfile.TemporaryDirectory() as temporary:
+                suite = linux_fixture(target)
+                folder = Path(temporary)
+                report.render(report.summarize(suite), folder)
+                self.assertEqual({f'{name}.{extension}' for name in ('overview', 'throughput', 'latency', 'resources')
+                                  for extension in ('svg', 'png')}, {path.name for path in folder.iterdir()})
+                for name in ('overview', 'throughput', 'latency', 'resources'):
+                    labels = ''.join(ET.parse(folder / f'{name}.svg').getroot().itertext())
+                    self.assertIn(suite['manifest']['environment']['ci']['distro']['prettyName'], labels)
+                    self.assertIn('x86_64', labels)
+                    self.assertIn('GitHub Actions', labels)
+                    self.assertGreater((folder / f'{name}.png').stat().st_size, 1000)
+
+    def test_standalone_figures_receive_the_measured_environment_for_platform_labels(self):
+        for target in TARGETS:
+            suite = linux_fixture(target)
+            summary = report.summarize(suite)
+            self.assertEqual(summary['environment'], suite['manifest']['environment'])
+            self.assertEqual(summary['environment']['ci']['target'], target)
+        self.assertNotIn('ci', report.summarize(suite_fixture())['environment'])
+
     def test_each_legal_linux_profile_roundtrips_with_bound_source_without_mutation(self):
         for target in TARGETS:
             with self.subTest(target=target), tempfile.TemporaryDirectory() as temporary:
