@@ -9,7 +9,7 @@
 </p>
 
 <p align="center"><strong>High throughput. Measured latency. A small Java kernel.</strong><br>
-<a href="README.zh-CN.md">简体中文</a> · <a href="#quick-start">Quick start</a> · <a href="docs/architecture.md">Architecture</a> · <a href="docs/plugins.md">Build a plugin</a> · <a href="#performance-on-java-17">Performance</a></p>
+<a href="README.zh-CN.md">简体中文</a> · <a href="#quick-start">Quick start</a> · <a href="docs/architecture.md">Architecture</a> · <a href="docs/plugins.md">Build a plugin</a> · <a href="#performance-on-java-17">Performance</a> · <a href="#profiles">Profiles</a></p>
 
 OminiCat is a **high-performance Java microkernel for multimodal conversation pipelines**. Embed it in an application or run it as a standalone WebSocket container. Typed frames connect transport, speech, language, vision, and conversation processors through a small plugin contract.
 
@@ -40,6 +40,50 @@ The design keeps the execution path small and overload explicit:
 - **Workers for the selected JDK:** Java 17 uses platform threads; Java 21+ automatically uses virtual threads. The container runs blocking processor work outside Netty's transport event loops.
 
 [Performance design and methodology](docs/performance.md) · [Resource timeline and fault verification](reports/java17/http-cancellation/README.md).
+
+## Profiles
+
+### CPU, allocation and GC
+
+The recorded **Java 17 kernel profile** contains 524 CPU stack samples and 2,814 allocation samples. It covers warmup, the bounded numeric-frame load and the measurement harness, including percentile sorting. CPU widths represent sample counts; allocation widths represent estimated allocated-byte weights, rather than retained heap or object counts.
+
+![Java 17 CPU sampled stacks](reports/java17/kernel/cpu-flamegraph.svg)
+
+![Java 17 sampled allocation stacks](reports/java17/kernel/allocation-flamegraph.svg)
+
+| Kernel JFR observation | Recorded value |
+| --- | ---: |
+| Garbage collections | **33** |
+| Cumulative GC pause time | **33.959 ms** |
+| Longest recorded GC pause | **1.715 ms** |
+
+GC values describe the whole kernel recording, including warmup and harness work. [Profile analysis](reports/java17/kernel/profiles.md) · [Selected JFR events](reports/java17/kernel/jfr-events.json.gz) · [GC log](reports/java17/kernel/gc.txt) · [Source/runtime context](reports/java17/kernel/measurement-context.json). The current distribution retains the same core bytecode, as recorded in the [artifact delta](reports/java17/http-cancellation/artifact-delta.json).
+
+### Heap, direct memory and threads
+
+This separate **120.127-second mixed-media WebSocket echo probe** used 64 persistent clients paced at approximately 20 frames/s each, plus four churn workers with a 100 ms pause between cycles, after ten seconds of warmup. It validated **138,239 frames** and **4,377 new connections**, with zero failures and complete session/worker/output drain. It used a 256 MiB heap and a 128 MiB direct-memory limit.
+
+![Heap, direct memory, descriptors, threads, latency and rate during the mixed-media probe](reports/java17/http-cancellation/soak-resources.svg)
+
+| Resource | After warmup | After drain |
+| --- | ---: | ---: |
+| Heap used after requested full GC | 12.687 MiB | 7.795 MiB |
+| Netty pooled direct reservation | 16 MiB | 16 MiB |
+| Open file descriptors | 96 | 32 |
+| Platform threads | 80 | 16 |
+
+The timeline shows periodic traffic samples; heap samples include objects awaiting collection. Post-drain NMT committed memory was **484.658 MiB**, including the fixed heap, native thread stacks, JVM internals and profiling; this differs from RSS. [Resource report](reports/java17/http-cancellation/README.md) · [Numeric samples](reports/java17/http-cancellation/soak-samples.jsonl) · [Post-GC comparison](reports/java17/http-cancellation/soak-summary.json) · [Native-memory diagnostics](reports/java17/http-cancellation/resource-diagnostics.json). The kernel profiles and this resource probe retain their separate workloads and artifacts.
+
+### Generate profiles locally
+
+With JDK 17+ and Python 3:
+
+```sh
+./scripts/profile.sh quick reports/local/profile
+python3 scripts/summarize_profiles.py reports/local/profile
+```
+
+This produces `report.md`, `profiles.md`, CPU/allocation SVGs and local JFR/GC evidence. Use `full` for longer JMH warmup and measurement. [Profiling methodology](docs/performance.md) · [Sustained-resource reproduction](validation/README.md).
 
 ## Quick start
 
@@ -172,7 +216,7 @@ The service file contains `example.UppercaseFactory`; a YAML stage with `type: u
 ./scripts/profile.sh quick reports/latest
 ```
 
-The [Java 17 kernel report](reports/java17/kernel/report.md) records throughput, latency and allocation together. Its [CPU/allocation profiles](reports/java17/kernel/profiles.md) expose worker scheduling, invocation guards and harness costs; the [resource timeline](reports/java17/http-cancellation/soak-resources.svg) follows the separate mixed-media transport workload. The [performance guide](docs/performance.md) explains reproduction and sizing for the selected JDK.
+The [inline profiles above](#profiles) show CPU, allocation, GC and resource evidence. The [Java 17 kernel report](reports/java17/kernel/report.md) records throughput, latency and allocation together. Its [CPU/allocation profiles](reports/java17/kernel/profiles.md) expose worker scheduling, invocation guards and harness costs; the [resource timeline](reports/java17/http-cancellation/soak-resources.svg) follows the separate mixed-media transport workload. The [performance guide](docs/performance.md) explains reproduction and sizing for the selected JDK.
 
 [Earlier Java 21 measurements](reports/deep/kernel/comparison.md) retain their original source/artifact scope and disclose the allocation and throughput cost of invocation guards.
 
