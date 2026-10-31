@@ -21,6 +21,8 @@ A source reference identifies an application-owned media asset/version, track an
 
 Distinguish source samples, normalized media time and local monotonic processing timestamps. A sample range needs its sample rate and per-channel convention. Mapping between clocks or tracks requires an explicit driver mapping; identical numeric positions or track names do not establish a shared timeline. State endpoint, point-event and unknown-position semantics in the new profile without reinterpreting legacy transcript intervals.
 
+An adapter for inclusive discrete frame indices must translate endpoints using the declared frame rate/timebase. A next-frame offset must not become an arbitrary extra millisecond or audio sample in another coordinate system.
+
 Separate segment identity from its current range. A revision refers to an exact prior version; split/merge events identify all affected parent/child versions and an operation ID. Changes must preserve historical references rather than editing committed transcript facts in place. In a bounded local reducer, validate the entire change before replacing any state. This local atomicity does not supply a persistent transaction or distributed commit.
 
 Acceptance:
@@ -41,11 +43,16 @@ A flat vocabulary is valid. A category hierarchy, shared catalog and category-to
 
 An edit, removal or retraction names its `expectedAnnotationRevision` separately from the evidence's `targetSegmentRevision`. New labels do not overwrite another dimension. A label can target overlapping intervals or several explicitly referenced subjects, with bounded reference counts. Parent/member and attribution semantics remain application policy rather than a universal entity hierarchy.
 
+An annotation may also target a bounded group of disjoint ranges while retaining one annotation identity. Preserve that grouping across revisions; do not fill gaps, duplicate the assignment or collapse independent annotations merely because ranges overlap. Merge compatibility between dimensions/values must be an explicit plugin policy.
+
 Keep producer origin, processing finality, review eligibility and published-result validity as separate concepts. A final model output is not automatically approved feedback; a reviewed annotation is not automatically the current published conclusion. Invalid values must yield a declared rejection, unknown marker or explicitly configured fallback, not a silent valid-looking substitution.
+
+Existing project permissions and simple save eligibility may suffice. The contract does not require an additional reviewer role or a multistage approval workflow.
 
 Acceptance:
 
 - Two dimensions and multiple values on one range survive encoding and reduction. Overlapping ranges are not accidentally deduplicated by time or segment ID.
+- Split and rejoin a grouped multi-range annotation without losing its identity or changing its exact covered regions. An incompatible value/dimension merge must reject or preserve independent assignments under the declared policy.
 - Label identities remain distinct across taxonomy/dimension namespaces; subject identities compare their full namespace/kind/key tuple. Unsupported taxonomy/schema versions fail explicitly rather than being silently recast.
 - A stale `expectedAnnotationRevision` cannot erase the current annotation. An intentional reference to an older `targetSegmentRevision` keeps that exact evidence target and must not be silently redirected. Repeated removal is idempotent within the declared window; competing edits against one base report or resolve a conflict according to an explicit policy.
 - Human feedback records its source and exact target, but does not automatically override a model or publish a new authoritative result. The application owns permissions, review workflow and precedence.
