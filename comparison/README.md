@@ -71,7 +71,7 @@ The preflight checks the actual `/etc/os-release`, architecture and declared exe
 
 Each job's summary shows its validated four-stage medians. Download its `framework-<target>-java17-<run>-<attempt>` artifact for all SVG/PNG figures, every raw result, source/runtime/dependency manifest, checksums and separate CPU/allocation/GC or call profiles. Artifacts are retained for 30 days; raw recordings, environments and private logs are excluded. A failed matrix or diagnostic publication never uploads a successful performance artifact.
 
-Every job measures the three frameworks sequentially on the same runner. The two platform jobs use independent hosts, so their results are separate observations, not a controlled experiment isolating distribution or kernel differences. CentOS coverage validates its user space and native dependencies, not a CentOS kernel. Hosted-runner variation does not automatically replace the published baseline or establish a performance threshold.
+Every job measures the three frameworks sequentially on the same runner. The two platform jobs use independent hosts, so their results are separate observations, not a controlled experiment isolating distribution or kernel differences. CentOS coverage validates its user space and native dependencies, not a CentOS kernel. Hosted-runner variation does not automatically replace the recorded Mac baseline or establish a performance threshold.
 
 ## Checks
 

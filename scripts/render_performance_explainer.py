@@ -163,7 +163,7 @@ def cpu_chart(data):
     position = text.index('>', text.index('<svg')) + 1
     marker = hashlib.sha256(encoded(data)).hexdigest()
     text = text[:position] + f'\n<metadata id="ominicat-data-sha256">{marker}</metadata>' + text[position:]
-    CHART.write_text(text)
+    CHART.write_text('\n'.join(line.rstrip() for line in text.splitlines()) + '\n')
 
 
 def check():
