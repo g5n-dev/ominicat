@@ -1,3 +1,7 @@
+<!-- ominicat-language-nav -->
+[简体中文](zh-CN/plugins.md) · **English**
+<!-- /ominicat-language-nav -->
+
 # Add a plugin
 
 A plugin depends on `io.ominicat:ominicat-core:0.1.0-SNAPSHOT`. Build and install this checkout first with `./mvnw install`; artifacts are not yet published to Maven Central.

@@ -1,3 +1,7 @@
+<!-- ominicat-language-nav -->
+[简体中文](zh-CN/configuration.md) · **English**
+<!-- /ominicat-language-nav -->
+
 # Configuration
 
 OminiCat reads YAML once at startup. Restart the runtime to apply a changed configuration. Unknown server properties fail early; each plugin owns validation of its string-valued options. Factories are created and closed during a startup preflight before the listener binds, then created afresh for each accepted session. Factory construction must not start external requests or long-running work.
@@ -72,7 +76,7 @@ tokenEnv: OMINICAT_TOKEN
 
 Set `OMINICAT_TOKEN` in the runtime's environment. If the configured variable is missing or blank, startup fails. `/ws`, `/metrics`, `/api/runtime` and `/api/activity` then require `Authorization: Bearer <token>`. `/`, `/console.css`, `/console.js` and `/health` remain public. The [Studio guide](studio.md) describes its separate overview/debugger views and metadata allowlist.
 
-An unauthenticated listener bound to loopback also validates `Host` before routing: `localhost`, canonical `127/8` IPv4 literals and bracketed `::1` are allowed. Arbitrary matching `Host`/`Origin` values are rejected without a DNS lookup. This server-side check complements browser local-network restrictions. Configure `tokenEnv` for a reverse proxy or external hostname; wildcard/public listeners still require explicit deployment authentication and quotas.
+An unauthenticated listener bound to loopback also validates `Host` before routing: `localhost`, canonical `127/8` IPv4 literals and bracketed `::1` are allowed. A `Host` outside this allowlist is rejected even if its `Origin` matches; no DNS lookup is performed. This server-side check complements browser local-network restrictions. Configure `tokenEnv` for a reverse proxy or external hostname; wildcard/public listeners still require explicit deployment authentication and quotas.
 
 Native browser WebSockets cannot set an arbitrary authorization header. The bundled playground offers subprotocols `ominicat` and `bearer.<base64url-encoded UTF-8 token>`. The server selects `ominicat` and checks the bearer value. Tokens are not stored by the playground or put in URLs. A reverse proxy must preserve the subprotocol header and avoid logging credential-bearing headers.
 

@@ -1,3 +1,7 @@
+<!-- ominicat-language-nav -->
+[简体中文](../docs/zh-CN/ominicat-server/DEEP_VERIFICATION.md) · **English**
+<!-- /ominicat-language-nav -->
+
 # Native transport and resource verification
 
 Run date: **2026-10-31, Asia/Shanghai**. These are local, synthetic transport tests with real TCP sockets. No commercial model API or external network service was used.

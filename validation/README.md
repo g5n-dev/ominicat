@@ -1,3 +1,7 @@
+<!-- ominicat-language-nav -->
+[简体中文](../docs/zh-CN/validation/README.md) · **English**
+<!-- /ominicat-language-nav -->
+
 # Adversarial and sustained validation
 
 The normal test suite includes deterministic concurrency/model tests and real local HTTP/TCP/WebSocket fault fixtures. The drivers here add sustained mixed-media validation and explicit opt-in live service checks. They do not use production conversation data.

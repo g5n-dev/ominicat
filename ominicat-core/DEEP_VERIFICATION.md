@@ -1,3 +1,7 @@
+<!-- ominicat-language-nav -->
+[简体中文](../docs/zh-CN/ominicat-core/DEEP_VERIFICATION.md) · **English**
+<!-- /ominicat-language-nav -->
+
 # Core adversarial verification
 
 Recorded on 2026-10-31 with Homebrew OpenJDK 21.0.13.0.3 on macOS/aarch64. This report covers the dependency-free kernel, its callback adapters, and its composing processors. It does not establish production capacity, cloud-provider correctness, or exhaustive concurrency safety.

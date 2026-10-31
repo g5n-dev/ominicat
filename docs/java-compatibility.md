@@ -1,3 +1,7 @@
+<!-- ominicat-language-nav -->
+[简体中文](zh-CN/java-compatibility.md) · **English**
+<!-- /ominicat-language-nav -->
+
 # Java compatibility
 
 Java 17 is the minimum build and runtime version for all modules. The Maven compiler targets Java 17 bytecode (`--release 17`); no preview features or Java 21 runtime are required. The same distribution runs on Java 17, 21 and 25.

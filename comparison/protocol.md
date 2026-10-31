@@ -1,3 +1,7 @@
+<!-- ominicat-language-nav -->
+[简体中文](../docs/zh-CN/comparison/protocol.md) · **English**
+<!-- /ominicat-language-nav -->
+
 # Model-free framework-path comparison, protocol 1
 
 This optional benchmark compares native queued execution paths, not feature parity or production capacity. It is outside the production reactor and adds no runtime dependency to OminiCat.

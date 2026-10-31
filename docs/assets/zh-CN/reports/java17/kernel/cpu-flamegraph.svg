@@ -1,0 +1,552 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="1313" viewBox="0 0 1280 1313" role="img" xml:lang="zh-CN">
+<title>CPU 采样调用栈</title><desc>宽度：样本数。覆盖选定 JFR 导出全集，包含预热与测量驱动。</desc>
+<rect width="1280" height="1313" fill="#101e28" />
+<text x="28" y="34" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" font-size="22" fill="#f2eee1" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">CPU 采样调用栈</text>
+<text x="28" y="61" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" font-size="13" fill="#b8cbd1" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">宽度：样本数。覆盖选定 JFR 导出全集，包含预热与测量驱动。</text>
+<text x="28" y="86" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" font-size="13" fill="#b8cbd1" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">524 个事件；样本总计 524；观测栈深 46；来源标记截断栈 0。</text>
+<text x="28" y="109" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" font-size="13" fill="#b8cbd1" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">保留所有正权重的已提供栈帧；直接打开 SVG 可查看提示与缩放。</text>
+<text x="28" y="130" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" font-size="12" fill="#b8cbd1" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">不可用调用栈：0；零权重事件：0。不能从观测深度推断导出/记录上限。</text>
+<g data-depth="0" data-weight="524"><title>全部样本: 524 个样本 (100.000%)</title><rect x="28" y="1249" width="1224" height="22" fill="#38576b" stroke="#101e28" stroke-width="0.35" />
+<text x="32" y="1265" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" font-size="12" fill="#f2eee1" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">全部样本</text>
+</g>
+<g data-depth="1" data-weight="74"><title>io.ominicat.benchmarks.CoreLoad.main: 74 个样本 (14.122%)</title><rect x="28" y="1225" width="172.854961832" height="22" fill="hsl(33,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="32" y="1241" font-family="monospace" font-size="12" fill="#152430">CoreLoad.main</text>
+</g>
+<g data-depth="2" data-weight="1"><title>io.ominicat.core.Pipeline.openSession: 1 个样本 (0.191%)</title><rect x="28" y="1201" width="2.3358778626" height="22" fill="hsl(38,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="3" data-weight="1"><title>io.ominicat.core.PipelineSession.&lt;init&gt;: 1 个样本 (0.191%)</title><rect x="28" y="1177" width="2.3358778626" height="22" fill="hsl(38,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="4" data-weight="1"><title>io.ominicat.core.WorkerThreads.unstarted: 1 个样本 (0.191%)</title><rect x="28" y="1153" width="2.3358778626" height="22" fill="hsl(21,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="5" data-weight="1"><title>io.ominicat.core.WorkerThreads$$Lambda$84+0x000000700100b870.26728049.newThread: 1 个样本 (0.191%)</title><rect x="28" y="1129" width="2.3358778626" height="22" fill="hsl(24,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="6" data-weight="1"><title>io.ominicat.core.WorkerThreads.lambda$platformFactory$1: 1 个样本 (0.191%)</title><rect x="28" y="1105" width="2.3358778626" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="7" data-weight="1"><title>java.lang.invoke.MethodHandleNatives.linkCallSite: 1 个样本 (0.191%)</title><rect x="28" y="1081" width="2.3358778626" height="22" fill="hsl(25,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="8" data-weight="1"><title>java.lang.invoke.MethodHandleNatives.linkCallSiteImpl: 1 个样本 (0.191%)</title><rect x="28" y="1057" width="2.3358778626" height="22" fill="hsl(33,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="9" data-weight="1"><title>java.lang.invoke.CallSite.makeSite: 1 个样本 (0.191%)</title><rect x="28" y="1033" width="2.3358778626" height="22" fill="hsl(48,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="10" data-weight="1"><title>java.lang.invoke.BootstrapMethodInvoker.invoke: 1 个样本 (0.191%)</title><rect x="28" y="1009" width="2.3358778626" height="22" fill="hsl(46,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="11" data-weight="1"><title>java.lang.invoke.Invokers$Holder.invokeExact_MT: 1 个样本 (0.191%)</title><rect x="28" y="985" width="2.3358778626" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="12" data-weight="1"><title>java.lang.invoke.DelegatingMethodHandle$Holder.delegate: 1 个样本 (0.191%)</title><rect x="28" y="961" width="2.3358778626" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="13" data-weight="1"><title>java.lang.invoke.DirectMethodHandle$Holder.invokeStatic: 1 个样本 (0.191%)</title><rect x="28" y="937" width="2.3358778626" height="22" fill="hsl(27,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="14" data-weight="1"><title>java.lang.invoke.StringConcatFactory.makeConcatWithConstants: 1 个样本 (0.191%)</title><rect x="28" y="913" width="2.3358778626" height="22" fill="hsl(42,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="15" data-weight="1"><title>java.lang.invoke.StringConcatFactory.generateMHInlineCopy: 1 个样本 (0.191%)</title><rect x="28" y="889" width="2.3358778626" height="22" fill="hsl(36,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="16" data-weight="1"><title>java.lang.invoke.MethodHandles.filterArgumentsWithCombiner: 1 个样本 (0.191%)</title><rect x="28" y="865" width="2.3358778626" height="22" fill="hsl(24,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="17" data-weight="1"><title>java.lang.invoke.MethodHandles.argumentsWithCombiner: 1 个样本 (0.191%)</title><rect x="28" y="841" width="2.3358778626" height="22" fill="hsl(31,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="18" data-weight="1"><title>java.lang.invoke.BoundMethodHandle$Species_LLLL.copyWithExtendL: 1 个样本 (0.191%)</title><rect x="28" y="817" width="2.3358778626" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="19" data-weight="1"><title>java.lang.invoke.DirectMethodHandle$Holder.invokeStatic: 1 个样本 (0.191%)</title><rect x="28" y="793" width="2.3358778626" height="22" fill="hsl(27,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="20" data-weight="1"><title>java.lang.invoke.BoundMethodHandle$Species_LLLLL.make: 1 个样本 (0.191%)</title><rect x="28" y="769" width="2.3358778626" height="22" fill="hsl(46,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="21" data-weight="1"><title>java.lang.invoke.BoundMethodHandle$Species_LLLLL.&lt;init&gt;: 1 个样本 (0.191%)</title><rect x="28" y="745" width="2.3358778626" height="22" fill="hsl(38,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="22" data-weight="1"><title>java.lang.invoke.BoundMethodHandle.&lt;init&gt;: 1 个样本 (0.191%)</title><rect x="28" y="721" width="2.3358778626" height="22" fill="hsl(32,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="23" data-weight="1"><title>java.lang.invoke.MethodHandle.&lt;init&gt;: 1 个样本 (0.191%)</title><rect x="28" y="697" width="2.3358778626" height="22" fill="hsl(25,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="24" data-weight="1"><title>java.lang.invoke.LambdaForm.prepare: 1 个样本 (0.191%)</title><rect x="28" y="673" width="2.3358778626" height="22" fill="hsl(40,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="25" data-weight="1"><title>java.lang.invoke.LambdaForm.compileToBytecode: 1 个样本 (0.191%)</title><rect x="28" y="649" width="2.3358778626" height="22" fill="hsl(28,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="26" data-weight="1"><title>java.lang.invoke.InvokerBytecodeGenerator.generateCustomizedCode: 1 个样本 (0.191%)</title><rect x="28" y="625" width="2.3358778626" height="22" fill="hsl(42,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="27" data-weight="1"><title>java.lang.invoke.InvokerBytecodeGenerator.generateCustomizedCodeBytes: 1 个样本 (0.191%)</title><rect x="28" y="601" width="2.3358778626" height="22" fill="hsl(28,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="28" data-weight="1"><title>java.lang.invoke.InvokerBytecodeGenerator.clinit: 1 个样本 (0.191%)</title><rect x="28" y="577" width="2.3358778626" height="22" fill="hsl(31,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="29" data-weight="1"><title>jdk.internal.org.objectweb.asm.ClassWriter.visitMethod: 1 个样本 (0.191%)</title><rect x="28" y="553" width="2.3358778626" height="22" fill="hsl(28,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="30" data-weight="1"><title>jdk.internal.org.objectweb.asm.MethodWriter.&lt;init&gt;: 1 个样本 (0.191%)</title><rect x="28" y="529" width="2.3358778626" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="2" data-weight="73"><title>java.util.Arrays.sort: 73 个样本 (13.931%)</title><rect x="30.3358779" y="1201" width="170.519083969" height="22" fill="hsl(31,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="34.3358779" y="1217" font-family="monospace" font-size="12" fill="#152430">Arrays.sort</text>
+</g>
+<g data-depth="3" data-weight="73"><title>java.util.DualPivotQuicksort.sort: 73 个样本 (13.931%)</title><rect x="30.3358779" y="1177" width="170.519083969" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="34.3358779" y="1193" font-family="monospace" font-size="12" fill="#152430">DualPivotQuicksort.so…</text>
+</g>
+<g data-depth="4" data-weight="73"><title>java.util.DualPivotQuicksort.sort: 73 个样本 (13.931%)</title><rect x="30.3358779" y="1153" width="170.519083969" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="34.3358779" y="1169" font-family="monospace" font-size="12" fill="#152430">DualPivotQuicksort.so…</text>
+</g>
+<g data-depth="5" data-weight="70"><title>java.util.DualPivotQuicksort.sort: 70 个样本 (13.359%)</title><rect x="30.3358779" y="1129" width="163.511450382" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="34.3358779" y="1145" font-family="monospace" font-size="12" fill="#152430">DualPivotQuicksort.s…</text>
+</g>
+<g data-depth="6" data-weight="63"><title>java.util.DualPivotQuicksort.sort: 63 个样本 (12.023%)</title><rect x="30.3358779" y="1105" width="147.160305344" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="34.3358779" y="1121" font-family="monospace" font-size="12" fill="#152430">DualPivotQuicksort…</text>
+</g>
+<g data-depth="7" data-weight="59"><title>java.util.DualPivotQuicksort.sort: 59 个样本 (11.260%)</title><rect x="30.3358779" y="1081" width="137.816793893" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="34.3358779" y="1097" font-family="monospace" font-size="12" fill="#152430">DualPivotQuickso…</text>
+</g>
+<g data-depth="8" data-weight="52"><title>java.util.DualPivotQuicksort.sort: 52 个样本 (9.924%)</title><rect x="30.3358779" y="1057" width="121.465648855" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="34.3358779" y="1073" font-family="monospace" font-size="12" fill="#152430">DualPivotQuick…</text>
+</g>
+<g data-depth="9" data-weight="44"><title>java.util.DualPivotQuicksort.sort: 44 个样本 (8.397%)</title><rect x="30.3358779" y="1033" width="102.778625954" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="34.3358779" y="1049" font-family="monospace" font-size="12" fill="#152430">DualPivotQui…</text>
+</g>
+<g data-depth="10" data-weight="39"><title>java.util.DualPivotQuicksort.sort: 39 个样本 (7.443%)</title><rect x="30.3358779" y="1009" width="91.0992366412" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="34.3358779" y="1025" font-family="monospace" font-size="12" fill="#152430">DualPivotQ…</text>
+</g>
+<g data-depth="11" data-weight="34"><title>java.util.DualPivotQuicksort.sort: 34 个样本 (6.489%)</title><rect x="30.3358779" y="985" width="79.4198473282" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="34.3358779" y="1001" font-family="monospace" font-size="12" fill="#152430">DualPivo…</text>
+</g>
+<g data-depth="12" data-weight="30"><title>java.util.DualPivotQuicksort.sort: 30 个样本 (5.725%)</title><rect x="30.3358779" y="961" width="70.0763358779" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="34.3358779" y="977" font-family="monospace" font-size="12" fill="#152430">DualPiv…</text>
+</g>
+<g data-depth="13" data-weight="24"><title>java.util.DualPivotQuicksort.sort: 24 个样本 (4.580%)</title><rect x="30.3358779" y="937" width="56.0610687023" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="34.3358779" y="953" font-family="monospace" font-size="12" fill="#152430">DualP…</text>
+</g>
+<g data-depth="14" data-weight="18"><title>java.util.DualPivotQuicksort.sort: 18 个样本 (3.435%)</title><rect x="30.3358779" y="913" width="42.0458015267" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="15" data-weight="15"><title>java.util.DualPivotQuicksort.sort: 15 个样本 (2.863%)</title><rect x="30.3358779" y="889" width="35.0381679389" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="16" data-weight="1"><title>java.util.DualPivotQuicksort.mixedInsertionSort: 1 个样本 (0.191%)</title><rect x="30.3358779" y="865" width="2.3358778626" height="22" fill="hsl(22,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="16" data-weight="9"><title>java.util.DualPivotQuicksort.sort: 9 个样本 (1.718%)</title><rect x="32.6717557" y="865" width="21.0229007634" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="17" data-weight="4"><title>java.util.DualPivotQuicksort.sort: 4 个样本 (0.763%)</title><rect x="32.6717557" y="841" width="9.34351145038" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="18" data-weight="1"><title>java.util.DualPivotQuicksort.sort: 1 个样本 (0.191%)</title><rect x="32.6717557" y="817" width="2.3358778626" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="19" data-weight="1"><title>java.util.DualPivotQuicksort.mixedInsertionSort: 1 个样本 (0.191%)</title><rect x="32.6717557" y="793" width="2.3358778626" height="22" fill="hsl(22,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="1" data-weight="450"><title>java.lang.Thread.run: 450 个样本 (85.878%)</title><rect x="200.854962" y="1225" width="1051.14503817" height="22" fill="hsl(18,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="204.854962" y="1241" font-family="monospace" font-size="12" fill="#152430">Thread.run</text>
+</g>
+<g data-depth="2" data-weight="404"><title>io.ominicat.core.PipelineSession$$Lambda$83+0x000000700100b440.1344199921.run: 404 个样本 (77.099%)</title><rect x="200.854962" y="1201" width="943.694656489" height="22" fill="hsl(36,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="204.854962" y="1217" font-family="monospace" font-size="12" fill="#152430">PipelineSession$$Lambda$83.run</text>
+</g>
+<g data-depth="3" data-weight="4"><title>io.ominicat.core.Pipeline.dispatchSession: 4 个样本 (0.763%)</title><rect x="200.854962" y="1177" width="9.34351145038" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="4" data-weight="4"><title>io.ominicat.benchmarks.CoreLoad$$Lambda$82+0x0000007001009880.1331923253.accept: 4 个样本 (0.763%)</title><rect x="200.854962" y="1153" width="9.34351145038" height="22" fill="hsl(39,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="5" data-weight="4"><title>io.ominicat.benchmarks.CoreLoad.lambda$main$1: 4 个样本 (0.763%)</title><rect x="200.854962" y="1129" width="9.34351145038" height="22" fill="hsl(48,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="6" data-weight="4"><title>java.util.concurrent.Semaphore.release: 4 个样本 (0.763%)</title><rect x="200.854962" y="1105" width="9.34351145038" height="22" fill="hsl(39,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="7" data-weight="4"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.releaseShared: 4 个样本 (0.763%)</title><rect x="200.854962" y="1081" width="9.34351145038" height="22" fill="hsl(32,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="8" data-weight="4"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.signalNext: 4 个样本 (0.763%)</title><rect x="200.854962" y="1057" width="9.34351145038" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="9" data-weight="4"><title>java.util.concurrent.locks.LockSupport.unpark: 4 个样本 (0.763%)</title><rect x="200.854962" y="1033" width="9.34351145038" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="3" data-weight="399"><title>io.ominicat.core.PipelineSession.run: 399 个样本 (76.145%)</title><rect x="210.198473" y="1177" width="932.015267176" height="22" fill="hsl(48,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="214.198473" y="1193" font-family="monospace" font-size="12" fill="#152430">PipelineSession.run</text>
+</g>
+<g data-depth="4" data-weight="299"><title>io.ominicat.core.Pipeline.dispatchSession: 299 个样本 (57.061%)</title><rect x="210.198473" y="1153" width="698.427480916" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="214.198473" y="1169" font-family="monospace" font-size="12" fill="#152430">Pipeline.dispatchSession</text>
+</g>
+<g data-depth="5" data-weight="5"><title>io.ominicat.benchmarks.CoreLoad$$Lambda$82+0x0000007001009880.1331923253.accept: 5 个样本 (0.954%)</title><rect x="210.198473" y="1129" width="11.679389313" height="22" fill="hsl(39,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="6" data-weight="5"><title>io.ominicat.benchmarks.CoreLoad.lambda$main$1: 5 个样本 (0.954%)</title><rect x="210.198473" y="1105" width="11.679389313" height="22" fill="hsl(48,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="7" data-weight="5"><title>java.util.concurrent.Semaphore.release: 5 个样本 (0.954%)</title><rect x="210.198473" y="1081" width="11.679389313" height="22" fill="hsl(39,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="8" data-weight="5"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.releaseShared: 5 个样本 (0.954%)</title><rect x="210.198473" y="1057" width="11.679389313" height="22" fill="hsl(32,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="9" data-weight="5"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.signalNext: 5 个样本 (0.954%)</title><rect x="210.198473" y="1033" width="11.679389313" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="10" data-weight="5"><title>java.util.concurrent.locks.LockSupport.unpark: 5 个样本 (0.954%)</title><rect x="210.198473" y="1009" width="11.679389313" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="5" data-weight="288"><title>io.ominicat.core.Pipeline.invoke: 288 个样本 (54.962%)</title><rect x="221.877863" y="1129" width="672.732824427" height="22" fill="hsl(46,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="225.877863" y="1145" font-family="monospace" font-size="12" fill="#152430">Pipeline.invoke</text>
+</g>
+<g data-depth="6" data-weight="288"><title>io.ominicat.benchmarks.CoreLoad$$Lambda$77+0x0000007001008800.846947180.process: 288 个样本 (54.962%)</title><rect x="221.877863" y="1105" width="672.732824427" height="22" fill="hsl(18,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="225.877863" y="1121" font-family="monospace" font-size="12" fill="#152430">CoreLoad$$Lambda$77.process</text>
+</g>
+<g data-depth="7" data-weight="288"><title>io.ominicat.benchmarks.CoreLoad.lambda$main$0: 288 个样本 (54.962%)</title><rect x="221.877863" y="1081" width="672.732824427" height="22" fill="hsl(36,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="225.877863" y="1097" font-family="monospace" font-size="12" fill="#152430">CoreLoad.lambda$main$0</text>
+</g>
+<g data-depth="8" data-weight="288"><title>io.ominicat.core.SynchronousSink.accept: 288 个样本 (54.962%)</title><rect x="221.877863" y="1057" width="672.732824427" height="22" fill="hsl(29,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="225.877863" y="1073" font-family="monospace" font-size="12" fill="#152430">SynchronousSink.accept</text>
+</g>
+<g data-depth="9" data-weight="288"><title>io.ominicat.core.Pipeline$$Lambda$93+0x000000700100fd60.2065602256.accept: 288 个样本 (54.962%)</title><rect x="221.877863" y="1033" width="672.732824427" height="22" fill="hsl(41,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="225.877863" y="1049" font-family="monospace" font-size="12" fill="#152430">Pipeline$$Lambda$93.accept</text>
+</g>
+<g data-depth="10" data-weight="288"><title>io.ominicat.core.Pipeline.lambda$dispatchSession$2: 288 个样本 (54.962%)</title><rect x="221.877863" y="1009" width="672.732824427" height="22" fill="hsl(42,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="225.877863" y="1025" font-family="monospace" font-size="12" fill="#152430">Pipeline.lambda$dispatchSession$2</text>
+</g>
+<g data-depth="11" data-weight="288"><title>io.ominicat.core.Pipeline.dispatchSession: 288 个样本 (54.962%)</title><rect x="221.877863" y="985" width="672.732824427" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="225.877863" y="1001" font-family="monospace" font-size="12" fill="#152430">Pipeline.dispatchSession</text>
+</g>
+<g data-depth="12" data-weight="229"><title>io.ominicat.core.Pipeline.invoke: 229 个样本 (43.702%)</title><rect x="221.877863" y="961" width="534.916030534" height="22" fill="hsl(46,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="225.877863" y="977" font-family="monospace" font-size="12" fill="#152430">Pipeline.invoke</text>
+</g>
+<g data-depth="13" data-weight="229"><title>io.ominicat.benchmarks.CoreLoad$$Lambda$77+0x0000007001008800.846947180.process: 229 个样本 (43.702%)</title><rect x="221.877863" y="937" width="534.916030534" height="22" fill="hsl(18,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="225.877863" y="953" font-family="monospace" font-size="12" fill="#152430">CoreLoad$$Lambda$77.process</text>
+</g>
+<g data-depth="14" data-weight="229"><title>io.ominicat.benchmarks.CoreLoad.lambda$main$0: 229 个样本 (43.702%)</title><rect x="221.877863" y="913" width="534.916030534" height="22" fill="hsl(36,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="225.877863" y="929" font-family="monospace" font-size="12" fill="#152430">CoreLoad.lambda$main$0</text>
+</g>
+<g data-depth="15" data-weight="229"><title>io.ominicat.core.SynchronousSink.accept: 229 个样本 (43.702%)</title><rect x="221.877863" y="889" width="534.916030534" height="22" fill="hsl(29,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="225.877863" y="905" font-family="monospace" font-size="12" fill="#152430">SynchronousSink.accept</text>
+</g>
+<g data-depth="16" data-weight="229"><title>io.ominicat.core.Pipeline$$Lambda$93+0x000000700100fd60.2065602256.accept: 229 个样本 (43.702%)</title><rect x="221.877863" y="865" width="534.916030534" height="22" fill="hsl(41,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="225.877863" y="881" font-family="monospace" font-size="12" fill="#152430">Pipeline$$Lambda$93.accept</text>
+</g>
+<g data-depth="17" data-weight="229"><title>io.ominicat.core.Pipeline.lambda$dispatchSession$2: 229 个样本 (43.702%)</title><rect x="221.877863" y="841" width="534.916030534" height="22" fill="hsl(42,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="225.877863" y="857" font-family="monospace" font-size="12" fill="#152430">Pipeline.lambda$dispatchSession$2</text>
+</g>
+<g data-depth="18" data-weight="216"><title>io.ominicat.core.Pipeline.dispatchSession: 216 个样本 (41.221%)</title><rect x="221.877863" y="817" width="504.549618321" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="225.877863" y="833" font-family="monospace" font-size="12" fill="#152430">Pipeline.dispatchSession</text>
+</g>
+<g data-depth="19" data-weight="3"><title>io.ominicat.benchmarks.CoreLoad$$Lambda$82+0x0000007001009880.1331923253.accept: 3 个样本 (0.573%)</title><rect x="221.877863" y="793" width="7.00763358779" height="22" fill="hsl(39,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="20" data-weight="3"><title>io.ominicat.benchmarks.CoreLoad.lambda$main$1: 3 个样本 (0.573%)</title><rect x="221.877863" y="769" width="7.00763358779" height="22" fill="hsl(48,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="21" data-weight="3"><title>java.util.concurrent.Semaphore.release: 3 个样本 (0.573%)</title><rect x="221.877863" y="745" width="7.00763358779" height="22" fill="hsl(39,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="22" data-weight="3"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.releaseShared: 3 个样本 (0.573%)</title><rect x="221.877863" y="721" width="7.00763358779" height="22" fill="hsl(32,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="23" data-weight="3"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.signalNext: 3 个样本 (0.573%)</title><rect x="221.877863" y="697" width="7.00763358779" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="24" data-weight="3"><title>java.util.concurrent.locks.LockSupport.unpark: 3 个样本 (0.573%)</title><rect x="221.877863" y="673" width="7.00763358779" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="19" data-weight="207"><title>io.ominicat.core.Pipeline.invoke: 207 个样本 (39.504%)</title><rect x="228.885496" y="793" width="483.526717557" height="22" fill="hsl(46,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="232.885496" y="809" font-family="monospace" font-size="12" fill="#152430">Pipeline.invoke</text>
+</g>
+<g data-depth="20" data-weight="207"><title>io.ominicat.benchmarks.CoreLoad$$Lambda$77+0x0000007001008800.846947180.process: 207 个样本 (39.504%)</title><rect x="228.885496" y="769" width="483.526717557" height="22" fill="hsl(18,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="232.885496" y="785" font-family="monospace" font-size="12" fill="#152430">CoreLoad$$Lambda$77.process</text>
+</g>
+<g data-depth="21" data-weight="207"><title>io.ominicat.benchmarks.CoreLoad.lambda$main$0: 207 个样本 (39.504%)</title><rect x="228.885496" y="745" width="483.526717557" height="22" fill="hsl(36,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="232.885496" y="761" font-family="monospace" font-size="12" fill="#152430">CoreLoad.lambda$main$0</text>
+</g>
+<g data-depth="22" data-weight="207"><title>io.ominicat.core.SynchronousSink.accept: 207 个样本 (39.504%)</title><rect x="228.885496" y="721" width="483.526717557" height="22" fill="hsl(29,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="232.885496" y="737" font-family="monospace" font-size="12" fill="#152430">SynchronousSink.accept</text>
+</g>
+<g data-depth="23" data-weight="207"><title>io.ominicat.core.Pipeline$$Lambda$93+0x000000700100fd60.2065602256.accept: 207 个样本 (39.504%)</title><rect x="228.885496" y="697" width="483.526717557" height="22" fill="hsl(41,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="232.885496" y="713" font-family="monospace" font-size="12" fill="#152430">Pipeline$$Lambda$93.accept</text>
+</g>
+<g data-depth="24" data-weight="207"><title>io.ominicat.core.Pipeline.lambda$dispatchSession$2: 207 个样本 (39.504%)</title><rect x="228.885496" y="673" width="483.526717557" height="22" fill="hsl(42,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="232.885496" y="689" font-family="monospace" font-size="12" fill="#152430">Pipeline.lambda$dispatchSession$2</text>
+</g>
+<g data-depth="25" data-weight="207"><title>io.ominicat.core.Pipeline.dispatchSession: 207 个样本 (39.504%)</title><rect x="228.885496" y="649" width="483.526717557" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="232.885496" y="665" font-family="monospace" font-size="12" fill="#152430">Pipeline.dispatchSession</text>
+</g>
+<g data-depth="26" data-weight="129"><title>io.ominicat.core.Pipeline.invoke: 129 个样本 (24.618%)</title><rect x="228.885496" y="625" width="301.328244275" height="22" fill="hsl(46,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="232.885496" y="641" font-family="monospace" font-size="12" fill="#152430">Pipeline.invoke</text>
+</g>
+<g data-depth="27" data-weight="129"><title>io.ominicat.benchmarks.CoreLoad$$Lambda$77+0x0000007001008800.846947180.process: 129 个样本 (24.618%)</title><rect x="228.885496" y="601" width="301.328244275" height="22" fill="hsl(18,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="232.885496" y="617" font-family="monospace" font-size="12" fill="#152430">CoreLoad$$Lambda$77.process</text>
+</g>
+<g data-depth="28" data-weight="129"><title>io.ominicat.benchmarks.CoreLoad.lambda$main$0: 129 个样本 (24.618%)</title><rect x="228.885496" y="577" width="301.328244275" height="22" fill="hsl(36,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="232.885496" y="593" font-family="monospace" font-size="12" fill="#152430">CoreLoad.lambda$main$0</text>
+</g>
+<g data-depth="29" data-weight="129"><title>io.ominicat.core.SynchronousSink.accept: 129 个样本 (24.618%)</title><rect x="228.885496" y="553" width="301.328244275" height="22" fill="hsl(29,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="232.885496" y="569" font-family="monospace" font-size="12" fill="#152430">SynchronousSink.accept</text>
+</g>
+<g data-depth="30" data-weight="129"><title>io.ominicat.core.Pipeline$$Lambda$93+0x000000700100fd60.2065602256.accept: 129 个样本 (24.618%)</title><rect x="228.885496" y="529" width="301.328244275" height="22" fill="hsl(41,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="232.885496" y="545" font-family="monospace" font-size="12" fill="#152430">Pipeline$$Lambda$93.accept</text>
+</g>
+<g data-depth="31" data-weight="129"><title>io.ominicat.core.Pipeline.lambda$dispatchSession$2: 129 个样本 (24.618%)</title><rect x="228.885496" y="505" width="301.328244275" height="22" fill="hsl(42,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="232.885496" y="521" font-family="monospace" font-size="12" fill="#152430">Pipeline.lambda$dispatchSession$2</text>
+</g>
+<g data-depth="32" data-weight="112"><title>io.ominicat.core.Pipeline.dispatchSession: 112 个样本 (21.374%)</title><rect x="228.885496" y="481" width="261.618320611" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="232.885496" y="497" font-family="monospace" font-size="12" fill="#152430">Pipeline.dispatchSession</text>
+</g>
+<g data-depth="33" data-weight="86"><title>io.ominicat.benchmarks.CoreLoad$$Lambda$82+0x0000007001009880.1331923253.accept: 86 个样本 (16.412%)</title><rect x="228.885496" y="457" width="200.885496183" height="22" fill="hsl(39,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="232.885496" y="473" font-family="monospace" font-size="12" fill="#152430">CoreLoad$$Lambda$82.accept</text>
+</g>
+<g data-depth="34" data-weight="86"><title>io.ominicat.benchmarks.CoreLoad.lambda$main$1: 86 个样本 (16.412%)</title><rect x="228.885496" y="433" width="200.885496183" height="22" fill="hsl(48,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="232.885496" y="449" font-family="monospace" font-size="12" fill="#152430">CoreLoad.lambda$main$1</text>
+</g>
+<g data-depth="35" data-weight="53"><title>java.util.concurrent.CountDownLatch.countDown: 53 个样本 (10.115%)</title><rect x="228.885496" y="409" width="123.801526718" height="22" fill="hsl(23,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="232.885496" y="425" font-family="monospace" font-size="12" fill="#152430">CountDownLatch…</text>
+</g>
+<g data-depth="36" data-weight="53"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.releaseShared: 53 个样本 (10.115%)</title><rect x="228.885496" y="385" width="123.801526718" height="22" fill="hsl(32,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="232.885496" y="401" font-family="monospace" font-size="12" fill="#152430">AbstractQueued…</text>
+</g>
+<g data-depth="37" data-weight="53"><title>java.util.concurrent.CountDownLatch$Sync.tryReleaseShared: 53 个样本 (10.115%)</title><rect x="228.885496" y="361" width="123.801526718" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="232.885496" y="377" font-family="monospace" font-size="12" fill="#152430">CountDownLatch…</text>
+</g>
+<g data-depth="35" data-weight="33"><title>java.util.concurrent.Semaphore.release: 33 个样本 (6.298%)</title><rect x="352.687023" y="409" width="77.0839694656" height="22" fill="hsl(39,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="356.687023" y="425" font-family="monospace" font-size="12" fill="#152430">Semaphor…</text>
+</g>
+<g data-depth="36" data-weight="33"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.releaseShared: 33 个样本 (6.298%)</title><rect x="352.687023" y="385" width="77.0839694656" height="22" fill="hsl(32,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="356.687023" y="401" font-family="monospace" font-size="12" fill="#152430">Abstract…</text>
+</g>
+<g data-depth="37" data-weight="33"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.signalNext: 33 个样本 (6.298%)</title><rect x="352.687023" y="361" width="77.0839694656" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="356.687023" y="377" font-family="monospace" font-size="12" fill="#152430">Abstract…</text>
+</g>
+<g data-depth="38" data-weight="33"><title>java.util.concurrent.locks.LockSupport.unpark: 33 个样本 (6.298%)</title><rect x="352.687023" y="337" width="77.0839694656" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="356.687023" y="353" font-family="monospace" font-size="12" fill="#152430">LockSupp…</text>
+</g>
+<g data-depth="33" data-weight="20"><title>io.ominicat.core.Pipeline.invoke: 20 个样本 (3.817%)</title><rect x="429.770992" y="457" width="46.7175572519" height="22" fill="hsl(46,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="433.770992" y="473" font-family="monospace" font-size="12" fill="#152430">Pipe…</text>
+</g>
+<g data-depth="34" data-weight="20"><title>io.ominicat.benchmarks.CoreLoad$$Lambda$77+0x0000007001008800.846947180.process: 20 个样本 (3.817%)</title><rect x="429.770992" y="433" width="46.7175572519" height="22" fill="hsl(18,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="433.770992" y="449" font-family="monospace" font-size="12" fill="#152430">Core…</text>
+</g>
+<g data-depth="35" data-weight="20"><title>io.ominicat.benchmarks.CoreLoad.lambda$main$0: 20 个样本 (3.817%)</title><rect x="429.770992" y="409" width="46.7175572519" height="22" fill="hsl(36,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="433.770992" y="425" font-family="monospace" font-size="12" fill="#152430">Core…</text>
+</g>
+<g data-depth="36" data-weight="20"><title>io.ominicat.core.SynchronousSink.accept: 20 个样本 (3.817%)</title><rect x="429.770992" y="385" width="46.7175572519" height="22" fill="hsl(29,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="433.770992" y="401" font-family="monospace" font-size="12" fill="#152430">Sync…</text>
+</g>
+<g data-depth="37" data-weight="20"><title>io.ominicat.core.Pipeline$$Lambda$93+0x000000700100fd60.2065602256.accept: 20 个样本 (3.817%)</title><rect x="429.770992" y="361" width="46.7175572519" height="22" fill="hsl(41,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="433.770992" y="377" font-family="monospace" font-size="12" fill="#152430">Pipe…</text>
+</g>
+<g data-depth="38" data-weight="20"><title>io.ominicat.core.Pipeline.lambda$dispatchSession$2: 20 个样本 (3.817%)</title><rect x="429.770992" y="337" width="46.7175572519" height="22" fill="hsl(42,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="433.770992" y="353" font-family="monospace" font-size="12" fill="#152430">Pipe…</text>
+</g>
+<g data-depth="39" data-weight="20"><title>io.ominicat.core.Pipeline.dispatchSession: 20 个样本 (3.817%)</title><rect x="429.770992" y="313" width="46.7175572519" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="433.770992" y="329" font-family="monospace" font-size="12" fill="#152430">Pipe…</text>
+</g>
+<g data-depth="40" data-weight="20"><title>io.ominicat.core.PipelineSession$$Lambda$86+0x000000700100f6e8.1407567661.getAsBoolean: 20 个样本 (3.817%)</title><rect x="429.770992" y="289" width="46.7175572519" height="22" fill="hsl(33,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="433.770992" y="305" font-family="monospace" font-size="12" fill="#152430">Pipe…</text>
+</g>
+<g data-depth="41" data-weight="20"><title>io.ominicat.core.PipelineSession.lambda$run$2: 20 个样本 (3.817%)</title><rect x="429.770992" y="265" width="46.7175572519" height="22" fill="hsl(28,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="433.770992" y="281" font-family="monospace" font-size="12" fill="#152430">Pipe…</text>
+</g>
+<g data-depth="42" data-weight="20"><title>io.ominicat.core.PipelineSession.valid: 20 个样本 (3.817%)</title><rect x="429.770992" y="241" width="46.7175572519" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="433.770992" y="257" font-family="monospace" font-size="12" fill="#152430">Pipe…</text>
+</g>
+<g data-depth="43" data-weight="20"><title>java.util.concurrent.locks.ReentrantLock.unlock: 20 个样本 (3.817%)</title><rect x="429.770992" y="217" width="46.7175572519" height="22" fill="hsl(44,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="433.770992" y="233" font-family="monospace" font-size="12" fill="#152430">Reen…</text>
+</g>
+<g data-depth="44" data-weight="20"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.release: 20 个样本 (3.817%)</title><rect x="429.770992" y="193" width="46.7175572519" height="22" fill="hsl(24,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="433.770992" y="209" font-family="monospace" font-size="12" fill="#152430">Abst…</text>
+</g>
+<g data-depth="45" data-weight="20"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.signalNext: 20 个样本 (3.817%)</title><rect x="429.770992" y="169" width="46.7175572519" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="433.770992" y="185" font-family="monospace" font-size="12" fill="#152430">Abst…</text>
+</g>
+<g data-depth="46" data-weight="20"><title>java.util.concurrent.locks.LockSupport.unpark: 20 个样本 (3.817%)</title><rect x="429.770992" y="145" width="46.7175572519" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="433.770992" y="161" font-family="monospace" font-size="12" fill="#152430">Lock…</text>
+</g>
+<g data-depth="33" data-weight="6"><title>io.ominicat.core.PipelineSession$$Lambda$86+0x000000700100f6e8.1407567661.getAsBoolean: 6 个样本 (1.145%)</title><rect x="476.48855" y="457" width="14.0152671756" height="22" fill="hsl(33,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="34" data-weight="6"><title>io.ominicat.core.PipelineSession.lambda$run$2: 6 个样本 (1.145%)</title><rect x="476.48855" y="433" width="14.0152671756" height="22" fill="hsl(28,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="35" data-weight="6"><title>io.ominicat.core.PipelineSession.valid: 6 个样本 (1.145%)</title><rect x="476.48855" y="409" width="14.0152671756" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="36" data-weight="6"><title>java.util.concurrent.locks.ReentrantLock.lock: 6 个样本 (1.145%)</title><rect x="476.48855" y="385" width="14.0152671756" height="22" fill="hsl(29,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="37" data-weight="6"><title>java.util.concurrent.locks.ReentrantLock$Sync.lock: 6 个样本 (1.145%)</title><rect x="476.48855" y="361" width="14.0152671756" height="22" fill="hsl(19,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="38" data-weight="6"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire: 6 个样本 (1.145%)</title><rect x="476.48855" y="337" width="14.0152671756" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="26" data-weight="78"><title>io.ominicat.core.PipelineSession$$Lambda$86+0x000000700100f6e8.1407567661.getAsBoolean: 78 个样本 (14.885%)</title><rect x="530.21374" y="625" width="182.198473282" height="22" fill="hsl(33,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="534.21374" y="641" font-family="monospace" font-size="12" fill="#152430">PipelineSession$$Lambd…</text>
+</g>
+<g data-depth="27" data-weight="78"><title>io.ominicat.core.PipelineSession.lambda$run$2: 78 个样本 (14.885%)</title><rect x="530.21374" y="601" width="182.198473282" height="22" fill="hsl(28,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="534.21374" y="617" font-family="monospace" font-size="12" fill="#152430">PipelineSession.lambda…</text>
+</g>
+<g data-depth="28" data-weight="78"><title>io.ominicat.core.PipelineSession.valid: 78 个样本 (14.885%)</title><rect x="530.21374" y="577" width="182.198473282" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="534.21374" y="593" font-family="monospace" font-size="12" fill="#152430">PipelineSession.valid</text>
+</g>
+<g data-depth="29" data-weight="2"><title>java.util.concurrent.locks.ReentrantLock.lock: 2 个样本 (0.382%)</title><rect x="530.21374" y="553" width="4.67175572519" height="22" fill="hsl(29,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="30" data-weight="2"><title>java.util.concurrent.locks.ReentrantLock$Sync.lock: 2 个样本 (0.382%)</title><rect x="530.21374" y="529" width="4.67175572519" height="22" fill="hsl(19,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="31" data-weight="2"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire: 2 个样本 (0.382%)</title><rect x="530.21374" y="505" width="4.67175572519" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="32" data-weight="1"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire: 1 个样本 (0.191%)</title><rect x="530.21374" y="481" width="2.3358778626" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="29" data-weight="76"><title>java.util.concurrent.locks.ReentrantLock.unlock: 76 个样本 (14.504%)</title><rect x="534.885496" y="553" width="177.526717557" height="22" fill="hsl(44,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="538.885496" y="569" font-family="monospace" font-size="12" fill="#152430">ReentrantLock.unlock</text>
+</g>
+<g data-depth="30" data-weight="76"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.release: 76 个样本 (14.504%)</title><rect x="534.885496" y="529" width="177.526717557" height="22" fill="hsl(24,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="538.885496" y="545" font-family="monospace" font-size="12" fill="#152430">AbstractQueuedSynchron…</text>
+</g>
+<g data-depth="31" data-weight="76"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.signalNext: 76 个样本 (14.504%)</title><rect x="534.885496" y="505" width="177.526717557" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="538.885496" y="521" font-family="monospace" font-size="12" fill="#152430">AbstractQueuedSynchron…</text>
+</g>
+<g data-depth="32" data-weight="76"><title>java.util.concurrent.locks.LockSupport.unpark: 76 个样本 (14.504%)</title><rect x="534.885496" y="481" width="177.526717557" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="538.885496" y="497" font-family="monospace" font-size="12" fill="#152430">LockSupport.unpark</text>
+</g>
+<g data-depth="19" data-weight="6"><title>io.ominicat.core.PipelineSession$$Lambda$86+0x000000700100f6e8.1407567661.getAsBoolean: 6 个样本 (1.145%)</title><rect x="712.412214" y="793" width="14.0152671756" height="22" fill="hsl(33,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="20" data-weight="6"><title>io.ominicat.core.PipelineSession.lambda$run$2: 6 个样本 (1.145%)</title><rect x="712.412214" y="769" width="14.0152671756" height="22" fill="hsl(28,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="21" data-weight="6"><title>io.ominicat.core.PipelineSession.valid: 6 个样本 (1.145%)</title><rect x="712.412214" y="745" width="14.0152671756" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="22" data-weight="6"><title>java.util.concurrent.locks.ReentrantLock.lock: 6 个样本 (1.145%)</title><rect x="712.412214" y="721" width="14.0152671756" height="22" fill="hsl(29,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="23" data-weight="6"><title>java.util.concurrent.locks.ReentrantLock$Sync.lock: 6 个样本 (1.145%)</title><rect x="712.412214" y="697" width="14.0152671756" height="22" fill="hsl(19,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="24" data-weight="6"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire: 6 个样本 (1.145%)</title><rect x="712.412214" y="673" width="14.0152671756" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="25" data-weight="5"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire: 5 个样本 (0.954%)</title><rect x="712.412214" y="649" width="11.679389313" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="26" data-weight="5"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.signalNextIfShared: 5 个样本 (0.954%)</title><rect x="712.412214" y="625" width="11.679389313" height="22" fill="hsl(36,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="12" data-weight="59"><title>io.ominicat.core.PipelineSession$$Lambda$86+0x000000700100f6e8.1407567661.getAsBoolean: 59 个样本 (11.260%)</title><rect x="756.793893" y="961" width="137.816793893" height="22" fill="hsl(33,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="760.793893" y="977" font-family="monospace" font-size="12" fill="#152430">PipelineSession$…</text>
+</g>
+<g data-depth="13" data-weight="59"><title>io.ominicat.core.PipelineSession.lambda$run$2: 59 个样本 (11.260%)</title><rect x="756.793893" y="937" width="137.816793893" height="22" fill="hsl(28,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="760.793893" y="953" font-family="monospace" font-size="12" fill="#152430">PipelineSession.…</text>
+</g>
+<g data-depth="14" data-weight="59"><title>io.ominicat.core.PipelineSession.valid: 59 个样本 (11.260%)</title><rect x="756.793893" y="913" width="137.816793893" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="760.793893" y="929" font-family="monospace" font-size="12" fill="#152430">PipelineSession.…</text>
+</g>
+<g data-depth="15" data-weight="4"><title>java.util.concurrent.locks.ReentrantLock.lock: 4 个样本 (0.763%)</title><rect x="756.793893" y="889" width="9.34351145038" height="22" fill="hsl(29,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="16" data-weight="4"><title>java.util.concurrent.locks.ReentrantLock$Sync.lock: 4 个样本 (0.763%)</title><rect x="756.793893" y="865" width="9.34351145038" height="22" fill="hsl(19,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="17" data-weight="4"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire: 4 个样本 (0.763%)</title><rect x="756.793893" y="841" width="9.34351145038" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="18" data-weight="4"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire: 4 个样本 (0.763%)</title><rect x="756.793893" y="817" width="9.34351145038" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="19" data-weight="3"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.signalNextIfShared: 3 个样本 (0.573%)</title><rect x="756.793893" y="793" width="7.00763358779" height="22" fill="hsl(36,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="15" data-weight="55"><title>java.util.concurrent.locks.ReentrantLock.unlock: 55 个样本 (10.496%)</title><rect x="766.137405" y="889" width="128.473282443" height="22" fill="hsl(44,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="770.137405" y="905" font-family="monospace" font-size="12" fill="#152430">ReentrantLock.u…</text>
+</g>
+<g data-depth="16" data-weight="55"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.release: 55 个样本 (10.496%)</title><rect x="766.137405" y="865" width="128.473282443" height="22" fill="hsl(24,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="770.137405" y="881" font-family="monospace" font-size="12" fill="#152430">AbstractQueuedS…</text>
+</g>
+<g data-depth="17" data-weight="55"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.signalNext: 55 个样本 (10.496%)</title><rect x="766.137405" y="841" width="128.473282443" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="770.137405" y="857" font-family="monospace" font-size="12" fill="#152430">AbstractQueuedS…</text>
+</g>
+<g data-depth="18" data-weight="55"><title>java.util.concurrent.locks.LockSupport.unpark: 55 个样本 (10.496%)</title><rect x="766.137405" y="817" width="128.473282443" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="770.137405" y="833" font-family="monospace" font-size="12" fill="#152430">LockSupport.unp…</text>
+</g>
+<g data-depth="5" data-weight="6"><title>io.ominicat.core.PipelineSession$$Lambda$86+0x000000700100f6e8.1407567661.getAsBoolean: 6 个样本 (1.145%)</title><rect x="894.610687" y="1129" width="14.0152671756" height="22" fill="hsl(33,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="6" data-weight="6"><title>io.ominicat.core.PipelineSession.lambda$run$2: 6 个样本 (1.145%)</title><rect x="894.610687" y="1105" width="14.0152671756" height="22" fill="hsl(28,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="7" data-weight="6"><title>io.ominicat.core.PipelineSession.valid: 6 个样本 (1.145%)</title><rect x="894.610687" y="1081" width="14.0152671756" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="8" data-weight="6"><title>java.util.concurrent.locks.ReentrantLock.lock: 6 个样本 (1.145%)</title><rect x="894.610687" y="1057" width="14.0152671756" height="22" fill="hsl(29,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="9" data-weight="6"><title>java.util.concurrent.locks.ReentrantLock$Sync.lock: 6 个样本 (1.145%)</title><rect x="894.610687" y="1033" width="14.0152671756" height="22" fill="hsl(19,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="10" data-weight="6"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire: 6 个样本 (1.145%)</title><rect x="894.610687" y="1009" width="14.0152671756" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="11" data-weight="5"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire: 5 个样本 (0.954%)</title><rect x="894.610687" y="985" width="11.679389313" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="12" data-weight="4"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.signalNextIfShared: 4 个样本 (0.763%)</title><rect x="894.610687" y="961" width="9.34351145038" height="22" fill="hsl(36,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="4" data-weight="56"><title>io.ominicat.core.PipelineSession.take: 56 个样本 (10.687%)</title><rect x="908.625954" y="1153" width="130.809160305" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="912.625954" y="1169" font-family="monospace" font-size="12" fill="#152430">PipelineSession…</text>
+</g>
+<g data-depth="5" data-weight="4"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await: 4 个样本 (0.763%)</title><rect x="908.625954" y="1129" width="9.34351145038" height="22" fill="hsl(25,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="6" data-weight="2"><title>java.util.concurrent.ForkJoinPool.managedBlock: 2 个样本 (0.382%)</title><rect x="908.625954" y="1105" width="4.67175572519" height="22" fill="hsl(19,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="7" data-weight="2"><title>java.util.concurrent.ForkJoinPool.unmanagedBlock: 2 个样本 (0.382%)</title><rect x="908.625954" y="1081" width="4.67175572519" height="22" fill="hsl(21,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="8" data-weight="2"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionNode.block: 2 个样本 (0.382%)</title><rect x="908.625954" y="1057" width="4.67175572519" height="22" fill="hsl(44,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="9" data-weight="2"><title>java.util.concurrent.locks.LockSupport.park: 2 个样本 (0.382%)</title><rect x="908.625954" y="1033" width="4.67175572519" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="6" data-weight="1"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.enableWait: 1 个样本 (0.191%)</title><rect x="913.29771" y="1105" width="2.3358778626" height="22" fill="hsl(32,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="7" data-weight="1"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.release: 1 个样本 (0.191%)</title><rect x="913.29771" y="1081" width="2.3358778626" height="22" fill="hsl(24,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="8" data-weight="1"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.signalNext: 1 个样本 (0.191%)</title><rect x="913.29771" y="1057" width="2.3358778626" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="9" data-weight="1"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer$Node.getAndUnsetStatus: 1 个样本 (0.191%)</title><rect x="913.29771" y="1033" width="2.3358778626" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="10" data-weight="1"><title>jdk.internal.misc.Unsafe.getAndBitwiseAndInt: 1 个样本 (0.191%)</title><rect x="913.29771" y="1009" width="2.3358778626" height="22" fill="hsl(38,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="5" data-weight="3"><title>java.util.concurrent.locks.ReentrantLock.lockInterruptibly: 3 个样本 (0.573%)</title><rect x="917.969466" y="1129" width="7.00763358779" height="22" fill="hsl(21,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="6" data-weight="3"><title>java.util.concurrent.locks.ReentrantLock$Sync.lockInterruptibly: 3 个样本 (0.573%)</title><rect x="917.969466" y="1105" width="7.00763358779" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="7" data-weight="3"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.acquireInterruptibly: 3 个样本 (0.573%)</title><rect x="917.969466" y="1081" width="7.00763358779" height="22" fill="hsl(31,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="8" data-weight="3"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire: 3 个样本 (0.573%)</title><rect x="917.969466" y="1057" width="7.00763358779" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="9" data-weight="2"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.signalNextIfShared: 2 个样本 (0.382%)</title><rect x="917.969466" y="1033" width="4.67175572519" height="22" fill="hsl(36,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="5" data-weight="49"><title>java.util.concurrent.locks.ReentrantLock.unlock: 49 个样本 (9.351%)</title><rect x="924.977099" y="1129" width="114.458015267" height="22" fill="hsl(44,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="928.977099" y="1145" font-family="monospace" font-size="12" fill="#152430">ReentrantLock…</text>
+</g>
+<g data-depth="6" data-weight="49"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.release: 49 个样本 (9.351%)</title><rect x="924.977099" y="1105" width="114.458015267" height="22" fill="hsl(24,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="928.977099" y="1121" font-family="monospace" font-size="12" fill="#152430">AbstractQueue…</text>
+</g>
+<g data-depth="7" data-weight="49"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.signalNext: 49 个样本 (9.351%)</title><rect x="924.977099" y="1081" width="114.458015267" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="928.977099" y="1097" font-family="monospace" font-size="12" fill="#152430">AbstractQueue…</text>
+</g>
+<g data-depth="8" data-weight="49"><title>java.util.concurrent.locks.LockSupport.unpark: 49 个样本 (9.351%)</title><rect x="924.977099" y="1057" width="114.458015267" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="928.977099" y="1073" font-family="monospace" font-size="12" fill="#152430">LockSupport.u…</text>
+</g>
+<g data-depth="4" data-weight="2"><title>java.lang.invoke.Invokers$Holder.linkToTargetMethod: 2 个样本 (0.382%)</title><rect x="1039.43511" y="1153" width="4.67175572519" height="22" fill="hsl(32,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="5" data-weight="2"><title>java.lang.invoke.DirectMethodHandle$Holder.newInvokeSpecial: 2 个样本 (0.382%)</title><rect x="1039.43511" y="1129" width="4.67175572519" height="22" fill="hsl(30,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="6" data-weight="2"><title>java.lang.invoke.DirectMethodHandle.allocateInstance: 2 个样本 (0.382%)</title><rect x="1039.43511" y="1105" width="4.67175572519" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="4" data-weight="32"><title>java.util.concurrent.locks.ReentrantLock.lock: 32 个样本 (6.107%)</title><rect x="1044.10687" y="1153" width="74.7480916031" height="22" fill="hsl(29,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1048.10687" y="1169" font-family="monospace" font-size="12" fill="#152430">Reentran…</text>
+</g>
+<g data-depth="5" data-weight="32"><title>java.util.concurrent.locks.ReentrantLock$Sync.lock: 32 个样本 (6.107%)</title><rect x="1044.10687" y="1129" width="74.7480916031" height="22" fill="hsl(19,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1048.10687" y="1145" font-family="monospace" font-size="12" fill="#152430">Reentran…</text>
+</g>
+<g data-depth="6" data-weight="32"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire: 32 个样本 (6.107%)</title><rect x="1044.10687" y="1105" width="74.7480916031" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1048.10687" y="1121" font-family="monospace" font-size="12" fill="#152430">Abstract…</text>
+</g>
+<g data-depth="7" data-weight="3"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire: 3 个样本 (0.573%)</title><rect x="1044.10687" y="1081" width="7.00763358779" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="8" data-weight="1"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.signalNextIfShared: 1 个样本 (0.191%)</title><rect x="1044.10687" y="1057" width="2.3358778626" height="22" fill="hsl(36,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="8" data-weight="1"><title>java.util.concurrent.locks.LockSupport.parkNanos: 1 个样本 (0.191%)</title><rect x="1046.44275" y="1057" width="2.3358778626" height="22" fill="hsl(33,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="3" data-weight="1"><title>io.ominicat.core.PipelineSession.take: 1 个样本 (0.191%)</title><rect x="1142.21374" y="1177" width="2.3358778626" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="4" data-weight="1"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await: 1 个样本 (0.191%)</title><rect x="1142.21374" y="1153" width="2.3358778626" height="22" fill="hsl(25,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="2" data-weight="46"><title>java.util.concurrent.ThreadPoolExecutor$Worker.run: 46 个样本 (8.779%)</title><rect x="1144.54962" y="1201" width="107.450381679" height="22" fill="hsl(40,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1148.54962" y="1217" font-family="monospace" font-size="12" fill="#152430">ThreadPoolEx…</text>
+</g>
+<g data-depth="3" data-weight="46"><title>java.util.concurrent.ThreadPoolExecutor.runWorker: 46 个样本 (8.779%)</title><rect x="1144.54962" y="1177" width="107.450381679" height="22" fill="hsl(22,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1148.54962" y="1193" font-family="monospace" font-size="12" fill="#152430">ThreadPoolEx…</text>
+</g>
+<g data-depth="4" data-weight="46"><title>java.util.concurrent.FutureTask.run: 46 个样本 (8.779%)</title><rect x="1144.54962" y="1153" width="107.450381679" height="22" fill="hsl(43,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1148.54962" y="1169" font-family="monospace" font-size="12" fill="#152430">FutureTask.r…</text>
+</g>
+<g data-depth="5" data-weight="46"><title>java.util.concurrent.Executors$RunnableAdapter.call: 46 个样本 (8.779%)</title><rect x="1144.54962" y="1129" width="107.450381679" height="22" fill="hsl(27,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1148.54962" y="1145" font-family="monospace" font-size="12" fill="#152430">Executors$Ru…</text>
+</g>
+<g data-depth="6" data-weight="46"><title>io.ominicat.benchmarks.CoreLoad$$Lambda$85+0x000000700100bdc0.592617454.run: 46 个样本 (8.779%)</title><rect x="1144.54962" y="1105" width="107.450381679" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1148.54962" y="1121" font-family="monospace" font-size="12" fill="#152430">CoreLoad$$La…</text>
+</g>
+<g data-depth="7" data-weight="46"><title>io.ominicat.benchmarks.CoreLoad.lambda$runPhase$4: 46 个样本 (8.779%)</title><rect x="1144.54962" y="1081" width="107.450381679" height="22" fill="hsl(38,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1148.54962" y="1097" font-family="monospace" font-size="12" fill="#152430">CoreLoad.lam…</text>
+</g>
+<g data-depth="8" data-weight="34"><title>io.ominicat.core.PipelineSession.submit: 34 个样本 (6.489%)</title><rect x="1144.54962" y="1057" width="79.4198473282" height="22" fill="hsl(49,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1148.54962" y="1073" font-family="monospace" font-size="12" fill="#152430">Pipeline…</text>
+</g>
+<g data-depth="9" data-weight="7"><title>java.util.concurrent.locks.ReentrantLock.lockInterruptibly: 7 个样本 (1.336%)</title><rect x="1144.54962" y="1033" width="16.3511450382" height="22" fill="hsl(21,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="10" data-weight="7"><title>java.util.concurrent.locks.ReentrantLock$Sync.lockInterruptibly: 7 个样本 (1.336%)</title><rect x="1144.54962" y="1009" width="16.3511450382" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="11" data-weight="7"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.acquireInterruptibly: 7 个样本 (1.336%)</title><rect x="1144.54962" y="985" width="16.3511450382" height="22" fill="hsl(31,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="12" data-weight="6"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire: 6 个样本 (1.145%)</title><rect x="1144.54962" y="961" width="14.0152671756" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="13" data-weight="3"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.signalNextIfShared: 3 个样本 (0.573%)</title><rect x="1144.54962" y="937" width="7.00763358779" height="22" fill="hsl(36,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="9" data-weight="27"><title>java.util.concurrent.locks.ReentrantLock.unlock: 27 个样本 (5.153%)</title><rect x="1160.90076" y="1033" width="63.0687022901" height="22" fill="hsl(44,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1164.90076" y="1049" font-family="monospace" font-size="12" fill="#152430">Reentr…</text>
+</g>
+<g data-depth="10" data-weight="27"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.release: 27 个样本 (5.153%)</title><rect x="1160.90076" y="1009" width="63.0687022901" height="22" fill="hsl(24,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1164.90076" y="1025" font-family="monospace" font-size="12" fill="#152430">Abstra…</text>
+</g>
+<g data-depth="11" data-weight="27"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.signalNext: 27 个样本 (5.153%)</title><rect x="1160.90076" y="985" width="63.0687022901" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1164.90076" y="1001" font-family="monospace" font-size="12" fill="#152430">Abstra…</text>
+</g>
+<g data-depth="12" data-weight="27"><title>java.util.concurrent.locks.LockSupport.unpark: 27 个样本 (5.153%)</title><rect x="1160.90076" y="961" width="63.0687022901" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1164.90076" y="977" font-family="monospace" font-size="12" fill="#152430">LockSu…</text>
+</g>
+<g data-depth="8" data-weight="3"><title>java.util.concurrent.Semaphore.tryAcquire: 3 个样本 (0.573%)</title><rect x="1223.96947" y="1057" width="7.00763358779" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="9" data-weight="3"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.tryAcquireSharedNanos: 3 个样本 (0.573%)</title><rect x="1223.96947" y="1033" width="7.00763358779" height="22" fill="hsl(46,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="10" data-weight="3"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire: 3 个样本 (0.573%)</title><rect x="1223.96947" y="1009" width="7.00763358779" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="11" data-weight="3"><title>java.util.concurrent.locks.AbstractQueuedSynchronizer.signalNextIfShared: 3 个样本 (0.573%)</title><rect x="1223.96947" y="985" width="7.00763358779" height="22" fill="hsl(36,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<metadata id="ominicat-locale-source">{"geometrySha256": "a72542abace0d42d40ad7a6614f6e33a8ee2dce382a4f25689fe4ae7b5a1ba87", "language": "zh-CN", "recoveredGlyphLabels": 0, "sha256": "19767b455116d8b0e79807dd44e3ce487f1e8179def6175a8697035642cb7c17", "source": "reports/java17/kernel/cpu-flamegraph.svg"}</metadata></svg>

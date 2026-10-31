@@ -1,3 +1,7 @@
+<!-- ominicat-language-nav -->
+[简体中文](../docs/zh-CN/ominicat-providers/README.md) · **English**
+<!-- /ominicat-language-nav -->
+
 # Processing adapters
 
 See [adversarial verification](DEEP_VERIFICATION.md) for the fault matrix, deterministic seeds, reproduced defects and isolated-build commands.
@@ -79,7 +83,7 @@ Setting `passPartials: "true"` forwards each accepted partial revision once. It 
 
 ## Text and images
 
-`openai-chat` sends each input as an independent request: one system message plus one user message. It consumes `Text`, final `Transcript` and `Image` inputs. Partial transcripts and other frame types pass through. Use `prompt-template` for explicit retained conversation context and `transcript-gate` to suppress duplicate input finals.
+`openai-chat` sends each input as an independent request: one system message plus one user message. It consumes `Text`, final `Transcript` and `Image` inputs. Partial transcripts and other frame types pass through. Use `prompt-template` for explicit retained conversation context and `transcript-gate` to suppress duplicate input finals. The template retains only incoming transcripts; it does not automatically retain downstream model replies. The default voice pipeline therefore does not maintain a complete user/assistant message history.
 
 Additional options are `systemPrompt` (default `Be concise and helpful.`), `imagePrompt` (default `Describe this image.`), `maxOutputTokens` (default 1024, range 1–16384), and `maxInputChars` (default 65536, range 1–1000000). Requests use `max_completion_tokens`. Images are sent as inline data URLs and must fit the response-byte budget used by the adapter. SSE comments and multiline events are accepted. A missing `[DONE]` marker is a failed response, so truncated output never emits a successful turn boundary.
 

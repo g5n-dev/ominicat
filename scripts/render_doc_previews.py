@@ -27,15 +27,16 @@ SOURCES = {
     'bounded-runtime': 'docs/assets/bounded-runtime.svg',
     'framework-paths': 'docs/assets/framework-paths.svg',
     'framework-cost-scaling': 'docs/assets/framework-cost-scaling.svg',
-    **{f'{name}-zh-CN': f'docs/assets/zh-CN/{name}.svg'
-       for name in ('banner', 'architecture-overview', 'framework-paths')},
     'ubuntu-comparison': f'{UBUNTU}/overview.svg',
     'centos-comparison': 'reports/comparison/linux-centos9-java17-2026-10-31/overview.svg',
     **{f'ubuntu-{name}': f'{UBUNTU}/profiles/ominicat/{name}.svg'
        for name in ('cpu-hotspots', 'allocation-hotspots', 'gc-pauses',
                     'cpu-flamegraph', 'allocation-flamegraph')},
 }
-DOCUMENTS = ('README.md', 'README.zh-CN.md', 'docs/architecture.md', 'docs/performance.md')
+SOURCES.update({Path(item['preview']).stem: item['localized']
+                for item in json.loads((ROOT / 'docs/i18n/figures.json').read_text())['figures']})
+DOCUMENTS = ('README.md', 'README.zh-CN.md', 'docs/architecture.md', 'docs/performance.md',
+             *sorted(str(path.relative_to(ROOT)) for path in (ROOT / 'docs/zh-CN').rglob('*.md')))
 
 
 def sha256(path):

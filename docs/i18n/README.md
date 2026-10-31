@@ -1,18 +1,29 @@
-# README languages / README 语言
+<!-- ominicat-language-nav -->
+[简体中文](../zh-CN/i18n/README.md) · **English**
+<!-- /ominicat-language-nav -->
 
-[简体中文](../../README.zh-CN.md) · [English](../../README.md)
+# Documentation languages
 
-The two READMEs cover installation, configuration, embedding, plugin development and Linux performance. The Chinese edition also has a localized hero, composition diagram and framework-path diagram. Detailed component guides and original diagnostic figures currently remain primarily English; API identifiers and stack names retain their original spelling.
+The Chinese documentation catalog covers project guides, module descriptions, deployment/verification instructions and archived report narratives. Chinese pages link to their Chinese counterparts, including translated figures. API identifiers, configuration keys, method names, raw evidence and the recorded operating-system/runtime context retain their original meaning.
 
-中英文 README 均覆盖安装、配置、嵌入、插件开发与 Linux 性能。中文页提供中文横幅、模块组成图与框架执行路径图。深入组件文档和原始诊断图目前主要为英文；API 标识符与调用栈名称保持原文。
+[Chinese catalog](../zh-CN/index.md) · [Page source bindings](pages.json) · [Figure source bindings](figures.json)
 
-Edit [zh-CN.json](zh-CN.json), then run from the repository root:
+Edit the paired Chinese page when changing an English guide. Preserve heading order and levels, executable code blocks and technical literals; translate prose, table headings and explanatory image text completely. Review the meaning before refreshing source bindings. Automated checks cannot certify semantic translation quality.
+
+From the repository root, after completing translations:
 
 ```sh
 python3 scripts/localize_readme.py
 python3 scripts/render_doc_previews.py
+python3 scripts/chinese_docs.py --sync
 ```
 
-PNG rendering needs `rsvg-convert` and a Chinese font (`fonts-noto-cjk` on Ubuntu). CI's standard-library `--check` commands require neither. They reject changed English source figures without refreshed translations, missing phrases, changed numeric/version labels and stale previews. Translations change text and font selection; frame geometry, measured values and original report artifacts are preserved.
+PNG rendering requires librsvg and a Chinese font, such as `fonts-noto-cjk` on Ubuntu. Read-only CI checks need only the Python standard library:
 
-编辑翻译表后执行上述命令。绘制 PNG 时需安装 librsvg 与中文字体；CI 校验只依赖 Python 标准库，检查英文源图、翻译表、数字及预览的一致性。
+```sh
+python3 scripts/localize_readme.py --check
+python3 scripts/render_doc_previews.py --check
+python3 scripts/chinese_docs.py --check
+```
+
+The checks cover source freshness, page inventory, heading/code/table preservation, Chinese-to-Chinese internal links, fragments and localized figure/preview bindings. Explicit language-switch links lead to English; source files, external references and raw data remain technical artifacts. English files inside `reports/` are immutable evidence and receive no injected navigation bars. Their Chinese reading views live separately under `docs/zh-CN/reports/`.

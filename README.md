@@ -1,4 +1,6 @@
-<p align="center"><strong>Languages / 语言：</strong> <a href="README.zh-CN.md">简体中文</a> · <strong>English</strong></p>
+<!-- ominicat-language-nav -->
+[简体中文](README.zh-CN.md) · **English**
+<!-- /ominicat-language-nav -->
 
 <p align="center">
   <a href="docs/assets/banner.svg"><img src="docs/assets/previews/banner.png" alt="OminiCat — high-performance multimodal pipelines for Java 17+" width="100%"></a>

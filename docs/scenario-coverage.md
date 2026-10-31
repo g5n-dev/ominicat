@@ -1,3 +1,7 @@
+<!-- ominicat-language-nav -->
+[简体中文](zh-CN/scenario-coverage.md) · **English**
+<!-- /ominicat-language-nav -->
+
 # Scenario coverage
 
 This matrix separates executable mechanisms from provider integrations and external guarantees. It is a scope contract for the 0.1 preview, not a production certification.

@@ -1,8 +1,12 @@
+<!-- ominicat-language-nav -->
+[简体中文](../docs/zh-CN/ominicat-conversation/README.md) · **English**
+<!-- /ominicat-language-nav -->
+
 # Conversation primitives
 
 See the [adversarial verification matrix](../ominicat-providers/DEEP_VERIFICATION.md) for seeded interval, revision, evidence and snapshot checks.
 
-`ominicat-conversation` adds bounded transcript state, configurable policies and prompt composition to the microkernel. It depends only on `ominicat-core`; it requires no network service or model credentials. State is transient and confined to one session. This module does not provide durable storage, recovery or delivery guarantees.
+`ominicat-conversation` adds bounded transcript state, configurable policies and prompt composition to the microkernel. It depends only on `ominicat-core`; it requires no network service or model credentials. State is transient and confined to one session. This module does not provide durable storage, automatic crash recovery or delivery guarantees.
 
 ## Optional media references
 
@@ -59,7 +63,7 @@ stages:
       model: "your-model"
 ```
 
-`prompt-template` retains final transcripts from all speakers. Each new final transcript from `inputSpeaker` is consumed and replaced by one `Frame.Text` prompt; duplicate finals from that speaker emit nothing. Other frames, including partial transcripts and other speakers' transcripts, pass through. Placeholders are replaced in one pass, so transcript text containing `{{role}}`, dollar signs or backslashes stays literal data.
+`prompt-template` retains final transcripts from all speakers. Only transcripts entering this stage enter its history; downstream model replies are not fed back automatically. The default voice pipeline therefore does not maintain a complete user/assistant message history. Each new final transcript from `inputSpeaker` is consumed and replaced by one `Frame.Text` prompt; duplicate finals from that speaker emit nothing. Other frames, including partial transcripts and other speakers' transcripts, pass through. Placeholders are replaced in one pass, so transcript text containing `{{role}}`, dollar signs or backslashes stays literal data.
 
 Supported variables are `role`, `context`, `instruction`, `transcript`, `speaker` and `history`. Unknown variable names fail when the stage is created. History uses `speaker: text` lines. It drops the oldest complete lines when necessary to fit `maxPromptChars`; a latest turn or static template that cannot fit causes an explicit error. `Processor.onInterrupt()` clears prompt history and deduplication state at the serialized session interruption boundary. The evaluator retains its committed transcript window across an interruption.
 

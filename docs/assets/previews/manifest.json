@@ -63,36 +63,6 @@
       ]
     },
     {
-      "source": "docs/assets/zh-CN/banner.svg",
-      "source_sha256": "66e4306256d49d5b76094cdfe86cfcb480afa003d4967fca1682a4955e0c214d",
-      "preview": "docs/assets/previews/banner-zh-CN.png",
-      "preview_sha256": "994f6751383422e2d1bcd00c3240fae73b7a68245ca90b458286f7d3b9b3369a",
-      "pixels": [
-        2560,
-        840
-      ]
-    },
-    {
-      "source": "docs/assets/zh-CN/architecture-overview.svg",
-      "source_sha256": "dc6f40d3559417d83b3acd47d30a4dd1be0e43da9669d4c86308517d176a9c1e",
-      "preview": "docs/assets/previews/architecture-overview-zh-CN.png",
-      "preview_sha256": "4ab2dac363f280130a9bfe759eb33ae4321130d53d61f8a423511fb783077d0c",
-      "pixels": [
-        2880,
-        1860
-      ]
-    },
-    {
-      "source": "docs/assets/zh-CN/framework-paths.svg",
-      "source_sha256": "f5baf497982b87f3a17f3d11b7214aa63e3fd6dca974b49ac47233f068d1c595",
-      "preview": "docs/assets/previews/framework-paths-zh-CN.png",
-      "preview_sha256": "b46dff211627171916c0c733b763c8c314c6d5ca13f927c0d51983a7b0f5622f",
-      "pixels": [
-        2880,
-        2260
-      ]
-    },
-    {
       "source": "reports/comparison/linux-ubuntu24-java17-2026-10-31/overview.svg",
       "source_sha256": "1f6ccf509b15c4be416ffaa0eaaeba27c3227effab2d6ff086f42733c354bb31",
       "preview": "docs/assets/previews/ubuntu-comparison.png",
@@ -160,6 +130,636 @@
       "pixels": [
         2560,
         2338
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/architecture-overview.svg",
+      "source_sha256": "3c8f033cc49d66c6ffb08dfd8e8e55304509402bd67d7a9e197e5e5c1ef1ed6c",
+      "preview": "docs/assets/previews/architecture-overview-zh-CN.png",
+      "preview_sha256": "4ab2dac363f280130a9bfe759eb33ae4321130d53d61f8a423511fb783077d0c",
+      "pixels": [
+        2880,
+        1860
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/banner.svg",
+      "source_sha256": "0bae300824f4926420f136164be586f7fbe4c8f910f88244ff104b9f18f599e7",
+      "preview": "docs/assets/previews/banner-zh-CN.png",
+      "preview_sha256": "994f6751383422e2d1bcd00c3240fae73b7a68245ca90b458286f7d3b9b3369a",
+      "pixels": [
+        2560,
+        840
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/bounded-runtime.svg",
+      "source_sha256": "59eb023ec9c1e7d92b9407f30f0fee289935cc62da84e25f1aa68f4447bb5adc",
+      "preview": "docs/assets/previews/bounded-runtime-zh-CN.png",
+      "preview_sha256": "9911bb9d694ab00c37675befccd1cae0de43b4d5c0df3c7d4ee442ad7f569ba8",
+      "pixels": [
+        2880,
+        2360
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/execution-path.svg",
+      "source_sha256": "fc58ebddca494045f6ff3d9d987238c6fc73ab9f2c3cd1ed4cefa0f6b3357fc2",
+      "preview": "docs/assets/previews/execution-path-zh-CN.png",
+      "preview_sha256": "8184dd675de554b3e2a21a3684a374a7151ab89c15a4e92934a4164b0a078223",
+      "pixels": [
+        2880,
+        2140
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/framework-cost-scaling.svg",
+      "source_sha256": "a328da0c49bd15675be95369e32f8d8561517fbb8e66e09dd4ed5ec8b002edfe",
+      "preview": "docs/assets/previews/framework-cost-scaling-zh-CN.png",
+      "preview_sha256": "286046ed3987c3c4fba866f21ed00d15c9643c7e2bd414227198d2d550b06f17",
+      "pixels": [
+        2074,
+        1166
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/framework-paths.svg",
+      "source_sha256": "be6d9ee59a6030899eaf8129eb3637e6e96da0db29b8f3025642b7153a2a3516",
+      "preview": "docs/assets/previews/framework-paths-zh-CN.png",
+      "preview_sha256": "ea8daf7b5507392ffb36f36f36a69b968476e84493b123e3cd8944b49fa7b315",
+      "pixels": [
+        2880,
+        2260
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/baseline/allocation-flamegraph.svg",
+      "source_sha256": "3a3889dd8991e24f7900b8a6d3f2bc50333450df1b827995e382d7a5e438585c",
+      "preview": "docs/assets/previews/reports--baseline--allocation-flamegraph-zh-CN.png",
+      "preview_sha256": "68d3eb966274853beea22a9d3ba0d2c5c42414dc942b31f1ef4f6c6ced4276d1",
+      "pixels": [
+        2560,
+        416
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/baseline/cpu-flamegraph.svg",
+      "source_sha256": "7406544711d05f8e9e35023c5eaa82be68507457529499d854287fa80e786cfb",
+      "preview": "docs/assets/previews/reports--baseline--cpu-flamegraph-zh-CN.png",
+      "preview_sha256": "418157423bb4a79a4c7fc959b1791bdc9144099ea5a048aea20c564bd70f48d0",
+      "pixels": [
+        2560,
+        416
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/java17-2026-10-31/latency.svg",
+      "source_sha256": "36fabdc01aa485dca42a70423fb7da2a5e363da35cb953854c7cdc8908e2147f",
+      "preview": "docs/assets/previews/reports--comparison--java17-2026-10-31--latency-zh-CN.png",
+      "preview_sha256": "8fae489de71fca1e501faf8d9ee5cc28d2f08b1bc7019f32556daf3a97662a3d",
+      "pixels": [
+        1588,
+        815
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/java17-2026-10-31/overview.svg",
+      "source_sha256": "66b8bf22d6cb001a791ae947576371561804d57089606a0560f14d62b952d5f4",
+      "preview": "docs/assets/previews/reports--comparison--java17-2026-10-31--overview-zh-CN.png",
+      "preview_sha256": "9672bec75856cafd8127f7dea84ea34f6c5655d7fce3bed6a496129c676c06b5",
+      "pixels": [
+        2043,
+        1266
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/java17-2026-10-31/profiles/camel/allocation-flamegraph.svg",
+      "source_sha256": "028c00ebda0984af87e8b885bdbef4b2d63ae5809c54418d46f974743fa1345a",
+      "preview": "docs/assets/previews/reports--comparison--java17-2026-10-31--profiles--camel--allocation-flamegraph-zh-CN.png",
+      "preview_sha256": "736a0f5f3c706ac29aabab240fca9ccd1b5f459c9b4ed5298ef77b2ff86691cd",
+      "pixels": [
+        2560,
+        3490
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/java17-2026-10-31/profiles/camel/allocation-hotspots.svg",
+      "source_sha256": "5947a416521171940e8f027694a4bb119155b9f09df54874cebce6a455e77cd7",
+      "preview": "docs/assets/previews/reports--comparison--java17-2026-10-31--profiles--camel--allocation-hotspots-zh-CN.png",
+      "preview_sha256": "ad3bfe3a39a700d5f7e9414f6de511de20b90d6a1740201dc20bdafdea7ccc24",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/java17-2026-10-31/profiles/camel/cpu-flamegraph.svg",
+      "source_sha256": "3b8233ce57624589a2d9a88da267217d58d97dd1ad773cf59d617c357f36e8a9",
+      "preview": "docs/assets/previews/reports--comparison--java17-2026-10-31--profiles--camel--cpu-flamegraph-zh-CN.png",
+      "preview_sha256": "7512deca3a1396c700611464ee50ed424ae25f8f272466fa9ab69fc131fce300",
+      "pixels": [
+        2560,
+        3490
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/java17-2026-10-31/profiles/camel/cpu-hotspots.svg",
+      "source_sha256": "fcaf8017ead55e80f845bb2d8cd247313bf76a9ba4753b1fb828c5587a31a451",
+      "preview": "docs/assets/previews/reports--comparison--java17-2026-10-31--profiles--camel--cpu-hotspots-zh-CN.png",
+      "preview_sha256": "ddb53c5a497fa34e0c9807ac86aa5a555cb971c32273b73bc6d66adf89976d94",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/java17-2026-10-31/profiles/camel/gc-pauses.svg",
+      "source_sha256": "bcdabfbfc8339bbc21384332f8ab9a1d6a8f4b6649fd17042152219b2ce37b17",
+      "preview": "docs/assets/previews/reports--comparison--java17-2026-10-31--profiles--camel--gc-pauses-zh-CN.png",
+      "preview_sha256": "e90ee582523da6eddd438dd3664710c535d735cfcf7b2d3ee76584bb2b93400f",
+      "pixels": [
+        2200,
+        840
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/java17-2026-10-31/profiles/ominicat/allocation-flamegraph.svg",
+      "source_sha256": "68cd19c437a8cdc81910d1a87102b136b68ef3fd0ab63ca98f634e30275f84c6",
+      "preview": "docs/assets/previews/reports--comparison--java17-2026-10-31--profiles--ominicat--allocation-flamegraph-zh-CN.png",
+      "preview_sha256": "111f07d5e5e47ea2a56cb50b9acba2e6347beab200dbb16ffbe3622673b70302",
+      "pixels": [
+        2560,
+        1954
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/java17-2026-10-31/profiles/ominicat/allocation-hotspots.svg",
+      "source_sha256": "425855bea81f531930b9ae0fa20875768b9d89ef42453f6b301af4adae3ff3cb",
+      "preview": "docs/assets/previews/reports--comparison--java17-2026-10-31--profiles--ominicat--allocation-hotspots-zh-CN.png",
+      "preview_sha256": "a3cc80eb160dbe32ee7eafa71ffadda1975328334965255de6b75eed723c4408",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/java17-2026-10-31/profiles/ominicat/cpu-flamegraph.svg",
+      "source_sha256": "005f43de029b8af61a7d1c20400729dfec9ac96cbb2c2d7ce94aa710251b406f",
+      "preview": "docs/assets/previews/reports--comparison--java17-2026-10-31--profiles--ominicat--cpu-flamegraph-zh-CN.png",
+      "preview_sha256": "e156261a9a6b2c851c96f04c7e37e57a1c83beaf641d5ec748449fefc83ddf1e",
+      "pixels": [
+        2560,
+        2578
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/java17-2026-10-31/profiles/ominicat/cpu-hotspots.svg",
+      "source_sha256": "c8dd57ff4fbe0a6afcaf093f5b6705a68059370c03d7084d190e393e77649e1a",
+      "preview": "docs/assets/previews/reports--comparison--java17-2026-10-31--profiles--ominicat--cpu-hotspots-zh-CN.png",
+      "preview_sha256": "9b737cb722cbb3ebf99fee06ba0750d492759e9aa027f3f96d37176999cb80ab",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/java17-2026-10-31/profiles/ominicat/gc-pauses.svg",
+      "source_sha256": "3addcb3fbfe51537e4f9bfc0fd7469922f70ab06a3eb1ce7f77a50dfaf8055ae",
+      "preview": "docs/assets/previews/reports--comparison--java17-2026-10-31--profiles--ominicat--gc-pauses-zh-CN.png",
+      "preview_sha256": "8f23098fee1b2136717f290864d91812ac85b7bb67ec90b999721dd57762d61d",
+      "pixels": [
+        2200,
+        840
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/java17-2026-10-31/profiles/pipecat/call-hotspots.svg",
+      "source_sha256": "ba57b70238286a699ca9844fe72549760cb460777b9cfe2e64bcde7432f17428",
+      "preview": "docs/assets/previews/reports--comparison--java17-2026-10-31--profiles--pipecat--call-hotspots-zh-CN.png",
+      "preview_sha256": "9939c9f27f4ee020f7fbaaf47dd61bcdef326befd5b4422a91be0102b0cb076f",
+      "pixels": [
+        1877,
+        1055
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/java17-2026-10-31/resources.svg",
+      "source_sha256": "229f51e8b6f1c0fc795170e4c2c21dca2c8c2ae6c337cc7be262ad24503a6599",
+      "preview": "docs/assets/previews/reports--comparison--java17-2026-10-31--resources-zh-CN.png",
+      "preview_sha256": "3bd977b6b872b0911c499ac2b0173a9f95c92032c607e7fc39087ecea25f5faf",
+      "pixels": [
+        1588,
+        814
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/java17-2026-10-31/throughput.svg",
+      "source_sha256": "23e39ad324f769e9c3148570c900392bea91c9171a1f1b9cefed6ab10ff41cdb",
+      "preview": "docs/assets/previews/reports--comparison--java17-2026-10-31--throughput-zh-CN.png",
+      "preview_sha256": "6af60917689c7bdf4f67a352904853989f2e6796be56099fe79649baf5246c8f",
+      "pixels": [
+        1510,
+        869
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/linux-centos9-java17-2026-10-31/latency.svg",
+      "source_sha256": "c30e42a24b4119c5de368e824d0e7054035d40c8c86eeebcd18abd5ff575862d",
+      "preview": "docs/assets/previews/reports--comparison--linux-centos9-java17-2026-10-31--latency-zh-CN.png",
+      "preview_sha256": "89882e4053784f76f0e67de5ea7e60bd6c1f036aaebbd4be7286f1761d3278ff",
+      "pixels": [
+        1588,
+        858
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/linux-centos9-java17-2026-10-31/overview.svg",
+      "source_sha256": "8f95558cec8f4aa924257a24346e4894e595f5202e6a35388403df9e554a4c90",
+      "preview": "docs/assets/previews/reports--comparison--linux-centos9-java17-2026-10-31--overview-zh-CN.png",
+      "preview_sha256": "30ebe3e204ffc08fe10463ad12f693a6c221a64003be47cc2c5bc74f16dcf64b",
+      "pixels": [
+        2043,
+        1301
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/linux-centos9-java17-2026-10-31/profiles/camel/allocation-flamegraph.svg",
+      "source_sha256": "4fd8a4e1d848fc79bf7020aee18fe716dc8861961eadd675b096cb2a4a5803f8",
+      "preview": "docs/assets/previews/reports--comparison--linux-centos9-java17-2026-10-31--profiles--camel--allocation-flamegraph-zh-CN.png",
+      "preview_sha256": "2cacb349b732d350f4fb34352580e227ec50196f810617757ce745c3e89157c7",
+      "pixels": [
+        2560,
+        3490
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/linux-centos9-java17-2026-10-31/profiles/camel/allocation-hotspots.svg",
+      "source_sha256": "1efb00ca3c03b31bd638f339cad137b6d38f526ca5349581a0c7891d9beaf61f",
+      "preview": "docs/assets/previews/reports--comparison--linux-centos9-java17-2026-10-31--profiles--camel--allocation-hotspots-zh-CN.png",
+      "preview_sha256": "9c8c56cf933adb6e77c9b6b4fef99bb3d9c0c12db0dae226abc55d1fac763d3f",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/linux-centos9-java17-2026-10-31/profiles/camel/cpu-flamegraph.svg",
+      "source_sha256": "3f82a69352ad8f13418cf633239c71e8385a7b7f5e50b41797c3aacd21d47259",
+      "preview": "docs/assets/previews/reports--comparison--linux-centos9-java17-2026-10-31--profiles--camel--cpu-flamegraph-zh-CN.png",
+      "preview_sha256": "80404d545d37a48699a370f0b0fa49c71d058c71d20f7263e1056b4aa54f8e33",
+      "pixels": [
+        2560,
+        3490
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/linux-centos9-java17-2026-10-31/profiles/camel/cpu-hotspots.svg",
+      "source_sha256": "0e92444c263c1f80e3804290cca07da2b2f748ececbeabdb41a358796e17d429",
+      "preview": "docs/assets/previews/reports--comparison--linux-centos9-java17-2026-10-31--profiles--camel--cpu-hotspots-zh-CN.png",
+      "preview_sha256": "b9a186da4828189811f1991173f5ff901f6d23754501124e6e82d88755e957dc",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/linux-centos9-java17-2026-10-31/profiles/camel/gc-pauses.svg",
+      "source_sha256": "4f2dbe2034355c64af45f31f5901474c579cb27e31af129d2932525770d62479",
+      "preview": "docs/assets/previews/reports--comparison--linux-centos9-java17-2026-10-31--profiles--camel--gc-pauses-zh-CN.png",
+      "preview_sha256": "f87e593658ace9b135e6278ae5450bd06a8eacd91067ed5081ae9d9001c4ff46",
+      "pixels": [
+        2200,
+        840
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/linux-centos9-java17-2026-10-31/profiles/ominicat/allocation-flamegraph.svg",
+      "source_sha256": "a823692a7b9e44711a72a6f5076cc2f4595fbbd1196434d24b55da5ede5697fc",
+      "preview": "docs/assets/previews/reports--comparison--linux-centos9-java17-2026-10-31--profiles--ominicat--allocation-flamegraph-zh-CN.png",
+      "preview_sha256": "2fd39cc194b3c0fe4bbe18f5dbe6f98b4d15700a232b4a6a86cf305be530ae9a",
+      "pixels": [
+        2560,
+        1810
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/linux-centos9-java17-2026-10-31/profiles/ominicat/allocation-hotspots.svg",
+      "source_sha256": "a0108423b2ccaae7a43553caac8d68b45e23eee7e99dcccba6f6a7f0b2715c26",
+      "preview": "docs/assets/previews/reports--comparison--linux-centos9-java17-2026-10-31--profiles--ominicat--allocation-hotspots-zh-CN.png",
+      "preview_sha256": "ee4c7db68977d2ab673e006e3f2eb70817558595e0f4049974981d771f626ec3",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/linux-centos9-java17-2026-10-31/profiles/ominicat/cpu-flamegraph.svg",
+      "source_sha256": "dfc498c5a2db8057a002dddaabe3669ab9ad9e6c9b4fea06de8774df4f118d6a",
+      "preview": "docs/assets/previews/reports--comparison--linux-centos9-java17-2026-10-31--profiles--ominicat--cpu-flamegraph-zh-CN.png",
+      "preview_sha256": "fee56893b67890c010858acfa7b591f47c16e095da0fcee4e3725ca8365a4b1f",
+      "pixels": [
+        2560,
+        2338
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/linux-centos9-java17-2026-10-31/profiles/ominicat/cpu-hotspots.svg",
+      "source_sha256": "cd4a637e036d84143d6298c5971423c7843d315d4bb7cccd07a2e4e6520a51f3",
+      "preview": "docs/assets/previews/reports--comparison--linux-centos9-java17-2026-10-31--profiles--ominicat--cpu-hotspots-zh-CN.png",
+      "preview_sha256": "b02277a01f251a1a7b0ba0c3440fe33e2131131c06ec8d19583261d63aaad506",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/linux-centos9-java17-2026-10-31/profiles/ominicat/gc-pauses.svg",
+      "source_sha256": "92eac5e95b88c9ede13bce63d46926987995ce636c1e9deff2a560355c2e3a2a",
+      "preview": "docs/assets/previews/reports--comparison--linux-centos9-java17-2026-10-31--profiles--ominicat--gc-pauses-zh-CN.png",
+      "preview_sha256": "7d4c0eaa55accc4879d542827c988c734b2b86d76d12eb9988f5308d352b3efc",
+      "pixels": [
+        2200,
+        840
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/linux-centos9-java17-2026-10-31/profiles/pipecat/call-hotspots.svg",
+      "source_sha256": "7db692c52a10684fbc437c7cf353e54625a52397bba2e9e51d470f9c32b25fa6",
+      "preview": "docs/assets/previews/reports--comparison--linux-centos9-java17-2026-10-31--profiles--pipecat--call-hotspots-zh-CN.png",
+      "preview_sha256": "78ce38c7a7557ae568a960b7055b0ecf9c31ced9a9d34cd73a4f8ee0891c9ca3",
+      "pixels": [
+        1857,
+        1055
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/linux-centos9-java17-2026-10-31/resources.svg",
+      "source_sha256": "7f3619e9349ad4073837ec78ca9244111c2025e4e2053e27779ced550521a452",
+      "preview": "docs/assets/previews/reports--comparison--linux-centos9-java17-2026-10-31--resources-zh-CN.png",
+      "preview_sha256": "c03426ed9e06fb579210ab891b5e7cac54e21f6b6fa015a922b9d9f80b0ee352",
+      "pixels": [
+        1588,
+        858
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/linux-centos9-java17-2026-10-31/throughput.svg",
+      "source_sha256": "fc4d8e154dddf8f64427e9b64e9965da915b9e0293188215c48243683b27cec4",
+      "preview": "docs/assets/previews/reports--comparison--linux-centos9-java17-2026-10-31--throughput-zh-CN.png",
+      "preview_sha256": "d6a978232a34cb321e575232c801c8ff6066afffb86ecd93904bc6b83208e42e",
+      "pixels": [
+        1496,
+        944
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/linux-ubuntu24-java17-2026-10-31/latency.svg",
+      "source_sha256": "a19495603109f9aa441cd8115fa346000029c10de689f42f6692f9937c24e9f9",
+      "preview": "docs/assets/previews/reports--comparison--linux-ubuntu24-java17-2026-10-31--latency-zh-CN.png",
+      "preview_sha256": "597f2a6466c61ceab169b67e53e46bc97ec56c1e55eb77bdfb4b3f91943e2998",
+      "pixels": [
+        1588,
+        858
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/linux-ubuntu24-java17-2026-10-31/overview.svg",
+      "source_sha256": "0a794dd882cb84a776f1b5dccd34f097852300e202562c3dcb929f84ff8ba9de",
+      "preview": "docs/assets/previews/reports--comparison--linux-ubuntu24-java17-2026-10-31--overview-zh-CN.png",
+      "preview_sha256": "e2f2a66730c8f6fc913e2cd5cd2ca2c6ee6ef05b16f0736594943f190ba46802",
+      "pixels": [
+        2043,
+        1301
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/camel/allocation-flamegraph.svg",
+      "source_sha256": "474b603d933d9e89c31cce0240b4da701289c8f0fdec0f576bebff87bef3a9f4",
+      "preview": "docs/assets/previews/reports--comparison--linux-ubuntu24-java17-2026-10-31--profiles--camel--allocation-flamegraph-zh-CN.png",
+      "preview_sha256": "724719942eca1239c906b96d1924f666b240ebbb18a7e8178a831fc1c8082b54",
+      "pixels": [
+        2560,
+        3490
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/camel/allocation-hotspots.svg",
+      "source_sha256": "02f4b365c7cbbadd2488a4a5907ba35edcb933909db437a17a73f1fe98d20b29",
+      "preview": "docs/assets/previews/reports--comparison--linux-ubuntu24-java17-2026-10-31--profiles--camel--allocation-hotspots-zh-CN.png",
+      "preview_sha256": "034cc7021e78de6f584255a29e50ddaaff5d4215890e8cfc18390d0fdc5c2025",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/camel/cpu-flamegraph.svg",
+      "source_sha256": "f67cd2423e841326ae98209b669cf814daf050c7be168548bd62b943976c9a26",
+      "preview": "docs/assets/previews/reports--comparison--linux-ubuntu24-java17-2026-10-31--profiles--camel--cpu-flamegraph-zh-CN.png",
+      "preview_sha256": "a6c4b5402d530b8f814dde4aa9037f86546f2c76e8729a305001f428ca6aea4b",
+      "pixels": [
+        2560,
+        3490
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/camel/cpu-hotspots.svg",
+      "source_sha256": "89b8e208aa97fdcbf2d1db5e32f5bb5474e3794e3e1c753820c13bdf36a25348",
+      "preview": "docs/assets/previews/reports--comparison--linux-ubuntu24-java17-2026-10-31--profiles--camel--cpu-hotspots-zh-CN.png",
+      "preview_sha256": "ff27bdc57cfdb366d577ea6e7e6a028bda31f78b77f3104c08447b55ed91dd28",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/camel/gc-pauses.svg",
+      "source_sha256": "6104c26795fdb9cd5c9b2185ce39d020f3cb262bbe5e17063317fc6494860ba1",
+      "preview": "docs/assets/previews/reports--comparison--linux-ubuntu24-java17-2026-10-31--profiles--camel--gc-pauses-zh-CN.png",
+      "preview_sha256": "a24ae996571f287f34bef2f70cbfe68e877c6cfcc40def322c99793ea3f11ffa",
+      "pixels": [
+        2200,
+        840
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/allocation-flamegraph.svg",
+      "source_sha256": "55d7397aa9ba578c8eb18645b6509f1a529579323b42a7e1ebe9f16aaf417e5a",
+      "preview": "docs/assets/previews/reports--comparison--linux-ubuntu24-java17-2026-10-31--profiles--ominicat--allocation-flamegraph-zh-CN.png",
+      "preview_sha256": "270428a006720e33418f6fddc5c44da4eab32a76f893355cfb655802f41b7ebf",
+      "pixels": [
+        2560,
+        2338
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/allocation-hotspots.svg",
+      "source_sha256": "a12034e7c5ef3092347363216d779f52406e649500bdce681b91f158c4d85635",
+      "preview": "docs/assets/previews/reports--comparison--linux-ubuntu24-java17-2026-10-31--profiles--ominicat--allocation-hotspots-zh-CN.png",
+      "preview_sha256": "040e48ef0bf6d6fd64e0ab49e8ea982990ac460ad5fc7f3f1feb62b9947c785a",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/cpu-flamegraph.svg",
+      "source_sha256": "9aee4df84cadbfb433140403238984d2c60777fe189604038bf4bb472f1b4bf1",
+      "preview": "docs/assets/previews/reports--comparison--linux-ubuntu24-java17-2026-10-31--profiles--ominicat--cpu-flamegraph-zh-CN.png",
+      "preview_sha256": "15a3931b3c27a5963e9bdac7ccf5fa98b37ba3cef5cf2ecb201fe055357c9597",
+      "pixels": [
+        2560,
+        2146
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/cpu-hotspots.svg",
+      "source_sha256": "2aabe2db1dd0020172c16d4a346a0c636f384b6709019637e958700c85acd6be",
+      "preview": "docs/assets/previews/reports--comparison--linux-ubuntu24-java17-2026-10-31--profiles--ominicat--cpu-hotspots-zh-CN.png",
+      "preview_sha256": "20af781506fe41ced042e68ae3135a1a6e3b8c27646ea42956b76d3c0ba00f2e",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/gc-pauses.svg",
+      "source_sha256": "8cd292d834ceaf79e9562e8bf4b3b43368a492ec94a1504ba7e7f8cc4dc50606",
+      "preview": "docs/assets/previews/reports--comparison--linux-ubuntu24-java17-2026-10-31--profiles--ominicat--gc-pauses-zh-CN.png",
+      "preview_sha256": "f4d17d0beca3a6f5f73e3486a3f12c156e758168ea1e2ce4253cfb498cadd857",
+      "pixels": [
+        2200,
+        840
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/pipecat/call-hotspots.svg",
+      "source_sha256": "1be5024f2d6d45c72e038bac595a7e95280e9a59b35d69e6adb23f08474fe9ab",
+      "preview": "docs/assets/previews/reports--comparison--linux-ubuntu24-java17-2026-10-31--profiles--pipecat--call-hotspots-zh-CN.png",
+      "preview_sha256": "533a6bb8aa76926ad6fbae8081f80b1b487a849efd017d3a32b9f0fe7be1c8f8",
+      "pixels": [
+        1857,
+        1055
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/linux-ubuntu24-java17-2026-10-31/resources.svg",
+      "source_sha256": "790df0d162794bf2b67ddfe2ccd51f85f25a4e1438cf736bbf0b928e6b8d768f",
+      "preview": "docs/assets/previews/reports--comparison--linux-ubuntu24-java17-2026-10-31--resources-zh-CN.png",
+      "preview_sha256": "cb9f8c8dbd8a5fe9037774fa476a1d8aa71f557b19145b64d1da999fbced2c33",
+      "pixels": [
+        1588,
+        858
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/comparison/linux-ubuntu24-java17-2026-10-31/throughput.svg",
+      "source_sha256": "79ea072a6519162e00f6426bbb52440152282c0f1cfb5b0cd689b15309e78a91",
+      "preview": "docs/assets/previews/reports--comparison--linux-ubuntu24-java17-2026-10-31--throughput-zh-CN.png",
+      "preview_sha256": "758b9531714041fb20e01e9011e1c6108da4029ba5ac26f44766e42c9d0d771f",
+      "pixels": [
+        1496,
+        944
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/deep/kernel/allocation-flamegraph.svg",
+      "source_sha256": "0ab9ef94f9a82260b0daa09fa548b61808c11927f5039d7d5abc91eaa0982220",
+      "preview": "docs/assets/previews/reports--deep--kernel--allocation-flamegraph-zh-CN.png",
+      "preview_sha256": "70c0dea13322c8385dd22c17106a86ebacac0da7c10c7cc3eaa432c6517fd0e4",
+      "pixels": [
+        2560,
+        416
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/deep/kernel/cpu-flamegraph.svg",
+      "source_sha256": "d098f4746a93a6296082a134705bf4ff3aa42ceccb8e276db5337d877b3a309d",
+      "preview": "docs/assets/previews/reports--deep--kernel--cpu-flamegraph-zh-CN.png",
+      "preview_sha256": "111d7c634cb5e5ea3ae40e36ba6d2ab8e8ad3f07a1271a99e28034b54c6bdb33",
+      "pixels": [
+        2560,
+        416
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/deep/soak-resources.svg",
+      "source_sha256": "9cb5a0d1ff694cf02b91301f30aa675619d5f545ee3ecee5da2f6c9ee7932dc6",
+      "preview": "docs/assets/previews/reports--deep--soak-resources-zh-CN.png",
+      "preview_sha256": "5151b4cfcde8584c84d9ba4314b66abffe44e5e917a588740df1bd113b4d10e2",
+      "pixels": [
+        1728,
+        1008
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/java17/http-cancellation/soak-resources.svg",
+      "source_sha256": "e7d863fe998dff180114af47f1c6e4d58491e386f8191bcd97758d038c4f6e64",
+      "preview": "docs/assets/previews/reports--java17--http-cancellation--soak-resources-zh-CN.png",
+      "preview_sha256": "0f269c8050109234493e33c17e5881aadc1bff5fa24e5a7ed6695316cc169e99",
+      "pixels": [
+        1728,
+        1008
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/java17/kernel/allocation-flamegraph.svg",
+      "source_sha256": "a271dc89c5fe2668c8fd6551e5f1c7389cc62b4e134f12a05ce1090d36f4a2d9",
+      "preview": "docs/assets/previews/reports--java17--kernel--allocation-flamegraph-zh-CN.png",
+      "preview_sha256": "97dd86557c0839fc92c387fd2f38d0b5b6fb46ab97c9e95a6521b40751049cf0",
+      "pixels": [
+        2560,
+        2290
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/java17/kernel/allocation-hotspots.svg",
+      "source_sha256": "e9d6b230ad75657be3b51c9d0965dbb97c514e0229b7d5d0484e3c6a33b57bb6",
+      "preview": "docs/assets/previews/reports--java17--kernel--allocation-hotspots-zh-CN.png",
+      "preview_sha256": "07df328e27b637223d5d9af9d78ac3f74db066fb331ba5dbc33194c43f9ed490",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/java17/kernel/cpu-flamegraph.svg",
+      "source_sha256": "a5dc0cce82500d3558c2bed35da2f4e74a49f3a9d1024574d2ccd2cbeaacaaca",
+      "preview": "docs/assets/previews/reports--java17--kernel--cpu-flamegraph-zh-CN.png",
+      "preview_sha256": "10713838b1fe7577aed4c036d95939c7f2b0fa190dc32e9daa6c3c78f8846fb8",
+      "pixels": [
+        2560,
+        2626
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/java17/kernel/cpu-hotspots.svg",
+      "source_sha256": "ade1fc66d033cc9cbaf0772b1a5cbfbbd3c2280542fef2ae33e0facbe2b564d4",
+      "preview": "docs/assets/previews/reports--java17--kernel--cpu-hotspots-zh-CN.png",
+      "preview_sha256": "347a26a2c126c81b5ca7ccae25f11f8202f046bab902edb1cdff45f7050edd2f",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/java17/kernel/gc-pauses.svg",
+      "source_sha256": "0d32c3694452bc30f6a034c160c3da6f2f54984f6188749a62ba5c5331a4c737",
+      "preview": "docs/assets/previews/reports--java17--kernel--gc-pauses-zh-CN.png",
+      "preview_sha256": "e289df99cd66df68c6980847094f3476e099e63fab5c735a3c1e2872a706dca9",
+      "pixels": [
+        2200,
+        840
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/java17/soak-resources.svg",
+      "source_sha256": "ae026cb47ef341aa7354cb06b347ae315179b3d948282c115bfb4e806e2ac49d",
+      "preview": "docs/assets/previews/reports--java17--soak-resources-zh-CN.png",
+      "preview_sha256": "6705c2e7f2f3adca54d36ba9ec28f5e9b8fd81e12021513597b4f015e5cf0c9d",
+      "pixels": [
+        1728,
+        1008
       ]
     }
   ]

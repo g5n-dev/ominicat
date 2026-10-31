@@ -1,12 +1,14 @@
-<p align="center"><strong>简体中文（当前）</strong> · <a href="README.md">English</a></p>
+<!-- ominicat-language-nav -->
+**简体中文** · [English](README.md) · [中文文档目录](docs/zh-CN/index.md)
+<!-- /ominicat-language-nav -->
 
 <p align="center"><a href="docs/assets/zh-CN/banner.svg"><img src="docs/assets/previews/banner-zh-CN.png" alt="OminiCat：Java 17 多模态会话微内核" width="100%"></a></p>
 
-<p align="center"><a href="#先运行起来">快速开始</a> · <a href="#嵌入-java-应用">嵌入应用</a> · <a href="#开发插件">开发插件</a> · <a href="#linux-框架性能实测">Linux 实测</a> · <a href="#高性能从哪里来">执行机制</a> · <a href="docs/configuration.md">配置</a> · <a href="docs/studio.md">Studio</a></p>
+<p align="center"><a href="#先运行起来">快速开始</a> · <a href="#嵌入-java-应用">嵌入应用</a> · <a href="#开发插件">开发插件</a> · <a href="#linux-框架性能实测">Linux 实测</a> · <a href="#高性能从哪里来">执行机制</a> · <a href="docs/zh-CN/configuration.md">配置</a> · <a href="docs/zh-CN/studio.md">Studio</a></p>
 
 **OminiCat 是 Java 17+ 多模态会话微内核。** 用统一帧连接音频、文本、图像、转写、模型与会话处理器；通过配置组合插件，可嵌入现有 Java 应用，也可独立运行为 WebSocket 服务容器。
 
-内核仅依赖 JDK，负责有界调度、取消、排空与生命周期，媒体、模型和应用策略由插件提供。当前为 **0.1 开发预览版**；[验证报告](reports/verification.md)记录了 **297 项通过测试、512 个随机种子**及本地协议故障验证。真实服务兼容性与部署容量仍需在目标环境验证。
+内核仅依赖 JDK，负责有界调度、取消、排空与生命周期，媒体、模型和应用策略由插件提供。当前为 **0.1 开发预览版**；[验证报告](docs/zh-CN/reports/verification.md)记录了 **297 项通过测试、512 个随机种子**及本地协议故障验证。真实服务兼容性与部署容量仍需在目标环境验证。
 
 [![OminiCat 模块与接入边界](docs/assets/previews/architecture-overview-zh-CN.png)](docs/assets/zh-CN/architecture-overview.svg)
 
@@ -14,7 +16,7 @@
 
 在 **Ubuntu 24.04 原生运行器**和 **CentOS Stream 9 容器用户态**分别完成 OminiCat、Pipecat 1.15.0、Apache Camel 4.22.2 LTS 的无模型排队路径对比。两条作业共 **90 个独立进程、17,406,385 个测量输出**，全部通过逐帧输出、计数、拒绝与资源清理校验。
 
-[![Ubuntu 24.04：单帧在途的框架执行对比](docs/assets/previews/ubuntu-comparison.png)](reports/comparison/linux-ubuntu24-java17-2026-10-31/overview.svg)
+[![Ubuntu 24.04：单帧在途的框架执行对比](docs/assets/previews/reports--comparison--linux-ubuntu24-java17-2026-10-31--overview-zh-CN.png)](docs/assets/zh-CN/reports/comparison/linux-ubuntu24-java17-2026-10-31/overview.svg)
 
 下表为**四阶段、单帧在途（W=1）**时，五个独立进程各项指标的中位数：
 
@@ -44,11 +46,11 @@
 <details>
 <summary>查看 CentOS Stream 9 用户态的完整对比图</summary>
 
-[![CentOS Stream 9 用户态：单帧在途的框架执行对比](docs/assets/previews/centos-comparison.png)](reports/comparison/linux-centos9-java17-2026-10-31/overview.svg)
+[![CentOS Stream 9 用户态：单帧在途的框架执行对比](docs/assets/previews/reports--comparison--linux-centos9-java17-2026-10-31--overview-zh-CN.png)](docs/assets/zh-CN/reports/comparison/linux-centos9-java17-2026-10-31/overview.svg)
 
 </details>
 
-[Ubuntu 完整报告与逐轮数据](reports/comparison/linux-ubuntu24-java17-2026-10-31/README.md) · [CentOS 完整报告与逐轮数据](reports/comparison/linux-centos9-java17-2026-10-31/README.md) · [协议与复跑步骤](comparison/README.md) · [已完成的 CI 运行](https://github.com/g5n-dev/ominicat/actions/runs/41222330745) · [自动采集工作流](.github/workflows/framework-comparison.yml)。
+[Ubuntu 完整报告与逐轮数据](docs/zh-CN/reports/comparison/linux-ubuntu24-java17-2026-10-31/README.md) · [CentOS 完整报告与逐轮数据](docs/zh-CN/reports/comparison/linux-centos9-java17-2026-10-31/README.md) · [协议与复跑步骤](docs/zh-CN/comparison/README.md) · [已完成的 CI 运行](https://github.com/g5n-dev/ominicat/actions/runs/41222330745) · [自动采集工作流](.github/workflows/framework-comparison.yml)。
 
 ## 高性能从哪里来
 
@@ -66,7 +68,7 @@
 
 因此，OminiCat 的优势原理是**缩短同步阶段之间的框架路径，同时保留会话所有权和取消保护**。与 Pipecat 的这个排队模式相比，它省去了同步应用阶段之间的队列／协程交接；与 Camel 相比，两者都有单入口队列，差别在类型化处理器契约与通用 Exchange／路由／应答机制。源码说明结构差异，Linux 测试记录这些完整路径的实际结果。
 
-Pipecat 也提供 direct mode，Camel 也有 `direct:` 端点；这些直接调用模式未纳入本次排队矩阵，不能套用这里的比值。[固定版本源码与模式边界](docs/performance.md#why-the-measured-paths-differ)。
+Pipecat 也提供 direct mode，Camel 也有 `direct:` 端点；这些直接调用模式未纳入本次排队矩阵，不能套用这里的比值。[固定版本源码与模式边界](docs/zh-CN/performance.md#实测路径为何不同)。
 
 | 四阶段、单帧在途 | OminiCat／Pipecat 处理速率 | OminiCat／Camel 处理速率 | 进程 CPU 微秒／帧：OminiCat／Pipecat／Camel |
 | --- | ---: | ---: | ---: |
@@ -75,24 +77,24 @@ Pipecat 也提供 direct mode，Camel 也有 `direct:` 端点；这些直接调�
 
 比值为**同一 Linux 作业内五进程中位数之比**，不是置信区间，也不是配对实验。CPU 成本来自测量阶段的整进程 CPU 时间除以校验通过的帧数，包含运行时、框架和测试程序；单帧终点延迟不包含全部确认返回过程。
 
-[![从 1 到 16 阶段的整进程 CPU 成本与五进程波动](docs/assets/previews/framework-cost-scaling.png)](docs/assets/framework-cost-scaling.svg)
+[![从 1 到 16 阶段的整进程 CPU 成本与五进程波动](docs/assets/previews/framework-cost-scaling-zh-CN.png)](docs/assets/zh-CN/framework-cost-scaling.svg)
 
 从 1 阶段扩展到 16 阶段，两条 Linux 作业中 OminiCat 保留约 **97.8%** 的单阶段处理速率；Pipecat 分别保留 **18.0%／19.0%**，Camel 为 **92.0%／95.7%**。这与各自阶段间的工作结构相符，但不能把完整速度差全部归因于队列：语言运行时、原生帧对象、不可变载荷保护、校验与确认也在计时中。
 
-取舍也应公开：四阶段时，**Pipecat 的采样进程 RSS 比 OminiCat 低 35.1%／39.4%**；部分 CentOS 轮次与 Camel 的速率或 p99 范围重叠。这里不承诺每轮、每种场景都领先，也不把 W=1 结果当作饱和吞吐或生产容量。[完整 1／4／16 阶段数据、固定版本源码、profile 观察与边界](docs/performance.md)。
+取舍也应公开：四阶段时，**Pipecat 的采样进程 RSS 比 OminiCat 低 35.1%／39.4%**；部分 CentOS 轮次与 Camel 的速率或 p99 范围重叠。这里不承诺每轮、每种场景都领先，也不把 W=1 结果当作饱和吞吐或生产容量。[完整 1／4／16 阶段数据、固定版本源码、profile 观察与边界](docs/zh-CN/performance.md)。
 
 <details>
 <summary>查看 OminiCat 的直接调用、异步续接与资源边界</summary>
 
-[![同步分发、会话工作线程与异步续接路径](docs/assets/previews/execution-path.png)](docs/assets/execution-path.svg)
+[![同步分发、会话工作线程与异步续接路径](docs/assets/previews/execution-path-zh-CN.png)](docs/assets/zh-CN/execution-path.svg)
 
 [Pipeline](ominicat-core/src/main/java/io/ominicat/core/Pipeline.java) 的同步阶段保留调用生命周期保护和 continuation 分配；[PipelineSession](ominicat-core/src/main/java/io/ominicat/core/PipelineSession.java) 用锁和 FIFO 管理会话工作。直接嵌入可省去会话调度，调用方自行负责串行访问和清理。配置发现和处理器组装在派发帧之前完成。
 
 媒体构造会防御性复制字节；JSON／Base64 在网络边缘处理，均有实际成本。服务器的处理器在会话 worker 运行，解码与连接组装仍在 Netty I/O 回调中。这组实测使用 **Java 17 平台线程**，不证明虚拟线程或外部异步模型回调更快。
 
-[![队列、异步句柄、分支与网络的独立资源边界](docs/assets/previews/bounded-runtime.png)](docs/assets/bounded-runtime.svg)
+[![队列、异步句柄、分支与网络的独立资源边界](docs/assets/previews/bounded-runtime-zh-CN.png)](docs/assets/zh-CN/bounded-runtime.svg)
 
-输入队列、活跃异步句柄、分支输出和网络待发送字节各有独立上限；它们不能合并解释为总内存预算。中断提升 generation、清理排队项并拒绝旧回调；已发生的外部作用不能撤销，阻塞插件仍须配合取消。[架构与生命周期](docs/architecture.md) · [配置](docs/configuration.md)。
+输入队列、活跃异步句柄、分支输出和网络待发送字节各有独立上限；它们不能合并解释为总内存预算。中断提升 generation、清理排队项并拒绝旧回调；已发生的外部作用不能撤销，阻塞插件仍须配合取消。[架构与生命周期](docs/zh-CN/architecture.md) · [配置](docs/zh-CN/configuration.md)。
 
 </details>
 
@@ -100,13 +102,13 @@ Pipecat 也提供 direct mode，Camel 也有 `direct:` 端点；这些直接调�
 
 以下来自 **Ubuntu 作业的 OminiCat 四阶段独立 JFR 诊断**。整段记录包含 JVM／框架启动、预热、5 秒 W=1 测量、测量程序及清理，共有 **41 个 CPU 栈采样、445 个分配采样**。它与前述未插桩的 45 轮计时分开，不能用来替换主表或推导精确 B/op。
 
-[![Ubuntu OminiCat：CPU 叶节点采样分布](docs/assets/previews/ubuntu-cpu-hotspots.png)](reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/cpu-hotspots.svg)
+[![Ubuntu OminiCat：CPU 叶节点采样分布](docs/assets/previews/reports--comparison--linux-ubuntu24-java17-2026-10-31--profiles--ominicat--cpu-hotspots-zh-CN.png)](docs/assets/zh-CN/reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/cpu-hotspots.svg)
 
-[![Ubuntu OminiCat：按类型统计的分配采样权重](docs/assets/previews/ubuntu-allocation-hotspots.png)](reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/allocation-hotspots.svg)
+[![Ubuntu OminiCat：按类型统计的分配采样权重](docs/assets/previews/reports--comparison--linux-ubuntu24-java17-2026-10-31--profiles--ominicat--allocation-hotspots-zh-CN.png)](docs/assets/zh-CN/reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/allocation-hotspots.svg)
 
 分配权重反映采样分布，包含测量程序的延迟数组；它不是存活堆或精确对象数量。CPU 采样也包含初始化和排序，少量样本不能证明某条路径没有成本。
 
-[![Ubuntu OminiCat：整段 JFR 记录中的 GC 暂停合计](docs/assets/previews/ubuntu-gc-pauses.png)](reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/gc-pauses.svg)
+[![Ubuntu OminiCat：整段 JFR 记录中的 GC 暂停合计](docs/assets/previews/reports--comparison--linux-ubuntu24-java17-2026-10-31--profiles--ominicat--gc-pauses-zh-CN.png)](docs/assets/zh-CN/reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/gc-pauses.svg)
 
 这份记录包含 **3 次 GC**，累计暂停 **4.876 ms**，单次暂停合计最大 **2.580 ms**；时间位置相对首个选定事件，包含预热和测量程序。
 
@@ -115,17 +117,17 @@ Pipecat 也提供 direct mode，Camel 也有 `direct:` 端点；这些直接调�
 
 图中保留导出数据提供的全部正权重栈帧，并标明源记录截断或不可用的栈。点击预览打开 SVG 原图，可放大并查看方法提示。
 
-[![Ubuntu OminiCat：CPU 采样完整调用栈](docs/assets/previews/ubuntu-cpu-flamegraph.png)](reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/cpu-flamegraph.svg)
+[![Ubuntu OminiCat：CPU 采样完整调用栈](docs/assets/previews/reports--comparison--linux-ubuntu24-java17-2026-10-31--profiles--ominicat--cpu-flamegraph-zh-CN.png)](docs/assets/zh-CN/reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/cpu-flamegraph.svg)
 
-[![Ubuntu OminiCat：分配采样完整调用栈](docs/assets/previews/ubuntu-allocation-flamegraph.png)](reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/allocation-flamegraph.svg)
+[![Ubuntu OminiCat：分配采样完整调用栈](docs/assets/previews/reports--comparison--linux-ubuntu24-java17-2026-10-31--profiles--ominicat--allocation-flamegraph-zh-CN.png)](docs/assets/zh-CN/reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/allocation-flamegraph.svg)
 
 </details>
 
-[Ubuntu 诊断与采集范围](reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/README.md) · [OminiCat 详细诊断](reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/profiles.md) · [CentOS 诊断](reports/comparison/linux-centos9-java17-2026-10-31/profiles/README.md)。Java JFR 与 Python cProfile 的采集区间和指标不同，不作跨语言分配或 CPU 百分比排名。
+[Ubuntu 诊断与采集范围](docs/zh-CN/reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/README.md) · [OminiCat 详细诊断](docs/zh-CN/reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/profiles.md) · [CentOS 诊断](docs/zh-CN/reports/comparison/linux-centos9-java17-2026-10-31/profiles/README.md)。Java JFR 与 Python cProfile 的采集区间和指标不同，不作跨语言分配或 CPU 百分比排名。
 
 ## 先运行起来
 
-最低支持 **JDK 17**；同一 Java 17 字节码在 17／21／25 上验证，21+ 自动选择虚拟线程。仓库自带 Maven Wrapper，详见[版本兼容](docs/java-compatibility.md)。
+最低支持 **JDK 17**；同一 Java 17 字节码在 17／21／25 上验证，21+ 自动选择虚拟线程。仓库自带 Maven Wrapper，详见[版本兼容](docs/zh-CN/java-compatibility.md)。
 
 ```bash
 git clone https://github.com/g5n-dev/ominicat.git
@@ -140,7 +142,7 @@ java -jar ominicat-server/target/ominicat-server.jar --config config/demo.yaml
 
 动态交接回放来自可选的活动记录，刻意放慢快速事件，不能当作逐节点实时耗时或任务提交证明。Studio 保留有界内容预览；活动 API 是运行时级操作视图，部署时应设置鉴权和访问范围。普通连接默认不记录阶段活动。
 
-[大盘与调试使用说明](docs/studio.md) · [三阶段离线示例](config/studio.yaml) · [浏览器与资源验证](reports/studio/README.md)。
+[大盘与调试使用说明](docs/zh-CN/studio.md) · [三阶段离线示例](config/studio.yaml) · [浏览器与资源验证](docs/zh-CN/reports/studio/README.md)。
 
 默认配置还提供健康检查和 Prometheus 指标：
 
@@ -149,7 +151,7 @@ curl http://127.0.0.1:8080/health
 curl http://127.0.0.1:8080/metrics
 ```
 
-也可使用已安装的 Maven 3.9+ 执行 `mvn -B verify`。配置鉴权后，指标和会话入口需要相应凭据，详见[配置与部署](docs/configuration.md)。
+也可使用已安装的 Maven 3.9+ 执行 `mvn -B verify`。配置鉴权后，指标和会话入口需要相应凭据，详见[配置与部署](docs/zh-CN/configuration.md)。
 
 ## 小内核，可组合的能力
 
@@ -189,7 +191,7 @@ stages:
       policyVersion: "example-v1"
 ```
 
-每个会话创建独立处理器实例。YAML 的 `type` 选择已安装工厂，`options` 的值为字符串；模型配置通过环境变量名引用凭据。服务器在绑定端口前创建并关闭配置中的处理器进行预检。工厂构造应快速完成，不应发起模型请求。详见[配置与鉴权](docs/configuration.md)。
+每个会话创建独立处理器实例。YAML 的 `type` 选择已安装工厂，`options` 的值为字符串；模型配置通过环境变量名引用凭据。服务器在绑定端口前创建并关闭配置中的处理器进行预检。工厂构造应快速完成，不应发起模型请求。详见[配置与鉴权](docs/zh-CN/configuration.md)。
 
 `Frame` 是开放接口，支持自定义事件，也提供 `Text`、`Audio`、`Image`、`Transcript`、`Failure` 与 `Cancel`。可选 `FrameEnvelope` 为帧携带会话、轮次、关联、因果和时间信息，`EnvelopeProcessor.wrap` 保留同步与异步阶段的元数据。
 
@@ -230,7 +232,7 @@ java --class-path ominicat-server/target/ominicat-server.jar EmbedDemo.java
 
 处理器可以输出零帧、一帧或多帧。`trySubmit()` 返回 `false` 时，调用方处理满队列或入口关闭；`finish()` 关闭外部入口并排空已接纳工作及活跃异步调用，`completion()` 在逆序清理结束后完成。`interrupt()` 隔离旧 generation 并准备下一轮，不撤销已发生的外部作用；`close()` 发起协作式取消，等待清理仍需使用 `completion()`。每个会话应新建管线和处理器实例。
 
-纯同步嵌入也可调用 `Pipeline.process(frame, sink)`，省去会话队列；调用方自行串行访问并关闭处理器。同步 `next` 仅在当前调用中有效，不能在返回后或其他线程调用。外部回调使用 `AsyncProcessor`，通过 `openSession` 运行；必须处理 `tryEmit()` 拒绝，并在结束或失败时调用 `complete()`／`fail()`。详见[生命周期](docs/architecture.md)与[异步插件契约](docs/plugins.md#streaming-callbacks)。
+纯同步嵌入也可调用 `Pipeline.process(frame, sink)`，省去会话队列；调用方自行串行访问并关闭处理器。同步 `next` 仅在当前调用中有效，不能在返回后或其他线程调用。外部回调使用 `AsyncProcessor`，通过 `openSession` 运行；必须处理 `tryEmit()` 拒绝，并在结束或失败时调用 `complete()`／`fail()`。详见[生命周期](docs/zh-CN/architecture.md)与[异步插件契约](docs/zh-CN/plugins.md#流式回调)。
 
 ## 开发插件
 
@@ -300,7 +302,7 @@ java -cp 'ominicat-server/target/ominicat-server.jar:plugins/*' \
 
 在 Studio 调试页连接并发送 `hello`，输出为 `HELLO`。以上 classpath 分隔符适用于 Linux／macOS，Windows 使用 `;`。作为 Maven 依赖时，插件使用 `io.ominicat:ominicat-core:0.1.0-SNAPSHOT`；先在本仓库运行 `./mvnw install`，当前产物尚未发布到 Maven Central。
 
-工厂应拒绝未知或无效选项，每次 `create()` 返回独立处理器。处理器需配合中断，并在 `close()` 释放其资源。更完整的回调、组合与部署契约见[插件开发文档](docs/plugins.md)。
+工厂应拒绝未知或无效选项，每次 `create()` 返回独立处理器。处理器需配合中断，并在 `close()` 释放其资源。更完整的回调、组合与部署契约见[插件开发文档](docs/zh-CN/plugins.md)。
 
 ## 适配器与示例
 
@@ -308,7 +310,7 @@ java -cp 'ominicat-server/target/ominicat-server.jar:plugins/*' \
 - [语音管线](config/voice.yaml)：分段转写 → 提示模板 → 流式文本生成 → 语音合成。
 - [图像输入](config/vision.yaml)：编码图像进入兼容模型接口。
 - [独立音轨](config/dual-stream.yaml)：声道拆分、各流隔离及可配置归属。
-- [会话策略](config/conversation.yaml)、[步骤流程](config/steps.yaml)和[确定性回放](examples/README.md)。
+- [会话策略](config/conversation.yaml)、[步骤流程](config/steps.yaml)和[确定性回放](docs/zh-CN/examples/README.md)。
 
 现有兼容 HTTP 转写适配器将有界 PCM 语音片段封装为 WAV 上传，产出最终转写；语音合成收集文字至轮次边界，再返回 24 kHz 单声道 PCM；文本模型通过 SSE 输出。RMS 检测器提供可配置静音时长的能量事件。厂商原生双向语音流可通过 `AsyncProcessor` 接入，具体适配器需要独立实现和验证。WebRTC、自动说话人分离、回声消除、持久化消息投递与自动重连不包含在当前发行物中。
 
@@ -325,23 +327,23 @@ java -cp 'ominicat-server/target/ominicat-server.jar:plugins/*' \
 java scripts/WebSocketLoad.java ws://127.0.0.1:8080/ws 32 5000
 ```
 
-完整三框架对比还需 CPython 3.12，按[对比复跑步骤](comparison/README.md)构建独立测试程序并运行 45 轮。相关 PR／main 变更自动触发 [Linux 工作流](.github/workflows/framework-comparison.yml)，也可手动触发；成功产物保留 30 天，包含逐轮 JSON、来源清单、校验和及安全诊断图，排除原始记录与私有日志。
+完整三框架对比还需 CPython 3.12，按[对比复跑步骤](docs/zh-CN/comparison/README.md)构建独立测试程序并运行 45 轮。相关 PR／main 变更自动触发 [Linux 工作流](.github/workflows/framework-comparison.yml)，也可手动触发；成功产物保留 30 天，包含逐轮 JSON、来源清单、校验和及安全诊断图，排除原始记录与私有日志。
 
-本地 `profile.sh` 生成 `report.md`、`profiles.md`、CPU／分配分布图、完整栈图、GC 时间图及原始诊断。保留选定事件后可用 `python3 scripts/summarize_profiles.py reports/local/run` 重生成图；`full` 增加 JMH 预热与测量时间。发布前仅打包经过隐私检查的白名单文件。[测量方法](docs/performance.md) · [持续资源验证复跑](validation/README.md)。
+本地 `profile.sh` 生成 `report.md`、`profiles.md`、CPU／分配分布图、完整栈图、GC 时间图及原始诊断。保留选定事件后可用 `python3 scripts/summarize_profiles.py reports/local/run` 重生成图；`full` 增加 JMH 预热与测量时间。发布前仅打包经过隐私检查的白名单文件。[测量方法](docs/zh-CN/performance.md) · [持续资源验证复跑](docs/zh-CN/validation/README.md)。
 
 ## 继续阅读
 
-以下深入文档目前主要为英文，API、配置项与示例可直接对应本页：
+深入说明、模块指南、部署、协议与诊断报告均提供中文版，可从[中文文档目录](docs/zh-CN/index.md)继续阅读：
 
-- [架构、所有权与生命周期](docs/architecture.md)
-- [配置、鉴权与部署](docs/configuration.md)
-- [帧协议](docs/protocol.md)与[插件开发](docs/plugins.md)
-- [通用场景覆盖矩阵](docs/scenario-coverage.md)
-- [不可变媒体引用与导入导出 API](docs/media-references.md)
-- [Studio 运行大盘与独立流程调试](docs/studio.md)
-- [迭代计划与验收标准](docs/iteration-plan.md)
-- [跨项目接入契约提案](docs/integration-contracts.md)
-- [时间区间、分段与注释契约提案](docs/temporal-annotations.md)
-- [会话扩展](ominicat-conversation/README.md)与[适配器能力](ominicat-providers/README.md)
+- [架构、所有权与生命周期](docs/zh-CN/architecture.md)
+- [配置、鉴权与部署](docs/zh-CN/configuration.md)
+- [帧协议](docs/zh-CN/protocol.md)与[插件开发](docs/zh-CN/plugins.md)
+- [通用场景覆盖矩阵](docs/zh-CN/scenario-coverage.md)
+- [不可变媒体引用与导入导出 API](docs/zh-CN/media-references.md)
+- [Studio 运行大盘与独立流程调试](docs/zh-CN/studio.md)
+- [迭代计划与验收标准](docs/zh-CN/iteration-plan.md)
+- [跨项目接入契约提案](docs/zh-CN/integration-contracts.md)
+- [时间区间、分段与注释契约提案](docs/zh-CN/temporal-annotations.md)
+- [会话扩展](docs/zh-CN/ominicat-conversation/README.md)与[适配器能力](docs/zh-CN/ominicat-providers/README.md)
 
 采用 [Apache License 2.0](LICENSE)。OminiCat 是独立 Java 实现，采用自身的 API 和线协议。

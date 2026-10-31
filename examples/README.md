@@ -1,3 +1,7 @@
+<!-- ominicat-language-nav -->
+[简体中文](../docs/zh-CN/examples/README.md) · **English**
+<!-- /ominicat-language-nav -->
+
 # Embedded replay
 
 Build the distribution and run a deterministic local transcript replay:

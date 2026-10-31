@@ -1,0 +1,325 @@
+{
+  "schemaVersion": 1,
+  "documents": [
+    {
+      "source": "AGENTS.md",
+      "translation": "docs/zh-CN/agent-workflow.md",
+      "source_sha256": "824d7a52bf8167403748886cb74a5164752eb8a90da9e8e2bd2b31e435f9f203"
+    },
+    {
+      "source": "CONTRIBUTING.md",
+      "translation": "docs/zh-CN/CONTRIBUTING.md",
+      "source_sha256": "5f89988e66780388651a7527c076ab19f98c511b5e009154c536a884e75176ef"
+    },
+    {
+      "source": "README.md",
+      "translation": "README.zh-CN.md",
+      "source_sha256": "44010c697a44b0eea877d981cf6399f9816b219279a314a6addbff808fbf9cbe"
+    },
+    {
+      "source": "SECURITY.md",
+      "translation": "docs/zh-CN/SECURITY.md",
+      "source_sha256": "0f1dfbdff5c6246f61c359b9416477d480ecba67942c974cb0a6dee43fc7a572"
+    },
+    {
+      "source": "comparison/README.md",
+      "translation": "docs/zh-CN/comparison/README.md",
+      "source_sha256": "283d70b3a138e50d77015c7dc38c5f0ec094df5ff94e23b5d6a6a678778630b8"
+    },
+    {
+      "source": "comparison/benchmarks/README.md",
+      "translation": "docs/zh-CN/comparison/benchmarks/README.md",
+      "source_sha256": "6b3fb7702e98c3fc2a782317485425c2897165af66e2441c0ffb0d88d38b7572"
+    },
+    {
+      "source": "comparison/profile_java.md",
+      "translation": "docs/zh-CN/comparison/profile_java.md",
+      "source_sha256": "58108dca279e883cde7048d985ec73eac1cbe1372a487170a999345a9c67b1e3"
+    },
+    {
+      "source": "comparison/protocol.md",
+      "translation": "docs/zh-CN/comparison/protocol.md",
+      "source_sha256": "2ba1e62f3c232c29ed45192a44744dd27bcec18142e09675363fab273fe4430f"
+    },
+    {
+      "source": "docs/architecture.md",
+      "translation": "docs/zh-CN/architecture.md",
+      "source_sha256": "0816485775a4f05535a547dbb50e232a6d9a3e898a249dbc751f0e738cc63971"
+    },
+    {
+      "source": "docs/configuration.md",
+      "translation": "docs/zh-CN/configuration.md",
+      "source_sha256": "178d99adbbdba06f01c3980d86f90cc7cc40011c23903eaba094dc0077da95ac"
+    },
+    {
+      "source": "docs/i18n/README.md",
+      "translation": "docs/zh-CN/i18n/README.md",
+      "source_sha256": "85b023278935897d3a9bfc4a33d74e7aea81cf8d14480e11cf70e2c21a55e0dc"
+    },
+    {
+      "source": "docs/integration-contracts.md",
+      "translation": "docs/zh-CN/integration-contracts.md",
+      "source_sha256": "600ba495c4c4dfde454dd167619be29cc67ac4e6f766124d0c0a32bcfea5dd05"
+    },
+    {
+      "source": "docs/iteration-plan.md",
+      "translation": "docs/zh-CN/iteration-plan.md",
+      "source_sha256": "70491c8d9ccb4b74be0a1e8a859e0f476927aa18c0cca4560732aa3a777759a0"
+    },
+    {
+      "source": "docs/java-compatibility.md",
+      "translation": "docs/zh-CN/java-compatibility.md",
+      "source_sha256": "3ec6686f4e96d45bffee1b1626db4e6cc4108d70209eee087b0b8b76c13dc976"
+    },
+    {
+      "source": "docs/media-references.md",
+      "translation": "docs/zh-CN/media-references.md",
+      "source_sha256": "f39775f808442cadd14226fa9e2d9d070309aa09dee673c856fd51b9ede04050"
+    },
+    {
+      "source": "docs/performance.md",
+      "translation": "docs/zh-CN/performance.md",
+      "source_sha256": "63ffd74a5f69aa4f07e3a27242bc01f6973f3e716e9fe1baa9fb7c6990621e8d"
+    },
+    {
+      "source": "docs/plugins.md",
+      "translation": "docs/zh-CN/plugins.md",
+      "source_sha256": "c52de3285c4696900934a8c4b49f20dc46c2ee54d9c711c0cb7d5318cd00b0b4"
+    },
+    {
+      "source": "docs/protocol.md",
+      "translation": "docs/zh-CN/protocol.md",
+      "source_sha256": "5e548c8e2c534e5eaf0b7c9faed8acd3fb83e682226f7938d2773b3e5e53ceae"
+    },
+    {
+      "source": "docs/scenario-coverage.md",
+      "translation": "docs/zh-CN/scenario-coverage.md",
+      "source_sha256": "1f3722e69d5fc2f16da4a078cd9b1db446f3912651e2dccb51e0489207642789"
+    },
+    {
+      "source": "docs/studio.md",
+      "translation": "docs/zh-CN/studio.md",
+      "source_sha256": "7d016d317c6d70224e1e9d8c16ae9ed68cf969a1a6fdd351094a6ae711a44b94"
+    },
+    {
+      "source": "docs/temporal-annotations.md",
+      "translation": "docs/zh-CN/temporal-annotations.md",
+      "source_sha256": "36b464b226430cef98cd271f67fb6695f65249f15d19db8540754b15e4f57a59"
+    },
+    {
+      "source": "examples/README.md",
+      "translation": "docs/zh-CN/examples/README.md",
+      "source_sha256": "0e8d42ef2358576daeeb26a908f6501f4fd01aaf2267c38beb18922428b96135"
+    },
+    {
+      "source": "ominicat-conversation/README.md",
+      "translation": "docs/zh-CN/ominicat-conversation/README.md",
+      "source_sha256": "1aa6ccc826fe85b4392ec011f1630a4c4fd2a2a852817959dd6ef2a9bb0a078b"
+    },
+    {
+      "source": "ominicat-core/DEEP_VERIFICATION.md",
+      "translation": "docs/zh-CN/ominicat-core/DEEP_VERIFICATION.md",
+      "source_sha256": "977956c6b08e7ca74c07712bf5bab0ce68e859ffbe4609595feccea5ff432418"
+    },
+    {
+      "source": "ominicat-providers/DEEP_VERIFICATION.md",
+      "translation": "docs/zh-CN/ominicat-providers/DEEP_VERIFICATION.md",
+      "source_sha256": "a57e08b0b1e56c0be7bee5e7955e3021f9b906cb2b0bd88e6894f7fe870406a1"
+    },
+    {
+      "source": "ominicat-providers/README.md",
+      "translation": "docs/zh-CN/ominicat-providers/README.md",
+      "source_sha256": "9af843439a0247bf10a385e9b61588789b6e69c717ae80cebc4cd5c821c75e85"
+    },
+    {
+      "source": "ominicat-server/DEEP_VERIFICATION.md",
+      "translation": "docs/zh-CN/ominicat-server/DEEP_VERIFICATION.md",
+      "source_sha256": "1195cd74acefa56557b901fbfb42f31134697a0b5fb5ae235fd37fdc771b9fd1"
+    },
+    {
+      "source": "ominicat-server/README.md",
+      "translation": "docs/zh-CN/ominicat-server/README.md",
+      "source_sha256": "9bc39a037afdc8fb4114928ae2b23e8f05d1505f689cce8910067ba145926904"
+    },
+    {
+      "source": "reports/baseline/profiles.md",
+      "translation": "docs/zh-CN/reports/baseline/profiles.md",
+      "source_sha256": "abed21376f84995eea4593ef74802571d50b8f47e67f19bc6b317f0209d43181"
+    },
+    {
+      "source": "reports/baseline/report.md",
+      "translation": "docs/zh-CN/reports/baseline/report.md",
+      "source_sha256": "3c0b53375fdf9de55f8bc00f0ef79b6e7dcd61ca31849a4739fefef36c977bba"
+    },
+    {
+      "source": "reports/comparison/README.md",
+      "translation": "docs/zh-CN/reports/comparison/README.md",
+      "source_sha256": "6910f85410aa37e34e9a586e368accb73067873727d5aafa1338bc242600e8f7"
+    },
+    {
+      "source": "reports/comparison/java17-2026-10-31/README.md",
+      "translation": "docs/zh-CN/reports/comparison/java17-2026-10-31/README.md",
+      "source_sha256": "906de2516ce89f3113f3ea7e32b4089677b075027addff4b76a064f8df92b1a8"
+    },
+    {
+      "source": "reports/comparison/java17-2026-10-31/profiles/README.md",
+      "translation": "docs/zh-CN/reports/comparison/java17-2026-10-31/profiles/README.md",
+      "source_sha256": "631f077553cf3b5a4f329836292e31854509b5a5a5c20b84cd95e8bbba05df67"
+    },
+    {
+      "source": "reports/comparison/java17-2026-10-31/profiles/camel/profiles.md",
+      "translation": "docs/zh-CN/reports/comparison/java17-2026-10-31/profiles/camel/profiles.md",
+      "source_sha256": "4c5140607f84cc9f938e01a715be9c20df7872a2110a300c985ee855ac975e09"
+    },
+    {
+      "source": "reports/comparison/java17-2026-10-31/profiles/camel/report.md",
+      "translation": "docs/zh-CN/reports/comparison/java17-2026-10-31/profiles/camel/report.md",
+      "source_sha256": "eca1be566ea5b00c3bdbbc0ac7a28e822990f6e64f94f40c9978e245c6d0bb04"
+    },
+    {
+      "source": "reports/comparison/java17-2026-10-31/profiles/ominicat/profiles.md",
+      "translation": "docs/zh-CN/reports/comparison/java17-2026-10-31/profiles/ominicat/profiles.md",
+      "source_sha256": "01c7a2abc5fdfeb99c3de3169b765e21bd4b1f3b71eb57c6d369a79b6c333fe4"
+    },
+    {
+      "source": "reports/comparison/java17-2026-10-31/profiles/ominicat/report.md",
+      "translation": "docs/zh-CN/reports/comparison/java17-2026-10-31/profiles/ominicat/report.md",
+      "source_sha256": "de90214fb190dcea3173527bc1bcf7b0a11f5edbb3f6cb896d613c0eb8b4e599"
+    },
+    {
+      "source": "reports/comparison/java17-2026-10-31/profiles/pipecat/profile.md",
+      "translation": "docs/zh-CN/reports/comparison/java17-2026-10-31/profiles/pipecat/profile.md",
+      "source_sha256": "7927a7596e367b9044a70444242b68608e188ea412eba1befc4813a9b4b3c65a"
+    },
+    {
+      "source": "reports/comparison/linux-centos9-java17-2026-10-31/README.md",
+      "translation": "docs/zh-CN/reports/comparison/linux-centos9-java17-2026-10-31/README.md",
+      "source_sha256": "5acc56fa64b935fdd2ab6f4684eef52cc745a9c75486e2fc17ce672b8db95ecb"
+    },
+    {
+      "source": "reports/comparison/linux-centos9-java17-2026-10-31/profiles/README.md",
+      "translation": "docs/zh-CN/reports/comparison/linux-centos9-java17-2026-10-31/profiles/README.md",
+      "source_sha256": "631f077553cf3b5a4f329836292e31854509b5a5a5c20b84cd95e8bbba05df67"
+    },
+    {
+      "source": "reports/comparison/linux-centos9-java17-2026-10-31/profiles/camel/profiles.md",
+      "translation": "docs/zh-CN/reports/comparison/linux-centos9-java17-2026-10-31/profiles/camel/profiles.md",
+      "source_sha256": "f7f84f4a2be3531ed3c5b36a4e5a35e59e4cdb961ae30011dc014295e188112e"
+    },
+    {
+      "source": "reports/comparison/linux-centos9-java17-2026-10-31/profiles/camel/report.md",
+      "translation": "docs/zh-CN/reports/comparison/linux-centos9-java17-2026-10-31/profiles/camel/report.md",
+      "source_sha256": "eca1be566ea5b00c3bdbbc0ac7a28e822990f6e64f94f40c9978e245c6d0bb04"
+    },
+    {
+      "source": "reports/comparison/linux-centos9-java17-2026-10-31/profiles/ominicat/profiles.md",
+      "translation": "docs/zh-CN/reports/comparison/linux-centos9-java17-2026-10-31/profiles/ominicat/profiles.md",
+      "source_sha256": "f1585a1f86f1e5eac6cf6f6aeb23bbcd367b6f3ea95ffb969ca1c94139387a1b"
+    },
+    {
+      "source": "reports/comparison/linux-centos9-java17-2026-10-31/profiles/ominicat/report.md",
+      "translation": "docs/zh-CN/reports/comparison/linux-centos9-java17-2026-10-31/profiles/ominicat/report.md",
+      "source_sha256": "de90214fb190dcea3173527bc1bcf7b0a11f5edbb3f6cb896d613c0eb8b4e599"
+    },
+    {
+      "source": "reports/comparison/linux-centos9-java17-2026-10-31/profiles/pipecat/profile.md",
+      "translation": "docs/zh-CN/reports/comparison/linux-centos9-java17-2026-10-31/profiles/pipecat/profile.md",
+      "source_sha256": "9969af3dcd9cfdcf5060020f5502bfb8cd24ea926aa1d66fc04fc9f5c85f8a85"
+    },
+    {
+      "source": "reports/comparison/linux-ubuntu24-java17-2026-10-31/README.md",
+      "translation": "docs/zh-CN/reports/comparison/linux-ubuntu24-java17-2026-10-31/README.md",
+      "source_sha256": "7119e37a60b6882ed5b13557bad99abcfb54d5125b963f89d586d42fe81c36a3"
+    },
+    {
+      "source": "reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/README.md",
+      "translation": "docs/zh-CN/reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/README.md",
+      "source_sha256": "631f077553cf3b5a4f329836292e31854509b5a5a5c20b84cd95e8bbba05df67"
+    },
+    {
+      "source": "reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/camel/profiles.md",
+      "translation": "docs/zh-CN/reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/camel/profiles.md",
+      "source_sha256": "a49e321aeba1efc7b4b17aa2de4a67fd42e0ed46a3767824a44a5493efe8d0ff"
+    },
+    {
+      "source": "reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/camel/report.md",
+      "translation": "docs/zh-CN/reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/camel/report.md",
+      "source_sha256": "eca1be566ea5b00c3bdbbc0ac7a28e822990f6e64f94f40c9978e245c6d0bb04"
+    },
+    {
+      "source": "reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/profiles.md",
+      "translation": "docs/zh-CN/reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/profiles.md",
+      "source_sha256": "b0252925a5cd2e14ad0372679183fc2d218623821ff9691ffe580ac4b4bdfc96"
+    },
+    {
+      "source": "reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/report.md",
+      "translation": "docs/zh-CN/reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/ominicat/report.md",
+      "source_sha256": "de90214fb190dcea3173527bc1bcf7b0a11f5edbb3f6cb896d613c0eb8b4e599"
+    },
+    {
+      "source": "reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/pipecat/profile.md",
+      "translation": "docs/zh-CN/reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/pipecat/profile.md",
+      "source_sha256": "8361240d8bd7f101d2db092e30ae18fda5abf81b7bb228ddb00700fbf66f28f8"
+    },
+    {
+      "source": "reports/deep/README.md",
+      "translation": "docs/zh-CN/reports/deep/README.md",
+      "source_sha256": "5918b0fb1dd6632093b627059555ec04e59950b2a59759edfcf94aabefa31d1a"
+    },
+    {
+      "source": "reports/deep/kernel/comparison.md",
+      "translation": "docs/zh-CN/reports/deep/kernel/comparison.md",
+      "source_sha256": "f93b9b735226be470a2f3772c4c3b81d292daea5f86620b209b9d4bca09fdea9"
+    },
+    {
+      "source": "reports/deep/kernel/profiles.md",
+      "translation": "docs/zh-CN/reports/deep/kernel/profiles.md",
+      "source_sha256": "0e07ca74b549489f078d993e036a45f2b0aeadd0edaf152926ee135604077eda"
+    },
+    {
+      "source": "reports/deep/kernel/report.md",
+      "translation": "docs/zh-CN/reports/deep/kernel/report.md",
+      "source_sha256": "f8dd21c1bc229aaa3fd4618c2d0be174f77f03b6bd80bdfb666a866441259afe"
+    },
+    {
+      "source": "reports/java17/README.md",
+      "translation": "docs/zh-CN/reports/java17/README.md",
+      "source_sha256": "1541cef6a9deec6dd60803b8c22a1aedac14f68bf8dabbe3f7d2f47a5f147da4"
+    },
+    {
+      "source": "reports/java17/http-cancellation/README.md",
+      "translation": "docs/zh-CN/reports/java17/http-cancellation/README.md",
+      "source_sha256": "bf000dd1d8d5b6fcaefff6648fa8a74e7980ff794e2a889ef4f0661444a62574"
+    },
+    {
+      "source": "reports/java17/kernel/profiles.md",
+      "translation": "docs/zh-CN/reports/java17/kernel/profiles.md",
+      "source_sha256": "ea12717d4346524c8718b14548412cf3470a4b035e982a64a473314cdea7150a"
+    },
+    {
+      "source": "reports/java17/kernel/report.md",
+      "translation": "docs/zh-CN/reports/java17/kernel/report.md",
+      "source_sha256": "299f25e68aab535770a1df29d349e2dbf1da2be97119471ef98b6da0f1c91016"
+    },
+    {
+      "source": "reports/studio/README.md",
+      "translation": "docs/zh-CN/reports/studio/README.md",
+      "source_sha256": "3c1e5a7c64bb7c285abfa812324d6986d377238209c7948a7e34b07c425a8c5d"
+    },
+    {
+      "source": "reports/studio/interaction-review.md",
+      "translation": "docs/zh-CN/reports/studio/interaction-review.md",
+      "source_sha256": "c494149c4330a4b22e5833e8b1ca52679b53f2ef558cb1c747540a2e88af6cd9"
+    },
+    {
+      "source": "reports/verification.md",
+      "translation": "docs/zh-CN/reports/verification.md",
+      "source_sha256": "5d756b4172d9bebf219d894a02bf17c908136d05b4d6a27056cd2827eaa79850"
+    },
+    {
+      "source": "validation/README.md",
+      "translation": "docs/zh-CN/validation/README.md",
+      "source_sha256": "f54c0fc3be4bb972c688553bf40aa685ff9e4b1c3b79330dd8fb2cc9a91819ae"
+    }
+  ]
+}

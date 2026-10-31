@@ -1,3 +1,7 @@
+<!-- ominicat-language-nav -->
+[简体中文](zh-CN/studio.md) · **English**
+<!-- /ominicat-language-nav -->
+
 # OminiCat Studio
 
 Studio is the runtime's bundled, same-origin browser console. Its operation overview and pipeline debugger are separate views. The page and its assets ship inside the Java 17 server JAR; using it requires no frontend build or external service.

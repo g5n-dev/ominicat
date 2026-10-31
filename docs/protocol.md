@@ -1,3 +1,7 @@
+<!-- ominicat-language-nav -->
+[简体中文](zh-CN/protocol.md) · **English**
+<!-- /ominicat-language-nav -->
+
 # Frame protocol
 
 The standalone transport accepts JSON **text** messages on `GET /ws`. Each JSON object represents one frame. WebSocket fragmentation is supported within the configured aggregate message limit; binary WebSocket messages are rejected. There is no polymorphic Java-class deserialization.
