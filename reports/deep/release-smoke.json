@@ -1,0 +1,81 @@
+{
+  "measuredSeconds": 10.171625125,
+  "requestedMeasuredSeconds": 10,
+  "warmupSeconds": 2,
+  "persistentClients": 4,
+  "churnClients": 4,
+  "measuredFrames": 1076,
+  "newMeasuredConnections": 360,
+  "failures": 0,
+  "steadyLatency": {
+    "count": 716,
+    "p50MicrosUpperBound": 2720,
+    "p95MicrosUpperBound": 6569,
+    "p99MicrosUpperBound": 8277,
+    "maximumMicros": 25466.792
+  },
+  "churnLatency": {
+    "count": 360,
+    "p50MicrosUpperBound": 725,
+    "p95MicrosUpperBound": 1898,
+    "p99MicrosUpperBound": 3648,
+    "maximumMicros": 3769.0
+  },
+  "afterWarmupFullGc": {
+    "uptimeMillis": 7811,
+    "heapUsedBytes": 5697712,
+    "heapCommittedBytes": 268435456,
+    "heapMaxBytes": 268435456,
+    "nonHeapUsedBytes": 23244784,
+    "platformThreads": 24,
+    "loadedClasses": 3434,
+    "gcCount": 3,
+    "gcMillis": 9,
+    "nettyDirectBytes": 16777216,
+    "nettyHeapBytes": 0,
+    "directBufferBytes": 16785416,
+    "directBufferCount": 8,
+    "openFileDescriptors": 33,
+    "processCpuNanos": 1419077000
+  },
+  "afterDrainFullGc": {
+    "uptimeMillis": 20571,
+    "heapUsedBytes": 6180712,
+    "heapCommittedBytes": 268435456,
+    "heapMaxBytes": 268435456,
+    "nonHeapUsedBytes": 29556960,
+    "platformThreads": 24,
+    "loadedClasses": 3667,
+    "gcCount": 5,
+    "gcMillis": 19,
+    "nettyDirectBytes": 16777216,
+    "nettyHeapBytes": 0,
+    "directBufferBytes": 16785416,
+    "directBufferCount": 8,
+    "openFileDescriptors": 29,
+    "processCpuNanos": 3673396000
+  },
+  "drainedMetrics": "# HELP ominicat_active_sessions Current WebSocket sessions.\n# TYPE ominicat_active_sessions gauge\nominicat_active_sessions 0\n# TYPE ominicat_sessions_total counter\nominicat_sessions_total 428\n# TYPE ominicat_admitted_sessions gauge\nominicat_admitted_sessions 0\n# TYPE ominicat_connections gauge\nominicat_connections 1\n# TYPE ominicat_live_pipeline_workers gauge\nominicat_live_pipeline_workers 0\n# TYPE ominicat_pending_output_bytes gauge\nominicat_pending_output_bytes 0\n# TYPE ominicat_frames_in_total counter\nominicat_frames_in_total 1276\n# TYPE ominicat_frames_out_total counter\nominicat_frames_out_total 1276\n# TYPE ominicat_frames_rejected_total counter\nominicat_frames_rejected_total 0\n# TYPE ominicat_session_failures_total counter\nominicat_session_failures_total 0\n# TYPE ominicat_bytes_out_total counter\nominicat_bytes_out_total 967720\n",
+  "boundedErrorExamples": [],
+  "totalSeconds": 14.8072645,
+  "measuredFramesPerClient": [
+    179,
+    179,
+    179,
+    179,
+    90,
+    90,
+    90,
+    90
+  ],
+  "allClientsProgressed": true,
+  "validatedFramesByType": {
+    "text": 740,
+    "audio": 180,
+    "transcript": 120,
+    "image": 24,
+    "envelope": 12
+  },
+  "artifactSha256": "f2173e5c2dc519d963d0868b62e6f23f94b5259e1d24465d6db4fac90387cbf4",
+  "scope": "Short packaging smoke of the exact release artifact, distinct from the earlier 20-minute resource run and the separate 60-second SSE path run."
+}

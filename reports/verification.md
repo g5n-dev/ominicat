@@ -11,7 +11,7 @@ Command: `./mvnw -B -Pcoverage,sbom -Dominicat.stress.seeds=512 clean verify`. A
 | `ominicat-providers` | 57 | 0 / 0 / 0 | 98.91% | 89.81% |
 | `ominicat-server` | 57 | 0 / 0 / 0 | 92.97% | 80.00% |
 
-**234 tests passed, zero failures/errors/skips.** Java 21/25, container lifecycle/authentication and a short validation-driver run also passed in [CI](https://github.com/g5n-dev/ominicat/actions/workflows/ci.yml).
+**234 tests passed, zero failures/errors/skips.** Java 21/25, container lifecycle/authentication and a short validation-driver run also passed in [CI](https://github.com/g5n-dev/ominicat/actions/runs/41178416003).
 
 The [deep verification report](deep/README.md) records 1,572,864 selected randomized operations, fault fixtures, callback reachability, 20 measured minutes of mixed-media traffic, 1,405,303 successful frames, 42,729 new connections, complete resource drain, and CPU/allocation/GC/native-memory evidence. It identifies exact source and distribution hashes.
 

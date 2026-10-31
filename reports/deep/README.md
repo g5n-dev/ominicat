@@ -2,7 +2,7 @@
 
 Recorded on **2026-10-31, Asia/Shanghai**. This report separates completed verification from work that has not yet produced a result. Inputs are generated test data; no production conversations are used.
 
-**Completed:** 234 final-release tests passed with zero failures, errors or skips, including 512-seed kernel stress tests, independent state/media oracles and real local TCP/HTTP/WebSocket fault fixtures. [Java 21/25 and container CI](https://github.com/g5n-dev/ominicat/actions/workflows/ci.yml) passed. Two earlier native transport resource runs completed for 180 seconds and 60 seconds respectively, on their identified source variant.
+**Completed:** 234 final-release tests passed with zero failures, errors or skips, including 512-seed kernel stress tests, independent state/media oracles and real local TCP/HTTP/WebSocket fault fixtures. [Java 21/25 and container CI](https://github.com/g5n-dev/ominicat/actions/runs/41178416003) passed. Two earlier native transport resource runs completed for 180 seconds and 60 seconds respectively, on their identified source variant.
 
 **Completed — fixed-artifact resource run:** 60 seconds of warmup followed by **1,200.174 measured seconds**, **1,405,303 validated frames**, **42,729 new connections**, **zero unexpected failures**, and complete session/worker/output drain. All eleven predeclared numeric checks passed.
 
@@ -15,6 +15,7 @@ Hardware/toolchain details are recorded in the [environment manifest](environmen
 | Artifact | Purpose |
 | --- | --- |
 | [Verification results](verification.json) | Per-module test and coverage counters |
+| [Final-source CI](ci.json) | Java 21/25, container, source hygiene and driver smoke outcomes |
 | [Frozen source and artifact manifest](frozen-artifact.json) | Distribution SHA-256 and the production files used to build it |
 | [Sustained-run summary](soak-summary.json) | Completed duration, counters, drain checks and retained-resource observations |
 | [Sustained resource plot](soak-resources.svg) | Completed resource samples and latency/rate timeline |
@@ -32,7 +33,7 @@ Its production-source aggregate SHA-256 is `f960008e9dd2b7a9da3eb2d8b934851f191e
 
 ## Complete test verification
 
-The clean whole-repository verification completed with kernel stress repetition set to 512 seeds. [GitHub CI](https://github.com/g5n-dev/ominicat/actions/workflows/ci.yml) also passed on Java 21 and 25, including container lifecycle/authentication and a smoke run of the validation driver. Coverage describes the paths exercised in that run; it is not a probability of correctness.
+The clean whole-repository verification completed with kernel stress repetition set to 512 seeds. [GitHub CI](https://github.com/g5n-dev/ominicat/actions/runs/41178416003) also passed on Java 21 and 25, including container lifecycle/authentication and a smoke run of the validation driver. Coverage describes the paths exercised in that run; it is not a probability of correctness.
 
 | Module | Tests | Failures / errors / skips | Covered lines | Covered branches |
 | --- | ---: | --- | ---: | ---: |
@@ -147,7 +148,7 @@ The separate [kernel report](kernel/report.md) measures 4-stage direct dispatch 
 
 A final held-open-stream check reproduced a localized liveness defect: the CR parser looked ahead for an optional LF before dispatching an already-complete event. Finite-body fragmentation tests had not exposed it. The parser was corrected to return on CR immediately and defer optional LF consumption to the next read. Two new held-open test methods exercise LF/CRLF/CR with and without a BOM. The final whole-project clean suite passed 234 tests with 512 stress seeds. A [60.062-second real local HTTP stream](sse-cr-streaming.json) delivered all 6,000 ordered Unicode chunks; every chunk was observed before the producer wrote the next. DONE completed while the producer still held the body open. These local fixture results are not live-provider evidence.
 
-The [release delta manifest](release-delta.json) records the final JAR SHA-256 and exactly two changed/added bytecode entries: `ChatFactory.class` and `ChatFactory$SseLines.class`. All 69 core/server/conversation classes and every other existing entry remained byte-for-byte equal. The 20-minute resource run used artifact 081520... above; it was not rerun as a whole on the localized provider delta. The final release is 234-test verified with this affected-path stream check, while the immutable resource-run evidence remains separate.
+The [release delta manifest](release-delta.json) records the final JAR SHA-256 and exactly two changed/added bytecode entries: `ChatFactory.class` and `ChatFactory$SseLines.class`. All 69 core/server/conversation classes and every other existing entry remained byte-for-byte equal. The 20-minute resource run used artifact 081520... above; it was not rerun as a whole on the localized provider delta. The final release is 234-test verified with this affected-path stream check, while the immutable resource-run evidence remains separate. A short [packaging smoke of the exact final JAR](release-smoke.json) also passed: 10.172 measured seconds, 1,076 mixed-media frames, 360 new connections, zero failures and complete owned-resource drain. It is not a replacement for the earlier sustained run.
 
 ## Dependency and static-analysis review
 

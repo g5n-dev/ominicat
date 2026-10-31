@@ -39,6 +39,8 @@ The extended suite completed **52 tests with zero failures**, including a 180-se
 
 The generator sends invalid JSON field types periodically and verifies that the same session subsequently exchanges a valid frame. Half the normal cycles send explicit `end`; the remainder close the TCP connection abruptly. The slow-consumer fixture reads the `101` handshake and **does not read any subsequent TCP bytes**. It is not a JDK WebSocket listener that merely withholds message demand.
 
+Published log copies replace local temporary build directories with `[isolated-workspace]`; source hashes, test outcomes and numeric measurements are preserved. [Artifact checksums](validation/artifacts-sha256.json) cover those published copies.
+
 Raw artifacts:
 
 - [180-second samples and counters](validation/native-soak-180s.json) and [test log](validation/native-soak-180s.log)

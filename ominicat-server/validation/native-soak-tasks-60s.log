@@ -25,14 +25,14 @@
 [INFO] --- enforcer:3.6.2:enforce (runtime) @ ominicat-core ---
 [INFO]
 [INFO] --- resources:3.4.0:resources (default-resources) @ ominicat-core ---
-[INFO] skip non existing resourceDirectory /private/var/folders/qv/kg_xkqjj551fq14nd6_734s80000gn/T/ominicat-server-soak.zaub97vb/ominicat-core/src/main/resources
+[INFO] skip non existing resourceDirectory [isolated-workspace]/ominicat-core/src/main/resources
 [INFO]
 [INFO] --- compiler:3.14.1:compile (default-compile) @ ominicat-core ---
 [INFO] Recompiling the module because of changed source code.
 [INFO] Compiling 16 source files with javac [debug parameters release 21] to target/classes
 [INFO]
 [INFO] --- resources:3.4.0:testResources (default-testResources) @ ominicat-core ---
-[INFO] skip non existing resourceDirectory /private/var/folders/qv/kg_xkqjj551fq14nd6_734s80000gn/T/ominicat-server-soak.zaub97vb/ominicat-core/src/test/resources
+[INFO] skip non existing resourceDirectory [isolated-workspace]/ominicat-core/src/test/resources
 [INFO]
 [INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ ominicat-core ---
 [INFO] Recompiling the module because of changed dependency.
@@ -55,7 +55,7 @@
 [INFO] Compiling 16 source files with javac [debug parameters release 21] to target/classes
 [INFO]
 [INFO] --- resources:3.4.0:testResources (default-testResources) @ ominicat-conversation ---
-[INFO] skip non existing resourceDirectory /private/var/folders/qv/kg_xkqjj551fq14nd6_734s80000gn/T/ominicat-server-soak.zaub97vb/ominicat-conversation/src/test/resources
+[INFO] skip non existing resourceDirectory [isolated-workspace]/ominicat-conversation/src/test/resources
 [INFO]
 [INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ ominicat-conversation ---
 [INFO] Recompiling the module because of changed dependency.
@@ -78,7 +78,7 @@
 [INFO] Compiling 10 source files with javac [debug parameters release 21] to target/classes
 [INFO]
 [INFO] --- resources:3.4.0:testResources (default-testResources) @ ominicat-providers ---
-[INFO] skip non existing resourceDirectory /private/var/folders/qv/kg_xkqjj551fq14nd6_734s80000gn/T/ominicat-server-soak.zaub97vb/ominicat-providers/src/test/resources
+[INFO] skip non existing resourceDirectory [isolated-workspace]/ominicat-providers/src/test/resources
 [INFO]
 [INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ ominicat-providers ---
 [INFO] Recompiling the module because of changed dependency.
@@ -101,7 +101,7 @@
 [INFO] Compiling 4 source files with javac [debug parameters release 21] to target/classes
 [INFO]
 [INFO] --- resources:3.4.0:testResources (default-testResources) @ ominicat-server ---
-[INFO] skip non existing resourceDirectory /private/var/folders/qv/kg_xkqjj551fq14nd6_734s80000gn/T/ominicat-server-soak.zaub97vb/ominicat-server/src/test/resources
+[INFO] skip non existing resourceDirectory [isolated-workspace]/ominicat-server/src/test/resources
 [INFO]
 [INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ ominicat-server ---
 [INFO] Recompiling the module because of changed dependency.

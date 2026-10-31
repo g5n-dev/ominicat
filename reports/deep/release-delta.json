@@ -17,5 +17,15 @@
       "path": "ominicat-providers/src/main/java/io/ominicat/providers/ChatFactory.java",
       "sha256": "5ad587fb28bbdc1f093f25fd9c7c6b35ef8f16003e52515a3f4ff4cc9f20946b"
     }
-  ]
+  ],
+  "releaseSourceRevision": "203b4ce22a8783e585e8b294a0501b467ff14f92",
+  "releaseArtifactSmoke": {
+    "report": "release-smoke.json",
+    "measuredSeconds": 10.171625125,
+    "validatedFrames": 1076,
+    "newConnections": 360,
+    "failures": 0,
+    "allClientsProgressed": true,
+    "allOwnedResourceGaugesDrained": true
+  }
 }

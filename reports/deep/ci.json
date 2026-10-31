@@ -1,0 +1,33 @@
+{
+  "conclusion": "success",
+  "databaseId": 41178416003,
+  "headSha": "203b4ce22a8783e585e8b294a0501b467ff14f92",
+  "jobs": [
+    {
+      "conclusion": "success",
+      "name": "verify (21)",
+      "status": "completed",
+      "url": "https://github.com/g5n-dev/ominicat/actions/runs/41178416003/job/124470652174"
+    },
+    {
+      "conclusion": "success",
+      "name": "verify (25)",
+      "status": "completed",
+      "url": "https://github.com/g5n-dev/ominicat/actions/runs/41178416003/job/124470652334"
+    },
+    {
+      "conclusion": "success",
+      "name": "source-hygiene",
+      "status": "completed",
+      "url": "https://github.com/g5n-dev/ominicat/actions/runs/41178416003/job/124470652360"
+    },
+    {
+      "conclusion": "success",
+      "name": "container",
+      "status": "completed",
+      "url": "https://github.com/g5n-dev/ominicat/actions/runs/41178416003/job/124470652433"
+    }
+  ],
+  "status": "completed",
+  "url": "https://github.com/g5n-dev/ominicat/actions/runs/41178416003"
+}
