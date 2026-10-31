@@ -45,17 +45,32 @@ The design keeps the execution path small and overload explicit:
 
 ### CPU, allocation and GC
 
-The recorded **Java 17 kernel profile** contains 524 CPU stack samples and 2,814 allocation samples. It covers warmup, the bounded numeric-frame load and the measurement harness, including percentile sorting. CPU widths represent sample counts; allocation widths represent estimated allocated-byte weights, rather than retained heap or object counts.
+The recorded **Java 17 kernel profile** contains 524 CPU stack samples and 2,814 allocation samples. It covers warmup, the bounded numeric-frame load and the measurement harness, including percentile sorting. These summaries show CPU leaf samples and allocation classes. Allocation weights estimate allocated bytes, rather than retained heap or object counts.
+
+![Java 17 CPU leaf sample distribution](reports/java17/kernel/cpu-hotspots.svg)
+
+![Java 17 sampled allocation class distribution](reports/java17/kernel/allocation-hotspots.svg)
+
+<details>
+<summary>Explore the full CPU and allocation stacks</summary>
+
+The original recording was re-exported with an explicit 64-frame limit, recovering stacks up to 46 frames deep. The earlier export showed only five frames. Event counts, timestamps and measurement results are unchanged. Open the SVGs to inspect individual frames.
+
+[CPU flame graph](reports/java17/kernel/cpu-flamegraph.svg) · [Allocation flame graph](reports/java17/kernel/allocation-flamegraph.svg)
 
 ![Java 17 CPU sampled stacks](reports/java17/kernel/cpu-flamegraph.svg)
 
 ![Java 17 sampled allocation stacks](reports/java17/kernel/allocation-flamegraph.svg)
 
+</details>
+
+![GC pause totals per collection across the Java 17 kernel recording](reports/java17/kernel/gc-pauses.svg)
+
 | Kernel JFR observation | Recorded value |
 | --- | ---: |
 | Garbage collections | **33** |
 | Cumulative GC pause time | **33.959 ms** |
-| Longest recorded GC pause | **1.715 ms** |
+| Largest per-collection pause sum | **1.715 ms** |
 
 GC values describe the whole kernel recording, including warmup and harness work. [Profile analysis](reports/java17/kernel/profiles.md) · [Selected JFR events](reports/java17/kernel/jfr-events.json.gz) · [GC log](reports/java17/kernel/gc.txt) · [Source/runtime context](reports/java17/kernel/measurement-context.json). The current distribution retains the same core bytecode, as recorded in the [artifact delta](reports/java17/http-cancellation/artifact-delta.json).
 
@@ -80,10 +95,9 @@ With JDK 17+ and Python 3:
 
 ```sh
 ./scripts/profile.sh quick reports/local/profile
-python3 scripts/summarize_profiles.py reports/local/profile
 ```
 
-This produces `report.md`, `profiles.md`, CPU/allocation SVGs and local JFR/GC evidence. Use `full` for longer JMH warmup and measurement. [Profiling methodology](docs/performance.md) · [Sustained-resource reproduction](validation/README.md).
+This produces `report.md`, `profiles.md`, CPU/allocation summaries and full-stack SVGs, a GC pause timeline, and local JFR/GC evidence. To regenerate the figures from a retained selected-event export, run `python3 scripts/summarize_profiles.py reports/local/profile`. Use `full` for longer JMH warmup and measurement. [Profiling methodology](docs/performance.md) · [Sustained-resource reproduction](validation/README.md).
 
 ## Quick start
 

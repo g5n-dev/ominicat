@@ -17,6 +17,7 @@ import package_profiles
 COMMIT = "a" * 40
 EXPECTED = {
     "report.md", "profiles.md", "cpu-flamegraph.svg", "allocation-flamegraph.svg",
+    "cpu-hotspots.svg", "allocation-hotspots.svg", "gc-pauses.svg",
     "jmh.json", "jmh.log", "load.json", "source-sha256.json",
     "jfr-hotspots.json", "jfr-events.json.gz", "gc.log", "jfr-summary.txt",
     "run-manifest.json",
@@ -182,6 +183,13 @@ class PackageProfilesTest(unittest.TestCase):
         status, _, error = self.run_package()
         self.assertEqual(1, status, error)
         self.assertFalse(any(target.iterdir()))
+
+    def test_gc_pause_overflow_is_rejected_without_publishing_infinite_summary(self):
+        for duration in ("PT" + "9" * 400 + "S", "PT" + "9" * 305 + "H"):
+            self.write_events([{"type": "jdk.GarbageCollection", "values": {"sumOfPauses": duration}}])
+            error = self.assert_failure_without_output()
+            self.assertIn("non-finite", error)
+            self.assertNotIn(duration, error)
 
     def test_privacy_failures_do_not_echo_secret_or_create_output(self):
         for content in ("/Users/private-person/work/project", "/home/private-person/project",

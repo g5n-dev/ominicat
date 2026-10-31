@@ -51,11 +51,13 @@ Core load uses 100,000 warmup frames followed by 25 million measured frames in q
 
 ## CPU, memory, GC and contention
 
-JFR captures sampled CPU stacks, allocation weights, collection pauses and monitor contention; virtual-thread pinning is available only on runtimes that provide that event. [The Java 17 summary](../reports/java17/kernel/profiles.md) includes sampled flame graphs. Allocation weights are estimates, not retained heap. JMH `gc.alloc.rate.norm` estimates allocated bytes per operation. Zero recorded pinning or contention events does not prove absence in another workload or below recording thresholds.
+JFR captures sampled CPU stacks, allocation weights, collection pauses and monitor contention; virtual-thread pinning is available only on runtimes that provide that event. [The Java 17 summary](../reports/java17/kernel/profiles.md) includes readable CPU/allocation distributions, full exported flame graphs and a GC pause timeline. Allocation weights are estimates, not retained heap. JMH `gc.alloc.rate.norm` estimates allocated bytes per operation. Zero recorded pinning or contention events does not prove absence in another workload or below recording thresholds.
+
+The capture and JSON export explicitly request 64 stack frames; `jfr print` otherwise exports only five by default. The renderer preserves every supplied stack frame and reports recording truncation flags separately. The Java 17 baseline was restored from its original local JFR: all 3,371 events and their original first five frames match the earlier export. Only stack visibility was restored; benchmark results were not rerun or replaced. Older historical reports retain their original export depth.
 
 The profiling script disables environment/system-property/process-inventory events and exports selected diagnostic event categories. Raw JFR remains local and is excluded from Git. Public evidence includes compact data and sanitized selected events. Real application recordings may contain sensitive data and should stay private.
 
-To summarize a local run with full selected events, copy its selected JSON from `reports/local/<run-name>/jfr-events.json` into that run's folder temporarily, then run:
+The profiling script generates figures before moving any uncompressed selected export into local storage. To regenerate figures from the run's retained `jfr-events.json.gz`, run:
 
 ```bash
 python3 scripts/summarize_profiles.py reports/local/run
@@ -63,7 +65,7 @@ python3 scripts/summarize_profiles.py reports/local/run
 
 ## Scheduled evidence collection
 
-The [Performance evidence workflow](../.github/workflows/performance.yml) runs every Monday at 01:23 UTC and can also be dispatched manually. Java 17 and 21 each run the full profile independently. Every successful run generates the measurement report, CPU/allocation flame graphs, GC summary, selected compressed events and source/run manifests. A diagnostic allowlist packages these files with the measured JAR hash, run metadata and SHA-256 checksums; raw JFR, uncompressed event exports and build logs are excluded. Artifacts expire after 30 days.
+The [Performance evidence workflow](../.github/workflows/performance.yml) runs every Monday at 01:23 UTC and can also be dispatched manually. Java 17 and 21 each run the full profile independently. Every successful run generates the measurement report, CPU/allocation distributions and flame graphs, GC pause timeline and summary, selected compressed events and source/run manifests. A diagnostic allowlist packages these files with the measured JAR hash, run metadata and SHA-256 checksums; raw JFR, uncompressed event exports and build logs are excluded. Artifacts expire after 30 days.
 
 Collection or validation failure fails the job. A failure step preserves bounded diagnostic log tails only after privacy checks; unsafe logs are withheld. Hosted-runner throughput has no fixed pass threshold and does not automatically replace the README's recorded baseline. Compare matching revisions on a controlled host before accepting a performance claim. The [iteration plan](iteration-plan.md) separates evidence gaps from proposed runtime changes.
 

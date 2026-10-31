@@ -34,17 +34,32 @@
 
 ### CPU、内存分配与 GC
 
-这份 **Java 17 内核剖析**包含 524 个 CPU 栈采样和 2,814 个分配采样，覆盖预热、有界数值帧负载及测量程序，包括百分位排序。CPU 图宽度表示采样数，分配图宽度表示估计的分配字节权重；后者与存活堆大小、对象数量是不同指标。
+这份 **Java 17 内核剖析**包含 524 个 CPU 栈采样和 2,814 个分配采样，覆盖预热、有界数值帧负载及测量程序，包括百分位排序。下面分别展示 CPU 叶节点采样和分配类型分布；分配字节权重与存活堆大小、对象数量是不同指标。
+
+![Java 17 CPU 叶节点采样分布](reports/java17/kernel/cpu-hotspots.svg)
+
+![Java 17 内存分配类型采样分布](reports/java17/kernel/allocation-hotspots.svg)
+
+<details>
+<summary>展开完整 CPU 与内存分配调用栈</summary>
+
+从同一份原始记录按显式 64 层上限重新导出，恢复了最多 46 层调用栈；此前的导出只显示前 5 层。事件数量、时间戳和测量结果保持一致。打开 SVG 可查看各栈帧。
+
+[CPU 火焰图](reports/java17/kernel/cpu-flamegraph.svg) · [分配火焰图](reports/java17/kernel/allocation-flamegraph.svg)
 
 ![Java 17 CPU 采样火焰图](reports/java17/kernel/cpu-flamegraph.svg)
 
 ![Java 17 内存分配采样火焰图](reports/java17/kernel/allocation-flamegraph.svg)
 
+</details>
+
+![Java 17 内核整段记录中每次 GC 的暂停合计](reports/java17/kernel/gc-pauses.svg)
+
 | 内核 JFR 记录 | 实测值 |
 | --- | ---: |
 | GC 次数 | **33** |
 | GC 累计暂停 | **33.959 ms** |
-| 最长记录 GC 暂停 | **1.715 ms** |
+| 单次 GC 暂停合计最大值 | **1.715 ms** |
 
 GC 数据来自包含预热和测量程序的整段内核记录。[完整剖析](reports/java17/kernel/profiles.md) · [选定 JFR 事件](reports/java17/kernel/jfr-events.json.gz) · [GC 日志](reports/java17/kernel/gc.txt) · [源码与运行环境](reports/java17/kernel/measurement-context.json)。当前发行包的核心字节码保持一致，详见[产物差异](reports/java17/http-cancellation/artifact-delta.json)。
 
@@ -69,10 +84,9 @@ GC 数据来自包含预热和测量程序的整段内核记录。[完整剖析]
 
 ```bash
 ./scripts/profile.sh quick reports/local/profile
-python3 scripts/summarize_profiles.py reports/local/profile
 ```
 
-输出包含 `report.md`、`profiles.md`、CPU / 分配 SVG 及本地 JFR / GC 数据。使用 `full` 可增加 JMH 预热和测量时间。[剖析方法](docs/performance.md) · [持续资源验证复跑说明](validation/README.md)。
+输出包含 `report.md`、`profiles.md`、CPU / 分配分布图与完整栈图、GC 暂停时间图，以及本地 JFR / GC 数据。保留选定事件后，可用 `python3 scripts/summarize_profiles.py reports/local/profile` 重新生成图表。使用 `full` 可增加 JMH 预热和测量时间。[剖析方法](docs/performance.md) · [持续资源验证复跑说明](validation/README.md)。
 
 ## 先运行起来
 

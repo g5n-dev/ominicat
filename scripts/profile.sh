@@ -23,6 +23,7 @@ python3 scripts/report.py --fingerprint "$DESTINATION"
 JAR="$ROOT/ominicat-benchmarks/target/ominicat-benchmarks.jar"
 JAVA_BIN="${JAVA_HOME:+$JAVA_HOME/bin/}java"
 JFR_BIN="${JAVA_HOME:+$JAVA_HOME/bin/}jfr"
+JFR_STACK_DEPTH=64
 "$JAVA_BIN" -jar "$JAR" "io.ominicat.benchmarks.*Benchmark.*" -lp > "$DESTINATION/jmh-plan.txt"
 python3 scripts/report.py --prepare-run "$MODE" --artifact "$JAR" "$DESTINATION"
 "$JAVA_BIN" -Xms512m -Xmx512m -jar "$JAR" "io.ominicat.benchmarks.*Benchmark.*" \
@@ -35,15 +36,17 @@ python3 scripts/report.py --prepare-run "$MODE" --artifact "$JAR" "$DESTINATION"
   'jdk.OSInformation#enabled=false' 'jdk.JVMInformation#enabled=false' \
   > "$DESTINATION/jfr-config.log" 2>&1
 "$JAVA_BIN" -Xms512m -Xmx512m \
+  "-XX:FlightRecorderOptions=stackdepth=$JFR_STACK_DEPTH" \
   "-XX:StartFlightRecording=filename=$DESTINATION/kernel.jfr,settings=$DESTINATION/safe-profile.jfc,dumponexit=true" \
   "-Xlog:gc*:file=$DESTINATION/gc.log:uptime,level,tags" \
   -cp "$JAR" io.ominicat.benchmarks.CoreLoad \
   --sessions 16 --frames "$FRAMES" --warmup 100000 --inflight 32 --stages 4 \
   --output "$DESTINATION/load.json" > "$DESTINATION/load.log" 2>&1
 "$JFR_BIN" summary "$DESTINATION/kernel.jfr" > "$DESTINATION/jfr-summary.txt"
-"$JFR_BIN" print --json --events jdk.ExecutionSample,jdk.ObjectAllocationSample,jdk.GarbageCollection,jdk.JavaMonitorEnter,jdk.VirtualThreadPinned \
+"$JFR_BIN" print --json --stack-depth "$JFR_STACK_DEPTH" --events jdk.ExecutionSample,jdk.ObjectAllocationSample,jdk.GarbageCollection,jdk.JavaMonitorEnter,jdk.VirtualThreadPinned \
   "$DESTINATION/kernel.jfr" > "$DESTINATION/jfr-events.json"
 python3 scripts/report.py --strict --check-source --artifact "$JAR" "$DESTINATION"
+python3 scripts/summarize_profiles.py "$DESTINATION"
 mkdir -p "$ROOT/reports/local/$(basename "$DESTINATION")"
 LOCAL_EVENTS_DESTINATION="$ROOT/reports/local/$(basename "$DESTINATION")/jfr-events.json"
 if [[ ! "$DESTINATION/jfr-events.json" -ef "$LOCAL_EVENTS_DESTINATION" ]]; then

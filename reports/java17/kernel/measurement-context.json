@@ -9,5 +9,17 @@
   "hostContext": "Shared development host, also used for a concurrent 120-second paced/native Java17 compatibility validation. Not a controlled A/B experiment or capacity test.",
   "historicalMeasurementsOverwritten": false,
   "jfrVirtualThreadPinnedEventAvailable": false,
-  "postMeasurementDocumentationDelta": "See reports/java17/frozen-artifact.json: one AsyncOutlet Javadoc line was corrected after the run; every rebuilt JAR entry content remained identical."
+  "postMeasurementDocumentationDelta": "See reports/java17/frozen-artifact.json: one AsyncOutlet Javadoc line was corrected after the run; every rebuilt JAR entry content remained identical.",
+  "jfrStackExport": {
+    "recordingSha256": "6d987b2cabd0a8a3ee5ba164deccbf338c5a28e410d7ebba769cba9099dac7b9",
+    "stackDepthRequested": 64,
+    "previousDefaultExportDepth": 5,
+    "previousSelectedEventsGzipSha256": "8708862639d896cbe594b6edaacca064e562009e6c622e2cb10d7bc36275c0cc",
+    "restoredMaximumCpuFrames": 46,
+    "restoredMaximumAllocationFrames": 39,
+    "eventCount": 3371,
+    "originalEventFieldsAndFirstFiveFramesMatch": true,
+    "measurementRerun": false,
+    "note": "Re-exported the original recording to restore omitted caller frames. Event types, timestamps, sampled weights and original exported frames match. Benchmark results and measured artifact are unchanged."
+  }
 }
