@@ -21,7 +21,7 @@ The [cross-project contract proposal](integration-contracts.md) defines the next
 | Order | Increment | Acceptance boundary |
 | --- | --- | --- |
 | I1 | Optional plugin descriptions and compatibility fixtures | Preserve old plugin binaries; query metadata without calling `ProcessorFactory.create` or network code; explicitly handle unknown capabilities; reject a known utterance/streaming mismatch. Establish streaming/replay/aggregation baseline fixtures with current APIs; I2/I3 extend them later. |
-| I2 | Opt-in namespaced result schemas and provenance | Preserve default wire fixtures; distinguish same-named frame classes; reject duplicate/unsupported schema registrations; retain evidence time units, causal IDs and window scope. Measure codec cost separately. |
+| I2 | Opt-in namespaced result schemas and provenance | Preserve default wire fixtures; distinguish same-named frame classes; reject duplicate/unsupported schema registrations; retain evidence time units, causal IDs and window scope. Explicit subject mapping must distinguish equal local keys across applications. Measure codec cost separately. |
 | I3 | External run manifest and checkpoint binding | Reject mismatched input/definition contents on resume before state changes; allow new-policy reevaluation as a new run. Sink failure must not advance the cursor. Storage and durable effects remain external. |
 
 ### Performance evidence
