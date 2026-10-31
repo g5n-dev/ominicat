@@ -1,13 +1,19 @@
 name: Performance evidence
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '23 1 * * 1'
 permissions:
   contents: read
+concurrency:
+  group: performance-${{ github.ref }}
+  cancel-in-progress: false
 jobs:
   profile:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     strategy:
+      fail-fast: false
       matrix:
         java: ['17', '21']
     steps:
@@ -18,7 +24,16 @@ jobs:
           java-version: ${{ matrix.java }}
           cache: maven
       - run: scripts/profile.sh full reports/local/ci
+      - name: Generate CPU, allocation and GC profiles
+        run: python3 scripts/summarize_profiles.py reports/local/ci
+      - name: Package validated diagnostic evidence
+        run: python3 scripts/package_profiles.py reports/local/ci reports/local/publish --summary "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@v4
         with:
-          name: performance-evidence-java-${{ matrix.java }}
-          path: reports/local/ci/
+          name: performance-evidence-java-${{ matrix.java }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: reports/local/publish/
+          if-no-files-found: error
+          retention-days: 30
+      - name: Preserve sanitized failure diagnostics
+        if: failure()
+        run: python3 scripts/profile_failure.py reports/local/ci

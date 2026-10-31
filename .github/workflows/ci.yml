@@ -62,6 +62,8 @@ jobs:
         run: |
           git show --format= --check HEAD
           bash -n scripts/profile.sh scripts/server_soak.sh
+      - name: Performance evidence failure controls
+        run: python3 -m unittest discover -s scripts -p 'test_*.py' -v
   container:
     runs-on: ubuntu-latest
     timeout-minutes: 15

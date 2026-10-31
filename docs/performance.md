@@ -38,6 +38,8 @@ scripts/profile.sh full reports/local/longer-run
 
 `quick` uses two JMH forks, three 1-second warmup iterations and five 1-second measurement iterations. `full` uses three forks, five 2-second warmup iterations and eight 2-second measurement iterations. Both fix the heap at 512 MiB and include the JMH GC profiler. Profiles are deliberately outside the default test lifecycle so noisy performance numbers do not become flaky CI gates.
 
+Choose a new, empty output directory for each run. The script refuses to overwrite earlier evidence, stops on JMH failures, and validates the discovered benchmark/parameter matrix, finite metrics, complete load counters, source fingerprint and measured JAR hash before generating a report.
+
 | Probe | Measures | Does not establish |
 |---|---|---|
 | `PipelineBenchmark` | Changing numeric-frame transformations through 1/4/16 local stages, consumed by Blackhole | Model, serialization, media payload copying or network throughput |
@@ -58,6 +60,12 @@ To summarize a local run with full selected events, copy its selected JSON from 
 ```bash
 python3 scripts/summarize_profiles.py reports/local/run
 ```
+
+## Scheduled evidence collection
+
+The [Performance evidence workflow](../.github/workflows/performance.yml) runs every Monday at 01:23 UTC and can also be dispatched manually. Java 17 and 21 each run the full profile independently. Every successful run generates the measurement report, CPU/allocation flame graphs, GC summary, selected compressed events and source/run manifests. A diagnostic allowlist packages these files with the measured JAR hash, run metadata and SHA-256 checksums; raw JFR, uncompressed event exports and build logs are excluded. Artifacts expire after 30 days.
+
+Collection or validation failure fails the job. A failure step preserves bounded diagnostic log tails only after privacy checks; unsafe logs are withheld. Hosted-runner throughput has no fixed pass threshold and does not automatically replace the README's recorded baseline. Compare matching revisions on a controlled host before accepting a performance claim. The [iteration plan](iteration-plan.md) separates evidence gaps from proposed runtime changes.
 
 ## Transport probe
 

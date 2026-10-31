@@ -1,5 +1,7 @@
 # Contributing
 
+The [iteration plan](docs/iteration-plan.md) tracks ready work and acceptance criteria. Repository automation follows [AGENTS.md](AGENTS.md) and the same review and validation requirements as other changes.
+
 Use Java 17+ and the checked-in Maven wrapper. Run `./mvnw -Pcoverage,sbom verify` before submitting changes. The default test suite runs entirely against local fixtures and does not require paid provider access.
 
 Keep the kernel free of production dependencies and provider/application policy. Each stateful processor belongs to one session. Test lifecycle, overload, cancellation and failure paths when changing runtime contracts. New providers need protocol fixtures and explicit capability/limit documentation.
