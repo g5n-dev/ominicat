@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="420" viewBox="0 0 1280 420" role="img" aria-labelledby="title desc">
-  <title id="title">OminiCat — one kernel, many modalities</title>
+  <title id="title">OminiCat — high-performance multimodal pipelines for Java 17+</title>
   <desc id="desc">A geometric cat, flowing audio signal and modular pipeline on a midnight background.</desc>
   <defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#293b48" stroke-width=".6"/></pattern></defs>
   <rect width="1280" height="420" rx="20" fill="#101e28"/>
@@ -11,8 +11,8 @@
     <path d="M27 120H-10M143 120H180" stroke="#92e4c1" stroke-width="3" stroke-linecap="round"/>
   </g>
   <text x="298" y="151" font-family="Arial,Helvetica,sans-serif" font-size="76" font-weight="700" letter-spacing="-3" fill="#f2eee1">OminiCat<tspan fill="#92e4c1">.</tspan></text>
-  <text x="302" y="201" font-family="Arial,Helvetica,sans-serif" font-size="25" letter-spacing=".5" fill="#b8cbd1">One kernel. Many modalities.</text>
-  <text x="302" y="270" font-family="Arial,Helvetica,sans-serif" font-size="17" fill="#92e4c1" letter-spacing="2">JAVA 21+  /  MICROKERNEL  /  REAL-TIME CONVERSATIONS</text>
+  <text x="302" y="201" font-family="Arial,Helvetica,sans-serif" font-size="25" letter-spacing=".5" fill="#b8cbd1">High-performance multimodal pipelines.</text>
+  <text x="302" y="270" font-family="Arial,Helvetica,sans-serif" font-size="17" fill="#92e4c1" letter-spacing="2">JAVA 17+  /  HIGH THROUGHPUT  /  MICROKERNEL</text>
   <g transform="translate(78 325)" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c2d5db">
     <rect width="110" height="34" rx="5" fill="#213744"/><text x="21" y="22">AUDIO</text>
     <rect x="126" width="110" height="34" rx="5" fill="#213744"/><text x="156" y="22">TEXT</text>
