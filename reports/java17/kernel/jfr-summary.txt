@@ -4,7 +4,7 @@
  Start: 2026-10-31 07:21:43 (UTC)
  Duration: 10 s
 
- Event Type                                   Count  Size (bytes) 
+ Event Type                                   Count  Size (bytes)
 ==================================================================
  jdk.GCPhaseParallel                          23419        582183
  jdk.ObjectAllocationSample                    2814         41995

@@ -4,7 +4,7 @@
  Start: 2026-10-31 07:21:46 (UTC)
  Duration: 154 s
 
- Event Type                                   Count  Size (bytes) 
+ Event Type                                   Count  Size (bytes)
 ==================================================================
  jdk.ThreadPark                              144730       5757647
  jdk.GCPhaseParallel                          76440       1962793
