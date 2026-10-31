@@ -1,3 +1,5 @@
+<p align="center"><strong>Languages / 语言：</strong> <a href="README.zh-CN.md">简体中文</a> · <strong>English</strong></p>
+
 <p align="center">
   <a href="docs/assets/banner.svg"><img src="docs/assets/previews/banner.png" alt="OminiCat — high-performance multimodal pipelines for Java 17+" width="100%"></a>
 </p>
@@ -9,7 +11,7 @@
 </p>
 
 <p align="center"><strong>High throughput. Measured latency. A small Java kernel.</strong><br>
-<a href="README.zh-CN.md">简体中文</a> · <a href="#quick-start">Quick start</a> · <a href="docs/architecture.md">Architecture</a> · <a href="docs/plugins.md">Build a plugin</a> · <a href="#linux-performance-on-java-17">Performance</a> · <a href="#profiles">Profiles</a></p>
+<a href="#quick-start">Quick start</a> · <a href="docs/architecture.md">Architecture</a> · <a href="docs/plugins.md">Build a plugin</a> · <a href="#linux-performance-on-java-17">Performance</a> · <a href="#linux-profiles">Profiles</a></p>
 
 OminiCat is a **high-performance Java microkernel for multimodal conversation pipelines**. Embed it in an application or run it as a standalone WebSocket container. Typed frames connect transport, speech, language, vision, and conversation processors through a small plugin contract.
 
@@ -204,22 +206,31 @@ Ready-to-edit configurations include [voice](config/voice.yaml), [vision](config
 ## Embed the runtime
 
 ```java
-import io.ominicat.core.*;
+import io.ominicat.core.Frame;
+import io.ominicat.core.Pipeline;
+import io.ominicat.core.SessionOptions;
 
-var pipeline = Pipeline.builder()
-    .add((frame, next) -> next.accept(frame))
-    .build();
+public final class EmbedDemo {
+    public static void main(String[] args) {
+        var pipeline = Pipeline.builder()
+            .add((frame, next) -> next.accept(frame))
+            .build();
 
-try (var session = pipeline.openSession(SessionOptions.defaults(), System.out::println)) {
-    if (!session.trySubmit(new Frame.Text("Hello, OminiCat."))) {
-        throw new IllegalStateException("Session input is full or closed");
+        try (var session = pipeline.openSession(
+                SessionOptions.defaults(), System.out::println)) {
+            if (!session.trySubmit(new Frame.Text("Hello, OminiCat."))) {
+                throw new IllegalStateException("Session input is full or closed");
+            }
+            session.finish();
+            session.completion().join();
+        }
     }
-    session.finish();
-    session.completion().join();
 }
 ```
 
-Processors can emit zero, one, or many frames. Blocking provider I/O runs on session workers. `finish()` drains accepted work; `interrupt()` fences stale emissions and prepares a new generation; `close()` cancels cooperatively and `completion()` joins cleanup. Construct a fresh pipeline for each session.
+Save the example as `EmbedDemo.java` and run `java --class-path ominicat-server/target/ominicat-server.jar EmbedDemo.java` after building the repository.
+
+Processors can emit zero, one, or many frames. Blocking provider I/O runs on session workers. `finish()` drains accepted work; `interrupt()` fences stale emissions and prepares a new generation; `close()` cancels cooperatively and `completion()` joins cleanup. Construct a fresh pipeline for each session. A synchronous sink is valid only during its invocation and on its owning thread. External callbacks use `AsyncProcessor` through a session; handle `tryEmit()` rejection and terminate each invocation with `complete()` or `fail()`.
 
 ## Add a plugin
 
@@ -238,11 +249,13 @@ public final class UppercaseFactory implements ProcessorFactory {
 
     public Processor create(Map<String, String> options) {
         if (!options.isEmpty()) throw new IllegalArgumentException("uppercase accepts no options");
-        return (frame, next) -> {
-            if (frame instanceof Frame.Text text) {
-                next.accept(new Frame.Text(text.text().toUpperCase(Locale.ROOT)));
-            } else {
-                next.accept(frame);
+        return new Processor() {
+            @Override public void process(Frame frame, FrameSink next) throws Exception {
+                if (frame instanceof Frame.Text text) {
+                    next.accept(new Frame.Text(text.text().toUpperCase(Locale.ROOT)));
+                } else {
+                    next.accept(frame);
+                }
             }
         };
     }

@@ -63,6 +63,36 @@
       ]
     },
     {
+      "source": "docs/assets/zh-CN/banner.svg",
+      "source_sha256": "66e4306256d49d5b76094cdfe86cfcb480afa003d4967fca1682a4955e0c214d",
+      "preview": "docs/assets/previews/banner-zh-CN.png",
+      "preview_sha256": "994f6751383422e2d1bcd00c3240fae73b7a68245ca90b458286f7d3b9b3369a",
+      "pixels": [
+        2560,
+        840
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/architecture-overview.svg",
+      "source_sha256": "dc6f40d3559417d83b3acd47d30a4dd1be0e43da9669d4c86308517d176a9c1e",
+      "preview": "docs/assets/previews/architecture-overview-zh-CN.png",
+      "preview_sha256": "4ab2dac363f280130a9bfe759eb33ae4321130d53d61f8a423511fb783077d0c",
+      "pixels": [
+        2880,
+        1860
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/framework-paths.svg",
+      "source_sha256": "f5baf497982b87f3a17f3d11b7214aa63e3fd6dca974b49ac47233f068d1c595",
+      "preview": "docs/assets/previews/framework-paths-zh-CN.png",
+      "preview_sha256": "b46dff211627171916c0c733b763c8c314c6d5ca13f927c0d51983a7b0f5622f",
+      "pixels": [
+        2880,
+        2260
+      ]
+    },
+    {
       "source": "reports/comparison/linux-ubuntu24-java17-2026-10-31/overview.svg",
       "source_sha256": "1f6ccf509b15c4be416ffaa0eaaeba27c3227effab2d6ff086f42733c354bb31",
       "preview": "docs/assets/previews/ubuntu-comparison.png",

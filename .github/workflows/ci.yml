@@ -72,6 +72,7 @@ jobs:
       - name: Static documentation images and source freshness
         run: |
           python3 scripts/render_performance_explainer.py --check
+          python3 scripts/localize_readme.py --check
           python3 scripts/render_doc_previews.py --check
       - name: Performance evidence failure controls
         run: |
