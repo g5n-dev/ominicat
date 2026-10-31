@@ -33,6 +33,13 @@ jobs:
           done
           cat /tmp/ominicat.log
           exit 1
+      - name: Verify optional queued comparison adapters on Java 17
+        if: matrix.java == '17'
+        run: |
+          ./mvnw -B -ntp -pl ominicat-core -am install -DskipTests
+          ./mvnw -B -ntp -f comparison/benchmarks/pom.xml clean verify
+          java -Xms128m -Xmx512m -jar comparison/benchmarks/target/benchmark.jar --engine ominicat --stages 4 --warmup-seconds 0.2 --measure-seconds 0.3 --max-samples 2000000 --output reports/local/ci-ominicat-comparison-smoke.json
+          java -Xms128m -Xmx512m -jar comparison/benchmarks/target/benchmark.jar --engine camel --stages 4 --warmup-seconds 0.2 --measure-seconds 0.3 --max-samples 2000000 --output reports/local/ci-camel-comparison-smoke.json
       - name: Compile and smoke-test sustained-validation tooling
         run: |
           mkdir -p /tmp/ominicat-validation-classes
@@ -63,7 +70,11 @@ jobs:
           git show --format= --check HEAD
           bash -n scripts/profile.sh scripts/server_soak.sh
       - name: Performance evidence failure controls
-        run: python3 -m unittest discover -s scripts -p 'test_*.py' -v
+        run: |
+          python3 -m unittest discover -s scripts -p 'test_*.py' -v
+          python3 -m unittest discover -s comparison/tests -v
+          python3 -m unittest discover -s comparison/pipecat -p 'test_*.py' -v
+          python3 -m unittest discover -s comparison/profile_tests -p 'test_*.py' -v
       - name: Browser console syntax and lifecycle controls
         run: |
           node --check ominicat-server/src/main/resources/web/console.js

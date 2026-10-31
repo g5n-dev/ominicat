@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "engine": "pipecat",
+  "version": "1.15.0",
+  "mode": "queued-w1",
+  "stages": 1,
+  "sessions": 1,
+  "inflight": 1,
+  "warmupSeconds": 3.000001875,
+  "warmupFrames": 23702,
+  "measuredFrames": 40527,
+  "elapsedSeconds": 5.000072542,
+  "throughputFramesPerSecond": 8105.2824053207505,
+  "latencyMicros": {
+    "p50": 99.333,
+    "p95": 156.958,
+    "p99": 217.958,
+    "max": 1582.542
+  },
+  "processCpuSeconds": 2.620501,
+  "checks": {
+    "allOutputsValidated": true,
+    "exactOutputCount": true,
+    "noRejections": true,
+    "drained": true,
+    "cleanupComplete": true
+  },
+  "environment": {
+    "runtime": "CPython",
+    "version": "3.12.2",
+    "backend": "asyncio",
+    "eventLoop": "_UnixSelectorEventLoop",
+    "sampleBufferBytes": 16777216
+  },
+  "adapterSha256": "bec092dc5dc33b7441bf90df591dc998e62840e6ddf5c78f0156b820fc85bd9b"
+}

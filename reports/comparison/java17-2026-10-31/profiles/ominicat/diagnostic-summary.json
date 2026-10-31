@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "status": "complete",
+  "engine": "ominicat",
+  "stages": 4,
+  "kind": "separate-profiled-diagnostics",
+  "headlineTiming": false,
+  "scope": "Whole selected recording: JVM/framework startup, setup, 3-second warmup, 5-second W=1 measurement, harness and teardown. No phase filtering. Separate profiled diagnostics; not headline timings, framework-only allocation, retained heap, or a shared cross-language bytes-per-operation axis.",
+  "recordedAtUtc": "2026-10-31T16:17:31.309164+00:00",
+  "benchmarkArtifact": "benchmark.jar",
+  "benchmarkArtifactSha256": "f4d9bb71a1b8c86865bb60fa9bdfefc74fcc1607a813d34cb9f077e2301c1782",
+  "stackDepthRequested": 64,
+  "executionSamplePeriodRequested": "1 ms",
+  "exportStackDepth": 64,
+  "selectedEventTypes": [
+    "jdk.ExecutionSample",
+    "jdk.ObjectAllocationSample",
+    "jdk.GarbageCollection",
+    "jdk.JavaMonitorEnter",
+    "jdk.VirtualThreadPinned"
+  ],
+  "profileWrapperSha256": "338ef0157437838596119bfa31bc1f9242721b44dee4e6b8a4cadb746de90c6b",
+  "observedPhases": {
+    "observation": "Parent receipt/launch/exit UTC; asynchronous observations, not exact child boundaries.",
+    "processStartedAtUtc": "2026-10-31T16:17:22.309359+00:00",
+    "processExitedAtUtc": "2026-10-31T16:17:30.618873+00:00",
+    "phaseEvents": [
+      {
+        "phase": "warmup",
+        "observedAtUtc": "2026-10-31T16:17:22.534464+00:00",
+        "parentElapsedSeconds": 0.224801875
+      },
+      {
+        "phase": "measure",
+        "observedAtUtc": "2026-10-31T16:17:25.534931+00:00",
+        "parentElapsedSeconds": 3.225254333
+      },
+      {
+        "phase": "teardown",
+        "observedAtUtc": "2026-10-31T16:17:30.535089+00:00",
+        "parentElapsedSeconds": 8.225388917
+      }
+    ],
+    "phaseWindows": [
+      {
+        "phase": "startup",
+        "startObservedAtUtc": "2026-10-31T16:17:22.309359+00:00",
+        "endObservedAtUtc": "2026-10-31T16:17:22.534464+00:00",
+        "parentElapsedStartSeconds": 0.0,
+        "parentElapsedEndSeconds": 0.224801875
+      },
+      {
+        "phase": "warmup",
+        "startObservedAtUtc": "2026-10-31T16:17:22.534464+00:00",
+        "endObservedAtUtc": "2026-10-31T16:17:25.534931+00:00",
+        "parentElapsedStartSeconds": 0.224801875,
+        "parentElapsedEndSeconds": 3.225254333
+      },
+      {
+        "phase": "measure",
+        "startObservedAtUtc": "2026-10-31T16:17:25.534931+00:00",
+        "endObservedAtUtc": "2026-10-31T16:17:30.535089+00:00",
+        "parentElapsedStartSeconds": 3.225254333,
+        "parentElapsedEndSeconds": 8.225388917
+      },
+      {
+        "phase": "teardown",
+        "startObservedAtUtc": "2026-10-31T16:17:30.535089+00:00",
+        "endObservedAtUtc": "2026-10-31T16:17:30.618873+00:00",
+        "parentElapsedStartSeconds": 8.225388917,
+        "parentElapsedEndSeconds": 8.309172125
+      }
+    ]
+  },
+  "result": {
+    "schemaVersion": 1,
+    "engine": "ominicat",
+    "version": "0.1.0-SNAPSHOT",
+    "mode": "queued-w1",
+    "stages": 4,
+    "sessions": 1,
+    "inflight": 1,
+    "warmupSeconds": 3.00003925,
+    "warmupFrames": 408635,
+    "measuredFrames": 705374,
+    "elapsedSeconds": 5.000002833,
+    "throughputFramesPerSecond": 141074.7200670636,
+    "latencyMicros": {
+      "p99": 9.792,
+      "max": 3032.333,
+      "p95": 6.166,
+      "p50": 3.583
+    },
+    "processCpuSeconds": 5.286354,
+    "checks": {
+      "cleanupComplete": true,
+      "noRejections": true,
+      "exactOutputCount": true,
+      "allOutputsValidated": true,
+      "drained": true
+    },
+    "sampleCapacity": 2000000,
+    "harnessBufferBytes": 16777216,
+    "environment": {
+      "maxHeapBytes": 536870912,
+      "availableProcessors": 10,
+      "vendor": "Homebrew",
+      "version": "17.0.21.0.3+0",
+      "runtime": "Java",
+      "os": "Mac OS X",
+      "backend": "platform",
+      "architecture": "aarch64"
+    },
+    "instrumented": true,
+    "headlineEligible": false,
+    "profileType": "JFR"
+  },
+  "selectedEventCounts": {
+    "jdk.ExecutionSample": 37,
+    "jdk.GarbageCollection": 10,
+    "jdk.ObjectAllocationSample": 1462
+  },
+  "gcCollectionCount": 10,
+  "gcPauseSumMillis": 14.280335000000001,
+  "maxCollectionPauseSumMillis": 2.2979160000000003,
+  "artifactSha256": {
+    "report.md": "de90214fb190dcea3173527bc1bcf7b0a11f5edbb3f6cb896d613c0eb8b4e599",
+    "profiles.md": "01c7a2abc5fdfeb99c3de3169b765e21bd4b1f3b71eb57c6d369a79b6c333fe4",
+    "cpu-flamegraph.svg": "c49e9ab265add4263afd68256412c9638c688adc4b90f144d018a6ce8839c5f5",
+    "allocation-flamegraph.svg": "bafa963aade06eacfe5afff8fb61ac1bf5de17ad10f8630c1516ed43d839bbe8",
+    "cpu-hotspots.svg": "5b94e17d0e94361656a2ec02db6927ccd9fe9180a80c3f68434ab1a6ee2e27bb",
+    "allocation-hotspots.svg": "3948a0b5a24cc1c57e037f045bab1b33c0e53aebf94fd653211372056bb388c4",
+    "gc-pauses.svg": "3c5fe2846ea297fb96b7d86cfba468a4418463e2e3c5333e8ec9efb6d72ce5e6",
+    "jfr-events.json.gz": "95183fef00f926586eb8429b041aac56dc56fc38e90a6423e05f96a892168327",
+    "load.json": "a9280a7999e6c03edaab4525b50f909c9c348235c174b642da38fe17907a6df8",
+    "result.json": "2045be97a16ababf316b4fd6feb8b678afcdf15640701276e051ef0a27312ee1",
+    "jfr-summary.txt": "ce8c0e26e5912f3f68ed60c621c75437155371dd463100e921079ef24fb7e81e"
+  },
+  "sourceCapturedArtifacts": {
+    "report.md": "de90214fb190dcea3173527bc1bcf7b0a11f5edbb3f6cb896d613c0eb8b4e599",
+    "profiles.md": "01c7a2abc5fdfeb99c3de3169b765e21bd4b1f3b71eb57c6d369a79b6c333fe4",
+    "cpu-flamegraph.svg": "c49e9ab265add4263afd68256412c9638c688adc4b90f144d018a6ce8839c5f5",
+    "allocation-flamegraph.svg": "bafa963aade06eacfe5afff8fb61ac1bf5de17ad10f8630c1516ed43d839bbe8",
+    "cpu-hotspots.svg": "5b94e17d0e94361656a2ec02db6927ccd9fe9180a80c3f68434ab1a6ee2e27bb",
+    "allocation-hotspots.svg": "3948a0b5a24cc1c57e037f045bab1b33c0e53aebf94fd653211372056bb388c4",
+    "gc-pauses.svg": "3c5fe2846ea297fb96b7d86cfba468a4418463e2e3c5333e8ec9efb6d72ce5e6",
+    "jfr-events.json.gz": "95183fef00f926586eb8429b041aac56dc56fc38e90a6423e05f96a892168327",
+    "load.json": "a9280a7999e6c03edaab4525b50f909c9c348235c174b642da38fe17907a6df8",
+    "result.json": "2045be97a16ababf316b4fd6feb8b678afcdf15640701276e051ef0a27312ee1",
+    "jfr-summary.txt": "db8eee5f5d0bd9b201c56a40859e6ce3891afc08cdf85eb7c3490d9819ac1078"
+  },
+  "publicationPostprocessorSha256": "e1d306362e9ed9375345a3ebe9641305e51544117f5f6b1573e0747313b9a849"
+}

@@ -1,0 +1,68 @@
+name: Model-free framework comparison
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: framework-comparison-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: comparison/requirements.lock
+      - name: Build and verify native Java adapters
+        run: |
+          ./mvnw -B -ntp -pl ominicat-core -am install -DskipTests
+          ./mvnw -B -ntp -f comparison/benchmarks/pom.xml clean verify
+      - name: Create pinned benchmark environment
+        run: |
+          python -m venv reports/local/framework-env
+          reports/local/framework-env/bin/python -m pip install -r comparison/requirements.lock
+      - name: Verify oracle and evidence failure controls
+        run: |
+          reports/local/framework-env/bin/python -m unittest discover -s comparison/tests -v
+          reports/local/framework-env/bin/python -m unittest discover -s comparison/pipecat -p 'test_*.py' -v
+          reports/local/framework-env/bin/python -m unittest discover -s comparison/profile_tests -p 'test_*.py' -v
+      - name: Collect every fresh-process cell
+        run: |
+          reports/local/framework-env/bin/python comparison/run.py \
+            --java "$JAVA_HOME/bin/java" \
+            --python reports/local/framework-env/bin/python \
+            --output reports/local/framework-run
+      - name: Validate and render the complete report
+        run: |
+          reports/local/framework-env/bin/python comparison/report.py \
+            reports/local/framework-run reports/local/framework-publish
+      - name: Collect separate instrumented diagnostics
+        run: |
+          reports/local/framework-env/bin/python comparison/profile_java.py \
+            --java "$JAVA_HOME/bin/java" --output reports/local/framework-java-profiles
+          reports/local/framework-env/bin/python comparison/profile_python.py \
+            --output reports/local/framework-python-profile
+      - name: Publish allowlisted profiles and refresh report checksums
+        run: |
+          reports/local/framework-env/bin/python comparison/package_diagnostics.py \
+            --suite reports/local/framework-run \
+            --java-input reports/local/framework-java-profiles \
+            --python-input reports/local/framework-python-profile \
+            --output reports/local/framework-publish/profiles
+          reports/local/framework-env/bin/python comparison/report.py \
+            reports/local/framework-run reports/local/framework-publish
+      - uses: actions/upload-artifact@v4
+        with:
+          name: model-free-framework-comparison-${{ github.run_id }}-${{ github.run_attempt }}
+          path: reports/local/framework-publish/
+          if-no-files-found: error
+          retention-days: 30

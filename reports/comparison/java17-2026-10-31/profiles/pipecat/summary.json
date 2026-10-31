@@ -1,0 +1,1047 @@
+{
+  "schemaVersion": 1,
+  "engine": "pipecat",
+  "version": "1.15.0",
+  "profileType": "cProfile",
+  "recordedAt": "2026-10-31T15:58:19.694004+00:00",
+  "scope": "Separate instrumented cProfile diagnosis of the synthetic queued-W1 path; not a headline timing, native CPU stack sample, retained-heap measure or cross-language allocation/B-op comparison. Current event-loop thread only. Imports, startup, warmup and teardown are excluded. Python and exposed C call entries are attributed; native implementation internals are not resolved. Cumulative call times overlap and must not be summed as an exclusive breakdown.",
+  "instrumented": true,
+  "headlineEligible": false,
+  "capture": {
+    "start": "after flushed measure phase marker",
+    "stop": "before teardown phase marker",
+    "phases": [
+      "warmup",
+      "measure",
+      "teardown"
+    ],
+    "startupIncluded": false,
+    "warmupIncluded": false,
+    "teardownIncluded": false
+  },
+  "workload": {
+    "mode": "queued-w1",
+    "stages": 4,
+    "warmupSecondsRequested": 3.0,
+    "measureSecondsRequested": 5.0,
+    "measuredFrames": 10153,
+    "instrumentedElapsedSeconds": 5.000034083
+  },
+  "runtime": {
+    "implementation": "CPython",
+    "version": "3.12.2",
+    "backend": "asyncio"
+  },
+  "adapterSha256": "bec092dc5dc33b7441bf90df591dc998e62840e6ddf5c78f0156b820fc85bd9b",
+  "profilerSourceSha256": "01daeffc02679ae5926e71905ec47b400c4e033671e93d0dce55e219338da7d5",
+  "totalCalls": 10437301,
+  "primitiveCalls": 10264700,
+  "totalSelfSeconds": 4.960934939000001,
+  "functionCount": 114,
+  "topSelf": [
+    {
+      "file": "[native]",
+      "line": 0,
+      "function": "<method 'control' of 'select.kqueue' objects>",
+      "primitiveCalls": 111683,
+      "totalCalls": 111683,
+      "selfSeconds": 1.553722778,
+      "cumulativeSeconds": 1.553722778,
+      "selfSharePercent": 31.3191524804232
+    },
+    {
+      "file": "site-packages/pipecat/processors/frame_processor.py",
+      "line": 1212,
+      "function": "__internal_push_frame",
+      "primitiveCalls": 50765,
+      "totalCalls": 71071,
+      "selfSeconds": 0.20194876,
+      "cumulativeSeconds": 0.9778410540000001,
+      "selfSharePercent": 4.0707802558021005
+    },
+    {
+      "file": "stdlib/asyncio/base_events.py",
+      "line": 1908,
+      "function": "_run_once",
+      "primitiveCalls": 111683,
+      "totalCalls": 111683,
+      "selfSeconds": 0.20015436,
+      "cumulativeSeconds": 4.980287432,
+      "selfSharePercent": 4.034609654452474
+    },
+    {
+      "file": "comparison/pipecat/benchmark.py",
+      "line": 74,
+      "function": "__setattr__",
+      "primitiveCalls": 609180,
+      "totalCalls": 609180,
+      "selfSeconds": 0.19831442200000002,
+      "cumulativeSeconds": 0.282687073,
+      "selfSharePercent": 3.997521121290399
+    },
+    {
+      "file": "site-packages/pipecat/processors/frame_processor.py",
+      "line": 849,
+      "function": "process_frame",
+      "primitiveCalls": 101530,
+      "totalCalls": 101530,
+      "selfSeconds": 0.18636797800000002,
+      "cumulativeSeconds": 0.408260844,
+      "selfSharePercent": 3.7567107872123606
+    },
+    {
+      "file": "stdlib/asyncio/queues.py",
+      "line": 149,
+      "function": "get",
+      "primitiveCalls": 182754,
+      "totalCalls": 182754,
+      "selfSeconds": 0.129854153,
+      "cumulativeSeconds": 0.336429278,
+      "selfSharePercent": 2.6175338841709404
+    },
+    {
+      "file": "[native]",
+      "line": 0,
+      "function": "<built-in method builtins.isinstance>",
+      "primitiveCalls": 1005147,
+      "totalCalls": 1005147,
+      "selfSeconds": 0.097695483,
+      "cumulativeSeconds": 0.097695483,
+      "selfSharePercent": 1.9692957920486847
+    },
+    {
+      "file": "site-packages/pipecat/frames/frames.py",
+      "line": 108,
+      "function": "__post_init__",
+      "primitiveCalls": 50765,
+      "totalCalls": 50765,
+      "selfSeconds": 0.08981091100000001,
+      "cumulativeSeconds": 0.269816579,
+      "selfSharePercent": 1.8103626051202277
+    },
+    {
+      "file": "site-packages/pipecat/processors/frame_processor.py",
+      "line": 1330,
+      "function": "__process_frame",
+      "primitiveCalls": 50765,
+      "totalCalls": 101530,
+      "selfSeconds": 0.085871426,
+      "cumulativeSeconds": 1.8968753950000001,
+      "selfSharePercent": 1.7309524727875085
+    },
+    {
+      "file": "[native]",
+      "line": 0,
+      "function": "<built-in method builtins.hasattr>",
+      "primitiveCalls": 253825,
+      "totalCalls": 253825,
+      "selfSeconds": 0.084372651,
+      "cumulativeSeconds": 0.084372651,
+      "selfSharePercent": 1.700740929632256
+    },
+    {
+      "file": "stdlib/asyncio/queues.py",
+      "line": 137,
+      "function": "put_nowait",
+      "primitiveCalls": 91377,
+      "totalCalls": 91377,
+      "selfSeconds": 0.07987764600000001,
+      "cumulativeSeconds": 0.359511112,
+      "selfSharePercent": 1.6101329080542492
+    },
+    {
+      "file": "site-packages/pipecat/utils/base_object.py",
+      "line": 240,
+      "function": "_call_event_handler",
+      "primitiveCalls": 355355,
+      "totalCalls": 355355,
+      "selfSeconds": 0.075767239,
+      "cumulativeSeconds": 0.128992774,
+      "selfSharePercent": 1.527277417092528
+    },
+    {
+      "file": "comparison/pipecat/benchmark.py",
+      "line": 238,
+      "function": "process_frame",
+      "primitiveCalls": 40612,
+      "totalCalls": 40612,
+      "selfSeconds": 0.073408811,
+      "cumulativeSeconds": 1.4053938540000002,
+      "selfSharePercent": 1.4797374265665608
+    },
+    {
+      "file": "site-packages/pipecat/processors/frame_processor.py",
+      "line": 124,
+      "function": "__getattribute__",
+      "primitiveCalls": 345202,
+      "totalCalls": 345202,
+      "selfSeconds": 0.06751275200000001,
+      "cumulativeSeconds": 0.06751275200000001,
+      "selfSharePercent": 1.3608876719840408
+    },
+    {
+      "file": "stdlib/asyncio/base_events.py",
+      "line": 812,
+      "function": "_call_soon",
+      "primitiveCalls": 121836,
+      "totalCalls": 121836,
+      "selfSeconds": 0.063420211,
+      "cumulativeSeconds": 0.11775067800000001,
+      "selfSharePercent": 1.2783923147515397
+    },
+    {
+      "file": "site-packages/pipecat/processors/frame_processor.py",
+      "line": 1035,
+      "function": "push_frame",
+      "primitiveCalls": 50765,
+      "totalCalls": 71071,
+      "selfSeconds": 0.059739796000000005,
+      "cumulativeSeconds": 1.039058226,
+      "selfSharePercent": 1.2042043835398906
+    },
+    {
+      "file": "stdlib/asyncio/queues.py",
+      "line": 175,
+      "function": "get_nowait",
+      "primitiveCalls": 91377,
+      "totalCalls": 91377,
+      "selfSeconds": 0.058618887,
+      "cumulativeSeconds": 0.10682674900000001,
+      "selfSharePercent": 1.18160967077339
+    },
+    {
+      "file": "stdlib/asyncio/queues.py",
+      "line": 58,
+      "function": "_wakeup_next",
+      "primitiveCalls": 182754,
+      "totalCalls": 182754,
+      "selfSeconds": 0.058035133,
+      "cumulativeSeconds": 0.240040313,
+      "selfSharePercent": 1.169842654935088
+    },
+    {
+      "file": "comparison/pipecat/benchmark.py",
+      "line": 66,
+      "function": "__init__",
+      "primitiveCalls": 50765,
+      "totalCalls": 50765,
+      "selfSeconds": 0.055324599,
+      "cumulativeSeconds": 0.511911599,
+      "selfSharePercent": 1.1152050909813391
+    },
+    {
+      "file": "[native]",
+      "line": 0,
+      "function": "<method 'run' of '_contextvars.Context' objects>",
+      "primitiveCalls": 121836,
+      "totalCalls": 121836,
+      "selfSeconds": 0.055041462000000006,
+      "cumulativeSeconds": 3.022475183,
+      "selfSharePercent": 1.109497759531089
+    },
+    {
+      "file": "site-packages/pipecat/processors/frame_processor.py",
+      "line": 707,
+      "function": "get_clock",
+      "primitiveCalls": 172601,
+      "totalCalls": 172601,
+      "selfSeconds": 0.054859834,
+      "cumulativeSeconds": 0.105641177,
+      "selfSharePercent": 1.1058365948064288
+    },
+    {
+      "file": "site-packages/pipecat/processors/frame_processor.py",
+      "line": 726,
+      "function": "queue_frame",
+      "primitiveCalls": 50765,
+      "totalCalls": 101530,
+      "selfSeconds": 0.050489629,
+      "cumulativeSeconds": 0.9089140400000001,
+      "selfSharePercent": 1.0177442280703934
+    },
+    {
+      "file": "stdlib/selectors.py",
+      "line": 558,
+      "function": "select",
+      "primitiveCalls": 111683,
+      "totalCalls": 111683,
+      "selfSeconds": 0.050316023,
+      "cumulativeSeconds": 1.622695403,
+      "selfSharePercent": 1.0142447667362966
+    },
+    {
+      "file": "stdlib/asyncio/base_events.py",
+      "line": 783,
+      "function": "call_soon",
+      "primitiveCalls": 121836,
+      "totalCalls": 121836,
+      "selfSeconds": 0.046037127000000004,
+      "cumulativeSeconds": 0.17422103800000002,
+      "selfSharePercent": 0.9279929603204979
+    },
+    {
+      "file": "site-packages/pipecat/processors/frame_processor.py",
+      "line": 1352,
+      "function": "__input_frame_task_handler",
+      "primitiveCalls": 40612,
+      "totalCalls": 40612,
+      "selfSeconds": 0.045557186,
+      "cumulativeSeconds": 0.435456377,
+      "selfSharePercent": 0.9183185540664068
+    },
+    {
+      "file": "site-packages/pipecat/processors/frame_processor.py",
+      "line": 1380,
+      "function": "__process_frame_task_handler",
+      "primitiveCalls": 40612,
+      "totalCalls": 40612,
+      "selfSeconds": 0.044409121,
+      "cumulativeSeconds": 1.6696448640000001,
+      "selfSharePercent": 0.8951764444818895
+    },
+    {
+      "file": "stdlib/asyncio/events.py",
+      "line": 86,
+      "function": "_run",
+      "primitiveCalls": 121836,
+      "totalCalls": 121836,
+      "selfSeconds": 0.041536989,
+      "cumulativeSeconds": 3.064012172,
+      "selfSharePercent": 0.8372814703426207
+    },
+    {
+      "file": "site-packages/pipecat/clocks/system_clock.py",
+      "line": 30,
+      "function": "get_time",
+      "primitiveCalls": 172601,
+      "totalCalls": 172601,
+      "selfSeconds": 0.041237671000000004,
+      "cumulativeSeconds": 0.058385924000000006,
+      "selfSharePercent": 0.8312479705350152
+    },
+    {
+      "file": "stdlib/asyncio/queues.py",
+      "line": 110,
+      "function": "put",
+      "primitiveCalls": 91377,
+      "totalCalls": 91377,
+      "selfSeconds": 0.039548584000000005,
+      "cumulativeSeconds": 0.40989626100000004,
+      "selfSharePercent": 0.797200215005682
+    },
+    {
+      "file": "stdlib/asyncio/base_events.py",
+      "line": 446,
+      "function": "create_future",
+      "primitiveCalls": 101530,
+      "totalCalls": 101530,
+      "selfSeconds": 0.037489506000000006,
+      "cumulativeSeconds": 0.045374340000000006,
+      "selfSharePercent": 0.7556943693270233
+    },
+    {
+      "file": "[native]",
+      "line": 0,
+      "function": "<method 'set_result' of '_asyncio.Future' objects>",
+      "primitiveCalls": 101530,
+      "totalCalls": 101530,
+      "selfSeconds": 0.033924004,
+      "cumulativeSeconds": 0.179490447,
+      "selfSharePercent": 0.6838227958465873
+    },
+    {
+      "file": "[native]",
+      "line": 0,
+      "function": "<method 'popleft' of 'collections.deque' objects>",
+      "primitiveCalls": 263978,
+      "totalCalls": 263978,
+      "selfSeconds": 0.032060572,
+      "cumulativeSeconds": 0.032060572,
+      "selfSharePercent": 0.6462606825975146
+    },
+    {
+      "file": "stdlib/asyncio/events.py",
+      "line": 36,
+      "function": "__init__",
+      "primitiveCalls": 121836,
+      "totalCalls": 121836,
+      "selfSeconds": 0.031817643,
+      "cumulativeSeconds": 0.041445243,
+      "selfSharePercent": 0.6413638435341712
+    },
+    {
+      "file": "stdlib/asyncio/queues.py",
+      "line": 186,
+      "function": "task_done",
+      "primitiveCalls": 91377,
+      "totalCalls": 91377,
+      "selfSeconds": 0.031661331,
+      "cumulativeSeconds": 0.050094548,
+      "selfSharePercent": 0.6382129858446022
+    },
+    {
+      "file": "site-packages/pipecat/processors/frame_processor.py",
+      "line": 160,
+      "function": "put",
+      "primitiveCalls": 40612,
+      "totalCalls": 40612,
+      "selfSeconds": 0.030985787,
+      "cumulativeSeconds": 0.21642265300000002,
+      "selfSharePercent": 0.6245957139330263
+    },
+    {
+      "file": "site-packages/pipecat/processors/frame_processor.py",
+      "line": 181,
+      "function": "get",
+      "primitiveCalls": 81224,
+      "totalCalls": 81224,
+      "selfSeconds": 0.029761718000000003,
+      "cumulativeSeconds": 0.18099932300000002,
+      "selfSharePercent": 0.5999215544237557
+    },
+    {
+      "file": "[native]",
+      "line": 0,
+      "function": "<method 'append' of 'collections.deque' objects>",
+      "primitiveCalls": 274131,
+      "totalCalls": 274131,
+      "selfSeconds": 0.02886274,
+      "cumulativeSeconds": 0.02886274,
+      "selfSharePercent": 0.5818004137304409
+    },
+    {
+      "file": "site-packages/pipecat/utils/base_object.py",
+      "line": 302,
+      "function": "__str__",
+      "primitiveCalls": 142142,
+      "totalCalls": 142142,
+      "selfSeconds": 0.02825872,
+      "cumulativeSeconds": 0.04152833,
+      "selfSharePercent": 0.5696248861851884
+    },
+    {
+      "file": "stdlib/asyncio/queues.py",
+      "line": 95,
+      "function": "empty",
+      "primitiveCalls": 274131,
+      "totalCalls": 274131,
+      "selfSeconds": 0.027798078,
+      "cumulativeSeconds": 0.027798078,
+      "selfSharePercent": 0.5603394993445204
+    },
+    {
+      "file": "site-packages/pipecat/pipeline/worker_observer.py",
+      "line": 172,
+      "function": "on_process_frame",
+      "primitiveCalls": 101530,
+      "totalCalls": 101530,
+      "selfSeconds": 0.027770389000000003,
+      "cumulativeSeconds": 0.037052066,
+      "selfSharePercent": 0.559781358583949
+    },
+    {
+      "file": "comparison/pipecat/benchmark.py",
+      "line": 181,
+      "function": "run_phase",
+      "primitiveCalls": 10153,
+      "totalCalls": 10153,
+      "selfSeconds": 0.027094588000000003,
+      "cumulativeSeconds": 0.21124472900000002,
+      "selfSharePercent": 0.5461589061972577
+    },
+    {
+      "file": "stdlib/asyncio/locks.py",
+      "line": 181,
+      "function": "set",
+      "primitiveCalls": 101530,
+      "totalCalls": 101530,
+      "selfSeconds": 0.024722495,
+      "cumulativeSeconds": 0.044723522,
+      "selfSharePercent": 0.49834346356058906
+    },
+    {
+      "file": "stdlib/asyncio/mixins.py",
+      "line": 12,
+      "function": "_get_loop",
+      "primitiveCalls": 101530,
+      "totalCalls": 101530,
+      "selfSeconds": 0.024565198,
+      "cumulativeSeconds": 0.03406735,
+      "selfSharePercent": 0.4951727507426599
+    },
+    {
+      "file": "site-packages/pipecat/utils/utils.py",
+      "line": 23,
+      "function": "obj_id",
+      "primitiveCalls": 50765,
+      "totalCalls": 50765,
+      "selfSeconds": 0.023695462,
+      "cumulativeSeconds": 0.035219961,
+      "selfSharePercent": 0.4776410553930064
+    },
+    {
+      "file": "stdlib/asyncio/base_events.py",
+      "line": 732,
+      "function": "time",
+      "primitiveCalls": 111683,
+      "totalCalls": 111683,
+      "selfSeconds": 0.023694197,
+      "cumulativeSeconds": 0.036088923,
+      "selfSharePercent": 0.4776155561672443
+    },
+    {
+      "file": "site-packages/pipecat/utils/utils.py",
+      "line": 33,
+      "function": "obj_count",
+      "primitiveCalls": 50765,
+      "totalCalls": 50765,
+      "selfSeconds": 0.022116105,
+      "cumulativeSeconds": 0.032054295000000003,
+      "selfSharePercent": 0.44580518132047997
+    },
+    {
+      "file": "site-packages/pipecat/utils/asyncio/task_manager.py",
+      "line": 189,
+      "function": "run_coroutine",
+      "primitiveCalls": 91377,
+      "totalCalls": 91377,
+      "selfSeconds": 0.020304301,
+      "cumulativeSeconds": 2.6359131430000002,
+      "selfSharePercent": 0.40928375900234715
+    },
+    {
+      "file": "[native]",
+      "line": 0,
+      "function": "<built-in method builtins.len>",
+      "primitiveCalls": 223369,
+      "totalCalls": 223369,
+      "selfSeconds": 0.020260334,
+      "cumulativeSeconds": 0.020260334,
+      "selfSharePercent": 0.40839749460782027
+    },
+    {
+      "file": "stdlib/asyncio/queues.py",
+      "line": 99,
+      "function": "full",
+      "primitiveCalls": 182754,
+      "totalCalls": 182754,
+      "selfSeconds": 0.020163817,
+      "cumulativeSeconds": 0.020163817,
+      "selfSharePercent": 0.40645195407590884
+    },
+    {
+      "file": "site-packages/loguru/_logger.py",
+      "line": 2068,
+      "function": "trace",
+      "primitiveCalls": 71071,
+      "totalCalls": 71071,
+      "selfSeconds": 0.019631824000000003,
+      "cumulativeSeconds": 0.030443289000000002,
+      "selfSharePercent": 0.39572831011481235
+    }
+  ],
+  "topCumulative": [
+    {
+      "file": "stdlib/asyncio/base_events.py",
+      "line": 1908,
+      "function": "_run_once",
+      "primitiveCalls": 111683,
+      "totalCalls": 111683,
+      "selfSeconds": 0.20015436,
+      "cumulativeSeconds": 4.980287432,
+      "selfSharePercent": 4.034609654452474
+    },
+    {
+      "file": "stdlib/asyncio/events.py",
+      "line": 86,
+      "function": "_run",
+      "primitiveCalls": 121836,
+      "totalCalls": 121836,
+      "selfSeconds": 0.041536989,
+      "cumulativeSeconds": 3.064012172,
+      "selfSharePercent": 0.8372814703426207
+    },
+    {
+      "file": "[native]",
+      "line": 0,
+      "function": "<method 'run' of '_contextvars.Context' objects>",
+      "primitiveCalls": 121836,
+      "totalCalls": 121836,
+      "selfSeconds": 0.055041462000000006,
+      "cumulativeSeconds": 3.022475183,
+      "selfSharePercent": 1.109497759531089
+    },
+    {
+      "file": "site-packages/pipecat/utils/asyncio/task_manager.py",
+      "line": 189,
+      "function": "run_coroutine",
+      "primitiveCalls": 91377,
+      "totalCalls": 91377,
+      "selfSeconds": 0.020304301,
+      "cumulativeSeconds": 2.6359131430000002,
+      "selfSharePercent": 0.40928375900234715
+    },
+    {
+      "file": "site-packages/pipecat/processors/frame_processor.py",
+      "line": 1330,
+      "function": "__process_frame",
+      "primitiveCalls": 50765,
+      "totalCalls": 101530,
+      "selfSeconds": 0.085871426,
+      "cumulativeSeconds": 1.8968753950000001,
+      "selfSharePercent": 1.7309524727875085
+    },
+    {
+      "file": "site-packages/pipecat/processors/frame_processor.py",
+      "line": 1380,
+      "function": "__process_frame_task_handler",
+      "primitiveCalls": 40612,
+      "totalCalls": 40612,
+      "selfSeconds": 0.044409121,
+      "cumulativeSeconds": 1.6696448640000001,
+      "selfSharePercent": 0.8951764444818895
+    },
+    {
+      "file": "stdlib/selectors.py",
+      "line": 558,
+      "function": "select",
+      "primitiveCalls": 111683,
+      "totalCalls": 111683,
+      "selfSeconds": 0.050316023,
+      "cumulativeSeconds": 1.622695403,
+      "selfSharePercent": 1.0142447667362966
+    },
+    {
+      "file": "[native]",
+      "line": 0,
+      "function": "<method 'control' of 'select.kqueue' objects>",
+      "primitiveCalls": 111683,
+      "totalCalls": 111683,
+      "selfSeconds": 1.553722778,
+      "cumulativeSeconds": 1.553722778,
+      "selfSharePercent": 31.3191524804232
+    },
+    {
+      "file": "comparison/pipecat/benchmark.py",
+      "line": 238,
+      "function": "process_frame",
+      "primitiveCalls": 40612,
+      "totalCalls": 40612,
+      "selfSeconds": 0.073408811,
+      "cumulativeSeconds": 1.4053938540000002,
+      "selfSharePercent": 1.4797374265665608
+    },
+    {
+      "file": "site-packages/pipecat/processors/frame_processor.py",
+      "line": 1035,
+      "function": "push_frame",
+      "primitiveCalls": 50765,
+      "totalCalls": 71071,
+      "selfSeconds": 0.059739796000000005,
+      "cumulativeSeconds": 1.039058226,
+      "selfSharePercent": 1.2042043835398906
+    },
+    {
+      "file": "site-packages/pipecat/processors/frame_processor.py",
+      "line": 1212,
+      "function": "__internal_push_frame",
+      "primitiveCalls": 50765,
+      "totalCalls": 71071,
+      "selfSeconds": 0.20194876,
+      "cumulativeSeconds": 0.9778410540000001,
+      "selfSharePercent": 4.0707802558021005
+    },
+    {
+      "file": "site-packages/pipecat/processors/frame_processor.py",
+      "line": 726,
+      "function": "queue_frame",
+      "primitiveCalls": 50765,
+      "totalCalls": 101530,
+      "selfSeconds": 0.050489629,
+      "cumulativeSeconds": 0.9089140400000001,
+      "selfSharePercent": 1.0177442280703934
+    },
+    {
+      "file": "comparison/pipecat/benchmark.py",
+      "line": 66,
+      "function": "__init__",
+      "primitiveCalls": 50765,
+      "totalCalls": 50765,
+      "selfSeconds": 0.055324599,
+      "cumulativeSeconds": 0.511911599,
+      "selfSharePercent": 1.1152050909813391
+    },
+    {
+      "file": "site-packages/pipecat/pipeline/worker.py",
+      "line": 1526,
+      "function": "_process_push_queue",
+      "primitiveCalls": 10153,
+      "totalCalls": 10153,
+      "selfSeconds": 0.014926722000000002,
+      "cumulativeSeconds": 0.510507601,
+      "selfSharePercent": 0.30088526020881157
+    },
+    {
+      "file": "site-packages/pipecat/processors/frame_processor.py",
+      "line": 1352,
+      "function": "__input_frame_task_handler",
+      "primitiveCalls": 40612,
+      "totalCalls": 40612,
+      "selfSeconds": 0.045557186,
+      "cumulativeSeconds": 0.435456377,
+      "selfSharePercent": 0.9183185540664068
+    },
+    {
+      "file": "site-packages/pipecat/pipeline/pipeline.py",
+      "line": 186,
+      "function": "process_frame",
+      "primitiveCalls": 10153,
+      "totalCalls": 20306,
+      "selfSeconds": 0.016588816000000003,
+      "cumulativeSeconds": 0.42613781,
+      "selfSharePercent": 0.334388904591115
+    },
+    {
+      "file": "stdlib/asyncio/queues.py",
+      "line": 110,
+      "function": "put",
+      "primitiveCalls": 91377,
+      "totalCalls": 91377,
+      "selfSeconds": 0.039548584000000005,
+      "cumulativeSeconds": 0.40989626100000004,
+      "selfSharePercent": 0.797200215005682
+    },
+    {
+      "file": "site-packages/pipecat/processors/frame_processor.py",
+      "line": 849,
+      "function": "process_frame",
+      "primitiveCalls": 101530,
+      "totalCalls": 101530,
+      "selfSeconds": 0.18636797800000002,
+      "cumulativeSeconds": 0.408260844,
+      "selfSharePercent": 3.7567107872123606
+    },
+    {
+      "file": "stdlib/asyncio/queues.py",
+      "line": 137,
+      "function": "put_nowait",
+      "primitiveCalls": 91377,
+      "totalCalls": 91377,
+      "selfSeconds": 0.07987764600000001,
+      "cumulativeSeconds": 0.359511112,
+      "selfSharePercent": 1.6101329080542492
+    },
+    {
+      "file": "site-packages/pipecat/pipeline/pipeline.py",
+      "line": 39,
+      "function": "process_frame",
+      "primitiveCalls": 10153,
+      "totalCalls": 20306,
+      "selfSeconds": 0.015246301,
+      "cumulativeSeconds": 0.35466346000000004,
+      "selfSharePercent": 0.3073271709359137
+    },
+    {
+      "file": "stdlib/asyncio/queues.py",
+      "line": 149,
+      "function": "get",
+      "primitiveCalls": 182754,
+      "totalCalls": 182754,
+      "selfSeconds": 0.129854153,
+      "cumulativeSeconds": 0.336429278,
+      "selfSharePercent": 2.6175338841709404
+    },
+    {
+      "file": "comparison/pipecat/benchmark.py",
+      "line": 74,
+      "function": "__setattr__",
+      "primitiveCalls": 609180,
+      "totalCalls": 609180,
+      "selfSeconds": 0.19831442200000002,
+      "cumulativeSeconds": 0.282687073,
+      "selfSharePercent": 3.997521121290399
+    },
+    {
+      "file": "<string>",
+      "line": 2,
+      "function": "__init__",
+      "primitiveCalls": 50765,
+      "totalCalls": 50765,
+      "selfSeconds": 0.011972366,
+      "cumulativeSeconds": 0.281788945,
+      "selfSharePercent": 0.24133285655250553
+    },
+    {
+      "file": "site-packages/pipecat/frames/frames.py",
+      "line": 108,
+      "function": "__post_init__",
+      "primitiveCalls": 50765,
+      "totalCalls": 50765,
+      "selfSeconds": 0.08981091100000001,
+      "cumulativeSeconds": 0.269816579,
+      "selfSharePercent": 1.8103626051202277
+    },
+    {
+      "file": "site-packages/pipecat/pipeline/pipeline.py",
+      "line": 75,
+      "function": "process_frame",
+      "primitiveCalls": 10153,
+      "totalCalls": 20306,
+      "selfSeconds": 0.015816338000000003,
+      "cumulativeSeconds": 0.26287504500000003,
+      "selfSharePercent": 0.3188176864739971
+    },
+    {
+      "file": "stdlib/asyncio/queues.py",
+      "line": 58,
+      "function": "_wakeup_next",
+      "primitiveCalls": 182754,
+      "totalCalls": 182754,
+      "selfSeconds": 0.058035133,
+      "cumulativeSeconds": 0.240040313,
+      "selfSharePercent": 1.169842654935088
+    },
+    {
+      "file": "comparison/pipecat/benchmark.py",
+      "line": 209,
+      "function": "execute",
+      "primitiveCalls": 10153,
+      "totalCalls": 10153,
+      "selfSeconds": 0.002583548,
+      "cumulativeSeconds": 0.21644970300000002,
+      "selfSharePercent": 0.052077844837061654
+    },
+    {
+      "file": "site-packages/pipecat/processors/frame_processor.py",
+      "line": 160,
+      "function": "put",
+      "primitiveCalls": 40612,
+      "totalCalls": 40612,
+      "selfSeconds": 0.030985787,
+      "cumulativeSeconds": 0.21642265300000002,
+      "selfSharePercent": 0.6245957139330263
+    },
+    {
+      "file": "stdlib/asyncio/tasks.py",
+      "line": 472,
+      "function": "wait_for",
+      "primitiveCalls": 10153,
+      "totalCalls": 10153,
+      "selfSeconds": 0.002580885,
+      "cumulativeSeconds": 0.21383028,
+      "selfSharePercent": 0.05202416543927184
+    },
+    {
+      "file": "comparison/pipecat/benchmark.py",
+      "line": 181,
+      "function": "run_phase",
+      "primitiveCalls": 10153,
+      "totalCalls": 10153,
+      "selfSeconds": 0.027094588000000003,
+      "cumulativeSeconds": 0.21124472900000002,
+      "selfSharePercent": 0.5461589061972577
+    },
+    {
+      "file": "site-packages/pipecat/processors/frame_processor.py",
+      "line": 181,
+      "function": "get",
+      "primitiveCalls": 81224,
+      "totalCalls": 81224,
+      "selfSeconds": 0.029761718000000003,
+      "cumulativeSeconds": 0.18099932300000002,
+      "selfSharePercent": 0.5999215544237557
+    },
+    {
+      "file": "[native]",
+      "line": 0,
+      "function": "<method 'set_result' of '_asyncio.Future' objects>",
+      "primitiveCalls": 101530,
+      "totalCalls": 101530,
+      "selfSeconds": 0.033924004,
+      "cumulativeSeconds": 0.179490447,
+      "selfSharePercent": 0.6838227958465873
+    },
+    {
+      "file": "stdlib/asyncio/base_events.py",
+      "line": 783,
+      "function": "call_soon",
+      "primitiveCalls": 121836,
+      "totalCalls": 121836,
+      "selfSeconds": 0.046037127000000004,
+      "cumulativeSeconds": 0.17422103800000002,
+      "selfSharePercent": 0.9279929603204979
+    },
+    {
+      "file": "site-packages/pipecat/utils/base_object.py",
+      "line": 240,
+      "function": "_call_event_handler",
+      "primitiveCalls": 355355,
+      "totalCalls": 355355,
+      "selfSeconds": 0.075767239,
+      "cumulativeSeconds": 0.128992774,
+      "selfSharePercent": 1.527277417092528
+    },
+    {
+      "file": "stdlib/asyncio/base_events.py",
+      "line": 812,
+      "function": "_call_soon",
+      "primitiveCalls": 121836,
+      "totalCalls": 121836,
+      "selfSeconds": 0.063420211,
+      "cumulativeSeconds": 0.11775067800000001,
+      "selfSharePercent": 1.2783923147515397
+    },
+    {
+      "file": "stdlib/asyncio/queues.py",
+      "line": 175,
+      "function": "get_nowait",
+      "primitiveCalls": 91377,
+      "totalCalls": 91377,
+      "selfSeconds": 0.058618887,
+      "cumulativeSeconds": 0.10682674900000001,
+      "selfSharePercent": 1.18160967077339
+    },
+    {
+      "file": "site-packages/pipecat/processors/frame_processor.py",
+      "line": 707,
+      "function": "get_clock",
+      "primitiveCalls": 172601,
+      "totalCalls": 172601,
+      "selfSeconds": 0.054859834,
+      "cumulativeSeconds": 0.105641177,
+      "selfSharePercent": 1.1058365948064288
+    },
+    {
+      "file": "[native]",
+      "line": 0,
+      "function": "<built-in method builtins.isinstance>",
+      "primitiveCalls": 1005147,
+      "totalCalls": 1005147,
+      "selfSeconds": 0.097695483,
+      "cumulativeSeconds": 0.097695483,
+      "selfSharePercent": 1.9692957920486847
+    },
+    {
+      "file": "site-packages/pipecat/pipeline/worker.py",
+      "line": 1673,
+      "function": "_sink_push_frame",
+      "primitiveCalls": 10153,
+      "totalCalls": 10153,
+      "selfSeconds": 0.017116963000000002,
+      "cumulativeSeconds": 0.09386129800000001,
+      "selfSharePercent": 0.34503502284289883
+    },
+    {
+      "file": "[native]",
+      "line": 0,
+      "function": "<built-in method builtins.hasattr>",
+      "primitiveCalls": 253825,
+      "totalCalls": 253825,
+      "selfSeconds": 0.084372651,
+      "cumulativeSeconds": 0.084372651,
+      "selfSharePercent": 1.700740929632256
+    },
+    {
+      "file": "site-packages/pipecat/utils/base_object.py",
+      "line": 271,
+      "function": "_run_handler",
+      "primitiveCalls": 10153,
+      "totalCalls": 10153,
+      "selfSeconds": 0.008252189,
+      "cumulativeSeconds": 0.082058716,
+      "selfSharePercent": 0.16634342319481077
+    },
+    {
+      "file": "site-packages/pipecat/processors/frame_processor.py",
+      "line": 124,
+      "function": "__getattribute__",
+      "primitiveCalls": 345202,
+      "totalCalls": 345202,
+      "selfSeconds": 0.06751275200000001,
+      "cumulativeSeconds": 0.06751275200000001,
+      "selfSharePercent": 1.3608876719840408
+    },
+    {
+      "file": "site-packages/pipecat/clocks/system_clock.py",
+      "line": 30,
+      "function": "get_time",
+      "primitiveCalls": 172601,
+      "totalCalls": 172601,
+      "selfSeconds": 0.041237671000000004,
+      "cumulativeSeconds": 0.058385924000000006,
+      "selfSharePercent": 0.8312479705350152
+    },
+    {
+      "file": "site-packages/pipecat/pipeline/worker.py",
+      "line": 934,
+      "function": "queue_frame",
+      "primitiveCalls": 10153,
+      "totalCalls": 10153,
+      "selfSeconds": 0.004230365000000001,
+      "cumulativeSeconds": 0.053169328,
+      "selfSharePercent": 0.0852735432336215
+    },
+    {
+      "file": "comparison/pipecat/benchmark.py",
+      "line": 271,
+      "function": "terminal",
+      "primitiveCalls": 10153,
+      "totalCalls": 10153,
+      "selfSeconds": 0.003464453,
+      "cumulativeSeconds": 0.050550095,
+      "selfSharePercent": 0.06983467920057718
+    },
+    {
+      "file": "stdlib/asyncio/queues.py",
+      "line": 186,
+      "function": "task_done",
+      "primitiveCalls": 91377,
+      "totalCalls": 91377,
+      "selfSeconds": 0.031661331,
+      "cumulativeSeconds": 0.050094548,
+      "selfSharePercent": 0.6382129858446022
+    },
+    {
+      "file": "stdlib/asyncio/tasks.py",
+      "line": 412,
+      "function": "create_task",
+      "primitiveCalls": 10153,
+      "totalCalls": 10153,
+      "selfSeconds": 0.007535012000000001,
+      "cumulativeSeconds": 0.049479538,
+      "selfSharePercent": 0.1518869344720507
+    },
+    {
+      "file": "comparison/pipecat/benchmark.py",
+      "line": 147,
+      "function": "accept",
+      "primitiveCalls": 10153,
+      "totalCalls": 10153,
+      "selfSeconds": 0.015396953000000001,
+      "cumulativeSeconds": 0.047085642000000004,
+      "selfSharePercent": 0.3103639372280024
+    },
+    {
+      "file": "stdlib/asyncio/base_events.py",
+      "line": 446,
+      "function": "create_future",
+      "primitiveCalls": 101530,
+      "totalCalls": 101530,
+      "selfSeconds": 0.037489506000000006,
+      "cumulativeSeconds": 0.045374340000000006,
+      "selfSharePercent": 0.7556943693270233
+    },
+    {
+      "file": "stdlib/asyncio/locks.py",
+      "line": 181,
+      "function": "set",
+      "primitiveCalls": 101530,
+      "totalCalls": 101530,
+      "selfSeconds": 0.024722495,
+      "cumulativeSeconds": 0.044723522,
+      "selfSharePercent": 0.49834346356058906
+    }
+  ],
+  "summaryPostprocessorSha256": "d5810c1f9e846d9758a072efbbcddf72e6f8aa84b07271644ae1b91bfd762bca",
+  "resummarizedAt": "2026-10-31T16:01:56.258604+00:00"
+}

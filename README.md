@@ -41,6 +41,22 @@ The design keeps the execution path small and overload explicit:
 
 [Performance design and methodology](docs/performance.md) · [Resource timeline and fault verification](reports/java17/http-cancellation/README.md).
 
+## Framework comparison
+
+A separate **model-free queued-path comparison** runs OminiCat, Pipecat 1.15.0 and Apache Camel 4.22.2 LTS on the same Apple M2 Pro. Each uses immutable numeric frames, 1 / 4 / 16 application stages and one outstanding frame. Pipecat is the multimodal peer; Camel is the Java routing reference. All **45 fresh-process runs** passed exact output and cleanup checks, validating **18,659,525 measured frames**.
+
+![Model-free framework execution comparison](reports/comparison/java17-2026-10-31/overview.svg)
+
+| Four-stage native queued path | Frames/s · W=1 | Terminal p99 | Sampled peak process RSS |
+| --- | ---: | ---: | ---: |
+| **OminiCat** | **140,089** | **9.79 µs** | 147.0 MiB |
+| Pipecat 1.15.0 | 3,906 | 455.29 µs | **85.0 MiB** |
+| Apache Camel 4.22.2 LTS | 107,210 | 12.54 µs | 205.4 MiB |
+
+Medians of five independent processes per cell, each with 3 seconds of warmup and 5 seconds of measurement; the figures retain min–max ranges. Java 17 and CPython 3.12 use their native queued implementations. Runtime, frame-object and scheduler differences remain included; W=1 frame rate is not saturated capacity. Pipecat uses less process RSS in this profile. RSS includes each runtime, dependencies and the common 16 MiB harness buffer; it is not B/op.
+
+[Complete comparison, stage scaling and resources](reports/comparison/java17-2026-10-31/README.md) · [Raw results and source/runtime manifest](reports/comparison/java17-2026-10-31/suite.json) · [Reproduce](comparison/README.md) · [CPU / allocation / GC diagnostics](reports/comparison/java17-2026-10-31/profiles/README.md).
+
 ## Profiles
 
 ### CPU, allocation and GC

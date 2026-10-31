@@ -12,6 +12,14 @@ OminiCat is designed for high throughput, low dispatch overhead and bounded work
 
 Java 17.0.21, Apple M2 Pro / macOS arm64, 512 MiB heap, platform workers. JMH uses two forks, three 1-second warmup iterations and five 1-second measurement iterations. The full report retains uncertainty, maximum latency and [raw data](../reports/java17/kernel/jmh.json). The shared development host also ran paced validation, so these results describe the recorded workload and environment.
 
+## Model-free framework comparison
+
+The [three-framework report](../reports/comparison/java17-2026-10-31/README.md) compares current OminiCat, Pipecat 1.15.0 and Apache Camel 4.22.2 LTS using a separately defined [queued-path protocol](../comparison/protocol.md). It preserves each native execution architecture, fixes application work and W=1 admission, and uses five fresh processes per engine/stage cell (45 total). The [collector](../comparison/run.py) checks every output and captures same-OS RSS; the publisher rejects partial or mixed-source results.
+
+Four-stage medians are 140,089 frames/s and terminal p99 9.79 µs for OminiCat, 107,210 frames/s and 12.54 µs for Camel, and 3,906 frames/s and 455.29 µs for Pipecat. Pipecat has the lowest process RSS in this profile. These are native public API paths with runtime/object/scheduler differences, not an isolated proof of framework superiority. The W=1 rate is not saturation capacity. Process RSS includes the runtime and common pre-touched buffer and cannot be equated to Java allocation B/op. Direct synchronous JMH and the bounded 16-session load above retain their separate scopes.
+
+[Figures, ranges and all raw processes](../reports/comparison/java17-2026-10-31/README.md) · [Separate diagnostic profiles](../reports/comparison/java17-2026-10-31/profiles/README.md) · [Local reproduction](../comparison/README.md). The manual [comparison workflow](../.github/workflows/framework-comparison.yml) collects its own hosted-runner evidence and does not automatically replace this local recording.
+
 ## Performance design
 
 | Mechanism | Execution and resource behavior |
@@ -84,4 +92,4 @@ Each connection warms up for 100 frames. Measured latency starts before `sendTex
 
 Use the same idle host, JVM, heap, source revision, stage count and workload. Compare uncertainty and allocation alongside throughput. Keep raw evidence and note profiler overhead. Reports include a source fingerprint; the build uses a clean package to avoid stale incremental classes. Extend the workload when a change affects an unmeasured path such as async streaming or large audio buffers.
 
-No synthetic result here demonstrates superiority over another framework, predicts model inference latency or establishes a production session limit. Continuous load, fault injection and real provider trials are separate acceptance work.
+The published comparison supports only the explicitly tested execution profiles. Synthetic results do not establish universal framework superiority, predict model inference latency or establish a production session limit. Continuous load, fault injection and real provider trials are separate acceptance work.

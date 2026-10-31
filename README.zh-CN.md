@@ -30,6 +30,22 @@
 
 [性能设计与测量方法](docs/performance.md) · [资源曲线与故障验证](reports/java17/http-cancellation/README.md)。
 
+## 同类框架性能对比
+
+独立的**无模型排队路径对比**，在同一台 Apple M2 Pro 上运行 OminiCat、Pipecat 1.15.0、Apache Camel 4.22.2 LTS。使用不可变数值帧，分别测 1／4／16 个应用处理阶段，单帧在途；Pipecat 是多模态管线对照，Camel 是 Java 路由对照。**45 个独立进程全部通过输出与清理校验，共验证 18,659,525 个测量输出**。
+
+![不包含模型和网络的框架执行对比](reports/comparison/java17-2026-10-31/overview.svg)
+
+| 四阶段原生排队路径 | 单帧在途处理速率 | 终点 p99 延迟 | 采样进程峰值 RSS |
+| --- | ---: | ---: | ---: |
+| **OminiCat** | **140,089 帧/秒** | **9.79 µs** | 147.0 MiB |
+| Pipecat 1.15.0 | 3,906 帧/秒 | 455.29 µs | **85.0 MiB** |
+| Apache Camel 4.22.2 LTS | 107,210 帧/秒 | 12.54 µs | 205.4 MiB |
+
+表中是每项五个独立进程的中位数，图中保留最小—最大范围；每进程预热 3 秒、测量 5 秒。Java 17 与 CPython 3.12 的运行时、对象和原生调度开销均保留，单帧在途速率不表示饱和吞吐或生产容量。Pipecat 在本负载下进程 RSS 更低。RSS 包含运行时、依赖和共同的 16 MiB 测量缓冲区，与 B/op 是不同口径。
+
+[完整对比、阶段扩展和资源图](reports/comparison/java17-2026-10-31/README.md) · [逐轮结果与来源清单](reports/comparison/java17-2026-10-31/suite.json) · [复跑步骤](comparison/README.md) · [CPU／分配／GC 诊断](reports/comparison/java17-2026-10-31/profiles/README.md)。
+
 ## Profile
 
 ### CPU、内存分配与 GC
