@@ -1,0 +1,38 @@
+[ERROR] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 2.226 s <<< FAILURE! -- in io.ominicat.providers.ChatFactoryTest
+[ERROR] io.ominicat.providers.ChatFactoryTest.interruptUnblocksStreamingRead -- Time elapsed: 2.215 s <<< ERROR!
+java.util.concurrent.TimeoutException
+	at java.base/java.util.concurrent.CompletableFuture.timedGet(CompletableFuture.java:1960)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2095)
+	at io.ominicat.providers.ChatFactoryTest.interruptUnblocksStreamingRead(ChatFactoryTest.java:191)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+[ERROR] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 2.021 s <<< FAILURE! -- in io.ominicat.providers.SpeechFactoryTest
+[ERROR] io.ominicat.providers.SpeechFactoryTest.interruptionCancelsBlockedBinaryBodyWithoutEmittingPartialAudio -- Time elapsed: 2.020 s <<< ERROR!
+java.util.concurrent.TimeoutException
+	at java.base/java.util.concurrent.CompletableFuture.timedGet(CompletableFuture.java:1960)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2095)
+	at io.ominicat.providers.SpeechFactoryTest.interruptionCancelsBlockedBinaryBodyWithoutEmittingPartialAudio(SpeechFactoryTest.java:111)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+[ERROR] Errors:
+[ERROR]   ChatFactoryTest.interruptUnblocksStreamingRead:191 » Timeout
+[ERROR]   SpeechFactoryTest.interruptionCancelsBlockedBinaryBodyWithoutEmittingPartialAudio:111 » Timeout
+[ERROR] Tests run: 2, Failures: 0, Errors: 2, Skipped: 0
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.5.4:test (default-test) on project ominicat-providers:
+[ERROR]
+[ERROR] See [isolated-workspace]/ominicat-providers/target/surefire-reports for the individual test results.
+[ERROR] See dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR]
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR]
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR]
+[ERROR] After correcting the problems, you can resume the build with the command
+[ERROR]   mvn <args> -rf :ominicat-providers

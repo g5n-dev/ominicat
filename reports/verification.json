@@ -11,16 +11,16 @@
         "missed": 423
       },
       "BRANCH": {
-        "covered": 341,
-        "missed": 87
+        "covered": 342,
+        "missed": 86
       },
       "LINE": {
         "covered": 663,
         "missed": 55
       },
       "COMPLEXITY": {
-        "covered": 294,
-        "missed": 82
+        "covered": 295,
+        "missed": 81
       },
       "METHOD": {
         "covered": 149,
@@ -66,40 +66,40 @@
     }
   },
   {
-    "tests": 57,
+    "tests": 67,
     "failures": 0,
     "errors": 0,
     "skipped": 0,
     "module": "ominicat-providers",
     "coverage": {
       "INSTRUCTION": {
-        "covered": 2487,
-        "missed": 71
+        "covered": 2976,
+        "missed": 120
       },
       "BRANCH": {
-        "covered": 282,
-        "missed": 32
+        "covered": 351,
+        "missed": 47
       },
       "LINE": {
-        "covered": 363,
-        "missed": 4
+        "covered": 464,
+        "missed": 10
       },
       "COMPLEXITY": {
-        "covered": 194,
-        "missed": 32
+        "covered": 234,
+        "missed": 47
       },
       "METHOD": {
-        "covered": 67,
+        "covered": 80,
         "missed": 2
       },
       "CLASS": {
-        "covered": 18,
+        "covered": 20,
         "missed": 0
       }
     }
   },
   {
-    "tests": 58,
+    "tests": 60,
     "failures": 0,
     "errors": 0,
     "skipped": 0,

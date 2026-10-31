@@ -1,0 +1,42 @@
+{
+  "java17": {
+    "javaVersion": "17.0.21.0.3",
+    "module": "ominicat-server",
+    "tests": 60,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "testClasses": [
+      "io.ominicat.server.HttpBodyCancellationTest",
+      "io.ominicat.server.ConfiguredVoicePipelineTest",
+      "io.ominicat.server.RuntimeConfigTest",
+      "io.ominicat.server.ServerAdversarialTest",
+      "io.ominicat.server.StalledProviderRecoveryTest",
+      "io.ominicat.server.FrameCodecTest",
+      "io.ominicat.server.LoopbackHostGuardTest",
+      "io.ominicat.server.OminiCatServerTest",
+      "io.ominicat.server.WorkerRuntimeCompatibilityTest"
+    ],
+    "providerSha256": "16876011b18d3aa22cc5992fee23bd5d315603b0f47aa1ea1e77b77b3257effb"
+  },
+  "java21": {
+    "javaVersion": "21.0.13.0.3",
+    "module": "ominicat-server",
+    "tests": 60,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "testClasses": [
+      "io.ominicat.server.HttpBodyCancellationTest",
+      "io.ominicat.server.ConfiguredVoicePipelineTest",
+      "io.ominicat.server.RuntimeConfigTest",
+      "io.ominicat.server.ServerAdversarialTest",
+      "io.ominicat.server.StalledProviderRecoveryTest",
+      "io.ominicat.server.FrameCodecTest",
+      "io.ominicat.server.LoopbackHostGuardTest",
+      "io.ominicat.server.OminiCatServerTest",
+      "io.ominicat.server.WorkerRuntimeCompatibilityTest"
+    ],
+    "providerSha256": "16876011b18d3aa22cc5992fee23bd5d315603b0f47aa1ea1e77b77b3257effb"
+  }
+}

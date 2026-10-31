@@ -1,0 +1,24 @@
+{
+  "javaVersion": "17.0.21.0.3",
+  "javaVendor": "Homebrew",
+  "javaVmName": "OpenJDK 64-Bit Server VM",
+  "tests": 2,
+  "failures": 1,
+  "errors": 1,
+  "skipped": 0,
+  "seconds": 6.359,
+  "providerSha256": "a0e93881429289f9d607a74b04ddd3265ba913ca6908caaf83f5a1b7fb191ab8",
+  "testSha256": "c882b9da8bdd4fd3e94d328a81c05edf7450d36bd35e009423651bcfe4dfb416",
+  "cases": [
+    {
+      "name": "interruptCancelsBlockedBodyAndProcessesNextGenerationOnTheSameSocketWithoutPeerEof",
+      "seconds": 3.322,
+      "failureType": "java.net.SocketTimeoutException"
+    },
+    {
+      "name": "disconnectReleasesBlockedBodyWorkerAndAdmissionWhilePeerBodyRemainsHeldOpen",
+      "seconds": 3.027,
+      "failureType": "org.opentest4j.AssertionFailedError"
+    }
+  ]
+}
