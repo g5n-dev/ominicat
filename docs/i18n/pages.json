@@ -64,7 +64,7 @@
     {
       "source": "docs/iteration-plan.md",
       "translation": "docs/zh-CN/iteration-plan.md",
-      "source_sha256": "844a70dec727ab5e65afffdd60ca68bfeb2532bd3524e14d798b4089a9283ac1"
+      "source_sha256": "9a772e500f4df45f0f0ce32964b36a286fd64fc38239255e7bd550a4adfd0d17"
     },
     {
       "source": "docs/java-compatibility.md",
@@ -79,7 +79,7 @@
     {
       "source": "docs/performance-audit.md",
       "translation": "docs/zh-CN/performance-audit.md",
-      "source_sha256": "7791f642258571b3f3f4def177c52030a7727276dcf6392f02b76087468508d5"
+      "source_sha256": "fa62d988df3d35ed330c8b3249ffee5771c58545de879678c66a64fc8c4eb00e"
     },
     {
       "source": "docs/performance.md",
@@ -305,6 +305,21 @@
       "source": "reports/java17/kernel/report.md",
       "translation": "docs/zh-CN/reports/java17/kernel/report.md",
       "source_sha256": "299f25e68aab535770a1df29d349e2dbf1da2be97119471ef98b6da0f1c91016"
+    },
+    {
+      "source": "reports/performance-audit/linux-java17-2026-11-01/profiles.md",
+      "translation": "docs/zh-CN/reports/performance-audit/linux-java17-2026-11-01/profiles.md",
+      "source_sha256": "d17a453628150543165cab029a4308bc063399c294893073a3ce68bfb5c98b87"
+    },
+    {
+      "source": "reports/performance-audit/linux-java17-2026-11-01/report.md",
+      "translation": "docs/zh-CN/reports/performance-audit/linux-java17-2026-11-01/report.md",
+      "source_sha256": "0702416ed1fae601e58514cbbb6ee2304c318f2df4400aa791aefb73952e15e3"
+    },
+    {
+      "source": "reports/performance-audit/prompt-render-2026-11-01/summary.md",
+      "translation": "docs/zh-CN/reports/performance-audit/prompt-render-2026-11-01/summary.md",
+      "source_sha256": "adec4e91d128aea8a2e642173c377f7ae0d73135ce150f90eec70474fed129ca"
     },
     {
       "source": "reports/studio/README.md",

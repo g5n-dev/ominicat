@@ -1,0 +1,35 @@
+{
+  "eventCounts": {
+    "jdk.ObjectAllocationSample": 3918,
+    "jdk.GarbageCollection": 344,
+    "jdk.ExecutionSample": 1200
+  },
+  "executionSampleLeaves": {
+    "java.util.concurrent.locks.LockSupport.unpark": 637,
+    "java.util.DualPivotQuicksort.sort": 361,
+    "java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire": 81,
+    "io.ominicat.core.Pipeline.lambda$dispatchSession$2": 24,
+    "io.ominicat.core.PipelineSession.run": 21,
+    "java.lang.invoke.DirectMethodHandle.allocateInstance": 13,
+    "java.util.concurrent.locks.ReentrantLock.lock": 13,
+    "io.ominicat.core.PipelineSession.take": 8,
+    "java.util.DualPivotQuicksort.mixedInsertionSort": 7,
+    "io.ominicat.core.Pipeline.dispatchSession": 5,
+    "java.lang.Thread.interrupted": 4,
+    "io.ominicat.benchmarks.CoreLoad.lambda$runPhase$4": 3
+  },
+  "sampledAllocationWeightBytes": {
+    "io.ominicat.core.Pipeline$$Lambda$101+0x00007b312c014000.320929598": 5884016960,
+    "io.ominicat.core.SynchronousSink": 5082409656,
+    "io.ominicat.benchmarks.CoreLoad$Probe": 2451119600,
+    "io.ominicat.core.PipelineSession$Pending": 1527853464,
+    "io.ominicat.core.PipelineSession$$Lambda$98+0x00007b312c00fa10.342683394": 1387436224,
+    "[J": 400142328,
+    "java.util.concurrent.locks.AbstractQueuedSynchronizer$SharedNode": 76849728,
+    "java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionNode": 59703808,
+    "[C": 20050592,
+    "java.util.concurrent.locks.AbstractQueuedSynchronizer$ExclusiveNode": 8493176,
+    "java.lang.InterruptedException": 6497440,
+    "java.util.LinkedHashMap$LinkedKeySet": 4985416
+  }
+}

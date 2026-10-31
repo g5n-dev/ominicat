@@ -1,0 +1,773 @@
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: /usr/lib/jvm/temurin-17-jdk-amd64/bin/java
+# VM options: -Xms512m -Xmx512m -Dominicat.probe.conversationSha256=19f28c960079039f79946e39ff54f3a42dbc9fce0dcccd3f60bd059b2fe4a74f -Dominicat.probe.coreSha256=cb72c17372494aa22be9563cbb081c01d7bb0dc63ef1aa37e8c2654b1bf5f15f -Dominicat.probe.harnessSha256=8d765e4963d44a39a8b6fdc5e6e308dea1023bb13e0854e760fca8e392d94e74
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: io.ominicat.benchmarks.PromptCostProbe.render
+# Parameters: (history = none, maxTurns = 32)
+
+# Run progress: 0.00% complete, ETA 00:01:12
+# Fork: 1 of 1
+# Warmup Iteration   1: PROBE_HARNESS_SHA256=8d765e4963d44a39a8b6fdc5e6e308dea1023bb13e0854e760fca8e392d94e74
+PROBE_CONVERSATION_SHA256=19f28c960079039f79946e39ff54f3a42dbc9fce0dcccd3f60bd059b2fe4a74f
+PROBE_CORE_SHA256=cb72c17372494aa22be9563cbb081c01d7bb0dc63ef1aa37e8c2654b1bf5f15f
+1.223 us/op
+# Warmup Iteration   2: 0.978 us/op
+# Warmup Iteration   3: 0.996 us/op
+Iteration   1: 1.012 us/op
+                 gc.alloc.rate:      2141.060 MB/sec
+                 gc.alloc.rate.norm: 2272.006 B/op
+                 gc.count:           7.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   2: 1.004 us/op
+                 gc.alloc.rate:      2154.577 MB/sec
+                 gc.alloc.rate.norm: 2272.006 B/op
+                 gc.count:           7.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   3: 1.017 us/op
+                 gc.alloc.rate:      2129.542 MB/sec
+                 gc.alloc.rate.norm: 2272.006 B/op
+                 gc.count:           7.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   4: 0.960 us/op
+                 gc.alloc.rate:      2255.407 MB/sec
+                 gc.alloc.rate.norm: 2272.006 B/op
+                 gc.count:           7.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   5: 0.991 us/op
+                 gc.alloc.rate:      2172.861 MB/sec
+                 gc.alloc.rate.norm: 2272.238 B/op
+                 gc.count:           7.000 counts
+                 gc.time:            4.000 ms
+
+
+
+Result "io.ominicat.benchmarks.PromptCostProbe.render":
+  0.997 ±(99.9%) 0.087 us/op [Average]
+  (min, avg, max) = (0.960, 0.997, 1.017), stdev = 0.023
+  CI (99.9%): [0.910, 1.084] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.PromptCostProbe.render:gc.alloc.rate":
+  2170.690 ±(99.9%) 192.651 MB/sec [Average]
+  (min, avg, max) = (2129.542, 2170.690, 2255.407), stdev = 50.031
+  CI (99.9%): [1978.039, 2363.340] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.PromptCostProbe.render:gc.alloc.rate.norm":
+  2272.052 ±(99.9%) 0.400 B/op [Average]
+  (min, avg, max) = (2272.006, 2272.052, 2272.238), stdev = 0.104
+  CI (99.9%): [2271.652, 2272.453] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.PromptCostProbe.render:gc.count":
+  35.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (7.000, 7.000, 7.000), stdev = 0.001
+  CI (99.9%): [35.000, 35.000] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.PromptCostProbe.render:gc.time":
+  19.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (3.000, 3.800, 4.000), stdev = 0.447
+  CI (99.9%): [19.000, 19.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: /usr/lib/jvm/temurin-17-jdk-amd64/bin/java
+# VM options: -Xms512m -Xmx512m -Dominicat.probe.conversationSha256=19f28c960079039f79946e39ff54f3a42dbc9fce0dcccd3f60bd059b2fe4a74f -Dominicat.probe.coreSha256=cb72c17372494aa22be9563cbb081c01d7bb0dc63ef1aa37e8c2654b1bf5f15f -Dominicat.probe.harnessSha256=8d765e4963d44a39a8b6fdc5e6e308dea1023bb13e0854e760fca8e392d94e74
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: io.ominicat.benchmarks.PromptCostProbe.render
+# Parameters: (history = none, maxTurns = 256)
+
+# Run progress: 11.11% complete, ETA 00:01:06
+# Fork: 1 of 1
+# Warmup Iteration   1: PROBE_HARNESS_SHA256=8d765e4963d44a39a8b6fdc5e6e308dea1023bb13e0854e760fca8e392d94e74
+PROBE_CONVERSATION_SHA256=19f28c960079039f79946e39ff54f3a42dbc9fce0dcccd3f60bd059b2fe4a74f
+PROBE_CORE_SHA256=cb72c17372494aa22be9563cbb081c01d7bb0dc63ef1aa37e8c2654b1bf5f15f
+1.083 us/op
+# Warmup Iteration   2: 0.858 us/op
+# Warmup Iteration   3: 0.848 us/op
+Iteration   1: 0.847 us/op
+                 gc.alloc.rate:      2528.087 MB/sec
+                 gc.alloc.rate.norm: 2248.005 B/op
+                 gc.count:           9.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   2: 0.847 us/op
+                 gc.alloc.rate:      2531.090 MB/sec
+                 gc.alloc.rate.norm: 2248.005 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   3: 0.846 us/op
+                 gc.alloc.rate:      2534.481 MB/sec
+                 gc.alloc.rate.norm: 2248.005 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   4: 0.851 us/op
+                 gc.alloc.rate:      2518.311 MB/sec
+                 gc.alloc.rate.norm: 2248.005 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            5.000 ms
+
+Iteration   5: 0.850 us/op
+                 gc.alloc.rate:      2506.314 MB/sec
+                 gc.alloc.rate.norm: 2248.213 B/op
+                 gc.count:           9.000 counts
+                 gc.time:            4.000 ms
+
+
+
+Result "io.ominicat.benchmarks.PromptCostProbe.render":
+  0.848 ±(99.9%) 0.009 us/op [Average]
+  (min, avg, max) = (0.846, 0.848, 0.851), stdev = 0.002
+  CI (99.9%): [0.840, 0.857] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.PromptCostProbe.render:gc.alloc.rate":
+  2523.657 ±(99.9%) 43.962 MB/sec [Average]
+  (min, avg, max) = (2506.314, 2523.657, 2534.481), stdev = 11.417
+  CI (99.9%): [2479.695, 2567.618] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.PromptCostProbe.render:gc.alloc.rate.norm":
+  2248.047 ±(99.9%) 0.357 B/op [Average]
+  (min, avg, max) = (2248.005, 2248.047, 2248.213), stdev = 0.093
+  CI (99.9%): [2247.689, 2248.404] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.PromptCostProbe.render:gc.count":
+  42.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (8.000, 8.400, 9.000), stdev = 0.548
+  CI (99.9%): [42.000, 42.000] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.PromptCostProbe.render:gc.time":
+  21.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (4.000, 4.200, 5.000), stdev = 0.447
+  CI (99.9%): [21.000, 21.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: /usr/lib/jvm/temurin-17-jdk-amd64/bin/java
+# VM options: -Xms512m -Xmx512m -Dominicat.probe.conversationSha256=19f28c960079039f79946e39ff54f3a42dbc9fce0dcccd3f60bd059b2fe4a74f -Dominicat.probe.coreSha256=cb72c17372494aa22be9563cbb081c01d7bb0dc63ef1aa37e8c2654b1bf5f15f -Dominicat.probe.harnessSha256=8d765e4963d44a39a8b6fdc5e6e308dea1023bb13e0854e760fca8e392d94e74
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: io.ominicat.benchmarks.PromptCostProbe.render
+# Parameters: (history = none, maxTurns = 10000)
+
+# Run progress: 22.22% complete, ETA 00:00:57
+# Fork: 1 of 1
+# Warmup Iteration   1: PROBE_HARNESS_SHA256=8d765e4963d44a39a8b6fdc5e6e308dea1023bb13e0854e760fca8e392d94e74
+PROBE_CONVERSATION_SHA256=19f28c960079039f79946e39ff54f3a42dbc9fce0dcccd3f60bd059b2fe4a74f
+PROBE_CORE_SHA256=cb72c17372494aa22be9563cbb081c01d7bb0dc63ef1aa37e8c2654b1bf5f15f
+1.116 us/op
+# Warmup Iteration   2: 0.847 us/op
+# Warmup Iteration   3: 0.843 us/op
+Iteration   1: 0.846 us/op
+                 gc.alloc.rate:      2534.339 MB/sec
+                 gc.alloc.rate.norm: 2248.005 B/op
+                 gc.count:           9.000 counts
+                 gc.time:            9.000 ms
+
+Iteration   2: 0.841 us/op
+                 gc.alloc.rate:      2548.620 MB/sec
+                 gc.alloc.rate.norm: 2248.005 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            8.000 ms
+
+Iteration   3: 0.844 us/op
+                 gc.alloc.rate:      2539.419 MB/sec
+                 gc.alloc.rate.norm: 2248.005 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            8.000 ms
+
+Iteration   4: 0.945 us/op
+                 gc.alloc.rate:      2268.505 MB/sec
+                 gc.alloc.rate.norm: 2248.006 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            10.000 ms
+
+Iteration   5: 0.855 us/op
+                 gc.alloc.rate:      2472.302 MB/sec
+                 gc.alloc.rate.norm: 2248.522 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            8.000 ms
+
+
+
+Result "io.ominicat.benchmarks.PromptCostProbe.render":
+  0.866 ±(99.9%) 0.171 us/op [Average]
+  (min, avg, max) = (0.841, 0.866, 0.945), stdev = 0.044
+  CI (99.9%): [0.695, 1.037] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.PromptCostProbe.render:gc.alloc.rate":
+  2472.637 ±(99.9%) 454.435 MB/sec [Average]
+  (min, avg, max) = (2268.505, 2472.637, 2548.620), stdev = 118.015
+  CI (99.9%): [2018.202, 2927.071] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.PromptCostProbe.render:gc.alloc.rate.norm":
+  2248.109 ±(99.9%) 0.890 B/op [Average]
+  (min, avg, max) = (2248.005, 2248.109, 2248.522), stdev = 0.231
+  CI (99.9%): [2247.219, 2248.998] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.PromptCostProbe.render:gc.count":
+  41.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (8.000, 8.200, 9.000), stdev = 0.447
+  CI (99.9%): [41.000, 41.000] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.PromptCostProbe.render:gc.time":
+  43.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (8.000, 8.600, 10.000), stdev = 0.894
+  CI (99.9%): [43.000, 43.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: /usr/lib/jvm/temurin-17-jdk-amd64/bin/java
+# VM options: -Xms512m -Xmx512m -Dominicat.probe.conversationSha256=19f28c960079039f79946e39ff54f3a42dbc9fce0dcccd3f60bd059b2fe4a74f -Dominicat.probe.coreSha256=cb72c17372494aa22be9563cbb081c01d7bb0dc63ef1aa37e8c2654b1bf5f15f -Dominicat.probe.harnessSha256=8d765e4963d44a39a8b6fdc5e6e308dea1023bb13e0854e760fca8e392d94e74
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: io.ominicat.benchmarks.PromptCostProbe.render
+# Parameters: (history = full, maxTurns = 32)
+
+# Run progress: 33.33% complete, ETA 00:00:49
+# Fork: 1 of 1
+# Warmup Iteration   1: PROBE_HARNESS_SHA256=8d765e4963d44a39a8b6fdc5e6e308dea1023bb13e0854e760fca8e392d94e74
+PROBE_CONVERSATION_SHA256=19f28c960079039f79946e39ff54f3a42dbc9fce0dcccd3f60bd059b2fe4a74f
+PROBE_CORE_SHA256=cb72c17372494aa22be9563cbb081c01d7bb0dc63ef1aa37e8c2654b1bf5f15f
+6.757 us/op
+# Warmup Iteration   2: 5.428 us/op
+# Warmup Iteration   3: 5.321 us/op
+Iteration   1: 5.516 us/op
+                 gc.alloc.rate:      2538.154 MB/sec
+                 gc.alloc.rate.norm: 14688.033 B/op
+                 gc.count:           9.000 counts
+                 gc.time:            5.000 ms
+
+Iteration   2: 5.470 us/op
+                 gc.alloc.rate:      2559.433 MB/sec
+                 gc.alloc.rate.norm: 14688.032 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            5.000 ms
+
+Iteration   3: 5.351 us/op
+                 gc.alloc.rate:      2616.874 MB/sec
+                 gc.alloc.rate.norm: 14688.032 B/op
+                 gc.count:           9.000 counts
+                 gc.time:            5.000 ms
+
+Iteration   4: 5.405 us/op
+                 gc.alloc.rate:      2590.873 MB/sec
+                 gc.alloc.rate.norm: 14688.032 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   5: 5.294 us/op
+                 gc.alloc.rate:      2631.514 MB/sec
+                 gc.alloc.rate.norm: 14689.274 B/op
+                 gc.count:           9.000 counts
+                 gc.time:            4.000 ms
+
+
+
+Result "io.ominicat.benchmarks.PromptCostProbe.render":
+  5.407 ±(99.9%) 0.343 us/op [Average]
+  (min, avg, max) = (5.294, 5.407, 5.516), stdev = 0.089
+  CI (99.9%): [5.064, 5.750] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.PromptCostProbe.render:gc.alloc.rate":
+  2587.369 ±(99.9%) 149.559 MB/sec [Average]
+  (min, avg, max) = (2538.154, 2587.369, 2631.514), stdev = 38.840
+  CI (99.9%): [2437.811, 2736.928] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.PromptCostProbe.render:gc.alloc.rate.norm":
+  14688.281 ±(99.9%) 2.137 B/op [Average]
+  (min, avg, max) = (14688.032, 14688.281, 14689.274), stdev = 0.555
+  CI (99.9%): [14686.143, 14690.418] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.PromptCostProbe.render:gc.count":
+  43.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (8.000, 8.600, 9.000), stdev = 0.548
+  CI (99.9%): [43.000, 43.000] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.PromptCostProbe.render:gc.time":
+  23.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (4.000, 4.600, 5.000), stdev = 0.548
+  CI (99.9%): [23.000, 23.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: /usr/lib/jvm/temurin-17-jdk-amd64/bin/java
+# VM options: -Xms512m -Xmx512m -Dominicat.probe.conversationSha256=19f28c960079039f79946e39ff54f3a42dbc9fce0dcccd3f60bd059b2fe4a74f -Dominicat.probe.coreSha256=cb72c17372494aa22be9563cbb081c01d7bb0dc63ef1aa37e8c2654b1bf5f15f -Dominicat.probe.harnessSha256=8d765e4963d44a39a8b6fdc5e6e308dea1023bb13e0854e760fca8e392d94e74
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: io.ominicat.benchmarks.PromptCostProbe.render
+# Parameters: (history = full, maxTurns = 256)
+
+# Run progress: 44.44% complete, ETA 00:00:41
+# Fork: 1 of 1
+# Warmup Iteration   1: PROBE_HARNESS_SHA256=8d765e4963d44a39a8b6fdc5e6e308dea1023bb13e0854e760fca8e392d94e74
+PROBE_CONVERSATION_SHA256=19f28c960079039f79946e39ff54f3a42dbc9fce0dcccd3f60bd059b2fe4a74f
+PROBE_CORE_SHA256=cb72c17372494aa22be9563cbb081c01d7bb0dc63ef1aa37e8c2654b1bf5f15f
+37.964 us/op
+# Warmup Iteration   2: 31.880 us/op
+# Warmup Iteration   3: 30.272 us/op
+Iteration   1: 30.829 us/op
+                 gc.alloc.rate:      2591.059 MB/sec
+                 gc.alloc.rate.norm: 83784.187 B/op
+                 gc.count:           9.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   2: 30.499 us/op
+                 gc.alloc.rate:      2618.841 MB/sec
+                 gc.alloc.rate.norm: 83784.182 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   3: 30.641 us/op
+                 gc.alloc.rate:      2606.939 MB/sec
+                 gc.alloc.rate.norm: 83784.183 B/op
+                 gc.count:           9.000 counts
+                 gc.time:            5.000 ms
+
+Iteration   4: 30.384 us/op
+                 gc.alloc.rate:      2629.237 MB/sec
+                 gc.alloc.rate.norm: 83784.181 B/op
+                 gc.count:           9.000 counts
+                 gc.time:            5.000 ms
+
+Iteration   5: 30.121 us/op
+                 gc.alloc.rate:      2633.807 MB/sec
+                 gc.alloc.rate.norm: 83791.536 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            4.000 ms
+
+
+
+Result "io.ominicat.benchmarks.PromptCostProbe.render":
+  30.495 ±(99.9%) 1.029 us/op [Average]
+  (min, avg, max) = (30.121, 30.495, 30.829), stdev = 0.267
+  CI (99.9%): [29.466, 31.524] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.PromptCostProbe.render:gc.alloc.rate":
+  2615.977 ±(99.9%) 66.821 MB/sec [Average]
+  (min, avg, max) = (2591.059, 2615.977, 2633.807), stdev = 17.353
+  CI (99.9%): [2549.156, 2682.797] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.PromptCostProbe.render:gc.alloc.rate.norm":
+  83785.654 ±(99.9%) 12.663 B/op [Average]
+  (min, avg, max) = (83784.181, 83785.654, 83791.536), stdev = 3.288
+  CI (99.9%): [83772.991, 83798.316] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.PromptCostProbe.render:gc.count":
+  43.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (8.000, 8.600, 9.000), stdev = 0.548
+  CI (99.9%): [43.000, 43.000] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.PromptCostProbe.render:gc.time":
+  22.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (4.000, 4.400, 5.000), stdev = 0.548
+  CI (99.9%): [22.000, 22.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: /usr/lib/jvm/temurin-17-jdk-amd64/bin/java
+# VM options: -Xms512m -Xmx512m -Dominicat.probe.conversationSha256=19f28c960079039f79946e39ff54f3a42dbc9fce0dcccd3f60bd059b2fe4a74f -Dominicat.probe.coreSha256=cb72c17372494aa22be9563cbb081c01d7bb0dc63ef1aa37e8c2654b1bf5f15f -Dominicat.probe.harnessSha256=8d765e4963d44a39a8b6fdc5e6e308dea1023bb13e0854e760fca8e392d94e74
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: io.ominicat.benchmarks.PromptCostProbe.render
+# Parameters: (history = full, maxTurns = 10000)
+
+# Run progress: 55.56% complete, ETA 00:00:33
+# Fork: 1 of 1
+# Warmup Iteration   1: PROBE_HARNESS_SHA256=8d765e4963d44a39a8b6fdc5e6e308dea1023bb13e0854e760fca8e392d94e74
+PROBE_CONVERSATION_SHA256=19f28c960079039f79946e39ff54f3a42dbc9fce0dcccd3f60bd059b2fe4a74f
+PROBE_CORE_SHA256=cb72c17372494aa22be9563cbb081c01d7bb0dc63ef1aa37e8c2654b1bf5f15f
+1240.299 us/op
+# Warmup Iteration   2: 1006.047 us/op
+# Warmup Iteration   3: 1001.246 us/op
+Iteration   1: 998.358 us/op
+                 gc.alloc.rate:      2697.622 MB/sec
+                 gc.alloc.rate.norm: 2824677.948 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            6.000 ms
+
+Iteration   2: 996.949 us/op
+                 gc.alloc.rate:      2701.209 MB/sec
+                 gc.alloc.rate.norm: 2824677.936 B/op
+                 gc.count:           9.000 counts
+                 gc.time:            6.000 ms
+
+Iteration   3: 997.772 us/op
+                 gc.alloc.rate:      2699.097 MB/sec
+                 gc.alloc.rate.norm: 2824677.942 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            5.000 ms
+
+Iteration   4: 1043.343 us/op
+                 gc.alloc.rate:      2579.776 MB/sec
+                 gc.alloc.rate.norm: 2824678.215 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            5.000 ms
+
+Iteration   5: 999.931 us/op
+                 gc.alloc.rate:      2655.107 MB/sec
+                 gc.alloc.rate.norm: 2825282.182 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            6.000 ms
+
+
+
+Result "io.ominicat.benchmarks.PromptCostProbe.render":
+  1007.271 ±(99.9%) 77.762 us/op [Average]
+  (min, avg, max) = (996.949, 1007.271, 1043.343), stdev = 20.195
+  CI (99.9%): [929.508, 1085.033] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.PromptCostProbe.render:gc.alloc.rate":
+  2666.562 ±(99.9%) 200.886 MB/sec [Average]
+  (min, avg, max) = (2579.776, 2666.562, 2701.209), stdev = 52.169
+  CI (99.9%): [2465.676, 2867.448] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.PromptCostProbe.render:gc.alloc.rate.norm":
+  2824798.845 ±(99.9%) 1040.420 B/op [Average]
+  (min, avg, max) = (2824677.936, 2824798.845, 2825282.182), stdev = 270.194
+  CI (99.9%): [2823758.425, 2825839.264] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.PromptCostProbe.render:gc.count":
+  41.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (8.000, 8.200, 9.000), stdev = 0.447
+  CI (99.9%): [41.000, 41.000] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.PromptCostProbe.render:gc.time":
+  28.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (5.000, 5.600, 6.000), stdev = 0.548
+  CI (99.9%): [28.000, 28.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: /usr/lib/jvm/temurin-17-jdk-amd64/bin/java
+# VM options: -Xms512m -Xmx512m -Dominicat.probe.conversationSha256=19f28c960079039f79946e39ff54f3a42dbc9fce0dcccd3f60bd059b2fe4a74f -Dominicat.probe.coreSha256=cb72c17372494aa22be9563cbb081c01d7bb0dc63ef1aa37e8c2654b1bf5f15f -Dominicat.probe.harnessSha256=8d765e4963d44a39a8b6fdc5e6e308dea1023bb13e0854e760fca8e392d94e74
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: io.ominicat.benchmarks.PromptCostProbe.render
+# Parameters: (history = trimmed, maxTurns = 32)
+
+# Run progress: 66.67% complete, ETA 00:00:24
+# Fork: 1 of 1
+# Warmup Iteration   1: PROBE_HARNESS_SHA256=8d765e4963d44a39a8b6fdc5e6e308dea1023bb13e0854e760fca8e392d94e74
+PROBE_CONVERSATION_SHA256=19f28c960079039f79946e39ff54f3a42dbc9fce0dcccd3f60bd059b2fe4a74f
+PROBE_CORE_SHA256=cb72c17372494aa22be9563cbb081c01d7bb0dc63ef1aa37e8c2654b1bf5f15f
+2.967 us/op
+# Warmup Iteration   2: 2.250 us/op
+# Warmup Iteration   3: 2.213 us/op
+Iteration   1: 2.219 us/op
+                 gc.alloc.rate:      2323.335 MB/sec
+                 gc.alloc.rate.norm: 5408.013 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   2: 2.192 us/op
+                 gc.alloc.rate:      2352.028 MB/sec
+                 gc.alloc.rate.norm: 5408.013 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   3: 2.202 us/op
+                 gc.alloc.rate:      2341.104 MB/sec
+                 gc.alloc.rate.norm: 5408.013 B/op
+                 gc.count:           7.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   4: 2.202 us/op
+                 gc.alloc.rate:      2341.861 MB/sec
+                 gc.alloc.rate.norm: 5408.013 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   5: 2.199 us/op
+                 gc.alloc.rate:      2329.977 MB/sec
+                 gc.alloc.rate.norm: 5408.529 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            4.000 ms
+
+
+
+Result "io.ominicat.benchmarks.PromptCostProbe.render":
+  2.203 ±(99.9%) 0.038 us/op [Average]
+  (min, avg, max) = (2.192, 2.203, 2.219), stdev = 0.010
+  CI (99.9%): [2.165, 2.241] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.PromptCostProbe.render:gc.alloc.rate":
+  2337.661 ±(99.9%) 43.060 MB/sec [Average]
+  (min, avg, max) = (2323.335, 2337.661, 2352.028), stdev = 11.183
+  CI (99.9%): [2294.601, 2380.721] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.PromptCostProbe.render:gc.alloc.rate.norm":
+  5408.116 ±(99.9%) 0.889 B/op [Average]
+  (min, avg, max) = (5408.013, 5408.116, 5408.529), stdev = 0.231
+  CI (99.9%): [5407.228, 5409.005] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.PromptCostProbe.render:gc.count":
+  39.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (7.000, 7.800, 8.000), stdev = 0.447
+  CI (99.9%): [39.000, 39.000] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.PromptCostProbe.render:gc.time":
+  19.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (3.000, 3.800, 4.000), stdev = 0.447
+  CI (99.9%): [19.000, 19.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: /usr/lib/jvm/temurin-17-jdk-amd64/bin/java
+# VM options: -Xms512m -Xmx512m -Dominicat.probe.conversationSha256=19f28c960079039f79946e39ff54f3a42dbc9fce0dcccd3f60bd059b2fe4a74f -Dominicat.probe.coreSha256=cb72c17372494aa22be9563cbb081c01d7bb0dc63ef1aa37e8c2654b1bf5f15f -Dominicat.probe.harnessSha256=8d765e4963d44a39a8b6fdc5e6e308dea1023bb13e0854e760fca8e392d94e74
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: io.ominicat.benchmarks.PromptCostProbe.render
+# Parameters: (history = trimmed, maxTurns = 256)
+
+# Run progress: 77.78% complete, ETA 00:00:16
+# Fork: 1 of 1
+# Warmup Iteration   1: PROBE_HARNESS_SHA256=8d765e4963d44a39a8b6fdc5e6e308dea1023bb13e0854e760fca8e392d94e74
+PROBE_CONVERSATION_SHA256=19f28c960079039f79946e39ff54f3a42dbc9fce0dcccd3f60bd059b2fe4a74f
+PROBE_CORE_SHA256=cb72c17372494aa22be9563cbb081c01d7bb0dc63ef1aa37e8c2654b1bf5f15f
+3.068 us/op
+# Warmup Iteration   2: 2.411 us/op
+# Warmup Iteration   3: 2.400 us/op
+Iteration   1: 2.405 us/op
+                 gc.alloc.rate:      2863.335 MB/sec
+                 gc.alloc.rate.norm: 7224.014 B/op
+                 gc.count:           10.000 counts
+                 gc.time:            5.000 ms
+
+Iteration   2: 2.499 us/op
+                 gc.alloc.rate:      2754.469 MB/sec
+                 gc.alloc.rate.norm: 7224.015 B/op
+                 gc.count:           9.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   3: 2.392 us/op
+                 gc.alloc.rate:      2879.801 MB/sec
+                 gc.alloc.rate.norm: 7224.014 B/op
+                 gc.count:           9.000 counts
+                 gc.time:            5.000 ms
+
+Iteration   4: 2.395 us/op
+                 gc.alloc.rate:      2875.501 MB/sec
+                 gc.alloc.rate.norm: 7224.014 B/op
+                 gc.count:           10.000 counts
+                 gc.time:            6.000 ms
+
+Iteration   5: 2.413 us/op
+                 gc.alloc.rate:      2836.333 MB/sec
+                 gc.alloc.rate.norm: 7224.602 B/op
+                 gc.count:           9.000 counts
+                 gc.time:            5.000 ms
+
+
+
+Result "io.ominicat.benchmarks.PromptCostProbe.render":
+  2.421 ±(99.9%) 0.172 us/op [Average]
+  (min, avg, max) = (2.392, 2.421, 2.499), stdev = 0.045
+  CI (99.9%): [2.249, 2.593] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.PromptCostProbe.render:gc.alloc.rate":
+  2841.888 ±(99.9%) 199.158 MB/sec [Average]
+  (min, avg, max) = (2754.469, 2841.888, 2879.801), stdev = 51.721
+  CI (99.9%): [2642.729, 3041.046] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.PromptCostProbe.render:gc.alloc.rate.norm":
+  7224.132 ±(99.9%) 1.013 B/op [Average]
+  (min, avg, max) = (7224.014, 7224.132, 7224.602), stdev = 0.263
+  CI (99.9%): [7223.119, 7225.144] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.PromptCostProbe.render:gc.count":
+  47.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (9.000, 9.400, 10.000), stdev = 0.548
+  CI (99.9%): [47.000, 47.000] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.PromptCostProbe.render:gc.time":
+  25.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (4.000, 5.000, 6.000), stdev = 0.707
+  CI (99.9%): [25.000, 25.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: /usr/lib/jvm/temurin-17-jdk-amd64/bin/java
+# VM options: -Xms512m -Xmx512m -Dominicat.probe.conversationSha256=19f28c960079039f79946e39ff54f3a42dbc9fce0dcccd3f60bd059b2fe4a74f -Dominicat.probe.coreSha256=cb72c17372494aa22be9563cbb081c01d7bb0dc63ef1aa37e8c2654b1bf5f15f -Dominicat.probe.harnessSha256=8d765e4963d44a39a8b6fdc5e6e308dea1023bb13e0854e760fca8e392d94e74
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: io.ominicat.benchmarks.PromptCostProbe.render
+# Parameters: (history = trimmed, maxTurns = 10000)
+
+# Run progress: 88.89% complete, ETA 00:00:08
+# Fork: 1 of 1
+# Warmup Iteration   1: PROBE_HARNESS_SHA256=8d765e4963d44a39a8b6fdc5e6e308dea1023bb13e0854e760fca8e392d94e74
+PROBE_CONVERSATION_SHA256=19f28c960079039f79946e39ff54f3a42dbc9fce0dcccd3f60bd059b2fe4a74f
+PROBE_CORE_SHA256=cb72c17372494aa22be9563cbb081c01d7bb0dc63ef1aa37e8c2654b1bf5f15f
+15.975 us/op
+# Warmup Iteration   2: 12.976 us/op
+# Warmup Iteration   3: 13.066 us/op
+Iteration   1: 12.948 us/op
+                 gc.alloc.rate:      6270.318 MB/sec
+                 gc.alloc.rate.norm: 85152.077 B/op
+                 gc.count:           21.000 counts
+                 gc.time:            24.000 ms
+
+Iteration   2: 12.972 us/op
+                 gc.alloc.rate:      6258.852 MB/sec
+                 gc.alloc.rate.norm: 85152.077 B/op
+                 gc.count:           21.000 counts
+                 gc.time:            25.000 ms
+
+Iteration   3: 12.992 us/op
+                 gc.alloc.rate:      6248.566 MB/sec
+                 gc.alloc.rate.norm: 85152.077 B/op
+                 gc.count:           20.000 counts
+                 gc.time:            23.000 ms
+
+Iteration   4: 12.958 us/op
+                 gc.alloc.rate:      6265.414 MB/sec
+                 gc.alloc.rate.norm: 85152.077 B/op
+                 gc.count:           21.000 counts
+                 gc.time:            24.000 ms
+
+Iteration   5: 12.911 us/op
+                 gc.alloc.rate:      6184.234 MB/sec
+                 gc.alloc.rate.norm: 85159.881 B/op
+                 gc.count:           21.000 counts
+                 gc.time:            23.000 ms
+
+
+
+Result "io.ominicat.benchmarks.PromptCostProbe.render":
+  12.956 ±(99.9%) 0.116 us/op [Average]
+  (min, avg, max) = (12.911, 12.956, 12.992), stdev = 0.030
+  CI (99.9%): [12.840, 13.073] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.PromptCostProbe.render:gc.alloc.rate":
+  6245.477 ±(99.9%) 135.509 MB/sec [Average]
+  (min, avg, max) = (6184.234, 6245.477, 6270.318), stdev = 35.191
+  CI (99.9%): [6109.967, 6380.986] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.PromptCostProbe.render:gc.alloc.rate.norm":
+  85153.638 ±(99.9%) 13.438 B/op [Average]
+  (min, avg, max) = (85152.077, 85153.638, 85159.881), stdev = 3.490
+  CI (99.9%): [85140.200, 85167.076] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.PromptCostProbe.render:gc.count":
+  104.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (20.000, 20.800, 21.000), stdev = 0.447
+  CI (99.9%): [104.000, 104.000] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.PromptCostProbe.render:gc.time":
+  119.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (23.000, 23.800, 25.000), stdev = 0.837
+  CI (99.9%): [119.000, 119.000] (assumes normal distribution)
+
+
+# Run complete. Total time: 00:01:14
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                                  (history)  (maxTurns)  Mode  Cnt        Score      Error   Units
+PromptCostProbe.render                          none          32  avgt    5        0.997 ±    0.087   us/op
+PromptCostProbe.render:gc.alloc.rate            none          32  avgt    5     2170.690 ±  192.651  MB/sec
+PromptCostProbe.render:gc.alloc.rate.norm       none          32  avgt    5     2272.052 ±    0.400    B/op
+PromptCostProbe.render:gc.count                 none          32  avgt    5       35.000             counts
+PromptCostProbe.render:gc.time                  none          32  avgt    5       19.000                 ms
+PromptCostProbe.render                          none         256  avgt    5        0.848 ±    0.009   us/op
+PromptCostProbe.render:gc.alloc.rate            none         256  avgt    5     2523.657 ±   43.962  MB/sec
+PromptCostProbe.render:gc.alloc.rate.norm       none         256  avgt    5     2248.047 ±    0.357    B/op
+PromptCostProbe.render:gc.count                 none         256  avgt    5       42.000             counts
+PromptCostProbe.render:gc.time                  none         256  avgt    5       21.000                 ms
+PromptCostProbe.render                          none       10000  avgt    5        0.866 ±    0.171   us/op
+PromptCostProbe.render:gc.alloc.rate            none       10000  avgt    5     2472.637 ±  454.435  MB/sec
+PromptCostProbe.render:gc.alloc.rate.norm       none       10000  avgt    5     2248.109 ±    0.890    B/op
+PromptCostProbe.render:gc.count                 none       10000  avgt    5       41.000             counts
+PromptCostProbe.render:gc.time                  none       10000  avgt    5       43.000                 ms
+PromptCostProbe.render                          full          32  avgt    5        5.407 ±    0.343   us/op
+PromptCostProbe.render:gc.alloc.rate            full          32  avgt    5     2587.369 ±  149.559  MB/sec
+PromptCostProbe.render:gc.alloc.rate.norm       full          32  avgt    5    14688.281 ±    2.137    B/op
+PromptCostProbe.render:gc.count                 full          32  avgt    5       43.000             counts
+PromptCostProbe.render:gc.time                  full          32  avgt    5       23.000                 ms
+PromptCostProbe.render                          full         256  avgt    5       30.495 ±    1.029   us/op
+PromptCostProbe.render:gc.alloc.rate            full         256  avgt    5     2615.977 ±   66.821  MB/sec
+PromptCostProbe.render:gc.alloc.rate.norm       full         256  avgt    5    83785.654 ±   12.663    B/op
+PromptCostProbe.render:gc.count                 full         256  avgt    5       43.000             counts
+PromptCostProbe.render:gc.time                  full         256  avgt    5       22.000                 ms
+PromptCostProbe.render                          full       10000  avgt    5     1007.271 ±   77.762   us/op
+PromptCostProbe.render:gc.alloc.rate            full       10000  avgt    5     2666.562 ±  200.886  MB/sec
+PromptCostProbe.render:gc.alloc.rate.norm       full       10000  avgt    5  2824798.845 ± 1040.420    B/op
+PromptCostProbe.render:gc.count                 full       10000  avgt    5       41.000             counts
+PromptCostProbe.render:gc.time                  full       10000  avgt    5       28.000                 ms
+PromptCostProbe.render                       trimmed          32  avgt    5        2.203 ±    0.038   us/op
+PromptCostProbe.render:gc.alloc.rate         trimmed          32  avgt    5     2337.661 ±   43.060  MB/sec
+PromptCostProbe.render:gc.alloc.rate.norm    trimmed          32  avgt    5     5408.116 ±    0.889    B/op
+PromptCostProbe.render:gc.count              trimmed          32  avgt    5       39.000             counts
+PromptCostProbe.render:gc.time               trimmed          32  avgt    5       19.000                 ms
+PromptCostProbe.render                       trimmed         256  avgt    5        2.421 ±    0.172   us/op
+PromptCostProbe.render:gc.alloc.rate         trimmed         256  avgt    5     2841.888 ±  199.158  MB/sec
+PromptCostProbe.render:gc.alloc.rate.norm    trimmed         256  avgt    5     7224.132 ±    1.013    B/op
+PromptCostProbe.render:gc.count              trimmed         256  avgt    5       47.000             counts
+PromptCostProbe.render:gc.time               trimmed         256  avgt    5       25.000                 ms
+PromptCostProbe.render                       trimmed       10000  avgt    5       12.956 ±    0.116   us/op
+PromptCostProbe.render:gc.alloc.rate         trimmed       10000  avgt    5     6245.477 ±  135.509  MB/sec
+PromptCostProbe.render:gc.alloc.rate.norm    trimmed       10000  avgt    5    85153.638 ±   13.438    B/op
+PromptCostProbe.render:gc.count              trimmed       10000  avgt    5      104.000             counts
+PromptCostProbe.render:gc.time               trimmed       10000  avgt    5      119.000                 ms
+
+Benchmark result is saved to /home/runner/work/_temp/prompt-cost/1-candidate.json

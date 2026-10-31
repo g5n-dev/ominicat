@@ -14,6 +14,7 @@ import platform
 import re
 import statistics
 import subprocess
+import xml.etree.ElementTree as ET
 
 PROBE = 'io.ominicat.benchmarks.PromptCostProbe.render'
 ORDER = ('baseline', 'candidate', 'candidate', 'baseline')
@@ -146,7 +147,7 @@ def check(folder):
 
 def summarize(folder, rows):
     write(folder / 'comparison.json', rows)
-    lines = ['# Paired prompt-rendering cost / 提示词生成成本', '',
+    lines = ['# Paired prompt-rendering cost', '',
         'Ubuntu 24.04 / Java 17; same host, same probe; baseline → candidate → candidate → baseline.', '',
         'Synthetic final-transcript processing only: transcript/segment-ID construction, window insertion, prompt rendering, exact output oracle and Blackhole. '
         'Preloaded full windows and expected strings are prepared outside timing. No pipeline, model, codec or network.', '',
@@ -162,6 +163,57 @@ def summarize(folder, rows):
     lines += ['', 'Full fork means, measured iteration ranges and raw per-fork JMH output are in comparison.json and the four JMH files. '
               'Runtime JAR origins are checked inside every fork; manifests bind both revisions, sources, artifacts and raw outputs.', '']
     (folder / 'summary.md').write_text('\n'.join(lines), encoding='utf-8')
+
+
+def chart_bytes(folder, rows):
+    """Static, data-bound paired chart; ranges are iteration means, never CIs."""
+    ns = 'http://www.w3.org/2000/svg'
+    ET.register_namespace('', ns)
+    root = ET.Element('svg', xmlns=ns, viewBox='0 0 1440 1050', role='img')
+    def element(tag, attrs=None, text=None):
+        item = ET.SubElement(root, tag, {k: str(v) for k, v in (attrs or {}).items()})
+        if text is not None:
+            item.text = text
+        return item
+    def label(x, y, text, size=18, fill='#9cafc6', **attrs):
+        return element('text', dict(x=x, y=y, fill=fill, **{'font-size': size,
+            'font-family': 'Inter,Arial,sans-serif'}, **attrs), text)
+    element('rect', dict(width=1440, height=1050, rx=24, fill='#0b1320'))
+    label(52, 57, 'OMINICAT / PAIRED LINUX EVIDENCE', 18, '#62d7c0')
+    label(52, 113, 'Bounded prompt rendering', 40, '#e6edf7', **{'font-weight': 700})
+    label(52, 153, 'Ubuntu 24.04 / Java 17 · same host · same probe · synthetic final transcripts', 18)
+    for x, color, name in ((800, '#efbd67', 'Baseline'), (1010, '#62d7c0', 'Candidate')):
+        element('circle', dict(cx=x, cy=197, r=6, fill=color)); label(x + 17, 203, name, 19, '#e6edf7')
+    ordered = sorted(rows, key=lambda r: (('none', 'full', 'trimmed').index(r['history']), r['maxTurns']))
+    policies = {'none': 'No history', 'full': 'Full history', 'trimmed': 'Truncated'}
+    for panel, metric, title in ((0, 'micros', 'Time · µs/op · log scale'),
+                                  (1, 'bytes', 'Allocation · B/op · log scale')):
+        left, right, top = 210 + panel * 690, 640 + panel * 690, 280
+        label(left, 248, title, 20, '#e6edf7')
+        values = [v for r in ordered for side in ('baseline', 'candidate')
+                  for v in r[side + '_' + metric]['iterationRange']]
+        low = math.floor(math.log10(min(values))); high = math.ceil(math.log10(max(values)))
+        require(high > low, 'Chart axis needs a positive range')
+        position = lambda value: left + (math.log10(value) - low) / (high - low) * (right - left)
+        for power in range(low, high + 1):
+            x = position(10 ** power)
+            element('path', dict(d=f'M {x:.4f} {top} V 856', stroke='#25344a', **{'stroke-width': 1}))
+            label(x, 884, f'{10 ** power:g}', 15, **{'text-anchor': 'middle'})
+        for index, row in enumerate(ordered):
+            y = top + 30 + index * 62
+            if panel == 0:
+                label(52, y + 5, f"{policies[row['history']]} · {row['maxTurns']}", 16, '#d4dfea')
+            for side, shift, color in (('baseline', -8, '#efbd67'), ('candidate', 8, '#62d7c0')):
+                data = row[side + '_' + metric]; a, b = map(position, data['iterationRange']); x = position(data['mean'])
+                element('path', dict(d=f'M {a:.4f} {y+shift} H {b:.4f}', stroke=color, **{'stroke-width': 2}))
+                element('circle', dict(cx=f'{x:.4f}', cy=y+shift, r=4.5, fill=color))
+                label(right + 12, y + shift + 4, f"{data['mean']:.2f}" if metric == 'micros' else f"{data['mean']:,.0f}", 14, color)
+    label(52, 936, 'Dots: two-fork means · whiskers: min–max measured iteration means, not confidence intervals', 18)
+    label(52, 972, '36 fork trials · 9 cases · 3 × 1 s warmup + 5 × 1 s measurement per fork · GC allocation profiler', 17)
+    label(52, 1008, 'Includes transcript construction, window updates and exact output validation; excludes pipeline, model and network.', 16)
+    element('metadata', {'id': 'ominicat-evidence'}, json.dumps({'comparison_sha256': sha(folder / 'comparison.json'),
+        'manifest_sha256': sha(folder / 'manifest.json'), 'generator_sha256': sha(Path(__file__))}, sort_keys=True))
+    return ET.tostring(root, encoding='utf-8', xml_declaration=True) + b'\n'
 
 
 def collect(baseline, candidate, folder):
@@ -217,12 +269,24 @@ if __name__ == '__main__':
     run.add_argument('--output', type=Path, required=True)
     verify = commands.add_parser('check')
     verify.add_argument('folder', type=Path)
+    render = commands.add_parser('render')
+    render.add_argument('folder', type=Path)
     args = parser.parse_args()
     try:
         if args.action == 'collect':
             collect(args.baseline.resolve(), args.candidate.resolve(), args.output.resolve())
-        else:
-            rows = check(args.folder.resolve())
+        elif args.action == 'check':
+            folder = args.folder.resolve()
+            rows = check(folder)
+            if (folder / 'comparison.json').exists():
+                require(json.loads((folder / 'comparison.json').read_text()) == rows, 'Stale derived comparison')
+            if (folder / 'costs.svg').exists():
+                require((folder / 'costs.svg').read_bytes() == chart_bytes(folder, rows), 'Stale paired cost chart')
             print(f'Validated {len(rows)} paired prompt cases.')
+        else:
+            folder = args.folder.resolve()
+            rows = check(folder)
+            summarize(folder, rows)
+            (folder / 'costs.svg').write_bytes(chart_bytes(folder, rows))
     except (OSError, ValueError, KeyError, TypeError, subprocess.CalledProcessError) as error:
         parser.exit(1, str(error) + '\n')

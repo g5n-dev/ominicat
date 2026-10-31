@@ -1,0 +1,181 @@
+{
+  "schemaVersion": 1,
+  "order": [
+    "baseline",
+    "candidate",
+    "candidate",
+    "baseline"
+  ],
+  "context": {
+    "system": "Linux",
+    "machine": "x86_64",
+    "kernel": "7.0.0-1017-azure",
+    "distribution": {
+      "NAME": "Ubuntu",
+      "ID": "ubuntu",
+      "PRETTY_NAME": "Ubuntu 24.04.5 LTS",
+      "VERSION_ID": "24.04",
+      "VERSION": "24.04.5 LTS (Noble Numbat)",
+      "VERSION_CODENAME": "noble",
+      "ID_LIKE": "debian",
+      "HOME_URL": "https://www.ubuntu.com/",
+      "SUPPORT_URL": "https://help.ubuntu.com/",
+      "BUG_REPORT_URL": "https://bugs.launchpad.net/ubuntu/",
+      "PRIVACY_POLICY_URL": "https://www.ubuntu.com/legal/terms-and-policies/privacy-policy",
+      "UBUNTU_CODENAME": "noble",
+      "LOGO": "ubuntu-logo"
+    },
+    "java": "openjdk version \"17.0.21\" 2026-10-20\nOpenJDK Runtime Environment Temurin-17.0.21+9 (build 17.0.21+9)\nOpenJDK 64-Bit Server VM Temurin-17.0.21+9 (build 17.0.21+9, mixed mode, sharing)",
+    "availableProcessors": 4,
+    "cpu": "AMD EPYC 9V45 96-Core Processor"
+  },
+  "probe_sha256": "8d765e4963d44a39a8b6fdc5e6e308dea1023bb13e0854e760fca8e392d94e74",
+  "collector_sha256": "2d1ecfb8061b50153421159fa5fc3bdc9123fc3e3719382b8484fd1b4b6a6313",
+  "sources": {
+    "baseline": {
+      "revision": "208b0c48416b663de06d82f2e072a923b0ecf569",
+      "files": {
+        "ominicat-benchmarks/src/main/java/io/ominicat/benchmarks/CoreLoad.java": "c3dfcc64c2188b99e0430f47e98d39d5a104e0487afb21c1cec4d09be5cd38fe",
+        "ominicat-benchmarks/src/main/java/io/ominicat/benchmarks/PipelineBenchmark.java": "fc6c43c52f96d3ca753bf5f4f76ae61c1863791580b939f40659216b2260076e",
+        "ominicat-benchmarks/src/main/java/io/ominicat/benchmarks/SessionBenchmark.java": "fc6eb96030dfed0df3203eadd285d36b51077c7f2fb561fc5216679c419e91d3",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/ConversationEvaluatorFactory.java": "4b0066198471c7830d78e1a82fe270d35f374cedecac60de5d9d8534e6af302c",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/ConversationEvaluatorProcessor.java": "e62529eb0704514bb86eef8e43b3b0ebec7614e85aabf2c68b01c6e938a27bec",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/ConversationMetrics.java": "cca0b37b73d38fd31941ed6ecc7c40cc2faffa6fdff67a7bfc934de2d5107010",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/ConversationSnapshot.java": "451c9c7cd351be1b73a4cc2fce788b2c3bb99c3a9240386c36568fc3c4f2fca1",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/ConversationWindow.java": "aea106e0bb748a1a468c65ac79deaa546685178adc74576010de8062ed5a4b6d",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/EvaluationFrame.java": "9fa195b723c29643a2319a190010b3b2cda6f9e47a1a185d436d2c59745de310",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/Evidence.java": "e7db2086d1913a70c434108692474f8f13e46569e0875df27836adab06af7957",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/PluginOptions.java": "a1527b937374fd5433a63693b8b68f0262af963f177766aeeabfd058fe0bb60f",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/PolicyRule.java": "f2f2fec75ac908abdfd526d61587c5d5a1b73423d1f24f01ab26a08520f9d865",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/PolicyRules.java": "6488a726067edbc7f44624ea09c0e58ebae3a67cd7ae059237fdadc7bcb98cda",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/PromptTemplateFactory.java": "d188da40998a6f9030a218ec4492c7dfec4c284d4eb0aae3cac14361036bf666",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/PromptTemplateProcessor.java": "5eef01c4132abea03aeeec60f9340820ff1da09426db4a1d472823cdd5348de9",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/RuleResult.java": "7ed3ad5c8252cc483d9f7aca64c7e1a890437ca4e6115a9cdbfe54b6ae3b516d",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/Turn.java": "9d859f1a293019d9782d8eca08dff441271d13b9d6a1bbb3a7c742a087277155",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/flow/StepFlowFactory.java": "8f2e1b271ce4fcf412e68a3a0c664febeef3421c4820ee9360e62e9b855ef434",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/flow/StepFlowProcessor.java": "90f2f40dab2bfdabb2d98fc28a8f9262afaf3da420ff313cbcc92ba35c402a80",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/reference/FrameBoundaryMap.java": "9318ac4bb103a7746d3e9e02de5710446a455e6a559177f616e3d0f2acbdf71d",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/reference/MediaReference.java": "52094eded9bde6b1b99c997337944dbc509ea7955f7e02a560df3b7cb988a129",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/reference/MediaReferenceIO.java": "f96c8cec98bdf1a343ed5605d5cab0c1bdcdd9c68cc917f89d7a3dbcfe523301",
+        "ominicat-core/src/main/java/io/ominicat/core/AsyncEmitter.java": "44f9efb11ea681c9757f6b8775071da3a34f437877d5ed1cbb0b15c8bd381154",
+        "ominicat-core/src/main/java/io/ominicat/core/AsyncOutlet.java": "e268a2a7b966ee805dd515789dbfaaf24d003af3f427ea36f08aa29bf9901b36",
+        "ominicat-core/src/main/java/io/ominicat/core/AsyncProcessor.java": "38c4854af52081b33f2037e7f6aaa8fde98972bda4f2564aae8346fb3fbe9fb1",
+        "ominicat-core/src/main/java/io/ominicat/core/EnvelopeProcessor.java": "cdb01f8141bff2762d1f8c75488160efac00ccf68d8a72af5267aa3a8dbbf69b",
+        "ominicat-core/src/main/java/io/ominicat/core/FallbackProcessor.java": "42f2b34a365931b85b783bbea10f2ee40d1eebbdcbad945f07ac9f214083cef7",
+        "ominicat-core/src/main/java/io/ominicat/core/Frame.java": "fdcc1ee0ba7e83a9b564f67a16b33e25673073f7265d0d832e38aafcf1de757a",
+        "ominicat-core/src/main/java/io/ominicat/core/FrameEnvelope.java": "977d8556417420128bcb4351f6ea57630edc621b8a36a75f87468c37468d52b3",
+        "ominicat-core/src/main/java/io/ominicat/core/FrameSink.java": "e1373e4404361b374b597a9bf1d0970102b662f410e11a6163fe62d67e4016fd",
+        "ominicat-core/src/main/java/io/ominicat/core/ParallelProcessor.java": "676d542294a265141588592877e25ae5baa0d356aefdb5de42824d530de2d751",
+        "ominicat-core/src/main/java/io/ominicat/core/Pipeline.java": "51912a2028db89ba280928c59964ba157034f172e27c4178e765601420d4777b",
+        "ominicat-core/src/main/java/io/ominicat/core/PipelineSession.java": "7207a387f18857cad9f26563d1169b96d0112637f5fe2276d6693d1148c4886e",
+        "ominicat-core/src/main/java/io/ominicat/core/Processor.java": "01d05e653b58ca5243f7f74c7f0389b4d5a1ae7837743afde04ca8d26357c356",
+        "ominicat-core/src/main/java/io/ominicat/core/SessionMetrics.java": "58b3279acc9f42c269709b36ecc3d037393d244f735aaac3cb23e382172787a0",
+        "ominicat-core/src/main/java/io/ominicat/core/SessionOptions.java": "5bed3b1247e246166192f6ba66c421099dcba5dbe77741c09e4fdd002634c414",
+        "ominicat-core/src/main/java/io/ominicat/core/SynchronousSink.java": "9d22b891c7efc690c348ce1fe5127b5074567d6750fdca10bd50f259d1f5a594",
+        "ominicat-core/src/main/java/io/ominicat/core/WorkerThreads.java": "046dd215331c3d7b9f98f29b2748a5c35231b4fc3d12c006ba4ce2f3be623499",
+        "ominicat-core/src/main/java/io/ominicat/core/spi/PluginRegistry.java": "a26c4c72e439426be594c811c6e1511bfb1a83920df62cc35c360320b74d2320",
+        "ominicat-core/src/main/java/io/ominicat/core/spi/ProcessorFactory.java": "1b76527adc33c7baf64c23ce32e755b96343a1253e8f56d3c6a6c9af9da6de20",
+        "pom.xml": "edb54f636b19a4c8794761980258278a0a6de97a0b78e871f973ebfc5cc8ad49",
+        "ominicat-core/pom.xml": "c54cdb223664b92c023c3e7bfa587c3a1a20eee67e1cf813d13479e1289708dc",
+        "ominicat-conversation/pom.xml": "b16552d745f999ea29a49f0fcfc206dbaade32394a4b1acf956c1612eeb45a09",
+        "ominicat-benchmarks/pom.xml": "c4c722655f5f1f58d84a125ffa34c095aafd855ceff1a9c76cbc8b3983b0efda"
+      }
+    },
+    "candidate": {
+      "revision": "d0d63fffef8f0dfa1afa849475adae7548acc170",
+      "files": {
+        "ominicat-benchmarks/src/main/java/io/ominicat/benchmarks/CoreLoad.java": "c3dfcc64c2188b99e0430f47e98d39d5a104e0487afb21c1cec4d09be5cd38fe",
+        "ominicat-benchmarks/src/main/java/io/ominicat/benchmarks/PipelineBenchmark.java": "fc6c43c52f96d3ca753bf5f4f76ae61c1863791580b939f40659216b2260076e",
+        "ominicat-benchmarks/src/main/java/io/ominicat/benchmarks/PromptCostProbe.java": "5ef80171a0b31381de04e830c6dbad645165c509b8cd49ea4edc89df96bc1f0d",
+        "ominicat-benchmarks/src/main/java/io/ominicat/benchmarks/SessionBenchmark.java": "fc6eb96030dfed0df3203eadd285d36b51077c7f2fb561fc5216679c419e91d3",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/ConversationEvaluatorFactory.java": "4b0066198471c7830d78e1a82fe270d35f374cedecac60de5d9d8534e6af302c",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/ConversationEvaluatorProcessor.java": "e62529eb0704514bb86eef8e43b3b0ebec7614e85aabf2c68b01c6e938a27bec",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/ConversationMetrics.java": "cca0b37b73d38fd31941ed6ecc7c40cc2faffa6fdff67a7bfc934de2d5107010",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/ConversationSnapshot.java": "451c9c7cd351be1b73a4cc2fce788b2c3bb99c3a9240386c36568fc3c4f2fca1",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/ConversationWindow.java": "6bbbcbc3f89727b71695a30527b629a74aee1ce4e653b3bf9373932989c95189",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/EvaluationFrame.java": "9fa195b723c29643a2319a190010b3b2cda6f9e47a1a185d436d2c59745de310",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/Evidence.java": "e7db2086d1913a70c434108692474f8f13e46569e0875df27836adab06af7957",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/PluginOptions.java": "a1527b937374fd5433a63693b8b68f0262af963f177766aeeabfd058fe0bb60f",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/PolicyRule.java": "f2f2fec75ac908abdfd526d61587c5d5a1b73423d1f24f01ab26a08520f9d865",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/PolicyRules.java": "6488a726067edbc7f44624ea09c0e58ebae3a67cd7ae059237fdadc7bcb98cda",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/PromptTemplateFactory.java": "d188da40998a6f9030a218ec4492c7dfec4c284d4eb0aae3cac14361036bf666",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/PromptTemplateProcessor.java": "0f332e0a6608dcd06346796728c7bedfc4ca2188f91ccfa6f9bdf27d39a8501e",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/RuleResult.java": "7ed3ad5c8252cc483d9f7aca64c7e1a890437ca4e6115a9cdbfe54b6ae3b516d",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/Turn.java": "9d859f1a293019d9782d8eca08dff441271d13b9d6a1bbb3a7c742a087277155",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/flow/StepFlowFactory.java": "8f2e1b271ce4fcf412e68a3a0c664febeef3421c4820ee9360e62e9b855ef434",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/flow/StepFlowProcessor.java": "90f2f40dab2bfdabb2d98fc28a8f9262afaf3da420ff313cbcc92ba35c402a80",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/reference/FrameBoundaryMap.java": "9318ac4bb103a7746d3e9e02de5710446a455e6a559177f616e3d0f2acbdf71d",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/reference/MediaReference.java": "52094eded9bde6b1b99c997337944dbc509ea7955f7e02a560df3b7cb988a129",
+        "ominicat-conversation/src/main/java/io/ominicat/conversation/reference/MediaReferenceIO.java": "f96c8cec98bdf1a343ed5605d5cab0c1bdcdd9c68cc917f89d7a3dbcfe523301",
+        "ominicat-core/src/main/java/io/ominicat/core/AsyncEmitter.java": "44f9efb11ea681c9757f6b8775071da3a34f437877d5ed1cbb0b15c8bd381154",
+        "ominicat-core/src/main/java/io/ominicat/core/AsyncOutlet.java": "e268a2a7b966ee805dd515789dbfaaf24d003af3f427ea36f08aa29bf9901b36",
+        "ominicat-core/src/main/java/io/ominicat/core/AsyncProcessor.java": "38c4854af52081b33f2037e7f6aaa8fde98972bda4f2564aae8346fb3fbe9fb1",
+        "ominicat-core/src/main/java/io/ominicat/core/EnvelopeProcessor.java": "cdb01f8141bff2762d1f8c75488160efac00ccf68d8a72af5267aa3a8dbbf69b",
+        "ominicat-core/src/main/java/io/ominicat/core/FallbackProcessor.java": "42f2b34a365931b85b783bbea10f2ee40d1eebbdcbad945f07ac9f214083cef7",
+        "ominicat-core/src/main/java/io/ominicat/core/Frame.java": "fdcc1ee0ba7e83a9b564f67a16b33e25673073f7265d0d832e38aafcf1de757a",
+        "ominicat-core/src/main/java/io/ominicat/core/FrameEnvelope.java": "977d8556417420128bcb4351f6ea57630edc621b8a36a75f87468c37468d52b3",
+        "ominicat-core/src/main/java/io/ominicat/core/FrameSink.java": "e1373e4404361b374b597a9bf1d0970102b662f410e11a6163fe62d67e4016fd",
+        "ominicat-core/src/main/java/io/ominicat/core/ParallelProcessor.java": "676d542294a265141588592877e25ae5baa0d356aefdb5de42824d530de2d751",
+        "ominicat-core/src/main/java/io/ominicat/core/Pipeline.java": "51912a2028db89ba280928c59964ba157034f172e27c4178e765601420d4777b",
+        "ominicat-core/src/main/java/io/ominicat/core/PipelineSession.java": "7207a387f18857cad9f26563d1169b96d0112637f5fe2276d6693d1148c4886e",
+        "ominicat-core/src/main/java/io/ominicat/core/Processor.java": "01d05e653b58ca5243f7f74c7f0389b4d5a1ae7837743afde04ca8d26357c356",
+        "ominicat-core/src/main/java/io/ominicat/core/SessionMetrics.java": "58b3279acc9f42c269709b36ecc3d037393d244f735aaac3cb23e382172787a0",
+        "ominicat-core/src/main/java/io/ominicat/core/SessionOptions.java": "5bed3b1247e246166192f6ba66c421099dcba5dbe77741c09e4fdd002634c414",
+        "ominicat-core/src/main/java/io/ominicat/core/SynchronousSink.java": "9d22b891c7efc690c348ce1fe5127b5074567d6750fdca10bd50f259d1f5a594",
+        "ominicat-core/src/main/java/io/ominicat/core/WorkerThreads.java": "046dd215331c3d7b9f98f29b2748a5c35231b4fc3d12c006ba4ce2f3be623499",
+        "ominicat-core/src/main/java/io/ominicat/core/spi/PluginRegistry.java": "a26c4c72e439426be594c811c6e1511bfb1a83920df62cc35c360320b74d2320",
+        "ominicat-core/src/main/java/io/ominicat/core/spi/ProcessorFactory.java": "1b76527adc33c7baf64c23ce32e755b96343a1253e8f56d3c6a6c9af9da6de20",
+        "pom.xml": "edb54f636b19a4c8794761980258278a0a6de97a0b78e871f973ebfc5cc8ad49",
+        "ominicat-core/pom.xml": "c54cdb223664b92c023c3e7bfa587c3a1a20eee67e1cf813d13479e1289708dc",
+        "ominicat-conversation/pom.xml": "b16552d745f999ea29a49f0fcfc206dbaade32394a4b1acf956c1612eeb45a09",
+        "ominicat-benchmarks/pom.xml": "da517f16549be919217ec627c9a0d24370585cf35b72a235b85fd79abf1c5aa0"
+      }
+    }
+  },
+  "runtimes": {
+    "baseline": {
+      "core_sha256": "cb72c17372494aa22be9563cbb081c01d7bb0dc63ef1aa37e8c2654b1bf5f15f",
+      "conversation_sha256": "4f2fab955ebd9ea223d042461bbd423a4b8f0fcc7f4f87b1f697952c2f6e5f0b"
+    },
+    "candidate": {
+      "core_sha256": "cb72c17372494aa22be9563cbb081c01d7bb0dc63ef1aa37e8c2654b1bf5f15f",
+      "conversation_sha256": "19f28c960079039f79946e39ff54f3a42dbc9fce0dcccd3f60bd059b2fe4a74f"
+    }
+  },
+  "runs": [
+    {
+      "index": 0,
+      "side": "baseline",
+      "json": "0-baseline.json",
+      "log": "0-baseline.log"
+    },
+    {
+      "index": 1,
+      "side": "candidate",
+      "json": "1-candidate.json",
+      "log": "1-candidate.log"
+    },
+    {
+      "index": 2,
+      "side": "candidate",
+      "json": "2-candidate.json",
+      "log": "2-candidate.log"
+    },
+    {
+      "index": 3,
+      "side": "baseline",
+      "json": "3-baseline.json",
+      "log": "3-baseline.log"
+    }
+  ],
+  "sha256": {
+    "0-baseline.json": "410d5aeed528b91e4f21898e356721d9714b723a561982817e3824238fdc64d4",
+    "0-baseline.log": "0f70d1017c11012978de764fa15472ddbb458bb04e496b8d5440b8f708f1be48",
+    "1-candidate.json": "b7240872fde45b8870a306a77db238b7047f960b227fe2b6c0e3e648daae7992",
+    "1-candidate.log": "6c37703d39622f6c7bfba3d9ecdb0b949f468d6c3a55d375f7d89f4d54b0e570",
+    "2-candidate.json": "2d1a103df58b6049fe3bb6218de4525eece1714811fad272e259250927175fa0",
+    "2-candidate.log": "05e8706f2eb6880ea3772ea482e00dc10be0ce66eb46ffae48773cbb0f53845d",
+    "3-baseline.json": "d56076177910a7f9e63ed31cf5b6a1e01ace5c5b00437c58d09503807786029b",
+    "3-baseline.log": "6b1fffeb85ca006afcd4003bd46ad9f6e0c81523cebc50757c6bc882cd020261"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-31T20:11:05.862261985Z",
+  "workload": "local bounded-inflight closed-loop kernel load; no model or network",
+  "latencyScope": "before submit to output sink; includes ingress queue waiting; excludes permit waiting",
+  "sessions": 16,
+  "stages": 4,
+  "inflightPerSession": 32,
+  "warmupFrames": 100000,
+  "measuredFrames": 50000000,
+  "processedIncludingWarmup": 50100000,
+  "rejected": 0,
+  "elapsedSeconds": 12.913012553,
+  "throughputFramesPerSecond": 3872063.145,
+  "latencyMicros": {"p50": 69.127, "p95": 145.855, "p99": 417.647, "max": 11367.096},
+  "environment": {
+    "javaVersion": "17.0.21", "javaVendor": "Eclipse Adoptium", "workerBackend": "platform",
+    "os": "Linux", "arch": "amd64", "processors": 4, "maxHeapBytes": 536870912
+  }
+}

@@ -315,6 +315,36 @@
       "source": "reports/java17/soak-resources.svg",
       "localized": "docs/assets/zh-CN/reports/java17/soak-resources.svg",
       "preview": "docs/assets/previews/reports--java17--soak-resources-zh-CN.png"
+    },
+    {
+      "source": "reports/performance-audit/linux-java17-2026-11-01/allocation-flamegraph.svg",
+      "localized": "docs/assets/zh-CN/reports/performance-audit/linux-java17-2026-11-01/allocation-flamegraph.svg",
+      "preview": "docs/assets/previews/reports--performance-audit--linux-java17-2026-11-01--allocation-flamegraph-zh-CN.png"
+    },
+    {
+      "source": "reports/performance-audit/linux-java17-2026-11-01/allocation-hotspots.svg",
+      "localized": "docs/assets/zh-CN/reports/performance-audit/linux-java17-2026-11-01/allocation-hotspots.svg",
+      "preview": "docs/assets/previews/reports--performance-audit--linux-java17-2026-11-01--allocation-hotspots-zh-CN.png"
+    },
+    {
+      "source": "reports/performance-audit/linux-java17-2026-11-01/cpu-flamegraph.svg",
+      "localized": "docs/assets/zh-CN/reports/performance-audit/linux-java17-2026-11-01/cpu-flamegraph.svg",
+      "preview": "docs/assets/previews/reports--performance-audit--linux-java17-2026-11-01--cpu-flamegraph-zh-CN.png"
+    },
+    {
+      "source": "reports/performance-audit/linux-java17-2026-11-01/cpu-hotspots.svg",
+      "localized": "docs/assets/zh-CN/reports/performance-audit/linux-java17-2026-11-01/cpu-hotspots.svg",
+      "preview": "docs/assets/previews/reports--performance-audit--linux-java17-2026-11-01--cpu-hotspots-zh-CN.png"
+    },
+    {
+      "source": "reports/performance-audit/linux-java17-2026-11-01/gc-pauses.svg",
+      "localized": "docs/assets/zh-CN/reports/performance-audit/linux-java17-2026-11-01/gc-pauses.svg",
+      "preview": "docs/assets/previews/reports--performance-audit--linux-java17-2026-11-01--gc-pauses-zh-CN.png"
+    },
+    {
+      "source": "reports/performance-audit/prompt-render-2026-11-01/costs.svg",
+      "localized": "docs/assets/zh-CN/reports/performance-audit/prompt-render-2026-11-01/costs.svg",
+      "preview": "docs/assets/previews/reports--performance-audit--prompt-render-2026-11-01--costs-zh-CN.png"
     }
   ]
 }

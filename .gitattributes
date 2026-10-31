@@ -2,3 +2,7 @@
 mvnw text eol=lf
 mvnw.cmd text eol=crlf
 *.gz binary
+# Preserve checksummed tool-export bytes, including their original whitespace.
+reports/performance-audit/linux-java17-2026-11-01/jmh.json whitespace=-blank-at-eof
+reports/performance-audit/linux-java17-2026-11-01/jfr-summary.txt whitespace=-blank-at-eol
+reports/performance-audit/prompt-render-2026-11-01/[0-3]-*.json whitespace=-blank-at-eof
