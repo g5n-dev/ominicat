@@ -130,11 +130,14 @@ def main():
             shutil.copyfile(args.java_input / engine / name, destination / name)
             if Path(name).suffix in ('.md', '.txt', '.csv', '.svg'):
                 text = (destination / name).read_text()
+                if name == 'profiles.md':
+                    text = text.replace('[GC log](gc.log)', '[GC pause timeline](gc-pauses.svg)')
                 (destination / name).write_text('\n'.join(line.rstrip() for line in text.splitlines()).rstrip() + '\n')
         # Preserve capture hashes while making every published standalone result
         # explicitly ineligible for the unprofiled headline matrix.
         context = json.loads(json.dumps(contexts[engine]))
-        context['sourceCapturedArtifacts'] = context['artifactSha256']
+        context.setdefault('sourceCapturedArtifacts', context['artifactSha256'])
+        context['publicationInputArtifacts'] = context['artifactSha256']
         context['publicationPostprocessorSha256'] = digest(Path(__file__).read_bytes())
         context['result'].update({'instrumented': True, 'headlineEligible': False, 'profileType': 'JFR'})
         (destination / 'result.json').write_text(json.dumps(context['result'], indent=2) + '\n')

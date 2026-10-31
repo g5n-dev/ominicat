@@ -9,6 +9,8 @@ on:
       - 'pom.xml'
       - '.mvn/**'
       - 'mvnw'
+      - 'scripts/package_profiles.py'
+      - 'scripts/summarize_profiles.py'
       - '.github/actions/framework-comparison/**'
       - '.github/workflows/framework-comparison.yml'
   push:
@@ -19,6 +21,8 @@ on:
       - 'pom.xml'
       - '.mvn/**'
       - 'mvnw'
+      - 'scripts/package_profiles.py'
+      - 'scripts/summarize_profiles.py'
       - '.github/actions/framework-comparison/**'
       - '.github/workflows/framework-comparison.yml'
 permissions:

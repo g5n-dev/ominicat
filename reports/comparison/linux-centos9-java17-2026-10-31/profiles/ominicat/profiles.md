@@ -65,4 +65,4 @@ Weights estimate sampled allocation distribution, not retained heap or exact obj
 Evidence: [selected events, gzip JSON](jfr-events.json.gz), [measurement report](report.md).
 Raw JFR is generated locally and intentionally excluded from Git; do not record real credentials or conversation payloads for public profiling.
 
-[GC log](gc.log).
+[GC pause timeline](gc-pauses.svg).
