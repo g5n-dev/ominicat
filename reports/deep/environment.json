@@ -1,0 +1,18 @@
+{
+  "cpu": "Apple M2 Pro",
+  "hardwareModel": "Mac14,9",
+  "architecture": "aarch64",
+  "availableProcessors": 10,
+  "physicalMemoryBytes": 34359738368,
+  "os": "macOS",
+  "osVersion": "26.3",
+  "java": "Homebrew OpenJDK21.0.13.0.3",
+  "maven": "3.9.16 wrapper",
+  "heapLimitMiB": 256,
+  "maxDirectMemoryMiB": 128,
+  "nettyLeakDetection": "PARANOID",
+  "nativeMemoryTracking": "summary",
+  "transport": "loopback WebSocket JSON, no TLS",
+  "hostSharedDuringValidation": true,
+  "networkModelEndpoints": "local fixtures only; live service not configured"
+}

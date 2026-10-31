@@ -1,0 +1,23 @@
+[0.211s][info][jfr,startup] Started recording 1. No limit specified, using maxsize=250MB as default.
+[0.211s][info][jfr,startup]
+[0.211s][info][jfr,startup] Use jcmd 79007 JFR.dump name=1 to copy recording data to file.
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-31T06:13:49.096290Z",
+  "workload": "local bounded-inflight closed-loop kernel load; no model or network",
+  "latencyScope": "before submit to output sink; includes ingress queue waiting; excludes permit waiting",
+  "sessions": 16,
+  "stages": 4,
+  "inflightPerSession": 32,
+  "warmupFrames": 100000,
+  "measuredFrames": 25000000,
+  "processedIncludingWarmup": 25100000,
+  "rejected": 0,
+  "elapsedSeconds": 7.473657333,
+  "throughputFramesPerSecond": 3345082.452,
+  "latencyMicros": {"p50": 32.375, "p95": 69.459, "p99": 272.458, "max": 31027.834},
+  "environment": {
+    "javaVersion": "21.0.13.0.3", "javaVendor": "Homebrew",
+    "os": "Mac OS X", "arch": "aarch64", "processors": 10, "maxHeapBytes": 536870912
+  }
+}

@@ -2,6 +2,8 @@
 
 OminiCat includes separate measurements for synchronous dispatch, session scheduling, sustained bounded concurrency and WebSocket transport. Read the [actual baseline](../reports/baseline/report.md), [CPU/allocation/GC analysis](../reports/baseline/profiles.md), [transport result](../reports/baseline/websocket.json) and [verification summary](../reports/verification.md).
 
+The [current deep verification](../reports/deep/README.md) adds a 20-minute fixed-artifact mixed-media run, native slow-consumer attacks, callback-reachability checks, [resource timeline](../reports/deep/soak-resources.svg), JFR views and native-memory counters. The [new kernel profile](../reports/deep/kernel/report.md) and [historical comparison](../reports/deep/kernel/comparison.md) retain observed guard/allocation costs instead of replacing earlier results.
+
 ## Reproduce
 
 ```bash

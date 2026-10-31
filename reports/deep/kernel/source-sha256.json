@@ -1,0 +1,98 @@
+{
+  "algorithm": "SHA-256",
+  "aggregate": "7f3b929c919da480b5014b1bd01b9891c1b1aa034787fe8a5facfcb320978017",
+  "files": [
+    {
+      "path": "ominicat-benchmarks/src/main/java/io/ominicat/benchmarks/CoreLoad.java",
+      "sha256": "37a322f13c8e6d5790f9c74b302b20313742213b8a1e26cd2160e18b92f0b6a1"
+    },
+    {
+      "path": "ominicat-benchmarks/src/main/java/io/ominicat/benchmarks/PipelineBenchmark.java",
+      "sha256": "fc6c43c52f96d3ca753bf5f4f76ae61c1863791580b939f40659216b2260076e"
+    },
+    {
+      "path": "ominicat-benchmarks/src/main/java/io/ominicat/benchmarks/SessionBenchmark.java",
+      "sha256": "fc6eb96030dfed0df3203eadd285d36b51077c7f2fb561fc5216679c419e91d3"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/AsyncEmitter.java",
+      "sha256": "44f9efb11ea681c9757f6b8775071da3a34f437877d5ed1cbb0b15c8bd381154"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/AsyncOutlet.java",
+      "sha256": "f29168544a4da9a827f776d2af03d09fe30e5a42e7a97a6adde4dc4a96ccc584"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/AsyncProcessor.java",
+      "sha256": "38c4854af52081b33f2037e7f6aaa8fde98972bda4f2564aae8346fb3fbe9fb1"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/EnvelopeProcessor.java",
+      "sha256": "cdb01f8141bff2762d1f8c75488160efac00ccf68d8a72af5267aa3a8dbbf69b"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/FallbackProcessor.java",
+      "sha256": "42f2b34a365931b85b783bbea10f2ee40d1eebbdcbad945f07ac9f214083cef7"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/Frame.java",
+      "sha256": "fdcc1ee0ba7e83a9b564f67a16b33e25673073f7265d0d832e38aafcf1de757a"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/FrameEnvelope.java",
+      "sha256": "977d8556417420128bcb4351f6ea57630edc621b8a36a75f87468c37468d52b3"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/FrameSink.java",
+      "sha256": "e1373e4404361b374b597a9bf1d0970102b662f410e11a6163fe62d67e4016fd"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/ParallelProcessor.java",
+      "sha256": "5df225bd77dcbbc9cf1f49b0aa6f5dc77643c0a624ddba3afacdb1e06b1d218e"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/Pipeline.java",
+      "sha256": "51912a2028db89ba280928c59964ba157034f172e27c4178e765601420d4777b"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/PipelineSession.java",
+      "sha256": "472100ec887a0d63919dd8f551a302482eb5736476a72b25ebdd73695da657fc"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/Processor.java",
+      "sha256": "75ce12bc41a62a3dd7d5e04301c59c2f26441648d4af092cd32bb4e104d656cc"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/SessionMetrics.java",
+      "sha256": "58b3279acc9f42c269709b36ecc3d037393d244f735aaac3cb23e382172787a0"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/SessionOptions.java",
+      "sha256": "5bed3b1247e246166192f6ba66c421099dcba5dbe77741c09e4fdd002634c414"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/SynchronousSink.java",
+      "sha256": "9d22b891c7efc690c348ce1fe5127b5074567d6750fdca10bd50f259d1f5a594"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/spi/PluginRegistry.java",
+      "sha256": "a26c4c72e439426be594c811c6e1511bfb1a83920df62cc35c360320b74d2320"
+    },
+    {
+      "path": "ominicat-core/src/main/java/io/ominicat/core/spi/ProcessorFactory.java",
+      "sha256": "1b76527adc33c7baf64c23ce32e755b96343a1253e8f56d3c6a6c9af9da6de20"
+    },
+    {
+      "path": "pom.xml",
+      "sha256": "a74fb8d04e8292509fe4a30d2a036f448d64bb9fff2489d2e21cb682bbf5e55b"
+    },
+    {
+      "path": "ominicat-core/pom.xml",
+      "sha256": "c54cdb223664b92c023c3e7bfa587c3a1a20eee67e1cf813d13479e1289708dc"
+    },
+    {
+      "path": "ominicat-benchmarks/pom.xml",
+      "sha256": "c4c722655f5f1f58d84a125ffa34c095aafd855ceff1a9c76cbc8b3983b0efda"
+    }
+  ]
+}

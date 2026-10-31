@@ -38,6 +38,12 @@ The loopback observer records heap, direct buffers, Netty allocator memory, clas
 
 Keep raw JFR, native-memory output and machine-specific logs under ignored `reports/local/`. Publish selected counters, workload, source/artifact hashes and actual failure counts. A 20-minute local run does not establish multi-day stability or a production SLA.
 
+Optional class-histogram diagnostics request additional GC. JFR captures the entire process around the measurement window, including warmup, drain and those diagnostics. NMT committed/reserved memory is not RSS; a256MiB heap limit is not a256MiB process-memory limit.
+
+## Check the checker
+
+`NegativeControl.java` provides deliberately wrong `corrupt` and `drop` fixtures on caller-selected loopback ports. Compile it with the other drivers, run a fixture with an observer port, then point a short `Soak` run at it. The corruption fixture must fail payload checks; the drop fixture must fail per-client progress checks even if errors arrive after the measurement stops. Its observer values are explicitly dummy values, so these controls are not resource measurements. [Recorded negative controls](../reports/deep/harness-controls.json) retain both expected rejections.
+
 ## Opt-in real compatible service
 
 Copy `live-example.json` to an ignored `*.local.json` file, provide a test endpoint and the name of an already configured credential environment variable. Model fields are explicit. The probe makes one request per configured capability, with short synthetic input and bounded output; it does not auto-discover models or silently use a different account.

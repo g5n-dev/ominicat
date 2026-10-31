@@ -1,55 +1,57 @@
 [
   {
     "module": "ominicat-core",
-    "tests": 59,
+    "tests": 80,
     "failures": 0,
+    "skipped": 0,
     "coverage": {
       "INSTRUCTION": {
-        "covered": 2809,
-        "missed": 320
+        "covered": 3259,
+        "missed": 311
       },
       "BRANCH": {
-        "covered": 263,
-        "missed": 67
+        "covered": 322,
+        "missed": 78
       },
       "LINE": {
-        "covered": 505,
-        "missed": 46
+        "covered": 617,
+        "missed": 38
       },
       "COMPLEXITY": {
-        "covered": 220,
-        "missed": 67
+        "covered": 263,
+        "missed": 72
       },
       "METHOD": {
-        "covered": 106,
-        "missed": 16
+        "covered": 125,
+        "missed": 10
       },
       "CLASS": {
-        "covered": 28,
+        "covered": 30,
         "missed": 4
       }
     }
   },
   {
     "module": "ominicat-conversation",
-    "tests": 35,
+    "tests": 40,
     "failures": 0,
+    "skipped": 0,
     "coverage": {
       "INSTRUCTION": {
-        "covered": 2504,
-        "missed": 140
+        "covered": 2558,
+        "missed": 136
       },
       "BRANCH": {
-        "covered": 284,
-        "missed": 62
+        "covered": 297,
+        "missed": 63
       },
       "LINE": {
-        "covered": 410,
+        "covered": 416,
         "missed": 18
       },
       "COMPLEXITY": {
-        "covered": 183,
-        "missed": 65
+        "covered": 189,
+        "missed": 66
       },
       "METHOD": {
         "covered": 72,
@@ -63,62 +65,64 @@
   },
   {
     "module": "ominicat-providers",
-    "tests": 41,
+    "tests": 55,
     "failures": 0,
+    "skipped": 0,
     "coverage": {
       "INSTRUCTION": {
-        "covered": 2332,
-        "missed": 52
+        "covered": 2465,
+        "missed": 71
       },
       "BRANCH": {
-        "covered": 268,
-        "missed": 28
+        "covered": 282,
+        "missed": 32
       },
       "LINE": {
-        "covered": 336,
+        "covered": 359,
         "missed": 4
       },
       "COMPLEXITY": {
-        "covered": 181,
-        "missed": 30
+        "covered": 193,
+        "missed": 32
       },
       "METHOD": {
-        "covered": 61,
+        "covered": 66,
         "missed": 2
       },
       "CLASS": {
-        "covered": 16,
+        "covered": 17,
         "missed": 0
       }
     }
   },
   {
     "module": "ominicat-server",
-    "tests": 41,
+    "tests": 57,
     "failures": 0,
+    "skipped": 0,
     "coverage": {
       "INSTRUCTION": {
-        "covered": 2152,
-        "missed": 242
+        "covered": 2846,
+        "missed": 211
       },
       "BRANCH": {
-        "covered": 200,
-        "missed": 66
+        "covered": 296,
+        "missed": 74
       },
       "LINE": {
-        "covered": 339,
-        "missed": 44
+        "covered": 463,
+        "missed": 35
       },
       "COMPLEXITY": {
-        "covered": 135,
-        "missed": 62
+        "covered": 189,
+        "missed": 72
       },
       "METHOD": {
-        "covered": 51,
+        "covered": 63,
         "missed": 3
       },
       "CLASS": {
-        "covered": 8,
+        "covered": 9,
         "missed": 1
       }
     }

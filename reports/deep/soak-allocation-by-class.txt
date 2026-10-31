@@ -1,0 +1,30 @@
+
+                                                                      Allocation by Class
+
+Object Type                                                                                                                                 Allocation Pressure
+------------------------------------------------------------------------------------------------------------------------------------------- -------------------
+long[]                                                                                                                                                   31.73%
+java.lang.Object[]                                                                                                                                       23.93%
+int[]                                                                                                                                                    19.53%
+short[]                                                                                                                                                  10.34%
+io.netty.util.ResourceLeakDetector$TraceRecord                                                                                                            7.58%
+byte[]                                                                                                                                                    3.64%
+java.util.LinkedHashMap$Entry                                                                                                                             0.31%
+io.netty.util.ResourceLeakDetector$DefaultResourceLeak                                                                                                    0.31%
+java.lang.String                                                                                                                                          0.26%
+java.util.HashMap$Node[]                                                                                                                                  0.21%
+com.fasterxml.jackson.databind.node.TextNode                                                                                                              0.14%
+char[]                                                                                                                                                    0.13%
+com.fasterxml.jackson.core.json.ReaderBasedJsonParser                                                                                                     0.12%
+java.util.LinkedHashMap                                                                                                                                   0.12%
+com.fasterxml.jackson.core.io.IOContext                                                                                                                   0.12%
+com.fasterxml.jackson.core.json.WriterBasedJsonGenerator                                                                                                  0.09%
+io.ominicat.core.PipelineSession$$Lambda.0x0000007001209bb0                                                                                               0.09%
+com.fasterxml.jackson.core.json.JsonWriteContext                                                                                                          0.09%
+com.fasterxml.jackson.databind.ser.DefaultSerializerProvider$Impl                                                                                         0.06%
+java.util.concurrent.ConcurrentHashMap$Node                                                                                                               0.06%
+io.ominicat.core.PipelineSession$Pending                                                                                                                  0.06%
+com.fasterxml.jackson.core.util.TextBuffer                                                                                                                0.06%
+com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer                                                                                                   0.06%
+com.fasterxml.jackson.core.util.ReadConstrainedTextBuffer                                                                                                 0.06%
+io.ominicat.core.SynchronousSink                                                                                                                          0.05%

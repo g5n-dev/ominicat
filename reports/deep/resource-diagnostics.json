@@ -1,0 +1,219 @@
+{
+  "selectedHeapClassesAfterWarmup": {
+    "io.ominicat.core.PipelineSession": {
+      "instances": 64,
+      "bytes": 7680
+    },
+    "io.ominicat.core.PipelineSession$Handle": {
+      "instances": 0,
+      "bytes": 0
+    },
+    "io.ominicat.core.SynchronousSink": {
+      "instances": 0,
+      "bytes": 0
+    },
+    "io.ominicat.core.Frame$Audio": {
+      "instances": 0,
+      "bytes": 0
+    },
+    "io.ominicat.core.Frame$Image": {
+      "instances": 0,
+      "bytes": 0
+    },
+    "io.ominicat.core.FrameEnvelope": {
+      "instances": 0,
+      "bytes": 0
+    },
+    "io.ominicat.server.OminiCatServer$WsHandler": {
+      "instances": 64,
+      "bytes": 4096
+    }
+  },
+  "selectedHeapClassesAfterDrain": {
+    "io.ominicat.core.PipelineSession": {
+      "instances": 0,
+      "bytes": 0
+    },
+    "io.ominicat.core.PipelineSession$Handle": {
+      "instances": 0,
+      "bytes": 0
+    },
+    "io.ominicat.core.SynchronousSink": {
+      "instances": 0,
+      "bytes": 0
+    },
+    "io.ominicat.core.Frame$Audio": {
+      "instances": 0,
+      "bytes": 0
+    },
+    "io.ominicat.core.Frame$Image": {
+      "instances": 0,
+      "bytes": 0
+    },
+    "io.ominicat.core.FrameEnvelope": {
+      "instances": 0,
+      "bytes": 0
+    },
+    "io.ominicat.server.OminiCatServer$WsHandler": {
+      "instances": 0,
+      "bytes": 0
+    }
+  },
+  "nativeMemoryTracking": {
+    "reservedKiB": 1837357,
+    "reservedDeltaKiB": -7555,
+    "committedKiB": 514301,
+    "committedDeltaKiB": -7235,
+    "categories": [
+      {
+        "category": "Java Heap",
+        "reservedKiB": 262144,
+        "reservedDeltaKiB": 0,
+        "committedKiB": 262144,
+        "committedDeltaKiB": 0
+      },
+      {
+        "category": "Class",
+        "reservedKiB": 1049061,
+        "reservedDeltaKiB": -31,
+        "committedKiB": 2853,
+        "committedDeltaKiB": -31
+      },
+      {
+        "category": "Thread",
+        "reservedKiB": 92829,
+        "reservedDeltaKiB": -4126,
+        "committedKiB": 92829,
+        "committedDeltaKiB": -4126
+      },
+      {
+        "category": "Code",
+        "reservedKiB": 248812,
+        "reservedDeltaKiB": 65,
+        "committedKiB": 23004,
+        "committedDeltaKiB": 193
+      },
+      {
+        "category": "GC",
+        "reservedKiB": 57331,
+        "reservedDeltaKiB": 9,
+        "committedKiB": 57331,
+        "committedDeltaKiB": 9
+      },
+      {
+        "category": "GCCardSet",
+        "reservedKiB": 58,
+        "reservedDeltaKiB": 0,
+        "committedKiB": 58,
+        "committedDeltaKiB": 0
+      },
+      {
+        "category": "Compiler",
+        "reservedKiB": 290,
+        "reservedDeltaKiB": -14,
+        "committedKiB": 290,
+        "committedDeltaKiB": -14
+      },
+      {
+        "category": "Internal",
+        "reservedKiB": 1632,
+        "reservedDeltaKiB": 1,
+        "committedKiB": 1632,
+        "committedDeltaKiB": 1
+      },
+      {
+        "category": "Other",
+        "reservedKiB": 16478,
+        "reservedDeltaKiB": 2,
+        "committedKiB": 16478,
+        "committedDeltaKiB": 2
+      },
+      {
+        "category": "Symbol",
+        "reservedKiB": 5865,
+        "reservedDeltaKiB": -20,
+        "committedKiB": 5865,
+        "committedDeltaKiB": -20
+      },
+      {
+        "category": "Native Memory Tracking",
+        "reservedKiB": 1553,
+        "reservedDeltaKiB": -124,
+        "committedKiB": 1553,
+        "committedDeltaKiB": -124
+      },
+      {
+        "category": "Shared class space",
+        "reservedKiB": 16384,
+        "reservedDeltaKiB": 0,
+        "committedKiB": 12896,
+        "committedDeltaKiB": 0
+      },
+      {
+        "category": "Arena Chunk",
+        "reservedKiB": 66,
+        "reservedDeltaKiB": -32,
+        "committedKiB": 66,
+        "committedDeltaKiB": -32
+      },
+      {
+        "category": "Tracing",
+        "reservedKiB": 18216,
+        "reservedDeltaKiB": -3310,
+        "committedKiB": 18216,
+        "committedDeltaKiB": -3310
+      },
+      {
+        "category": "Module",
+        "reservedKiB": 50,
+        "reservedDeltaKiB": 0,
+        "committedKiB": 50,
+        "committedDeltaKiB": 0
+      },
+      {
+        "category": "Safepoint",
+        "reservedKiB": 32,
+        "reservedDeltaKiB": 0,
+        "committedKiB": 32,
+        "committedDeltaKiB": 0
+      },
+      {
+        "category": "Synchronization",
+        "reservedKiB": 898,
+        "reservedDeltaKiB": 32,
+        "committedKiB": 898,
+        "committedDeltaKiB": 32
+      },
+      {
+        "category": "Serviceability",
+        "reservedKiB": 18,
+        "reservedDeltaKiB": 0,
+        "committedKiB": 18,
+        "committedDeltaKiB": 0
+      },
+      {
+        "category": "Metaspace",
+        "reservedKiB": 65639,
+        "reservedDeltaKiB": -7,
+        "committedKiB": 18087,
+        "committedDeltaKiB": 185
+      },
+      {
+        "category": "String Deduplication",
+        "reservedKiB": 1,
+        "reservedDeltaKiB": 0,
+        "committedKiB": 1,
+        "committedDeltaKiB": 0
+      },
+      {
+        "category": "Object Monitors",
+        "reservedKiB": 1,
+        "reservedDeltaKiB": 0,
+        "committedKiB": 1,
+        "committedDeltaKiB": 0
+      }
+    ]
+  },
+  "nettyLeakWarnings": 0,
+  "limitations": "Class histograms request GC. NMT committed/reserved memory is not process RSS. Selected zero classes do not prove every possible object is leak-free."
+}

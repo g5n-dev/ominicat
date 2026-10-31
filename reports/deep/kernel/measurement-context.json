@@ -1,0 +1,16 @@
+{
+  "sourceSha256": "7f3b929c919da480b5014b1bd01b9891c1b1aa034787fe8a5facfcb320978017",
+  "benchmarkArtifact": "ominicat-benchmarks.jar",
+  "benchmarkArtifactSha256": "6dcbc994a090912144fedae8ada88492828c17b818b01e6950f5a68ee8e03f78",
+  "hostContext": {
+    "sharedWithDevelopment": true,
+    "concurrentCorrectnessSoak": {
+      "steadyClients": 64,
+      "churnClients": 4,
+      "rateLimited": true,
+      "serverArtifactSha256": "081520dcc8c78baea46c013f78a3be0878bcba1c24789bce3b8c6c535710978f"
+    }
+  },
+  "comparisonIsControlledExperiment": false,
+  "coverage": "Synchronous frame transformation dispatch and one-outstanding-frame session roundtrip; no separate async retirement microbenchmark."
+}

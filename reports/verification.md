@@ -1,24 +1,20 @@
 # Verification evidence
 
-Verified on 2026-10-31 (Asia/Shanghai), using Homebrew OpenJDK 21.0.13 on macOS/aarch64.
+Verified on2026-10-31 (Asia/Shanghai), OpenJDK21.0.13, macOS/aarch64.
 
-Command: `./mvnw -B -ntp -Pcoverage,sbom clean verify`. All six reactor projects succeeded.
+Command: `./mvnw -B -Pcoverage,sbom -Dominicat.stress.seeds=512 clean verify`. All six reactor projects succeeded.
 
-| Module | Tests | Failures/errors | Line coverage | Branch coverage |
+| Module | Tests | Failures/errors/skips | Line coverage | Branch coverage |
 |---|---:|---:|---:|---:|
-| `ominicat-core` | 59 | 0 | 91.65% | 79.70% |
-| `ominicat-conversation` | 35 | 0 | 95.79% | 82.08% |
-| `ominicat-providers` | 41 | 0 | 98.82% | 90.54% |
-| `ominicat-server` | 41 | 0 | 88.51% | 75.19% |
+| `ominicat-core` | 80 | 0 / 0 / 0 | 94.20% | 80.50% |
+| `ominicat-conversation` | 40 | 0 / 0 / 0 | 95.85% | 82.50% |
+| `ominicat-providers` | 55 | 0 / 0 / 0 | 98.90% | 89.81% |
+| `ominicat-server` | 57 | 0 / 0 / 0 | 92.97% | 80.00% |
 
-Total: **176 tests, zero failures/errors**. Coverage includes production Java code in these four modules; benchmark and browser JavaScript are not part of the coverage denominator.
+**232 tests passed, zero failures/errors/skips.** Java21/25, container lifecycle/authentication and a short validation-driver run also passed in [CI](https://github.com/g5n-dev/ominicat/actions/runs/41175697513).
 
-The suite includes real loopback WebSocket/HTTP, a complete configured PCM → transcription fixture → prompt → SSE text → speech fixture pipeline, async drain/late-callback cancellation, overload, malformed JSON, stable transcript revisions, snapshots and media bounds. Cloud model endpoints were not called.
+The [deep verification report](deep/README.md) records1,572,864 selected randomized operations, fault fixtures, callback reachability,20measured minutes of mixed-media traffic,1,405,303 successful frames,42,729 new connections, complete resource drain, and CPU/allocation/GC/native-memory evidence. It identifies exact source and distribution hashes.
 
-HTML coverage is generated under each module’s `target/site/jacoco/`; the CI job uploads it and a CycloneDX dependency inventory. The [machine-readable coverage summary](verification.json) retains covered/missed counters. An SBOM is a dependency inventory, not a vulnerability assessment.
+[Machine-readable test/coverage counters](verification.json) · [Dependency inventory](runtime-dependencies.cdx.json) · [Deep resource timeline](deep/soak-resources.svg).
 
-Additional executable checks: the standalone shaded server health endpoint, real WebSocket echo measurement, and deterministic replay/resume are recorded alongside the [performance reports](baseline/report.md). The [scenario matrix](../docs/scenario-coverage.md) distinguishes mechanisms, supplied adapters and external responsibilities.
-
-These are controlled local checks, not a production reliability certification or a model accuracy assessment.
-
-Standalone runtime [CycloneDX dependency inventory](runtime-dependencies.cdx.json).
+Live-provider verification remains unrun because the test endpoint, credential environment-variable name and models have not been supplied. Local fixtures and synthetic tests are distinct from real-provider evidence.

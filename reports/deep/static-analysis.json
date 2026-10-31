@@ -1,0 +1,226 @@
+{
+  "tool": "SpotBugs Maven plugin4.10.5.0",
+  "effort": "Max",
+  "threshold": "Low",
+  "modules": [
+    {
+      "module": "ominicat-core",
+      "findings": [
+        {
+          "type": "THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION",
+          "priority": 3,
+          "class": "io.ominicat.core.AsyncProcessor",
+          "method": "processAsync",
+          "line": null
+        },
+        {
+          "type": "THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION",
+          "priority": 3,
+          "class": "io.ominicat.core.FallbackProcessor",
+          "method": "rethrow",
+          "line": "58"
+        },
+        {
+          "type": "UPM_UNCALLED_PRIVATE_METHOD",
+          "priority": 3,
+          "class": "io.ominicat.core.Frame",
+          "method": "requireLabel",
+          "line": "129"
+        },
+        {
+          "type": "UPM_UNCALLED_PRIVATE_METHOD",
+          "priority": 3,
+          "class": "io.ominicat.core.Frame",
+          "method": "snapshot",
+          "line": "123"
+        },
+        {
+          "type": "THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION",
+          "priority": 3,
+          "class": "io.ominicat.core.FrameSink",
+          "method": "accept",
+          "line": null
+        },
+        {
+          "type": "REC_CATCH_EXCEPTION",
+          "priority": 3,
+          "class": "io.ominicat.core.ParallelProcessor",
+          "method": "runBranch",
+          "line": "138"
+        },
+        {
+          "type": "THROWS_METHOD_THROWS_CLAUSE_THROWABLE",
+          "priority": 3,
+          "class": "io.ominicat.core.Pipeline",
+          "method": "closeProcessors",
+          "line": "93"
+        },
+        {
+          "type": "THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION",
+          "priority": 3,
+          "class": "io.ominicat.core.Pipeline$AsyncDispatch",
+          "method": "start",
+          "line": null
+        },
+        {
+          "type": "CWO_CLOSED_WITHOUT_OPENED",
+          "priority": 3,
+          "class": "io.ominicat.core.PipelineSession",
+          "method": "run",
+          "line": "365"
+        },
+        {
+          "type": "CWO_CLOSED_WITHOUT_OPENED",
+          "priority": 3,
+          "class": "io.ominicat.core.PipelineSession",
+          "method": "trySubmit",
+          "line": "57"
+        },
+        {
+          "type": "THROWS_METHOD_THROWS_CLAUSE_THROWABLE",
+          "priority": 3,
+          "class": "io.ominicat.core.PipelineSession",
+          "method": "drainCancellations",
+          "line": "205"
+        },
+        {
+          "type": "THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION",
+          "priority": 3,
+          "class": "io.ominicat.core.Processor",
+          "method": "onInterrupt",
+          "line": "20"
+        },
+        {
+          "type": "THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION",
+          "priority": 3,
+          "class": "io.ominicat.core.Processor",
+          "method": "process",
+          "line": null
+        },
+        {
+          "type": "USO_UNSAFE_METHOD_SYNCHRONIZATION",
+          "priority": 2,
+          "class": "io.ominicat.core.spi.PluginRegistry",
+          "method": "create",
+          "line": "38"
+        },
+        {
+          "type": "USO_UNSAFE_METHOD_SYNCHRONIZATION",
+          "priority": 2,
+          "class": "io.ominicat.core.spi.PluginRegistry",
+          "method": "register",
+          "line": "26"
+        },
+        {
+          "type": "USO_UNSAFE_METHOD_SYNCHRONIZATION",
+          "priority": 2,
+          "class": "io.ominicat.core.spi.PluginRegistry",
+          "method": "types",
+          "line": "49"
+        }
+      ],
+      "analysisErrors": {
+        "missingClasses": "0",
+        "errors": "0"
+      },
+      "missingClasses": []
+    },
+    {
+      "module": "ominicat-conversation",
+      "findings": [
+        {
+          "type": "THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION",
+          "priority": 3,
+          "class": "io.ominicat.conversation.PolicyRule",
+          "method": "evaluate",
+          "line": null
+        }
+      ],
+      "analysisErrors": {
+        "missingClasses": "0",
+        "errors": "0"
+      },
+      "missingClasses": []
+    },
+    {
+      "module": "ominicat-providers",
+      "findings": [
+        {
+          "type": "DE_MIGHT_IGNORE",
+          "priority": 3,
+          "class": "io.ominicat.providers.CompatibleClient",
+          "method": "lambda$post$0",
+          "line": "72"
+        },
+        {
+          "type": "RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT",
+          "priority": 2,
+          "class": "io.ominicat.providers.TranscriptionFactory$1",
+          "method": "append",
+          "line": "73"
+        }
+      ],
+      "analysisErrors": {
+        "missingClasses": "0",
+        "errors": "0"
+      },
+      "missingClasses": []
+    },
+    {
+      "module": "ominicat-server",
+      "findings": [
+        {
+          "type": "THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION",
+          "priority": 3,
+          "class": "io.ominicat.server.OminiCat",
+          "method": "main",
+          "line": "12"
+        },
+        {
+          "type": "BC_VACUOUS_INSTANCEOF",
+          "priority": 2,
+          "class": "io.ominicat.server.OminiCatServer",
+          "method": "start",
+          "line": "142"
+        },
+        {
+          "type": "THROWS_METHOD_THROWS_RUNTIMEEXCEPTION",
+          "priority": 3,
+          "class": "io.ominicat.server.OminiCatServer",
+          "method": "session",
+          "line": "204"
+        },
+        {
+          "type": "THROWS_METHOD_THROWS_RUNTIMEEXCEPTION",
+          "priority": 3,
+          "class": "io.ominicat.server.OminiCatServer",
+          "method": "start",
+          "line": "139"
+        }
+      ],
+      "analysisErrors": {
+        "missingClasses": "0",
+        "errors": "0"
+      },
+      "missingClasses": []
+    }
+  ],
+  "review": {
+    "highPriorityFindings": 0,
+    "findingsTotal": 23,
+    "dispositions": {
+      "USO_UNSAFE_METHOD_SYNCHRONIZATION": "Intentional public registry synchronization; factories are trusted in-process code and must be fast. No tenant isolation is promised for hostile in-process plugins.",
+      "RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT": "Timeline conversion is intentionally called for its overflow exception before state mutation; overflow oracle verifies atomic rejection.",
+      "BC_VACUOUS_INSTANCEOF": "Netty future sync can rethrow checked bind failures through an unchecked path; the Error-vs-other branch preserves fatal errors and wraps checked failures. Bind/fatal-cleanup regressions exercise both.",
+      "CWO_CLOSED_WITHOUT_OPENED": "Ownership crosses Processor/AsyncEmitter SPI boundaries; terminal-resource oracle checks each registered resource closes once.",
+      "DE_MIGHT_IGNORE": "Best-effort body close at timeout; timeout state is recorded before close and the caller observes failure. Deterministic close-race test verifies it.",
+      "UPM_UNCALLED_PRIVATE_METHOD": "Frame interface private helpers are invoked by nested records; constructor validation tests cover those calls.",
+      "THROWS_*": "The open processing/cleanup SPI deliberately permits checked provider errors and fatal cleanup aggregation.",
+      "REC_CATCH_EXCEPTION": "Branch wrapper preserves the named branch context and original failure; sibling cancellation is tested."
+    },
+    "limitations": "Static patterns are not exhaustive correctness or security evidence. Remaining warnings are retained in the report, not suppressed to produce a zero-warning badge."
+  },
+  "sourceRevision": "f66c2d5af76d9d19c997f41bcd0292aafb1434c7",
+  "measuredArtifactSha256": "081520dcc8c78baea46c013f78a3be0878bcba1c24789bce3b8c6c535710978f",
+  "entryEquivalenceVerified": true
+}

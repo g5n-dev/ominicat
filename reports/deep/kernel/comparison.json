@@ -1,0 +1,74 @@
+{
+  "previousSourceSha256": "7e06420ee8e1911f75afc30a4fc687fecdf3c468dc7e805d73ced416c6e030aa",
+  "currentSourceSha256": "7f3b929c919da480b5014b1bd01b9891c1b1aa034787fe8a5facfcb320978017",
+  "controlledComparison": false,
+  "limitation": "Different runs on a shared host. Current run overlapped a rate-limited64steady+4churnclient correctness soak. Score changes are observations, not isolated causal guard overhead.",
+  "rows": [
+    {
+      "benchmark": "io.ominicat.benchmarks.PipelineBenchmark.dispatch",
+      "stages": 1,
+      "scoreUnit": "ops/s",
+      "previousScore": 234421494.59168425,
+      "currentScore": 113224138.70367022,
+      "scoreChangePercent": -51.70061563642694,
+      "previousAllocationBytesPerOp": 64.00002944942952,
+      "currentAllocationBytesPerOp": 112.00006076871537,
+      "allocationChangeBytesPerOp": 48.00003131928585
+    },
+    {
+      "benchmark": "io.ominicat.benchmarks.PipelineBenchmark.dispatch",
+      "stages": 4,
+      "scoreUnit": "ops/s",
+      "previousScore": 79935482.68382928,
+      "currentScore": 40009652.744352765,
+      "scoreChangePercent": -49.947568462676465,
+      "previousAllocationBytesPerOp": 136.00008626131887,
+      "currentAllocationBytesPerOp": 328.00017163806604,
+      "allocationChangeBytesPerOp": 192.00008537674717
+    },
+    {
+      "benchmark": "io.ominicat.benchmarks.PipelineBenchmark.dispatch",
+      "stages": 16,
+      "scoreUnit": "ops/s",
+      "previousScore": 25120225.656868257,
+      "currentScore": 11615086.319950473,
+      "scoreChangePercent": -53.762014407801594,
+      "previousAllocationBytesPerOp": 424.00027482330177,
+      "currentAllocationBytesPerOp": 1192.0005927057714,
+      "allocationChangeBytesPerOp": 768.0003178824696
+    },
+    {
+      "benchmark": "io.ominicat.benchmarks.SessionBenchmark.roundTrip",
+      "stages": 1,
+      "scoreUnit": "us/op",
+      "previousScore": 8.320168577043397,
+      "currentScore": 8.127532740824014,
+      "scoreChangePercent": -2.315287658364207,
+      "previousAllocationBytesPerOp": 215.89284554903844,
+      "currentAllocationBytesPerOp": 272.03239241368493,
+      "allocationChangeBytesPerOp": 56.13954686464649
+    },
+    {
+      "benchmark": "io.ominicat.benchmarks.SessionBenchmark.roundTrip",
+      "stages": 4,
+      "scoreUnit": "us/op",
+      "previousScore": 8.114208793293828,
+      "currentScore": 8.229386291446499,
+      "scoreChangePercent": 1.4194544543623344,
+      "previousAllocationBytesPerOp": 287.89256452236407,
+      "currentAllocationBytesPerOp": 512.0143996537798,
+      "allocationChangeBytesPerOp": 224.12183513141576
+    },
+    {
+      "benchmark": "io.ominicat.benchmarks.SessionBenchmark.roundTrip",
+      "stages": 16,
+      "scoreUnit": "us/op",
+      "previousScore": 8.804568883426091,
+      "currentScore": 8.575155092524827,
+      "scoreChangePercent": -2.605622080294212,
+      "previousAllocationBytesPerOp": 575.8972004885258,
+      "currentAllocationBytesPerOp": 1472.0313025454905,
+      "allocationChangeBytesPerOp": 896.1341020569647
+    }
+  ]
+}

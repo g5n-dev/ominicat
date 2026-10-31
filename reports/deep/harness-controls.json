@@ -1,0 +1,14 @@
+{
+  "corruption": {
+    "expectedRejection": true,
+    "failuresDetected": 73,
+    "frames": 0
+  },
+  "noProgress": {
+    "expectedRejection": true,
+    "exitCode": 1,
+    "frames": 0,
+    "allClientsProgressed": false
+  },
+  "limitations": "These are deliberately incorrect fixtures with dummy observer counters. They validate driver response/progress checks, not server correctness or resource stability."
+}

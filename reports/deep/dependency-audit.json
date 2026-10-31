@@ -1,0 +1,71 @@
+{
+  "queriedAt": "2026-10-31T13:40:29.273471+08:00",
+  "source": "https://api.osv.dev/v1/querybatch",
+  "packages": [
+    {
+      "package": "io.netty:netty-codec-http",
+      "version": "4.1.139.Final",
+      "matches": []
+    },
+    {
+      "package": "io.netty:netty-common",
+      "version": "4.1.139.Final",
+      "matches": []
+    },
+    {
+      "package": "io.netty:netty-buffer",
+      "version": "4.1.139.Final",
+      "matches": []
+    },
+    {
+      "package": "io.netty:netty-transport",
+      "version": "4.1.139.Final",
+      "matches": []
+    },
+    {
+      "package": "io.netty:netty-codec",
+      "version": "4.1.139.Final",
+      "matches": []
+    },
+    {
+      "package": "io.netty:netty-handler",
+      "version": "4.1.139.Final",
+      "matches": []
+    },
+    {
+      "package": "io.netty:netty-resolver",
+      "version": "4.1.139.Final",
+      "matches": []
+    },
+    {
+      "package": "io.netty:netty-transport-native-unix-common",
+      "version": "4.1.139.Final",
+      "matches": []
+    },
+    {
+      "package": "com.fasterxml.jackson.core:jackson-databind",
+      "version": "2.22.4",
+      "matches": []
+    },
+    {
+      "package": "com.fasterxml.jackson.core:jackson-annotations",
+      "version": "2.22",
+      "matches": []
+    },
+    {
+      "package": "com.fasterxml.jackson.core:jackson-core",
+      "version": "2.22.4",
+      "matches": []
+    },
+    {
+      "package": "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml",
+      "version": "2.22.4",
+      "matches": []
+    },
+    {
+      "package": "org.yaml:snakeyaml",
+      "version": "2.5",
+      "matches": []
+    }
+  ]
+}
