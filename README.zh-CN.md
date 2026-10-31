@@ -6,7 +6,7 @@
 
 当前为 **0.1 开发预览版**。核心机制有本地测试和可复跑的性能证据，真实厂商长连接、长稳运行和部署容量仍需在目标环境验证。
 
-[Java 17 验证报告](reports/verification.md)包含 **256 项通过测试、512 个随机种子和真实协议故障验证**，覆盖响应体保持打开时的中断、资源释放与下一轮恢复。[内核与资源剖析](reports/java17/README.md)及[Java 21 历史报告](reports/deep/README.md)保留原始产物与测量范围。
+[Java 17 验证报告](reports/verification.md)包含 **256 项通过测试、512 个随机种子和真实协议故障验证**，覆盖响应体保持打开时的中断、资源释放与下一轮恢复。[内核与资源剖析](reports/java17/http-cancellation/README.md)及[Java 21 历史报告](reports/deep/README.md)保留原始产物与测量范围。
 
 ## Java 17 性能实测
 
@@ -28,7 +28,7 @@
 - **显式背压**：输入、异步在途任务、分支并行度与缓冲、网络待发送字节均有上限，过载可观察、可配置。
 - **跨版本线程后端**：Java 17 使用平台线程，Java 21 及以上自动使用虚拟线程；容器中的阻塞处理器工作与 Netty 网络事件循环分开执行。
 
-[性能设计与测量方法](docs/performance.md) · [资源曲线与故障验证](reports/java17/README.md)。
+[性能设计与测量方法](docs/performance.md) · [资源曲线与故障验证](reports/java17/http-cancellation/README.md)。
 
 ## 先运行起来
 

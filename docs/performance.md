@@ -23,7 +23,7 @@ Java 17.0.21, Apple M2 Pro / macOS arm64, 512 MiB heap, platform workers. JMH us
 | Runtime worker selection | Java 17 uses platform workers; Java 21+ uses virtual workers. Reflection occurs during factory discovery, outside frame dispatch. |
 | Observable costs | JMH GC profiling reports B/op; JFR exposes CPU, allocation and GC; metrics and sustained probes report queue/output pressure and resource drain. |
 
-The [Java 17 mixed-media resource report](../reports/java17/README.md) separately checks text, audio, transcripts, images and envelopes over real local WebSockets. Its paced workload and [resource timeline](../reports/java17/soak-resources.svg) have a different timing scope from kernel benchmarks. Choose thread/session limits for the selected JDK and profile the actual processing chain.
+The [Java 17 mixed-media resource report](../reports/java17/http-cancellation/README.md) separately checks text, audio, transcripts, images and envelopes over real local WebSockets. Its paced workload and [resource timeline](../reports/java17/http-cancellation/soak-resources.svg) have a different timing scope from kernel benchmarks. Choose thread/session limits for the selected JDK and profile the actual processing chain.
 
 The [historical Java 21 baseline](../reports/baseline/report.md) and [20-minute deep run](../reports/deep/README.md) retain their original source and artifact hashes. Their [historical comparison](../reports/deep/kernel/comparison.md) records invocation-guard allocation and throughput costs. Compare matching revisions, worker backends and workloads when evaluating a change.
 
