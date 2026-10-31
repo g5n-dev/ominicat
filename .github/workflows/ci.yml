@@ -2,17 +2,8 @@ name: CI
 on:
   push:
     branches: [main]
-    paths-ignore:
-      - '**/*.md'
-      - 'docs/**'
-      - 'reports/**'
-      - 'ominicat-server/validation/**'
   pull_request:
-    paths-ignore:
-      - '**/*.md'
-      - 'docs/**'
-      - 'reports/**'
-      - 'ominicat-server/validation/**'
+    branches: [main]
   workflow_dispatch:
 permissions:
   contents: read
