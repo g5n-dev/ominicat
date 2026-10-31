@@ -66,19 +66,43 @@ The kernel keeps execution mechanisms separate from capabilities. Applications c
 
 ## Why the execution path stays small
 
-| Mechanism | Cost it controls | Implementation and boundary |
+For a linear synchronous chain, **OminiCat crosses the session queue once, then calls the stages on the same worker**. Typed frames travel through ordinary Java calls: adding a stage adds a processor invocation and its payload work, without adding another stage queue or coroutine task. External asynchronous results use a separate contract and re-enter the owner worker at the next stage.
+
+The published comparison exercises these three concrete paths:
+
+| Framework | Measured queued execution path | Costs retained |
 | --- | --- | --- |
-| **Direct typed-frame calls** | Synchronous stages call the next stage without an internal wire codec, stage queue or thread handoff. | [Pipeline](ominicat-core/src/main/java/io/ominicat/core/Pipeline.java) still allocates scoped sinks and continuations to enforce invocation lifetime. |
-| **One owner for linear session work** | A session worker runs synchronous stages, reset hooks and cleanup serially; callbacks rejoin that worker at the next stage. | [PipelineSession](ominicat-core/src/main/java/io/ominicat/core/PipelineSession.java) uses a lock and FIFO. Pending entries and active async handles have separate count limits. |
-| **Explicit parallelism and output pressure** | Branch worker/buffer limits and transport output checks make overload observable. | [ParallelProcessor](ominicat-core/src/main/java/io/ominicat/core/ParallelProcessor.java) buffers frame references; [server output](ominicat-server/src/main/java/io/ominicat/server/OminiCatServer.java) budgets pending payload bytes. These are separate limits, not a total-memory cap. |
-| **Assembly outside frame dispatch** | Pipeline stages are selected and created before processing their frames. JDK worker capability discovery happens during factory initialization. | [PluginRegistry](ominicat-core/src/main/java/io/ominicat/core/spi/PluginRegistry.java) and [WorkerThreads](ominicat-core/src/main/java/io/ominicat/core/WorkerThreads.java); Java 17 uses platform workers, 21+ selects virtual workers. |
-| **Immutable media ownership** | Existing frame instances can cross stages by reference without exposing mutable payload storage. | [Media constructors](ominicat-core/src/main/java/io/ominicat/core/Frame.java) defensively copy bytes; getters create read-only views. This has allocation costs and is not end-to-end zero-copy. |
+| **OminiCat** | One session FIFO → same-worker synchronous processor calls → terminal callback → bounded caller acknowledgment queue | Queue locking, per-stage generation checks, scoped sinks/continuations and newly transformed values |
+| **Pipecat 1.15.0** | Worker input queue → each default queued application stage: input priority queue → input coroutine → processing queue → processing coroutine → next stage | Two persistent coroutine tasks per stage, native frame metadata, asyncio scheduling, output-event dispatch and the benchmark's immutable-payload guard; pipeline source/sink use direct mode |
+| **Apache Camel 4.22.2 LTS** | One SEDA entrance → consumer → `route.process` chain → request/reply completion | Exchange copying/correlation and completion synchronization, plus route/lifecycle machinery; there is no SEDA queue per application stage |
+
+[![The three measured framework execution paths](docs/assets/previews/framework-paths.png)](docs/assets/framework-paths.svg)
+
+This gives OminiCat a small synchronous stage-to-stage path while keeping session ownership and cancellation explicit. Camel also executes its route behind one queue, so its difference cannot be explained by counting stage queues. The benchmark retains each framework's native public API, metadata and runtime rather than replacing them with a common scheduler.
+
+Pipecat also exposes direct mode and Camel has a `direct:` endpoint; those modes are outside this queued comparison. [Pinned source and mode boundaries](docs/performance.md#why-the-measured-paths-differ).
+
+| Four-stage Linux profile | OminiCat / Pipecat frame rate | OminiCat / Camel frame rate | Memory tradeoff |
+| --- | ---: | ---: | --- |
+| Ubuntu 24.04 | **9.26×** | **1.15×** | Pipecat's sampled process RSS is **35.1% lower** than OminiCat's |
+| CentOS Stream 9 user space | **6.64×** | **1.12×** | Pipecat's sampled process RSS is **39.4% lower** than OminiCat's |
+
+Ratios divide the five-process median rates within each job. OminiCat leads the recorded rate/latency medians; individual CentOS forks overlap with Camel in some cases. These are measured tradeoffs for W=1, not a claim that one framework wins every workload.
+
+[![Stage-count scaling and measured process CPU cost](docs/assets/previews/framework-cost-scaling.png)](docs/assets/framework-cost-scaling.svg)
+
+Across 1→16 stages, OminiCat retains about **97.8%** of its one-stage frame rate in each Linux job; Pipecat retains **18.0% / 19.0%**, and Camel **92.0% / 95.7%** on Ubuntu / CentOS. This is consistent with different stage-to-stage work, but does not isolate its causal share: runtime, allocation, the output oracle and acknowledgment also cost time. [All stage counts, CPU costs, source paths and counterexamples](docs/performance.md).
+
+<details>
+<summary>OminiCat's direct and queued execution paths</summary>
 
 [![Direct synchronous calls and queued session execution with asynchronous re-entry](docs/assets/previews/execution-path.png)](docs/assets/execution-path.svg)
 
-In the container, processor work runs on session workers. JSON decoding and connection assembly still occur on Netty's I/O callbacks; the runtime does not move every operation off the event loop. The Linux numbers above use Java 17 platform workers and therefore do not demonstrate a virtual-thread speedup.
+[Pipeline](ominicat-core/src/main/java/io/ominicat/core/Pipeline.java) still allocates scoped sinks and continuations; [PipelineSession](ominicat-core/src/main/java/io/ominicat/core/PipelineSession.java) uses a lock and FIFO. Direct embedding omits session scheduling and leaves serialization/cleanup to the caller. Media constructors make defensive copies; transport JSON/Base64 has separate costs.
 
-These mechanisms explain where the implementation controls work and overhead. The comparison measures the complete tested paths; it does not assign a measured speedup to each individual design choice.
+In the container, processor work runs on session workers. JSON decoding and connection assembly remain on Netty's I/O callbacks. The published Java 17 runs use platform workers; they do not measure a virtual-thread speedup.
+
+</details>
 
 ### Bounded work and cancellation
 

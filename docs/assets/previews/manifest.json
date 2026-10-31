@@ -43,6 +43,26 @@
       ]
     },
     {
+      "source": "docs/assets/framework-paths.svg",
+      "source_sha256": "6c7334abe2e979f1b0624da809c32cd2af0f3f5b52351ee30805e9a73afba77d",
+      "preview": "docs/assets/previews/framework-paths.png",
+      "preview_sha256": "582a8311d576dfb038cc546e8c5eb086c3867a74bbb1fbe872e91613d8d1c9fa",
+      "pixels": [
+        2880,
+        2260
+      ]
+    },
+    {
+      "source": "docs/assets/framework-cost-scaling.svg",
+      "source_sha256": "1e1161413cb704d913a5d6f75980fd0bffee39643f67f0eb2e9f92ba90850190",
+      "preview": "docs/assets/previews/framework-cost-scaling.png",
+      "preview_sha256": "7abd7521c6c32fe5481003347607420c55f27102997607af06302a07f7cb9a98",
+      "pixels": [
+        2074,
+        1166
+      ]
+    },
+    {
       "source": "reports/comparison/linux-ubuntu24-java17-2026-10-31/overview.svg",
       "source_sha256": "1f6ccf509b15c4be416ffaa0eaaeba27c3227effab2d6ff086f42733c354bb31",
       "preview": "docs/assets/previews/ubuntu-comparison.png",
