@@ -82,7 +82,10 @@ def main():
         for event in events:
             counts[event["type"]] = counts.get(event["type"], 0) + 1
         for kind in ["jdk.ExecutionSample", "jdk.ObjectAllocationSample", "jdk.GarbageCollection", "jdk.JavaMonitorEnter", "jdk.VirtualThreadPinned"]:
-            lines.append(f"- `{kind}`: {counts.get(kind, 0)} recorded events.")
+            if kind == "jdk.VirtualThreadPinned" and int(environment["javaVersion"].split(".")[0]) < 21:
+                lines.append("- `jdk.VirtualThreadPinned`: not available on this runtime.")
+            else:
+                lines.append(f"- `{kind}`: {counts.get(kind, 0)} recorded events.")
         leaves = Counter()
         allocations = Counter()
         for event in events:
@@ -107,7 +110,7 @@ def main():
             lines.append(f"| `{kind}` | {shown(weight / 1024 / 1024)} |")
         lines += ["", "Event counts are observations from this recording. Zero recorded pinning events does not prove the absence of pinning in other workloads; JFR thresholds and sampling apply."]
     lines += ["", "Raw evidence: [JMH JSON](jmh.json), [JMH output](jmh.log), [load JSON](load.json), [GC log](gc.log), [JFR summary](jfr-summary.txt), [compact JFR hotspots](jfr-hotspots.json). The binary JFR recording (`kernel.jfr`) and uncompressed selected event export are generated locally and are excluded from source control.", "",
-        "Reproduce from the repository root with Java 21+: `scripts/profile.sh quick reports/latest`. Use `full` for longer warmup and measurement. Open the JFR recording in JDK Mission Control for stack, allocation, lock, and GC analysis.", "",
+        "Reproduce from the repository root with Java 17+: `scripts/profile.sh quick reports/latest`. Use `full` for longer warmup and measurement. Open the JFR recording in JDK Mission Control for stack, allocation, lock, and GC analysis.", "",
         "Compare revisions on the same idle machine, JVM, heap, stage count, and profiler settings. Broader claims require longer runs, repetitions, arrival-rate load tests, and real provider and transport measurements.", ""]
     (folder / "report.md").write_text("\n".join(lines))
 

@@ -18,7 +18,7 @@ class PromptTemplateTest {
         List<Frame> output = new ArrayList<>();
         processor.process(finalTurn("Please continue.", "agent", 0, 10), output::add);
         processor.process(finalTurn("What changed?", "user", 10, 20), output::add);
-        assertInstanceOf(Frame.Transcript.class, output.getFirst());
+        assertInstanceOf(Frame.Transcript.class, output.get(0));
         String prompt = assertInstanceOf(Frame.Text.class, output.get(1)).text();
         assertTrue(prompt.contains("Role: assistant"));
         assertTrue(prompt.contains("Context: Review a shared document"));
@@ -34,7 +34,7 @@ class PromptTemplateTest {
         List<Frame> output = new ArrayList<>();
         processor.process(finalTurn("$1\\{{role}}", "user", 0, 1), output::add);
         assertEquals("system||Respond to the latest turn.|user|$1\\{{role}}",
-                assertInstanceOf(Frame.Text.class, output.getFirst()).text());
+                assertInstanceOf(Frame.Text.class, output.get(0)).text());
     }
 
     @Test
@@ -46,7 +46,7 @@ class PromptTemplateTest {
         processor.process(complete, output::add);
         processor.process(complete, output::add);
         assertEquals(2, output.size());
-        assertInstanceOf(Frame.Transcript.class, output.getFirst());
+        assertInstanceOf(Frame.Transcript.class, output.get(0));
         assertEquals("user: complete", assertInstanceOf(Frame.Text.class, output.get(1)).text());
     }
 

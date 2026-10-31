@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        java: ['21', '25']
+        java: ['17', '21', '25']
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
@@ -36,7 +36,7 @@ jobs:
       - name: Compile and smoke-test sustained-validation tooling
         run: |
           mkdir -p /tmp/ominicat-validation-classes
-          javac --release 21 -cp ominicat-server/target/ominicat-server.jar -d /tmp/ominicat-validation-classes validation/*.java
+          javac --release 17 -cp ominicat-server/target/ominicat-server.jar -d /tmp/ominicat-validation-classes validation/*.java
           java -Xmx256m -XX:MaxDirectMemorySize=128m -cp ominicat-server/target/ominicat-server.jar:/tmp/ominicat-validation-classes ValidationServer validation/soak.yaml 18082 > /tmp/ominicat-validation.log 2>&1 &
           pid=$!
           trap 'kill "$pid" 2>/dev/null || true; cat /tmp/ominicat-validation.log' EXIT
@@ -74,6 +74,9 @@ jobs:
           docker run --detach --name ominicat-ci -p 127.0.0.1:18080:8080 -e OMINICAT_TOKEN=synthetic-ci-token ominicat:ci
           trap 'docker logs ominicat-ci; docker rm --force ominicat-ci' EXIT
           test "$(docker exec ominicat-ci id -u)" != 0
+          runtime_version="$(docker exec ominicat-ci java -version 2>&1)"
+          printf '%s\n' "$runtime_version"
+          [[ "$runtime_version" == *'version "17.'* ]]
           for attempt in $(seq 1 30); do
             if curl --fail --silent http://127.0.0.1:18080/health; then break; fi
             sleep 1

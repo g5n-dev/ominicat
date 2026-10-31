@@ -33,8 +33,8 @@ public record ConversationMetrics(long durationMillis, long speechMillis, long s
         List<Turn> sorted = new ArrayList<>(turns);
         sorted.sort(Comparator.comparingLong(Turn::startMillis).thenComparingLong(Turn::endMillis));
         long total = 0;
-        long start = sorted.getFirst().startMillis();
-        long end = sorted.getFirst().endMillis();
+        long start = sorted.get(0).startMillis();
+        long end = sorted.get(0).endMillis();
         for (int i = 1; i < sorted.size(); i++) {
             Turn turn = sorted.get(i);
             if (turn.startMillis() <= end) {

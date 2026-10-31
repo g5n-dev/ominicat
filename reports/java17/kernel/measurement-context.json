@@ -1,0 +1,13 @@
+{
+  "sourceSha256": "83c64c086b23e3513e81e1bf571a52329e0dab5e51d17b529782368c9b7f49f9",
+  "benchmarkArtifact": "ominicat-benchmarks.jar",
+  "benchmarkArtifactSha256": "a312af033f1f9886883479147e4d82ede152afba3628baf5fb12a48e2db87bc7",
+  "runtimeMajor": 17,
+  "workerBackend": "platform",
+  "workerDaemon": true,
+  "classFileMajor": 61,
+  "hostContext": "Shared development host, also used for a concurrent 120-second paced/native Java17 compatibility validation. Not a controlled A/B experiment or capacity test.",
+  "historicalMeasurementsOverwritten": false,
+  "jfrVirtualThreadPinnedEventAvailable": false,
+  "postMeasurementDocumentationDelta": "See reports/java17/frozen-artifact.json: one AsyncOutlet Javadoc line was corrected after the run; every rebuilt JAR entry content remained identical."
+}

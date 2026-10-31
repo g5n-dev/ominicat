@@ -1,5 +1,6 @@
 package io.ominicat.server;
 
+import io.ominicat.core.WorkerThreads;
 import io.ominicat.core.Frame;
 import io.ominicat.core.FrameEnvelope;
 import io.ominicat.core.Processor;
@@ -8,7 +9,6 @@ import io.ominicat.core.AsyncEmitter;
 import io.ominicat.core.spi.PluginRegistry;
 import io.ominicat.core.spi.ProcessorFactory;
 import java.net.URI;
-import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.WebSocket;
@@ -35,7 +35,7 @@ class OminiCatServerTest {
     private static final HttpResponse.BodyHandler<String> STRING = HttpResponse.BodyHandlers.ofString();
 
     @Test void servesHealthDemoAndPrometheusMetrics() throws Exception {
-        try (var server = server(config(), () -> (frame, next) -> next.accept(frame)).start(); var http = HttpClient.newHttpClient()) {
+        try (var server = server(config(), () -> (frame, next) -> next.accept(frame)).start(); var http = TestHttpClient.create()) {
             var health = http.send(HttpRequest.newBuilder(http(server, "/health")).GET().build(), STRING);
             assertEquals(200, health.statusCode());
             assertEquals("{\"status\":\"up\"}", health.body());
@@ -52,7 +52,7 @@ class OminiCatServerTest {
     }
 
     @Test void realWebSocketRoundTripsTextAndFragmentedMessages() throws Exception {
-        try (var server = server(config(), () -> (frame, next) -> next.accept(frame)).start(); var http = HttpClient.newHttpClient()) {
+        try (var server = server(config(), () -> (frame, next) -> next.accept(frame)).start(); var http = TestHttpClient.create()) {
             var listener = new Inbox();
             var socket = connect(http, server, listener);
             socket.sendText("{\"type\":\"text\",\"text\":\"hello 世界\"}", true).join();
@@ -69,7 +69,7 @@ class OminiCatServerTest {
         try (var server = server(config(), () -> {
             var count = new AtomicInteger();
             return (frame, next) -> next.accept(new Frame.Text(Integer.toString(count.incrementAndGet())));
-        }).start(); var http = HttpClient.newHttpClient()) {
+        }).start(); var http = TestHttpClient.create()) {
             var first = new Inbox(); var second = new Inbox();
             var a = connect(http, server, first); var b = connect(http, server, second);
             a.sendText("{\"type\":\"text\",\"text\":\"a\"}", true).join();
@@ -82,7 +82,7 @@ class OminiCatServerTest {
     }
 
     @Test void envelopesPreserveMetadataAcrossConfiguredLegacyStages() throws Exception {
-        try (var server = server(config(), () -> (frame, next) -> next.accept(frame)).start(); var http = HttpClient.newHttpClient()) {
+        try (var server = server(config(), () -> (frame, next) -> next.accept(frame)).start(); var http = TestHttpClient.create()) {
             var inbox = new Inbox(); var socket = connect(http, server, inbox);
             var codec = new FrameCodec();
             var input = new FrameEnvelope(new Frame.Text("hello"), "event-1", "session-1", "turn-1", "trace-1", "", 10, 20, 30);
@@ -102,7 +102,7 @@ class OminiCatServerTest {
         try (var server = server(config, () -> (frame, next) -> {
             if (frame instanceof Frame.Text text && text.text().equals("slow")) { entered.countDown(); release.acquire(); }
             next.accept(frame);
-        }).start(); var http = HttpClient.newHttpClient()) {
+        }).start(); var http = TestHttpClient.create()) {
             var inbox = new Inbox(); var socket = connect(http, server, inbox);
             socket.sendText("{\"type\":\"text\",\"text\":\"slow\"}", true).join();
             assertTrue(entered.await(3, TimeUnit.SECONDS));
@@ -124,7 +124,7 @@ class OminiCatServerTest {
         try (var server = server(config(), () -> new AsyncProcessor() {
             @Override public void processAsync(Frame frame, AsyncEmitter emitter) {
                 if (frame instanceof Frame.Text) {
-                    Thread callback = Thread.ofVirtual().unstarted(() -> {
+                    Thread callback = WorkerThreads.unstarted("server-callback-fixture-", () -> {
                         try {
                             release.await();
                             if (emitter.tryEmit(new Frame.Text("delayed result"))) emitter.complete();
@@ -137,7 +137,7 @@ class OminiCatServerTest {
                 }
             }
             @Override public void close() { closes.incrementAndGet(); }
-        }).start(); var http = HttpClient.newHttpClient()) {
+        }).start(); var http = TestHttpClient.create()) {
             var inbox = new Inbox(); var socket = connect(http, server, inbox); var codec = new FrameCodec();
             var input = new FrameEnvelope(new Frame.Text("request"), "event-1", "s", "t", "trace", "", 1, 2, 3);
             socket.sendText(codec.encode(input), true).join(); assertTrue(started.await(3, TimeUnit.SECONDS));
@@ -160,7 +160,7 @@ class OminiCatServerTest {
                 try { new Semaphore(0).acquire(); } catch (InterruptedException ignored) { /* exercise emission fence */ }
             }
             next.accept(frame);
-        }).start(); var http = HttpClient.newHttpClient()) {
+        }).start(); var http = TestHttpClient.create()) {
             var inbox = new Inbox(); var socket = connect(http, server, inbox);
             socket.sendText("{\"type\":\"text\",\"text\":\"slow\"}", true).join();
             assertTrue(entered.await(3, TimeUnit.SECONDS));
@@ -193,7 +193,7 @@ class OminiCatServerTest {
     }
 
     @Test void invalidFrameDoesNotKillHealthySession() throws Exception {
-        try (var server = server(config(), () -> (frame, next) -> next.accept(frame)).start(); var http = HttpClient.newHttpClient()) {
+        try (var server = server(config(), () -> (frame, next) -> next.accept(frame)).start(); var http = TestHttpClient.create()) {
             var inbox = new Inbox(); var socket = connect(http, server, inbox);
             socket.sendText("{\"type\":\"image\",\"data\":\"!\",\"mimeType\":\"image/png\"}", true).join();
             assertTrue(inbox.next().contains("invalid_frame"));
@@ -207,7 +207,7 @@ class OminiCatServerTest {
         try (var server = server(config(), () -> new Processor() {
             @Override public void process(Frame frame, io.ominicat.core.FrameSink next) throws Exception { next.accept(frame); }
             @Override public void close() { closes.incrementAndGet(); }
-        }).start(); var http = HttpClient.newHttpClient()) {
+        }).start(); var http = TestHttpClient.create()) {
             var inbox = new Inbox(); var socket = connect(http, server, inbox);
             socket.sendText("{\"type\":\"text\",\"text\":\"before end\"}", true).join();
             socket.sendText("{\"type\":\"end\"}", true).join();
@@ -219,7 +219,7 @@ class OminiCatServerTest {
     }
 
     @Test void processorFailureClosesSessionWithoutExposingExceptionText() throws Exception {
-        try (var server = server(config(), () -> (frame, next) -> { throw new IllegalStateException("private-provider-detail"); }).start(); var http = HttpClient.newHttpClient()) {
+        try (var server = server(config(), () -> (frame, next) -> { throw new IllegalStateException("private-provider-detail"); }).start(); var http = TestHttpClient.create()) {
             var inbox = new Inbox(); var socket = connect(http, server, inbox);
             socket.sendText("{\"type\":\"text\",\"text\":\"hello\"}", true).join();
             assertEquals(1011, inbox.closed.get(5, TimeUnit.SECONDS));
@@ -231,7 +231,7 @@ class OminiCatServerTest {
 
     @Test void capacityRejectsSecondConnectionAndIsReleasedOnClose() throws Exception {
         var config = new RuntimeConfig("127.0.0.1", 0, 8, 1, 4096, 60, null, stages());
-        try (var server = server(config, () -> (frame, next) -> next.accept(frame)).start(); var http = HttpClient.newHttpClient()) {
+        try (var server = server(config, () -> (frame, next) -> next.accept(frame)).start(); var http = TestHttpClient.create()) {
             var first = new Inbox(); var a = connect(http, server, first);
             CompletionException failure = assertThrows(CompletionException.class, () -> connect(http, server, new Inbox()));
             assertInstanceOf(WebSocketHandshakeException.class, failure.getCause());
@@ -243,7 +243,7 @@ class OminiCatServerTest {
 
     @Test void oversizedOutputIsClosedBeforeQueueingIt() throws Exception {
         var config = new RuntimeConfig("127.0.0.1", 0, 8, 4, 1024, 60, null, stages());
-        try (var server = server(config, () -> (frame, next) -> next.accept(new Frame.Text("x".repeat(2000)))).start(); var http = HttpClient.newHttpClient()) {
+        try (var server = server(config, () -> (frame, next) -> next.accept(new Frame.Text("x".repeat(2000)))).start(); var http = TestHttpClient.create()) {
             var inbox = new Inbox(); var socket = connect(http, server, inbox);
             socket.sendText("{\"type\":\"text\",\"text\":\"hello\"}", true).join();
             assertEquals(1013, inbox.closed.get(5, TimeUnit.SECONDS));
@@ -253,7 +253,7 @@ class OminiCatServerTest {
 
     @Test void oversizedInputClosesWebSocket() throws Exception {
         var config = new RuntimeConfig("127.0.0.1", 0, 8, 4, 1024, 60, null, stages());
-        try (var server = server(config, () -> (frame, next) -> next.accept(frame)).start(); var http = HttpClient.newHttpClient()) {
+        try (var server = server(config, () -> (frame, next) -> next.accept(frame)).start(); var http = TestHttpClient.create()) {
             var inbox = new Inbox(); var socket = connect(http, server, inbox);
             socket.sendText("{\"type\":\"text\",\"text\":\"" + "x".repeat(2000) + "\"}", true).join();
             assertEquals(1009, inbox.closed.get(5, TimeUnit.SECONDS));
@@ -262,7 +262,7 @@ class OminiCatServerTest {
 
     @Test void bearerHeaderAndBrowserSubprotocolAuthenticateWithoutUrlSecrets() throws Exception {
         var config = new RuntimeConfig("127.0.0.1", 0, 8, 4, 4096, 60, "PATH", stages());
-        try (var server = server(config, () -> (frame, next) -> next.accept(frame)).start(); var http = HttpClient.newHttpClient()) {
+        try (var server = server(config, () -> (frame, next) -> next.accept(frame)).start(); var http = TestHttpClient.create()) {
             assertEquals(401, http.send(HttpRequest.newBuilder(http(server, "/metrics")).GET().build(), STRING).statusCode());
             assertEquals(200, http.send(HttpRequest.newBuilder(http(server, "/health")).GET().build(), STRING).statusCode());
             String token = System.getenv("PATH");
@@ -277,7 +277,7 @@ class OminiCatServerTest {
     }
 
     @Test void refusesCrossOriginBrowsersButAcceptsSameOrigin() throws Exception {
-        try (var server = server(config(), () -> (frame, next) -> next.accept(frame)).start(); var http = HttpClient.newHttpClient()) {
+        try (var server = server(config(), () -> (frame, next) -> next.accept(frame)).start(); var http = TestHttpClient.create()) {
             var failure = assertThrows(CompletionException.class, () -> http.newWebSocketBuilder().header("Origin", "https://unrelated.invalid").buildAsync(ws(server), new Inbox()).join());
             assertEquals(403, ((WebSocketHandshakeException) failure.getCause()).getResponse().statusCode());
             var socket = http.newWebSocketBuilder().header("Origin", "http://127.0.0.1:" + server.port()).buildAsync(ws(server), new Inbox()).join();
@@ -304,7 +304,7 @@ class OminiCatServerTest {
     }
     private static URI http(OminiCatServer server, String path) { return URI.create("http://127.0.0.1:" + server.port() + path); }
     private static URI ws(OminiCatServer server) { return URI.create("ws://127.0.0.1:" + server.port() + "/ws"); }
-    private static WebSocket connect(HttpClient http, OminiCatServer server, Inbox inbox) { return http.newWebSocketBuilder().connectTimeout(Duration.ofSeconds(3)).buildAsync(ws(server), inbox).join(); }
+    private static WebSocket connect(TestHttpClient http, OminiCatServer server, Inbox inbox) { return http.newWebSocketBuilder().connectTimeout(Duration.ofSeconds(3)).buildAsync(ws(server), inbox).join(); }
 
     private static final class Inbox implements WebSocket.Listener {
         final BlockingQueue<String> messages = new LinkedBlockingQueue<>();

@@ -2,7 +2,9 @@
 
 OminiCat includes separate measurements for synchronous dispatch, session scheduling, sustained bounded concurrency and WebSocket transport. Read the [actual baseline](../reports/baseline/report.md), [CPU/allocation/GC analysis](../reports/baseline/profiles.md), [transport result](../reports/baseline/websocket.json) and [verification summary](../reports/verification.md).
 
-The [current deep verification](../reports/deep/README.md) adds a 20-minute fixed-artifact mixed-media run, native slow-consumer attacks, callback-reachability checks, [resource timeline](../reports/deep/soak-resources.svg), JFR views and native-memory counters. The [new kernel profile](../reports/deep/kernel/report.md) and [historical comparison](../reports/deep/kernel/comparison.md) retain observed guard/allocation costs instead of replacing earlier results.
+The [recorded Java 21 deep verification](../reports/deep/README.md) adds a 20-minute fixed-artifact mixed-media run, native slow-consumer attacks, callback-reachability checks, [resource timeline](../reports/deep/soak-resources.svg), JFR views and native-memory counters. The [recorded kernel profile](../reports/deep/kernel/report.md) and [historical comparison](../reports/deep/kernel/comparison.md) retain observed guard/allocation costs instead of replacing earlier results.
+
+Java 17 uses platform workers; Java 21+ uses virtual workers. The existing baseline and deep reports identify their earlier Java 21 sources and artifacts. They are not Java 17 measurements or measurements of the compatibility changes. Run profiles on the JDK used for deployment; compare matching worker backends and report their thread/native-memory costs.
 
 ## Reproduce
 
@@ -18,7 +20,7 @@ scripts/profile.sh full reports/local/longer-run
 | Probe | Measures | Does not establish |
 |---|---|---|
 | `PipelineBenchmark` | Changing numeric-frame transformations through 1/4/16 local stages, consumed by Blackhole | Model, serialization, media payload copying or network throughput |
-| `SessionBenchmark` | One queued input through a virtual worker and output handoff | Open-loop overload behavior or concurrent-session capacity |
+| `SessionBenchmark` | One queued input through a session worker and output handoff | Open-loop overload behavior or concurrent-session capacity |
 | `CoreLoad` | Queue-inclusive latency and accepted throughput across 16 sessions, 4 stages, max 32 outstanding frames per session | Arrival-rate SLA; the generator waits for in-flight capacity |
 | `WebSocketLoad.java` | Real JSON text echo over loopback, one outstanding message per connection | Speech/model latency, remote-network behavior or production sizing |
 
@@ -26,7 +28,7 @@ Core load uses 100,000 warmup frames followed by 25 million measured frames in q
 
 ## CPU, memory, GC and contention
 
-JFR captures sampled CPU stacks, allocation weights, collection pauses, monitor contention and virtual-thread pinning. [The summary](../reports/baseline/profiles.md) includes sampled flame graphs. Allocation weights are estimates, not retained heap. JMH `gc.alloc.rate.norm` estimates allocated bytes per operation. Zero recorded pinning or contention events does not prove absence in another workload or below recording thresholds.
+JFR captures sampled CPU stacks, allocation weights, collection pauses and monitor contention; virtual-thread pinning is available only on runtimes that provide that event. [The summary](../reports/baseline/profiles.md) includes sampled flame graphs. Allocation weights are estimates, not retained heap. JMH `gc.alloc.rate.norm` estimates allocated bytes per operation. Zero recorded pinning or contention events does not prove absence in another workload or below recording thresholds.
 
 The profiling script disables environment/system-property/process-inventory events and exports selected diagnostic event categories. Raw JFR remains local and is excluded from Git. Public evidence includes compact data and sanitized selected events. Real application recordings may contain sensitive data and should stay private.
 

@@ -38,5 +38,8 @@ JFR_BIN="${JAVA_HOME:+$JAVA_HOME/bin/}jfr"
   "$DESTINATION/kernel.jfr" > "$DESTINATION/jfr-events.json"
 python3 scripts/report.py "$DESTINATION"
 mkdir -p "$ROOT/reports/local/$(basename "$DESTINATION")"
-mv "$DESTINATION/jfr-events.json" "$ROOT/reports/local/$(basename "$DESTINATION")/jfr-events.json"
+LOCAL_EVENTS_DESTINATION="$ROOT/reports/local/$(basename "$DESTINATION")/jfr-events.json"
+if [[ ! "$DESTINATION/jfr-events.json" -ef "$LOCAL_EVENTS_DESTINATION" ]]; then
+  mv "$DESTINATION/jfr-events.json" "$LOCAL_EVENTS_DESTINATION"
+fi
 printf 'Performance evidence saved to %s/report.md\n' "$DESTINATION"

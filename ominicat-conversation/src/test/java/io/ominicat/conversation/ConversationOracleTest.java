@@ -27,7 +27,7 @@ class ConversationOracleTest {
                         true, -1, "segment-" + i, 0, "participant");
                 window.add(turn);
                 retained.add(turn);
-                if (retained.size() > capacity) retained.removeFirst();
+                if (retained.size() > capacity) retained.remove(0);
                 if (i % 10 != 0) continue;
                 var snapshot = window.snapshot();
                 assertEquals(Math.max(0, i + 1 - capacity), snapshot.evictedTurns(), "seed=" + seed);
@@ -78,7 +78,7 @@ class ConversationOracleTest {
                     true, -1, "segment-" + i, 3, "participant"));
             var result = PolicyRules.requiredPhrase("needle", "needle").evaluate(window.snapshot(), "track");
             assertEquals(1.0, result.score());
-            Evidence evidence = result.evidence().getFirst();
+            Evidence evidence = result.evidence().get(0);
             assertEquals("segment-" + i, evidence.segmentId());
             assertEquals("participant", evidence.role());
             assertEquals(i, evidence.startMillis());

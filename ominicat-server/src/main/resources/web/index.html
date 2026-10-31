@@ -10,7 +10,7 @@
 </head>
 <body>
 <main class="shell">
-  <header><div class="wordmark"><span class="cat" aria-hidden="true">/ᐠ.ꞈ.ᐟ\</span>OminiCat</div><span class="version">JAVA 21 · MICROKERNEL</span></header>
+  <header><div class="wordmark"><span class="cat" aria-hidden="true">/ᐠ.ꞈ.ᐟ\</span>OminiCat</div><span class="version">JAVA 17+ · MICROKERNEL</span></header>
   <section class="intro"><span class="eyebrow">Realtime playground</span><h1>One pipeline. Every modality.</h1><p>Send text, a microphone recording, an image, or a transcript through your configured Java pipeline. Follow the frames as they arrive.</p></section>
   <div class="layout">
     <aside class="panel settings"><h2>Connection</h2><div><label for="token">Bearer token, if configured</label><input class="full" id="token" type="password" autocomplete="off" placeholder="Optional token"></div><div><label for="connect">Local runtime</label><button id="connect" class="primary full">Connect</button></div><div class="status" role="status"><span id="dot" class="dot"></span><span id="status">Disconnected</span></div><hr class="divider"><p class="note">The default <strong>echo</strong> pipeline returns your input. Model responses need a provider pipeline and its API credentials on the server.</p><p class="note">Audio is sent as one PCM16 mono recording at 16 kHz, up to 15 seconds. Microphone access requires localhost or HTTPS.</p><p class="note">Change stages in your runtime YAML, then restart the server. This page uses the <code>/ws</code> frame protocol.</p></aside>

@@ -10,7 +10,6 @@ import java.util.SplittableRandom;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
@@ -132,7 +131,7 @@ class KernelModelStressTest {
                 assertSame(owner.get(), Thread.currentThread());
                 assertTrue(deliveredIds.add(((Token) frame).id()), "duplicate delivery seed=" + currentSeed);
             });
-            try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+            try (var executor = WorkerThreads.executor("test-task-", 4, 1024)) {
                 List<java.util.concurrent.Future<?>> actors = new ArrayList<>();
                 for (int actor = 0; actor < 4; actor++) {
                     int actorId = actor;

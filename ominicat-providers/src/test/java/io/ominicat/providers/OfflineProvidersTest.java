@@ -19,7 +19,7 @@ class OfflineProvidersTest {
         Frame input = new Extension(42);
         List<Frame> output = new ArrayList<>();
         new EchoFactory().create(Map.of()).process(input, output::add);
-        assertSame(input, output.getFirst());
+        assertSame(input, output.get(0));
         assertThrows(IllegalArgumentException.class, () -> new EchoFactory().create(Map.of("typo", "x")));
     }
 
@@ -49,7 +49,7 @@ class OfflineProvidersTest {
         vad.process(new Frame.Control(Frame.Signal.END), output::add);
         assertEquals(2, output.stream().filter(frame -> frame.equals(new Frame.Control(Frame.Signal.SPEECH_STARTED))).count());
         assertEquals(1, output.stream().filter(frame -> frame.equals(new Frame.Control(Frame.Signal.SPEECH_STOPPED))).count());
-        assertEquals(new Frame.Control(Frame.Signal.END), output.getLast());
+        assertEquals(new Frame.Control(Frame.Signal.END), output.get(output.size() - 1));
     }
 
     @Test

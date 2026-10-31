@@ -1,0 +1,10 @@
+{
+  "profileScriptExitCode": 0,
+  "executedProfileScriptSha256": "f86b80bb976aca7aa011e1488a351e36263b80e468a99e3cffb1a71acd25705a",
+  "fixedCleanupScriptSha256": "3fb896714c2fa64a2a01ba270a9aa7b535aca3171e8b852a6a89339ae468575f",
+  "sameInodeCleanupGuardReplayExitCode": 0,
+  "selectedEventSha256BeforeAfterCleanup": "9cc85db37c284b0ab94e3b383672f339bbf6b5f78375a61edaf51f6f2f83cd03",
+  "measurementRepeated": false,
+  "measurementConfigurationChanged": false,
+  "note": "The original private script completed successfully on this host. The updated same-inode cleanup guard was replayed separately and preserved measured data."
+}

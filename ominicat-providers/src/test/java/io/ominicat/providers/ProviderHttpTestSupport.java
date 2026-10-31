@@ -1,5 +1,6 @@
 package io.ominicat.providers;
 
+import io.ominicat.core.WorkerThreads;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import com.sun.net.httpserver.HttpExchange;
@@ -11,7 +12,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicReference;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,7 +24,7 @@ abstract class ProviderHttpTestSupport {
     @BeforeEach
     void startServer() throws IOException {
         server = HttpServer.create(new InetSocketAddress("127.0.0.1", 0), 0);
-        executor = Executors.newVirtualThreadPerTaskExecutor();
+        executor = WorkerThreads.executor("ominicat-provider-http-", 4, 64);
         server.setExecutor(executor);
         server.start();
     }

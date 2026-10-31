@@ -1,0 +1,1006 @@
+{
+  "admissionRejections" : 0,
+  "operations" : 5753,
+  "elapsedSeconds" : 60.584225291,
+  "os" : "Mac OS X",
+  "javaVmName" : "OpenJDK 64-Bit Server VM",
+  "virtualThreadsAvailable" : false,
+  "availableProcessors" : 10,
+  "samples" : [ {
+    "seconds" : 0.131431458,
+    "operations" : 0,
+    "resources" : {
+      "connections" : 0,
+      "activeSessions" : 0,
+      "admittedSessions" : 0,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 0
+    },
+    "openFileDescriptors" : 69,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 17515504,
+    "nettyDirectReservedBytes" : 0,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 0
+  }, {
+    "seconds" : 1.138729041,
+    "operations" : 112,
+    "resources" : {
+      "connections" : 1,
+      "activeSessions" : 1,
+      "admittedSessions" : 1,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 128200
+    },
+    "openFileDescriptors" : 55,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 97207280,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 2
+  }, {
+    "seconds" : 2.14910525,
+    "operations" : 207,
+    "resources" : {
+      "connections" : 1,
+      "activeSessions" : 1,
+      "admittedSessions" : 1,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 128200
+    },
+    "openFileDescriptors" : 55,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 147538928,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 2
+  }, {
+    "seconds" : 3.153955041,
+    "operations" : 303,
+    "resources" : {
+      "connections" : 1,
+      "activeSessions" : 0,
+      "admittedSessions" : 0,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 0
+    },
+    "openFileDescriptors" : 56,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 56669528,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 0
+  }, {
+    "seconds" : 4.155405583,
+    "operations" : 399,
+    "resources" : {
+      "connections" : 0,
+      "activeSessions" : 0,
+      "admittedSessions" : 0,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 0
+    },
+    "openFileDescriptors" : 54,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 107001176,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 0
+  }, {
+    "seconds" : 5.163782125,
+    "operations" : 496,
+    "resources" : {
+      "connections" : 0,
+      "activeSessions" : 0,
+      "admittedSessions" : 0,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 0
+    },
+    "openFileDescriptors" : 54,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 153138520,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 0
+  }, {
+    "seconds" : 6.1674105,
+    "operations" : 592,
+    "resources" : {
+      "connections" : 0,
+      "activeSessions" : 0,
+      "admittedSessions" : 0,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 0
+    },
+    "openFileDescriptors" : 54,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 203470168,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 0
+  }, {
+    "seconds" : 7.1731245,
+    "operations" : 687,
+    "resources" : {
+      "connections" : 1,
+      "activeSessions" : 1,
+      "admittedSessions" : 1,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 128200
+    },
+    "openFileDescriptors" : 55,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 253801816,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 2
+  }, {
+    "seconds" : 8.183632291,
+    "operations" : 783,
+    "resources" : {
+      "connections" : 1,
+      "activeSessions" : 1,
+      "admittedSessions" : 1,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 128200
+    },
+    "openFileDescriptors" : 56,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 299939160,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 2
+  }, {
+    "seconds" : 9.185175166,
+    "operations" : 880,
+    "resources" : {
+      "connections" : 0,
+      "activeSessions" : 0,
+      "admittedSessions" : 0,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 0
+    },
+    "openFileDescriptors" : 54,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 40011704,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 0
+  }, {
+    "seconds" : 10.190415,
+    "operations" : 975,
+    "resources" : {
+      "connections" : 1,
+      "activeSessions" : 1,
+      "admittedSessions" : 1,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 128200
+    },
+    "openFileDescriptors" : 55,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 81954744,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 2
+  }, {
+    "seconds" : 11.197683791,
+    "operations" : 1071,
+    "resources" : {
+      "connections" : 2,
+      "activeSessions" : 2,
+      "admittedSessions" : 2,
+      "pipelineWorkers" : 1,
+      "pendingOutputBytes" : 128200
+    },
+    "openFileDescriptors" : 57,
+    "platformThreads" : 31,
+    "heapUsedBytes" : 115509176,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 3
+  }, {
+    "seconds" : 12.211315666,
+    "operations" : 1167,
+    "resources" : {
+      "connections" : 1,
+      "activeSessions" : 1,
+      "admittedSessions" : 1,
+      "pipelineWorkers" : 1,
+      "pendingOutputBytes" : 0
+    },
+    "openFileDescriptors" : 55,
+    "platformThreads" : 31,
+    "heapUsedBytes" : 153257912,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 1
+  }, {
+    "seconds" : 13.220675541,
+    "operations" : 1264,
+    "resources" : {
+      "connections" : 1,
+      "activeSessions" : 1,
+      "admittedSessions" : 1,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 128200
+    },
+    "openFileDescriptors" : 55,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 186812344,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 2
+  }, {
+    "seconds" : 14.230354833,
+    "operations" : 1360,
+    "resources" : {
+      "connections" : 0,
+      "activeSessions" : 0,
+      "admittedSessions" : 0,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 0
+    },
+    "openFileDescriptors" : 54,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 224561080,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 0
+  }, {
+    "seconds" : 15.238796416,
+    "operations" : 1456,
+    "resources" : {
+      "connections" : 1,
+      "activeSessions" : 1,
+      "admittedSessions" : 1,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 128200
+    },
+    "openFileDescriptors" : 57,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 266504120,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 2
+  }, {
+    "seconds" : 16.249248333,
+    "operations" : 1553,
+    "resources" : {
+      "connections" : 1,
+      "activeSessions" : 1,
+      "admittedSessions" : 1,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 128200
+    },
+    "openFileDescriptors" : 55,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 300058552,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 2
+  }, {
+    "seconds" : 17.255535,
+    "operations" : 1650,
+    "resources" : {
+      "connections" : 0,
+      "activeSessions" : 0,
+      "admittedSessions" : 0,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 0
+    },
+    "openFileDescriptors" : 54,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 31919952,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 0
+  }, {
+    "seconds" : 18.263782,
+    "operations" : 1746,
+    "resources" : {
+      "connections" : 0,
+      "activeSessions" : 0,
+      "admittedSessions" : 0,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 0
+    },
+    "openFileDescriptors" : 54,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 65474384,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 0
+  }, {
+    "seconds" : 19.273981041,
+    "operations" : 1842,
+    "resources" : {
+      "connections" : 0,
+      "activeSessions" : 0,
+      "admittedSessions" : 0,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 0
+    },
+    "openFileDescriptors" : 54,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 94834512,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 0
+  }, {
+    "seconds" : 20.284318166,
+    "operations" : 1938,
+    "resources" : {
+      "connections" : 0,
+      "activeSessions" : 0,
+      "admittedSessions" : 0,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 0
+    },
+    "openFileDescriptors" : 54,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 128388944,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 0
+  }, {
+    "seconds" : 21.294967125,
+    "operations" : 2035,
+    "resources" : {
+      "connections" : 1,
+      "activeSessions" : 1,
+      "admittedSessions" : 1,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 128200
+    },
+    "openFileDescriptors" : 55,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 161943376,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 2
+  }, {
+    "seconds" : 22.2969675,
+    "operations" : 2132,
+    "resources" : {
+      "connections" : 1,
+      "activeSessions" : 1,
+      "admittedSessions" : 1,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 128200
+    },
+    "openFileDescriptors" : 55,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 191303504,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 2
+  }, {
+    "seconds" : 23.30415875,
+    "operations" : 2232,
+    "resources" : {
+      "connections" : 0,
+      "activeSessions" : 0,
+      "admittedSessions" : 0,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 0
+    },
+    "openFileDescriptors" : 54,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 224857936,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 0
+  }, {
+    "seconds" : 24.305355416,
+    "operations" : 2327,
+    "resources" : {
+      "connections" : 1,
+      "activeSessions" : 1,
+      "admittedSessions" : 1,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 128200
+    },
+    "openFileDescriptors" : 57,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 258412368,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 2
+  }, {
+    "seconds" : 25.315435583,
+    "operations" : 2426,
+    "resources" : {
+      "connections" : 1,
+      "activeSessions" : 1,
+      "admittedSessions" : 1,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 128200
+    },
+    "openFileDescriptors" : 55,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 291966800,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 2
+  }, {
+    "seconds" : 26.322047708,
+    "operations" : 2524,
+    "resources" : {
+      "connections" : 0,
+      "activeSessions" : 0,
+      "admittedSessions" : 0,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 0
+    },
+    "openFileDescriptors" : 54,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 19152192,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 0
+  }, {
+    "seconds" : 27.332603583,
+    "operations" : 2620,
+    "resources" : {
+      "connections" : 1,
+      "activeSessions" : 1,
+      "admittedSessions" : 1,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 128200
+    },
+    "openFileDescriptors" : 55,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 52706624,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 2
+  }, {
+    "seconds" : 28.338521041,
+    "operations" : 2716,
+    "resources" : {
+      "connections" : 1,
+      "activeSessions" : 1,
+      "admittedSessions" : 1,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 128200
+    },
+    "openFileDescriptors" : 55,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 86261056,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 2
+  }, {
+    "seconds" : 29.347241375,
+    "operations" : 2812,
+    "resources" : {
+      "connections" : 0,
+      "activeSessions" : 0,
+      "admittedSessions" : 0,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 0
+    },
+    "openFileDescriptors" : 54,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 115621184,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 0
+  }, {
+    "seconds" : 30.357777708,
+    "operations" : 2909,
+    "resources" : {
+      "connections" : 1,
+      "activeSessions" : 1,
+      "admittedSessions" : 1,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 128200
+    },
+    "openFileDescriptors" : 55,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 149175616,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 2
+  }, {
+    "seconds" : 31.359986541,
+    "operations" : 3004,
+    "resources" : {
+      "connections" : 2,
+      "activeSessions" : 2,
+      "admittedSessions" : 2,
+      "pipelineWorkers" : 1,
+      "pendingOutputBytes" : 128200
+    },
+    "openFileDescriptors" : 57,
+    "platformThreads" : 31,
+    "heapUsedBytes" : 178535744,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 3
+  }, {
+    "seconds" : 32.370244958,
+    "operations" : 3101,
+    "resources" : {
+      "connections" : 0,
+      "activeSessions" : 0,
+      "admittedSessions" : 0,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 0
+    },
+    "openFileDescriptors" : 54,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 212090176,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 0
+  }, {
+    "seconds" : 33.38085,
+    "operations" : 3198,
+    "resources" : {
+      "connections" : 1,
+      "activeSessions" : 1,
+      "admittedSessions" : 1,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 128200
+    },
+    "openFileDescriptors" : 57,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 245644608,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 2
+  }, {
+    "seconds" : 34.391068916,
+    "operations" : 3295,
+    "resources" : {
+      "connections" : 1,
+      "activeSessions" : 1,
+      "admittedSessions" : 1,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 128200
+    },
+    "openFileDescriptors" : 55,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 275004736,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 2
+  }, {
+    "seconds" : 35.392271875,
+    "operations" : 3389,
+    "resources" : {
+      "connections" : 0,
+      "activeSessions" : 0,
+      "admittedSessions" : 0,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 0
+    },
+    "openFileDescriptors" : 58,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 304364864,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 0
+  }, {
+    "seconds" : 36.395915,
+    "operations" : 3486,
+    "resources" : {
+      "connections" : 2,
+      "activeSessions" : 1,
+      "admittedSessions" : 1,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 128200
+    },
+    "openFileDescriptors" : 57,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 31620560,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 3
+  }, {
+    "seconds" : 37.405283833,
+    "operations" : 3583,
+    "resources" : {
+      "connections" : 1,
+      "activeSessions" : 1,
+      "admittedSessions" : 1,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 128200
+    },
+    "openFileDescriptors" : 55,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 60980688,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 2
+  }, {
+    "seconds" : 38.415817541,
+    "operations" : 3679,
+    "resources" : {
+      "connections" : 0,
+      "activeSessions" : 0,
+      "admittedSessions" : 0,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 0
+    },
+    "openFileDescriptors" : 54,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 90340816,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 0
+  }, {
+    "seconds" : 39.422255875,
+    "operations" : 3775,
+    "resources" : {
+      "connections" : 1,
+      "activeSessions" : 1,
+      "admittedSessions" : 1,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 128200
+    },
+    "openFileDescriptors" : 55,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 123895248,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 2
+  }, {
+    "seconds" : 40.425088458,
+    "operations" : 3871,
+    "resources" : {
+      "connections" : 1,
+      "activeSessions" : 1,
+      "admittedSessions" : 1,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 128200
+    },
+    "openFileDescriptors" : 57,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 153255376,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 2
+  }, {
+    "seconds" : 41.433164791,
+    "operations" : 3968,
+    "resources" : {
+      "connections" : 0,
+      "activeSessions" : 0,
+      "admittedSessions" : 0,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 0
+    },
+    "openFileDescriptors" : 54,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 182615504,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 0
+  }, {
+    "seconds" : 42.443690375,
+    "operations" : 4065,
+    "resources" : {
+      "connections" : 1,
+      "activeSessions" : 1,
+      "admittedSessions" : 1,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 128200
+    },
+    "openFileDescriptors" : 55,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 216169936,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 2
+  }, {
+    "seconds" : 43.4446745,
+    "operations" : 4161,
+    "resources" : {
+      "connections" : 3,
+      "activeSessions" : 1,
+      "admittedSessions" : 1,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 128200
+    },
+    "openFileDescriptors" : 59,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 245530064,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 2
+  }, {
+    "seconds" : 44.455069875,
+    "operations" : 4260,
+    "resources" : {
+      "connections" : 0,
+      "activeSessions" : 0,
+      "admittedSessions" : 0,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 0
+    },
+    "openFileDescriptors" : 54,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 274890192,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 0
+  }, {
+    "seconds" : 45.457410083,
+    "operations" : 4356,
+    "resources" : {
+      "connections" : 2,
+      "activeSessions" : 2,
+      "admittedSessions" : 2,
+      "pipelineWorkers" : 1,
+      "pendingOutputBytes" : 128200
+    },
+    "openFileDescriptors" : 57,
+    "platformThreads" : 31,
+    "heapUsedBytes" : 308444624,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 3
+  }, {
+    "seconds" : 46.462619333,
+    "operations" : 4453,
+    "resources" : {
+      "connections" : 1,
+      "activeSessions" : 1,
+      "admittedSessions" : 1,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 128200
+    },
+    "openFileDescriptors" : 55,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 27493176,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 2
+  }, {
+    "seconds" : 47.472611,
+    "operations" : 4551,
+    "resources" : {
+      "connections" : 1,
+      "activeSessions" : 1,
+      "admittedSessions" : 1,
+      "pipelineWorkers" : 1,
+      "pendingOutputBytes" : 0
+    },
+    "openFileDescriptors" : 56,
+    "platformThreads" : 31,
+    "heapUsedBytes" : 56853304,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 1
+  }, {
+    "seconds" : 48.483130208,
+    "operations" : 4648,
+    "resources" : {
+      "connections" : 1,
+      "activeSessions" : 1,
+      "admittedSessions" : 1,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 128200
+    },
+    "openFileDescriptors" : 55,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 86213432,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 2
+  }, {
+    "seconds" : 49.489198708,
+    "operations" : 4744,
+    "resources" : {
+      "connections" : 1,
+      "activeSessions" : 1,
+      "admittedSessions" : 1,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 128200
+    },
+    "openFileDescriptors" : 55,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 115573560,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 2
+  }, {
+    "seconds" : 50.500138,
+    "operations" : 4840,
+    "resources" : {
+      "connections" : 1,
+      "activeSessions" : 1,
+      "admittedSessions" : 1,
+      "pipelineWorkers" : 1,
+      "pendingOutputBytes" : 38
+    },
+    "openFileDescriptors" : 56,
+    "platformThreads" : 31,
+    "heapUsedBytes" : 140739384,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 1
+  }, {
+    "seconds" : 51.506495958,
+    "operations" : 4937,
+    "resources" : {
+      "connections" : 1,
+      "activeSessions" : 1,
+      "admittedSessions" : 2,
+      "pipelineWorkers" : 1,
+      "pendingOutputBytes" : 128200
+    },
+    "openFileDescriptors" : 55,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 174293816,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 3
+  }, {
+    "seconds" : 52.512627208,
+    "operations" : 5033,
+    "resources" : {
+      "connections" : 1,
+      "activeSessions" : 1,
+      "admittedSessions" : 1,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 128200
+    },
+    "openFileDescriptors" : 55,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 203653944,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 2
+  }, {
+    "seconds" : 53.522938125,
+    "operations" : 5129,
+    "resources" : {
+      "connections" : 2,
+      "activeSessions" : 2,
+      "admittedSessions" : 2,
+      "pipelineWorkers" : 1,
+      "pendingOutputBytes" : 0
+    },
+    "openFileDescriptors" : 58,
+    "platformThreads" : 32,
+    "heapUsedBytes" : 233014072,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 1
+  }, {
+    "seconds" : 54.533975375,
+    "operations" : 5227,
+    "resources" : {
+      "connections" : 1,
+      "activeSessions" : 1,
+      "admittedSessions" : 1,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 128200
+    },
+    "openFileDescriptors" : 55,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 266568504,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 2
+  }, {
+    "seconds" : 55.541719791,
+    "operations" : 5323,
+    "resources" : {
+      "connections" : 1,
+      "activeSessions" : 1,
+      "admittedSessions" : 1,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 128200
+    },
+    "openFileDescriptors" : 55,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 291734328,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 2
+  }, {
+    "seconds" : 56.545231333,
+    "operations" : 5419,
+    "resources" : {
+      "connections" : 0,
+      "activeSessions" : 0,
+      "admittedSessions" : 0,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 0
+    },
+    "openFileDescriptors" : 54,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 15191312,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 0
+  }, {
+    "seconds" : 57.54811575,
+    "operations" : 5515,
+    "resources" : {
+      "connections" : 1,
+      "activeSessions" : 1,
+      "admittedSessions" : 1,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 128200
+    },
+    "openFileDescriptors" : 55,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 48745744,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 2
+  }, {
+    "seconds" : 58.55847425,
+    "operations" : 5612,
+    "resources" : {
+      "connections" : 1,
+      "activeSessions" : 1,
+      "admittedSessions" : 1,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 128200
+    },
+    "openFileDescriptors" : 55,
+    "platformThreads" : 30,
+    "heapUsedBytes" : 73911568,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 2
+  }, {
+    "seconds" : 59.5645495,
+    "operations" : 5708,
+    "resources" : {
+      "connections" : 1,
+      "activeSessions" : 1,
+      "admittedSessions" : 1,
+      "pipelineWorkers" : 1,
+      "pendingOutputBytes" : 0
+    },
+    "openFileDescriptors" : 56,
+    "platformThreads" : 31,
+    "heapUsedBytes" : 103271696,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 1
+  }, {
+    "seconds" : 60.579174125,
+    "operations" : 5753,
+    "resources" : {
+      "connections" : 0,
+      "activeSessions" : 0,
+      "admittedSessions" : 0,
+      "pipelineWorkers" : 0,
+      "pendingOutputBytes" : 0
+    },
+    "openFileDescriptors" : 53,
+    "platformThreads" : 13,
+    "heapUsedBytes" : 115854608,
+    "nettyDirectReservedBytes" : 16777216,
+    "nettyPendingTasks" : 0,
+    "nettyScheduledTasks" : 0
+  } ],
+  "pings" : 816,
+  "workerBackendObserved" : "platform",
+  "slowReaderAttacks" : 20,
+  "maxFrameBytes" : 32768,
+  "osArch" : "aarch64",
+  "connectsPerSecondLimit" : 100,
+  "javaVendor" : "Homebrew",
+  "drained" : {
+    "connections" : 0,
+    "activeSessions" : 0,
+    "admittedSessions" : 0,
+    "pipelineWorkers" : 0,
+    "pendingOutputBytes" : 0
+  },
+  "secondsRequested" : 60,
+  "failureCount" : 0,
+  "sessionCapacity" : 64,
+  "java" : "17.0.21.0.3",
+  "failures" : [ ],
+  "concurrentClients" : 16
+}

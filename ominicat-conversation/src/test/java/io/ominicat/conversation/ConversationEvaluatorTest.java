@@ -25,8 +25,8 @@ class ConversationEvaluatorTest {
         assertEquals(1.0, evaluation.score());
         assertEquals(3, evaluation.results().size());
         assertTrue(evaluation.results().stream().allMatch(result -> result.status() == RuleResult.Status.PASS));
-        assertEquals("agent", evaluation.results().getFirst().evidence().getFirst().speaker());
-        assertEquals("agent:120-220", evaluation.results().getFirst().evidence().getFirst().segmentId());
+        assertEquals("agent", evaluation.results().get(0).evidence().get(0).speaker());
+        assertEquals("agent:120-220", evaluation.results().get(0).evidence().get(0).segmentId());
         assertEquals(new Frame.Control(Frame.Signal.END), output.get(3));
     }
 
@@ -37,8 +37,8 @@ class ConversationEvaluatorTest {
         processor.process(finalTurn("hello", "user", 0, 100), ignored -> {});
         EvaluationFrame evaluation = processor.evaluate();
         assertNull(evaluation.score());
-        assertEquals(RuleResult.Status.NOT_APPLICABLE, evaluation.results().getFirst().status());
-        assertNull(evaluation.results().getFirst().score());
+        assertEquals(RuleResult.Status.NOT_APPLICABLE, evaluation.results().get(0).status());
+        assertNull(evaluation.results().get(0).score());
         assertNull(new ConversationEvaluatorProcessor("agent", List.of(), 4).evaluate().score());
     }
 
@@ -52,8 +52,8 @@ class ConversationEvaluatorTest {
         processor.process(finalTurn("ready？", "agent", 60, 90), ignored -> {});
         EvaluationFrame evaluation = processor.evaluate();
         assertEquals(1.0 / 6, evaluation.score(), 1e-10);
-        assertEquals(RuleResult.Status.FAIL, evaluation.results().getFirst().status());
-        Evidence evidence = evaluation.results().get(1).evidence().getFirst();
+        assertEquals(RuleResult.Status.FAIL, evaluation.results().get(0).status());
+        Evidence evidence = evaluation.results().get(1).evidence().get(0);
         assertTrue(evidence.excerpt().contains("blocked"));
         assertTrue(evidence.excerpt().length() <= 182);
         assertEquals(20, evidence.startMillis());
@@ -95,7 +95,7 @@ class ConversationEvaluatorTest {
                 .75, speaker + ":" + snapshot.turns().size(), List.of());
         ConversationEvaluatorProcessor processor = new ConversationEvaluatorProcessor("agent", List.of(custom), 4);
         assertEquals(.75, processor.evaluate().score());
-        assertEquals("agent:0", processor.evaluate().results().getFirst().explanation());
+        assertEquals("agent:0", processor.evaluate().results().get(0).explanation());
         ConversationEvaluatorProcessor failure = new ConversationEvaluatorProcessor("agent",
                 List.of((snapshot, speaker) -> { throw new java.io.IOException("unavailable"); }), 4);
         assertThrows(java.io.IOException.class, failure::evaluate);

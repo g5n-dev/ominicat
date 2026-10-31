@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
-import java.util.concurrent.Executors;
+import io.ominicat.core.WorkerThreads;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicLong;
@@ -138,7 +138,8 @@ public class Soak {
         URI ws = URI.create(base.replaceFirst("^http", "ws") + "/ws");
         List<CompletableFuture<Void>> tasks = new ArrayList<>();
         long begun = System.nanoTime();
-        try (var workers = Executors.newVirtualThreadPerTaskExecutor(); var samples = Files.newBufferedWriter(output.resolve("samples.jsonl"))) {
+        var workers = WorkerThreads.executor("ominicat-soak-", clients + 4);
+        try (var samples = Files.newBufferedWriter(output.resolve("samples.jsonl"))) {
             for (int client = 0; client < clients + 4; client++) {
                 final int id = client; final boolean churn = client >= clients;
                 var done = new CompletableFuture<Void>(); tasks.add(done);
@@ -214,7 +215,12 @@ public class Soak {
             result.put("validatedFramesByType", kinds);
             Files.writeString(output.resolve("result.json"), JSON.writerWithDefaultPrettyPrinter().writeValueAsString(result) + "\n");
             if (FAILURES.get() != 0 || !progressed || !drained(drained)) throw new IllegalStateException("soak correctness, progress or drain failure");
-        } finally { RUNNING.set(false); HTTP.close(); }
+        } finally {
+            RUNNING.set(false);
+            workers.shutdownNow();
+            if (!workers.awaitTermination(15, TimeUnit.SECONDS)) throw new IllegalStateException("probe workers did not stop");
+            if ((Object) HTTP instanceof AutoCloseable closeable) closeable.close();
+        }
     }
     private static boolean drained(String metrics) {
         for (String name : List.of("ominicat_active_sessions", "ominicat_admitted_sessions", "ominicat_live_pipeline_workers", "ominicat_pending_output_bytes")) {

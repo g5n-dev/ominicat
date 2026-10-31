@@ -49,7 +49,7 @@ class TranscriptionFactoryTest extends ProviderHttpTestSupport {
             processor.process(new Frame.Control(Frame.Signal.TURN_END), output::add);
         }
         assertEquals(2, requests.get());
-        Frame.Transcript first = assertInstanceOf(Frame.Transcript.class, output.getFirst());
+        Frame.Transcript first = assertInstanceOf(Frame.Transcript.class, output.get(0));
         assertEquals("recognized", first.text());
         assertEquals("track-1", first.speaker());
         assertEquals(0, first.startMillis());

@@ -1,0 +1,39 @@
+{
+  "schema": "ominicat-java17-sse-validation-v1",
+  "runtime": {
+    "java.version": "17.0.21.0.3",
+    "java.runtime.version": "17.0.21.0.3+0",
+    "java.vendor": "Homebrew",
+    "java.vm.name": "OpenJDK 64-Bit Server VM",
+    "java.vm.version": "17.0.21.0.3+0",
+    "java.class.version": "61.0",
+    "os.name": "Mac OS X",
+    "os.arch": "aarch64"
+  },
+  "workerBackend": "platform",
+  "tests": {
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "report": "sse-cr-streaming.json",
+  "reportSha256": "b51f43c19350c7b357323c2a91a387286a042b4c92211d705ecffdf46a7a69d1",
+  "productionSourceDigests": {
+    "ominicat-core": "623ccf31ac4168e8bc2b0f529bc5bd5aad19200fd13dd7c244bdf0b9a3ca60d7",
+    "ominicat-providers": "0bd660971b92d58c79b49c31f14742a8cfcdd4d4ebf990ecdd309436f8181b3e"
+  },
+  "sourceDigestAlgorithm": "SHA-256 of sorted repository-relative path + NUL + file bytes + NUL for each src/main file",
+  "rootPomSha256": "edb54f636b19a4c8794761980258278a0a6de97a0b78e871f973ebfc5cc8ad49",
+  "coreWorkerThreadsSha256": "046dd215331c3d7b9f98f29b2748a5c35231b4fc3d12c006ba4ce2f3be623499",
+  "chatFactorySha256": "5ad587fb28bbdc1f093f25fd9c7c6b35ef8f16003e52515a3f4ff4cc9f20946b",
+  "compatibleClientSha256": "a0e93881429289f9d607a74b04ddd3265ba913ca6908caaf83f5a1b7fb191ab8",
+  "testClassMajor": 61,
+  "commandsUseVerifyDirPlaceholder": true,
+  "commands": [
+    "JAVA_HOME=\"$JAVA17_HOME\" mvn -Dmaven.repo.local=\"$VERIFY_DIR/maven-cache\" -f \"$VERIFY_DIR/pom.xml\" -N install -q",
+    "JAVA_HOME=\"$JAVA17_HOME\" mvn -Dmaven.repo.local=\"$VERIFY_DIR/maven-cache\" -f \"$VERIFY_DIR/ominicat-core/pom.xml\" -Dmaven.test.skip=true clean install -q",
+    "JAVA_HOME=\"$JAVA17_HOME\" mvn -Dmaven.repo.local=\"$VERIFY_DIR/maven-cache\" -f \"$VERIFY_DIR/ominicat-providers/pom.xml\" -Dtest=SseCrStreamingSoakIT -Dominicat.sse.soak.report=\"$VERIFY_DIR/sse-cr-streaming-java17.json\" test -q"
+  ],
+  "postMeasurementDocumentationDelta": "See reports/java17/frozen-artifact.json: one AsyncOutlet Javadoc line was corrected after the run; every rebuilt JAR entry content remained identical."
+}

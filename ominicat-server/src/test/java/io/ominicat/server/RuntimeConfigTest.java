@@ -17,7 +17,7 @@ class RuntimeConfigTest {
         assertEquals("127.0.0.1", config.host());
         assertEquals(256, config.queueCapacity());
         assertEquals(512, config.maxConnections());
-        assertEquals("echo", config.stages().getFirst().type());
+        assertEquals("echo", config.stages().get(0).type());
     }
 
     @Test void yamlAssemblesOrderedPluginStagesAndOptions() throws Exception {
@@ -37,7 +37,7 @@ class RuntimeConfigTest {
         assertEquals(9090, config.port());
         assertEquals(32, config.queueCapacity());
         assertEquals("OMINICAT_TOKEN", config.tokenEnv());
-        assertEquals("hello ", config.stages().getFirst().options().get("prefix"));
+        assertEquals("hello ", config.stages().get(0).options().get("prefix"));
         assertEquals(Map.of(), config.stages().get(1).options());
     }
 
@@ -71,7 +71,7 @@ class RuntimeConfigTest {
         var stages = new java.util.ArrayList<>(List.of(new RuntimeConfig.Stage("echo", options)));
         var config = new RuntimeConfig("127.0.0.1", 0, 1, 1, 1024, 1, null, stages);
         options.put("a", "changed"); stages.clear();
-        assertEquals("b", config.stages().getFirst().options().get("a"));
+        assertEquals("b", config.stages().get(0).options().get("a"));
         assertThrows(UnsupportedOperationException.class, () -> config.stages().clear());
     }
 

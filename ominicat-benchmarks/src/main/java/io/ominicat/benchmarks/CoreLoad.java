@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.Executors;
+import io.ominicat.core.WorkerThreads;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
@@ -112,7 +112,7 @@ public final class CoreLoad {
                   "throughputFramesPerSecond": %.3f,
                   "latencyMicros": {"p50": %.3f, "p95": %.3f, "p99": %.3f, "max": %.3f},
                   "environment": {
-                    "javaVersion": "%s", "javaVendor": "%s",
+                    "javaVersion": "%s", "javaVendor": "%s", "workerBackend": "%s",
                     "os": "%s", "arch": "%s", "processors": %d, "maxHeapBytes": %d
                   }
                 }
@@ -122,6 +122,7 @@ public final class CoreLoad {
                 percentile(latencies, .50) / 1000d, percentile(latencies, .95) / 1000d,
                 percentile(latencies, .99) / 1000d, latencies[latencies.length - 1] / 1000d,
                 escape(System.getProperty("java.version")), escape(System.getProperty("java.vendor")),
+                WorkerThreads.virtualThreadsAvailable() ? "virtual" : "platform",
                 escape(System.getProperty("os.name")), escape(System.getProperty("os.arch")),
                 Runtime.getRuntime().availableProcessors(), Runtime.getRuntime().maxMemory());
         String destination = options.get("output");
@@ -136,7 +137,7 @@ public final class CoreLoad {
     private static void runPhase(List<PipelineSession> sessions, List<Semaphore> permits,
                                  int frames, long[] samples) throws Exception {
         CountDownLatch completed = new CountDownLatch(frames);
-        try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+        try (var executor = WorkerThreads.executor("ominicat-load-", sessions.size())) {
             var producers = new ArrayList<java.util.concurrent.Future<?>>();
             for (int id = 0; id < sessions.size(); id++) {
                 int sessionId = id;

@@ -1,6 +1,7 @@
 package io.ominicat.providers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.ominicat.core.WorkerThreads;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,7 +25,7 @@ final class CompatibleClient {
     private static final HttpClient HTTP = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10))
             .followRedirects(HttpClient.Redirect.NEVER).build();
     private static final ScheduledThreadPoolExecutor DEADLINES = new ScheduledThreadPoolExecutor(1,
-            Thread.ofPlatform().daemon().name("ominicat-http-deadlines").factory());
+            WorkerThreads.platformFactory("ominicat-http-deadlines"));
     static { DEADLINES.setRemoveOnCancelPolicy(true); }
     final String model;
     final int maxBytes;

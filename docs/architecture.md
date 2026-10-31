@@ -1,6 +1,6 @@
 # Runtime architecture
 
-OminiCat is a Java 21 microkernel for multimodal conversations. The kernel provides scheduling and lifecycle mechanisms; plugins provide media processing, model calls and application policy. A new provider does not require a kernel change.
+OminiCat is a Java 17+ microkernel for multimodal conversations. The kernel provides scheduling and lifecycle mechanisms; plugins provide media processing, model calls and application policy. A new provider does not require a kernel change.
 
 ```mermaid
 flowchart TB
@@ -10,7 +10,7 @@ flowchart TB
     end
     WS --> Q[Bounded session ingress]
     APP --> Q
-    Q --> K[One virtual worker per session]
+    Q --> K[One worker per session]
     K --> P1[Processor / AsyncProcessor]
     P1 --> P2[Conversation / media / provider plugin]
     P2 --> J[Optional parallel branches + ordered join]
@@ -44,7 +44,9 @@ flowchart TB
 
 ## Scheduling and ownership
 
-Each session exclusively owns a fresh pipeline and its processor instances. Synchronous processor invocations, reset hooks and cleanup run serially on one virtual worker. A processor may emit zero, one or many frames synchronously. It must not retain a synchronous `FrameSink` for later use.
+The same Java 17 bytecode runs on Java 17, 21 and 25. `WorkerThreads` uses named daemon platform threads on Java 17 and discovers virtual-thread factories through the public JDK API on Java 21+. Reflection is confined to factory initialization, outside frame dispatch. Branch executors have explicit concurrency and queue bounds on both backends. See [Java compatibility](java-compatibility.md).
+
+Each session exclusively owns a fresh pipeline and its processor instances. Synchronous processor invocations, reset hooks and cleanup run serially on one session worker. A processor may emit zero, one or many frames synchronously. It must not retain a synchronous `FrameSink` for later use.
 
 `AsyncProcessor` is the separate callback contract. Its emitter queues continuations at the next stage, with the originating cancellation generation. Callback threads never enter downstream processors directly. Continuations share the bounded session queue, active invocations are bounded, and producers must handle explicit rejection. `complete()` releases an invocation; `fail()` propagates failure. Registered cancellation handles close on the worker. A driver must configure deadlines for callbacks that might never complete.
 

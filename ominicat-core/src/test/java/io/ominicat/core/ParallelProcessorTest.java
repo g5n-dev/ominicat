@@ -19,7 +19,7 @@ class ParallelProcessorTest {
     @Test void joinsInDeclarationOrderRegardlessOfCompletionOrder() throws Exception {
         CountDownLatch rightFinished = new CountDownLatch(1);
         Processor left = (frame, next) -> {
-            assertTrue(Thread.currentThread().isVirtual());
+            assertEquals(WorkerThreads.virtualThreadsAvailable(), WorkerThreads.isVirtual(Thread.currentThread()));
             rightFinished.await();
             next.accept(new Frame.Text("left-1")); next.accept(new Frame.Text("left-2"));
         };

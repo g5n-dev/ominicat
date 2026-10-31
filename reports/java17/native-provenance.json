@@ -1,0 +1,10 @@
+{
+  "java": "Homebrew 17.0.21.0.3",
+  "workerBackend": "platform",
+  "sourceManifest": "native-source-sha256.json",
+  "report": "native-soak-60s.json",
+  "diffFromFinalSource": [
+    "ominicat-core/src/main/java/io/ominicat/core/WorkerThreads.java"
+  ],
+  "scope": "The 60-second native fixture used the earlier WorkerThreads direct-Future cancellation implementation. Its worker factory and server production sources match the final implementation. The final artifact has separate full-suite and mixed-media resource validation; this isolated native run is not relabeled as the final artifact."
+}

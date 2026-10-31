@@ -11,7 +11,6 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -72,7 +71,7 @@ class AsyncRaceStressTest {
             AsyncEmitter emitter = started.poll(2, TimeUnit.SECONDS);
             assertNotNull(emitter);
             CountDownLatch firstEmissions = new CountDownLatch(1);
-            try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+            try (var executor = WorkerThreads.executor("test-task-", 4, 1024)) {
                 List<java.util.concurrent.Future<?>> actors = new ArrayList<>();
                 actors.add(executor.submit(() -> {
                     for (int operation = 0; operation < 256; operation++) {

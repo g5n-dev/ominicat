@@ -40,7 +40,7 @@ class ParallelModelStressTest {
                 for (int index = 0; index < emissions; index++) expected.add(new BranchResult(identity, index));
                 branches.add(new ParallelProcessor.Branch("branch-" + identity, new Processor() {
                     @Override public void process(Frame frame, FrameSink next) throws Exception {
-                        assertTrue(Thread.currentThread().isVirtual());
+                        assertEquals(WorkerThreads.virtualThreadsAvailable(), WorkerThreads.isVirtual(Thread.currentThread()));
                         assertEquals(1, running.incrementAndGet()); allEntered.countDown();
                         try {
                             assertTrue(allEntered.await(2, TimeUnit.SECONDS));

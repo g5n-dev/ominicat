@@ -3,6 +3,7 @@ package io.ominicat.providers;
 import static org.junit.jupiter.api.Assertions.*;
 
 import io.ominicat.core.Frame;
+import io.ominicat.core.WorkerThreads;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -39,7 +40,7 @@ class SseOpenStreamTest extends ProviderHttpTestSupport {
                 var output = new java.util.concurrent.CopyOnWriteArrayList<Frame>();
                 var chat = new ChatFactory().create(options("timeoutSeconds", "5"));
                 var completed = new CompletableFuture<Void>();
-                Thread.ofVirtual().start(() -> {
+                WorkerThreads.start("ominicat-provider-test-", () -> {
                     try {
                         chat.process(new Frame.Text("input"), frame -> {
                             output.add(frame);
@@ -83,7 +84,7 @@ class SseOpenStreamTest extends ProviderHttpTestSupport {
                 var output = new java.util.concurrent.CopyOnWriteArrayList<Frame>();
                 var chat = new ChatFactory().create(options("timeoutSeconds", "5"));
                 var completed = new CompletableFuture<Void>();
-                Thread.ofVirtual().start(() -> {
+                WorkerThreads.start("ominicat-provider-test-", () -> {
                     try { chat.process(new Frame.Text("input"), output::add); completed.complete(null); }
                     catch (Throwable error) { completed.completeExceptionally(error); }
                 });

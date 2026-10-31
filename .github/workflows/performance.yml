@@ -7,15 +7,18 @@ jobs:
   profile:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    strategy:
+      matrix:
+        java: ['17', '21']
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: '21'
+          java-version: ${{ matrix.java }}
           cache: maven
       - run: scripts/profile.sh full reports/local/ci
       - uses: actions/upload-artifact@v4
         with:
-          name: performance-evidence
+          name: performance-evidence-java-${{ matrix.java }}
           path: reports/local/ci/

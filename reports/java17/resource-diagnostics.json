@@ -1,0 +1,171 @@
+{
+  "artifactSha256": "370e4e056d2336526ffe5f4975470671b195235eeb43623efed873bc2e32883e",
+  "javaVersion": "17.0.21.0.3",
+  "workerBackend": "platform",
+  "nettyLeakWarnings": 0,
+  "selectedPostDrainLiveInstances": {
+    "io.ominicat.core.PipelineSession": 0,
+    "io.ominicat.core.PipelineSession$Handle": 0,
+    "io.ominicat.core.SynchronousSink": 0,
+    "io.ominicat.core.Frame$Audio": 0,
+    "io.ominicat.core.Frame$Image": 0,
+    "io.ominicat.core.FrameEnvelope": 0,
+    "io.ominicat.server.OminiCatServer$WsHandler": 0
+  },
+  "nativeMemoryTracking": {
+    "scope": "After mixed-media drain and diagnostic class histogram; diff baseline was captured during measured traffic, rather than exactly at warmup end. Committed and reserved are not RSS.",
+    "reservedKiB": 1827467,
+    "reservedDeltaKiB": -135092,
+    "committedKiB": 496219,
+    "committedDeltaKiB": -134564,
+    "categories": [
+      {
+        "category": "Java Heap",
+        "reservedKiB": 262144,
+        "reservedDeltaKiB": 0,
+        "committedKiB": 262144,
+        "committedDeltaKiB": 0
+      },
+      {
+        "category": "Class",
+        "reservedKiB": 1049042,
+        "reservedDeltaKiB": -33,
+        "committedKiB": 2642,
+        "committedDeltaKiB": -33
+      },
+      {
+        "category": "Thread",
+        "reservedKiB": 78375,
+        "reservedDeltaKiB": -132018,
+        "committedKiB": 78375,
+        "committedDeltaKiB": -132018
+      },
+      {
+        "category": "Code",
+        "reservedKiB": 248496,
+        "reservedDeltaKiB": -182,
+        "committedKiB": 16640,
+        "committedDeltaKiB": 282
+      },
+      {
+        "category": "GC",
+        "reservedKiB": 62212,
+        "reservedDeltaKiB": -9,
+        "committedKiB": 62212,
+        "committedDeltaKiB": -9
+      },
+      {
+        "category": "Compiler",
+        "reservedKiB": 251,
+        "reservedDeltaKiB": -175,
+        "committedKiB": 251,
+        "committedDeltaKiB": -175
+      },
+      {
+        "category": "Internal",
+        "reservedKiB": 633,
+        "reservedDeltaKiB": -14,
+        "committedKiB": 633,
+        "committedDeltaKiB": -14
+      },
+      {
+        "category": "Other",
+        "reservedKiB": 16474,
+        "reservedDeltaKiB": 0,
+        "committedKiB": 16474,
+        "committedDeltaKiB": 0
+      },
+      {
+        "category": "Symbol",
+        "reservedKiB": 4034,
+        "reservedDeltaKiB": 1,
+        "committedKiB": 4034,
+        "committedDeltaKiB": 1
+      },
+      {
+        "category": "Native Memory Tracking",
+        "reservedKiB": 2183,
+        "reservedDeltaKiB": -22,
+        "committedKiB": 2183,
+        "committedDeltaKiB": -22
+      },
+      {
+        "category": "Shared class space",
+        "reservedKiB": 16384,
+        "reservedDeltaKiB": 0,
+        "committedKiB": 12032,
+        "committedDeltaKiB": 0
+      },
+      {
+        "category": "Arena Chunk",
+        "reservedKiB": 197,
+        "reservedDeltaKiB": -2208,
+        "committedKiB": 197,
+        "committedDeltaKiB": -2208
+      },
+      {
+        "category": "Tracing",
+        "reservedKiB": 20394,
+        "reservedDeltaKiB": -398,
+        "committedKiB": 20394,
+        "committedDeltaKiB": -398
+      },
+      {
+        "category": "Module",
+        "reservedKiB": 185,
+        "reservedDeltaKiB": 0,
+        "committedKiB": 185,
+        "committedDeltaKiB": 0
+      },
+      {
+        "category": "Safepoint",
+        "reservedKiB": 32,
+        "reservedDeltaKiB": 0,
+        "committedKiB": 32,
+        "committedDeltaKiB": 0
+      },
+      {
+        "category": "Synchronization",
+        "reservedKiB": 820,
+        "reservedDeltaKiB": 9,
+        "committedKiB": 820,
+        "committedDeltaKiB": 9
+      },
+      {
+        "category": "Serviceability",
+        "reservedKiB": 1,
+        "reservedDeltaKiB": 0,
+        "committedKiB": 1,
+        "committedDeltaKiB": 0
+      },
+      {
+        "category": "Metaspace",
+        "reservedKiB": 65605,
+        "reservedDeltaKiB": 0,
+        "committedKiB": 16965,
+        "committedDeltaKiB": 64
+      },
+      {
+        "category": "String Deduplication",
+        "reservedKiB": 1,
+        "reservedDeltaKiB": 0,
+        "committedKiB": 1,
+        "committedDeltaKiB": 0
+      },
+      {
+        "category": "Object Monitors",
+        "reservedKiB": 3,
+        "reservedDeltaKiB": -44,
+        "committedKiB": 3,
+        "committedDeltaKiB": -44
+      }
+    ]
+  },
+  "jfrGarbageCollection": {
+    "scope": "Whole recording, including startup, warmup, measured traffic, drain, idle and diagnostic full collections. Not just the 120-second interval.",
+    "collectionEvents": 153,
+    "collectionPauseSumMillis": 204.33400400000002,
+    "longestCollectionPauseSumMillis": 12.176334,
+    "phasePauseEvents": 153
+  }
+}

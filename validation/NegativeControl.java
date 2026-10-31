@@ -8,6 +8,7 @@ import java.net.InetSocketAddress;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Executors;
+import io.ominicat.core.WorkerThreads;
 
 /** Deliberately wrong loopback fixtures for checking that the sustained driver rejects bad results. */
 public class NegativeControl {
@@ -25,7 +26,7 @@ public class NegativeControl {
         var config = new RuntimeConfig("127.0.0.1", Integer.parseInt(args[1]), 8, 16, 262144, 15, null,
                 List.of(new RuntimeConfig.Stage("negative-control", Map.of())));
         var observer = HttpServer.create(new InetSocketAddress("127.0.0.1", Integer.parseInt(args[2])), 8);
-        var executor = Executors.newSingleThreadExecutor(Thread.ofPlatform().daemon().factory());
+        var executor = Executors.newSingleThreadExecutor(WorkerThreads.platformFactory("validation-control-"));
         observer.setExecutor(executor);
         observer.createContext("/", exchange -> {
             // Explicit dummy observer counters: these fixtures validate response/progress checks, not memory.

@@ -83,6 +83,8 @@ def main(directory):
     cpu = collections.Counter()
     allocations = collections.Counter()
     pauses = []
+    java_major = int(json.loads((root / "load.json").read_text())["environment"]["javaVersion"].split(".")[0])
+    pinning = str(counts["jdk.VirtualThreadPinned"]) if java_major >= 21 else "not available on this runtime"
     for event in events:
         values = event["values"]
         if event["type"] == "jdk.ExecutionSample":
@@ -105,7 +107,7 @@ def main(directory):
     lines += ['', '![Allocation sampled stacks](allocation-flamegraph.svg)', '', '## GC and contention', '',
               f'- Garbage collections recorded: {len(pauses)}.',
               f'- Recorded GC pause sum: {sum(pauses):.3f} ms; longest collection pause sum: {max(pauses, default=0):.3f} ms.',
-              f'- Monitor contention events: {counts["jdk.JavaMonitorEnter"]}; virtual-thread pinning events: {counts["jdk.VirtualThreadPinned"]}.',
+              f'- Monitor contention events: {counts["jdk.JavaMonitorEnter"]}; virtual-thread pinning events: {pinning}.',
               '- Zero sampled events does not prove absence. Sampling, event thresholds and workload duration limit these observations.', '',
               'Evidence: [selected events, gzip JSON](jfr-events.json.gz), [GC log](gc.log), [measurement report](report.md).',
               'Raw JFR is generated locally and intentionally excluded from Git; do not record real credentials or conversation payloads for public profiling.', '']

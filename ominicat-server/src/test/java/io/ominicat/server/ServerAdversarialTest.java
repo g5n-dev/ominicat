@@ -1,5 +1,6 @@
 package io.ominicat.server;
 
+import io.ominicat.core.WorkerThreads;
 import io.ominicat.core.Frame;
 import io.ominicat.core.Processor;
 import io.ominicat.core.spi.PluginRegistry;
@@ -60,7 +61,7 @@ class ServerAdversarialTest {
         try (var server = server(1, 1024, 60, () -> (frame, next) -> next.accept(frame)).start();
                 var slow = new RawWebSocketClient(server.port())) {
             assertEquals(101, slow.status);
-            Thread writer = Thread.ofVirtual().start(() -> {
+            Thread writer = WorkerThreads.start("server-ping-fixture-", () -> {
                 byte[] payload = new byte[125];
                 try { for (int index = 0; index < 50_000; index++) slow.frame(9, payload); }
                 catch (IOException expectedClosure) { /* expected when output protection closes the peer */ }

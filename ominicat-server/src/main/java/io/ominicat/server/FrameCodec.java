@@ -59,31 +59,35 @@ public final class FrameCodec {
 
     private ObjectNode encodeNode(Frame frame) {
         ObjectNode node = mapper.createObjectNode();
-        switch (frame) {
-            case Frame.Text value -> node.put("type", "text").put("text", value.text());
-            case Frame.Audio value -> node.put("type", "audio").put("data", base64(value.data()))
+        if (frame instanceof Frame.Text value) {
+            node.put("type", "text").put("text", value.text());
+        } else if (frame instanceof Frame.Audio value) {
+            node.put("type", "audio").put("data", base64(value.data()))
                     .put("sampleRate", value.sampleRate()).put("channels", value.channels())
                     .put("streamId", value.streamId()).put("startSample", value.startSample());
-            case Frame.Image value -> node.put("type", "image").put("data", base64(value.data())).put("mimeType", value.mimeType());
-            case Frame.Transcript value -> node.put("type", "transcript").put("text", value.text()).put("speaker", value.speaker())
+        } else if (frame instanceof Frame.Image value) {
+            node.put("type", "image").put("data", base64(value.data())).put("mimeType", value.mimeType());
+        } else if (frame instanceof Frame.Transcript value) {
+            node.put("type", "transcript").put("text", value.text()).put("speaker", value.speaker())
                     .put("startMillis", value.startMillis()).put("endMillis", value.endMillis())
                     .put("finalResult", value.finalResult()).put("confidence", value.confidence())
                     .put("segmentId", value.segmentId()).put("revision", value.revision()).put("role", value.role());
-            case Frame.Control value -> node.put("type", value.signal().name().toLowerCase(Locale.ROOT));
-            case Frame.Failure value -> node.put("type", "failure").put("code", value.code()).put("retryable", value.retryable())
+        } else if (frame instanceof Frame.Control value) {
+            node.put("type", value.signal().name().toLowerCase(Locale.ROOT));
+        } else if (frame instanceof Frame.Failure value) {
+            node.put("type", "failure").put("code", value.code()).put("retryable", value.retryable())
                     .put("scope", value.scope()).put("nodeId", value.nodeId()).put("message", value.message());
-            case Frame.Cancel value -> node.put("type", "cancel").put("reason", value.reason())
+        } else if (frame instanceof Frame.Cancel value) {
+            node.put("type", "cancel").put("reason", value.reason())
                     .put("scope", value.scope().name().toLowerCase(Locale.ROOT)).put("targetId", value.targetId());
-            case FrameEnvelope value -> {
-                node.put("type", "envelope").put("id", value.id()).put("sessionId", value.sessionId())
-                        .put("turnId", value.turnId()).put("correlationId", value.correlationId()).put("causationId", value.causationId())
-                        .put("originTimeNanos", value.originTimeNanos()).put("ingestTimeNanos", value.ingestTimeNanos()).put("emitTimeNanos", value.emitTimeNanos());
-                node.set("frame", encodeNode(value.frame()));
-            }
-            default -> {
-                node.put("type", frame.getClass().getSimpleName());
-                node.set("data", mapper.valueToTree(frame));
-            }
+        } else if (frame instanceof FrameEnvelope value) {
+            node.put("type", "envelope").put("id", value.id()).put("sessionId", value.sessionId())
+                    .put("turnId", value.turnId()).put("correlationId", value.correlationId()).put("causationId", value.causationId())
+                    .put("originTimeNanos", value.originTimeNanos()).put("ingestTimeNanos", value.ingestTimeNanos()).put("emitTimeNanos", value.emitTimeNanos());
+            node.set("frame", encodeNode(value.frame()));
+        } else {
+            node.put("type", frame.getClass().getSimpleName());
+            node.set("data", mapper.valueToTree(frame));
         }
         return node;
     }

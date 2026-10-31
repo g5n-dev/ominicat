@@ -1,5 +1,6 @@
 package io.ominicat.server;
 
+import io.ominicat.core.WorkerThreads;
 import com.sun.net.httpserver.HttpServer;
 import io.ominicat.core.spi.PluginRegistry;
 import java.net.InetSocketAddress;
@@ -8,7 +9,6 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.junit.jupiter.api.Test;
@@ -20,7 +20,7 @@ class StalledProviderRecoveryTest {
     @Test void deadlineClosesStalledSseBodyAndNewSessionRecoversWithoutLeakingAdmission() throws Exception {
         var fixture = HttpServer.create(new InetSocketAddress("127.0.0.1", 0), 0);
         var release = new CountDownLatch(1); var requests = new AtomicInteger();
-        try (var fixtureWorkers = Executors.newVirtualThreadPerTaskExecutor()) {
+        try (var fixtureWorkers = WorkerThreads.executor("stalled-http-fixture-", 2)) {
             fixture.setExecutor(fixtureWorkers);
             fixture.createContext("/v1/chat/completions", exchange -> {
                 exchange.getRequestBody().readAllBytes();

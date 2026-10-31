@@ -1,6 +1,6 @@
 # OminiCat server
 
-A Netty HTTP/WebSocket container around the OminiCat microkernel. Each connection gets fresh processor instances, a bounded input queue and one virtual worker. The bundled playground supports text, individual PCM16 microphone recordings, images, transcripts and PCM playback.
+A Netty HTTP/WebSocket container around the OminiCat microkernel. Each connection gets fresh processor instances, a bounded input queue and one session worker (platform on Java 17; virtual on Java 21+). The bundled playground supports text, individual PCM16 microphone recordings, images, transcripts and PCM playback.
 
 ```sh
 java -jar ominicat-server/target/ominicat-server.jar --config config/demo.yaml
