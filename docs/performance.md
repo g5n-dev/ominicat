@@ -21,6 +21,85 @@ Ubuntu used an AMD EPYC 9V74 with four available logical processors, Temurin 17.
 
 [Ubuntu figures and raw results](../reports/comparison/linux-ubuntu24-java17-2026-10-31/README.md) · [CentOS figures and raw results](../reports/comparison/linux-centos9-java17-2026-10-31/README.md) · [Recorded CI run](https://github.com/g5n-dev/ominicat/actions/runs/41222330745) · [Publication and archive provenance](../reports/comparison/linux-ci-41222330745.json).
 
+## Why the measured paths differ
+
+The useful optimization in OminiCat's linear synchronous path is **one session handoff, followed by same-worker calls through all application stages**. A stage that emits synchronously can immediately invoke its successor with a typed frame. More stages do not require more scheduler tasks or stage queues. This keeps the common path small while the session still owns cancellation, reset and cleanup.
+
+That statement describes work avoided; it is not an attribution of the complete benchmark gap. Here is what the three tested adapters actually execute:
+
+| Part of the measured path | OminiCat | Pipecat 1.15.0 | Apache Camel 4.22.2 LTS |
+| --- | --- | --- | --- |
+| Entrance | `trySubmit` into a capacity-one session FIFO; one platform worker | Worker input queue → native queued application processors on an asyncio event loop | `ProducerTemplate.requestBody` into one capacity-one SEDA endpoint; one consumer |
+| Between application stages | Typed recursive calls on the session worker; each stage creates a transformed `Value` | Each default queued stage uses an input priority queue/input task, then a processing queue/processing task before forwarding | The same route's `process` chain runs behind the single SEDA entrance; no SEDA queue is inserted per stage |
+| Per-invocation machinery | Generation validity checks, scoped `SynchronousSink`, captured continuations and frame/value allocations | Native `Frame` initialization/metadata, scheduling and the adapter's immutable numeric-payload guard | Exchange/Message state, correlated exchange copy, completion callbacks/synchronization and route execution |
+| Terminal → caller | Output oracle, then a bounded acknowledgment queue and caller-side validation | Native downstream-output event dispatch, oracle and an asyncio acknowledgment event | Output oracle followed by native InOut request/reply completion and caller-side validation |
+
+[![Concrete paths retained by the three framework adapters](assets/previews/framework-paths.png)](assets/framework-paths.svg)
+
+Pipecat's pipeline/source/sink processors use direct mode in this version; the **configured application stages** use default queued mode. Each such stage has two persistent coroutine tasks, not two newly created tasks per frame or two OS-thread switches. Its native downstream-output event creates a terminal task that remains included. The experiment does not turn every Pipecat processor into a direct call, or bound its internal queues: W=1 bounds work admitted by the benchmark.
+
+Camel also has one queue before a synchronous route, so a queue-count explanation cannot account for OminiCat versus Camel. Camel's request/reply path retains correlated exchange preparation and completion synchronization; OminiCat retains its own generation/sink checks and acknowledgment queue. This copies exchange state/correlation, not the numeric payload deeply at every stage. The comparison measures those public paths together rather than removing one framework's normal machinery.
+
+The peers also expose paths that avoid these queue boundaries: Pipecat's [`enable_direct_mode=True`](https://github.com/pipecat-ai/pipecat/blob/v1.15.0/src/pipecat/processors/frame_processor.py#L230-L251) processes frames immediately, and Camel's [`direct:` component](https://camel.apache.org/components/4.22.x/direct-component.html) invokes a consumer synchronously in the same Camel context. OminiCat's `Pipeline.process` likewise omits session queuing. Those modes are **not measured by this queued matrix**; a direct-mode comparison needs its own adapters and lifecycle scope. The published ratios do not rank every configuration of these frameworks.
+
+Sources: the measured checkout's [OminiCat adapter](https://github.com/g5n-dev/ominicat/blob/fbd3c610eb4e2c8ad0c4bc53fcebfdb903bbb96a/comparison/benchmarks/src/main/java/io/ominicat/comparison/OminiCatAdapter.java), [Camel adapter](https://github.com/g5n-dev/ominicat/blob/fbd3c610eb4e2c8ad0c4bc53fcebfdb903bbb96a/comparison/benchmarks/src/main/java/io/ominicat/comparison/CamelAdapter.java), [Pipecat adapter](https://github.com/g5n-dev/ominicat/blob/fbd3c610eb4e2c8ad0c4bc53fcebfdb903bbb96a/comparison/pipecat/benchmark.py); native [Pipecat processors](https://github.com/pipecat-ai/pipecat/blob/v1.15.0/src/pipecat/processors/frame_processor.py#L726-L757), [Pipecat pipeline](https://github.com/pipecat-ai/pipecat/blob/v1.15.0/src/pipecat/pipeline/pipeline.py), [Camel SEDA producer](https://github.com/apache/camel/blob/camel-4.22.2/components/camel-seda/src/main/java/org/apache/camel/component/seda/SedaProducer.java#L63-L125) and [Camel route pipeline](https://github.com/apache/camel/blob/camel-4.22.2/core/camel-core-processor/src/main/java/org/apache/camel/processor/Pipeline.java#L84-L118).
+
+## Read stage scaling and CPU together
+
+[![Stage count and measured process CPU cost](assets/previews/framework-cost-scaling.png)](assets/framework-cost-scaling.svg)
+
+The ratios below divide the **five-process median rates** from the same Linux job. They are not paired-run ratios, speedup confidence intervals or ratios of saturated throughput.
+
+| Environment | Stages | OminiCat / Pipecat rate | OminiCat / Camel rate |
+| --- | ---: | ---: | ---: |
+| Ubuntu 24.04 | 1 | 4.70× | 1.10× |
+| Ubuntu 24.04 | 4 | 9.26× | 1.15× |
+| Ubuntu 24.04 | 16 | 25.46× | 1.17× |
+| CentOS Stream 9 user space | 1 | 3.45× | 1.12× |
+| CentOS Stream 9 user space | 4 | 6.64× | 1.12× |
+| CentOS Stream 9 user space | 16 | 17.74× | 1.14× |
+
+OminiCat retains **97.8%** of its one-stage rate at 16 stages in both jobs. Camel retains **92.0% / 95.7%**, and Pipecat **18.0% / 19.0%**, on Ubuntu / CentOS respectively. Together with the path inspection, this shows why stage count matters when each stage adds scheduling and frame construction. It does not establish how much of the gap comes from the scheduler, language, frame metadata or the benchmark adapter.
+
+Process CPU microseconds per validated frame divide measured process CPU time by output count. They include the benchmark loop, transformations, oracle, acknowledgment and runtime work on the process's threads. They are neither terminal wall latency nor per-stage CPU attribution. The whole-loop rate also includes caller acknowledgment after the terminal timer stops; subtracting a latency median from inverse throughput would not isolate acknowledgment cost.
+
+<details>
+<summary>All stage-count medians: rate, terminal p99, CPU cost and RSS</summary>
+
+| Environment | Stages | Framework | Frames/s · W=1 | Terminal p99 µs | Process CPU µs/frame | Phase peak RSS MiB |
+| --- | ---: | --- | ---: | ---: | ---: | ---: |
+| Ubuntu | 1 | OminiCat | 48,330.11 | 17.211 | 20.02 | 127.88 |
+| Ubuntu | 1 | Pipecat | 10,287.85 | 109.327 | 97.19 | 93.45 |
+| Ubuntu | 1 | Apache Camel | 43,766.91 | 19.740 | 23.49 | 187.85 |
+| Ubuntu | 4 | OminiCat | 49,083.83 | 17.296 | 18.95 | 144.15 |
+| Ubuntu | 4 | Pipecat | 5,299.93 | 220.352 | 188.67 | 93.51 |
+| Ubuntu | 4 | Apache Camel | 42,755.82 | 20.410 | 23.56 | 188.68 |
+| Ubuntu | 16 | OminiCat | 47,273.73 | 17.562 | 19.97 | 145.89 |
+| Ubuntu | 16 | Pipecat | 1,856.45 | 588.249 | 538.61 | 93.73 |
+| Ubuntu | 16 | Apache Camel | 40,261.62 | 24.287 | 24.99 | 192.50 |
+| CentOS user space | 1 | OminiCat | 66,985.74 | 12.364 | 13.73 | 145.93 |
+| CentOS user space | 1 | Pipecat | 19,405.11 | 63.945 | 51.53 | 87.97 |
+| CentOS user space | 1 | Apache Camel | 59,887.15 | 14.137 | 16.17 | 189.25 |
+| CentOS user space | 4 | OminiCat | 66,567.06 | 12.443 | 13.72 | 145.28 |
+| CentOS user space | 4 | Pipecat | 10,018.98 | 130.875 | 99.80 | 88.04 |
+| CentOS user space | 4 | Apache Camel | 59,526.61 | 13.776 | 16.08 | 188.88 |
+| CentOS user space | 16 | OminiCat | 65,540.53 | 12.097 | 14.04 | 146.50 |
+| CentOS user space | 16 | Pipecat | 3,694.49 | 332.986 | 270.65 | 88.26 |
+| CentOS user space | 16 | Apache Camel | 57,329.89 | 15.122 | 16.70 | 188.89 |
+
+Each latency cell is the median of five per-process percentiles, not a pooled percentile across processes. Source values and all five forks remain in the [Ubuntu summary](../reports/comparison/linux-ubuntu24-java17-2026-10-31/summary.json) and [CentOS summary](../reports/comparison/linux-centos9-java17-2026-10-31/summary.json).
+
+</details>
+
+### Tradeoffs and counterexamples
+
+- **Pipecat uses less sampled process RSS in every stage-count cell.** At four stages its median is 35.1% lower than OminiCat's on Ubuntu and 39.4% lower on CentOS. OminiCat's four-stage RSS is 23.6% / 23.1% lower than Camel's. These are whole-process observations with different runtime heap policies, not framework-only allocation savings.
+- **Individual ranges overlap with Camel.** CentOS one-stage rate ranges overlap: OminiCat 61,951.58–68,604.53 versus Camel 57,632.92–63,146.58 frames/s. Its one- and four-stage p99 ranges also overlap. OminiCat leads all six cell medians for rate, p50/p99, CPU per frame and RSS against Camel; the independent runs do not support an unqualified claim that its every observation beats Camel's every observation.
+- **Stage scaling is not a per-stage cost estimate.** OminiCat's Ubuntu four-stage median rate is 1.56% higher than its one-stage rate, and its CentOS 16-stage median p99 is lower than its four-stage value. Fixed handoff/oracle costs, JIT and shared-host noise preclude deriving nanoseconds per stage by subtraction.
+- **The adapter also costs time.** The [Ubuntu Pipecat cProfile](../reports/comparison/linux-ubuntu24-java17-2026-10-31/profiles/pipecat/profile.md) ranks the benchmark's immutable-payload `NumericFrame.__setattr__` first by individual self time (0.343092 seconds). Native queue/frame methods and asyncio also appear. This separate instrumented profile cannot allocate the unprofiled speed ratio entirely to Pipecat internals.
+
+The numeric comparison uses no envelopes, media byte snapshots, parallel branches, external asynchronous providers or network transport. Their bounds and lifecycle mechanisms matter in other workloads, but do not explain this measured gap. A focused before/after ablation on the same host is needed to quantify a specific optimization.
+
 ## How the implementation controls cost
 
 [![Typed direct calls and session execution](assets/previews/execution-path.png)](assets/execution-path.svg)
@@ -80,6 +159,19 @@ reports/local/framework-env/bin/python comparison/report.py \
 ```
 
 The [same guide](../comparison/README.md#separate-diagnostic-profiles) gives separate JFR/cProfile and allowlisted packaging commands. Use new output folders; collection refuses stale results. Raw JFR, profiler dumps, environments and private logs stay local.
+
+## Rebuild the explanatory figures
+
+The [derived data](assets/framework-costs.json) retains all five observations per metric, both source manifests and suite hashes. It is recomputed from the same 90 archived Linux processes, not a new measurement or an optimization experiment. The exporter validates every raw file before calculating ratios and CPU cost; the SVG embeds the derived-data hash, and the PNG inventory binds each preview to its SVG.
+
+Using the environment installed from [comparison/requirements.lock](../comparison/requirements.lock), plus `rsvg-convert` for PNGs:
+
+```sh
+python scripts/render_performance_explainer.py
+python scripts/render_doc_previews.py
+```
+
+CI runs `python3 scripts/render_performance_explainer.py --check` and the preview check using only the standard library. It rejects altered/missing raw evidence, stale derived data and a CPU figure bound to different data. Path topology is reviewed against the pinned source links above; this numerical check does not certify a causal explanation.
 
 ## Other probes and comparisons
 

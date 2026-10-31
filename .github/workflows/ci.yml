@@ -70,7 +70,9 @@ jobs:
           git show --format= --check HEAD
           bash -n scripts/profile.sh scripts/server_soak.sh
       - name: Static documentation images and source freshness
-        run: python3 scripts/render_doc_previews.py --check
+        run: |
+          python3 scripts/render_performance_explainer.py --check
+          python3 scripts/render_doc_previews.py --check
       - name: Performance evidence failure controls
         run: |
           python3 -m unittest discover -s scripts -p 'test_*.py' -v

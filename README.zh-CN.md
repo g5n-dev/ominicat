@@ -50,21 +50,49 @@
 
 ## 高性能从哪里来
 
-OminiCat 将同步调用、会话排队和外部异步回调分开，减少不必要的阶段间转换，并把资源与取消边界放在明确的位置。这些机制可以直接从源码核验；上面的对比保留了整个运行时成本，未单独测定各机制带来的加速比例。
+**连续的同步阶段只交接一次会话队列，随后在同一个工作线程里直接调用。** 外部帧通过有界 FIFO 交给会话；`next.accept` 用类型化帧直接进入下一阶段。增加一个同步阶段，会增加处理器调用、取消校验和实际处理工作，无需再增加一组阶段队列、协程任务或内部编解码。外部异步结果才通过独立 SPI 从下一阶段重新入队。
+
+本次比较使用的是三套框架各自的公开排队路径：
+
+| 框架 | 本次实际执行路径 | 保留的成本 |
+| --- | --- | --- |
+| **OminiCat** | 会话 FIFO → 单 worker 上的同步处理链 → 终端校验 → 有界确认队列 | 队列锁、每阶段 generation 校验、scoped sink、continuation 和新数值帧分配 |
+| **Pipecat 1.15.0** | Worker 输入队列 → 每个排队应用阶段：输入优先队列 → input 协程 → 处理队列 → process 协程 → 下一阶段 | 每阶段两个常驻协程任务、原生 Frame 元数据、事件循环、输出事件，以及测试程序的载荷不可变保护；源汇使用 direct mode |
+| **Apache Camel 4.22.2 LTS** | 一个 SEDA 入口 → consumer → 同一路由的 `process` 链 → 请求应答完成 | Exchange 关联副本、完成回调和同步，以及通用路由／生命周期机制；并非每阶段都有 SEDA 队列 |
+
+[![三套框架实际排队路径与保留的成本](docs/assets/previews/framework-paths.png)](docs/assets/framework-paths.svg)
+
+因此，OminiCat 的优势原理是**缩短同步阶段之间的框架路径，同时保留会话所有权和取消保护**。与 Pipecat 的这个排队模式相比，它省去了同步应用阶段之间的队列／协程交接；与 Camel 相比，两者都有单入口队列，差别在类型化处理器合同与通用 Exchange／路由／应答机制。源码说明结构差异，Linux 测试记录这些完整路径的实际结果。
+
+Pipecat 也提供 direct mode，Camel 也有 `direct:` 端点；这些直接调用模式未纳入本次排队矩阵，不能套用这里的比值。[固定版本源码与模式边界](docs/performance.md#why-the-measured-paths-differ)。
+
+| 四阶段、单帧在途 | OminiCat／Pipecat 处理速率 | OminiCat／Camel 处理速率 | 进程 CPU 微秒／帧：OminiCat／Pipecat／Camel |
+| --- | ---: | ---: | ---: |
+| Ubuntu 24.04 | **9.26×** | **1.15×** | **18.95／188.67／23.56** |
+| CentOS Stream 9 用户态 | **6.64×** | **1.12×** | **13.72／99.80／16.08** |
+
+比值为**同一 Linux 作业内五进程中位数之比**，不是置信区间，也不是配对实验。CPU 成本来自测量阶段的整进程 CPU 时间除以校验通过的帧数，包含运行时、框架和测试程序；单帧终点延迟不包含全部确认返回过程。
+
+[![从 1 到 16 阶段的整进程 CPU 成本与五进程波动](docs/assets/previews/framework-cost-scaling.png)](docs/assets/framework-cost-scaling.svg)
+
+从 1 阶段扩展到 16 阶段，两条 Linux 作业中 OminiCat 保留约 **97.8%** 的单阶段处理速率；Pipecat 分别保留 **18.0%／19.0%**，Camel 为 **92.0%／95.7%**。这与各自阶段间的工作结构相符，但不能把完整速度差全部归因于队列：语言运行时、原生帧对象、不可变载荷保护、校验与确认也在计时中。
+
+取舍也应公开：四阶段时，**Pipecat 的采样进程 RSS 比 OminiCat 低 35.1%／39.4%**；部分 CentOS 轮次与 Camel 的速率或 p99 范围重叠。这里不承诺每轮、每种场景都领先，也不把 W=1 结果当作饱和吞吐或生产容量。[完整 1／4／16 阶段数据、固定版本源码、profile 观察与边界](docs/performance.md)。
+
+<details>
+<summary>查看 OminiCat 的直接调用、异步续接与资源边界</summary>
 
 [![同步分发、会话工作线程与异步续接路径](docs/assets/previews/execution-path.png)](docs/assets/execution-path.svg)
 
-| 机制 | 实际执行方式与成本边界 |
-| --- | --- |
-| **帧直接传递** | [Pipeline](ominicat-core/src/main/java/io/ominicat/core/Pipeline.java) 将类型化 `Frame` 直接传给下一同步阶段，阶段间无需 JSON 或独立队列。同步嵌入调用无需会话调度；每次调用仍有 sink 生命周期保护和 continuation 分配，调用方负责串行访问与清理。 |
-| **会话串行所有权** | [PipelineSession](ominicat-core/src/main/java/io/ominicat/core/PipelineSession.java) 由一个工作线程推进线性阶段，使用 `ReentrantLock` 与 `ArrayDeque` 管理待处理项。异步输出重新入队，从下一阶段续接；显式并行分支另有受限工作线程。 |
-| **有界接纳与过期隔离** | 输入和异步续接共用有界队列；活跃异步句柄另有独立上限。中断提升 generation、清理排队项并拒绝旧回调，避免过期工作继续向后发射。已发生的外部作用不能撤销，阻塞处理器仍须配合中断。 |
-| **线程与传输边界** | [WorkerThreads](ominicat-core/src/main/java/io/ominicat/core/WorkerThreads.java) 在 Java 17 使用平台线程，21+ 自动选择虚拟线程；线程工厂探测在初始化时完成。服务器的处理器工作在会话线程运行；[帧协议编解码](ominicat-server/src/main/java/io/ominicat/server/FrameCodec.java)和网络收发仍有各自成本。 |
-| **不可变媒体快照** | [Audio／Image](ominicat-core/src/main/java/io/ominicat/core/Frame.java) 构造时防御性复制输入，读取时提供独立只读视图，已构造帧可按引用经过各阶段。媒体复制、协议 JSON／Base64 和模型调用都有实际成本，数值帧对比不覆盖它们。 |
+[Pipeline](ominicat-core/src/main/java/io/ominicat/core/Pipeline.java) 的同步阶段保留调用生命周期保护和 continuation 分配；[PipelineSession](ominicat-core/src/main/java/io/ominicat/core/PipelineSession.java) 用锁和 FIFO 管理会话工作。直接嵌入可省去会话调度，调用方自行负责串行访问和清理。配置发现和处理器组装在派发帧之前完成。
+
+媒体构造会防御性复制字节；JSON／Base64 在网络边缘处理，均有实际成本。服务器的处理器在会话 worker 运行，解码与连接组装仍在 Netty I/O 回调中。这组实测使用 **Java 17 平台线程**，不证明虚拟线程或外部异步模型回调更快。
 
 [![队列、异步句柄、分支与网络的独立资源边界](docs/assets/previews/bounded-runtime.png)](docs/assets/bounded-runtime.svg)
 
-各层上限有不同单位：队列与分支缓冲约束待处理项或帧引用，网络出口约束待发送字节，它们不能合并解释为总内存预算。过载、取消与排空由[生命周期契约](docs/architecture.md)和[配置](docs/configuration.md)明确处理；虚拟线程也不会自动提高 CPU 计算性能。
+输入队列、活跃异步句柄、分支输出和网络待发送字节各有独立上限；它们不能合并解释为总内存预算。中断提升 generation、清理排队项并拒绝旧回调；已发生的外部作用不能撤销，阻塞插件仍须配合取消。[架构与生命周期](docs/architecture.md) · [配置](docs/configuration.md)。
+
+</details>
 
 ## Linux CPU、分配与 GC
 

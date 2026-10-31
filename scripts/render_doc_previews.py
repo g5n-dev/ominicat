@@ -25,6 +25,8 @@ SOURCES = {
     'architecture-overview': 'docs/assets/architecture-overview.svg',
     'execution-path': 'docs/assets/execution-path.svg',
     'bounded-runtime': 'docs/assets/bounded-runtime.svg',
+    'framework-paths': 'docs/assets/framework-paths.svg',
+    'framework-cost-scaling': 'docs/assets/framework-cost-scaling.svg',
     'ubuntu-comparison': f'{UBUNTU}/overview.svg',
     'centos-comparison': 'reports/comparison/linux-centos9-java17-2026-10-31/overview.svg',
     **{f'ubuntu-{name}': f'{UBUNTU}/profiles/ominicat/{name}.svg'
