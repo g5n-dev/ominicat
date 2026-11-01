@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 35
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -73,7 +73,7 @@ jobs:
           test -x "$java_home/bin/jfr"
           echo "JAVA_HOME=$java_home" >> "$GITHUB_ENV"
           echo "$java_home/bin" >> "$GITHUB_PATH"
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Trust only this mounted checkout for container shell Git commands
         run: |
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
