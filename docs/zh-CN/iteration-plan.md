@@ -82,7 +82,7 @@
 
 | 增量 | 结果 | 证据 |
 | --- | --- | --- |
-| 锁与生命周期架构 | 中英文锁范围表、真实会话状态转换、回调／引用所有权、HTTP 响应清理与独立的服务器接纳释放条件。两张本地化 SVG 图及静态预览呈现这些边界；CI 检查生成图与源码的新鲜度。运行时行为和已记录性能证据保持不变。 | [锁与生命周期指南](architecture.md#锁职责与回调边界)、[源码与可执行证据](architecture.md#源码与可执行证据)、[确定性生成器](../../scripts/render_architecture.py) |
+| 锁与生命周期架构 | 中英文锁范围表、真实会话状态转换、回调／引用所有权、HTTP 响应清理与独立的服务器接纳释放条件。两张本地化 SVG 图及静态预览呈现这些边界；CI 检查生成图与源码的新鲜度。运行时行为和已记录性能证据保持不变。 | [PR #35](https://github.com/g5n-dev/ominicat/pull/35)、[锁与生命周期指南](architecture.md#锁职责与回调边界)、[源码与可执行证据](architecture.md#源码与可执行证据)、[确定性生成器](../../scripts/render_architecture.py) |
 | Unicode 完整的证据摘录 | 裁剪不再在任一边界切断合法补充字符。正文保持在原始 180 个 UTF-16 单元内，最多另加两个省略号；元数据、规则结果与默认线协议结构保留。 | [PR #34](https://github.com/g5n-dev/ominicat/pull/34)、[边界与独立 oracle 回归](../../ominicat-conversation/src/test/java/io/ominicat/conversation/EvidenceUnicodeTest.java)、[评估／严格 UTF-8／JSON 回归](../../ominicat-server/src/test/java/io/ominicat/server/EvidenceUnicodeWireTest.java) |
 | I1a 可选插件能力声明 | 有界不可变描述、按配置查询与显式能力要求检查；旧工厂接口及默认创建行为保留。内置转写分别声明整段终稿支持、边界前部分结果不支持；声明与行为证据分开，不引入已验证标志。更广 I1/I2/I3 仍在计划中。 | [PR #33](https://github.com/g5n-dev/ominicat/pull/33)、[API、可运行检查与验收](plugin-capabilities.md)、[接入边界](integration-contracts.md) |
 | 有界提示词构造与性能深度审计 | 提示渲染跳过未使用的评估指标和多余历史实体化。Ubuntu／Java 17 配对测量覆盖九种窗口／历史用例，并逐字校验输出和运行时来源；独立的完整 Linux 内核 profile 为下一步分配假设提供依据。公开 API 与生命周期行为保持稳定。 | [PR #32](https://github.com/g5n-dev/ominicat/pull/32)、[审计与完整结果](performance-audit.md)、[配对原始证据](../../reports/performance-audit/prompt-render-2026-11-01/manifest.json)、[独立提示词回归](../../ominicat-conversation/src/test/java/io/ominicat/conversation/PromptTemplateOracleTest.java) |
