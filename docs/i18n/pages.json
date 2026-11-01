@@ -64,7 +64,7 @@
     {
       "source": "docs/iteration-plan.md",
       "translation": "docs/zh-CN/iteration-plan.md",
-      "source_sha256": "06f5ea305907a56bf4a0d4a095331638ea4e672cf9a1b632aace44c0996f4bc2"
+      "source_sha256": "fdad00db8a41aa00af4430ef5f63ad14727d5c69f04c0fc9efed68ec36521afd"
     },
     {
       "source": "docs/java-compatibility.md",
@@ -124,7 +124,7 @@
     {
       "source": "ominicat-conversation/README.md",
       "translation": "docs/zh-CN/ominicat-conversation/README.md",
-      "source_sha256": "1aa6ccc826fe85b4392ec011f1630a4c4fd2a2a852817959dd6ef2a9bb0a078b"
+      "source_sha256": "c8893fddfd6ad8b497f47e8c9e488c413c6ad9e59adcf15fd5dcb31df3274f6a"
     },
     {
       "source": "ominicat-core/DEEP_VERIFICATION.md",
