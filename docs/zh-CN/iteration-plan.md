@@ -29,7 +29,7 @@
 | 工厂创建锁与内核调用分配 | 暂缓的实验。保留旧工厂串行创建与生命周期保护；先明确并发契约，补齐相关异步／envelope／媒体基线。 |
 | 开放的依赖与生成图更新 | 独立维护。针对当前 main 重新验证；保留归档报告原始字节及生成图的来源绑定。仅版本升级不能证明当前存在漏洞。 |
 
-本轮只选择摘录修复，其余候选仍未实现；真实 provider 试验仍需下文列出的显式服务配置。
+本轮只选择摘录修复，其余候选仍未实现；真实 provider 试验仍需下文列出的显式服务配置。修复前，最初六项单元测试中四项失败，两个正向线协议测试均失败。随后 Java 17 覆盖率／SBOM 验证通过 350 项测试，无失败、错误或跳过，另通过 512 个运行时压力种子；最终测试包含 12 项新增回归和 512 个合成 Unicode 样例。见 [PR #34](https://github.com/g5n-dev/ominicat/pull/34)；仍须在当前提交上通过全部受保护主分支检查。
 
 ## 就绪队列
 
@@ -82,7 +82,7 @@
 
 | 增量 | 结果 | 证据 |
 | --- | --- | --- |
-| Unicode 完整的证据摘录 | 裁剪不再在任一边界切断合法补充字符。正文保持在原始 180 个 UTF-16 单元内，最多另加两个省略号；元数据、规则结果与默认线协议结构保留。 | [边界与独立 oracle 回归](../../ominicat-conversation/src/test/java/io/ominicat/conversation/EvidenceUnicodeTest.java)、[评估／严格 UTF-8／JSON 回归](../../ominicat-server/src/test/java/io/ominicat/server/EvidenceUnicodeWireTest.java) |
+| Unicode 完整的证据摘录 | 裁剪不再在任一边界切断合法补充字符。正文保持在原始 180 个 UTF-16 单元内，最多另加两个省略号；元数据、规则结果与默认线协议结构保留。 | [PR #34](https://github.com/g5n-dev/ominicat/pull/34)、[边界与独立 oracle 回归](../../ominicat-conversation/src/test/java/io/ominicat/conversation/EvidenceUnicodeTest.java)、[评估／严格 UTF-8／JSON 回归](../../ominicat-server/src/test/java/io/ominicat/server/EvidenceUnicodeWireTest.java) |
 | I1a 可选插件能力声明 | 有界不可变描述、按配置查询与显式能力要求检查；旧工厂接口及默认创建行为保留。内置转写分别声明整段终稿支持、边界前部分结果不支持；声明与行为证据分开，不引入已验证标志。更广 I1/I2/I3 仍在计划中。 | [PR #33](https://github.com/g5n-dev/ominicat/pull/33)、[API、可运行检查与验收](plugin-capabilities.md)、[接入边界](integration-contracts.md) |
 | 有界提示词构造与性能深度审计 | 提示渲染跳过未使用的评估指标和多余历史实体化。Ubuntu／Java 17 配对测量覆盖九种窗口／历史用例，并逐字校验输出和运行时来源；独立的完整 Linux 内核 profile 为下一步分配假设提供依据。公开 API 与生命周期行为保持稳定。 | [PR #32](https://github.com/g5n-dev/ominicat/pull/32)、[审计与完整结果](performance-audit.md)、[配对原始证据](../../reports/performance-audit/prompt-render-2026-11-01/manifest.json)、[独立提示词回归](../../ominicat-conversation/src/test/java/io/ominicat/conversation/PromptTemplateOracleTest.java) |
 | 完整中文文档阅读路径 | 所有项目指南、协议、配置与部署、模块说明和报告叙述均有中文阅读版。内部页面与标题跳转保留中文；所有已发布图表均有中文标签和绑定源文件的 PNG 预览。CI 检查源文新鲜度、可执行示例、API 字面值、表格数值和导航；原始测量归档保持不变。 | [PR #31](https://github.com/g5n-dev/ominicat/pull/31), [中文目录](index.md)、[页面绑定](../i18n/pages.json)、[图表绑定](../i18n/figures.json)、[导航与证据保护测试](../../scripts/test_chinese_docs.py) |
