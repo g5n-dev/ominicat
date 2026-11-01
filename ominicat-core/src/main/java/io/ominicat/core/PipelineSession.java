@@ -16,7 +16,8 @@ import java.util.concurrent.locks.ReentrantLock;
  * A bounded FIFO and one runtime-selected worker (virtual on Java 21+, daemon platform on Java 17). The worker serializes all stage
  * callbacks. Cancellation is cooperative: stages must honor interruption for prompt
  * shutdown, and a callback already entered cannot have its external effects revoked.
- * Completion means all stages have been closed, including on failure or cancellation.
+ * Completion is published after reverse-order cleanup and logical termination;
+ * synchronous completion callbacks may still execute on the worker.
  */
 public final class PipelineSession implements AutoCloseable {
     private enum State { OPEN, DRAINING, CANCELLED, FAILED, TERMINATED }
@@ -120,7 +121,7 @@ public final class PipelineSession implements AutoCloseable {
         } finally { lock.unlock(); }
     }
 
-    /** A future completed only after worker termination and reverse-order stage cleanup. */
+    /** A cleanup-completion future; publication on the worker is not a physical thread-join guarantee. */
     public CompletableFuture<Void> completion() { return completion.copy(); }
 
     /** Return an internally consistent metrics snapshot. */
