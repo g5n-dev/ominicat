@@ -98,6 +98,21 @@ Pipecat 也提供 direct mode，Camel 也有 `direct:` 端点；这些直接调�
 
 </details>
 
+<details>
+<summary>查看锁、取消与清理如何协作</summary>
+
+会话锁保护接纳、队列状态、generation 与异步句柄。所有者工作线程释放这把锁后，才调用处理器、输出 sink 与清理逻辑。注册表、分支、封装和传输各有同步边界，详见[锁职责表](docs/zh-CN/architecture.md#锁职责与回调边界)。
+
+[![会话锁范围、工作线程执行与独立同步边界](docs/assets/previews/locking-boundaries-zh-CN.png)](docs/assets/zh-CN/locking-boundaries.svg)
+
+`finish()` 排空已接纳工作；`interrupt()` 切换开放会话的代次；`close()` 请求协作取消。完成通知在清理后发布。服务器仅在 socket 不活跃且工作线程逻辑完成后归还 WebSocket 会话名额。
+
+[![排空、取消、清理及独立的服务器接纳释放条件](docs/assets/previews/session-lifecycle-zh-CN.png)](docs/assets/zh-CN/session-lifecycle.svg)
+
+[生命周期保证、引用释放与回归证据](docs/zh-CN/architecture.md#生命周期取消与释放)。
+
+</details>
+
 ## Linux CPU、分配与 GC
 
 以下来自 **Ubuntu 作业的 OminiCat 四阶段独立 JFR 诊断**。整段记录包含 JVM／框架启动、预热、5 秒 W=1 测量、测量程序及清理，共有 **41 个 CPU 栈采样、445 个分配采样**。它与前述未插桩的 45 轮计时分开，不能用来替换主表或推导精确 B/op。

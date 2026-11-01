@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1360" viewBox="0 0 1440 1360" role="img" aria-labelledby="title desc">
+<title id="title">OminiCat — One session. Explicit drain and cancellation.</title>
+<desc id="desc">OPEN transitions to DRAINING on finish, CANCELLED on close, or FAILED on a current-generation exception or live emitter failure. Graceful exit waits for an empty queue and no active async handles. Every exit uses worker-finally cancellation and reverse stage cleanup before publishing TERMINATED and completing the future. Interrupt is an OPEN-to-OPEN generation change; socket inactivity and worker completion jointly release WebSocket session admission.</desc>
+<defs><linearGradient id="background" x2="1" y2="1"><stop stop-color="#101e28"/><stop offset="1" stop-color="#0b1220"/></linearGradient>
+<pattern id="dots" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#6a91a8" opacity=".13"/></pattern>
+<marker id="arrow-teal" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L7 4L1 7" fill="none" stroke="#64d8c3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+<marker id="arrow-blue" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L7 4L1 7" fill="none" stroke="#76adf7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+<marker id="arrow-amber" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L7 4L1 7" fill="none" stroke="#e9b96e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+<marker id="arrow-muted" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L7 4L1 7" fill="none" stroke="#9badc2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+</defs>
+<rect width="1440" height="100%" rx="22" fill="url(#background)"/>
+<rect width="1440" height="100%" rx="22" fill="url(#dots)"/>
+<g font-family="Arial,Helvetica,DejaVu Sans,sans-serif">
+<text x="56" y="55" font-size="14" font-weight="700" fill="#64d8c3" letter-spacing="2">OMINICAT / ARCHITECTURE</text>
+<text x="1384" y="55" font-size="14" font-weight="400" fill="#9badc2" text-anchor="end" letter-spacing="2">05 / LIFECYCLE</text>
+<text x="56" y="111" font-size="40" font-weight="700" fill="#e4edf8">One session. Explicit drain and cancellation.</text>
+<text x="56" y="150" font-size="19" font-weight="400" fill="#9badc2">Actual PipelineSession states; completion is published after cleanup.</text>
+<text x="56" y="197" font-size="13" font-weight="700" fill="#9badc2" letter-spacing="1.5">ENTRY / DECISION</text>
+<text x="516" y="197" font-size="13" font-weight="700" fill="#9badc2" letter-spacing="1.5">SESSION STATE</text>
+<text x="1032" y="197" font-size="13" font-weight="700" fill="#9badc2" letter-spacing="1.3">COMMON WORKER FINALLY</text>
+<rect x="56" y="226" width="344" height="144" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2"/>
+<rect x="56" y="244" width="3" height="108" rx="1.5" fill="#64d8c3"/>
+<text x="78" y="260" font-size="25" font-weight="700" fill="#e4edf8">OPEN</text>
+<text x="78" y="289" font-size="18" font-weight="400" fill="#9badc2">Accept external frames</text>
+<text x="78" y="314" font-size="18" font-weight="400" fill="#9badc2">and live continuations</text>
+<rect x="516" y="226" width="350" height="144" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2"/>
+<rect x="516" y="244" width="3" height="108" rx="1.5" fill="#76adf7"/>
+<text x="538" y="260" font-size="25" font-weight="700" fill="#e4edf8">DRAINING</text>
+<text x="538" y="289" font-size="18" font-weight="400" fill="#9badc2">Reject external frames</text>
+<text x="538" y="314" font-size="18" font-weight="400" fill="#9badc2">Continue live callbacks</text>
+<path d="M400 298H516" fill="none" stroke="#76adf7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-blue)"/>
+<text x="423" y="279" font-size="18" font-weight="700" fill="#76adf7">finish()</text>
+<text x="516" y="402" font-size="16" font-weight="400" fill="#76adf7">Graceful drain: queue empty + no live handles.</text>
+<rect x="56" y="452" width="344" height="128" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2"/>
+<rect x="56" y="470" width="3" height="92" rx="1.5" fill="#e9b96e"/>
+<text x="78" y="486" font-size="23" font-weight="700" fill="#e4edf8">OPEN / DRAINING</text>
+<text x="78" y="515" font-size="18" font-weight="400" fill="#9badc2">Cancellation requested</text>
+<rect x="516" y="452" width="350" height="128" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2"/>
+<rect x="516" y="470" width="3" height="92" rx="1.5" fill="#e9b96e"/>
+<text x="538" y="486" font-size="25" font-weight="700" fill="#e4edf8">CANCELLED</text>
+<text x="538" y="515" font-size="16" font-weight="400" fill="#9badc2">generation++ · drop queued work</text>
+<text x="538" y="540" font-size="16" font-weight="400" fill="#9badc2">Retire handles; interrupt worker</text>
+<path d="M400 516H516" fill="none" stroke="#e9b96e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-amber)"/>
+<text x="423" y="497" font-size="18" font-weight="700" fill="#e9b96e">close()</text>
+<rect x="56" y="666" width="344" height="144" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2"/>
+<rect x="56" y="684" width="3" height="108" rx="1.5" fill="#e9b96e"/>
+<text x="78" y="700" font-size="23" font-weight="700" fill="#e4edf8">OPEN / DRAINING</text>
+<text x="78" y="729" font-size="17" font-weight="400" fill="#9badc2">Current-generation exception</text>
+<text x="78" y="754" font-size="17" font-weight="400" fill="#9badc2">or live emitter.fail(error)</text>
+<rect x="516" y="666" width="350" height="144" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2"/>
+<rect x="516" y="684" width="3" height="108" rx="1.5" fill="#e9b96e"/>
+<text x="538" y="700" font-size="25" font-weight="700" fill="#e4edf8">FAILED</text>
+<text x="538" y="729" font-size="16" font-weight="400" fill="#9badc2">generation++ · drop queued work</text>
+<text x="538" y="754" font-size="16" font-weight="400" fill="#9badc2">Retire handles; interrupt worker</text>
+<path d="M400 738H516" fill="none" stroke="#e9b96e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-amber)"/>
+<text x="428" y="719" font-size="18" font-weight="700" fill="#e9b96e">failure</text>
+<path d="M866 298H944" fill="none" stroke="#76adf7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="866" cy="298" r="4" fill="#0b1220" stroke="#76adf7" stroke-width="1.5"/>
+<circle cx="944" cy="298" r="4" fill="#0b1220" stroke="#9badc2" stroke-width="1.5"/>
+<path d="M866 516H944" fill="none" stroke="#e9b96e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="866" cy="516" r="4" fill="#0b1220" stroke="#e9b96e" stroke-width="1.5"/>
+<circle cx="944" cy="516" r="4" fill="#0b1220" stroke="#9badc2" stroke-width="1.5"/>
+<path d="M866 738H944" fill="none" stroke="#e9b96e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="866" cy="738" r="4" fill="#0b1220" stroke="#e9b96e" stroke-width="1.5"/>
+<circle cx="944" cy="738" r="4" fill="#0b1220" stroke="#9badc2" stroke-width="1.5"/>
+<path d="M944 738V298H1032" fill="none" stroke="#9badc2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-muted)"/>
+<rect x="1032" y="226" width="352" height="812" rx="18" fill="#112b32" stroke="#3e8f85" stroke-width="1.2"/>
+<text x="1054" y="265" font-size="24" font-weight="700" fill="#e4edf8">One cleanup path</text>
+<text x="1054" y="296" font-size="17" font-weight="400" fill="#9badc2">All exits use worker finally.</text>
+<rect x="1054" y="336" width="308" height="142" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2"/>
+<rect x="1054" y="354" width="3" height="106" rx="1.5" fill="#76adf7"/>
+<text x="1076" y="370" font-size="22" font-weight="700" fill="#e4edf8">Retire handles</text>
+<text x="1076" y="399" font-size="17" font-weight="400" fill="#9badc2">Detach cancellation hooks</text>
+<text x="1076" y="424" font-size="17" font-weight="400" fill="#9badc2">Clear active handle set</text>
+<text x="1076" y="449" font-size="17" font-weight="400" fill="#9badc2">Under Ls</text>
+<path d="M1208 478V514" fill="none" stroke="#64d8c3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)"/>
+<rect x="1054" y="514" width="308" height="154" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2"/>
+<rect x="1054" y="532" width="3" height="118" rx="1.5" fill="#64d8c3"/>
+<text x="1076" y="548" font-size="22" font-weight="700" fill="#e4edf8">Close resources</text>
+<text x="1076" y="577" font-size="16" font-weight="400" fill="#9badc2">Run cancellation actions</text>
+<text x="1076" y="602" font-size="16" font-weight="400" fill="#9badc2">Close stages in reverse</text>
+<text x="1076" y="627" font-size="16" font-weight="400" fill="#9badc2">Record cleanup failures</text>
+<text x="1076" y="652" font-size="16" font-weight="400" fill="#9badc2">Outside Ls</text>
+<path d="M1208 668V704" fill="none" stroke="#64d8c3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)"/>
+<rect x="1054" y="704" width="308" height="154" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2"/>
+<rect x="1054" y="722" width="3" height="118" rx="1.5" fill="#64d8c3"/>
+<text x="1076" y="738" font-size="24" font-weight="700" fill="#e4edf8">TERMINATED</text>
+<text x="1076" y="767" font-size="16" font-weight="400" fill="#9badc2">Publish terminal state</text>
+<text x="1076" y="792" font-size="16" font-weight="400" fill="#9badc2">Complete future after cleanup</text>
+<text x="1076" y="817" font-size="16" font-weight="400" fill="#9badc2">Success or exception</text>
+<text x="1054" y="924" font-size="17" font-weight="400" fill="#9badc2">Future callbacks may run here.</text>
+<text x="1054" y="953" font-size="17" font-weight="400" fill="#9badc2">This is not Thread.join().</text>
+<rect x="56" y="864" width="810" height="174" rx="15" fill="#111d2e" stroke="#3e8f85" stroke-width="1.2"/>
+<text x="80" y="902" font-size="24" font-weight="700" fill="#64d8c3">interrupt(): OPEN → OPEN</text>
+<text x="80" y="938" font-size="17" font-weight="400" fill="#9badc2">generation++ → discard queue + retire handles + interrupt worker</text>
+<text x="80" y="963" font-size="17" font-weight="400" fill="#9badc2">Worker: actions → onInterrupt() → dispatch when reset succeeds.</text>
+<text x="80" y="988" font-size="17" font-weight="400" fill="#9badc2">Current-generation reset failure → FAILED; calls may coalesce.</text>
+<text x="80" y="1013" font-size="17" font-weight="400" fill="#9badc2">DRAINING ignores interrupt(); close() still cancels.</text>
+<rect x="56" y="1080" width="1328" height="124" rx="15" fill="#142536" stroke="#2a3f53" stroke-width="1.2"/>
+<text x="80" y="1117" font-size="14" font-weight="700" fill="#e9b96e" letter-spacing="1.2">SERVER ADMISSION HAS A SEPARATE RELEASE GATE</text>
+<rect x="790" y="1097" width="566" height="29" rx="7" fill="#142536" stroke="#2a3f53" stroke-width="1.2"/>
+<text x="802" y="1117" font-size="13" font-weight="700" fill="#e9b96e" letter-spacing="0.6">socketInactive &amp;&amp; workerComplete</text>
+<text x="80" y="1151" font-size="21" font-weight="700" fill="#e4edf8">Socket closure alone does not free the WebSocket session slot.</text>
+<text x="80" y="1181" font-size="18" font-weight="400" fill="#9badc2">Write completion releases reserved payload bytes; it does not prove client consumption.</text>
+<text x="56" y="1253" font-size="21" font-weight="400" fill="#9badc2">Generation checks fence later handoffs. Already-entered external effects remain.</text>
+<path d="M56 1287H1384" fill="none" stroke="#9badc2" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="56" y="1315" font-size="14" font-weight="400" fill="#9badc2">05 / END is a frame payload; finish() is the drain request</text>
+<text x="1384" y="1315" font-size="14" font-weight="400" fill="#9badc2" text-anchor="end">Cancellation and deadlines require plugin cooperation</text>
+</g>
+</svg>

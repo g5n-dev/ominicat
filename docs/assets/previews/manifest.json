@@ -43,6 +43,26 @@
       ]
     },
     {
+      "source": "docs/assets/locking-boundaries.svg",
+      "source_sha256": "81c66fcf0255df8ff0af3fc57f9c5a14f53e173bb200d741f1561738d69d7bcc",
+      "preview": "docs/assets/previews/locking-boundaries.png",
+      "preview_sha256": "99bd350b4c73571e2207f0f2130605a35c5695aa580d4e77f41bdb30d00a1089",
+      "pixels": [
+        2880,
+        2620
+      ]
+    },
+    {
+      "source": "docs/assets/session-lifecycle.svg",
+      "source_sha256": "f904276a6839f30ff52c837e2715f14ad4ea1a8249daafd92dc3165de1134e8a",
+      "preview": "docs/assets/previews/session-lifecycle.png",
+      "preview_sha256": "d85adbab2eafb4b580be4aa70f96c77160639088145e2642997f19025a0e3eaa",
+      "pixels": [
+        2880,
+        2720
+      ]
+    },
+    {
       "source": "docs/assets/framework-paths.svg",
       "source_sha256": "6c7334abe2e979f1b0624da809c32cd2af0f3f5b52351ee30805e9a73afba77d",
       "preview": "docs/assets/previews/framework-paths.png",
@@ -200,6 +220,26 @@
       "pixels": [
         2880,
         2260
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/locking-boundaries.svg",
+      "source_sha256": "8d41ba5c6ddbf5b5e994d6cd3b7af00b538bda506d0c2bf51444d27e9cf4bd87",
+      "preview": "docs/assets/previews/locking-boundaries-zh-CN.png",
+      "preview_sha256": "ea3cff03062aab285e14755d05983cd4f26eee99a1b92607c66d4aa09522e248",
+      "pixels": [
+        2880,
+        2620
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/session-lifecycle.svg",
+      "source_sha256": "d22ff301dcad0684d07bdbdc371f00a2bf1b74341a2dbfa355ed69bbb1f41b76",
+      "preview": "docs/assets/previews/session-lifecycle-zh-CN.png",
+      "preview_sha256": "3a1fe583f294c4a697bf65c5e1d0c168ad2a81feff373016e286b3aea5a0eed2",
+      "pixels": [
+        2880,
+        2720
       ]
     },
     {

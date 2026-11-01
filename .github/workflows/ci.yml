@@ -71,6 +71,7 @@ jobs:
           bash -n scripts/profile.sh scripts/server_soak.sh
       - name: Static documentation images and source freshness
         run: |
+          python3 scripts/render_architecture.py --check
           python3 scripts/render_performance_explainer.py --check
           python3 scripts/localize_readme.py --check
           python3 scripts/render_doc_previews.py --check

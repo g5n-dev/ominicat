@@ -32,6 +32,16 @@
       "preview": "docs/assets/previews/framework-paths-zh-CN.png"
     },
     {
+      "source": "docs/assets/locking-boundaries.svg",
+      "localized": "docs/assets/zh-CN/locking-boundaries.svg",
+      "preview": "docs/assets/previews/locking-boundaries-zh-CN.png"
+    },
+    {
+      "source": "docs/assets/session-lifecycle.svg",
+      "localized": "docs/assets/zh-CN/session-lifecycle.svg",
+      "preview": "docs/assets/previews/session-lifecycle-zh-CN.png"
+    },
+    {
       "source": "reports/baseline/allocation-flamegraph.svg",
       "localized": "docs/assets/zh-CN/reports/baseline/allocation-flamegraph.svg",
       "preview": "docs/assets/previews/reports--baseline--allocation-flamegraph-zh-CN.png"
