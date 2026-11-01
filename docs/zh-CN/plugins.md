@@ -47,6 +47,14 @@ stages:
 
 注册表拒绝重复插件名。工厂必须为每个会话创建新的处理器状态，拒绝未知／无效选项，并在 `close()` 中释放资源。服务器在绑定前执行创建／关闭预检。避免在构造时发起网络请求；应在处理或启动回调中执行由插件管理的 I/O。
 
+## 可选能力声明
+
+I1a 新增可选接口 `DescribedProcessorFactory`；现有 `ProcessorFactory` 实现和 ServiceLoader 注册保持有效。实现 `describe(options)`，为所给配置返回不可变的 `ProcessorDescription`。`PluginRegistry.describe(type, options)` 不调用 `create`；`requireDeclaredCapabilities(type, options, required)` 会拒绝已知不支持及未知的要求。这些是显式的绑定期操作，不是逐帧检查。
+
+描述不得创建处理器、发起网络请求、解析凭据或披露选项值。注册表不按类型缓存描述。第三方代码仍是受信任的 Java 代码，不受沙箱隔离。能力声明不是已验证的行为结果，不是完整选项校验，也不证明远端模型可用。
+
+[能力指南](plugin-capabilities.md)包含可运行检查，以及整段终稿与边界前部分转写的精确定义。普通创建与服务端预检不变；不会新增 YAML、WebSocket 或 Studio 字段来自动启用这项检查。
+
 ## 流式回调
 
 当提供方在自己的线程上返回结果时，实现 `AsyncProcessor`。`processAsync` 启动或输入操作后应及时返回。请保留它的 `AsyncEmitter`，不要保留同步 `FrameSink`：
@@ -69,6 +77,6 @@ emitter.complete();
 
 参见[架构](architecture.md)、[配置](configuration.md)、[线协议](protocol.md)与[提供方参考](ominicat-providers/README.md)。
 
-[跨项目接入提案](integration-contracts.md)计划提供可选的机器可读插件描述、版本化结果编解码器和运行／检查点清单。这些是未来兼容性契约，不会添加配置字段或改变当前 SPI。
+[跨项目接入提案](integration-contracts.md)区分已实现的 I1a 声明，以及计划中的丰富描述、兼容性测试、版本化结果编解码器和运行／检查点清单。其余契约不是配置字段或运行时保证；I1a 不改变现有工厂 SPI 方法。
 
 [时间／注释提案](temporal-annotations.md)为绑定来源的区间、片段变更和独立注释定义分别的未来语义。若没有可执行的一致性证据，能力描述或注册线协议类型不得宣称这些操作已实现。

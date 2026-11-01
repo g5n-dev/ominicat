@@ -4,7 +4,7 @@
 
 # 跨项目接入契约
 
-状态：设计提案与验收计划。下述新增内容尚不是已实现的 API、可接受的 YAML 字段或新的运行时保证。已实现范围仍以当前[场景矩阵](scenario-coverage.md)为准。
+状态：I1a 可选能力声明与显式要求检查已经实现，见 [API 指南](plugin-capabilities.md)。下述其余新增内容仍是设计提案与验收计划，不是可接受的 YAML 字段或新的运行时保证。更广的已实现范围仍以当前[场景矩阵](scenario-coverage.md)为准。
 
 下一步接入目标是通过替换配置和插件，在流式事件处理、顺序重放与结果聚合适配器中复用同一个 Java 17+ 运行时。调度和生命周期留在微内核，可选兼容契约放在接入边界。每个实现增量都必须先有可执行的契约测试用例，才能对外宣称支持。
 
@@ -14,7 +14,7 @@
 
 | 领域 | 当前可由源码核实的行为 | 后续契约／负责方 |
 | --- | --- | --- |
-| 插件组装 | [ProcessorFactory](../../ominicat-core/src/main/java/io/ominicat/core/spi/ProcessorFactory.java) 暴露 `type/create`；[PluginRegistry](../../ominicat-core/src/main/java/io/ominicat/core/spi/PluginRegistry.java) 发现工厂，拒绝重复或缺失的类型。启动阶段执行创建／关闭校验。 | 可选的机器可读版本、选项描述、输入／输出及流式能力。现有配置校验已经实现。 |
+| 插件组装 | [ProcessorFactory](../../ominicat-core/src/main/java/io/ominicat/core/spi/ProcessorFactory.java) 保留 `type/create`；[PluginRegistry](../../ominicat-core/src/main/java/io/ominicat/core/spi/PluginRegistry.java) 发现工厂，拒绝重复或缺失的类型。I1a 新增按配置查询的可选能力声明及显式要求检查，不创建处理器。启动仍执行创建／关闭校验。 | 丰富选项 schema、输入／输出格式、媒体／时间契约及其余兼容性测试。能力声明不替代现有配置校验。 |
 | 事件标识与时间 | [FrameEnvelope](../../ominicat-core/src/main/java/io/ominicat/core/FrameEnvelope.java) 携带事件／会话／轮次／关联／因果 ID 及本地单调时间戳。转写使用媒体毫秒，音频使用逐流采样偏移。 | 驱动负责归一化媒体时间线。关联 ID 仍是不可信数据，不是授权。不得比较独立时钟域。 |
 | 结构化结果 | [EvaluationFrame](../../ominicat-conversation/src/main/java/io/ominicat/conversation/EvaluationFrame.java) 包含策略标签、规则结果、分数、证据及保留／淘汰范围。[自定义线协议输出](protocol.md#插件输出) 使用 Java 简单类名，已明确不具备稳定的全局 schema 命名空间。 | 可选、显式注册且带命名空间的结果 codec。这是扩展已经承认的边界，不是修复一个曾声称稳定的协议。 |
 | 证据 | [Evidence](../../ominicat-conversation/src/main/java/io/ominicat/conversation/Evidence.java) 包含片段、角色／说话人、媒体区间和复制的摘录；内置规则限制其生成摘录。自定义证据生产者自行负责限制。已提交最终片段在保留窗口内不可变。 | 面向外部消费者的可选来源／修订／运行引用。最终结果的更正与撤回策略由插件和结果适配器负责，不得静默覆盖已提交最终结果。 |
@@ -24,19 +24,23 @@
 
 ## I1：可选插件描述与兼容性测试用例
 
-触发证据：已安装插件可能在语法上有效，却在接入要求原生流式转写时只提供整句转写。当前启动预检无法仅凭字符串选项映射确定所有跨阶段语义能力。
+触发证据：已安装插件可能在语法上有效，却在接入要求边界前部分转写结果时只提供整段转写。启动预检无法仅凭字符串选项映射确定所有语义能力。
 
-增加可选的配套描述契约与测试程序，保留现有 `ProcessorFactory` 方法和旧二进制插件。描述插件／SPI 版本、帧／schema 格式、流向、媒体格式、时间原点、选项及声明的限制。缺少元数据表示**未知**，不是已经验证兼容。旧接入保留当前行为；调用方若显式要求某项能力，就必须在开始工作前拒绝不支持或未知的支持状态。描述是待验证的声明，不是远程服务可用的证据。
+已实现的 I1a 子集新增 `ProcessorDescription`、可选配套接口 `DescribedProcessorFactory`，以及 `PluginRegistry.describe(type, options)` / `requireDeclaredCapabilities(type, options, required)`。现有 `ProcessorFactory` 方法与默认创建行为不变。描述包含可选实现版本，以及有界、带命名空间的 `SUPPORTED` / `UNSUPPORTED` / `UNKNOWN` 声明。缺少描述或能力条目表示**未知**，不是已经验证兼容。显式要求会在开始工作前分别拒绝不支持与未知状态。不新增已验证标志、YAML 字段、线协议字段或 Studio 元数据。
 
-描述查询不得构造处理器、解析凭据或联系服务提供方。元数据发现留在绑定／启动路径，不进入帧派发。开放帧契约必须保持可扩展，固定枚举无法描述所有应用帧。在可选接入层实现此能力，不向 core 添加生产依赖。
+描述按配置查询，不按插件类型缓存。注册表使用不可变选项快照，不调用 `ProcessorFactory.create`。内置转写描述只检查选项名，不解析模型、凭据或端点，也不联系服务提供方。第三方工厂构造器与描述方法必须遵守无 I/O、不泄漏秘密的契约；它们是受信任的 Java 代码，不是沙箱。发现留在绑定边界，不进入帧派发。服务端创建／关闭预检仍独立进行。
 
-验收：
+内置转写声明支持 `TranscriptionFactory.UTTERANCE_FINALS`，不支持 `TranscriptionFactory.PRE_BOUNDARY_PARTIALS`。后者指显式边界前出现非最终转写，且仍可继续接纳后续 PCM 输入，不是泛化的流式布尔值。接收音频分块、输出 SSE 对话片段或实现 `AsyncProcessor`，均不能单独证明此能力。[能力指南](plugin-capabilities.md)定义了标识与可运行检查。
+
+I1a 验收：
 
 - 在 Java 17、21 和 25 上加载改动前的 Java 17 插件 JAR，无需重编译；创建独立会话状态，并关闭所有拥有的实例。
-- 查询元数据时不调用 `ProcessorFactory.create` 或网络代码；ServiceLoader 仍可能实例化工厂本身。校验声明的选项，但不暴露秘密值。
-- 显式要求原生流式能力时，拒绝仅支持整句请求的适配器，并报告具体能力不匹配。未知元数据遵循调用方声明的兼容策略。
-- 插件声称流式支持但实际行为不满足契约时，一致性探测必须失败。仅有元数据不能产生已验证兼容的结果。
-- 先用当前帧和驱动 API，在同一内核产物上建立下述三类基线测试；各契约交付时再由 I2/I3 扩展。未来 codec／manifest 不得阻塞 I1。测试能力不匹配与生命周期行为，而不只是解析描述。
+- 查询声明不调用 `ProcessorFactory.create`、解析凭据或发送供应商请求；ServiceLoader 仍可能实例化工厂本身。拒绝超界描述、空值及工厂类型不匹配，不回显选项值。
+- 成功要求已知的整段终稿能力，拒绝已知的边界前部分结果不匹配，并分别拒绝未知声明或缺少能力条目。显式空要求不得创建处理器。
+- 用本地脚本化行为探针，区分实际的边界前部分结果后继续输入 PCM，与仅在边界后输出终稿。单靠声明不能产生已验证兼容结果，也不能证明真实 ASR 行为。
+- 保留不可变选项／描述快照、独立处理器所有权、默认协议／配置行为，以及未要求能力的旧调用方的普通创建行为。
+
+其余 I1 工作仍在计划中：更丰富的插件／SPI 版本契约、选项 schema、帧／schema 与媒体格式、时间原点、声明限制及下述三类测试。先用当前帧和驱动 API 建立这些基线测试，再由 I2/I3 随 codec／manifest 交付扩展。开放帧契约不能变成所有应用帧的固定枚举。
 
 ## I2：选择启用的版本化结果 codec 与溯源引用
 
@@ -78,7 +82,7 @@
 
 这些是计划中的验收测试，不是现有端到端产品接入。
 
-I1 用现有 raw/envelope 帧、Replay／窗口 API 和 EvaluationFrame 输出建立基线。I2 增加 schema／归约器互操作检查；I3 增加清单／恢复／重新评估检查。下表描述这些增量合起来的最终覆盖范围。
+其余 I1 工作使用现有 raw/envelope 帧、Replay／窗口 API 和 EvaluationFrame 输出建立基线。I2 增加 schema／归约器互操作检查；I3 增加清单／恢复／重新评估检查。下表描述这些增量合起来的最终覆盖范围；仅有 I1a 声明并未实现这三类测试。
 
 | 类别 | 复用机制／替换方式 | 正向与负向证据 |
 | --- | --- | --- |

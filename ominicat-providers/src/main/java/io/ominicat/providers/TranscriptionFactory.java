@@ -3,7 +3,8 @@ package io.ominicat.providers;
 import io.ominicat.core.Frame;
 import io.ominicat.core.FrameSink;
 import io.ominicat.core.Processor;
-import io.ominicat.core.spi.ProcessorFactory;
+import io.ominicat.core.spi.DescribedProcessorFactory;
+import io.ominicat.core.spi.ProcessorDescription;
 import java.io.ByteArrayOutputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -11,15 +12,33 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 /** Bounded, track-isolated PCM utterances using the compatible multipart file API. */
-public final class TranscriptionFactory implements ProcessorFactory {
+public final class TranscriptionFactory implements DescribedProcessorFactory {
+    /** Adapter buffers PCM until an explicit utterance boundary, then requests a final transcript. */
+    public static final String UTTERANCE_FINALS = "io.ominicat.transcription.utterance-finals.v1";
+    /**
+     * Nonfinal transcripts before an explicit boundary while accepting subsequent PCM.
+     * This adapter declares it unsupported; this profile alone does not certify a remote wire protocol.
+     */
+    public static final String PRE_BOUNDARY_PARTIALS = "io.ominicat.transcription.pre-boundary-partials.v1";
+    private static final String[] OPTION_NAMES = {"baseUrl", "model", "apiKeyEnv", "timeoutSeconds",
+            "maxResponseBytes", "maxAudioBytes", "maxStreams", "speaker", "speakers", "roles"};
+    private static final ProcessorDescription DESCRIPTION = new ProcessorDescription("openai-transcribe",
+            Optional.empty(), Map.of(UTTERANCE_FINALS, ProcessorDescription.Support.SUPPORTED,
+                    PRE_BOUNDARY_PARTIALS, ProcessorDescription.Support.UNSUPPORTED));
+
     @Override public String type() { return "openai-transcribe"; }
 
+    @Override public ProcessorDescription describe(Map<String, String> options) {
+        Options.allowed(options, OPTION_NAMES);
+        return DESCRIPTION;
+    }
+
     @Override public Processor create(Map<String, String> options) {
-        Options.allowed(options, "baseUrl", "model", "apiKeyEnv", "timeoutSeconds", "maxResponseBytes",
-                "maxAudioBytes", "maxStreams", "speaker", "speakers", "roles");
+        Options.allowed(options, OPTION_NAMES);
         CompatibleClient client = new CompatibleClient(options);
         int limit = Options.integer(options, "maxAudioBytes", 4 * 1024 * 1024, 2, 16 * 1024 * 1024);
         int maxStreams = Options.integer(options, "maxStreams", 8, 1, 32);
