@@ -16,6 +16,21 @@ This is a living queue for small, evidence-led improvements to OminiCat's high-p
 
 Scheduled profiling is a separate evidence collection job. It runs weekly on Java 17 and 21, generates CPU/allocation flame graphs and GC summaries, and retains an allowlisted, checksummed artifact for 30 days. Its success means collection and validation completed, not that performance improved. CI runner variation must not update headline performance claims automatically. See [performance methodology](performance.md).
 
+## One-time source review — 2026-11-01
+
+This pass inspected kernel lifecycle and plugin creation, conversation policies and snapshots, HTTP/audio providers, server observation and codecs, browser event consumption, current checks and open maintenance pull requests. The selected repair is a reproduced Unicode integrity failure in evidence excerpts: a valid supplementary character crossing either UTF-16 crop boundary became an isolated surrogate and failed strict UTF-8 encoding. Keep the original 180-unit content window and at most two ellipses; move only split-pair boundaries inward. Preserve rule outcomes, attribution, original transcripts and wire shape.
+
+| Finding | Status and next acceptance |
+| --- | --- |
+| Evidence excerpt boundaries | Selected repair. Fixed leading/trailing examples, complete-pair and ASCII compatibility, an independent code-point-window oracle, strict UTF-8 and evaluation-to-JSON checks must pass with the normal Java 17/21/25 gates. This is a correctness repair, with no speedup claim. |
+| Activity journal encoding under its append monitor | Performance candidate. Freeze cursor metadata and at most 128 immutable event references under the lock before encoding outside it; first establish concurrent append/page evidence and snapshot-overwrite regressions. |
+| Phrase rules scan after collecting eight evidence items | Performance candidate. Measure early/late/missing matches and mixed or absent target speakers with exact-result oracles before removing scans or temporary speaker lists. |
+| Media/request copies, codec representations and unchanged browser-page rerenders | Independent candidates. Require payload/byte-limit and cancellation fixtures or browser state/focus/scroll checks, plus measurements for each workload. |
+| Factory creation lock and kernel invocation allocation | Deferred experiments. Preserve old-factory serialization and lifecycle fences; first clarify the concurrency contract and collect the relevant async/envelope/media baselines. |
+| Open dependency and generated-image updates | Separate maintenance. Revalidate against current main; preserve archived report bytes and generated-image source bindings. A version upgrade alone is not evidence of a current vulnerability. |
+
+Only the excerpt repair is selected in this pass. Other candidates remain unimplemented; the live-provider trial still requires the explicit service configuration listed below.
+
 ## Ready queue
 
 ### Temporal and annotation semantics
@@ -67,6 +82,7 @@ Continue these measurement increments alongside the integration work when their 
 
 | Increment | Result | Evidence |
 | --- | --- | --- |
+| Unicode-safe evidence excerpts | Cropping no longer splits a valid supplementary character at either edge. Content remains within the original 180 UTF-16 units plus at most two ellipses; metadata, rule results and default wire shape remain intact. | [Boundary and independent-oracle regressions](../ominicat-conversation/src/test/java/io/ominicat/conversation/EvidenceUnicodeTest.java), [evaluation / strict UTF-8 / JSON regressions](../ominicat-server/src/test/java/io/ominicat/server/EvidenceUnicodeWireTest.java) |
 | I1a optional plugin capability declarations | Bounded immutable descriptions, configuration-specific lookup and explicit capability requirements; old factory methods and default creation remain intact. Built-in transcription separately declares utterance-final support and pre-boundary-partial non-support; declarations remain separate from behavior evidence, without a verified flag. Broader I1/I2/I3 remain planned. | [PR #33](https://github.com/g5n-dev/ominicat/pull/33), [API, runnable checks and acceptance](plugin-capabilities.md), [integration boundary](integration-contracts.md) |
 | Bounded prompt construction and deep performance audit | Prompt rendering skips unused evaluation metrics and excess history materialization. Paired Ubuntu/Java 17 measurements cover nine window/history cases with exact output and runtime-origin oracles; a separate full Linux kernel profile identifies the next allocation hypotheses. Public API and lifecycle behavior remain stable. | [PR #32](https://github.com/g5n-dev/ominicat/pull/32), [audit and complete results](performance-audit.md), [paired raw evidence](../reports/performance-audit/prompt-render-2026-11-01/manifest.json), [independent prompt regressions](../ominicat-conversation/src/test/java/io/ominicat/conversation/PromptTemplateOracleTest.java) |
 | Complete Chinese documentation graph | All project guides, protocol, configuration/deployment, module guides and report narratives have Chinese views. Internal page and heading links stay in Chinese; all published figures have localized labels and source-bound PNG previews. Source freshness, executable examples, API literals, table numbers and navigation are checked in CI; original measurement archives remain unchanged. | [PR #31](https://github.com/g5n-dev/ominicat/pull/31), [Chinese catalog](zh-CN/index.md), [page bindings](i18n/pages.json), [figure bindings](i18n/figures.json), [navigation and evidence controls](../scripts/test_chinese_docs.py) |

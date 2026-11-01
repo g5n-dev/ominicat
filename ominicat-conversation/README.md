@@ -38,6 +38,8 @@ Before forwarding `Control(END)`, the stage emits an `EvaluationFrame`. Setting 
 
 Policy matching is literal, case-insensitive, speaker-specific and confined to the retained window. Commas separate configured phrases; use the Java API for phrases containing commas. Each phrase option accepts up to 64 distinct entries. The optional question-ratio rule counts turns containing `?` or `？`; it is a punctuation heuristic. Rule scores range from zero to one. The aggregate is the mean of applicable scores. A missing target speaker or empty rule list produces `score: null`, rather than a passing score. Evidence includes up to eight excerpts per rule, speaker labels and transcript intervals.
 
+Evidence excerpts keep at most 180 UTF-16 content units plus two optional ellipses. For well-formed input, cropping moves split surrogate-pair boundaries inward to retain complete Unicode code points; it does not expand the original window or define grapheme boundaries. Attribution and the whole turn's media interval remain unchanged.
+
 `EvaluationFrame.policyVersion` is the caller-supplied policy configuration label. `retainedTurns` and `evictedTurns` make the bounded scope explicit. Preserve the application version, configuration and input transcripts externally if evaluations must be reproduced later.
 
 ```yaml
