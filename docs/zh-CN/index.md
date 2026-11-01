@@ -14,6 +14,7 @@
 - [不可变媒体引用 · docs/media-references](media-references.md)
 - [性能深度审计 · docs/performance-audit](performance-audit.md)
 - [性能设计与 Linux 证据 · docs/performance](performance.md)
+- [可选插件能力声明 · docs/plugin-capabilities](plugin-capabilities.md)
 - [添加插件 · docs/plugins](plugins.md)
 - [帧协议 · docs/protocol](protocol.md)
 - [场景覆盖 · docs/scenario-coverage](scenario-coverage.md)

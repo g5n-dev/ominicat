@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "baselineRevision": "d6698fa275006e40d7d69b2b1b1debc8deae1174",
+  "compiler": "javac 17.0.21.0.3",
+  "classFileMajor": 61,
+  "sourceSha256": "4d6c8ef194762301f5baa77bb105713ea32370dcaaca3ea9d0d1c7e04efc1008",
+  "jarSha256": "adf5406fccaf1749d83bd7712076187210cd1a79962538015567f9f32f7de617",
+  "baselineCoreJarSha256": "79a51f7aba642ea8dc8ffed5cb77a30eedacb047ff6897fedb574f43e8d63261",
+  "baselineSources": {
+    "ominicat-core/src/main/java/io/ominicat/core/AsyncEmitter.java": "44f9efb11ea681c9757f6b8775071da3a34f437877d5ed1cbb0b15c8bd381154",
+    "ominicat-core/src/main/java/io/ominicat/core/AsyncOutlet.java": "e268a2a7b966ee805dd515789dbfaaf24d003af3f427ea36f08aa29bf9901b36",
+    "ominicat-core/src/main/java/io/ominicat/core/AsyncProcessor.java": "38c4854af52081b33f2037e7f6aaa8fde98972bda4f2564aae8346fb3fbe9fb1",
+    "ominicat-core/src/main/java/io/ominicat/core/EnvelopeProcessor.java": "cdb01f8141bff2762d1f8c75488160efac00ccf68d8a72af5267aa3a8dbbf69b",
+    "ominicat-core/src/main/java/io/ominicat/core/FallbackProcessor.java": "42f2b34a365931b85b783bbea10f2ee40d1eebbdcbad945f07ac9f214083cef7",
+    "ominicat-core/src/main/java/io/ominicat/core/Frame.java": "fdcc1ee0ba7e83a9b564f67a16b33e25673073f7265d0d832e38aafcf1de757a",
+    "ominicat-core/src/main/java/io/ominicat/core/FrameEnvelope.java": "977d8556417420128bcb4351f6ea57630edc621b8a36a75f87468c37468d52b3",
+    "ominicat-core/src/main/java/io/ominicat/core/FrameSink.java": "e1373e4404361b374b597a9bf1d0970102b662f410e11a6163fe62d67e4016fd",
+    "ominicat-core/src/main/java/io/ominicat/core/ParallelProcessor.java": "676d542294a265141588592877e25ae5baa0d356aefdb5de42824d530de2d751",
+    "ominicat-core/src/main/java/io/ominicat/core/Pipeline.java": "51912a2028db89ba280928c59964ba157034f172e27c4178e765601420d4777b",
+    "ominicat-core/src/main/java/io/ominicat/core/PipelineSession.java": "7207a387f18857cad9f26563d1169b96d0112637f5fe2276d6693d1148c4886e",
+    "ominicat-core/src/main/java/io/ominicat/core/Processor.java": "01d05e653b58ca5243f7f74c7f0389b4d5a1ae7837743afde04ca8d26357c356",
+    "ominicat-core/src/main/java/io/ominicat/core/SessionMetrics.java": "58b3279acc9f42c269709b36ecc3d037393d244f735aaac3cb23e382172787a0",
+    "ominicat-core/src/main/java/io/ominicat/core/SessionOptions.java": "5bed3b1247e246166192f6ba66c421099dcba5dbe77741c09e4fdd002634c414",
+    "ominicat-core/src/main/java/io/ominicat/core/SynchronousSink.java": "9d22b891c7efc690c348ce1fe5127b5074567d6750fdca10bd50f259d1f5a594",
+    "ominicat-core/src/main/java/io/ominicat/core/WorkerThreads.java": "046dd215331c3d7b9f98f29b2748a5c35231b4fc3d12c006ba4ce2f3be623499",
+    "ominicat-core/src/main/java/io/ominicat/core/spi/PluginRegistry.java": "a26c4c72e439426be594c811c6e1511bfb1a83920df62cc35c360320b74d2320",
+    "ominicat-core/src/main/java/io/ominicat/core/spi/ProcessorFactory.java": "1b76527adc33c7baf64c23ce32e755b96343a1253e8f56d3c6a6c9af9da6de20"
+  },
+  "entries": [
+    "META-INF/services/io.ominicat.core.spi.ProcessorFactory",
+    "legacy/fixture/LegacyFactory$1.class",
+    "legacy/fixture/LegacyFactory.class"
+  ]
+}

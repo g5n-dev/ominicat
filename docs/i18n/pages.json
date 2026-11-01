@@ -59,12 +59,12 @@
     {
       "source": "docs/integration-contracts.md",
       "translation": "docs/zh-CN/integration-contracts.md",
-      "source_sha256": "600ba495c4c4dfde454dd167619be29cc67ac4e6f766124d0c0a32bcfea5dd05"
+      "source_sha256": "0ac1bfc41444abe756569be2922623d593b85f501140e0ba1675176fdeb8ce3c"
     },
     {
       "source": "docs/iteration-plan.md",
       "translation": "docs/zh-CN/iteration-plan.md",
-      "source_sha256": "9a772e500f4df45f0f0ce32964b36a286fd64fc38239255e7bd550a4adfd0d17"
+      "source_sha256": "06f5ea305907a56bf4a0d4a095331638ea4e672cf9a1b632aace44c0996f4bc2"
     },
     {
       "source": "docs/java-compatibility.md",
@@ -87,9 +87,14 @@
       "source_sha256": "63ffd74a5f69aa4f07e3a27242bc01f6973f3e716e9fe1baa9fb7c6990621e8d"
     },
     {
+      "source": "docs/plugin-capabilities.md",
+      "translation": "docs/zh-CN/plugin-capabilities.md",
+      "source_sha256": "f62be2788f51465c0902dec9f795d36defdf906c648aca69279231718eb39b1c"
+    },
+    {
       "source": "docs/plugins.md",
       "translation": "docs/zh-CN/plugins.md",
-      "source_sha256": "c52de3285c4696900934a8c4b49f20dc46c2ee54d9c711c0cb7d5318cd00b0b4"
+      "source_sha256": "527d6b5b13d76ec5d44ebf30f78745f256b21f08a9123a2d1c2dd1f848b7273d"
     },
     {
       "source": "docs/protocol.md",

@@ -4,7 +4,7 @@
 
 # Cross-project integration contracts
 
-Status: design proposal and acceptance plan. The additions below are not implemented APIs, accepted YAML fields or new runtime guarantees. The current [scenario matrix](scenario-coverage.md) remains the implemented scope.
+Status: I1a optional capability declarations and explicit requirement checks are implemented; see the [API guide](plugin-capabilities.md). The remaining additions below are a design proposal and acceptance plan, not accepted YAML fields or new runtime guarantees. The current [scenario matrix](scenario-coverage.md) remains the broader implemented scope.
 
 The next integration goal is to reuse one Java 17+ runtime across streaming event processing, sequential replay and result aggregation adapters by changing configuration and plugins. Keep scheduling and lifecycle in the microkernel; add optional compatibility contracts at the integration boundary. Each implementation increment must include an executable contract fixture before advertising support.
 
@@ -14,7 +14,7 @@ The [temporal/annotation proposal](temporal-annotations.md) defines optional sou
 
 | Area | Current, source-backed behavior | Next contract / owner |
 | --- | --- | --- |
-| Plugin assembly | [ProcessorFactory](../ominicat-core/src/main/java/io/ominicat/core/spi/ProcessorFactory.java) exposes `type/create`; [PluginRegistry](../ominicat-core/src/main/java/io/ominicat/core/spi/PluginRegistry.java) discovers factories and rejects duplicate or missing types. Startup performs create/close validation. | Optional machine-readable versions, option descriptions, input/output and streaming capabilities. Existing configuration validation is already implemented. |
+| Plugin assembly | [ProcessorFactory](../ominicat-core/src/main/java/io/ominicat/core/spi/ProcessorFactory.java) retains `type/create`; [PluginRegistry](../ominicat-core/src/main/java/io/ominicat/core/spi/PluginRegistry.java) discovers factories and rejects duplicate or missing types. I1a adds optional configuration-specific capability declarations and explicit requirement checks without creating processors. Startup still performs create/close validation. | Rich option schemas, input/output formats, media/time contracts and the remaining compatibility fixtures. Capability declarations do not replace existing configuration validation. |
 | Event identity and time | [FrameEnvelope](../ominicat-core/src/main/java/io/ominicat/core/FrameEnvelope.java) carries event/session/turn/correlation/causation IDs and local monotonic timestamps. Transcripts use media milliseconds; audio uses per-stream sample offsets. | Drivers normalize media timelines. Correlation IDs remain untrusted data, not authorization. Do not compare independent clock domains. |
 | Structured results | [EvaluationFrame](../ominicat-conversation/src/main/java/io/ominicat/conversation/EvaluationFrame.java) contains policy labels, rule results, scores, evidence and retained/evicted scope. [Custom wire output](protocol.md#plugin-output) uses simple Java class names and explicitly has no stable global schema namespace. | An optional, explicitly registered, namespaced result codec. This extends an acknowledged boundary rather than fixing a claimed stable protocol. |
 | Evidence | [Evidence](../ominicat-conversation/src/main/java/io/ominicat/conversation/Evidence.java) contains segment, role/speaker, media intervals and a copied excerpt; built-in rules bound their generated excerpts. Custom evidence producers own their limits. Committed final segments are immutable within the retained window. | Optional source/revision/run references for external consumers. Final correction and retraction policies belong in plugins and result adapters. Do not silently overwrite a committed final. |
@@ -24,19 +24,23 @@ The [temporal/annotation proposal](temporal-annotations.md) defines optional sou
 
 ## I1: Optional plugin descriptions and compatibility fixtures
 
-Trigger: an installed plugin can be syntactically valid yet offer utterance-based transcription where an integration requires native streaming. The current startup preflight cannot establish every cross-stage semantic capability from a string option map.
+Trigger: an installed plugin can be syntactically valid yet offer utterance-based transcription where an integration requires pre-boundary partial results. Startup preflight cannot establish every semantic capability from a string option map.
 
-Add an optional companion description contract and a test harness. Preserve the existing `ProcessorFactory` methods and old binary plugins. Describe plugin/SPI versions, frame/schema formats, streaming direction, media formats, time origin, options and declared limits. Missing metadata means **unknown**, not verified compatible. Legacy integrations retain their current behavior; a caller explicitly requiring a capability must reject unsupported or unknown support before starting work. Descriptions are declarations to test, not evidence of remote service availability.
+The implemented I1a slice adds `ProcessorDescription`, the optional `DescribedProcessorFactory` companion interface, and `PluginRegistry.describe(type, options)` / `requireDeclaredCapabilities(type, options, required)`. Existing `ProcessorFactory` methods and default creation behavior remain unchanged. Descriptions carry an optional implementation version and bounded, namespaced `SUPPORTED` / `UNSUPPORTED` / `UNKNOWN` declarations. Absent descriptions or capability entries mean **unknown**, not verified compatible. Explicit requirements reject unsupported and unknown support separately before starting work. No verified flag, YAML field, wire field or Studio metadata is added.
 
-Description lookup must not construct processors, resolve credentials or contact providers. Keep metadata discovery in the binding/startup path, outside frame dispatch. An open frame contract must remain extensible; a fixed enumeration cannot describe every application frame. Implement this in an optional integration layer without adding production dependencies to core.
+Descriptions are configuration-specific and are not cached by plugin type. The registry uses an immutable options snapshot without calling `ProcessorFactory.create`. Built-in transcription lookup checks option names without resolving models, credentials or endpoints or contacting a provider. Third-party factory constructors and description methods must follow the no-I/O/no-secret contract; they are trusted Java code, not a sandbox. Discovery stays at the binding boundary, outside frame dispatch. Server create/close preflight remains separate.
 
-Acceptance:
+The built-in transcription declaration supports `TranscriptionFactory.UTTERANCE_FINALS` and rejects `TranscriptionFactory.PRE_BOUNDARY_PARTIALS`. The latter means non-final transcripts before an explicit boundary while subsequent PCM input can still be accepted, not a generic streaming boolean. Accepting audio chunks, SSE chat output or implementing `AsyncProcessor` alone does not establish this capability. The [capability guide](plugin-capabilities.md) defines the identifiers and runnable checks.
+
+I1a acceptance:
 
 - Load a pre-change Java 17 plugin JAR without recompilation on Java 17, 21 and 25; create distinct session state and close all owned instances.
-- Query metadata without calling `ProcessorFactory.create` or network code; ServiceLoader may still instantiate the factory itself. Validate declared options without exposing secret values.
-- Reject an utterance-only adapter when native streaming is explicitly required; report the specific capability mismatch. Unknown metadata follows the caller's declared compatibility policy.
-- Fail a conformance probe when a plugin advertises streaming but its observed behavior does not satisfy that contract. Metadata alone cannot produce a verified compatibility result.
-- Establish the three fixture families below against the same kernel artifact using current frame and driver APIs first. Extend them in I2/I3 as each new contract ships; their future codecs/manifests must not block I1. Test mismatches and lifecycle behavior, not just descriptor parsing.
+- Query declarations without calling `ProcessorFactory.create`, resolving credentials or sending provider requests; ServiceLoader may still instantiate the factory itself. Reject invalid descriptor bounds, null values and factory-type mismatches without echoing option values.
+- Require the known utterance-final capability successfully, reject the known pre-boundary-partial mismatch, and separately reject unknown declarations or missing capability entries. Explicit empty requirements must not create a processor.
+- Use local scripted behavior probes to distinguish an actual pre-boundary partial followed by more PCM from boundary-only final output. Declarations alone cannot produce a verified compatibility result or establish real ASR behavior.
+- Preserve immutable option/description snapshots, distinct processor ownership, default protocol/configuration behavior and ordinary creation for legacy callers that make no capability requirement.
+
+Remaining I1 work is still planned: richer plugin/SPI version contracts, option schemas, frame/schema and media formats, time origins, declared limits, and the three fixture families below. Establish those baseline fixtures with current frame and driver APIs first; I2/I3 extend them as their codecs/manifests ship. An open frame contract must not become a fixed enumeration of every application frame.
 
 ## I2: Opt-in versioned result codecs and provenance references
 
@@ -78,7 +82,7 @@ Acceptance:
 
 These are planned acceptance fixtures, not existing end-to-end product integrations.
 
-I1 establishes their baseline with existing raw/envelope frames, Replay/window APIs and EvaluationFrame output. I2 adds schema/reducer interoperability checks; I3 adds manifest/resume/reevaluation checks. The table describes the final coverage across those increments.
+Remaining I1 work establishes their baseline with existing raw/envelope frames, Replay/window APIs and EvaluationFrame output. I2 adds schema/reducer interoperability checks; I3 adds manifest/resume/reevaluation checks. The table describes the final coverage across those increments; I1a declarations alone do not implement these families.
 
 | Family | Reused mechanisms / substitution | Positive and negative evidence |
 | --- | --- | --- |

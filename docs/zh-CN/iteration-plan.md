@@ -32,11 +32,12 @@
 
 ### 接入兼容性
 
-[跨项目契约提案](integration-contracts.md)定义配套接入增量与三类测试。这些是计划中的能力，不是已交付 API。一次优先实现一个有界项目，保留 Java 17 及现有默认 API／协议行为。I1 用当前 API 建立兼容性测试；I2/I3 在对应契约交付时扩展。
+[跨项目契约提案](integration-contracts.md)定义配套接入增量与三类测试。I1a 已实现有界能力声明、按配置查询及显式要求检查，见[能力指南](plugin-capabilities.md)。其余 I1、I2/I3 和三类更广测试仍在计划中。一次优先实现一个有界项目，保留 Java 17 及现有默认 API／协议行为。
 
 | 顺序 | 增量 | 验收边界 |
 | --- | --- | --- |
-| I1 | 可选插件描述与兼容性测试 | 保留旧插件二进制；查询元数据不调用 `ProcessorFactory.create` 或网络代码；显式处理未知能力；拒绝已知的整句／流式能力不匹配。用当前 API 建立流式／重放／聚合基线，后续再由 I2/I3 扩展。 |
+| I1a | 可选声明与显式要求检查，已实现子集 | 保留旧插件二进制；查询不调用 `ProcessorFactory.create`；内置描述不解析凭据或联网。使用不可变、有界、按配置查询的声明，分别拒绝未知与不支持，并区分整段终稿与边界前部分结果。不改默认配置、线协议或 Studio。 |
+| I1 后续 | 丰富描述与更广兼容性测试 | 选项 schema、格式、媒体／时间契约及流式／重放／聚合基线仍在计划中；用局部行为探针检验声明，I2/I3 随对应契约交付扩展。 |
 | I2 | 选择启用的命名空间结果 schema 与溯源 | 保留默认线协议测试；区分同名帧类；拒绝重复／不支持的 schema 注册；保留证据时间单位、因果 ID 和窗口范围。显式主体映射须区分跨应用的相同本地键。单独测量 codec 成本。 |
 | I3 | 外部运行清单与检查点绑定 | 恢复时，在状态变化前拒绝输入／定义内容不匹配；允许将新策略重新评估作为新运行。sink 失败不得推进游标。存储与持久作用仍由外部负责。 |
 
@@ -66,6 +67,7 @@
 
 | 增量 | 结果 | 证据 |
 | --- | --- | --- |
+| I1a 可选插件能力声明 | 有界不可变描述、按配置查询与显式能力要求检查；旧工厂接口及默认创建行为保留。内置转写分别声明整段终稿支持、边界前部分结果不支持；声明与行为证据分开，不引入已验证标志。更广 I1/I2/I3 仍在计划中。 | [PR #33](https://github.com/g5n-dev/ominicat/pull/33)、[API、可运行检查与验收](plugin-capabilities.md)、[接入边界](integration-contracts.md) |
 | 有界提示词构造与性能深度审计 | 提示渲染跳过未使用的评估指标和多余历史实体化。Ubuntu／Java 17 配对测量覆盖九种窗口／历史用例，并逐字校验输出和运行时来源；独立的完整 Linux 内核 profile 为下一步分配假设提供依据。公开 API 与生命周期行为保持稳定。 | [PR #32](https://github.com/g5n-dev/ominicat/pull/32)、[审计与完整结果](performance-audit.md)、[配对原始证据](../../reports/performance-audit/prompt-render-2026-11-01/manifest.json)、[独立提示词回归](../../ominicat-conversation/src/test/java/io/ominicat/conversation/PromptTemplateOracleTest.java) |
 | 完整中文文档阅读路径 | 所有项目指南、协议、配置与部署、模块说明和报告叙述均有中文阅读版。内部页面与标题跳转保留中文；所有已发布图表均有中文标签和绑定源文件的 PNG 预览。CI 检查源文新鲜度、可执行示例、API 字面值、表格数值和导航；原始测量归档保持不变。 | [PR #31](https://github.com/g5n-dev/ominicat/pull/31), [中文目录](index.md)、[页面绑定](../i18n/pages.json)、[图表绑定](../i18n/figures.json)、[导航与证据保护测试](../../scripts/test_chinese_docs.py) |
 | 易发现的英文／简体中文 README | 主视觉之前提供语言切换。中文版本包含嵌入、插件打包和生命周期示例，并本地化横幅、组成与框架路径图。两版保留相同 Linux 证据；CI 检查译文新鲜度及绑定来源的 PNG。 | [PR #30](https://github.com/g5n-dev/ominicat/pull/30)、[项目首页](../../README.zh-CN.md)、[简体中文](../../README.zh-CN.md)、[翻译词表](../i18n/zh-CN.json)、[图形本地化检查](../../scripts/localize_readme.py) |
@@ -77,7 +79,7 @@
 | 性能与 profile 文档 | README 展示实测吞吐、分配、CPU 栈、GC 和资源排空，并区分负载范围。 | [PR #13](https://github.com/g5n-dev/ominicat/pull/13)、[PR #15](https://github.com/g5n-dev/ominicat/pull/15)、[内核 profile](reports/java17/kernel/profiles.md) |
 | 完整 profile 导出与可读图形 | 显式采集／导出 64 帧栈，完整渲染提供的栈，汇总保留热点权重，并提供 GC 暂停时间线。从原始 Java 17 记录恢复更深栈，不替换测量结果。成功采集会先生成全部图，再移动本地原始导出。 | [生成器回归](../../scripts/test_summarize_profiles.py)、[打包控制](../../scripts/test_package_profiles.py)、[已恢复 profile](reports/java17/kernel/profiles.md) |
 | 可重复规划与证据采集 | 持续维护验收队列、每周 profiling、完整结果校验、白名单／校验和诊断以及经隐私检查的失败输出。 | [工作流](../../.github/workflows/performance.yml)、[报告校验](../../scripts/test_report.py)、[打包控制](../../scripts/test_package_profiles.py)、[失败控制](../../scripts/test_profile_failure.py) |
-| 跨项目契约审查 | 根据源码区分现有机制、拟议兼容契约与外部职责，并提供显式负向验收案例。实现仍在 I1–I3 队列中。 | [设计与验收计划](integration-contracts.md) |
+| 跨项目契约审查 | 根据源码区分现有机制、拟议兼容契约与外部职责，并提供显式负向验收案例。I1a 声明子集已经实现；其余 I1 及 I2/I3 仍在队列中。 | [设计与验收计划](integration-contracts.md) |
 | 时间／注释覆盖审查 | 区分中间转写修订与通用片段变更、规则结果与独立注释，以及本地归约与外部发布保证。可选能力的实现仍在队列中。 | [语义与验收计划](temporal-annotations.md) |
 | 最小能力架构审查 | 移除强制的编辑／媒体依赖，限定跨生产者引用，并将缓存可用性与结果有效性分开。指标与一致性检查针对实际声明的能力。 | [可选能力](temporal-annotations.md)、仓库架构审查指引 |
 | T1a 不可变媒体引用 | 可选的来源／生产者限定区间版本值、显式区间／点／未知位置、PCM 每通道单位、精确给定帧边界和有界二进制导入导出。新增二十项测试；对应 Java 17 全量验证共 276 项、512 个压力种子。无内核源码或依赖变化。 | [API 指南](media-references.md)、[值／映射测试](../../ominicat-conversation/src/test/java/io/ominicat/conversation/reference/MediaReferenceTest.java)、[I/O 测试](../../ominicat-conversation/src/test/java/io/ominicat/conversation/reference/MediaReferenceIOTest.java)、[验证](reports/verification.md) |
