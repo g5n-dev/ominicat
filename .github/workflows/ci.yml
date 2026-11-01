@@ -52,7 +52,7 @@ jobs:
             sleep 1
           done
           java -Xmx256m -cp ominicat-server/target/ominicat-server.jar:/tmp/ominicat-validation-classes Soak http://127.0.0.1:18081 http://127.0.0.1:18082 10 2 4 reports/local/ci-soak
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: verification-java-${{ matrix.java }}

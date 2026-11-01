@@ -27,7 +27,7 @@ jobs:
         run: scripts/profile.sh full reports/local/ci
       - name: Package validated diagnostic evidence
         run: python3 scripts/package_profiles.py reports/local/ci reports/local/publish --summary "$GITHUB_STEP_SUMMARY"
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: performance-evidence-java-${{ matrix.java }}-${{ github.run_id }}-${{ github.run_attempt }}
           path: reports/local/publish/
