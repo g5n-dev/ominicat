@@ -16,7 +16,7 @@ The diagram separates dependencies and assembly from frame flow. The kernel can 
 | `ominicat-conversation` | Final transcript windows, policy evaluation, prompt composition, step flows | Core |
 | `ominicat-providers` | PCM utilities, transcript gate, compatible HTTP model adapters | Core, Jackson |
 | `ominicat-server` | Netty WebSocket/HTTP, YAML assembly, authentication, metrics, playground | Core, plugins, Netty, Jackson |
-| `ominicat-benchmarks` | JMH, allocation and bounded load measurement | Core, JMH |
+| `ominicat-benchmarks` | JMH, allocation and bounded load measurement | Core, Conversation, JMH |
 
 ## Two execution paths
 
@@ -25,7 +25,7 @@ The diagram separates dependencies and assembly from frame flow. The kernel can 
 | Entry | Execution and ownership | Cost boundary |
 | --- | --- | --- |
 | `Pipeline.process(frame, sink)` | Synchronous processor calls on the caller thread. The caller serializes access and closes processors. A session-claimed pipeline or one containing `AsyncProcessor` rejects direct use. | No session FIFO or inter-stage codec; each invocation still creates a scoped `SynchronousSink` and continuation. |
-| `openSession(...).trySubmit(frame)` | A bounded FIFO feeds one owner worker. Accepted callbacks enqueue `(frame, generation, nextStage)` into the same FIFO; that worker resumes downstream stages. | Queue locking, pending records, generation checks and worker handoffs remain part of execution. Callback arrival order governs continuation order. |
+| `openSession(...).trySubmit(frame)` | A bounded FIFO feeds one owner worker. Accepted callbacks enqueue `(frame, generation, nextStage)` into the same FIFO; that worker resumes downstream stages. | Queue locking, pending records, generation checks and worker handoffs remain part of execution. Accepted enqueue order governs continuation order. |
 
 The standalone server uses Netty NIO event loops for transport. Frame decoding and connection/stage assembly occur on I/O callbacks; normal processor execution and output encoding occur on the session worker, followed by Netty writes. This is a processing boundary, not a claim that every expensive operation has been moved off the event loop.
 
@@ -41,7 +41,7 @@ Source: [Pipeline](../ominicat-core/src/main/java/io/ominicat/core/Pipeline.java
 
 `FrameEnvelope` is a first-class frame. `EnvelopeProcessor.wrap` preserves session, turn and correlation IDs while deriving new IDs and causation links for emitted frames, including asynchronous emissions. Inject IDs and a monotonic clock for replay. Raw frames remain available for simple local pipelines and low-overhead kernels. Nanosecond fields share one local monotonic clock domain; remote capture clocks must be normalized by the driver before comparison. These caller-owned IDs are correlation data, not authentication identities.
 
-`Failure` and scoped `Cancel` are typed application events. A processor exception fails its session. The generic transport passes scoped cancellation events to application logic; the explicit `interrupt` command interrupts the current session generation. An application that owns request IDs must implement request-specific cancellation rather than treating a request as an entire session.
+`Failure` and scoped `Cancel` are typed application events. A current-generation processor exception fails its session. The generic transport passes scoped cancellation events to application logic; the explicit `interrupt` command interrupts the current session generation. An application that owns request IDs must implement request-specific cancellation rather than treating a request as an entire session.
 
 ## Scheduling and ownership
 
@@ -49,11 +49,68 @@ The same Java 17 bytecode runs on Java 17, 21 and 25. `WorkerThreads` uses named
 
 Each session exclusively owns a fresh pipeline and its processor instances. Synchronous processor invocations, reset hooks and cleanup run serially on one session worker. A processor may emit zero, one or many frames synchronously. It must not retain a synchronous `FrameSink` for later use.
 
-`AsyncProcessor` is the separate callback contract. Its emitter queues continuations at the next stage, with the originating cancellation generation. Callback threads never enter downstream processors directly. Continuations share the bounded session queue, active invocations are bounded, and producers must handle explicit rejection. `complete()` releases an invocation; `fail()` propagates failure. Registered cancellation handles close on the worker. A driver must configure deadlines for callbacks that might never complete.
+`AsyncProcessor` is the separate callback contract. Its emitter queues continuations at the next stage, with the originating cancellation generation. Callback threads never enter downstream processors directly. Continuations share the bounded session queue; live asynchronous invocations have their own count limit. A successful `tryEmit` means queue acceptance, not downstream execution or delivery. Producers must handle rejection and eventually call `complete()` or `fail()`.
 
-Ordinary control frames have no hidden kernel effects. `finish()` closes intake and drains accepted work and outstanding asynchronous invocations; `completion()` resolves after reverse cleanup. With async processors, callback arrival order determines continuation order; an END payload is not an implicit cross-branch barrier. The server closes a drained connection only after session completion.
+## Locking and callback boundaries
 
-`interrupt()` invalidates the previous generation, discards queued work, interrupts blocking I/O and serializes `onInterrupt()` before the next generation. Late callbacks are rejected. Already-started external effects cannot be revoked; plugins must cooperate with cancellation. `close()` is immediate cooperative cancellation; callers can await the completion future.
+[![Lock responsibilities, callback handoff and HTTP body ownership](assets/previews/locking-boundaries.png)](assets/locking-boundaries.svg)
+
+One session worker serializes processor state; a `ReentrantLock` coordinates callers and callback producers with that worker. The lock protects short state and queue operations rather than a complete processing call. Synchronous downstream stages execute on the same worker after one FIFO dequeue, with a fresh generation check at each stage boundary. The check releases the session lock before invoking the stage or output sink.
+
+| Guard | Protected responsibility | Boundary while held |
+| --- | --- | --- |
+| Session `ReentrantLock` and `Condition` | Intake state, generation, FIFO, live handles, cancellation queue and metrics | Queue admission/removal and lifecycle changes. Processor calls, cancellation actions, reset hooks and reverse cleanup run outside this lock. |
+| Envelope and optional observation wrapper monitors | Callback terminal state, metadata and delegated handle references | An emission can enter the core session lock while a wrapper monitor remains held. Provider cancellation actions run after the wrapper releases its own monitor. |
+| Explicit parallel branch locks | Each branch's process, reset and close ownership | Branch code runs while its own lock is held. This differs from the session lock, which is released before processor calls. |
+| HTTP body `stateLock` | Subscription/demand state, current byte buffers and terminal state | Local checks and buffer/queue updates. Blocking `items.take()`, `Subscription.request(1)` and `Subscription.cancel()` run outside this monitor. |
+| Server `outputLock` | Writability checks, payload-byte reservation, write submission and close-frame submission | `writeAndFlush` submission is inside the monitor; network completion is asynchronous. Its future returns the reservation on success or failure. |
+| `PluginRegistry` monitor | Factory registration, lookup and processor creation | `register` invokes `factory.type` and `create` invokes `factory.create` while synchronized. `describe` takes a configuration snapshot and invokes the description callback outside the monitor. Discovery belongs outside frame dispatch. |
+| Optional `ActivityJournal` monitor | Ring insertion, session numbering and event-page serialization | `json` currently builds and encodes the page under the same monitor used by writers; it does not serialize a detached snapshot. |
+
+For an enveloped, observed asynchronous emission, the wrapper nesting is envelope monitor → observation monitor → session lock. The core releases its lock before the observation wrapper appends a journal event, although wrapper monitors can still be held. This is the implemented nesting, not a promise that arbitrary plugin calls are lock-free or always outside every lock. Studio observation is opt-in; its sequence numbers record journal insertion order, not a global causal order.
+
+`SynchronousSink` accepts emissions only on its invocation thread. Its `finally` path clears both the owner thread and downstream delegate when `process` returns or throws. A cached retired sink therefore rejects use and does not retain its downstream graph. An asynchronous core handle instead keeps a weak reference to its owning session. The session holds live handles strongly and removes that membership when each operation terminates; completed handles drop their cancellation reference. Envelope wrappers also detach their emitter, metadata, ID supplier and clock at termination. A plugin or SDK that independently captures media or application objects still owns those references.
+
+## Lifecycle, cancellation and release
+
+[![Session states, generation fencing and resource release](assets/previews/session-lifecycle.png)](assets/session-lifecycle.svg)
+
+| Operation | State and accepted work | Completion boundary |
+| --- | --- | --- |
+| Ordinary `Frame.Control(END)` | An application payload with no hidden kernel state change. The server separately calls `finish()` after accepting an END command. | The marker can pass downstream before an earlier asynchronous invocation emits its final continuation. It is not a drain barrier. |
+| `finish()` | `OPEN` → `DRAINING`. External intake closes; live emitters may still enqueue continuations within capacity. | The worker waits for both an empty FIFO and no live handles, then performs cleanup. A callback that never terminates can prevent this drain; plugins need finite deadlines. |
+| `interrupt()` | Only effective in `OPEN`: advance generation, clear queued work, invalidate handles and interrupt the worker; intake stays open. | The worker runs cancellation actions, then stage-order `onInterrupt()` resets, before resuming work. A current-generation cancellation/reset failure enters `FAILED` and cleanup instead; reset stops at the first throwing hook. Repeated requests can coalesce into one reset; there is no per-request hook count guarantee. |
+| `close()` | `OPEN` or `DRAINING` → `CANCELLED`: close intake, clear queued work, invalidate handles and interrupt the worker. | Returns without waiting for cooperative cleanup. The completion future reports cancellation and any retained cleanup errors. |
+| Current-generation processor exception or active `AsyncEmitter.fail()` | The session enters `FAILED`, advances generation and cancels pending/active work. | Cancellation actions and reverse-order stage cleanup run before exceptional completion; cleanup errors remain attached. |
+
+The worker removes cancellation actions from the queue under the session lock and invokes them after unlocking. During finalization it drains remaining cancellation actions, closes processors in reverse order, publishes logical `TERMINATED` and completes the future. `completion()` is this cleanup barrier. The future is completed on the worker, so synchronous completion callbacks may run there before the thread returns; it is not a physical `Thread.join()` guarantee.
+
+`complete()` retires one asynchronous invocation; it does not acknowledge consumption of its already queued outputs. Normal completion clears the registered cancellation action without invoking it, so the plugin must release normal-path provider resources itself. Cancellation registration is allowed once, on the session worker, during `processAsync`. A handle that completed normally remains normally completed even if its session is later interrupted; its queued outputs can still be discarded by that later interruption.
+
+Generation checks prevent stale continuation admission and check downstream entry. They do not undo an output or external effect whose invocation has already been admitted. Slow or uncooperative processor code, cancellation actions or cleanup can delay the worker; neither interruption nor a configured timeout is a hard real-time shutdown guarantee.
+
+Transport lifetime is separate. A raw TCP connection slot returns on channel close. An admitted WebSocket session slot returns once, only after both socket inactivity and worker cleanup have been reported. Closing a socket alone does not free that session capacity. A Netty write future returning payload-byte reservations also does not prove that the peer consumed the message.
+
+### HTTP adapters and response ownership
+
+The built-in `openai-chat`, `openai-transcribe` and `openai-speech` factories create synchronous `Processor` instances. On the session path, the worker performs the HTTP request and reads the response. JDK Flow callbacks feed a separate internal body queue; they are not `AsyncEmitter` callbacks and do not execute downstream stages. One requested `List<ByteBuffer>` batch and a terminal slot provide backpressure without polling or a per-response reader thread. The batch count is independent of the raw response-byte budget.
+
+The HTTP request timeout and body deadline are separate phases: the latter starts after response headers arrive. Expiry is recorded before closing the body. A blocked body read cancels its subscription, restores the thread's interrupted flag and raises `InterruptedIOException` when interrupted. Close clears retained queue/buffer/subscription references, wakes the reader and cancels upstream outside the body monitor; late data is ignored. Normal terminal notification releases the subscription reference while preserving earlier data before EOF or an error. Every adapter closes its `Response` even if parsing or downstream code throws; this cancels the deadline task and closes the body. The shared HTTP connection pool and daemon deadline scheduler remain process-scoped.
+
+Chat can already have emitted text when a later provider error occurs; it emits no successful `TURN_END` without `[DONE]`. Speech emits audio only after reading and validating the complete PCM response. Transcription and speech consume their buffered input before the request, so a failure does not automatically requeue it or retry the remote operation. Transcription interruption drops pending PCM while preserving its accepted sample timeline. None of these local cleanup steps rolls back a remote request already received by a provider.
+
+### Source and executable evidence
+
+| Contract | Implementation | Local executable evidence |
+| --- | --- | --- |
+| Bounded callback → FIFO → worker continuation; END versus drain | [PipelineSession](../ominicat-core/src/main/java/io/ominicat/core/PipelineSession.java), [AsyncEmitter](../ominicat-core/src/main/java/io/ominicat/core/AsyncEmitter.java) | [AsyncSessionTest](../ominicat-core/src/test/java/io/ominicat/core/AsyncSessionTest.java), [AsyncRaceStressTest](../ominicat-core/src/test/java/io/ominicat/core/AsyncRaceStressTest.java) |
+| Invocation lifetime and callback reference release | [SynchronousSink](../ominicat-core/src/main/java/io/ominicat/core/SynchronousSink.java), [EnvelopeProcessor](../ominicat-core/src/main/java/io/ominicat/core/EnvelopeProcessor.java) | [SinkLifetimeTest](../ominicat-core/src/test/java/io/ominicat/core/SinkLifetimeTest.java), [RetiredCallbackRetentionTest](../ominicat-core/src/test/java/io/ominicat/core/RetiredCallbackRetentionTest.java) |
+| Parallel branch process/reset/close serialization | [ParallelProcessor](../ominicat-core/src/main/java/io/ominicat/core/ParallelProcessor.java) | [CompositeLifetimeTest](../ominicat-core/src/test/java/io/ominicat/core/CompositeLifetimeTest.java) |
+| HTTP demand, terminal ordering, cancellation and deadlines | [CompatibleClient](../ominicat-providers/src/main/java/io/ominicat/providers/CompatibleClient.java) | [PublisherInputStreamTest](../ominicat-providers/src/test/java/io/ominicat/providers/PublisherInputStreamTest.java), [ProviderFaultMatrixTest](../ominicat-providers/src/test/java/io/ominicat/providers/ProviderFaultMatrixTest.java) |
+| Held-open provider body: disconnect release and same-socket interruption recovery | [ChatFactory](../ominicat-providers/src/main/java/io/ominicat/providers/ChatFactory.java), [server lifecycle](../ominicat-server/src/main/java/io/ominicat/server/OminiCatServer.java) | [HttpBodyCancellationTest](../ominicat-server/src/test/java/io/ominicat/server/HttpBodyCancellationTest.java), [SpeechFactoryTest](../ominicat-providers/src/test/java/io/ominicat/providers/SpeechFactoryTest.java) |
+| Declaration versus factory creation; optional activity ordering and bounds | [PluginRegistry](../ominicat-core/src/main/java/io/ominicat/core/spi/PluginRegistry.java), [ActivityJournal](../ominicat-server/src/main/java/io/ominicat/server/ActivityJournal.java) | [PluginCapabilityTest](../ominicat-core/src/test/java/io/ominicat/core/spi/PluginCapabilityTest.java), [ActivityJournalTest](../ominicat-server/src/test/java/io/ominicat/server/ActivityJournalTest.java), [ActivitySessionTest](../ominicat-server/src/test/java/io/ominicat/server/ActivitySessionTest.java) |
+
+These fixtures exercise local scheduling, protocol and cleanup behavior. They do not establish remote service availability, model quality, a universal memory bound or production shutdown latency.
 
 ## Independent resource limits
 
@@ -65,9 +122,9 @@ Ordinary control frames have no hidden kernel effects. `finish()` closes intake 
 | Live asynchronous invocations | `asyncHandles.size() <= C` | A separate count limit with the same configured `SessionOptions.queueCapacity`; it is not a shared queue-plus-in-flight budget. |
 | Explicit parallel branches | `P` workers, a `P`-slot executor task queue and at most `B` buffered output frame references per branch | Branch scheduling/wait uses a shared deadline. Joined delivery can run longer; counts do not bound payload bytes or total RSS. |
 | Network output | Pending encoded payload bytes at most `4 * maxFrameBytes`, plus channel writability checks | Reservation is released on write-future completion. This does not bound every Netty task or native allocation, and completion is not client consumption. |
-| Server admission | Configured connection/session capacity | Admission is released after both socket inactivity and worker cleanup, so slow cooperative cleanup continues to occupy capacity. |
+| Server admission | Configured connection/session capacity | TCP slots return on channel close. WebSocket session slots additionally wait for worker cleanup, so slow cleanup retains session capacity. |
 
-An open session's `interrupt()` advances its generation, discards pending work and fences stale callbacks. Processor reset and reverse cleanup run under the ownership contract. Cancellation cannot roll back an external effect already started. `finish()` drains accepted work and outstanding asynchronous invocations; applications need deadlines for callbacks that may never complete.
+These limits apply to different ownership boundaries. A queue or handle count does not bound all payload bytes, native allocations or memory retained by a third-party plugin.
 
 Source: [session intake, handles and generation checks](../ominicat-core/src/main/java/io/ominicat/core/PipelineSession.java), [parallel composition](../ominicat-core/src/main/java/io/ominicat/core/ParallelProcessor.java), [bounded worker executors](../ominicat-core/src/main/java/io/ominicat/core/WorkerThreads.java), [server output/admission](../ominicat-server/src/main/java/io/ominicat/server/OminiCatServer.java).
 
@@ -89,4 +146,4 @@ Stateful plugins can be composed in-process. External model services, message qu
 
 The [Linux performance guide](performance.md) connects these implementation mechanisms to explicit workload and diagnostic scopes. Current public figures use [Ubuntu and CentOS CI recordings](../reports/comparison/README.md); the measurements do not assign causal speedup ratios to individual architectural choices.
 
-All three diagrams have editable SVG originals with accessible titles/descriptions and no external assets. Documentation embeds pre-rendered PNGs so readers do not need Mermaid or SVG support; click a diagram to open its vector original. Regenerate the SVGs with `python3 scripts/render_architecture.py`, update the Chinese entry figures with `python3 scripts/localize_readme.py`, then refresh the 2× PNG previews with `python3 scripts/render_doc_previews.py` (requires librsvg and a Chinese font for localized previews). Shared figures are reused across the READMEs and this guide; Chinese variants follow the same source geometry and translation catalog. CI checks translation freshness, source/preview hashes and image links. [Diagram source](../scripts/render_architecture.py) · [Preview exporter](../scripts/render_doc_previews.py) · [Translation maintenance](i18n/README.md).
+All five diagrams have editable SVG originals with accessible titles/descriptions and no external assets. Documentation embeds pre-rendered PNGs so readers do not need Mermaid or SVG support; click a diagram to open its vector original. Regenerate the SVGs with `python3 scripts/render_architecture.py`, update the Chinese entry figures with `python3 scripts/localize_readme.py`, then refresh the 2× PNG previews with `python3 scripts/render_doc_previews.py` (requires librsvg and a Chinese font for localized previews). Shared figures are reused across the READMEs and this guide; Chinese variants follow the same source geometry and translation catalog. CI checks translation freshness, source/preview hashes and image links. [Diagram source](../scripts/render_architecture.py) · [Preview exporter](../scripts/render_doc_previews.py) · [Translation maintenance](i18n/README.md).

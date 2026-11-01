@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Render the three editable, dependency-free SVG architecture plates.
+"""Render five editable, dependency-free SVG architecture plates.
 
 Run from any directory with Python 3. Source of truth: docs/architecture.md and
 the core/server implementations. Run render_doc_previews.py afterwards to
 refresh the PNGs used by Markdown readers without SVG/diagram support.
 """
+import argparse
 from html import escape
 from pathlib import Path
 
@@ -12,6 +13,7 @@ ROOT = Path(__file__).resolve().parent.parent
 BG, PANEL, INNER = '#0b1220', '#111d2e', '#142536'
 TEXT, MUTED, LINE = '#e4edf8', '#9badc2', '#2a3f53'
 TEAL, BLUE, AMBER = '#64d8c3', '#76adf7', '#e9b96e'
+CHECK_ONLY = False
 
 
 class Plate:
@@ -71,8 +73,13 @@ class Plate:
     def save(self):
         self.parts += ['</g>', '</svg>']
         destination = ROOT / 'docs/assets' / self.name
-        destination.parent.mkdir(parents=True, exist_ok=True)
-        destination.write_text('\n'.join(self.parts) + '\n', encoding='utf-8')
+        content = '\n'.join(self.parts) + '\n'
+        if CHECK_ONLY:
+            if not destination.is_file() or destination.read_text(encoding='utf-8') != content:
+                raise ValueError(f'Stale architecture figure: {destination.relative_to(ROOT)}')
+        else:
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            destination.write_text(content, encoding='utf-8')
 
 
 def overview():
@@ -232,8 +239,128 @@ def bounded():
     p.save()
 
 
+def locking():
+    p = Plate('locking-boundaries.svg', 1310, '04 / LOCKING', 'Locks guard state. Workers own execution.',
+              'Independent synchronization boundaries; one owner worker per session.',
+              'Submitters, lifecycle callers and asynchronous emitters use the session ReentrantLock to update a bounded FIFO, generation and handles. Processor, output and cancellation calls run after this lock is released. Registry, observation, HTTP body and transport locks have separate scopes; this is not a lock-free runtime.')
+    p.text(56, 197, 'CONCURRENT CALLERS', 13, MUTED, 700, spacing=1.5)
+    entries = ((224, 'Application / driver', ('trySubmit(frame) / submit(...)',), TEAL),
+               (348, 'External callback', ('tryEmit / complete / fail',), BLUE),
+               (472, 'Lifecycle caller', ('interrupt / finish / close',), AMBER))
+    for y, title, lines, color in entries:
+        p.node(56, y, 350, 96, title, lines, color, 21, 17)
+        p.path(f'M406 {y+48}H462', color)
+        p.port(406, y+48, color)
+    p.box(462, 224, 922, 344, '#112b32', '#3e8f85', 18)
+    p.text(488, 263, 'PipelineSession · ReentrantLock + Condition', 27, TEXT, 700)
+    p.pill(1302, 239, 58, 'Ls')
+    p.node(488, 294, 414, 113, 'Admission + FIFO', ('State / generation / queue', 'Atomic check-and-enqueue decisions'), TEAL, 22, 17)
+    p.node(926, 294, 432, 113, 'Async bookkeeping', ('Active handles / cancellation queue', 'Metrics and lifecycle signals'), BLUE, 22, 17)
+    p.text(488, 446, 'Condition waits release Ls; wakeups recheck state and capacity.', 19, MUTED)
+    p.text(488, 479, 'trySubmit / tryEmit skip capacity waiting; lock acquisition may still wait.', 18, MUTED)
+    p.text(488, 535, 'Ls ends before stage calls, output, cancellation actions and cleanup.', 20, TEAL, 700)
+    p.path('M922 568V628')
+    p.text(946, 605, 'Take pending work; release Ls', 17, TEAL)
+
+    p.box(56, 628, 1328, 226, PANEL, LINE, 18)
+    p.text(80, 668, 'ONE OWNER WORKER', 14, TEAL, 700, spacing=1.5)
+    p.text(428, 668, 'Stage entry and final output each check the originating generation.', 19, MUTED)
+    nodes = ((80, 260, 'valid(g)', ('Check under Ls', 'Then release Ls')),
+             (380, 300, 'Processor call', ('Run user code outside Ls', 'Scoped synchronous emissions')),
+             (720, 260, 'Next stage', ('Repeat generation check', 'Same owner worker')),
+             (1020, 340, 'FrameSink / transport', ('Output runs outside Ls', 'Separate transport accounting')))
+    for x, width, title, lines in nodes:
+        p.node(x, 696, width, 106, title, lines, TEAL, 21, 16)
+    for start, end in ((340, 380), (680, 720), (980, 1020)):
+        p.path(f'M{start} 749H{end}')
+    p.text(80, 834, 'SynchronousSink: invocation thread only; invalidate and detach delegate in finally.', 18, BLUE)
+
+    p.text(56, 903, 'SEPARATE LOCK SCOPES', 13, MUTED, 700, spacing=1.5)
+    p.node(56, 926, 420, 185, 'Registry monitor',
+           ('create(): factory code inside', 'describe(): callback outside', 'Creation is separate from dispatch.'), AMBER, 23, 17)
+    p.node(510, 926, 420, 185, 'Observation monitors',
+           ('EnvelopeStream → ObservedEmitter', 'Then Ls for callback admission', 'ActivityJournal.json() stays locked.'), BLUE, 23, 17)
+    p.node(964, 926, 420, 185, 'HTTP / transport',
+           ('HTTP body: separate stateLock', 'Netty output: outputLock + atomics', 'Output lock is per connection.'), AMBER, 23, 17)
+    p.box(56, 1145, 1328, 65, INNER, LINE, 12)
+    p.text(80, 1185, 'Outside Ls does not mean outside every lock. Built-in HTTP stages remain synchronous.', 21, MUTED)
+    p.footer('04 / Scope is local to each lock; callback handoff is not output delivery',
+             'Source: PipelineSession · Pipeline · adapters')
+    p.save()
+
+
+def lifecycle():
+    p = Plate('session-lifecycle.svg', 1360, '05 / LIFECYCLE', 'One session. Explicit drain and cancellation.',
+              'Actual PipelineSession states; completion is published after cleanup.',
+              'OPEN transitions to DRAINING on finish, CANCELLED on close, or FAILED on a current-generation exception or live emitter failure. Graceful exit waits for an empty queue and no active async handles. Every exit uses worker-finally cancellation and reverse stage cleanup before publishing TERMINATED and completing the future. Interrupt is an OPEN-to-OPEN generation change; socket inactivity and worker completion jointly release WebSocket session admission.')
+    p.text(56, 197, 'ENTRY / DECISION', 13, MUTED, 700, spacing=1.5)
+    p.text(516, 197, 'SESSION STATE', 13, MUTED, 700, spacing=1.5)
+    p.text(1032, 197, 'COMMON WORKER FINALLY', 13, MUTED, 700, spacing=1.3)
+
+    p.node(56, 226, 344, 144, 'OPEN', ('Accept external frames', 'and live continuations'), TEAL, 25, 18)
+    p.node(516, 226, 350, 144, 'DRAINING', ('Reject external frames', 'Continue live callbacks'), BLUE, 25, 18)
+    p.path('M400 298H516', BLUE)
+    p.text(423, 279, 'finish()', 18, BLUE, 700)
+    p.text(516, 402, 'Graceful drain: queue empty + no live handles.', 16, BLUE)
+
+    p.node(56, 452, 344, 128, 'OPEN / DRAINING', ('Cancellation requested',), AMBER, 23, 18)
+    p.node(516, 452, 350, 128, 'CANCELLED', ('generation++ · drop queued work', 'Retire handles; interrupt worker'), AMBER, 25, 16)
+    p.path('M400 516H516', AMBER)
+    p.text(423, 497, 'close()', 18, AMBER, 700)
+
+    p.node(56, 666, 344, 144, 'OPEN / DRAINING', ('Current-generation exception', 'or live emitter.fail(error)'), AMBER, 23, 17)
+    p.node(516, 666, 350, 144, 'FAILED', ('generation++ · drop queued work', 'Retire handles; interrupt worker'), AMBER, 25, 16)
+    p.path('M400 738H516', AMBER)
+    p.text(428, 719, 'failure', 18, AMBER, 700)
+
+    # All exits merge before entering the common cleanup block, rather than skipping a cleanup step.
+    for y, color in ((298, BLUE), (516, AMBER), (738, AMBER)):
+        p.path(f'M866 {y}H944', color, False)
+        p.port(866, y, color)
+        p.port(944, y, MUTED)
+    p.path('M944 738V298H1032', MUTED)
+    p.box(1032, 226, 352, 812, '#112b32', '#3e8f85', 18)
+    p.text(1054, 265, 'One cleanup path', 24, TEXT, 700)
+    p.text(1054, 296, 'All exits use worker finally.', 17, MUTED)
+    p.node(1054, 336, 308, 142, 'Retire handles',
+           ('Detach cancellation hooks', 'Clear active handle set', 'Under Ls'), BLUE, 22, 17)
+    p.path('M1208 478V514')
+    p.node(1054, 514, 308, 154, 'Close resources',
+           ('Run cancellation actions', 'Close stages in reverse', 'Record cleanup failures', 'Outside Ls'), TEAL, 22, 16)
+    p.path('M1208 668V704')
+    p.node(1054, 704, 308, 154, 'TERMINATED',
+           ('Publish terminal state', 'Complete future after cleanup', 'Success or exception'), TEAL, 24, 16)
+    p.lines(1054, 924, ('Future callbacks may run here.', 'This is not Thread.join().'), 17, MUTED, 29)
+
+    p.box(56, 864, 810, 174, PANEL, '#3e8f85', 15)
+    p.text(80, 902, 'interrupt(): OPEN → OPEN', 24, TEAL, 700)
+    p.lines(80, 938, ('generation++ → discard queue + retire handles + interrupt worker',
+                     'Worker: actions → onInterrupt() → dispatch when reset succeeds.',
+                     'Current-generation reset failure → FAILED; calls may coalesce.',
+                     'DRAINING ignores interrupt(); close() still cancels.'), 17, MUTED, 25)
+
+    p.box(56, 1080, 1328, 124, INNER, LINE, 15)
+    p.text(80, 1117, 'SERVER ADMISSION HAS A SEPARATE RELEASE GATE', 14, AMBER, 700, spacing=1.2)
+    p.pill(790, 1097, 566, 'socketInactive && workerComplete', AMBER)
+    p.text(80, 1151, 'Socket closure alone does not free the WebSocket session slot.', 21, TEXT, 700)
+    p.text(80, 1181, 'Write completion releases reserved payload bytes; it does not prove client consumption.', 18, MUTED)
+    p.text(56, 1253, 'Generation checks fence later handoffs. Already-entered external effects remain.', 21, MUTED)
+    p.footer('05 / END is a frame payload; finish() is the drain request',
+             'Cancellation and deadlines require plugin cooperation')
+    p.save()
+
+
 if __name__ == '__main__':
-    overview()
-    execution()
-    bounded()
-    print('Rendered three editable SVG architecture plates in docs/assets.')
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--check', action='store_true', help='Check committed diagrams without rewriting them.')
+    args = parser.parse_args()
+    CHECK_ONLY = args.check
+    try:
+        overview()
+        execution()
+        bounded()
+        locking()
+        lifecycle()
+    except (OSError, ValueError) as error:
+        parser.exit(1, str(error) + '\n')
+    print(('Checked' if CHECK_ONLY else 'Rendered') + ' five editable SVG architecture plates in docs/assets.')

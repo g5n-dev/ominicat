@@ -116,6 +116,21 @@ Pending frames, active async invocations, branch workers/buffers and transport o
 
 [Source-backed architecture and lifecycle](docs/architecture.md) · [Performance mechanisms and measurement scope](docs/performance.md) · [Configuration and limits](docs/configuration.md).
 
+<details>
+<summary>How locks, cancellation and cleanup fit together</summary>
+
+The session lock protects admission, queue state, generation and async handles. The owner worker calls processors, output sinks and cleanup after releasing that lock. Registry, branch, wrapper and transport synchronization have their own scopes, documented in the [lock table](docs/architecture.md#locking-and-callback-boundaries).
+
+[![Session lock scope, worker execution and independent synchronization boundaries](docs/assets/previews/locking-boundaries.png)](docs/assets/locking-boundaries.svg)
+
+`finish()` drains accepted work; `interrupt()` changes the generation of an open session; `close()` requests cooperative cancellation. Completion is published after cleanup. The server releases a WebSocket admission slot only after socket inactivity and logical worker completion.
+
+[![Drain, cancellation, cleanup and the separate server-admission release gate](docs/assets/previews/session-lifecycle.png)](docs/assets/session-lifecycle.svg)
+
+[Lifecycle guarantees, reference release and regression evidence](docs/architecture.md#lifecycle-cancellation-and-release).
+
+</details>
+
 ## Linux profiles
 
 The following **Ubuntu / Java 17** JFR diagnostics were collected in a separate instrumented run: **41 CPU stack samples, 445 allocation samples and three garbage collections**. Their scope includes JVM/framework startup, warmup, measurement, harness work and teardown. Sample counts are observations, not method-duration percentages; allocation weights estimate allocated bytes, not retained heap or exact B/op.

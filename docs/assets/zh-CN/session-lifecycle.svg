@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1360" viewBox="0 0 1440 1360" role="img" aria-labelledby="title desc" xml:lang="zh-CN">
+<title id="title">OminiCat — 独立会话，显式排空与取消</title>
+<desc id="desc">OPEN 在 finish 后进入 DRAINING，在 close 后进入 CANCELLED，在当前代次处理异常或活跃异步输出方报告失败后进入 FAILED。正常退出等待队列与活跃异步句柄清空。各退出路径均先在工作线程 finally 中执行取消动作并逆序清理阶段，再发布 TERMINATED 并完成 future。中断是 OPEN 到 OPEN 的代次变更；套接字失活与工作线程完成共同决定归还WebSocket 会话名额。</desc>
+<defs><linearGradient id="background" x2="1" y2="1"><stop stop-color="#101e28" /><stop offset="1" stop-color="#0b1220" /></linearGradient>
+<pattern id="dots" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#6a91a8" opacity=".13" /></pattern>
+<marker id="arrow-teal" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L7 4L1 7" fill="none" stroke="#64d8c3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></marker>
+<marker id="arrow-blue" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L7 4L1 7" fill="none" stroke="#76adf7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></marker>
+<marker id="arrow-amber" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L7 4L1 7" fill="none" stroke="#e9b96e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></marker>
+<marker id="arrow-muted" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L7 4L1 7" fill="none" stroke="#9badc2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></marker>
+</defs>
+<rect width="1440" height="100%" rx="22" fill="url(#background)" />
+<rect width="1440" height="100%" rx="22" fill="url(#dots)" />
+<g font-family="Arial,Helvetica,DejaVu Sans,sans-serif">
+<text x="56" y="55" font-size="14" font-weight="700" fill="#64d8c3" letter-spacing="2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">OMINICAT / 架构</text>
+<text x="1384" y="55" font-size="14" font-weight="400" fill="#9badc2" text-anchor="end" letter-spacing="2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">05 / 生命周期</text>
+<text x="56" y="111" font-size="40" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">独立会话，显式排空与取消</text>
+<text x="56" y="150" font-size="19" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">实际 PipelineSession 状态；清理完成后才发布完成结果。</text>
+<text x="56" y="197" font-size="13" font-weight="700" fill="#9badc2" letter-spacing="1.5" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">触发 / 判断</text>
+<text x="516" y="197" font-size="13" font-weight="700" fill="#9badc2" letter-spacing="1.5" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">会话状态</text>
+<text x="1032" y="197" font-size="13" font-weight="700" fill="#9badc2" letter-spacing="1.3" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">统一的工作线程 finally</text>
+<rect x="56" y="226" width="344" height="144" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2" />
+<rect x="56" y="244" width="3" height="108" rx="1.5" fill="#64d8c3" />
+<text x="78" y="260" font-size="25" font-weight="700" fill="#e4edf8">OPEN</text>
+<text x="78" y="289" font-size="18" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">接纳外部输入帧</text>
+<text x="78" y="314" font-size="18" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">与活跃异步续接</text>
+<rect x="516" y="226" width="350" height="144" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2" />
+<rect x="516" y="244" width="3" height="108" rx="1.5" fill="#76adf7" />
+<text x="538" y="260" font-size="25" font-weight="700" fill="#e4edf8">DRAINING</text>
+<text x="538" y="289" font-size="18" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">拒绝外部输入帧</text>
+<text x="538" y="314" font-size="18" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">继续接纳活跃回调</text>
+<path d="M400 298H516" fill="none" stroke="#76adf7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-blue)" />
+<text x="423" y="279" font-size="18" font-weight="700" fill="#76adf7">finish()</text>
+<text x="516" y="402" font-size="16" font-weight="400" fill="#76adf7" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">正常排空：队列为空且无活跃句柄。</text>
+<rect x="56" y="452" width="344" height="128" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2" />
+<rect x="56" y="470" width="3" height="92" rx="1.5" fill="#e9b96e" />
+<text x="78" y="486" font-size="23" font-weight="700" fill="#e4edf8">OPEN / DRAINING</text>
+<text x="78" y="515" font-size="18" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">请求取消</text>
+<rect x="516" y="452" width="350" height="128" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2" />
+<rect x="516" y="470" width="3" height="92" rx="1.5" fill="#e9b96e" />
+<text x="538" y="486" font-size="25" font-weight="700" fill="#e4edf8">CANCELLED</text>
+<text x="538" y="515" font-size="16" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">generation++ · 丢弃排队工作</text>
+<text x="538" y="540" font-size="16" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">失效句柄；中断工作线程</text>
+<path d="M400 516H516" fill="none" stroke="#e9b96e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-amber)" />
+<text x="423" y="497" font-size="18" font-weight="700" fill="#e9b96e">close()</text>
+<rect x="56" y="666" width="344" height="144" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2" />
+<rect x="56" y="684" width="3" height="108" rx="1.5" fill="#e9b96e" />
+<text x="78" y="700" font-size="23" font-weight="700" fill="#e4edf8">OPEN / DRAINING</text>
+<text x="78" y="729" font-size="17" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">当前代次发生异常</text>
+<text x="78" y="754" font-size="17" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">或活跃 emitter.fail(error)</text>
+<rect x="516" y="666" width="350" height="144" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2" />
+<rect x="516" y="684" width="3" height="108" rx="1.5" fill="#e9b96e" />
+<text x="538" y="700" font-size="25" font-weight="700" fill="#e4edf8">FAILED</text>
+<text x="538" y="729" font-size="16" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">generation++ · 丢弃排队工作</text>
+<text x="538" y="754" font-size="16" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">失效句柄；中断工作线程</text>
+<path d="M400 738H516" fill="none" stroke="#e9b96e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-amber)" />
+<text x="428" y="719" font-size="18" font-weight="700" fill="#e9b96e" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">异常</text>
+<path d="M866 298H944" fill="none" stroke="#76adf7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="866" cy="298" r="4" fill="#0b1220" stroke="#76adf7" stroke-width="1.5" />
+<circle cx="944" cy="298" r="4" fill="#0b1220" stroke="#9badc2" stroke-width="1.5" />
+<path d="M866 516H944" fill="none" stroke="#e9b96e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="866" cy="516" r="4" fill="#0b1220" stroke="#e9b96e" stroke-width="1.5" />
+<circle cx="944" cy="516" r="4" fill="#0b1220" stroke="#9badc2" stroke-width="1.5" />
+<path d="M866 738H944" fill="none" stroke="#e9b96e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="866" cy="738" r="4" fill="#0b1220" stroke="#e9b96e" stroke-width="1.5" />
+<circle cx="944" cy="738" r="4" fill="#0b1220" stroke="#9badc2" stroke-width="1.5" />
+<path d="M944 738V298H1032" fill="none" stroke="#9badc2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-muted)" />
+<rect x="1032" y="226" width="352" height="812" rx="18" fill="#112b32" stroke="#3e8f85" stroke-width="1.2" />
+<text x="1054" y="265" font-size="24" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">统一清理路径</text>
+<text x="1054" y="296" font-size="17" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">各退出路径均经过工作线程 finally。</text>
+<rect x="1054" y="336" width="308" height="142" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2" />
+<rect x="1054" y="354" width="3" height="106" rx="1.5" fill="#76adf7" />
+<text x="1076" y="370" font-size="22" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">失效句柄</text>
+<text x="1076" y="399" font-size="17" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">移交取消回调</text>
+<text x="1076" y="424" font-size="17" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">清空活跃句柄集合</text>
+<text x="1076" y="449" font-size="17" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">Ls 锁内</text>
+<path d="M1208 478V514" fill="none" stroke="#64d8c3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)" />
+<rect x="1054" y="514" width="308" height="154" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2" />
+<rect x="1054" y="532" width="3" height="118" rx="1.5" fill="#64d8c3" />
+<text x="1076" y="548" font-size="22" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">关闭资源</text>
+<text x="1076" y="577" font-size="16" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">执行取消动作</text>
+<text x="1076" y="602" font-size="16" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">逆序关闭阶段</text>
+<text x="1076" y="627" font-size="16" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">记录清理异常</text>
+<text x="1076" y="652" font-size="16" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">Ls 锁外</text>
+<path d="M1208 668V704" fill="none" stroke="#64d8c3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)" />
+<rect x="1054" y="704" width="308" height="154" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2" />
+<rect x="1054" y="722" width="3" height="118" rx="1.5" fill="#64d8c3" />
+<text x="1076" y="738" font-size="24" font-weight="700" fill="#e4edf8">TERMINATED</text>
+<text x="1076" y="767" font-size="16" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">发布终止状态</text>
+<text x="1076" y="792" font-size="16" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">清理后完成 future</text>
+<text x="1076" y="817" font-size="16" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">成功或异常结果</text>
+<text x="1054" y="924" font-size="17" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">future 回调可能在此执行。</text>
+<text x="1054" y="953" font-size="17" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">这不等价于 Thread.join()。</text>
+<rect x="56" y="864" width="810" height="174" rx="15" fill="#111d2e" stroke="#3e8f85" stroke-width="1.2" />
+<text x="80" y="902" font-size="24" font-weight="700" fill="#64d8c3">interrupt(): OPEN → OPEN</text>
+<text x="80" y="938" font-size="17" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">generation++ → 丢弃队列 + 失效句柄 + 中断工作线程</text>
+<text x="80" y="963" font-size="17" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">工作线程：取消动作 → onInterrupt() → 重置成功后分发。</text>
+<text x="80" y="988" font-size="17" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">当前代次重置失败 → FAILED；重复调用可能合并。</text>
+<text x="80" y="1013" font-size="17" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">DRAINING 忽略 interrupt()，close() 仍可取消。</text>
+<rect x="56" y="1080" width="1328" height="124" rx="15" fill="#142536" stroke="#2a3f53" stroke-width="1.2" />
+<text x="80" y="1117" font-size="14" font-weight="700" fill="#e9b96e" letter-spacing="1.2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">服务器接纳名额另有归还条件</text>
+<rect x="790" y="1097" width="566" height="29" rx="7" fill="#142536" stroke="#2a3f53" stroke-width="1.2" />
+<text x="802" y="1117" font-size="13" font-weight="700" fill="#e9b96e" letter-spacing="0.6">socketInactive &amp;&amp; workerComplete</text>
+<text x="80" y="1151" font-size="21" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">仅关闭套接字，不会归还 WebSocket 会话名额。</text>
+<text x="80" y="1181" font-size="18" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">写入完成后释放预留的载荷字节；这不证明客户端已消费。</text>
+<text x="56" y="1253" font-size="21" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">代次检查隔离后续交接，已进入的外部副作用仍会保留。</text>
+<path d="M56 1287H1384" fill="none" stroke="#9badc2" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" />
+<text x="56" y="1315" font-size="14" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">05 / END 是帧载荷；finish() 才是排空请求</text>
+<text x="1384" y="1315" font-size="14" font-weight="400" fill="#9badc2" text-anchor="end" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">取消与超时需要插件配合</text>
+</g>
+<metadata id="ominicat-locale-source">{"geometrySha256": "ade1ab972a6808dd33ec3d2af2e6bdada31ca94a30fe94db075cc33f0759683f", "language": "zh-CN", "recoveredGlyphLabels": 0, "sha256": "f904276a6839f30ff52c837e2715f14ad4ea1a8249daafd92dc3165de1134e8a", "source": "docs/assets/session-lifecycle.svg"}</metadata></svg>

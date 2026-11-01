@@ -14,7 +14,7 @@
     {
       "source": "README.md",
       "translation": "README.zh-CN.md",
-      "source_sha256": "a9a739d91174a80dfe4729c06e7dd700b6727f3150379acd57129357dac11655"
+      "source_sha256": "1c77ccc61faaa248dd3bd67da7a677a4aef0632a5cc581232034693d0a8d5474"
     },
     {
       "source": "SECURITY.md",
@@ -44,7 +44,7 @@
     {
       "source": "docs/architecture.md",
       "translation": "docs/zh-CN/architecture.md",
-      "source_sha256": "0816485775a4f05535a547dbb50e232a6d9a3e898a249dbc751f0e738cc63971"
+      "source_sha256": "3ca6da2f41aca2af47fb14b364eea21b95eeacba4b5830b6fa7f4dac0d10df2b"
     },
     {
       "source": "docs/configuration.md",
@@ -64,7 +64,7 @@
     {
       "source": "docs/iteration-plan.md",
       "translation": "docs/zh-CN/iteration-plan.md",
-      "source_sha256": "fdad00db8a41aa00af4430ef5f63ad14727d5c69f04c0fc9efed68ec36521afd"
+      "source_sha256": "a23162b444323e91aa552b2b7f36463413230e7814573264514efda8f9df505c"
     },
     {
       "source": "docs/java-compatibility.md",

@@ -25,6 +25,8 @@ SOURCES = {
     'architecture-overview': 'docs/assets/architecture-overview.svg',
     'execution-path': 'docs/assets/execution-path.svg',
     'bounded-runtime': 'docs/assets/bounded-runtime.svg',
+    'locking-boundaries': 'docs/assets/locking-boundaries.svg',
+    'session-lifecycle': 'docs/assets/session-lifecycle.svg',
     'framework-paths': 'docs/assets/framework-paths.svg',
     'framework-cost-scaling': 'docs/assets/framework-cost-scaling.svg',
     'prompt-render-cost': 'reports/performance-audit/prompt-render-2026-11-01/costs.svg',

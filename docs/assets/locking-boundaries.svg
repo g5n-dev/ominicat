@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1310" viewBox="0 0 1440 1310" role="img" aria-labelledby="title desc">
+<title id="title">OminiCat — Locks guard state. Workers own execution.</title>
+<desc id="desc">Submitters, lifecycle callers and asynchronous emitters use the session ReentrantLock to update a bounded FIFO, generation and handles. Processor, output and cancellation calls run after this lock is released. Registry, observation, HTTP body and transport locks have separate scopes; this is not a lock-free runtime.</desc>
+<defs><linearGradient id="background" x2="1" y2="1"><stop stop-color="#101e28"/><stop offset="1" stop-color="#0b1220"/></linearGradient>
+<pattern id="dots" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#6a91a8" opacity=".13"/></pattern>
+<marker id="arrow-teal" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L7 4L1 7" fill="none" stroke="#64d8c3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+<marker id="arrow-blue" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L7 4L1 7" fill="none" stroke="#76adf7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+<marker id="arrow-amber" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L7 4L1 7" fill="none" stroke="#e9b96e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+<marker id="arrow-muted" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L7 4L1 7" fill="none" stroke="#9badc2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+</defs>
+<rect width="1440" height="100%" rx="22" fill="url(#background)"/>
+<rect width="1440" height="100%" rx="22" fill="url(#dots)"/>
+<g font-family="Arial,Helvetica,DejaVu Sans,sans-serif">
+<text x="56" y="55" font-size="14" font-weight="700" fill="#64d8c3" letter-spacing="2">OMINICAT / ARCHITECTURE</text>
+<text x="1384" y="55" font-size="14" font-weight="400" fill="#9badc2" text-anchor="end" letter-spacing="2">04 / LOCKING</text>
+<text x="56" y="111" font-size="40" font-weight="700" fill="#e4edf8">Locks guard state. Workers own execution.</text>
+<text x="56" y="150" font-size="19" font-weight="400" fill="#9badc2">Independent synchronization boundaries; one owner worker per session.</text>
+<text x="56" y="197" font-size="13" font-weight="700" fill="#9badc2" letter-spacing="1.5">CONCURRENT CALLERS</text>
+<rect x="56" y="224" width="350" height="96" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2"/>
+<rect x="56" y="242" width="3" height="60" rx="1.5" fill="#64d8c3"/>
+<text x="78" y="258" font-size="21" font-weight="700" fill="#e4edf8">Application / driver</text>
+<text x="78" y="287" font-size="17" font-weight="400" fill="#9badc2">trySubmit(frame) / submit(...)</text>
+<path d="M406 272H462" fill="none" stroke="#64d8c3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)"/>
+<circle cx="406" cy="272" r="4" fill="#0b1220" stroke="#64d8c3" stroke-width="1.5"/>
+<rect x="56" y="348" width="350" height="96" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2"/>
+<rect x="56" y="366" width="3" height="60" rx="1.5" fill="#76adf7"/>
+<text x="78" y="382" font-size="21" font-weight="700" fill="#e4edf8">External callback</text>
+<text x="78" y="411" font-size="17" font-weight="400" fill="#9badc2">tryEmit / complete / fail</text>
+<path d="M406 396H462" fill="none" stroke="#76adf7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-blue)"/>
+<circle cx="406" cy="396" r="4" fill="#0b1220" stroke="#76adf7" stroke-width="1.5"/>
+<rect x="56" y="472" width="350" height="96" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2"/>
+<rect x="56" y="490" width="3" height="60" rx="1.5" fill="#e9b96e"/>
+<text x="78" y="506" font-size="21" font-weight="700" fill="#e4edf8">Lifecycle caller</text>
+<text x="78" y="535" font-size="17" font-weight="400" fill="#9badc2">interrupt / finish / close</text>
+<path d="M406 520H462" fill="none" stroke="#e9b96e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-amber)"/>
+<circle cx="406" cy="520" r="4" fill="#0b1220" stroke="#e9b96e" stroke-width="1.5"/>
+<rect x="462" y="224" width="922" height="344" rx="18" fill="#112b32" stroke="#3e8f85" stroke-width="1.2"/>
+<text x="488" y="263" font-size="27" font-weight="700" fill="#e4edf8">PipelineSession · ReentrantLock + Condition</text>
+<rect x="1302" y="239" width="58" height="29" rx="7" fill="#142536" stroke="#2a3f53" stroke-width="1.2"/>
+<text x="1314" y="259" font-size="13" font-weight="700" fill="#64d8c3" letter-spacing="0.6">Ls</text>
+<rect x="488" y="294" width="414" height="113" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2"/>
+<rect x="488" y="312" width="3" height="77" rx="1.5" fill="#64d8c3"/>
+<text x="510" y="328" font-size="22" font-weight="700" fill="#e4edf8">Admission + FIFO</text>
+<text x="510" y="357" font-size="17" font-weight="400" fill="#9badc2">State / generation / queue</text>
+<text x="510" y="382" font-size="17" font-weight="400" fill="#9badc2">Atomic check-and-enqueue decisions</text>
+<rect x="926" y="294" width="432" height="113" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2"/>
+<rect x="926" y="312" width="3" height="77" rx="1.5" fill="#76adf7"/>
+<text x="948" y="328" font-size="22" font-weight="700" fill="#e4edf8">Async bookkeeping</text>
+<text x="948" y="357" font-size="17" font-weight="400" fill="#9badc2">Active handles / cancellation queue</text>
+<text x="948" y="382" font-size="17" font-weight="400" fill="#9badc2">Metrics and lifecycle signals</text>
+<text x="488" y="446" font-size="19" font-weight="400" fill="#9badc2">Condition waits release Ls; wakeups recheck state and capacity.</text>
+<text x="488" y="479" font-size="18" font-weight="400" fill="#9badc2">trySubmit / tryEmit skip capacity waiting; lock acquisition may still wait.</text>
+<text x="488" y="535" font-size="20" font-weight="700" fill="#64d8c3">Ls ends before stage calls, output, cancellation actions and cleanup.</text>
+<path d="M922 568V628" fill="none" stroke="#64d8c3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)"/>
+<text x="946" y="605" font-size="17" font-weight="400" fill="#64d8c3">Take pending work; release Ls</text>
+<rect x="56" y="628" width="1328" height="226" rx="18" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2"/>
+<text x="80" y="668" font-size="14" font-weight="700" fill="#64d8c3" letter-spacing="1.5">ONE OWNER WORKER</text>
+<text x="428" y="668" font-size="19" font-weight="400" fill="#9badc2">Stage entry and final output each check the originating generation.</text>
+<rect x="80" y="696" width="260" height="106" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2"/>
+<rect x="80" y="714" width="3" height="70" rx="1.5" fill="#64d8c3"/>
+<text x="102" y="730" font-size="21" font-weight="700" fill="#e4edf8">valid(g)</text>
+<text x="102" y="759" font-size="16" font-weight="400" fill="#9badc2">Check under Ls</text>
+<text x="102" y="784" font-size="16" font-weight="400" fill="#9badc2">Then release Ls</text>
+<rect x="380" y="696" width="300" height="106" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2"/>
+<rect x="380" y="714" width="3" height="70" rx="1.5" fill="#64d8c3"/>
+<text x="402" y="730" font-size="21" font-weight="700" fill="#e4edf8">Processor call</text>
+<text x="402" y="759" font-size="16" font-weight="400" fill="#9badc2">Run user code outside Ls</text>
+<text x="402" y="784" font-size="16" font-weight="400" fill="#9badc2">Scoped synchronous emissions</text>
+<rect x="720" y="696" width="260" height="106" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2"/>
+<rect x="720" y="714" width="3" height="70" rx="1.5" fill="#64d8c3"/>
+<text x="742" y="730" font-size="21" font-weight="700" fill="#e4edf8">Next stage</text>
+<text x="742" y="759" font-size="16" font-weight="400" fill="#9badc2">Repeat generation check</text>
+<text x="742" y="784" font-size="16" font-weight="400" fill="#9badc2">Same owner worker</text>
+<rect x="1020" y="696" width="340" height="106" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2"/>
+<rect x="1020" y="714" width="3" height="70" rx="1.5" fill="#64d8c3"/>
+<text x="1042" y="730" font-size="21" font-weight="700" fill="#e4edf8">FrameSink / transport</text>
+<text x="1042" y="759" font-size="16" font-weight="400" fill="#9badc2">Output runs outside Ls</text>
+<text x="1042" y="784" font-size="16" font-weight="400" fill="#9badc2">Separate transport accounting</text>
+<path d="M340 749H380" fill="none" stroke="#64d8c3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)"/>
+<path d="M680 749H720" fill="none" stroke="#64d8c3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)"/>
+<path d="M980 749H1020" fill="none" stroke="#64d8c3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)"/>
+<text x="80" y="834" font-size="18" font-weight="400" fill="#76adf7">SynchronousSink: invocation thread only; invalidate and detach delegate in finally.</text>
+<text x="56" y="903" font-size="13" font-weight="700" fill="#9badc2" letter-spacing="1.5">SEPARATE LOCK SCOPES</text>
+<rect x="56" y="926" width="420" height="185" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2"/>
+<rect x="56" y="944" width="3" height="149" rx="1.5" fill="#e9b96e"/>
+<text x="78" y="960" font-size="23" font-weight="700" fill="#e4edf8">Registry monitor</text>
+<text x="78" y="989" font-size="17" font-weight="400" fill="#9badc2">create(): factory code inside</text>
+<text x="78" y="1014" font-size="17" font-weight="400" fill="#9badc2">describe(): callback outside</text>
+<text x="78" y="1039" font-size="17" font-weight="400" fill="#9badc2">Creation is separate from dispatch.</text>
+<rect x="510" y="926" width="420" height="185" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2"/>
+<rect x="510" y="944" width="3" height="149" rx="1.5" fill="#76adf7"/>
+<text x="532" y="960" font-size="23" font-weight="700" fill="#e4edf8">Observation monitors</text>
+<text x="532" y="989" font-size="17" font-weight="400" fill="#9badc2">EnvelopeStream → ObservedEmitter</text>
+<text x="532" y="1014" font-size="17" font-weight="400" fill="#9badc2">Then Ls for callback admission</text>
+<text x="532" y="1039" font-size="17" font-weight="400" fill="#9badc2">ActivityJournal.json() stays locked.</text>
+<rect x="964" y="926" width="420" height="185" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2"/>
+<rect x="964" y="944" width="3" height="149" rx="1.5" fill="#e9b96e"/>
+<text x="986" y="960" font-size="23" font-weight="700" fill="#e4edf8">HTTP / transport</text>
+<text x="986" y="989" font-size="17" font-weight="400" fill="#9badc2">HTTP body: separate stateLock</text>
+<text x="986" y="1014" font-size="17" font-weight="400" fill="#9badc2">Netty output: outputLock + atomics</text>
+<text x="986" y="1039" font-size="17" font-weight="400" fill="#9badc2">Output lock is per connection.</text>
+<rect x="56" y="1145" width="1328" height="65" rx="12" fill="#142536" stroke="#2a3f53" stroke-width="1.2"/>
+<text x="80" y="1185" font-size="21" font-weight="400" fill="#9badc2">Outside Ls does not mean outside every lock. Built-in HTTP stages remain synchronous.</text>
+<path d="M56 1237H1384" fill="none" stroke="#9badc2" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="56" y="1265" font-size="14" font-weight="400" fill="#9badc2">04 / Scope is local to each lock; callback handoff is not output delivery</text>
+<text x="1384" y="1265" font-size="14" font-weight="400" fill="#9badc2" text-anchor="end">Source: PipelineSession · Pipeline · adapters</text>
+</g>
+</svg>
