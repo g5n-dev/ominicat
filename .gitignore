@@ -17,3 +17,6 @@ dependency-reduced-pom.xml
 reports/baseline/jfr-events.json
 !reports/baseline/jmh.log
 !reports/baseline/gc.log
+!reports/mechanisms/java17-2026-11-02/evidence/measurements/logs/*.log
+!reports/mechanisms/java17-2026-11-02/earlier-measurements/41386037966/logs/*.log
+!reports/mechanisms/java17-2026-11-02/earlier-measurements/41387434975/logs/*.log

@@ -83,6 +83,16 @@ Pipecat 也提供 direct mode，Camel 也有 `direct:` 端点；这些直接调�
 
 取舍也应公开：四阶段时，**Pipecat 的采样进程 RSS 比 OminiCat 低 35.1%／39.4%**；部分 CentOS 轮次与 Camel 的速率或 p99 范围重叠。这里不承诺每轮、每种场景都领先，也不把 W=1 结果当作饱和吞吐或生产容量。[完整 1／4／16 阶段数据、固定版本源码、profile 观察与边界](docs/zh-CN/performance.md)。
 
+### 机制的受控验证
+
+独立的 **Ubuntu 24.04／Java 17** 实验比较真实的 `Pipeline.process` 与 Camel `direct:` API，先在调用线程执行，再使用**同一容量为一的队列、工作线程和返回确认**。每次操作检查四个阶段、结果及执行线程；十二个全新 JMH 进程保留两个 fork 均值和全部测量迭代。
+
+OminiCat／Camel 的调用线程用例汇总分别为 **66.34／1,122.60 ns/op**、**368／1,624 B/op**；加上相同交接后为 **20.59／21.54 µs/op**，这组微小工作负载主要受交接组合成本影响，该模式下的全进程 CPU 范围重叠。独立的预建 Exchange 复制探针约为 **704 B/op**，不含来源构造、SEDA 排队和完成同步；这些成本不能相加解释此前原生路径的差距。
+
+[![Java 执行、相同交接与 Exchange 复制的受控成本](docs/assets/previews/reports--mechanisms--java17-2026-11-02--costs-zh-CN.png)](docs/assets/zh-CN/reports/mechanisms/java17-2026-11-02/costs.svg)
+
+[完整结果、CPU／分配／GC 图及各次运行记录](docs/zh-CN/reports/mechanisms/java17-2026-11-02/README.md) · [可执行协议与失败控制](docs/zh-CN/comparison/mechanism-protocol.md)。本轮验证机制，生产调度器没有改动；不将局部结果宣传为整个框架普遍更快。
+
 <details>
 <summary>查看 OminiCat 的直接调用、异步续接与资源边界</summary>
 

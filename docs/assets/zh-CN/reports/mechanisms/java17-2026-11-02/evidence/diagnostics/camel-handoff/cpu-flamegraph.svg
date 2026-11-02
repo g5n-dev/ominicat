@@ -1,0 +1,775 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="1505" viewBox="0 0 1280 1505" role="img" xml:lang="zh-CN">
+<title>CPU 采样调用栈</title><desc>宽度：样本数。覆盖选定 JFR 导出全集，包含预热与测量驱动。</desc>
+<rect width="1280" height="1505" fill="#101e28" />
+<text x="28" y="34" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" font-size="22" fill="#f2eee1" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">CPU 采样调用栈</text>
+<text x="28" y="61" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" font-size="13" fill="#b8cbd1" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">宽度：样本数。覆盖选定 JFR 导出全集，包含预热与测量驱动。</text>
+<text x="28" y="86" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" font-size="13" fill="#b8cbd1" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">15 个事件；样本总计 15；观测栈深 54；来源标记截断栈 0。</text>
+<text x="28" y="109" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" font-size="13" fill="#b8cbd1" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">保留所有正权重的已提供栈帧；直接打开 SVG 可查看提示与缩放。</text>
+<text x="28" y="130" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" font-size="12" fill="#b8cbd1" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">不可用调用栈：0；零权重事件：0。不能从观测深度推断导出/记录上限。</text>
+<g data-depth="0" data-weight="15"><title>全部样本 — 15 个样本 (100.000%)</title><rect x="28" y="1441" width="1224" height="22" fill="#38576b" stroke="#101e28" stroke-width="0.35" />
+<text x="32" y="1457" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" font-size="12" fill="#f2eee1" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">全部样本</text>
+</g>
+<g data-depth="1" data-weight="10"><title>java.lang.Thread.run — 10 个样本 (66.667%)</title><rect x="28" y="1417" width="816" height="22" fill="hsl(18,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="32" y="1433" font-family="monospace" font-size="12" fill="#152430">Thread.run</text>
+</g>
+<g data-depth="2" data-weight="5"><title>io.ominicat.mechanisms.PathHarness$$Lambda$236+0x00007f11481b5910.1007877449.run — 5 个样本 (33.333%)</title><rect x="28" y="1393" width="408" height="22" fill="hsl(19,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="32" y="1409" font-family="monospace" font-size="12" fill="#152430">PathHarness$$Lambda$236.run</text>
+</g>
+<g data-depth="3" data-weight="5"><title>io.ominicat.mechanisms.PathHarness.run — 5 个样本 (33.333%)</title><rect x="28" y="1369" width="408" height="22" fill="hsl(41,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="32" y="1385" font-family="monospace" font-size="12" fill="#152430">PathHarness.run</text>
+</g>
+<g data-depth="4" data-weight="5"><title>io.ominicat.mechanisms.PathHarness.checked — 5 个样本 (33.333%)</title><rect x="28" y="1345" width="408" height="22" fill="hsl(18,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="32" y="1361" font-family="monospace" font-size="12" fill="#152430">PathHarness.checked</text>
+</g>
+<g data-depth="5" data-weight="5"><title>io.ominicat.mechanisms.PathHarness$CamelBackend.invoke — 5 个样本 (33.333%)</title><rect x="28" y="1321" width="408" height="22" fill="hsl(44,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="32" y="1337" font-family="monospace" font-size="12" fill="#152430">PathHarness$CamelBackend.invoke</text>
+</g>
+<g data-depth="6" data-weight="5"><title>org.apache.camel.impl.engine.DefaultProducerTemplate.requestBody — 5 个样本 (33.333%)</title><rect x="28" y="1297" width="408" height="22" fill="hsl(43,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="32" y="1313" font-family="monospace" font-size="12" fill="#152430">DefaultProducerTemplate.requestBody</text>
+</g>
+<g data-depth="7" data-weight="1"><title>org.apache.camel.impl.converter.CoreTypeConverterRegistry.convertTo — 1 个样本 (6.667%)</title><rect x="28" y="1273" width="81.6" height="22" fill="hsl(32,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="32" y="1289" font-family="monospace" font-size="12" fill="#152430">CoreTypeC…</text>
+</g>
+<g data-depth="8" data-weight="1"><title>org.apache.camel.impl.converter.CoreTypeConverterRegistry.convertTo — 1 个样本 (6.667%)</title><rect x="28" y="1249" width="81.6" height="22" fill="hsl(32,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="32" y="1265" font-family="monospace" font-size="12" fill="#152430">CoreTypeC…</text>
+</g>
+<g data-depth="7" data-weight="4"><title>org.apache.camel.impl.engine.DefaultProducerTemplate.send — 4 个样本 (26.667%)</title><rect x="109.6" y="1273" width="326.4" height="22" fill="hsl(39,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="113.6" y="1289" font-family="monospace" font-size="12" fill="#152430">DefaultProducerTemplate.send</text>
+</g>
+<g data-depth="8" data-weight="4"><title>org.apache.camel.impl.engine.DefaultProducerTemplate.send — 4 个样本 (26.667%)</title><rect x="109.6" y="1249" width="326.4" height="22" fill="hsl(39,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="113.6" y="1265" font-family="monospace" font-size="12" fill="#152430">DefaultProducerTemplate.send</text>
+</g>
+<g data-depth="9" data-weight="4"><title>org.apache.camel.support.cache.DefaultProducerCache.send — 4 个样本 (26.667%)</title><rect x="109.6" y="1225" width="326.4" height="22" fill="hsl(31,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="113.6" y="1241" font-family="monospace" font-size="12" fill="#152430">DefaultProducerCache.send</text>
+</g>
+<g data-depth="10" data-weight="4"><title>org.apache.camel.impl.engine.SharedCamelInternalProcessor.process — 4 个样本 (26.667%)</title><rect x="109.6" y="1201" width="326.4" height="22" fill="hsl(24,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="113.6" y="1217" font-family="monospace" font-size="12" fill="#152430">SharedCamelInternalProcessor.process</text>
+</g>
+<g data-depth="11" data-weight="4"><title>org.apache.camel.impl.engine.DefaultAsyncProcessorAwaitManager.process — 4 个样本 (26.667%)</title><rect x="109.6" y="1177" width="326.4" height="22" fill="hsl(18,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="113.6" y="1193" font-family="monospace" font-size="12" fill="#152430">DefaultAsyncProcessorAwaitManager.process</text>
+</g>
+<g data-depth="12" data-weight="4"><title>org.apache.camel.impl.engine.SharedCamelInternalProcessor$1.process — 4 个样本 (26.667%)</title><rect x="109.6" y="1153" width="326.4" height="22" fill="hsl(33,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="113.6" y="1169" font-family="monospace" font-size="12" fill="#152430">SharedCamelInternalProcessor$1.process</text>
+</g>
+<g data-depth="13" data-weight="4"><title>org.apache.camel.impl.engine.SharedCamelInternalProcessor.process — 4 个样本 (26.667%)</title><rect x="109.6" y="1129" width="326.4" height="22" fill="hsl(24,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="113.6" y="1145" font-family="monospace" font-size="12" fill="#152430">SharedCamelInternalProcessor.process</text>
+</g>
+<g data-depth="14" data-weight="4"><title>org.apache.camel.impl.engine.SharedCamelInternalProcessor.processNonTransacted — 4 个样本 (26.667%)</title><rect x="109.6" y="1105" width="326.4" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="113.6" y="1121" font-family="monospace" font-size="12" fill="#152430">SharedCamelInternalProcessor.processNonTra…</text>
+</g>
+<g data-depth="15" data-weight="4"><title>org.apache.camel.component.direct.DirectProducer.process — 4 个样本 (26.667%)</title><rect x="109.6" y="1081" width="326.4" height="22" fill="hsl(40,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="113.6" y="1097" font-family="monospace" font-size="12" fill="#152430">DirectProducer.process</text>
+</g>
+<g data-depth="16" data-weight="3"><title>org.apache.camel.component.direct.DirectProducer.process — 3 个样本 (20.000%)</title><rect x="109.6" y="1057" width="244.8" height="22" fill="hsl(40,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="113.6" y="1073" font-family="monospace" font-size="12" fill="#152430">DirectProducer.process</text>
+</g>
+<g data-depth="17" data-weight="3"><title>org.apache.camel.support.AsyncProcessorSupport.process — 3 个样本 (20.000%)</title><rect x="109.6" y="1033" width="244.8" height="22" fill="hsl(29,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="113.6" y="1049" font-family="monospace" font-size="12" fill="#152430">AsyncProcessorSupport.process</text>
+</g>
+<g data-depth="18" data-weight="3"><title>org.apache.camel.impl.engine.DefaultAsyncProcessorAwaitManager.process — 3 个样本 (20.000%)</title><rect x="109.6" y="1009" width="244.8" height="22" fill="hsl(18,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="113.6" y="1025" font-family="monospace" font-size="12" fill="#152430">DefaultAsyncProcessorAwaitManag…</text>
+</g>
+<g data-depth="19" data-weight="3"><title>org.apache.camel.impl.engine.CamelInternalProcessor.process — 3 个样本 (20.000%)</title><rect x="109.6" y="985" width="244.8" height="22" fill="hsl(38,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="113.6" y="1001" font-family="monospace" font-size="12" fill="#152430">CamelInternalProcessor.process</text>
+</g>
+<g data-depth="20" data-weight="1"><title>org.apache.camel.impl.engine.CamelInternalProcessor$RouteInflightRepositoryAdvice.before — 1 个样本 (6.667%)</title><rect x="109.6" y="961" width="81.6" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="113.6" y="977" font-family="monospace" font-size="12" fill="#152430">CamelInte…</text>
+</g>
+<g data-depth="21" data-weight="1"><title>org.apache.camel.impl.engine.DefaultInflightRepository.add — 1 个样本 (6.667%)</title><rect x="109.6" y="937" width="81.6" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="113.6" y="953" font-family="monospace" font-size="12" fill="#152430">DefaultIn…</text>
+</g>
+<g data-depth="22" data-weight="1"><title>java.util.concurrent.atomic.LongAdder.increment — 1 个样本 (6.667%)</title><rect x="109.6" y="913" width="81.6" height="22" fill="hsl(19,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="113.6" y="929" font-family="monospace" font-size="12" fill="#152430">LongAdder…</text>
+</g>
+<g data-depth="20" data-weight="2"><title>org.apache.camel.impl.engine.CamelInternalProcessor.processNonTransacted — 2 个样本 (13.333%)</title><rect x="191.2" y="961" width="163.2" height="22" fill="hsl(43,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="195.2" y="977" font-family="monospace" font-size="12" fill="#152430">CamelInternalProcess…</text>
+</g>
+<g data-depth="21" data-weight="2"><title>org.apache.camel.processor.Pipeline.process — 2 个样本 (13.333%)</title><rect x="191.2" y="937" width="163.2" height="22" fill="hsl(42,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="195.2" y="953" font-family="monospace" font-size="12" fill="#152430">Pipeline.process</text>
+</g>
+<g data-depth="22" data-weight="2"><title>org.apache.camel.impl.engine.DefaultReactiveExecutor.scheduleMain — 2 个样本 (13.333%)</title><rect x="191.2" y="913" width="163.2" height="22" fill="hsl(25,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="195.2" y="929" font-family="monospace" font-size="12" fill="#152430">DefaultReactiveExecu…</text>
+</g>
+<g data-depth="23" data-weight="2"><title>org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.schedule — 2 个样本 (13.333%)</title><rect x="191.2" y="889" width="163.2" height="22" fill="hsl(47,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="195.2" y="905" font-family="monospace" font-size="12" fill="#152430">DefaultReactiveExecu…</text>
+</g>
+<g data-depth="24" data-weight="2"><title>org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.tryExecuteReactiveWork — 2 个样本 (13.333%)</title><rect x="191.2" y="865" width="163.2" height="22" fill="hsl(18,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="195.2" y="881" font-family="monospace" font-size="12" fill="#152430">DefaultReactiveExecu…</text>
+</g>
+<g data-depth="25" data-weight="2"><title>org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.executeReactiveWork — 2 个样本 (13.333%)</title><rect x="191.2" y="841" width="163.2" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="195.2" y="857" font-family="monospace" font-size="12" fill="#152430">DefaultReactiveExecu…</text>
+</g>
+<g data-depth="26" data-weight="2"><title>org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.doRun — 2 个样本 (13.333%)</title><rect x="191.2" y="817" width="163.2" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="195.2" y="833" font-family="monospace" font-size="12" fill="#152430">DefaultReactiveExecu…</text>
+</g>
+<g data-depth="27" data-weight="2"><title>org.apache.camel.processor.errorhandler.RedeliveryErrorHandler$SimpleTask.run — 2 个样本 (13.333%)</title><rect x="191.2" y="793" width="163.2" height="22" fill="hsl(33,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="195.2" y="809" font-family="monospace" font-size="12" fill="#152430">RedeliveryErrorHandl…</text>
+</g>
+<g data-depth="28" data-weight="2"><title>org.apache.camel.processor.errorhandler.RedeliveryErrorHandler$SimpleTask.handleFirst — 2 个样本 (13.333%)</title><rect x="191.2" y="769" width="163.2" height="22" fill="hsl(43,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="195.2" y="785" font-family="monospace" font-size="12" fill="#152430">RedeliveryErrorHandl…</text>
+</g>
+<g data-depth="29" data-weight="2"><title>org.apache.camel.support.processor.DelegateSyncProcessor.process — 2 个样本 (13.333%)</title><rect x="191.2" y="745" width="163.2" height="22" fill="hsl(20,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="195.2" y="761" font-family="monospace" font-size="12" fill="#152430">DelegateSyncProcesso…</text>
+</g>
+<g data-depth="30" data-weight="2"><title>org.apache.camel.processor.errorhandler.RedeliveryErrorHandler$SimpleTask.done — 2 个样本 (13.333%)</title><rect x="191.2" y="721" width="163.2" height="22" fill="hsl(32,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="195.2" y="737" font-family="monospace" font-size="12" fill="#152430">RedeliveryErrorHandl…</text>
+</g>
+<g data-depth="31" data-weight="2"><title>org.apache.camel.processor.errorhandler.RedeliveryErrorHandler$SimpleTask.run — 2 个样本 (13.333%)</title><rect x="191.2" y="697" width="163.2" height="22" fill="hsl(33,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="195.2" y="713" font-family="monospace" font-size="12" fill="#152430">RedeliveryErrorHandl…</text>
+</g>
+<g data-depth="32" data-weight="1"><title>org.apache.camel.impl.engine.DefaultReactiveExecutor.schedule — 1 个样本 (6.667%)</title><rect x="191.2" y="673" width="81.6" height="22" fill="hsl(27,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="195.2" y="689" font-family="monospace" font-size="12" fill="#152430">DefaultRe…</text>
+</g>
+<g data-depth="33" data-weight="1"><title>org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.schedule — 1 个样本 (6.667%)</title><rect x="191.2" y="649" width="81.6" height="22" fill="hsl(47,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="195.2" y="665" font-family="monospace" font-size="12" fill="#152430">DefaultRe…</text>
+</g>
+<g data-depth="34" data-weight="1"><title>org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.tryExecuteReactiveWork — 1 个样本 (6.667%)</title><rect x="191.2" y="625" width="81.6" height="22" fill="hsl(18,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="195.2" y="641" font-family="monospace" font-size="12" fill="#152430">DefaultRe…</text>
+</g>
+<g data-depth="35" data-weight="1"><title>org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.incrementRunningWorkers — 1 个样本 (6.667%)</title><rect x="191.2" y="601" width="81.6" height="22" fill="hsl(23,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="195.2" y="617" font-family="monospace" font-size="12" fill="#152430">DefaultRe…</text>
+</g>
+<g data-depth="36" data-weight="1"><title>java.util.concurrent.atomic.LongAdder.increment — 1 个样本 (6.667%)</title><rect x="191.2" y="577" width="81.6" height="22" fill="hsl(19,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="195.2" y="593" font-family="monospace" font-size="12" fill="#152430">LongAdder…</text>
+</g>
+<g data-depth="37" data-weight="1"><title>java.util.concurrent.atomic.LongAdder.add — 1 个样本 (6.667%)</title><rect x="191.2" y="553" width="81.6" height="22" fill="hsl(41,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="195.2" y="569" font-family="monospace" font-size="12" fill="#152430">LongAdder…</text>
+</g>
+<g data-depth="32" data-weight="1"><title>org.apache.camel.processor.errorhandler.RedeliveryErrorHandler$SimpleTask.isFailedOrBridged — 1 个样本 (6.667%)</title><rect x="272.8" y="673" width="81.6" height="22" fill="hsl(19,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="276.8" y="689" font-family="monospace" font-size="12" fill="#152430">Redeliver…</text>
+</g>
+<g data-depth="33" data-weight="1"><title>org.apache.camel.support.ExchangeHelper.isErrorHandlerBridge — 1 个样本 (6.667%)</title><rect x="272.8" y="649" width="81.6" height="22" fill="hsl(40,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="276.8" y="665" font-family="monospace" font-size="12" fill="#152430">ExchangeH…</text>
+</g>
+<g data-depth="16" data-weight="1"><title>org.apache.camel.impl.engine.SharedCamelInternalProcessor$InternalCallback.done — 1 个样本 (6.667%)</title><rect x="354.4" y="1057" width="81.6" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="358.4" y="1073" font-family="monospace" font-size="12" fill="#152430">SharedCam…</text>
+</g>
+<g data-depth="17" data-weight="1"><title>org.apache.camel.impl.engine.AdviceIterator.runAfterTask — 1 个样本 (6.667%)</title><rect x="354.4" y="1033" width="81.6" height="22" fill="hsl(33,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="358.4" y="1049" font-family="monospace" font-size="12" fill="#152430">AdviceIte…</text>
+</g>
+<g data-depth="18" data-weight="1"><title>org.apache.camel.impl.engine.CamelInternalProcessor$UnitOfWorkProcessorAdvice.after — 1 个样本 (6.667%)</title><rect x="354.4" y="1009" width="81.6" height="22" fill="hsl(21,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="358.4" y="1025" font-family="monospace" font-size="12" fill="#152430">CamelInte…</text>
+</g>
+<g data-depth="19" data-weight="1"><title>org.apache.camel.impl.engine.CamelInternalProcessor$UnitOfWorkProcessorAdvice.after — 1 个样本 (6.667%)</title><rect x="354.4" y="985" width="81.6" height="22" fill="hsl(21,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="358.4" y="1001" font-family="monospace" font-size="12" fill="#152430">CamelInte…</text>
+</g>
+<g data-depth="20" data-weight="1"><title>org.apache.camel.support.UnitOfWorkHelper.doneUow — 1 个样本 (6.667%)</title><rect x="354.4" y="961" width="81.6" height="22" fill="hsl(48,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="358.4" y="977" font-family="monospace" font-size="12" fill="#152430">UnitOfWor…</text>
+</g>
+<g data-depth="21" data-weight="1"><title>org.apache.camel.impl.engine.DefaultUnitOfWork.done — 1 个样本 (6.667%)</title><rect x="354.4" y="937" width="81.6" height="22" fill="hsl(30,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="358.4" y="953" font-family="monospace" font-size="12" fill="#152430">DefaultUn…</text>
+</g>
+<g data-depth="22" data-weight="1"><title>org.apache.camel.impl.engine.DefaultUnitOfWork.onDone — 1 个样本 (6.667%)</title><rect x="354.4" y="913" width="81.6" height="22" fill="hsl(20,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="358.4" y="929" font-family="monospace" font-size="12" fill="#152430">DefaultUn…</text>
+</g>
+<g data-depth="23" data-weight="1"><title>org.apache.camel.support.DefaultExchange.setUnitOfWork — 1 个样本 (6.667%)</title><rect x="354.4" y="889" width="81.6" height="22" fill="hsl(43,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="358.4" y="905" font-family="monospace" font-size="12" fill="#152430">DefaultEx…</text>
+</g>
+<g data-depth="2" data-weight="5"><title>java.util.concurrent.ThreadPoolExecutor$Worker.run — 5 个样本 (33.333%)</title><rect x="436" y="1393" width="408" height="22" fill="hsl(40,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="440" y="1409" font-family="monospace" font-size="12" fill="#152430">ThreadPoolExecutor$Worker.run</text>
+</g>
+<g data-depth="3" data-weight="5"><title>java.util.concurrent.ThreadPoolExecutor.runWorker — 5 个样本 (33.333%)</title><rect x="436" y="1369" width="408" height="22" fill="hsl(22,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="440" y="1385" font-family="monospace" font-size="12" fill="#152430">ThreadPoolExecutor.runWorker</text>
+</g>
+<g data-depth="4" data-weight="5"><title>java.util.concurrent.FutureTask.run — 5 个样本 (33.333%)</title><rect x="436" y="1345" width="408" height="22" fill="hsl(43,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="440" y="1361" font-family="monospace" font-size="12" fill="#152430">FutureTask.run</text>
+</g>
+<g data-depth="5" data-weight="5"><title>java.util.concurrent.Executors$RunnableAdapter.call — 5 个样本 (33.333%)</title><rect x="436" y="1321" width="408" height="22" fill="hsl(27,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="440" y="1337" font-family="monospace" font-size="12" fill="#152430">Executors$RunnableAdapter.call</text>
+</g>
+<g data-depth="6" data-weight="5"><title>java.util.concurrent.FutureTask.run — 5 个样本 (33.333%)</title><rect x="436" y="1297" width="408" height="22" fill="hsl(43,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="440" y="1313" font-family="monospace" font-size="12" fill="#152430">FutureTask.run</text>
+</g>
+<g data-depth="7" data-weight="5"><title>org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call — 5 个样本 (33.333%)</title><rect x="436" y="1273" width="408" height="22" fill="hsl(44,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="440" y="1289" font-family="monospace" font-size="12" fill="#152430">BenchmarkHandler$BenchmarkTask.call</text>
+</g>
+<g data-depth="8" data-weight="5"><title>org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call — 5 个样本 (33.333%)</title><rect x="436" y="1249" width="408" height="22" fill="hsl(44,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="440" y="1265" font-family="monospace" font-size="12" fill="#152430">BenchmarkHandler$BenchmarkTask.call</text>
+</g>
+<g data-depth="9" data-weight="5"><title>java.lang.reflect.Method.invoke — 5 个样本 (33.333%)</title><rect x="436" y="1225" width="408" height="22" fill="hsl(36,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="440" y="1241" font-family="monospace" font-size="12" fill="#152430">Method.invoke</text>
+</g>
+<g data-depth="10" data-weight="5"><title>jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke — 5 个样本 (33.333%)</title><rect x="436" y="1201" width="408" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="440" y="1217" font-family="monospace" font-size="12" fill="#152430">DelegatingMethodAccessorImpl.invoke</text>
+</g>
+<g data-depth="11" data-weight="5"><title>jdk.internal.reflect.NativeMethodAccessorImpl.invoke — 5 个样本 (33.333%)</title><rect x="436" y="1177" width="408" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="440" y="1193" font-family="monospace" font-size="12" fill="#152430">NativeMethodAccessorImpl.invoke</text>
+</g>
+<g data-depth="12" data-weight="5"><title>jdk.internal.reflect.NativeMethodAccessorImpl.invoke0 — 5 个样本 (33.333%)</title><rect x="436" y="1153" width="408" height="22" fill="hsl(44,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="440" y="1169" font-family="monospace" font-size="12" fill="#152430">NativeMethodAccessorImpl.invoke0</text>
+</g>
+<g data-depth="13" data-weight="5"><title>io.ominicat.mechanisms.jmh_generated.PathBenchmark_roundTrip_jmhTest.roundTrip_AverageTime — 5 个样本 (33.333%)</title><rect x="436" y="1129" width="408" height="22" fill="hsl(33,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="440" y="1145" font-family="monospace" font-size="12" fill="#152430">PathBenchmark_roundTrip_jmhTest.roundTrip_AverageTime</text>
+</g>
+<g data-depth="14" data-weight="5"><title>io.ominicat.mechanisms.jmh_generated.PathBenchmark_roundTrip_jmhTest._jmh_tryInit_f_pathbenchmark0_0 — 5 个样本 (33.333%)</title><rect x="436" y="1105" width="408" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="440" y="1121" font-family="monospace" font-size="12" fill="#152430">PathBenchmark_roundTrip_jmhTest._jmh_tryInit_f_pathbe…</text>
+</g>
+<g data-depth="15" data-weight="5"><title>io.ominicat.mechanisms.PathBenchmark.setup — 5 个样本 (33.333%)</title><rect x="436" y="1081" width="408" height="22" fill="hsl(31,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="440" y="1097" font-family="monospace" font-size="12" fill="#152430">PathBenchmark.setup</text>
+</g>
+<g data-depth="16" data-weight="2"><title>io.ominicat.mechanisms.BenchmarkOrigin.verify — 2 个样本 (13.333%)</title><rect x="436" y="1057" width="163.2" height="22" fill="hsl(47,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="440" y="1073" font-family="monospace" font-size="12" fill="#152430">BenchmarkOrigin.veri…</text>
+</g>
+<g data-depth="17" data-weight="2"><title>io.ominicat.mechanisms.BenchmarkOrigin.verifyArtifact — 2 个样本 (13.333%)</title><rect x="436" y="1033" width="163.2" height="22" fill="hsl(24,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="440" y="1049" font-family="monospace" font-size="12" fill="#152430">BenchmarkOrigin.veri…</text>
+</g>
+<g data-depth="18" data-weight="2"><title>java.security.MessageDigest.update — 2 个样本 (13.333%)</title><rect x="436" y="1009" width="163.2" height="22" fill="hsl(25,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="440" y="1025" font-family="monospace" font-size="12" fill="#152430">MessageDigest.update</text>
+</g>
+<g data-depth="19" data-weight="2"><title>java.security.MessageDigest$Delegate.engineUpdate — 2 个样本 (13.333%)</title><rect x="436" y="985" width="163.2" height="22" fill="hsl(47,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="440" y="1001" font-family="monospace" font-size="12" fill="#152430">MessageDigest$Delega…</text>
+</g>
+<g data-depth="20" data-weight="2"><title>sun.security.provider.DigestBase.engineUpdate — 2 个样本 (13.333%)</title><rect x="436" y="961" width="163.2" height="22" fill="hsl(39,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="440" y="977" font-family="monospace" font-size="12" fill="#152430">DigestBase.engineUpd…</text>
+</g>
+<g data-depth="21" data-weight="2"><title>sun.security.provider.DigestBase.implCompressMultiBlock — 2 个样本 (13.333%)</title><rect x="436" y="937" width="163.2" height="22" fill="hsl(36,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="440" y="953" font-family="monospace" font-size="12" fill="#152430">DigestBase.implCompr…</text>
+</g>
+<g data-depth="22" data-weight="2"><title>sun.security.provider.DigestBase.implCompressMultiBlock0 — 2 个样本 (13.333%)</title><rect x="436" y="913" width="163.2" height="22" fill="hsl(19,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="440" y="929" font-family="monospace" font-size="12" fill="#152430">DigestBase.implCompr…</text>
+</g>
+<g data-depth="23" data-weight="2"><title>sun.security.provider.SHA2.implCompress — 2 个样本 (13.333%)</title><rect x="436" y="889" width="163.2" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="440" y="905" font-family="monospace" font-size="12" fill="#152430">SHA2.implCompress</text>
+</g>
+<g data-depth="24" data-weight="1"><title>sun.security.provider.SHA2.implCompress0 — 1 个样本 (6.667%)</title><rect x="436" y="865" width="81.6" height="22" fill="hsl(28,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="440" y="881" font-family="monospace" font-size="12" fill="#152430">SHA2.impl…</text>
+</g>
+<g data-depth="24" data-weight="1"><title>sun.security.provider.SHA2.implCompressCheck — 1 个样本 (6.667%)</title><rect x="517.6" y="865" width="81.6" height="22" fill="hsl(18,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="521.6" y="881" font-family="monospace" font-size="12" fill="#152430">SHA2.impl…</text>
+</g>
+<g data-depth="16" data-weight="3"><title>io.ominicat.mechanisms.PathHarness.&lt;init&gt; — 3 个样本 (20.000%)</title><rect x="599.2" y="1057" width="244.8" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="603.2" y="1073" font-family="monospace" font-size="12" fill="#152430">PathHarness.&lt;init&gt;</text>
+</g>
+<g data-depth="17" data-weight="3"><title>io.ominicat.mechanisms.PathHarness$CamelBackend.&lt;init&gt; — 3 个样本 (20.000%)</title><rect x="599.2" y="1033" width="244.8" height="22" fill="hsl(31,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="603.2" y="1049" font-family="monospace" font-size="12" fill="#152430">PathHarness$CamelBackend.&lt;init&gt;</text>
+</g>
+<g data-depth="18" data-weight="2"><title>org.apache.camel.impl.DefaultCamelContext.&lt;init&gt; — 2 个样本 (13.333%)</title><rect x="599.2" y="1009" width="163.2" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="603.2" y="1025" font-family="monospace" font-size="12" fill="#152430">DefaultCamelContext.…</text>
+</g>
+<g data-depth="19" data-weight="2"><title>org.apache.camel.impl.DefaultCamelContext.&lt;init&gt; — 2 个样本 (13.333%)</title><rect x="599.2" y="985" width="163.2" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="603.2" y="1001" font-family="monospace" font-size="12" fill="#152430">DefaultCamelContext.…</text>
+</g>
+<g data-depth="20" data-weight="1"><title>org.apache.camel.impl.DefaultCamelContext.createModelReifierFactory — 1 个样本 (6.667%)</title><rect x="599.2" y="961" width="81.6" height="22" fill="hsl(42,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="603.2" y="977" font-family="monospace" font-size="12" fill="#152430">DefaultCa…</text>
+</g>
+<g data-depth="21" data-weight="1"><title>org.apache.camel.support.ResolverHelper.resolveService — 1 个样本 (6.667%)</title><rect x="599.2" y="937" width="81.6" height="22" fill="hsl(19,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="603.2" y="953" font-family="monospace" font-size="12" fill="#152430">ResolverH…</text>
+</g>
+<g data-depth="22" data-weight="1"><title>org.apache.camel.support.ResolverHelper.doResolveService — 1 个样本 (6.667%)</title><rect x="599.2" y="913" width="81.6" height="22" fill="hsl(41,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="603.2" y="929" font-family="monospace" font-size="12" fill="#152430">ResolverH…</text>
+</g>
+<g data-depth="23" data-weight="1"><title>org.apache.camel.impl.engine.DefaultFactoryFinder.findOptionalClass — 1 个样本 (6.667%)</title><rect x="599.2" y="889" width="81.6" height="22" fill="hsl(48,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="603.2" y="905" font-family="monospace" font-size="12" fill="#152430">DefaultFa…</text>
+</g>
+<g data-depth="24" data-weight="1"><title>org.apache.camel.impl.engine.DefaultFactoryFinder.addToClassMap — 1 个样本 (6.667%)</title><rect x="599.2" y="865" width="81.6" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="603.2" y="881" font-family="monospace" font-size="12" fill="#152430">DefaultFa…</text>
+</g>
+<g data-depth="25" data-weight="1"><title>java.util.concurrent.ConcurrentHashMap.computeIfAbsent — 1 个样本 (6.667%)</title><rect x="599.2" y="841" width="81.6" height="22" fill="hsl(39,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="603.2" y="857" font-family="monospace" font-size="12" fill="#152430">Concurren…</text>
+</g>
+<g data-depth="26" data-weight="1"><title>org.apache.camel.impl.engine.DefaultFactoryFinder$1.apply — 1 个样本 (6.667%)</title><rect x="599.2" y="817" width="81.6" height="22" fill="hsl(27,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="603.2" y="833" font-family="monospace" font-size="12" fill="#152430">DefaultFa…</text>
+</g>
+<g data-depth="27" data-weight="1"><title>org.apache.camel.impl.engine.DefaultFactoryFinder$1.apply — 1 个样本 (6.667%)</title><rect x="599.2" y="793" width="81.6" height="22" fill="hsl(27,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="603.2" y="809" font-family="monospace" font-size="12" fill="#152430">DefaultFa…</text>
+</g>
+<g data-depth="28" data-weight="1"><title>org.apache.camel.impl.engine.DefaultFactoryFinder$$Lambda$165+0x00007f1148107730.1605485316.get — 1 个样本 (6.667%)</title><rect x="599.2" y="769" width="81.6" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="603.2" y="785" font-family="monospace" font-size="12" fill="#152430">DefaultFa…</text>
+</g>
+<g data-depth="29" data-weight="1"><title>org.apache.camel.impl.engine.DefaultFactoryFinder.lambda$findOptionalClass$0 — 1 个样本 (6.667%)</title><rect x="599.2" y="745" width="81.6" height="22" fill="hsl(33,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="603.2" y="761" font-family="monospace" font-size="12" fill="#152430">DefaultFa…</text>
+</g>
+<g data-depth="30" data-weight="1"><title>org.apache.camel.impl.engine.DefaultFactoryFinder.doFindFactoryProperties — 1 个样本 (6.667%)</title><rect x="599.2" y="721" width="81.6" height="22" fill="hsl(36,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="603.2" y="737" font-family="monospace" font-size="12" fill="#152430">DefaultFa…</text>
+</g>
+<g data-depth="31" data-weight="1"><title>org.apache.camel.impl.engine.DefaultClassResolver.loadResourceAsStream — 1 个样本 (6.667%)</title><rect x="599.2" y="697" width="81.6" height="22" fill="hsl(30,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="603.2" y="713" font-family="monospace" font-size="12" fill="#152430">DefaultCl…</text>
+</g>
+<g data-depth="32" data-weight="1"><title>org.apache.camel.util.ObjectHelper.loadResourceAsStream — 1 个样本 (6.667%)</title><rect x="599.2" y="673" width="81.6" height="22" fill="hsl(31,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="603.2" y="689" font-family="monospace" font-size="12" fill="#152430">ObjectHel…</text>
+</g>
+<g data-depth="33" data-weight="1"><title>org.apache.camel.util.ObjectHelper.loadResourceAsURL — 1 个样本 (6.667%)</title><rect x="599.2" y="649" width="81.6" height="22" fill="hsl(46,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="603.2" y="665" font-family="monospace" font-size="12" fill="#152430">ObjectHel…</text>
+</g>
+<g data-depth="34" data-weight="1"><title>org.apache.camel.util.ObjectHelper.resolveUriPath — 1 个样本 (6.667%)</title><rect x="599.2" y="625" width="81.6" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="603.2" y="641" font-family="monospace" font-size="12" fill="#152430">ObjectHel…</text>
+</g>
+<g data-depth="35" data-weight="1"><title>org.apache.camel.util.FileUtil.compactPath — 1 个样本 (6.667%)</title><rect x="599.2" y="601" width="81.6" height="22" fill="hsl(30,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="603.2" y="617" font-family="monospace" font-size="12" fill="#152430">FileUtil.…</text>
+</g>
+<g data-depth="36" data-weight="1"><title>org.apache.camel.util.FileUtil.compactPath — 1 个样本 (6.667%)</title><rect x="599.2" y="577" width="81.6" height="22" fill="hsl(30,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="603.2" y="593" font-family="monospace" font-size="12" fill="#152430">FileUtil.…</text>
+</g>
+<g data-depth="37" data-weight="1"><title>java.lang.String.split — 1 个样本 (6.667%)</title><rect x="599.2" y="553" width="81.6" height="22" fill="hsl(19,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="603.2" y="569" font-family="monospace" font-size="12" fill="#152430">String.sp…</text>
+</g>
+<g data-depth="38" data-weight="1"><title>java.lang.String.split — 1 个样本 (6.667%)</title><rect x="599.2" y="529" width="81.6" height="22" fill="hsl(19,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="603.2" y="545" font-family="monospace" font-size="12" fill="#152430">String.sp…</text>
+</g>
+<g data-depth="39" data-weight="1"><title>java.util.regex.Pattern.compile — 1 个样本 (6.667%)</title><rect x="599.2" y="505" width="81.6" height="22" fill="hsl(36,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="603.2" y="521" font-family="monospace" font-size="12" fill="#152430">Pattern.c…</text>
+</g>
+<g data-depth="40" data-weight="1"><title>java.util.regex.Pattern.&lt;init&gt; — 1 个样本 (6.667%)</title><rect x="599.2" y="481" width="81.6" height="22" fill="hsl(42,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="603.2" y="497" font-family="monospace" font-size="12" fill="#152430">Pattern.&lt;…</text>
+</g>
+<g data-depth="41" data-weight="1"><title>java.util.regex.Pattern.compile — 1 个样本 (6.667%)</title><rect x="599.2" y="457" width="81.6" height="22" fill="hsl(36,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="603.2" y="473" font-family="monospace" font-size="12" fill="#152430">Pattern.c…</text>
+</g>
+<g data-depth="42" data-weight="1"><title>java.util.regex.Pattern.expr — 1 个样本 (6.667%)</title><rect x="599.2" y="433" width="81.6" height="22" fill="hsl(44,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="603.2" y="449" font-family="monospace" font-size="12" fill="#152430">Pattern.e…</text>
+</g>
+<g data-depth="43" data-weight="1"><title>java.util.regex.Pattern.sequence — 1 个样本 (6.667%)</title><rect x="599.2" y="409" width="81.6" height="22" fill="hsl(41,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="603.2" y="425" font-family="monospace" font-size="12" fill="#152430">Pattern.s…</text>
+</g>
+<g data-depth="44" data-weight="1"><title>java.util.regex.Pattern.newCharProperty — 1 个样本 (6.667%)</title><rect x="599.2" y="385" width="81.6" height="22" fill="hsl(43,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="603.2" y="401" font-family="monospace" font-size="12" fill="#152430">Pattern.n…</text>
+</g>
+<g data-depth="20" data-weight="1"><title>org.apache.camel.impl.engine.SimpleCamelContext.&lt;init&gt; — 1 个样本 (6.667%)</title><rect x="680.8" y="961" width="81.6" height="22" fill="hsl(27,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="684.8" y="977" font-family="monospace" font-size="12" fill="#152430">SimpleCam…</text>
+</g>
+<g data-depth="21" data-weight="1"><title>org.apache.camel.impl.engine.AbstractCamelContext.&lt;init&gt; — 1 个样本 (6.667%)</title><rect x="680.8" y="937" width="81.6" height="22" fill="hsl(21,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="684.8" y="953" font-family="monospace" font-size="12" fill="#152430">AbstractC…</text>
+</g>
+<g data-depth="22" data-weight="1"><title>java.lang.ClassLoader.loadClass — 1 个样本 (6.667%)</title><rect x="680.8" y="913" width="81.6" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="684.8" y="929" font-family="monospace" font-size="12" fill="#152430">ClassLoad…</text>
+</g>
+<g data-depth="23" data-weight="1"><title>jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass — 1 个样本 (6.667%)</title><rect x="680.8" y="889" width="81.6" height="22" fill="hsl(29,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="684.8" y="905" font-family="monospace" font-size="12" fill="#152430">ClassLoad…</text>
+</g>
+<g data-depth="24" data-weight="1"><title>jdk.internal.loader.BuiltinClassLoader.loadClass — 1 个样本 (6.667%)</title><rect x="680.8" y="865" width="81.6" height="22" fill="hsl(42,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="684.8" y="881" font-family="monospace" font-size="12" fill="#152430">BuiltinCl…</text>
+</g>
+<g data-depth="25" data-weight="1"><title>jdk.internal.loader.BuiltinClassLoader.loadClassOrNull — 1 个样本 (6.667%)</title><rect x="680.8" y="841" width="81.6" height="22" fill="hsl(46,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="684.8" y="857" font-family="monospace" font-size="12" fill="#152430">BuiltinCl…</text>
+</g>
+<g data-depth="26" data-weight="1"><title>jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull — 1 个样本 (6.667%)</title><rect x="680.8" y="817" width="81.6" height="22" fill="hsl(20,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="684.8" y="833" font-family="monospace" font-size="12" fill="#152430">BuiltinCl…</text>
+</g>
+<g data-depth="27" data-weight="1"><title>jdk.internal.loader.URLClassPath.getResource — 1 个样本 (6.667%)</title><rect x="680.8" y="793" width="81.6" height="22" fill="hsl(23,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="684.8" y="809" font-family="monospace" font-size="12" fill="#152430">URLClassP…</text>
+</g>
+<g data-depth="28" data-weight="1"><title>jdk.internal.loader.URLClassPath$JarLoader.getResource — 1 个样本 (6.667%)</title><rect x="680.8" y="769" width="81.6" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="684.8" y="785" font-family="monospace" font-size="12" fill="#152430">URLClassP…</text>
+</g>
+<g data-depth="29" data-weight="1"><title>java.util.jar.JarFile.getJarEntry — 1 个样本 (6.667%)</title><rect x="680.8" y="745" width="81.6" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="684.8" y="761" font-family="monospace" font-size="12" fill="#152430">JarFile.g…</text>
+</g>
+<g data-depth="30" data-weight="1"><title>java.util.jar.JarFile.getEntry — 1 个样本 (6.667%)</title><rect x="680.8" y="721" width="81.6" height="22" fill="hsl(39,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="684.8" y="737" font-family="monospace" font-size="12" fill="#152430">JarFile.g…</text>
+</g>
+<g data-depth="31" data-weight="1"><title>java.util.zip.ZipFile.getEntry — 1 个样本 (6.667%)</title><rect x="680.8" y="697" width="81.6" height="22" fill="hsl(47,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="684.8" y="713" font-family="monospace" font-size="12" fill="#152430">ZipFile.g…</text>
+</g>
+<g data-depth="32" data-weight="1"><title>java.util.zip.ZipFile.getZipEntry — 1 个样本 (6.667%)</title><rect x="680.8" y="673" width="81.6" height="22" fill="hsl(31,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="684.8" y="689" font-family="monospace" font-size="12" fill="#152430">ZipFile.g…</text>
+</g>
+<g data-depth="33" data-weight="1"><title>java.util.zip.ZipUtils.CENTIM — 1 个样本 (6.667%)</title><rect x="680.8" y="649" width="81.6" height="22" fill="hsl(42,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="684.8" y="665" font-family="monospace" font-size="12" fill="#152430">ZipUtils.…</text>
+</g>
+<g data-depth="18" data-weight="1"><title>org.apache.camel.impl.DefaultCamelContext.start — 1 个样本 (6.667%)</title><rect x="762.4" y="1009" width="81.6" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="766.4" y="1025" font-family="monospace" font-size="12" fill="#152430">DefaultCa…</text>
+</g>
+<g data-depth="19" data-weight="1"><title>org.apache.camel.impl.engine.AbstractCamelContext.start — 1 个样本 (6.667%)</title><rect x="762.4" y="985" width="81.6" height="22" fill="hsl(30,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="766.4" y="1001" font-family="monospace" font-size="12" fill="#152430">AbstractC…</text>
+</g>
+<g data-depth="20" data-weight="1"><title>org.apache.camel.support.service.BaseService.start — 1 个样本 (6.667%)</title><rect x="762.4" y="961" width="81.6" height="22" fill="hsl(46,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="766.4" y="977" font-family="monospace" font-size="12" fill="#152430">BaseServi…</text>
+</g>
+<g data-depth="21" data-weight="1"><title>org.apache.camel.impl.engine.AbstractCamelContext.doStart — 1 个样本 (6.667%)</title><rect x="762.4" y="937" width="81.6" height="22" fill="hsl(48,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="766.4" y="953" font-family="monospace" font-size="12" fill="#152430">AbstractC…</text>
+</g>
+<g data-depth="22" data-weight="1"><title>org.apache.camel.impl.engine.AbstractCamelContext.doStartContext — 1 个样本 (6.667%)</title><rect x="762.4" y="913" width="81.6" height="22" fill="hsl(19,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="766.4" y="929" font-family="monospace" font-size="12" fill="#152430">AbstractC…</text>
+</g>
+<g data-depth="23" data-weight="1"><title>org.apache.camel.impl.engine.DefaultCamelContextExtension.closeBootstraps — 1 个样本 (6.667%)</title><rect x="762.4" y="889" width="81.6" height="22" fill="hsl(36,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="766.4" y="905" font-family="monospace" font-size="12" fill="#152430">DefaultCa…</text>
+</g>
+<g data-depth="24" data-weight="1"><title>org.apache.camel.impl.engine.DefaultServiceBootstrapCloseable.close — 1 个样本 (6.667%)</title><rect x="762.4" y="865" width="81.6" height="22" fill="hsl(24,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="766.4" y="881" font-family="monospace" font-size="12" fill="#152430">DefaultSe…</text>
+</g>
+<g data-depth="1" data-weight="4"><title>org.openjdk.jmh.Main.main — 4 个样本 (26.667%)</title><rect x="844" y="1417" width="326.4" height="22" fill="hsl(27,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="848" y="1433" font-family="monospace" font-size="12" fill="#152430">Main.main</text>
+</g>
+<g data-depth="2" data-weight="4"><title>org.openjdk.jmh.runner.Runner.run — 4 个样本 (26.667%)</title><rect x="844" y="1393" width="326.4" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="848" y="1409" font-family="monospace" font-size="12" fill="#152430">Runner.run</text>
+</g>
+<g data-depth="3" data-weight="4"><title>org.openjdk.jmh.runner.Runner.internalRun — 4 个样本 (26.667%)</title><rect x="844" y="1369" width="326.4" height="22" fill="hsl(44,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="848" y="1385" font-family="monospace" font-size="12" fill="#152430">Runner.internalRun</text>
+</g>
+<g data-depth="4" data-weight="1"><title>org.openjdk.jmh.profile.ProfilerFactory.getProfilerOrException — 1 个样本 (6.667%)</title><rect x="844" y="1345" width="81.6" height="22" fill="hsl(22,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="848" y="1361" font-family="monospace" font-size="12" fill="#152430">ProfilerF…</text>
+</g>
+<g data-depth="5" data-weight="1"><title>org.openjdk.jmh.profile.ProfilerFactory.getProfiler — 1 个样本 (6.667%)</title><rect x="844" y="1321" width="81.6" height="22" fill="hsl(19,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="848" y="1337" font-family="monospace" font-size="12" fill="#152430">ProfilerF…</text>
+</g>
+<g data-depth="6" data-weight="1"><title>org.openjdk.jmh.profile.ProfilerFactory.getDiscoveredProfilers — 1 个样本 (6.667%)</title><rect x="844" y="1297" width="81.6" height="22" fill="hsl(44,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="848" y="1313" font-family="monospace" font-size="12" fill="#152430">ProfilerF…</text>
+</g>
+<g data-depth="7" data-weight="1"><title>java.util.ServiceLoader$3.hasNext — 1 个样本 (6.667%)</title><rect x="844" y="1273" width="81.6" height="22" fill="hsl(39,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="848" y="1289" font-family="monospace" font-size="12" fill="#152430">ServiceLo…</text>
+</g>
+<g data-depth="8" data-weight="1"><title>java.util.ServiceLoader$2.hasNext — 1 个样本 (6.667%)</title><rect x="844" y="1249" width="81.6" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="848" y="1265" font-family="monospace" font-size="12" fill="#152430">ServiceLo…</text>
+</g>
+<g data-depth="9" data-weight="1"><title>java.util.ServiceLoader$LazyClassPathLookupIterator.hasNext — 1 个样本 (6.667%)</title><rect x="844" y="1225" width="81.6" height="22" fill="hsl(20,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="848" y="1241" font-family="monospace" font-size="12" fill="#152430">ServiceLo…</text>
+</g>
+<g data-depth="10" data-weight="1"><title>java.util.ServiceLoader$LazyClassPathLookupIterator.hasNextService — 1 个样本 (6.667%)</title><rect x="844" y="1201" width="81.6" height="22" fill="hsl(41,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="848" y="1217" font-family="monospace" font-size="12" fill="#152430">ServiceLo…</text>
+</g>
+<g data-depth="11" data-weight="1"><title>java.util.ServiceLoader$LazyClassPathLookupIterator.nextProviderClass — 1 个样本 (6.667%)</title><rect x="844" y="1177" width="81.6" height="22" fill="hsl(28,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="848" y="1193" font-family="monospace" font-size="12" fill="#152430">ServiceLo…</text>
+</g>
+<g data-depth="12" data-weight="1"><title>java.lang.ClassLoader.getResources — 1 个样本 (6.667%)</title><rect x="844" y="1153" width="81.6" height="22" fill="hsl(44,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="848" y="1169" font-family="monospace" font-size="12" fill="#152430">ClassLoad…</text>
+</g>
+<g data-depth="13" data-weight="1"><title>java.lang.ClassLoader.getResources — 1 个样本 (6.667%)</title><rect x="844" y="1129" width="81.6" height="22" fill="hsl(44,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="848" y="1145" font-family="monospace" font-size="12" fill="#152430">ClassLoad…</text>
+</g>
+<g data-depth="14" data-weight="1"><title>jdk.internal.loader.BuiltinClassLoader.findResources — 1 个样本 (6.667%)</title><rect x="844" y="1105" width="81.6" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="848" y="1121" font-family="monospace" font-size="12" fill="#152430">BuiltinCl…</text>
+</g>
+<g data-depth="15" data-weight="1"><title>jdk.internal.loader.BuiltinClassLoader.findMiscResource — 1 个样本 (6.667%)</title><rect x="844" y="1081" width="81.6" height="22" fill="hsl(40,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="848" y="1097" font-family="monospace" font-size="12" fill="#152430">BuiltinCl…</text>
+</g>
+<g data-depth="16" data-weight="1"><title>java.security.AccessController.doPrivileged — 1 个样本 (6.667%)</title><rect x="844" y="1057" width="81.6" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="848" y="1073" font-family="monospace" font-size="12" fill="#152430">AccessCon…</text>
+</g>
+<g data-depth="17" data-weight="1"><title>java.security.AccessController.executePrivileged — 1 个样本 (6.667%)</title><rect x="844" y="1033" width="81.6" height="22" fill="hsl(28,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="848" y="1049" font-family="monospace" font-size="12" fill="#152430">AccessCon…</text>
+</g>
+<g data-depth="18" data-weight="1"><title>jdk.internal.loader.BuiltinClassLoader$2.run — 1 个样本 (6.667%)</title><rect x="844" y="1009" width="81.6" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="848" y="1025" font-family="monospace" font-size="12" fill="#152430">BuiltinCl…</text>
+</g>
+<g data-depth="19" data-weight="1"><title>jdk.internal.loader.BuiltinClassLoader$2.run — 1 个样本 (6.667%)</title><rect x="844" y="985" width="81.6" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="848" y="1001" font-family="monospace" font-size="12" fill="#152430">BuiltinCl…</text>
+</g>
+<g data-depth="20" data-weight="1"><title>jdk.internal.module.SystemModuleFinders$SystemModuleReader.find — 1 个样本 (6.667%)</title><rect x="844" y="961" width="81.6" height="22" fill="hsl(27,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="848" y="977" font-family="monospace" font-size="12" fill="#152430">SystemMod…</text>
+</g>
+<g data-depth="21" data-weight="1"><title>jdk.internal.module.SystemModuleFinders$SystemModuleReader.containsImageLocation — 1 个样本 (6.667%)</title><rect x="844" y="937" width="81.6" height="22" fill="hsl(18,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="848" y="953" font-family="monospace" font-size="12" fill="#152430">SystemMod…</text>
+</g>
+<g data-depth="22" data-weight="1"><title>jdk.internal.jimage.ImageReader.verifyLocation — 1 个样本 (6.667%)</title><rect x="844" y="913" width="81.6" height="22" fill="hsl(31,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="848" y="929" font-family="monospace" font-size="12" fill="#152430">ImageRead…</text>
+</g>
+<g data-depth="23" data-weight="1"><title>jdk.internal.jimage.BasicImageReader.verifyLocation — 1 个样本 (6.667%)</title><rect x="844" y="889" width="81.6" height="22" fill="hsl(18,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="848" y="905" font-family="monospace" font-size="12" fill="#152430">BasicImag…</text>
+</g>
+<g data-depth="24" data-weight="1"><title>jdk.internal.jimage.BasicImageReader.getLocationIndex — 1 个样本 (6.667%)</title><rect x="844" y="865" width="81.6" height="22" fill="hsl(49,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="848" y="881" font-family="monospace" font-size="12" fill="#152430">BasicImag…</text>
+</g>
+<g data-depth="25" data-weight="1"><title>java.nio.DirectIntBufferU.get — 1 个样本 (6.667%)</title><rect x="844" y="841" width="81.6" height="22" fill="hsl(42,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="848" y="857" font-family="monospace" font-size="12" fill="#152430">DirectInt…</text>
+</g>
+<g data-depth="26" data-weight="1"><title>java.nio.DirectIntBufferU.ix — 1 个样本 (6.667%)</title><rect x="844" y="817" width="81.6" height="22" fill="hsl(30,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="848" y="833" font-family="monospace" font-size="12" fill="#152430">DirectInt…</text>
+</g>
+<g data-depth="4" data-weight="3"><title>org.openjdk.jmh.runner.Runner.runBenchmarks — 3 个样本 (20.000%)</title><rect x="925.6" y="1345" width="244.8" height="22" fill="hsl(42,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="1361" font-family="monospace" font-size="12" fill="#152430">Runner.runBenchmarks</text>
+</g>
+<g data-depth="5" data-weight="3"><title>org.openjdk.jmh.runner.BaseRunner.runBenchmarksEmbedded — 3 个样本 (20.000%)</title><rect x="925.6" y="1321" width="244.8" height="22" fill="hsl(28,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="1337" font-family="monospace" font-size="12" fill="#152430">BaseRunner.runBenchmarksEmbedded</text>
+</g>
+<g data-depth="6" data-weight="2"><title>org.openjdk.jmh.runner.BaseRunner.doSingle — 2 个样本 (13.333%)</title><rect x="925.6" y="1297" width="163.2" height="22" fill="hsl(49,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="1313" font-family="monospace" font-size="12" fill="#152430">BaseRunner.doSingle</text>
+</g>
+<g data-depth="7" data-weight="2"><title>org.openjdk.jmh.runner.BaseRunner.runBenchmark — 2 个样本 (13.333%)</title><rect x="925.6" y="1273" width="163.2" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="1289" font-family="monospace" font-size="12" fill="#152430">BaseRunner.runBenchm…</text>
+</g>
+<g data-depth="8" data-weight="2"><title>org.openjdk.jmh.runner.BaseRunner.runBenchmark — 2 个样本 (13.333%)</title><rect x="925.6" y="1249" width="163.2" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="1265" font-family="monospace" font-size="12" fill="#152430">BaseRunner.runBenchm…</text>
+</g>
+<g data-depth="9" data-weight="1"><title>org.openjdk.jmh.runner.BenchmarkHandler.runIteration — 1 个样本 (6.667%)</title><rect x="925.6" y="1225" width="81.6" height="22" fill="hsl(40,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="1241" font-family="monospace" font-size="12" fill="#152430">Benchmark…</text>
+</g>
+<g data-depth="10" data-weight="1"><title>org.openjdk.jmh.runner.BenchmarkHandler.startProfilers — 1 个样本 (6.667%)</title><rect x="925.6" y="1201" width="81.6" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="1217" font-family="monospace" font-size="12" fill="#152430">Benchmark…</text>
+</g>
+<g data-depth="11" data-weight="1"><title>org.openjdk.jmh.profile.GCProfiler.beforeIteration — 1 个样本 (6.667%)</title><rect x="925.6" y="1177" width="81.6" height="22" fill="hsl(41,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="1193" font-family="monospace" font-size="12" fill="#152430">GCProfile…</text>
+</g>
+<g data-depth="12" data-weight="1"><title>java.lang.management.ManagementFactory.getGarbageCollectorMXBeans — 1 个样本 (6.667%)</title><rect x="925.6" y="1153" width="81.6" height="22" fill="hsl(49,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="1169" font-family="monospace" font-size="12" fill="#152430">Managemen…</text>
+</g>
+<g data-depth="13" data-weight="1"><title>java.lang.management.ManagementFactory.getPlatformMXBeans — 1 个样本 (6.667%)</title><rect x="925.6" y="1129" width="81.6" height="22" fill="hsl(21,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="1145" font-family="monospace" font-size="12" fill="#152430">Managemen…</text>
+</g>
+<g data-depth="14" data-weight="1"><title>java.util.stream.ReferencePipeline.collect — 1 个样本 (6.667%)</title><rect x="925.6" y="1105" width="81.6" height="22" fill="hsl(24,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="1121" font-family="monospace" font-size="12" fill="#152430">Reference…</text>
+</g>
+<g data-depth="15" data-weight="1"><title>java.util.stream.AbstractPipeline.evaluate — 1 个样本 (6.667%)</title><rect x="925.6" y="1081" width="81.6" height="22" fill="hsl(42,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="1097" font-family="monospace" font-size="12" fill="#152430">AbstractP…</text>
+</g>
+<g data-depth="16" data-weight="1"><title>java.util.stream.ReduceOps$ReduceOp.evaluateSequential — 1 个样本 (6.667%)</title><rect x="925.6" y="1057" width="81.6" height="22" fill="hsl(32,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="1073" font-family="monospace" font-size="12" fill="#152430">ReduceOps…</text>
+</g>
+<g data-depth="17" data-weight="1"><title>java.util.stream.AbstractPipeline.wrapAndCopyInto — 1 个样本 (6.667%)</title><rect x="925.6" y="1033" width="81.6" height="22" fill="hsl(42,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="1049" font-family="monospace" font-size="12" fill="#152430">AbstractP…</text>
+</g>
+<g data-depth="18" data-weight="1"><title>java.util.stream.AbstractPipeline.copyInto — 1 个样本 (6.667%)</title><rect x="925.6" y="1009" width="81.6" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="1025" font-family="monospace" font-size="12" fill="#152430">AbstractP…</text>
+</g>
+<g data-depth="19" data-weight="1"><title>java.util.HashMap$ValueSpliterator.forEachRemaining — 1 个样本 (6.667%)</title><rect x="925.6" y="985" width="81.6" height="22" fill="hsl(22,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="1001" font-family="monospace" font-size="12" fill="#152430">HashMap$V…</text>
+</g>
+<g data-depth="20" data-weight="1"><title>java.util.stream.ReferencePipeline$7$1.accept — 1 个样本 (6.667%)</title><rect x="925.6" y="961" width="81.6" height="22" fill="hsl(20,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="977" font-family="monospace" font-size="12" fill="#152430">Reference…</text>
+</g>
+<g data-depth="21" data-weight="1"><title>java.lang.management.ManagementFactory$$Lambda$123+0x00007f114808f8b0.1867139015.apply — 1 个样本 (6.667%)</title><rect x="925.6" y="937" width="81.6" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="953" font-family="monospace" font-size="12" fill="#152430">Managemen…</text>
+</g>
+<g data-depth="22" data-weight="1"><title>java.lang.management.ManagementFactory.lambda$getPlatformMXBeans$3 — 1 个样本 (6.667%)</title><rect x="925.6" y="913" width="81.6" height="22" fill="hsl(40,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="929" font-family="monospace" font-size="12" fill="#152430">Managemen…</text>
+</g>
+<g data-depth="23" data-weight="1"><title>sun.management.spi.PlatformMBeanProvider$PlatformComponent.getMBeans — 1 个样本 (6.667%)</title><rect x="925.6" y="889" width="81.6" height="22" fill="hsl(25,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="905" font-family="monospace" font-size="12" fill="#152430">PlatformM…</text>
+</g>
+<g data-depth="24" data-weight="1"><title>com.sun.management.internal.PlatformMBeanProviderImpl$1.nameToMBeanMap — 1 个样本 (6.667%)</title><rect x="925.6" y="865" width="81.6" height="22" fill="hsl(48,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="881" font-family="monospace" font-size="12" fill="#152430">PlatformM…</text>
+</g>
+<g data-depth="25" data-weight="1"><title>sun.management.GarbageCollectorImpl.getObjectName — 1 个样本 (6.667%)</title><rect x="925.6" y="841" width="81.6" height="22" fill="hsl(19,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="857" font-family="monospace" font-size="12" fill="#152430">GarbageCo…</text>
+</g>
+<g data-depth="26" data-weight="1"><title>sun.management.Util.newObjectName — 1 个样本 (6.667%)</title><rect x="925.6" y="817" width="81.6" height="22" fill="hsl(21,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="833" font-family="monospace" font-size="12" fill="#152430">Util.newO…</text>
+</g>
+<g data-depth="27" data-weight="1"><title>java.lang.invoke.MethodHandleNatives.linkCallSite — 1 个样本 (6.667%)</title><rect x="925.6" y="793" width="81.6" height="22" fill="hsl(25,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="809" font-family="monospace" font-size="12" fill="#152430">MethodHan…</text>
+</g>
+<g data-depth="28" data-weight="1"><title>java.lang.invoke.MethodHandleNatives.linkCallSiteImpl — 1 个样本 (6.667%)</title><rect x="925.6" y="769" width="81.6" height="22" fill="hsl(33,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="785" font-family="monospace" font-size="12" fill="#152430">MethodHan…</text>
+</g>
+<g data-depth="29" data-weight="1"><title>java.lang.invoke.CallSite.makeSite — 1 个样本 (6.667%)</title><rect x="925.6" y="745" width="81.6" height="22" fill="hsl(48,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="761" font-family="monospace" font-size="12" fill="#152430">CallSite.…</text>
+</g>
+<g data-depth="30" data-weight="1"><title>java.lang.invoke.BootstrapMethodInvoker.invoke — 1 个样本 (6.667%)</title><rect x="925.6" y="721" width="81.6" height="22" fill="hsl(46,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="737" font-family="monospace" font-size="12" fill="#152430">Bootstrap…</text>
+</g>
+<g data-depth="31" data-weight="1"><title>java.lang.invoke.Invokers$Holder.invokeExact_MT — 1 个样本 (6.667%)</title><rect x="925.6" y="697" width="81.6" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="713" font-family="monospace" font-size="12" fill="#152430">Invokers$…</text>
+</g>
+<g data-depth="32" data-weight="1"><title>java.lang.invoke.DelegatingMethodHandle$Holder.delegate — 1 个样本 (6.667%)</title><rect x="925.6" y="673" width="81.6" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="689" font-family="monospace" font-size="12" fill="#152430">Delegatin…</text>
+</g>
+<g data-depth="33" data-weight="1"><title>java.lang.invoke.DirectMethodHandle$Holder.invokeStatic — 1 个样本 (6.667%)</title><rect x="925.6" y="649" width="81.6" height="22" fill="hsl(27,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="665" font-family="monospace" font-size="12" fill="#152430">DirectMet…</text>
+</g>
+<g data-depth="34" data-weight="1"><title>java.lang.invoke.StringConcatFactory.makeConcatWithConstants — 1 个样本 (6.667%)</title><rect x="925.6" y="625" width="81.6" height="22" fill="hsl(42,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="641" font-family="monospace" font-size="12" fill="#152430">StringCon…</text>
+</g>
+<g data-depth="35" data-weight="1"><title>java.lang.invoke.StringConcatFactory.generateMHInlineCopy — 1 个样本 (6.667%)</title><rect x="925.6" y="601" width="81.6" height="22" fill="hsl(36,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="617" font-family="monospace" font-size="12" fill="#152430">StringCon…</text>
+</g>
+<g data-depth="36" data-weight="1"><title>java.lang.invoke.MethodHandles.filterArgumentsWithCombiner — 1 个样本 (6.667%)</title><rect x="925.6" y="577" width="81.6" height="22" fill="hsl(24,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="593" font-family="monospace" font-size="12" fill="#152430">MethodHan…</text>
+</g>
+<g data-depth="37" data-weight="1"><title>java.lang.invoke.MethodHandles.argumentsWithCombiner — 1 个样本 (6.667%)</title><rect x="925.6" y="553" width="81.6" height="22" fill="hsl(31,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="569" font-family="monospace" font-size="12" fill="#152430">MethodHan…</text>
+</g>
+<g data-depth="38" data-weight="1"><title>java.lang.invoke.BoundMethodHandle$Species_LLLL.copyWithExtendL — 1 个样本 (6.667%)</title><rect x="925.6" y="529" width="81.6" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="545" font-family="monospace" font-size="12" fill="#152430">BoundMeth…</text>
+</g>
+<g data-depth="39" data-weight="1"><title>java.lang.invoke.DirectMethodHandle$Holder.invokeStatic — 1 个样本 (6.667%)</title><rect x="925.6" y="505" width="81.6" height="22" fill="hsl(27,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="521" font-family="monospace" font-size="12" fill="#152430">DirectMet…</text>
+</g>
+<g data-depth="40" data-weight="1"><title>java.lang.invoke.BoundMethodHandle$Species_LLLLL.make — 1 个样本 (6.667%)</title><rect x="925.6" y="481" width="81.6" height="22" fill="hsl(46,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="497" font-family="monospace" font-size="12" fill="#152430">BoundMeth…</text>
+</g>
+<g data-depth="41" data-weight="1"><title>java.lang.invoke.BoundMethodHandle$Species_LLLLL.&lt;init&gt; — 1 个样本 (6.667%)</title><rect x="925.6" y="457" width="81.6" height="22" fill="hsl(38,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="473" font-family="monospace" font-size="12" fill="#152430">BoundMeth…</text>
+</g>
+<g data-depth="42" data-weight="1"><title>java.lang.invoke.BoundMethodHandle.&lt;init&gt; — 1 个样本 (6.667%)</title><rect x="925.6" y="433" width="81.6" height="22" fill="hsl(32,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="449" font-family="monospace" font-size="12" fill="#152430">BoundMeth…</text>
+</g>
+<g data-depth="43" data-weight="1"><title>java.lang.invoke.MethodHandle.&lt;init&gt; — 1 个样本 (6.667%)</title><rect x="925.6" y="409" width="81.6" height="22" fill="hsl(25,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="425" font-family="monospace" font-size="12" fill="#152430">MethodHan…</text>
+</g>
+<g data-depth="44" data-weight="1"><title>java.lang.invoke.LambdaForm.prepare — 1 个样本 (6.667%)</title><rect x="925.6" y="385" width="81.6" height="22" fill="hsl(40,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="401" font-family="monospace" font-size="12" fill="#152430">LambdaFor…</text>
+</g>
+<g data-depth="45" data-weight="1"><title>java.lang.invoke.LambdaForm.compileToBytecode — 1 个样本 (6.667%)</title><rect x="925.6" y="361" width="81.6" height="22" fill="hsl(28,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="377" font-family="monospace" font-size="12" fill="#152430">LambdaFor…</text>
+</g>
+<g data-depth="46" data-weight="1"><title>java.lang.invoke.InvokerBytecodeGenerator.generateCustomizedCode — 1 个样本 (6.667%)</title><rect x="925.6" y="337" width="81.6" height="22" fill="hsl(42,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="353" font-family="monospace" font-size="12" fill="#152430">InvokerBy…</text>
+</g>
+<g data-depth="47" data-weight="1"><title>java.lang.invoke.InvokerBytecodeGenerator.generateCustomizedCodeBytes — 1 个样本 (6.667%)</title><rect x="925.6" y="313" width="81.6" height="22" fill="hsl(28,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="329" font-family="monospace" font-size="12" fill="#152430">InvokerBy…</text>
+</g>
+<g data-depth="48" data-weight="1"><title>java.lang.invoke.InvokerBytecodeGenerator.addMethod — 1 个样本 (6.667%)</title><rect x="925.6" y="289" width="81.6" height="22" fill="hsl(36,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="305" font-family="monospace" font-size="12" fill="#152430">InvokerBy…</text>
+</g>
+<g data-depth="49" data-weight="1"><title>java.lang.invoke.InvokerBytecodeGenerator.emitStaticInvoke — 1 个样本 (6.667%)</title><rect x="925.6" y="265" width="81.6" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="281" font-family="monospace" font-size="12" fill="#152430">InvokerBy…</text>
+</g>
+<g data-depth="50" data-weight="1"><title>java.lang.invoke.InvokerBytecodeGenerator.emitPushArguments — 1 个样本 (6.667%)</title><rect x="925.6" y="241" width="81.6" height="22" fill="hsl(33,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="257" font-family="monospace" font-size="12" fill="#152430">InvokerBy…</text>
+</g>
+<g data-depth="51" data-weight="1"><title>java.lang.invoke.InvokerBytecodeGenerator.emitPushArgument — 1 个样本 (6.667%)</title><rect x="925.6" y="217" width="81.6" height="22" fill="hsl(47,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="233" font-family="monospace" font-size="12" fill="#152430">InvokerBy…</text>
+</g>
+<g data-depth="52" data-weight="1"><title>java.lang.invoke.InvokerBytecodeGenerator.emitImplicitConversion — 1 个样本 (6.667%)</title><rect x="925.6" y="193" width="81.6" height="22" fill="hsl(32,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="209" font-family="monospace" font-size="12" fill="#152430">InvokerBy…</text>
+</g>
+<g data-depth="53" data-weight="1"><title>java.lang.invoke.InvokerBytecodeGenerator.emitReferenceCast — 1 个样本 (6.667%)</title><rect x="925.6" y="169" width="81.6" height="22" fill="hsl(27,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="185" font-family="monospace" font-size="12" fill="#152430">InvokerBy…</text>
+</g>
+<g data-depth="54" data-weight="1"><title>java.lang.invoke.InvokerBytecodeGenerator.isStaticallyNameable — 1 个样本 (6.667%)</title><rect x="925.6" y="145" width="81.6" height="22" fill="hsl(24,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="929.6" y="161" font-family="monospace" font-size="12" fill="#152430">InvokerBy…</text>
+</g>
+<g data-depth="9" data-weight="1"><title>org.openjdk.jmh.runner.format.TextReportFormat.iterationResult — 1 个样本 (6.667%)</title><rect x="1007.2" y="1225" width="81.6" height="22" fill="hsl(47,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1011.2" y="1241" font-family="monospace" font-size="12" fill="#152430">TextRepor…</text>
+</g>
+<g data-depth="10" data-weight="1"><title>java.lang.String.format — 1 个样本 (6.667%)</title><rect x="1007.2" y="1201" width="81.6" height="22" fill="hsl(44,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1011.2" y="1217" font-family="monospace" font-size="12" fill="#152430">String.fo…</text>
+</g>
+<g data-depth="11" data-weight="1"><title>java.util.Formatter.format — 1 个样本 (6.667%)</title><rect x="1007.2" y="1177" width="81.6" height="22" fill="hsl(25,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1011.2" y="1193" font-family="monospace" font-size="12" fill="#152430">Formatter…</text>
+</g>
+<g data-depth="12" data-weight="1"><title>java.util.Formatter.format — 1 个样本 (6.667%)</title><rect x="1007.2" y="1153" width="81.6" height="22" fill="hsl(25,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1011.2" y="1169" font-family="monospace" font-size="12" fill="#152430">Formatter…</text>
+</g>
+<g data-depth="13" data-weight="1"><title>java.util.Formatter$FormatSpecifier.print — 1 个样本 (6.667%)</title><rect x="1007.2" y="1129" width="81.6" height="22" fill="hsl(22,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1011.2" y="1145" font-family="monospace" font-size="12" fill="#152430">Formatter…</text>
+</g>
+<g data-depth="14" data-weight="1"><title>java.util.Formatter$FormatSpecifier.printString — 1 个样本 (6.667%)</title><rect x="1007.2" y="1105" width="81.6" height="22" fill="hsl(39,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1011.2" y="1121" font-family="monospace" font-size="12" fill="#152430">Formatter…</text>
+</g>
+<g data-depth="15" data-weight="1"><title>org.openjdk.jmh.results.Result.toString — 1 个样本 (6.667%)</title><rect x="1007.2" y="1081" width="81.6" height="22" fill="hsl(44,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1011.2" y="1097" font-family="monospace" font-size="12" fill="#152430">Result.to…</text>
+</g>
+<g data-depth="16" data-weight="1"><title>org.openjdk.jmh.util.ScoreFormatter.format — 1 个样本 (6.667%)</title><rect x="1007.2" y="1057" width="81.6" height="22" fill="hsl(28,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1011.2" y="1073" font-family="monospace" font-size="12" fill="#152430">ScoreForm…</text>
+</g>
+<g data-depth="17" data-weight="1"><title>java.lang.String.format — 1 个样本 (6.667%)</title><rect x="1007.2" y="1033" width="81.6" height="22" fill="hsl(44,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1011.2" y="1049" font-family="monospace" font-size="12" fill="#152430">String.fo…</text>
+</g>
+<g data-depth="18" data-weight="1"><title>java.util.Formatter.format — 1 个样本 (6.667%)</title><rect x="1007.2" y="1009" width="81.6" height="22" fill="hsl(25,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1011.2" y="1025" font-family="monospace" font-size="12" fill="#152430">Formatter…</text>
+</g>
+<g data-depth="19" data-weight="1"><title>java.util.Formatter.format — 1 个样本 (6.667%)</title><rect x="1007.2" y="985" width="81.6" height="22" fill="hsl(25,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1011.2" y="1001" font-family="monospace" font-size="12" fill="#152430">Formatter…</text>
+</g>
+<g data-depth="20" data-weight="1"><title>java.util.Formatter$FormatSpecifier.print — 1 个样本 (6.667%)</title><rect x="1007.2" y="961" width="81.6" height="22" fill="hsl(22,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1011.2" y="977" font-family="monospace" font-size="12" fill="#152430">Formatter…</text>
+</g>
+<g data-depth="21" data-weight="1"><title>java.util.Formatter$FormatSpecifier.printFloat — 1 个样本 (6.667%)</title><rect x="1007.2" y="937" width="81.6" height="22" fill="hsl(27,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1011.2" y="953" font-family="monospace" font-size="12" fill="#152430">Formatter…</text>
+</g>
+<g data-depth="22" data-weight="1"><title>java.util.Formatter$FormatSpecifier.print — 1 个样本 (6.667%)</title><rect x="1007.2" y="913" width="81.6" height="22" fill="hsl(22,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1011.2" y="929" font-family="monospace" font-size="12" fill="#152430">Formatter…</text>
+</g>
+<g data-depth="23" data-weight="1"><title>java.util.Formatter$FormatSpecifier.print — 1 个样本 (6.667%)</title><rect x="1007.2" y="889" width="81.6" height="22" fill="hsl(22,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1011.2" y="905" font-family="monospace" font-size="12" fill="#152430">Formatter…</text>
+</g>
+<g data-depth="24" data-weight="1"><title>java.util.Formatter$FormatSpecifier.localizedMagnitude — 1 个样本 (6.667%)</title><rect x="1007.2" y="865" width="81.6" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1011.2" y="881" font-family="monospace" font-size="12" fill="#152430">Formatter…</text>
+</g>
+<g data-depth="25" data-weight="1"><title>java.util.Formatter$FormatSpecifier.getZero — 1 个样本 (6.667%)</title><rect x="1007.2" y="841" width="81.6" height="22" fill="hsl(38,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1011.2" y="857" font-family="monospace" font-size="12" fill="#152430">Formatter…</text>
+</g>
+<g data-depth="26" data-weight="1"><title>java.util.Formatter.zero — 1 个样本 (6.667%)</title><rect x="1007.2" y="817" width="81.6" height="22" fill="hsl(43,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1011.2" y="833" font-family="monospace" font-size="12" fill="#152430">Formatter…</text>
+</g>
+<g data-depth="27" data-weight="1"><title>java.text.DecimalFormatSymbols.getInstance — 1 个样本 (6.667%)</title><rect x="1007.2" y="793" width="81.6" height="22" fill="hsl(43,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1011.2" y="809" font-family="monospace" font-size="12" fill="#152430">DecimalFo…</text>
+</g>
+<g data-depth="28" data-weight="1"><title>sun.util.locale.provider.DecimalFormatSymbolsProviderImpl.getInstance — 1 个样本 (6.667%)</title><rect x="1007.2" y="769" width="81.6" height="22" fill="hsl(36,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1011.2" y="785" font-family="monospace" font-size="12" fill="#152430">DecimalFo…</text>
+</g>
+<g data-depth="29" data-weight="1"><title>java.text.DecimalFormatSymbols.&lt;init&gt; — 1 个样本 (6.667%)</title><rect x="1007.2" y="745" width="81.6" height="22" fill="hsl(48,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1011.2" y="761" font-family="monospace" font-size="12" fill="#152430">DecimalFo…</text>
+</g>
+<g data-depth="30" data-weight="1"><title>java.text.DecimalFormatSymbols.initialize — 1 个样本 (6.667%)</title><rect x="1007.2" y="721" width="81.6" height="22" fill="hsl(39,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1011.2" y="737" font-family="monospace" font-size="12" fill="#152430">DecimalFo…</text>
+</g>
+<g data-depth="6" data-weight="1"><title>org.openjdk.jmh.runner.format.TextReportFormat.startBenchmark — 1 个样本 (6.667%)</title><rect x="1088.8" y="1297" width="81.6" height="22" fill="hsl(49,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1092.8" y="1313" font-family="monospace" font-size="12" fill="#152430">TextRepor…</text>
+</g>
+<g data-depth="7" data-weight="1"><title>org.openjdk.jmh.runner.CompilerHints.printHints — 1 个样本 (6.667%)</title><rect x="1088.8" y="1273" width="81.6" height="22" fill="hsl(41,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1092.8" y="1289" font-family="monospace" font-size="12" fill="#152430">CompilerH…</text>
+</g>
+<g data-depth="8" data-weight="1"><title>org.openjdk.jmh.runner.CompilerHints.blackholeMode — 1 个样本 (6.667%)</title><rect x="1088.8" y="1249" width="81.6" height="22" fill="hsl(49,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1092.8" y="1265" font-family="monospace" font-size="12" fill="#152430">CompilerH…</text>
+</g>
+<g data-depth="9" data-weight="1"><title>java.lang.ClassLoader.loadClass — 1 个样本 (6.667%)</title><rect x="1088.8" y="1225" width="81.6" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1092.8" y="1241" font-family="monospace" font-size="12" fill="#152430">ClassLoad…</text>
+</g>
+<g data-depth="10" data-weight="1"><title>jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass — 1 个样本 (6.667%)</title><rect x="1088.8" y="1201" width="81.6" height="22" fill="hsl(29,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1092.8" y="1217" font-family="monospace" font-size="12" fill="#152430">ClassLoad…</text>
+</g>
+<g data-depth="11" data-weight="1"><title>jdk.internal.loader.BuiltinClassLoader.loadClass — 1 个样本 (6.667%)</title><rect x="1088.8" y="1177" width="81.6" height="22" fill="hsl(42,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1092.8" y="1193" font-family="monospace" font-size="12" fill="#152430">BuiltinCl…</text>
+</g>
+<g data-depth="12" data-weight="1"><title>jdk.internal.loader.BuiltinClassLoader.loadClassOrNull — 1 个样本 (6.667%)</title><rect x="1088.8" y="1153" width="81.6" height="22" fill="hsl(46,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1092.8" y="1169" font-family="monospace" font-size="12" fill="#152430">BuiltinCl…</text>
+</g>
+<g data-depth="13" data-weight="1"><title>jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull — 1 个样本 (6.667%)</title><rect x="1088.8" y="1129" width="81.6" height="22" fill="hsl(20,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1092.8" y="1145" font-family="monospace" font-size="12" fill="#152430">BuiltinCl…</text>
+</g>
+<g data-depth="14" data-weight="1"><title>jdk.internal.loader.URLClassPath.getResource — 1 个样本 (6.667%)</title><rect x="1088.8" y="1105" width="81.6" height="22" fill="hsl(23,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1092.8" y="1121" font-family="monospace" font-size="12" fill="#152430">URLClassP…</text>
+</g>
+<g data-depth="15" data-weight="1"><title>jdk.internal.loader.URLClassPath$JarLoader.getResource — 1 个样本 (6.667%)</title><rect x="1088.8" y="1081" width="81.6" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1092.8" y="1097" font-family="monospace" font-size="12" fill="#152430">URLClassP…</text>
+</g>
+<g data-depth="16" data-weight="1"><title>jdk.internal.loader.URLClassPath$JarLoader.checkResource — 1 个样本 (6.667%)</title><rect x="1088.8" y="1057" width="81.6" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1092.8" y="1073" font-family="monospace" font-size="12" fill="#152430">URLClassP…</text>
+</g>
+<g data-depth="17" data-weight="1"><title>java.net.URL.&lt;init&gt; — 1 个样本 (6.667%)</title><rect x="1088.8" y="1033" width="81.6" height="22" fill="hsl(21,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1092.8" y="1049" font-family="monospace" font-size="12" fill="#152430">URL.&lt;init&gt;</text>
+</g>
+<g data-depth="18" data-weight="1"><title>java.net.URL.&lt;init&gt; — 1 个样本 (6.667%)</title><rect x="1088.8" y="1009" width="81.6" height="22" fill="hsl(21,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1092.8" y="1025" font-family="monospace" font-size="12" fill="#152430">URL.&lt;init&gt;</text>
+</g>
+<g data-depth="19" data-weight="1"><title>sun.net.www.protocol.jar.Handler.parseURL — 1 个样本 (6.667%)</title><rect x="1088.8" y="985" width="81.6" height="22" fill="hsl(41,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1092.8" y="1001" font-family="monospace" font-size="12" fill="#152430">Handler.p…</text>
+</g>
+<g data-depth="20" data-weight="1"><title>java.net.URLStreamHandler.setURL — 1 个样本 (6.667%)</title><rect x="1088.8" y="961" width="81.6" height="22" fill="hsl(23,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1092.8" y="977" font-family="monospace" font-size="12" fill="#152430">URLStream…</text>
+</g>
+<g data-depth="1" data-weight="1"><title>sun.launcher.LauncherHelper.checkAndLoadMain — 1 个样本 (6.667%)</title><rect x="1170.4" y="1417" width="81.6" height="22" fill="hsl(31,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1174.4" y="1433" font-family="monospace" font-size="12" fill="#152430">LauncherH…</text>
+</g>
+<g data-depth="2" data-weight="1"><title>sun.launcher.LauncherHelper.loadMainClass — 1 个样本 (6.667%)</title><rect x="1170.4" y="1393" width="81.6" height="22" fill="hsl(39,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1174.4" y="1409" font-family="monospace" font-size="12" fill="#152430">LauncherH…</text>
+</g>
+<g data-depth="3" data-weight="1"><title>sun.launcher.LauncherHelper.getMainClassFromJar — 1 个样本 (6.667%)</title><rect x="1170.4" y="1369" width="81.6" height="22" fill="hsl(31,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1174.4" y="1385" font-family="monospace" font-size="12" fill="#152430">LauncherH…</text>
+</g>
+<g data-depth="4" data-weight="1"><title>java.util.jar.JarFile.&lt;init&gt; — 1 个样本 (6.667%)</title><rect x="1170.4" y="1345" width="81.6" height="22" fill="hsl(32,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1174.4" y="1361" font-family="monospace" font-size="12" fill="#152430">JarFile.&lt;…</text>
+</g>
+<g data-depth="5" data-weight="1"><title>java.util.jar.JarFile.&lt;init&gt; — 1 个样本 (6.667%)</title><rect x="1170.4" y="1321" width="81.6" height="22" fill="hsl(32,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1174.4" y="1337" font-family="monospace" font-size="12" fill="#152430">JarFile.&lt;…</text>
+</g>
+<g data-depth="6" data-weight="1"><title>java.util.jar.JarFile.&lt;init&gt; — 1 个样本 (6.667%)</title><rect x="1170.4" y="1297" width="81.6" height="22" fill="hsl(32,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1174.4" y="1313" font-family="monospace" font-size="12" fill="#152430">JarFile.&lt;…</text>
+</g>
+<g data-depth="7" data-weight="1"><title>java.util.zip.ZipFile.&lt;init&gt; — 1 个样本 (6.667%)</title><rect x="1170.4" y="1273" width="81.6" height="22" fill="hsl(42,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1174.4" y="1289" font-family="monospace" font-size="12" fill="#152430">ZipFile.&lt;…</text>
+</g>
+<g data-depth="8" data-weight="1"><title>java.util.zip.ZipFile.&lt;init&gt; — 1 个样本 (6.667%)</title><rect x="1170.4" y="1249" width="81.6" height="22" fill="hsl(42,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1174.4" y="1265" font-family="monospace" font-size="12" fill="#152430">ZipFile.&lt;…</text>
+</g>
+<g data-depth="9" data-weight="1"><title>java.util.zip.ZipFile$CleanableResource.&lt;init&gt; — 1 个样本 (6.667%)</title><rect x="1170.4" y="1225" width="81.6" height="22" fill="hsl(42,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1174.4" y="1241" font-family="monospace" font-size="12" fill="#152430">ZipFile$C…</text>
+</g>
+<g data-depth="10" data-weight="1"><title>java.util.zip.ZipFile$Source.get — 1 个样本 (6.667%)</title><rect x="1170.4" y="1201" width="81.6" height="22" fill="hsl(19,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1174.4" y="1217" font-family="monospace" font-size="12" fill="#152430">ZipFile$S…</text>
+</g>
+<g data-depth="11" data-weight="1"><title>java.util.zip.ZipFile$Source.&lt;init&gt; — 1 个样本 (6.667%)</title><rect x="1170.4" y="1177" width="81.6" height="22" fill="hsl(22,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1174.4" y="1193" font-family="monospace" font-size="12" fill="#152430">ZipFile$S…</text>
+</g>
+<g data-depth="12" data-weight="1"><title>java.util.zip.ZipFile$Source.initCEN — 1 个样本 (6.667%)</title><rect x="1170.4" y="1153" width="81.6" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1174.4" y="1169" font-family="monospace" font-size="12" fill="#152430">ZipFile$S…</text>
+</g>
+<g data-depth="13" data-weight="1"><title>java.util.zip.ZipFile$Source.checkAndAddEntry — 1 个样本 (6.667%)</title><rect x="1170.4" y="1129" width="81.6" height="22" fill="hsl(40,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1174.4" y="1145" font-family="monospace" font-size="12" fill="#152430">ZipFile$S…</text>
+</g>
+<g data-depth="14" data-weight="1"><title>java.util.zip.ZipCoder$UTF8ZipCoder.checkedHash — 1 个样本 (6.667%)</title><rect x="1170.4" y="1105" width="81.6" height="22" fill="hsl(48,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1174.4" y="1121" font-family="monospace" font-size="12" fill="#152430">ZipCoder$…</text>
+</g>
+<metadata id="ominicat-locale-source">{"geometrySha256": "a6b1c96cb6bd0a12aa41aa172f9d190595033b7e128b189912e94df5b2603309", "language": "zh-CN", "recoveredGlyphLabels": 0, "sha256": "c8a69ef00f822a8a071d5ef24bb087baad2e4592e8dc04f69b5916cca15e7de3", "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/camel-handoff/cpu-flamegraph.svg"}</metadata></svg>

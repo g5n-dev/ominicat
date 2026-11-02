@@ -28,6 +28,7 @@ README_ALIASES = {
     'microkernel-architecture': '小内核可组合的能力',
     'why-the-execution-path-stays-small': '高性能从哪里来',
     'bounded-work-and-cancellation': '高性能从哪里来',
+    'controlled-mechanism-verification': '机制的受控验证',
     'linux-profiles': 'linux-cpu分配与-gc', 'profiles': 'linux-cpu分配与-gc',
     'quick-start': '先运行起来', 'a-kernel-with-replaceable-capabilities': '小内核可组合的能力',
     'configure-a-pipeline': '配置管线', 'embed-the-runtime': '嵌入-java-应用',

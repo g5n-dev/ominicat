@@ -81,6 +81,10 @@ jobs:
           python3 scripts/render_doc_previews.py --check
           python3 scripts/chinese_docs.py --check
           python3 scripts/prompt_cost.py check reports/performance-audit/prompt-render-2026-11-01
+          python3 comparison/mechanism_profiles.py check reports/mechanisms/java17-2026-11-02/evidence
+          python3 comparison/mechanism_evidence.py check reports/mechanisms/java17-2026-11-02/earlier-measurements/41386037966
+          python3 comparison/mechanism_evidence.py check reports/mechanisms/java17-2026-11-02/earlier-measurements/41387434975
+          python3 comparison/render_mechanisms.py reports/mechanisms/java17-2026-11-02 --check
       - name: Archived kernel audit checksums
         working-directory: reports/performance-audit/linux-java17-2026-11-01
         run: sha256sum --check SHA256SUMS

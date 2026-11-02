@@ -178,6 +178,18 @@ python scripts/render_doc_previews.py
 
 CI runs `python3 scripts/render_performance_explainer.py --check` and the preview check using only the standard library. It rejects altered/missing raw evidence, stale derived data and a CPU figure bound to different data. Path topology is reviewed against the pinned source links above; this numerical check does not certify a causal explanation.
 
+## Controlled Java mechanisms
+
+The [mechanism report](../reports/mechanisms/java17-2026-11-02/README.md) adds a separate Ubuntu 24.04 / Java 17 experiment with twelve fresh JMH processes. Four path cells compare real public synchronous APIs, inline or behind exactly the same bounded queue/worker/acknowledgment implementation. Two component cells compare a prepared Exchange identity against the pinned SEDA correlated-copy call. The [protocol](../comparison/mechanism-protocol.md) defines exact output, execution-thread and post-output-failure oracles; these are executable experiments, with no production runtime changes.
+
+[![Execution, common handoff and isolated Exchange-copy costs](assets/previews/mechanism-costs.png)](../reports/mechanisms/java17-2026-11-02/costs.svg)
+
+For this four-stage workload, inline OminiCat / Camel summaries are 66.34 / 1,122.60 ns/op and 368 / 1,624 B/op. The common handoff raises wall-time summaries to 20.59 / 21.54 µs/op; its observed increment is about 20.52 / 20.42 µs/op within each framework. That is the complete handoff package, including waiting, allocation and confirmation. It is not a pure context-switch or lock measurement. Whole-process CPU iteration ranges overlap in handoff mode, so their small central difference does not establish a CPU advantage.
+
+The prepared correlated-copy probe records 88.16 ns/op and about 704 B/op, versus 12.36 ns/op and near-zero allocation for its identity control. It excludes source construction and SEDA queue/latch/result-copy-back work. The inline path difference remains without SEDA; neither that difference nor this isolated copy cost can be summed into an attribution of the old native queued result. JIT, object escape, caching and GC can change with the complete execution path.
+
+The report retains two fork means, every iteration, CPU/allocation/GC diagnostics, source/JAR/dependency hashes and earlier complete measurement bundles from attempts whose diagnostics failed or were cancelled. Shared-runner observations provide no confidence interval, p99, RSS, media/model capacity or universal framework ranking. The separate [prompt optimization](performance-audit.md) has its own paired before/after evidence; it is not an optimization of these numeric-frame paths.
+
 ## Other probes and comparisons
 
 `scripts/profile.sh quick reports/local/profile` runs synchronous JMH, its allocation profiler, bounded concurrent load and JFR. `full` uses longer forks/warmup/measurement. Use a Linux recording with matching source, host, JDK, worker backend, heap, stage count and payload before publishing B/op or an optimization result. The queued peer matrix above does not supply a Linux synchronous-dispatch or concurrent-saturation headline.

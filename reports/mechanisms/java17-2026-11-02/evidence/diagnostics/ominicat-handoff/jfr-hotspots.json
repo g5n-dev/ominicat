@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "scope": "Separate instrumented Java 17 JMH diagnostic JVM: whole recording includes JVM/framework startup, setup, two 1-second warmup iterations, two 1-second measurement iterations, harness and teardown. No phase filtering. CPU execution sampling requests a 10ms period; allocation uses profile.jfc defaults. Recording and exported stacks retain up to 64 frames. These are not headline timings, framework-exclusive CPU, retained heap, exact object counts, p99 latency or RSS measurements.",
+  "selectedEventCounts": {
+    "jdk.ExecutionSample": 8,
+    "jdk.GarbageCollection": 1,
+    "jdk.ObjectAllocationSample": 202
+  },
+  "cpuLeafSamples": [
+    {
+      "method": "jdk.internal.loader.BuiltinClassLoader.loadClass",
+      "samples": 1
+    },
+    {
+      "method": "jdk.internal.misc.ScopedMemoryAccess.copyMemoryInternal",
+      "samples": 1
+    },
+    {
+      "method": "java.util.StringTokenizer.scanToken",
+      "samples": 1
+    },
+    {
+      "method": "java.lang.invoke.VarHandleByteArrayAsInts$ArrayHandle.get",
+      "samples": 1
+    },
+    {
+      "method": "java.lang.invoke.InvokerBytecodeGenerator.resolveInvokerMember",
+      "samples": 1
+    },
+    {
+      "method": "io.ominicat.mechanisms.PathHarness.run",
+      "samples": 1
+    },
+    {
+      "method": "java.lang.Integer.valueOf",
+      "samples": 1
+    },
+    {
+      "method": "java.lang.AbstractStringBuilder.append",
+      "samples": 1
+    }
+  ],
+  "allocationClassWeights": [
+    {
+      "class": "io.ominicat.mechanisms.PathHarness$Value",
+      "bytes": 26781184
+    },
+    {
+      "class": "io.ominicat.core.Pipeline$$Lambda$134+0x00007f803c0df2e8.492584403",
+      "bytes": 22819216
+    },
+    {
+      "class": "[Ljava.util.concurrent.ConcurrentHashMap$Node;",
+      "bytes": 20382104
+    },
+    {
+      "class": "io.ominicat.core.SynchronousSink",
+      "bytes": 16033800
+    },
+    {
+      "class": "java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionNode",
+      "bytes": 10503768
+    },
+    {
+      "class": "io.ominicat.mechanisms.PathHarness$Reply",
+      "bytes": 6284464
+    },
+    {
+      "class": "[B",
+      "bytes": 5228224
+    },
+    {
+      "class": "io.ominicat.mechanisms.PathHarness$OminiCatBackend$$Lambda$133+0x00007f803c0df0c0.750408753",
+      "bytes": 4638640
+    },
+    {
+      "class": "java.lang.String",
+      "bytes": 976176
+    },
+    {
+      "class": "java.util.zip.ZipFile$InflaterCleanupAction",
+      "bytes": 523704
+    },
+    {
+      "class": "java.security.CodeSource",
+      "bytes": 424272
+    },
+    {
+      "class": "[C",
+      "bytes": 412152
+    },
+    {
+      "class": "java.lang.reflect.Field",
+      "bytes": 403632
+    },
+    {
+      "class": "jdk.internal.org.objectweb.asm.AnnotationWriter",
+      "bytes": 397976
+    },
+    {
+      "class": "java.util.TreeMap$Entry",
+      "bytes": 360992
+    },
+    {
+      "class": "[Ljava.lang.Object;",
+      "bytes": 241872
+    },
+    {
+      "class": "java.lang.StringBuilder",
+      "bytes": 42920
+    },
+    {
+      "class": "jdk.jfr.internal.EventWriter",
+      "bytes": 1040
+    },
+    {
+      "class": "java.util.concurrent.CopyOnWriteArrayList$COWIterator",
+      "bytes": 48
+    }
+  ],
+  "sampledAllocationWeightBytes": 116456184,
+  "gcCollectionCount": 1,
+  "gcPauseSumMillis": 3.964694,
+  "maxCollectionPauseSumMillis": 3.964694
+}

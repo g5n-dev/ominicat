@@ -178,6 +178,18 @@ python scripts/render_doc_previews.py
 
 CI 通过仅依赖标准库的 `python3 scripts/render_performance_explainer.py --check` 与预览检查，拒绝被修改／缺失的原始证据、过期派生数据及绑定其他数据的 CPU 图。路径拓扑依据上方固定版本源码链接审查；数值检查不认证因果解释。
 
+## Java 机制的受控实验
+
+[机制报告](reports/mechanisms/java17-2026-11-02/README.md) 增加了独立的 Ubuntu 24.04／Java 17 实验，共十二个全新 JMH 进程。四个路径用例比较真实的公开同步 API，分别在调用线程执行或经过完全相同的有界队列／工作线程／确认实现；两个组件用例比较预建 Exchange 的原样返回与固定版本 SEDA 所用的关联复制调用。[协议](comparison/mechanism-protocol.md) 定义精确结果、执行线程和输出后失败的校验；这些均为可执行实验，生产运行时没有改动。
+
+[![执行、相同交接与独立 Exchange 复制成本](../assets/previews/reports--mechanisms--java17-2026-11-02--costs-zh-CN.png)](../assets/zh-CN/reports/mechanisms/java17-2026-11-02/costs.svg)
+
+在这组四阶段负载中，OminiCat／Camel 调用线程用例的汇总为 66.34／1,122.60 ns/op、368／1,624 B/op。相同交接使墙钟汇总升至 20.59／21.54 µs/op；各框架内部观察到的增量约为 20.52／20.42 µs/op。它包含完整的交接组合、等待、分配和确认，不能解释为纯上下文切换或锁成本。交接模式下全进程 CPU 的迭代范围重叠，较小的中心值差异不能证明 CPU 优势。
+
+预建关联复制探针为 88.16 ns/op、约 704 B/op；原样返回对照为 12.36 ns/op、分配接近零。探针不含来源构造或 SEDA 队列、latch、结果复制回传。不经过 SEDA 时，公开同步路径仍有差异；该差异与独立复制成本都不能相加归因此前原生排队结果。JIT、对象逃逸、缓存与 GC 会随完整路径变化。
+
+报告保留两个 fork 均值、所有迭代、CPU／分配／GC 诊断、源码／JAR／依赖哈希，以及诊断失败或取消前已完成测量的早期归档。共享 runner 的观察不提供置信区间、p99、RSS、媒体／模型容量或全框架排名。独立的[提示优化](performance-audit.md) 使用自身配对的前后证据，不是这些数值帧路径的优化。
+
 ## 其他探测与比较
 
 `scripts/profile.sh quick reports/local/profile` 运行同步 JMH、其分配 profiler、有界并发负载及 JFR；`full` 延长独立进程、预热与测量。发布 B/op 或优化结果前，应使用源码、主机、JDK、工作线程后端、堆、阶段数与载荷匹配的 Linux 记录。上方排队框架矩阵不提供 Linux 同步派发或并发饱和负载的主指标。

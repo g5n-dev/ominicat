@@ -1,0 +1,157 @@
+{
+  "schemaVersion": 1,
+  "scope": "Separate instrumented Java 17 JMH diagnostic JVM: whole recording includes JVM/framework startup, setup, two 1-second warmup iterations, two 1-second measurement iterations, harness and teardown. No phase filtering. CPU execution sampling requests a 10ms period; allocation uses profile.jfc defaults. Recording and exported stacks retain up to 64 frames. These are not headline timings, framework-exclusive CPU, retained heap, exact object counts, p99 latency or RSS measurements.",
+  "selectedEventCounts": {
+    "jdk.ExecutionSample": 15,
+    "jdk.GarbageCollection": 3,
+    "jdk.ObjectAllocationSample": 670
+  },
+  "cpuLeafSamples": [
+    {
+      "method": "java.util.zip.ZipCoder$UTF8ZipCoder.checkedHash",
+      "samples": 1
+    },
+    {
+      "method": "java.nio.DirectIntBufferU.ix",
+      "samples": 1
+    },
+    {
+      "method": "java.net.URLStreamHandler.setURL",
+      "samples": 1
+    },
+    {
+      "method": "java.lang.invoke.InvokerBytecodeGenerator.isStaticallyNameable",
+      "samples": 1
+    },
+    {
+      "method": "sun.security.provider.SHA2.implCompressCheck",
+      "samples": 1
+    },
+    {
+      "method": "sun.security.provider.SHA2.implCompress0",
+      "samples": 1
+    },
+    {
+      "method": "java.util.zip.ZipUtils.CENTIM",
+      "samples": 1
+    },
+    {
+      "method": "java.util.regex.Pattern.newCharProperty",
+      "samples": 1
+    },
+    {
+      "method": "org.apache.camel.impl.engine.DefaultServiceBootstrapCloseable.close",
+      "samples": 1
+    },
+    {
+      "method": "org.apache.camel.support.ExchangeHelper.isErrorHandlerBridge",
+      "samples": 1
+    },
+    {
+      "method": "org.apache.camel.impl.converter.CoreTypeConverterRegistry.convertTo",
+      "samples": 1
+    },
+    {
+      "method": "org.apache.camel.support.DefaultExchange.setUnitOfWork",
+      "samples": 1
+    },
+    {
+      "method": "java.util.concurrent.atomic.LongAdder.increment",
+      "samples": 1
+    },
+    {
+      "method": "java.util.concurrent.atomic.LongAdder.add",
+      "samples": 1
+    },
+    {
+      "method": "java.text.DecimalFormatSymbols.initialize",
+      "samples": 1
+    }
+  ],
+  "allocationClassWeights": [
+    {
+      "class": "[Ljava.lang.Object;",
+      "bytes": 66875048
+    },
+    {
+      "class": "org.apache.camel.impl.engine.CamelInternalProcessor$AsyncAfterTask",
+      "bytes": 42592872
+    },
+    {
+      "class": "org.apache.camel.support.DefaultExchange",
+      "bytes": 32008856
+    },
+    {
+      "class": "java.util.concurrent.CountDownLatch$Sync",
+      "bytes": 24982912
+    },
+    {
+      "class": "org.apache.camel.processor.errorhandler.RedeliveryErrorHandler$SimpleTask",
+      "bytes": 24903440
+    },
+    {
+      "class": "[Ljava.util.concurrent.ConcurrentHashMap$Node;",
+      "bytes": 20282376
+    },
+    {
+      "class": "org.apache.camel.impl.engine.DefaultUnitOfWork",
+      "bytes": 19687824
+    },
+    {
+      "class": "io.ominicat.mechanisms.PathHarness$Value",
+      "bytes": 17257008
+    },
+    {
+      "class": "[B",
+      "bytes": 17145384
+    },
+    {
+      "class": "org.apache.camel.support.DefaultMessage",
+      "bytes": 7077536
+    },
+    {
+      "class": "java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionNode",
+      "bytes": 7030744
+    },
+    {
+      "class": "org.apache.camel.impl.engine.DefaultAsyncProcessorAwaitManager$$Lambda$240+0x00007f11481bc640.1658424032",
+      "bytes": 6505672
+    },
+    {
+      "class": "java.util.EnumMap",
+      "bytes": 5393872
+    },
+    {
+      "class": "org.apache.camel.support.ResetableClock",
+      "bytes": 3972704
+    },
+    {
+      "class": "java.util.concurrent.locks.ReentrantLock",
+      "bytes": 3889024
+    },
+    {
+      "class": "org.apache.camel.processor.Pipeline$PipelineTask",
+      "bytes": 3664784
+    },
+    {
+      "class": "java.util.concurrent.locks.ReentrantLock$NonfairSync",
+      "bytes": 1947032
+    },
+    {
+      "class": "org.apache.camel.impl.engine.SharedCamelInternalProcessor$InternalCallback",
+      "bytes": 1714736
+    },
+    {
+      "class": "org.apache.camel.impl.engine.SharedCamelInternalProcessor$1",
+      "bytes": 1571088
+    },
+    {
+      "class": "java.util.concurrent.CountDownLatch",
+      "bytes": 970024
+    }
+  ],
+  "sampledAllocationWeightBytes": 317573280,
+  "gcCollectionCount": 3,
+  "gcPauseSumMillis": 11.811734000000001,
+  "maxCollectionPauseSumMillis": 5.733589
+}

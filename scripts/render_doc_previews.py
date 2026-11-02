@@ -20,6 +20,7 @@ OUTPUT = ROOT / 'docs/assets/previews'
 MANIFEST = OUTPUT / 'manifest.json'
 SCALE = 2
 UBUNTU = 'reports/comparison/linux-ubuntu24-java17-2026-10-31'
+MECHANISMS = 'reports/mechanisms/java17-2026-11-02'
 SOURCES = {
     'banner': 'docs/assets/banner.svg',
     'architecture-overview': 'docs/assets/architecture-overview.svg',
@@ -30,6 +31,11 @@ SOURCES = {
     'framework-paths': 'docs/assets/framework-paths.svg',
     'framework-cost-scaling': 'docs/assets/framework-cost-scaling.svg',
     'prompt-render-cost': 'reports/performance-audit/prompt-render-2026-11-01/costs.svg',
+    'mechanism-costs': f'{MECHANISMS}/costs.svg',
+    **{f'mechanism-{case}-{name}': f'{MECHANISMS}/evidence/diagnostics/{case}/{name}.svg'
+       for case in ('ominicat-caller', 'ominicat-handoff', 'camel-caller', 'camel-handoff', 'correlated-copy')
+       for name in ('cpu-hotspots', 'allocation-hotspots', 'gc-pauses',
+                    'cpu-flamegraph', 'allocation-flamegraph')},
     'ubuntu-comparison': f'{UBUNTU}/overview.svg',
     'centos-comparison': 'reports/comparison/linux-centos9-java17-2026-10-31/overview.svg',
     **{f'ubuntu-{name}': f'{UBUNTU}/profiles/ominicat/{name}.svg'
@@ -38,7 +44,7 @@ SOURCES = {
 }
 SOURCES.update({Path(item['preview']).stem: item['localized']
                 for item in json.loads((ROOT / 'docs/i18n/figures.json').read_text())['figures']})
-DOCUMENTS = ('README.md', 'README.zh-CN.md', 'docs/architecture.md', 'docs/performance.md', 'docs/performance-audit.md',
+DOCUMENTS = ('README.md', 'README.zh-CN.md', 'docs/architecture.md', 'docs/performance.md', 'docs/performance-audit.md', f'{MECHANISMS}/README.md',
              *sorted(str(path.relative_to(ROOT)) for path in (ROOT / 'docs/zh-CN').rglob('*.md')))
 
 
