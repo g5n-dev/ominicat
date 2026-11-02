@@ -4,7 +4,12 @@ on:
   pull_request:
     branches: [main]
     paths:
+      - 'pom.xml'
+      - 'ominicat-core/src/main/**'
       - 'comparison/mechanisms/**'
+      - 'comparison/tests/test_mechanism_*.py'
+      - 'scripts/summarize_profiles.py'
+      - 'scripts/package_profiles.py'
       - 'comparison/mechanism_evidence.py'
       - 'comparison/mechanism_profiles.py'
       - 'comparison/mechanism-protocol.md'
