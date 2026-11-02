@@ -1,0 +1,50 @@
+name: Controlled Java mechanism evidence
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'comparison/mechanisms/**'
+      - 'comparison/mechanism_evidence.py'
+      - 'comparison/mechanism_profiles.py'
+      - 'comparison/mechanism-protocol.md'
+      - '.github/workflows/mechanism-evidence.yml'
+permissions:
+  contents: read
+concurrency:
+  group: mechanism-evidence-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  evidence:
+    name: Ubuntu 24.04 / Java 17 mechanism evidence
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+      - name: Build and verify the isolated probes
+        run: |
+          ./mvnw -B -ntp -pl ominicat-core -am install -DskipTests
+          ./mvnw -B -ntp -f comparison/mechanisms/pom.xml verify
+      - name: Measure six cells in forward and reverse order
+        run: |
+          python3 comparison/mechanism_evidence.py collect --root . --output reports/local/mechanism-capture/evidence/measurements
+          cat reports/local/mechanism-capture/evidence/measurements/summary.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Collect independent CPU, allocation and GC diagnostics
+        run: python3 comparison/mechanism_profiles.py collect --root . --output reports/local/mechanism-capture
+      - name: Verify the complete diagnostic allowlist
+        run: |
+          python3 comparison/mechanism_evidence.py check reports/local/mechanism-capture/evidence/measurements
+          python3 comparison/mechanism_profiles.py check reports/local/mechanism-capture/evidence
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mechanism-evidence-java17-${{ github.run_id }}-${{ github.run_attempt }}
+          path: reports/local/mechanism-capture/evidence/
+          if-no-files-found: error
+          retention-days: 30

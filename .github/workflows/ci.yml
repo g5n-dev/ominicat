@@ -40,6 +40,10 @@ jobs:
           ./mvnw -B -ntp -f comparison/benchmarks/pom.xml clean verify
           java -Xms128m -Xmx512m -jar comparison/benchmarks/target/benchmark.jar --engine ominicat --stages 4 --warmup-seconds 0.2 --measure-seconds 0.3 --max-samples 2000000 --output reports/local/ci-ominicat-comparison-smoke.json
           java -Xms128m -Xmx512m -jar comparison/benchmarks/target/benchmark.jar --engine camel --stages 4 --warmup-seconds 0.2 --measure-seconds 0.3 --max-samples 2000000 --output reports/local/ci-camel-comparison-smoke.json
+      - name: Verify isolated mechanism fixtures
+        run: |
+          ./mvnw -B -ntp -pl ominicat-core -am install -DskipTests
+          ./mvnw -B -ntp -f comparison/mechanisms/pom.xml verify
       - name: Compile and smoke-test sustained-validation tooling
         run: |
           mkdir -p /tmp/ominicat-validation-classes

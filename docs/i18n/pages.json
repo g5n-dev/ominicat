@@ -32,6 +32,11 @@
       "source_sha256": "6b3fb7702e98c3fc2a782317485425c2897165af66e2441c0ffb0d88d38b7572"
     },
     {
+      "source": "comparison/mechanism-protocol.md",
+      "translation": "docs/zh-CN/comparison/mechanism-protocol.md",
+      "source_sha256": "5b534032887d6636746448786ce4e31a1927b0730579c314c3fe6882b9239d71"
+    },
+    {
       "source": "comparison/profile_java.md",
       "translation": "docs/zh-CN/comparison/profile_java.md",
       "source_sha256": "58108dca279e883cde7048d985ec73eac1cbe1372a487170a999345a9c67b1e3"
@@ -64,7 +69,7 @@
     {
       "source": "docs/iteration-plan.md",
       "translation": "docs/zh-CN/iteration-plan.md",
-      "source_sha256": "24850651b4b5fc4d3cef4626bb92e40e7bea2ce0daebed779534a92011e7d2c0"
+      "source_sha256": "c02f2cdabadedebde5d025abde7afed2a020cb17b7cc79950434bdc8aa38ffa2"
     },
     {
       "source": "docs/java-compatibility.md",

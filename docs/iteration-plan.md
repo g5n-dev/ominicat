@@ -58,6 +58,8 @@ The [cross-project contract proposal](integration-contracts.md) defines supporti
 
 ### Performance evidence
 
+The [controlled Java mechanism experiments](../comparison/mechanism-protocol.md) are the current evidence increment: four fixed-stage public-API/handoff cells and two standalone Exchange-copy cells, without changing production scheduling. Acceptance requires exact result/thread/failure oracles, two fresh Java 17 forks per cell in balanced order, complete CPU/allocation measurements and separately allowlisted JFR diagnostics on Ubuntu. Component costs must not be summed into an attribution of the earlier SEDA gap; 1/16-stage, saturated-load and media experiments remain separate work.
+
 The [deep performance audit](performance-audit.md) verified a bounded prompt metrics/history optimization with paired Ubuntu measurements. Exact outputs and runtime origins passed the complete omitted/full/truncated history matrix. Other source-confirmed candidates remain hypotheses requiring their own workloads.
 
 Continue these measurement increments alongside the integration work when their workload is needed to assess a change. Allocation experiments depend on the relevant baselines rather than preceding them.
