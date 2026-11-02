@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "scope": "Separate instrumented Java 17 JMH diagnostic JVM: whole recording includes JVM/framework startup, setup, two 1-second warmup iterations, two 1-second measurement iterations, harness and teardown. No phase filtering. CPU execution sampling requests a 10ms period; allocation uses profile.jfc defaults. Recording and exported stacks retain up to 64 frames. These are not headline timings, framework-exclusive CPU, retained heap, exact object counts, p99 latency or RSS measurements.",
+  "selectedEventCounts": {
+    "jdk.ExecutionSample": 287,
+    "jdk.GarbageCollection": 127,
+    "jdk.ObjectAllocationSample": 1325
+  },
+  "cpuLeafSamples": [
+    {
+      "method": "io.ominicat.core.Pipeline.lambda$dispatch$1",
+      "samples": 177
+    },
+    {
+      "method": "io.ominicat.core.Pipeline.process",
+      "samples": 48
+    },
+    {
+      "method": "java.lang.invoke.DirectMethodHandle.allocateInstance",
+      "samples": 28
+    },
+    {
+      "method": "io.ominicat.mechanisms.PathBenchmark.roundTrip",
+      "samples": 23
+    },
+    {
+      "method": "org.openjdk.jmh.infra.Blackhole.consumeFull",
+      "samples": 2
+    },
+    {
+      "method": "java.util.zip.ZipCoder$UTF8ZipCoder.checkedHash",
+      "samples": 1
+    },
+    {
+      "method": "java.lang.invoke.InvokerBytecodeGenerator.emitReferenceCast",
+      "samples": 1
+    },
+    {
+      "method": "java.lang.String.regionMatches",
+      "samples": 1
+    },
+    {
+      "method": "java.lang.invoke.MethodHandleNatives.canBeCalledVirtual",
+      "samples": 1
+    },
+    {
+      "method": "java.util.zip.ZipFile$CleanableResource.releaseInflater",
+      "samples": 1
+    },
+    {
+      "method": "java.util.stream.AbstractPipeline.evaluate",
+      "samples": 1
+    },
+    {
+      "method": "io.ominicat.mechanisms.PathHarness$Oracle.stage",
+      "samples": 1
+    },
+    {
+      "method": "io.ominicat.mechanisms.PathHarness$OminiCatBackend.lambda$new$0",
+      "samples": 1
+    },
+    {
+      "method": "org.openjdk.jmh.results.format.JSONResultFormat.tidy",
+      "samples": 1
+    }
+  ],
+  "allocationClassWeights": [
+    {
+      "class": "io.ominicat.mechanisms.PathHarness$Value",
+      "bytes": 9908474344
+    },
+    {
+      "class": "io.ominicat.core.Pipeline$$Lambda$133+0x00007f65bc0deeb0.818152665",
+      "bytes": 7362367960
+    },
+    {
+      "class": "io.ominicat.core.SynchronousSink",
+      "bytes": 2664415216
+    },
+    {
+      "class": "[Ljava.util.concurrent.ConcurrentHashMap$Node;",
+      "bytes": 20282424
+    },
+    {
+      "class": "[B",
+      "bytes": 4880200
+    },
+    {
+      "class": "io.ominicat.mechanisms.PathHarness$OminiCatBackend$$Lambda$132+0x00007f65bc0dec88.490283198",
+      "bytes": 4187168
+    },
+    {
+      "class": "[I",
+      "bytes": 1498800
+    },
+    {
+      "class": "jdk.internal.org.objectweb.asm.MethodWriter",
+      "bytes": 587664
+    },
+    {
+      "class": "java.util.concurrent.ConcurrentHashMap$Node",
+      "bytes": 421096
+    },
+    {
+      "class": "java.net.URL",
+      "bytes": 419056
+    },
+    {
+      "class": "[C",
+      "bytes": 413168
+    },
+    {
+      "class": "jdk.internal.org.objectweb.asm.ByteVector",
+      "bytes": 297000
+    },
+    {
+      "class": "java.util.HashMap$Node",
+      "bytes": 209176
+    },
+    {
+      "class": "java.lang.String",
+      "bytes": 209160
+    },
+    {
+      "class": "java.lang.invoke.MethodType",
+      "bytes": 32
+    }
+  ],
+  "sampledAllocationWeightBytes": 19968662464,
+  "gcCollectionCount": 127,
+  "gcPauseSumMillis": 101.714887,
+  "maxCollectionPauseSumMillis": 4.95706
+}

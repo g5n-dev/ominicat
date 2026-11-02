@@ -12,6 +12,7 @@ import unittest
 import xml.etree.ElementTree as ET
 
 import summarize_profiles as charts
+from package_profiles import privacy_check
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -84,7 +85,7 @@ class ProfileChartsTest(unittest.TestCase):
         self.assertGreater(float(tiny_group.find("s:rect", NS).get("width")), 0)
         self.assertLess(float(tiny_group.find("s:rect", NS).get("width")), 1)
         self.assertEqual("0", tiny_group.find("s:rect", NS).get("stroke-width"))
-        self.assertTrue(any("[stack unavailable]: 3" in title for title in by_title))
+        self.assertTrue(any("[stack unavailable] — 3" in title for title in by_title))
         self.assertEqual(10 ** 12 + 4, int(groups[0].get("data-weight")))
 
     def test_empty_and_zero_weight_figures_do_not_pretend_to_have_samples(self):
@@ -113,13 +114,32 @@ class ProfileChartsTest(unittest.TestCase):
         ET.fromstring(summary)
         self.assertNotIn('<script>', summary)
 
+    def test_next_token_method_remains_in_safe_profiles_without_weakening_credential_checks(self):
+        allocation = sample('jdk.ObjectAllocationSample', weight=523264)
+        allocation['values']['stackTrace']['frames'] = [
+            {'method': {'type': {'name': 'java/util/StringTokenizer'}, 'name': 'nextToken'}}]
+        cpu = sample()
+        cpu['values']['stackTrace']['frames'] = allocation['values']['stackTrace']['frames']
+        raw = self.inputs([allocation, cpu])
+        self.assertEqual(raw.decode(), privacy_check('selected events', raw))
+        charts.main(self.folder)
+        for name in FIGURES:
+            privacy_check('rendered profile', (self.folder / name).read_bytes())
+        root = ET.parse(self.folder / 'allocation-flamegraph.svg').getroot()
+        titles = [node.text for node in root.findall('.//s:title', NS)]
+        self.assertIn('java.util.StringTokenizer.nextToken — 523,264 sampled bytes (100.000%)', titles)
+        self.assertEqual(523264, int(root.find('s:g', NS).get('data-weight')))
+        for sensitive in (b'TOKEN: synthetic-private-value', b'TOKEN=12345',
+                          b'API_KEY: synthetic-private-value'):
+            with self.assertRaises(ValueError): privacy_check('credential assignment', sensitive)
+
     def test_compact_top_eight_plus_other_conserves_samples_and_uses_integer_counts(self):
         counter = collections.Counter({"method-" + str(i): i + 1 for i in range(20)})
         svg = charts.hotspot_chart(counter, "CPU", "Leaf counts, not duration", "samples")
         groups = ET.fromstring(svg).findall("s:g", NS)
         self.assertEqual(9, len(groups))
         self.assertEqual(sum(counter.values()), sum(int(g.get("data-weight")) for g in groups))
-        self.assertTrue(any(g.find("s:title", NS).text.startswith("Other:") for g in groups))
+        self.assertTrue(any(g.find("s:title", NS).text.startswith("Other —") for g in groups))
         self.assertIn("total 210 samples", svg)
         self.assertNotIn("210.000 samples", svg)
         allocation = charts.hotspot_chart(collections.Counter({"Class": 1024 ** 2}), "Allocation", "Weights", "MiB", 1024 ** 2)

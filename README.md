@@ -97,6 +97,16 @@ Ratios divide the five-process median rates within each job. OminiCat leads the 
 
 Across 1→16 stages, OminiCat retains about **97.8%** of its one-stage frame rate in each Linux job; Pipecat retains **18.0% / 19.0%**, and Camel **92.0% / 95.7%** on Ubuntu / CentOS. This is consistent with different stage-to-stage work, but does not isolate its causal share: runtime, allocation, the output oracle and acknowledgment also cost time. [All stage counts, CPU costs, source paths and counterexamples](docs/performance.md).
 
+### Controlled mechanism verification
+
+A separate **Ubuntu 24.04 / Java 17** experiment compares the real `Pipeline.process` and Camel `direct:` APIs, first inline and then behind the **same capacity-one queues, worker and return acknowledgment**. Every operation checks all four stages, its output and its execution thread. Twelve fresh JMH processes retain both fork means and every measured iteration.
+
+The inline cell summaries are **66.34 / 1,122.60 ns/op** and **368 / 1,624 B/op** for OminiCat / Camel. With the common handoff they are **20.59 / 21.54 µs/op**: the shared handoff package dominates this tiny workload. Whole-process CPU ranges overlap in that mode. A separate prepared-Exchange copy probe records about **704 B/op**, excluding source construction, SEDA queueing and completion. These costs cannot be added together to explain the earlier native comparison.
+
+[![Controlled Java execution, common handoff and Exchange-copy costs](docs/assets/previews/mechanism-costs.png)](reports/mechanisms/java17-2026-11-02/costs.svg)
+
+[Complete results, CPU/allocation/GC profiles and all attempts](reports/mechanisms/java17-2026-11-02/README.md) · [Runnable protocol and failure controls](comparison/mechanism-protocol.md). This increment verifies mechanisms; it changes no production scheduler and makes no blanket framework-speed claim.
+
 <details>
 <summary>OminiCat's direct and queued execution paths</summary>
 

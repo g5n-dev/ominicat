@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "status": "complete",
+  "case": {
+    "id": "camel-handoff",
+    "benchmark": "io.ominicat.mechanisms.PathBenchmark.roundTrip",
+    "params": {
+      "framework": "camel",
+      "execution": "handoff"
+    }
+  },
+  "instrumented": true,
+  "headlineEligible": false,
+  "originValidatedExactlyOnce": true,
+  "runtime": {
+    "vendor": "Eclipse Adoptium",
+    "version": "17.0.21",
+    "vmName": "OpenJDK 64-Bit Server VM",
+    "vmVersion": "17.0.21+9",
+    "architecture": "amd64",
+    "os": "Linux"
+  },
+  "jmhSettingsValidated": {
+    "jmhVersion": "1.37",
+    "mode": "avgt",
+    "unit": "ns/op",
+    "threads": 1,
+    "forks": 0,
+    "warmupIterations": 2,
+    "measurementIterations": 2,
+    "warmupTime": "1 s",
+    "measurementTime": "1 s",
+    "warmupBatchSize": 1,
+    "measurementBatchSize": 1,
+    "fixedApplicationStages": 4,
+    "minHeapBytes": 268435456,
+    "maxHeapBytes": 268435456,
+    "profilers": [
+      "gc",
+      "io.ominicat.mechanisms.ProcessCpuProfiler"
+    ],
+    "jfrBase": "profile.jfc",
+    "executionSamplePeriod": "10ms",
+    "allocationSampling": "profile.jfc defaults",
+    "recordingStackDepth": 64,
+    "exportStackDepth": 64,
+    "selectedEvents": [
+      "jdk.ExecutionSample",
+      "jdk.GarbageCollection",
+      "jdk.JavaMonitorEnter",
+      "jdk.ObjectAllocationSample",
+      "jdk.VirtualThreadPinned"
+    ],
+    "disabledEvents": [
+      "jdk.InitialEnvironmentVariable",
+      "jdk.InitialSystemProperty",
+      "jdk.InitialSecurityProperty",
+      "jdk.SecurityPropertyModification",
+      "jdk.SystemProcess",
+      "jdk.ProcessStart",
+      "jdk.OSInformation",
+      "jdk.JVMInformation"
+    ],
+    "reportedJvmArgsAnnotationSuffix": [
+      "-Xms256m",
+      "-Xmx256m"
+    ],
+    "jvmArgsScope": "The collector starts one JVM with five explicit parent options. JMH -f 0 reports those options followed by the two @Fork heap annotation values as metadata; no child JVM is started."
+  },
+  "metrics": [
+    "allocatedBytesPerOp",
+    "processCpuNsPerOp",
+    "timeNsPerOp"
+  ],
+  "iterationsPerMetric": 2,
+  "scope": "Separate instrumented Java 17 JMH diagnostic JVM: whole recording includes JVM/framework startup, setup, two 1-second warmup iterations, two 1-second measurement iterations, harness and teardown. No phase filtering. CPU execution sampling requests a 10ms period; allocation uses profile.jfc defaults. Recording and exported stacks retain up to 64 frames. These are not headline timings, framework-exclusive CPU, retained heap, exact object counts, p99 latency or RSS measurements."
+}

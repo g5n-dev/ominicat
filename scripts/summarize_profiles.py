@@ -107,7 +107,10 @@ def flamegraph(events, event_type, weighted):
             hue = (160 if weighted else 18) + int(hashlib.sha256(node["name"].encode()).hexdigest()[:2], 16) % 32
             color = f"hsl({hue},68%,66%)" if depth else "#38576b"
             ink = "#152430" if depth else FOREGROUND
-            tooltip = f'{node["name"]}: {node["weight"]:,} {unit} ({100 * node["weight"] / tree["weight"]:.3f}%)'
+            # A method such as StringTokenizer.nextToken followed by ':' looks
+            # like a credential assignment. Keep the full name and weight while
+            # using a presentation separator that cannot create that syntax.
+            tooltip = f'{node["name"]} — {node["weight"]:,} {unit} ({100 * node["weight"] / tree["weight"]:.3f}%)'
             stroke = 0.35 if width >= 1 else 0
             svg.append(f'<g data-depth="{depth}" data-weight="{node["weight"]}"><title>{html.escape(tooltip)}</title>'
                        f'<rect x="{x:.9g}" y="{y}" width="{width:.12g}" height="22" fill="{color}" stroke="{BACKGROUND}" stroke-width="{stroke}"/>')
@@ -145,7 +148,7 @@ def hotspot_chart(counter, title, subtitle, unit, scale=1, top=8):
         for index, (name, value) in enumerate(rows):
             y = 117 + index * 37
             width = 420 * value / maximum
-            tooltip = f"{name}: {amount(value, 6)} {unit} ({100 * value / total:.3f}%)"
+            tooltip = f"{name} — {amount(value, 6)} {unit} ({100 * value / total:.3f}%)"
             svg.append(f'<g data-weight="{value}"><title>{html.escape(tooltip)}</title>'
                        f'<text x="28" y="{y + 18}" font-family="monospace" font-size="15" fill="{FOREGROUND}">{html.escape(label(short_name(name), 48))}</text>'
                        f'<rect x="472" y="{y}" width="{width:.9g}" height="24" rx="2" fill="#75cbb9"/>'

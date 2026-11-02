@@ -10,6 +10,7 @@ from unittest.mock import patch
 import xml.etree.ElementTree as ET
 
 import localize_readme as locale
+from package_profiles import privacy_check
 
 
 SVG = 'http://www.w3.org/2000/svg'
@@ -60,6 +61,34 @@ class TranslationFailureTest(unittest.TestCase):
         self.assertEqual(locale.translate('Pipecat 1.15.0', {'Pipecat 1.15.0': 'Pipecat 1.15.0'}),
                          'Pipecat 1.15.0')
 
+    def test_em_dash_method_tooltips_keep_identity_counts_and_safe_separator(self):
+        for method in ('nextToken', 'java.util.StringTokenizer.nextToken'):
+            for share in ('', ' (100.000%)'):
+                original = method + ' — 523,264 sampled bytes' + share
+                translated = locale.translate(original, {})
+                self.assertEqual(translated, method + ' — 523,264 个采样字节' + share)
+                self.assertEqual(locale.protected_numbers(original), locale.protected_numbers(translated))
+                privacy_check('localized method tooltip', translated.encode('utf-8'))
+        # The tooltip format changes; credential detection remains strict.
+        with self.assertRaises(ValueError):
+            privacy_check('credential assignment', b'TOKEN: synthetic-private-value')
+
+    def test_legacy_colon_and_em_dash_both_translate_reviewed_units(self):
+        for separator in (': ', ' — '):
+            for unit, expected in (('sampled bytes', '个采样字节'), ('samples', '个样本'), ('MiB', 'MiB')):
+                with self.subTest(separator=separator, unit=unit):
+                    self.assertEqual(locale.translate('Heap allocation' + separator + '1,024 ' + unit + ' (12.5%)',
+                                                      {'Heap allocation': '堆分配'}),
+                                     '堆分配' + separator + '1,024 ' + expected + ' (12.5%)')
+        self.assertEqual(locale.translate('nextToken: 523,264 sampled bytes', {}),
+                         'nextToken: 523,264 个采样字节')
+
+    def test_similar_unreviewed_separators_are_not_accepted_as_weighted_labels(self):
+        for label in ('nextToken—523,264 sampled bytes', 'nextToken – 523,264 sampled bytes',
+                      'nextToken - 523,264 sampled bytes', 'nextToken:523,264 sampled bytes'):
+            with self.subTest(label=label), self.assertRaisesRegex(ValueError, 'Missing Chinese translation'):
+                locale.translate(label, {})
+
 
 class SourceFreshnessTest(unittest.TestCase):
     def setUp(self):
@@ -77,6 +106,19 @@ class SourceFreshnessTest(unittest.TestCase):
         (self.root / 'catalog.json').write_text(json.dumps({'Queued requests 64': '排队请求 64'}), encoding='utf-8')
         with redirect_stdout(io.StringIO()):
             locale.run(False)
+
+    def test_clipped_code_labels_keep_context_for_both_tooltip_separators(self):
+        for separator in (': ', ' — '):
+            source = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100">'
+                      '<g><title>io.synthetic.AbstractComponent' + separator
+                      + '523,264 sampled bytes</title><rect width="20" height="10"/>'
+                      '<text>Abstract…</text></g></svg>')
+            (self.root / 'source.svg').write_text(source, encoding='utf-8')
+            result = parse(locale.localized(self.figure, {}))
+            self.assertEqual(result.find('.//{' + SVG + '}text').text, 'Abstract…')
+            self.assertEqual(result.find('.//{' + SVG + '}title').text,
+                             'io.synthetic.AbstractComponent' + separator + '523,264 个采样字节')
+            self.assertEqual(result.find('.//{' + SVG + '}rect').get('width'), '20')
 
     def test_check_rejects_stale_target_after_source_geometry_changes(self):
         target = self.root / self.figure['localized']

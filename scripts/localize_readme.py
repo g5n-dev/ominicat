@@ -82,11 +82,11 @@ def translate(text, catalog, code_context=False):
         result = catalog[text]
     else:
         result = None
-        weighted = re.fullmatch(r'(.+): (' + NUMBER + r')(?:( sampled bytes| samples| MiB))?( \([\d.]+%\))?', text)
+        weighted = re.fullmatch(r'(.+)(: | — )(' + NUMBER + r')(?:( sampled bytes| samples| MiB))?( \([\d.]+%\))?', text)
         if weighted:
-            prefix, count, unit, share = weighted.groups()
+            prefix, separator, count, unit, share = weighted.groups()
             if prefix in catalog or is_code(prefix):
-                result = translate(prefix, catalog) + ': ' + count
+                result = translate(prefix, catalog) + separator + count
                 if unit:
                     result += {' sampled bytes': ' 个采样字节', ' samples': ' 个样本', ' MiB': ' MiB'}[unit]
                 result += share or ''
@@ -186,7 +186,7 @@ def localized(figure, catalog):
         original = node.text
         parent = parents.get(node)
         titles = [n.text for n in parent if tag(n) == 'title' and n.text] if parent is not None else []
-        context = any(is_code(t.split(': ', 1)[0]) for t in titles)
+        context = any(is_code(re.split(r': | — ', t, maxsplit=1)[0]) for t in titles)
         node.text = translate(original, catalog, context)
         if tag(node) in ('text', 'tspan') and node.text != original:
             node.set('font-family', FONT)

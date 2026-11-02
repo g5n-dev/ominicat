@@ -327,6 +327,136 @@
       "preview": "docs/assets/previews/reports--java17--soak-resources-zh-CN.png"
     },
     {
+      "source": "reports/mechanisms/java17-2026-11-02/costs.svg",
+      "localized": "docs/assets/zh-CN/reports/mechanisms/java17-2026-11-02/costs.svg",
+      "preview": "docs/assets/previews/reports--mechanisms--java17-2026-11-02--costs-zh-CN.png"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/camel-caller/allocation-flamegraph.svg",
+      "localized": "docs/assets/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/diagnostics/camel-caller/allocation-flamegraph.svg",
+      "preview": "docs/assets/previews/reports--mechanisms--java17-2026-11-02--evidence--diagnostics--camel-caller--allocation-flamegraph-zh-CN.png"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/camel-caller/allocation-hotspots.svg",
+      "localized": "docs/assets/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/diagnostics/camel-caller/allocation-hotspots.svg",
+      "preview": "docs/assets/previews/reports--mechanisms--java17-2026-11-02--evidence--diagnostics--camel-caller--allocation-hotspots-zh-CN.png"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/camel-caller/cpu-flamegraph.svg",
+      "localized": "docs/assets/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/diagnostics/camel-caller/cpu-flamegraph.svg",
+      "preview": "docs/assets/previews/reports--mechanisms--java17-2026-11-02--evidence--diagnostics--camel-caller--cpu-flamegraph-zh-CN.png"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/camel-caller/cpu-hotspots.svg",
+      "localized": "docs/assets/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/diagnostics/camel-caller/cpu-hotspots.svg",
+      "preview": "docs/assets/previews/reports--mechanisms--java17-2026-11-02--evidence--diagnostics--camel-caller--cpu-hotspots-zh-CN.png"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/camel-caller/gc-pauses.svg",
+      "localized": "docs/assets/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/diagnostics/camel-caller/gc-pauses.svg",
+      "preview": "docs/assets/previews/reports--mechanisms--java17-2026-11-02--evidence--diagnostics--camel-caller--gc-pauses-zh-CN.png"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/camel-handoff/allocation-flamegraph.svg",
+      "localized": "docs/assets/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/diagnostics/camel-handoff/allocation-flamegraph.svg",
+      "preview": "docs/assets/previews/reports--mechanisms--java17-2026-11-02--evidence--diagnostics--camel-handoff--allocation-flamegraph-zh-CN.png"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/camel-handoff/allocation-hotspots.svg",
+      "localized": "docs/assets/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/diagnostics/camel-handoff/allocation-hotspots.svg",
+      "preview": "docs/assets/previews/reports--mechanisms--java17-2026-11-02--evidence--diagnostics--camel-handoff--allocation-hotspots-zh-CN.png"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/camel-handoff/cpu-flamegraph.svg",
+      "localized": "docs/assets/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/diagnostics/camel-handoff/cpu-flamegraph.svg",
+      "preview": "docs/assets/previews/reports--mechanisms--java17-2026-11-02--evidence--diagnostics--camel-handoff--cpu-flamegraph-zh-CN.png"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/camel-handoff/cpu-hotspots.svg",
+      "localized": "docs/assets/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/diagnostics/camel-handoff/cpu-hotspots.svg",
+      "preview": "docs/assets/previews/reports--mechanisms--java17-2026-11-02--evidence--diagnostics--camel-handoff--cpu-hotspots-zh-CN.png"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/camel-handoff/gc-pauses.svg",
+      "localized": "docs/assets/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/diagnostics/camel-handoff/gc-pauses.svg",
+      "preview": "docs/assets/previews/reports--mechanisms--java17-2026-11-02--evidence--diagnostics--camel-handoff--gc-pauses-zh-CN.png"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/correlated-copy/allocation-flamegraph.svg",
+      "localized": "docs/assets/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/diagnostics/correlated-copy/allocation-flamegraph.svg",
+      "preview": "docs/assets/previews/reports--mechanisms--java17-2026-11-02--evidence--diagnostics--correlated-copy--allocation-flamegraph-zh-CN.png"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/correlated-copy/allocation-hotspots.svg",
+      "localized": "docs/assets/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/diagnostics/correlated-copy/allocation-hotspots.svg",
+      "preview": "docs/assets/previews/reports--mechanisms--java17-2026-11-02--evidence--diagnostics--correlated-copy--allocation-hotspots-zh-CN.png"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/correlated-copy/cpu-flamegraph.svg",
+      "localized": "docs/assets/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/diagnostics/correlated-copy/cpu-flamegraph.svg",
+      "preview": "docs/assets/previews/reports--mechanisms--java17-2026-11-02--evidence--diagnostics--correlated-copy--cpu-flamegraph-zh-CN.png"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/correlated-copy/cpu-hotspots.svg",
+      "localized": "docs/assets/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/diagnostics/correlated-copy/cpu-hotspots.svg",
+      "preview": "docs/assets/previews/reports--mechanisms--java17-2026-11-02--evidence--diagnostics--correlated-copy--cpu-hotspots-zh-CN.png"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/correlated-copy/gc-pauses.svg",
+      "localized": "docs/assets/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/diagnostics/correlated-copy/gc-pauses.svg",
+      "preview": "docs/assets/previews/reports--mechanisms--java17-2026-11-02--evidence--diagnostics--correlated-copy--gc-pauses-zh-CN.png"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/ominicat-caller/allocation-flamegraph.svg",
+      "localized": "docs/assets/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/diagnostics/ominicat-caller/allocation-flamegraph.svg",
+      "preview": "docs/assets/previews/reports--mechanisms--java17-2026-11-02--evidence--diagnostics--ominicat-caller--allocation-flamegraph-zh-CN.png"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/ominicat-caller/allocation-hotspots.svg",
+      "localized": "docs/assets/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/diagnostics/ominicat-caller/allocation-hotspots.svg",
+      "preview": "docs/assets/previews/reports--mechanisms--java17-2026-11-02--evidence--diagnostics--ominicat-caller--allocation-hotspots-zh-CN.png"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/ominicat-caller/cpu-flamegraph.svg",
+      "localized": "docs/assets/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/diagnostics/ominicat-caller/cpu-flamegraph.svg",
+      "preview": "docs/assets/previews/reports--mechanisms--java17-2026-11-02--evidence--diagnostics--ominicat-caller--cpu-flamegraph-zh-CN.png"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/ominicat-caller/cpu-hotspots.svg",
+      "localized": "docs/assets/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/diagnostics/ominicat-caller/cpu-hotspots.svg",
+      "preview": "docs/assets/previews/reports--mechanisms--java17-2026-11-02--evidence--diagnostics--ominicat-caller--cpu-hotspots-zh-CN.png"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/ominicat-caller/gc-pauses.svg",
+      "localized": "docs/assets/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/diagnostics/ominicat-caller/gc-pauses.svg",
+      "preview": "docs/assets/previews/reports--mechanisms--java17-2026-11-02--evidence--diagnostics--ominicat-caller--gc-pauses-zh-CN.png"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/ominicat-handoff/allocation-flamegraph.svg",
+      "localized": "docs/assets/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/diagnostics/ominicat-handoff/allocation-flamegraph.svg",
+      "preview": "docs/assets/previews/reports--mechanisms--java17-2026-11-02--evidence--diagnostics--ominicat-handoff--allocation-flamegraph-zh-CN.png"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/ominicat-handoff/allocation-hotspots.svg",
+      "localized": "docs/assets/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/diagnostics/ominicat-handoff/allocation-hotspots.svg",
+      "preview": "docs/assets/previews/reports--mechanisms--java17-2026-11-02--evidence--diagnostics--ominicat-handoff--allocation-hotspots-zh-CN.png"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/ominicat-handoff/cpu-flamegraph.svg",
+      "localized": "docs/assets/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/diagnostics/ominicat-handoff/cpu-flamegraph.svg",
+      "preview": "docs/assets/previews/reports--mechanisms--java17-2026-11-02--evidence--diagnostics--ominicat-handoff--cpu-flamegraph-zh-CN.png"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/ominicat-handoff/cpu-hotspots.svg",
+      "localized": "docs/assets/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/diagnostics/ominicat-handoff/cpu-hotspots.svg",
+      "preview": "docs/assets/previews/reports--mechanisms--java17-2026-11-02--evidence--diagnostics--ominicat-handoff--cpu-hotspots-zh-CN.png"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/ominicat-handoff/gc-pauses.svg",
+      "localized": "docs/assets/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/diagnostics/ominicat-handoff/gc-pauses.svg",
+      "preview": "docs/assets/previews/reports--mechanisms--java17-2026-11-02--evidence--diagnostics--ominicat-handoff--gc-pauses-zh-CN.png"
+    },
+    {
       "source": "reports/performance-audit/linux-java17-2026-11-01/allocation-flamegraph.svg",
       "localized": "docs/assets/zh-CN/reports/performance-audit/linux-java17-2026-11-01/allocation-flamegraph.svg",
       "preview": "docs/assets/previews/reports--performance-audit--linux-java17-2026-11-01--allocation-flamegraph-zh-CN.png"

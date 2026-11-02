@@ -1,0 +1,113 @@
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: /usr/lib/jvm/temurin-17-jdk-amd64/bin/java
+# VM options: -Xms256m -Xmx256m -Dominicat.mechanism.jarSha256=cd555bf4a5620225458a55e66d2361b019400459c8df00f8f02f788aa181c273
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: io.ominicat.mechanisms.PathBenchmark.roundTrip
+# Parameters: (execution = caller, framework = camel)
+
+# Run progress: 0.00% complete, ETA 00:00:08
+# Fork: 1 of 1
+# Warmup Iteration   1: MECHANISM_ORIGIN_SHA256=cd555bf4a5620225458a55e66d2361b019400459c8df00f8f02f788aa181c273
+SLF4J(W): No SLF4J providers were found.
+SLF4J(W): Defaulting to no-operation (NOP) logger implementation
+SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
+1516.066 ns/op
+# Warmup Iteration   2: 884.437 ns/op
+# Warmup Iteration   3: 882.902 ns/op
+Iteration   1: 882.925 ns/op
+                 gc.alloc.rate:      1753.716 MB/sec
+                 gc.alloc.rate.norm: 1624.005 B/op
+                 gc.count:           11.000 counts
+                 gc.time:            5.000 ms
+                 process.cpu.ns/op:  900.442 ns/op
+
+Iteration   2: 885.904 ns/op
+                 gc.alloc.rate:      1747.763 MB/sec
+                 gc.alloc.rate.norm: 1624.006 B/op
+                 gc.count:           12.000 counts
+                 gc.time:            6.000 ms
+                 process.cpu.ns/op:  894.640 ns/op
+
+Iteration   3: 884.529 ns/op
+                 gc.alloc.rate:      1750.495 MB/sec
+                 gc.alloc.rate.norm: 1624.006 B/op
+                 gc.count:           11.000 counts
+                 gc.time:            6.000 ms
+                 process.cpu.ns/op:  893.235 ns/op
+
+Iteration   4: 884.246 ns/op
+                 gc.alloc.rate:      1751.039 MB/sec
+                 gc.alloc.rate.norm: 1624.006 B/op
+                 gc.count:           12.000 counts
+                 gc.time:            5.000 ms
+                 process.cpu.ns/op:  892.949 ns/op
+
+Iteration   5: 880.571 ns/op
+                 gc.alloc.rate:      1736.202 MB/sec
+                 gc.alloc.rate.norm: 1624.470 B/op
+                 gc.count:           11.000 counts
+                 gc.time:            6.000 ms
+                 process.cpu.ns/op:  898.052 ns/op
+
+
+
+Result "io.ominicat.mechanisms.PathBenchmark.roundTrip":
+  883.635 ±(99.9%) 7.753 ns/op [Average]
+  (min, avg, max) = (880.571, 883.635, 885.904), stdev = 2.013
+  CI (99.9%): [875.882, 891.388] (assumes normal distribution)
+
+Secondary result "io.ominicat.mechanisms.PathBenchmark.roundTrip:gc.alloc.rate":
+  1747.843 ±(99.9%) 26.346 MB/sec [Average]
+  (min, avg, max) = (1736.202, 1747.843, 1753.716), stdev = 6.842
+  CI (99.9%): [1721.497, 1774.189] (assumes normal distribution)
+
+Secondary result "io.ominicat.mechanisms.PathBenchmark.roundTrip:gc.alloc.rate.norm":
+  1624.098 ±(99.9%) 0.800 B/op [Average]
+  (min, avg, max) = (1624.005, 1624.098, 1624.470), stdev = 0.208
+  CI (99.9%): [1623.299, 1624.898] (assumes normal distribution)
+
+Secondary result "io.ominicat.mechanisms.PathBenchmark.roundTrip:gc.count":
+  57.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (11.000, 11.400, 12.000), stdev = 0.548
+  CI (99.9%): [57.000, 57.000] (assumes normal distribution)
+
+Secondary result "io.ominicat.mechanisms.PathBenchmark.roundTrip:gc.time":
+  28.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (5.000, 5.600, 6.000), stdev = 0.548
+  CI (99.9%): [28.000, 28.000] (assumes normal distribution)
+
+Secondary result "io.ominicat.mechanisms.PathBenchmark.roundTrip:process.cpu.ns/op":
+  895.864 ±(99.9%) 12.574 ns/op [Average]
+  (min, avg, max) = (892.949, 895.864, 900.442), stdev = 3.265
+  CI (99.9%): [883.290, 908.437] (assumes normal distribution)
+
+
+# Run complete. Total time: 00:00:08
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                                   (execution)  (framework)  Mode  Cnt     Score    Error   Units
+PathBenchmark.roundTrip                          caller        camel  avgt    5   883.635 ±  7.753   ns/op
+PathBenchmark.roundTrip:gc.alloc.rate            caller        camel  avgt    5  1747.843 ± 26.346  MB/sec
+PathBenchmark.roundTrip:gc.alloc.rate.norm       caller        camel  avgt    5  1624.098 ±  0.800    B/op
+PathBenchmark.roundTrip:gc.count                 caller        camel  avgt    5    57.000           counts
+PathBenchmark.roundTrip:gc.time                  caller        camel  avgt    5    28.000               ms
+PathBenchmark.roundTrip:process.cpu.ns/op        caller        camel  avgt    5   895.864 ± 12.574   ns/op
+
+Benchmark result is saved to reports/local/mechanism-capture/evidence/measurements/raw/10-p2-camel-caller.json

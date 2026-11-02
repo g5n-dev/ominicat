@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 1,
+  "scope": "Separate instrumented Java 17 JMH diagnostic JVM: whole recording includes JVM/framework startup, setup, two 1-second warmup iterations, two 1-second measurement iterations, harness and teardown. No phase filtering. CPU execution sampling requests a 10ms period; allocation uses profile.jfc defaults. Recording and exported stacks retain up to 64 frames. These are not headline timings, framework-exclusive CPU, retained heap, exact object counts, p99 latency or RSS measurements.",
+  "selectedEventCounts": {
+    "jdk.ExecutionSample": 270,
+    "jdk.GarbageCollection": 33,
+    "jdk.ObjectAllocationSample": 1380
+  },
+  "cpuLeafSamples": [
+    {
+      "method": "org.apache.camel.impl.engine.CamelInternalProcessor.process",
+      "samples": 40
+    },
+    {
+      "method": "org.apache.camel.support.DefaultExchange.getIn",
+      "samples": 29
+    },
+    {
+      "method": "org.apache.camel.support.EventHelper.notifyExchangeAsyncProcessingStartedEvent",
+      "samples": 23
+    },
+    {
+      "method": "org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.executeReactiveWork",
+      "samples": 20
+    },
+    {
+      "method": "java.util.concurrent.atomic.LongAdder.add",
+      "samples": 19
+    },
+    {
+      "method": "org.apache.camel.impl.engine.AdviceIterator.runAfterTasks",
+      "samples": 19
+    },
+    {
+      "method": "java.util.concurrent.ConcurrentHashMap.get",
+      "samples": 16
+    },
+    {
+      "method": "java.lang.ThreadLocal$ThreadLocalMap.getEntry",
+      "samples": 14
+    },
+    {
+      "method": "org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.doRun",
+      "samples": 12
+    },
+    {
+      "method": "org.apache.camel.impl.engine.DefaultUnitOfWorkFactory.createUnitOfWork",
+      "samples": 10
+    },
+    {
+      "method": "java.util.concurrent.locks.AbstractQueuedSynchronizer.signalNext",
+      "samples": 7
+    },
+    {
+      "method": "java.lang.StringLatin1.hashCode",
+      "samples": 7
+    },
+    {
+      "method": "io.ominicat.mechanisms.PathHarness$CamelBackend$1.lambda$configure$0",
+      "samples": 6
+    },
+    {
+      "method": "org.apache.camel.impl.engine.SharedCamelInternalProcessor.process",
+      "samples": 6
+    },
+    {
+      "method": "org.apache.camel.support.AbstractExchange.getIn",
+      "samples": 5
+    },
+    {
+      "method": "org.apache.camel.processor.Pipeline$PipelineTask.run",
+      "samples": 5
+    },
+    {
+      "method": "io.ominicat.mechanisms.PathHarness$CamelBackend$1.lambda$configure$1",
+      "samples": 3
+    },
+    {
+      "method": "org.apache.camel.impl.engine.CamelInternalProcessor$NodeHistoryAdvice.before",
+      "samples": 3
+    },
+    {
+      "method": "org.apache.camel.impl.engine.CamelInternalProcessor$NodeHistoryAdvice.after",
+      "samples": 3
+    },
+    {
+      "method": "org.apache.camel.support.MessageSupport.getMandatoryBody",
+      "samples": 3
+    }
+  ],
+  "allocationClassWeights": [
+    {
+      "class": "io.ominicat.mechanisms.PathHarness$Value",
+      "bytes": 928549392
+    },
+    {
+      "class": "org.apache.camel.support.DefaultMessage",
+      "bytes": 641768264
+    },
+    {
+      "class": "[Ljava.lang.Object;",
+      "bytes": 592883288
+    },
+    {
+      "class": "org.apache.camel.support.ResetableClock",
+      "bytes": 550703464
+    },
+    {
+      "class": "org.apache.camel.impl.engine.DefaultAsyncProcessorAwaitManager$$Lambda$239+0x00007f9b281bc440.1587638878",
+      "bytes": 526778240
+    },
+    {
+      "class": "org.apache.camel.support.DefaultExchange",
+      "bytes": 424298800
+    },
+    {
+      "class": "java.util.EnumMap",
+      "bytes": 419608048
+    },
+    {
+      "class": "org.apache.camel.impl.engine.CamelInternalProcessor$AsyncAfterTask",
+      "bytes": 355477520
+    },
+    {
+      "class": "java.util.concurrent.CountDownLatch$Sync",
+      "bytes": 141910032
+    },
+    {
+      "class": "org.apache.camel.processor.errorhandler.RedeliveryErrorHandler$SimpleTask",
+      "bytes": 134835344
+    },
+    {
+      "class": "org.apache.camel.processor.Pipeline$PipelineTask",
+      "bytes": 28450648
+    },
+    {
+      "class": "[Ljava.util.concurrent.ConcurrentHashMap$Node;",
+      "bytes": 20265232
+    },
+    {
+      "class": "[B",
+      "bytes": 16613864
+    },
+    {
+      "class": "org.apache.camel.impl.engine.DefaultUnitOfWork",
+      "bytes": 15962416
+    },
+    {
+      "class": "java.util.concurrent.CountDownLatch",
+      "bytes": 6030320
+    },
+    {
+      "class": "java.util.concurrent.locks.ReentrantLock",
+      "bytes": 3141920
+    },
+    {
+      "class": "java.lang.String",
+      "bytes": 981712
+    },
+    {
+      "class": "java.util.concurrent.ConcurrentHashMap$Node",
+      "bytes": 882736
+    },
+    {
+      "class": "java.lang.invoke.MemberName",
+      "bytes": 694768
+    },
+    {
+      "class": "jdk.internal.org.objectweb.asm.SymbolTable$Entry",
+      "bytes": 593688
+    }
+  ],
+  "sampledAllocationWeightBytes": 4815220624,
+  "gcCollectionCount": 33,
+  "gcPauseSumMillis": 56.626077,
+  "maxCollectionPauseSumMillis": 5.392455
+}

@@ -1,0 +1,349 @@
+{
+  "schemaVersion": 1,
+  "protocol": "ominicat-camel-mechanisms-v1",
+  "status": "complete",
+  "recordedAt": "2026-11-02T04:15:51.276320+00:00",
+  "sourceRevision": "f6b2a7ebc478d87338daf95e66e5b198505c0307",
+  "sourceTreeDirty": false,
+  "sourceFingerprint": {
+    "files": {
+      ".github/workflows/mechanism-evidence.yml": "477ab01142764889c7dfb26dcb09eab0fcf6244d020f5fd02a0901739be03a31",
+      "comparison/mechanism-protocol.md": "1f7bb8b3100ffb261bbeff0b42accd5c81006155f1c0850755ee0bff3db0c9fd",
+      "comparison/mechanism_evidence.py": "b3ebe4c6b21df8d99834293bb2e5b2cb78d4b9a4bfa8c549840d3b59a73af10c",
+      "comparison/mechanisms/pom.xml": "78f9ee46819abfc891e43cef8e91999f69c742c42720c73656a651b04c871551",
+      "comparison/mechanisms/src/main/java/io/ominicat/mechanisms/BenchmarkOrigin.java": "60ba145e77ae803608c2fc9b0d8309a8dc8133403ad027defce63af781663201",
+      "comparison/mechanisms/src/main/java/io/ominicat/mechanisms/ExchangeCopyBenchmark.java": "1cf19fd0caa06bbc1d4ff7cbb8a6c28d718cf790227b202bd88e36199ed652c9",
+      "comparison/mechanisms/src/main/java/io/ominicat/mechanisms/ExchangeCopyFixture.java": "e9eca594599e998f8fa8f0f556b27f0828091475d6040c89578b7dff22caca82",
+      "comparison/mechanisms/src/main/java/io/ominicat/mechanisms/PathBenchmark.java": "b2abb4e8451cd672b7733d23ba14603e15f0ca40a34fd9f80e0970f82b54ef2d",
+      "comparison/mechanisms/src/main/java/io/ominicat/mechanisms/PathHarness.java": "2d10c4ff5fa6569814fe5a14b91e7c845e36dca874613ac03d2ac4348bf84513",
+      "comparison/mechanisms/src/main/java/io/ominicat/mechanisms/ProcessCpuProfiler.java": "aeb74008a4d131fe4be9ce77ed367e1165d6cc065b3e685749f7dec4f7a37f7f",
+      "comparison/mechanisms/src/test/java/io/ominicat/mechanisms/BenchmarkOriginTest.java": "ff50d197c5e84860be1de095ef1a96b4930a87b028b52cf36629279edcf92e2c",
+      "comparison/mechanisms/src/test/java/io/ominicat/mechanisms/ExchangeCopyFixtureTest.java": "9e416550291909e85340e1de00627b156f2b3f3b5c43226947daa1e10c97e8b8",
+      "comparison/mechanisms/src/test/java/io/ominicat/mechanisms/PathHarnessTest.java": "cda1a2905ece57c47addfb4c14222c549cd756e61c3409956667dbddc8ccecb9",
+      "comparison/mechanisms/src/test/java/io/ominicat/mechanisms/ProcessCpuProfilerTest.java": "e7d6dd6e543be8ff989730db63f8f5b7dceed5637107d8f77b5fcbdcf37f8b2f",
+      "comparison/tests/test_mechanism_evidence.py": "d50570a3b832acc7c9b25c1a8d650178cfa05133a4504936fe5ac2ef7504b8b1",
+      "ominicat-core/src/main/java/io/ominicat/core/AsyncEmitter.java": "44f9efb11ea681c9757f6b8775071da3a34f437877d5ed1cbb0b15c8bd381154",
+      "ominicat-core/src/main/java/io/ominicat/core/AsyncOutlet.java": "e268a2a7b966ee805dd515789dbfaaf24d003af3f427ea36f08aa29bf9901b36",
+      "ominicat-core/src/main/java/io/ominicat/core/AsyncProcessor.java": "38c4854af52081b33f2037e7f6aaa8fde98972bda4f2564aae8346fb3fbe9fb1",
+      "ominicat-core/src/main/java/io/ominicat/core/EnvelopeProcessor.java": "cdb01f8141bff2762d1f8c75488160efac00ccf68d8a72af5267aa3a8dbbf69b",
+      "ominicat-core/src/main/java/io/ominicat/core/FallbackProcessor.java": "42f2b34a365931b85b783bbea10f2ee40d1eebbdcbad945f07ac9f214083cef7",
+      "ominicat-core/src/main/java/io/ominicat/core/Frame.java": "fdcc1ee0ba7e83a9b564f67a16b33e25673073f7265d0d832e38aafcf1de757a",
+      "ominicat-core/src/main/java/io/ominicat/core/FrameEnvelope.java": "977d8556417420128bcb4351f6ea57630edc621b8a36a75f87468c37468d52b3",
+      "ominicat-core/src/main/java/io/ominicat/core/FrameSink.java": "e1373e4404361b374b597a9bf1d0970102b662f410e11a6163fe62d67e4016fd",
+      "ominicat-core/src/main/java/io/ominicat/core/ParallelProcessor.java": "676d542294a265141588592877e25ae5baa0d356aefdb5de42824d530de2d751",
+      "ominicat-core/src/main/java/io/ominicat/core/Pipeline.java": "51912a2028db89ba280928c59964ba157034f172e27c4178e765601420d4777b",
+      "ominicat-core/src/main/java/io/ominicat/core/PipelineSession.java": "260ac9ccf80186fad92a02cef20797a864f76cd5035263c5f12615cf6b3feefe",
+      "ominicat-core/src/main/java/io/ominicat/core/Processor.java": "01d05e653b58ca5243f7f74c7f0389b4d5a1ae7837743afde04ca8d26357c356",
+      "ominicat-core/src/main/java/io/ominicat/core/SessionMetrics.java": "58b3279acc9f42c269709b36ecc3d037393d244f735aaac3cb23e382172787a0",
+      "ominicat-core/src/main/java/io/ominicat/core/SessionOptions.java": "5bed3b1247e246166192f6ba66c421099dcba5dbe77741c09e4fdd002634c414",
+      "ominicat-core/src/main/java/io/ominicat/core/SynchronousSink.java": "9d22b891c7efc690c348ce1fe5127b5074567d6750fdca10bd50f259d1f5a594",
+      "ominicat-core/src/main/java/io/ominicat/core/WorkerThreads.java": "046dd215331c3d7b9f98f29b2748a5c35231b4fc3d12c006ba4ce2f3be623499",
+      "ominicat-core/src/main/java/io/ominicat/core/spi/DescribedProcessorFactory.java": "61a686173dbc053ff8e7210772bfa2e6ec00bb6e948b1dd844dca401009124cd",
+      "ominicat-core/src/main/java/io/ominicat/core/spi/PluginRegistry.java": "ad3bf8c4c9ce3df2925bd72e19123650dbdb420dc74c06cfca4258b5e19b7ea6",
+      "ominicat-core/src/main/java/io/ominicat/core/spi/ProcessorDescription.java": "cc34223726ef1fc47fbb4d1a8e4849e9b7d225ddd3ec6f3313c2c820d34db88c",
+      "ominicat-core/src/main/java/io/ominicat/core/spi/ProcessorFactory.java": "1b76527adc33c7baf64c23ce32e755b96343a1253e8f56d3c6a6c9af9da6de20",
+      "pom.xml": "edb54f636b19a4c8794761980258278a0a6de97a0b78e871f973ebfc5cc8ad49",
+      "scripts/package_profiles.py": "2cd1f03e99f0f4232c4a0c086bd52f5036434ec93a687e92fcf349aa2a99ee25"
+    },
+    "aggregate": "8c2a83bc418a1bd8ac2fc5b0d06e656bf90fb62918d3c5d3772c2e205d3be57a"
+  },
+  "artifact": {
+    "file": "comparison/mechanisms/target/mechanisms.jar",
+    "sha256": "cd555bf4a5620225458a55e66d2361b019400459c8df00f8f02f788aa181c273",
+    "dependencies": [
+      {
+        "coordinates": "io.ominicat:ominicat-core:0.1.0-SNAPSHOT",
+        "artifact": "io/ominicat/ominicat-core/0.1.0-SNAPSHOT/ominicat-core-0.1.0-SNAPSHOT.jar",
+        "sha256": "c662ff8d90a828c4dbc45f72b3fb3353f36596d7f36532621a8e07aa55a9df97"
+      },
+      {
+        "coordinates": "jakarta.activation:jakarta.activation-api:2.1.4",
+        "artifact": "jakarta/activation/jakarta.activation-api/2.1.4/jakarta.activation-api-2.1.4.jar",
+        "sha256": "c9db52100ce6c8aac95cc39075f95720d2e561b11f8051b81c121ad4effd7004"
+      },
+      {
+        "coordinates": "jakarta.xml.bind:jakarta.xml.bind-api:4.0.5",
+        "artifact": "jakarta/xml/bind/jakarta.xml.bind-api/4.0.5/jakarta.xml.bind-api-4.0.5.jar",
+        "sha256": "5e489b6c874c4119e003ff1403db523ee3a8959ec499f3de29e77245efccf216"
+      },
+      {
+        "coordinates": "net.sf.jopt-simple:jopt-simple:5.0.4",
+        "artifact": "net/sf/jopt-simple/jopt-simple/5.0.4/jopt-simple-5.0.4.jar",
+        "sha256": "df26cc58f235f477db07f753ba5a3ab243ebe5789d9f89ecf68dd62ea9a66c28"
+      },
+      {
+        "coordinates": "org.apache.camel:camel-api:4.22.2",
+        "artifact": "org/apache/camel/camel-api/4.22.2/camel-api-4.22.2.jar",
+        "sha256": "6d7a1106dd2f6eedce37f0f552197579bd4f6e5edf4f74610475209efeda7f73"
+      },
+      {
+        "coordinates": "org.apache.camel:camel-base-engine:4.22.2",
+        "artifact": "org/apache/camel/camel-base-engine/4.22.2/camel-base-engine-4.22.2.jar",
+        "sha256": "9dd09604797e18a8ca35d2c5da6fb3e120c7398e0f2c957826877a3272ade55d"
+      },
+      {
+        "coordinates": "org.apache.camel:camel-base:4.22.2",
+        "artifact": "org/apache/camel/camel-base/4.22.2/camel-base-4.22.2.jar",
+        "sha256": "83e23c4d0c0a2165ee117a74827121028d77c68efa27a28dc6e8fcf5a37f9b9c"
+      },
+      {
+        "coordinates": "org.apache.camel:camel-core-engine:4.22.2",
+        "artifact": "org/apache/camel/camel-core-engine/4.22.2/camel-core-engine-4.22.2.jar",
+        "sha256": "e04954bbdfe20d89ed3fa61e4bb5266d3f4723c7bfcf30d24cd95f0ebdead2e3"
+      },
+      {
+        "coordinates": "org.apache.camel:camel-core-languages:4.22.2",
+        "artifact": "org/apache/camel/camel-core-languages/4.22.2/camel-core-languages-4.22.2.jar",
+        "sha256": "7a1f1c7246cf9e5394495b0b9237c0083d442a7f05629d0d91b61512ff826acc"
+      },
+      {
+        "coordinates": "org.apache.camel:camel-core-model:4.22.2",
+        "artifact": "org/apache/camel/camel-core-model/4.22.2/camel-core-model-4.22.2.jar",
+        "sha256": "5373c97d27b1195aeeea912719bd196bce198197d3b65ef088336c4f8201fef3"
+      },
+      {
+        "coordinates": "org.apache.camel:camel-core-processor:4.22.2",
+        "artifact": "org/apache/camel/camel-core-processor/4.22.2/camel-core-processor-4.22.2.jar",
+        "sha256": "e70555f3b6f2f4857c41df8a6043cc5a0e05a676cd526f506547129616543a7b"
+      },
+      {
+        "coordinates": "org.apache.camel:camel-core-reifier:4.22.2",
+        "artifact": "org/apache/camel/camel-core-reifier/4.22.2/camel-core-reifier-4.22.2.jar",
+        "sha256": "c5ed514b62300f7de99bc9f9ab4323c6ec5c957dde2b4259463a182f71d2b8ed"
+      },
+      {
+        "coordinates": "org.apache.camel:camel-direct:4.22.2",
+        "artifact": "org/apache/camel/camel-direct/4.22.2/camel-direct-4.22.2.jar",
+        "sha256": "a3f6c12db6d719685e6b0ed2db7c08e60663032c0db41429a4848113b68b5123"
+      },
+      {
+        "coordinates": "org.apache.camel:camel-management-api:4.22.2",
+        "artifact": "org/apache/camel/camel-management-api/4.22.2/camel-management-api-4.22.2.jar",
+        "sha256": "839c7c78883eaedb5eea4b472185f404b3d63e021f599a09fa09d7dae9ec9655"
+      },
+      {
+        "coordinates": "org.apache.camel:camel-support:4.22.2",
+        "artifact": "org/apache/camel/camel-support/4.22.2/camel-support-4.22.2.jar",
+        "sha256": "3c8bb1493b53eb31fe10c28ef38ec069d0b5b65e6e8964d99a25ffd0bb99380a"
+      },
+      {
+        "coordinates": "org.apache.camel:camel-util-json:4.22.2",
+        "artifact": "org/apache/camel/camel-util-json/4.22.2/camel-util-json-4.22.2.jar",
+        "sha256": "bd9bb842c2b0da24f5abf9fb733ba70864bc755c2157b7fd0ec758f1cb4c451d"
+      },
+      {
+        "coordinates": "org.apache.camel:camel-util:4.22.2",
+        "artifact": "org/apache/camel/camel-util/4.22.2/camel-util-4.22.2.jar",
+        "sha256": "79e72ea6cfeb00acec71426948e9a565d9b1e383425bebf8a7a5aa88d6528355"
+      },
+      {
+        "coordinates": "org.apache.camel:camel-xml-jaxp-util:4.22.2",
+        "artifact": "org/apache/camel/camel-xml-jaxp-util/4.22.2/camel-xml-jaxp-util-4.22.2.jar",
+        "sha256": "7c4acc43ae0be965f7f2303c3a0fea717753bafdf4037a83992e01ea407ba10a"
+      },
+      {
+        "coordinates": "org.apache.commons:commons-math3:3.6.1",
+        "artifact": "org/apache/commons/commons-math3/3.6.1/commons-math3-3.6.1.jar",
+        "sha256": "1e56d7b058d28b65abd256b8458e3885b674c1d588fa43cd7d1cbb9c7ef2b308"
+      },
+      {
+        "coordinates": "org.openjdk.jmh:jmh-core:1.37",
+        "artifact": "org/openjdk/jmh/jmh-core/1.37/jmh-core-1.37.jar",
+        "sha256": "dc0eaf2bbf0036a70b60798c785d6e03a9daf06b68b8edb0f1ba9eb3421baeb3"
+      },
+      {
+        "coordinates": "org.slf4j:slf4j-api:2.0.18",
+        "artifact": "org/slf4j/slf4j-api/2.0.18/slf4j-api-2.0.18.jar",
+        "sha256": "44508fd1576500688c790b190acdd16fec4f8c79a3e0b900afd70503cf055f55"
+      }
+    ]
+  },
+  "environment": {
+    "os": "Linux",
+    "kernelRelease": "7.0.0-1017-azure",
+    "architecture": "x86_64",
+    "distro": {
+      "PRETTY_NAME": "Ubuntu 24.04.5 LTS",
+      "VERSION_ID": "24.04",
+      "ID": "ubuntu"
+    },
+    "cpuModel": "AMD EPYC 9V74 80-Core Processor",
+    "logicalProcessors": 4,
+    "affinityCount": 4,
+    "java": {
+      "vendor": "Eclipse Adoptium",
+      "version": "17.0.21",
+      "vmName": "OpenJDK 64-Bit Server VM",
+      "vmVersion": "17.0.21+9",
+      "architecture": "amd64",
+      "os": "Linux"
+    },
+    "scope": "Shared runner; sequential cases; no exclusive CPU isolation. No RSS or p99 measurement."
+  },
+  "settings": {
+    "jmhVersion": "1.37",
+    "mode": "avgt",
+    "unit": "ns/op",
+    "threads": 1,
+    "forksPerCommand": 1,
+    "passes": 2,
+    "warmupIterations": 3,
+    "measurementIterations": 5,
+    "warmupTime": "1 s",
+    "measurementTime": "1 s",
+    "warmupBatchSize": 1,
+    "measurementBatchSize": 1,
+    "fixedApplicationStages": 4,
+    "profilers": [
+      "gc",
+      "io.ominicat.mechanisms.ProcessCpuProfiler"
+    ],
+    "jvmArgs": [
+      "-Xms256m",
+      "-Xmx256m",
+      "-Dominicat.mechanism.jarSha256=cd555bf4a5620225458a55e66d2361b019400459c8df00f8f02f788aa181c273"
+    ]
+  },
+  "caseOrder": [
+    {
+      "id": "ominicat-caller",
+      "benchmark": "io.ominicat.mechanisms.PathBenchmark.roundTrip",
+      "params": {
+        "framework": "ominicat",
+        "execution": "caller"
+      },
+      "position": 1,
+      "pass": 1,
+      "raw": "raw/01-p1-ominicat-caller.json",
+      "log": "logs/01-p1-ominicat-caller.log"
+    },
+    {
+      "id": "ominicat-handoff",
+      "benchmark": "io.ominicat.mechanisms.PathBenchmark.roundTrip",
+      "params": {
+        "framework": "ominicat",
+        "execution": "handoff"
+      },
+      "position": 2,
+      "pass": 1,
+      "raw": "raw/02-p1-ominicat-handoff.json",
+      "log": "logs/02-p1-ominicat-handoff.log"
+    },
+    {
+      "id": "camel-caller",
+      "benchmark": "io.ominicat.mechanisms.PathBenchmark.roundTrip",
+      "params": {
+        "framework": "camel",
+        "execution": "caller"
+      },
+      "position": 3,
+      "pass": 1,
+      "raw": "raw/03-p1-camel-caller.json",
+      "log": "logs/03-p1-camel-caller.log"
+    },
+    {
+      "id": "camel-handoff",
+      "benchmark": "io.ominicat.mechanisms.PathBenchmark.roundTrip",
+      "params": {
+        "framework": "camel",
+        "execution": "handoff"
+      },
+      "position": 4,
+      "pass": 1,
+      "raw": "raw/04-p1-camel-handoff.json",
+      "log": "logs/04-p1-camel-handoff.log"
+    },
+    {
+      "id": "identity",
+      "benchmark": "io.ominicat.mechanisms.ExchangeCopyBenchmark.copy",
+      "params": {
+        "operation": "identity"
+      },
+      "position": 5,
+      "pass": 1,
+      "raw": "raw/05-p1-identity.json",
+      "log": "logs/05-p1-identity.log"
+    },
+    {
+      "id": "correlated-copy",
+      "benchmark": "io.ominicat.mechanisms.ExchangeCopyBenchmark.copy",
+      "params": {
+        "operation": "correlated-copy"
+      },
+      "position": 6,
+      "pass": 1,
+      "raw": "raw/06-p1-correlated-copy.json",
+      "log": "logs/06-p1-correlated-copy.log"
+    },
+    {
+      "id": "correlated-copy",
+      "benchmark": "io.ominicat.mechanisms.ExchangeCopyBenchmark.copy",
+      "params": {
+        "operation": "correlated-copy"
+      },
+      "position": 7,
+      "pass": 2,
+      "raw": "raw/07-p2-correlated-copy.json",
+      "log": "logs/07-p2-correlated-copy.log"
+    },
+    {
+      "id": "identity",
+      "benchmark": "io.ominicat.mechanisms.ExchangeCopyBenchmark.copy",
+      "params": {
+        "operation": "identity"
+      },
+      "position": 8,
+      "pass": 2,
+      "raw": "raw/08-p2-identity.json",
+      "log": "logs/08-p2-identity.log"
+    },
+    {
+      "id": "camel-handoff",
+      "benchmark": "io.ominicat.mechanisms.PathBenchmark.roundTrip",
+      "params": {
+        "framework": "camel",
+        "execution": "handoff"
+      },
+      "position": 9,
+      "pass": 2,
+      "raw": "raw/09-p2-camel-handoff.json",
+      "log": "logs/09-p2-camel-handoff.log"
+    },
+    {
+      "id": "camel-caller",
+      "benchmark": "io.ominicat.mechanisms.PathBenchmark.roundTrip",
+      "params": {
+        "framework": "camel",
+        "execution": "caller"
+      },
+      "position": 10,
+      "pass": 2,
+      "raw": "raw/10-p2-camel-caller.json",
+      "log": "logs/10-p2-camel-caller.log"
+    },
+    {
+      "id": "ominicat-handoff",
+      "benchmark": "io.ominicat.mechanisms.PathBenchmark.roundTrip",
+      "params": {
+        "framework": "ominicat",
+        "execution": "handoff"
+      },
+      "position": 11,
+      "pass": 2,
+      "raw": "raw/11-p2-ominicat-handoff.json",
+      "log": "logs/11-p2-ominicat-handoff.log"
+    },
+    {
+      "id": "ominicat-caller",
+      "benchmark": "io.ominicat.mechanisms.PathBenchmark.roundTrip",
+      "params": {
+        "framework": "ominicat",
+        "execution": "caller"
+      },
+      "position": 12,
+      "pass": 2,
+      "raw": "raw/12-p2-ominicat-caller.json",
+      "log": "logs/12-p2-ominicat-caller.log"
+    }
+  ]
+}

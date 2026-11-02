@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "kind": "ominicat-camel-mechanism-profiles-v1",
+  "case": {
+    "id": "correlated-copy",
+    "benchmark": "io.ominicat.mechanisms.ExchangeCopyBenchmark.copy",
+    "params": {
+      "operation": "correlated-copy"
+    }
+  },
+  "instrumented": true,
+  "headlineEligible": false,
+  "scope": "Separate instrumented Java 17 JMH diagnostic JVM: whole recording includes JVM/framework startup, setup, two 1-second warmup iterations, two 1-second measurement iterations, harness and teardown. No phase filtering. CPU execution sampling requests a 10ms period; allocation uses profile.jfc defaults. Recording and exported stacks retain up to 64 frames. These are not headline timings, framework-exclusive CPU, retained heap, exact object counts, p99 latency or RSS measurements.",
+  "environment": {
+    "javaVersion": "17.0.21"
+  }
+}

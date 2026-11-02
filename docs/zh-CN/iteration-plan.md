@@ -58,6 +58,8 @@
 
 ### 性能证据
 
+[Java 机制受控实验](comparison/mechanism-protocol.md)已有 [Ubuntu／Java 17 证据](reports/mechanisms/java17-2026-11-02/README.md)：固定阶段数的四个公开 API／交接用例与两个独立 Exchange 复制用例，不改变生产调度。精确的结果／线程／失败校验、十二个全新基准 JVM 和五个独立白名单 JFR 诊断确定了声明范围。组件成本不能相加解释此前 SEDA 差距；1/16 阶段、饱和负载与媒体实验仍是独立后续工作。
+
 [性能深度审计](performance-audit.md)以 Ubuntu 配对测量验证了有界的提示词统计／历史优化，完整的不使用历史／完整历史／截短历史矩阵均通过逐字输出和运行时来源检查。其他源码可确认的候选仍需各自负载验证。
 
 当相关负载有助于评估改动时，将这些测量增量与接入工作并行推进。分配实验依赖相应基线，不能先于基线。
@@ -82,6 +84,7 @@
 
 | 增量 | 结果 | 证据 |
 | --- | --- | --- |
+| Java 机制的受控验证 | 可执行的真实 API、相同交接和预建关联复制探针；每格两个全新进程，在 Ubuntu 保留完整时间／分配／进程 CPU 观察及独立 CPU／分配／GC 图。保留早期完整测量和诊断失败／取消记录；生产运行时未改动，不相加归因 SEDA。 | [PR #37](https://github.com/g5n-dev/ominicat/pull/37)、[结果与不可变证据](reports/mechanisms/java17-2026-11-02/README.md)、[协议](comparison/mechanism-protocol.md)、[失败控制](../../comparison/mechanisms/src/test/java/io/ominicat/mechanisms/PathHarnessTest.java) |
 | 锁与生命周期架构 | 中英文锁范围表、真实会话状态转换、回调／引用所有权、HTTP 响应清理与独立的服务器接纳释放条件。两张本地化 SVG 图及静态预览呈现这些边界；CI 检查生成图与源码的新鲜度。运行时行为和已记录性能证据保持不变。 | [PR #35](https://github.com/g5n-dev/ominicat/pull/35)、[锁与生命周期指南](architecture.md#锁职责与回调边界)、[源码与可执行证据](architecture.md#源码与可执行证据)、[确定性生成器](../../scripts/render_architecture.py) |
 | Unicode 完整的证据摘录 | 裁剪不再在任一边界切断合法补充字符。正文保持在原始 180 个 UTF-16 单元内，最多另加两个省略号；元数据、规则结果与默认线协议结构保留。 | [PR #34](https://github.com/g5n-dev/ominicat/pull/34)、[边界与独立 oracle 回归](../../ominicat-conversation/src/test/java/io/ominicat/conversation/EvidenceUnicodeTest.java)、[评估／严格 UTF-8／JSON 回归](../../ominicat-server/src/test/java/io/ominicat/server/EvidenceUnicodeWireTest.java) |
 | I1a 可选插件能力声明 | 有界不可变描述、按配置查询与显式能力要求检查；旧工厂接口及默认创建行为保留。内置转写分别声明整段终稿支持、边界前部分结果不支持；声明与行为证据分开，不引入已验证标志。更广 I1/I2/I3 仍在计划中。 | [PR #33](https://github.com/g5n-dev/ominicat/pull/33)、[API、可运行检查与验收](plugin-capabilities.md)、[接入边界](integration-contracts.md) |

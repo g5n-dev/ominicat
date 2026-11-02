@@ -1,0 +1,161 @@
+{
+  "schemaVersion": 1,
+  "scope": "Separate instrumented Java 17 JMH diagnostic JVM: whole recording includes JVM/framework startup, setup, two 1-second warmup iterations, two 1-second measurement iterations, harness and teardown. No phase filtering. CPU execution sampling requests a 10ms period; allocation uses profile.jfc defaults. Recording and exported stacks retain up to 64 frames. These are not headline timings, framework-exclusive CPU, retained heap, exact object counts, p99 latency or RSS measurements.",
+  "selectedEventCounts": {
+    "jdk.ExecutionSample": 238,
+    "jdk.GarbageCollection": 178,
+    "jdk.ObjectAllocationSample": 1353
+  },
+  "cpuLeafSamples": [
+    {
+      "method": "org.apache.camel.support.MessageSupport.copyFromWithNewBody",
+      "samples": 133
+    },
+    {
+      "method": "org.apache.camel.support.FlatMap.<init>",
+      "samples": 52
+    },
+    {
+      "method": "org.apache.camel.support.AbstractExchange.getProperty",
+      "samples": 17
+    },
+    {
+      "method": "io.ominicat.mechanisms.ExchangeCopyFixture.invoke",
+      "samples": 13
+    },
+    {
+      "method": "io.ominicat.mechanisms.ExchangeCopyBenchmark.copy",
+      "samples": 5
+    },
+    {
+      "method": "java.util.Objects.equals",
+      "samples": 4
+    },
+    {
+      "method": "java.lang.invoke.VarHandleByteArrayAsInts$ArrayHandle.get",
+      "samples": 3
+    },
+    {
+      "method": "sun.security.provider.SHA2.implCompress0",
+      "samples": 2
+    },
+    {
+      "method": "org.apache.camel.ExchangePropertyKey.asExchangePropertyKey",
+      "samples": 2
+    },
+    {
+      "method": "jdk.internal.loader.BuiltinClassLoader.isSealed",
+      "samples": 1
+    },
+    {
+      "method": "java.lang.invoke.LambdaForm$BasicType.basicTypeSlots",
+      "samples": 1
+    },
+    {
+      "method": "java.lang.String.isLatin1",
+      "samples": 1
+    },
+    {
+      "method": "java.util.zip.ZipFile.getInputStream",
+      "samples": 1
+    },
+    {
+      "method": "java.util.zip.ZipFile$ZipFileInputStream.<init>",
+      "samples": 1
+    },
+    {
+      "method": "io.ominicat.mechanisms.ExchangeCopyFixture.validate",
+      "samples": 1
+    },
+    {
+      "method": "org.apache.camel.support.DefaultExchange.newCopy",
+      "samples": 1
+    }
+  ],
+  "allocationClassWeights": [
+    {
+      "class": "[Ljava.lang.Object;",
+      "bytes": 16183207744
+    },
+    {
+      "class": "org.apache.camel.support.DefaultMessage",
+      "bytes": 8080563992
+    },
+    {
+      "class": "java.util.EnumMap",
+      "bytes": 3733118680
+    },
+    {
+      "class": "[Ljava.util.concurrent.ConcurrentHashMap$Node;",
+      "bytes": 20282432
+    },
+    {
+      "class": "[B",
+      "bytes": 10861088
+    },
+    {
+      "class": "org.apache.camel.support.DefaultExchange",
+      "bytes": 2134824
+    },
+    {
+      "class": "org.apache.camel.support.CopyOnWriteHeadersMap",
+      "bytes": 878624
+    },
+    {
+      "class": "jdk.internal.org.objectweb.asm.SymbolTable$Entry",
+      "bytes": 721360
+    },
+    {
+      "class": "jdk.internal.org.objectweb.asm.ByteVector",
+      "bytes": 450704
+    },
+    {
+      "class": "jdk.internal.org.objectweb.asm.MethodWriter",
+      "bytes": 434064
+    },
+    {
+      "class": "[C",
+      "bytes": 413232
+    },
+    {
+      "class": "java.util.zip.ZipFile$ZipFileInflaterInputStream",
+      "bytes": 402896
+    },
+    {
+      "class": "java.util.zip.CRC32",
+      "bytes": 399936
+    },
+    {
+      "class": "jdk.internal.org.objectweb.asm.SymbolTable",
+      "bytes": 303336
+    },
+    {
+      "class": "org.apache.camel.support.FlatMap$EntrySet$1",
+      "bytes": 292872
+    },
+    {
+      "class": "java.lang.Object",
+      "bytes": 292848
+    },
+    {
+      "class": "java.util.LinkedHashMap",
+      "bytes": 292824
+    },
+    {
+      "class": "java.lang.String",
+      "bytes": 287512
+    },
+    {
+      "class": "java.util.WeakHashMap$Entry",
+      "bytes": 227168
+    },
+    {
+      "class": "sun.security.util.KnownOIDs",
+      "bytes": 209144
+    }
+  ],
+  "sampledAllocationWeightBytes": 28036526712,
+  "gcCollectionCount": 178,
+  "gcPauseSumMillis": 141.635232,
+  "maxCollectionPauseSumMillis": 5.735054
+}

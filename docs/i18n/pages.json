@@ -14,7 +14,7 @@
     {
       "source": "README.md",
       "translation": "README.zh-CN.md",
-      "source_sha256": "1c77ccc61faaa248dd3bd67da7a677a4aef0632a5cc581232034693d0a8d5474"
+      "source_sha256": "fbfa689b9551000620dbe419078230f2aaa7b565f7cbfbc786c0c74e376c7e4b"
     },
     {
       "source": "SECURITY.md",
@@ -30,6 +30,11 @@
       "source": "comparison/benchmarks/README.md",
       "translation": "docs/zh-CN/comparison/benchmarks/README.md",
       "source_sha256": "6b3fb7702e98c3fc2a782317485425c2897165af66e2441c0ffb0d88d38b7572"
+    },
+    {
+      "source": "comparison/mechanism-protocol.md",
+      "translation": "docs/zh-CN/comparison/mechanism-protocol.md",
+      "source_sha256": "fafca76ad16121d64b0812eba3c41787f37a7e6e9e54f3b141bcf002c05f5e80"
     },
     {
       "source": "comparison/profile_java.md",
@@ -64,7 +69,7 @@
     {
       "source": "docs/iteration-plan.md",
       "translation": "docs/zh-CN/iteration-plan.md",
-      "source_sha256": "24850651b4b5fc4d3cef4626bb92e40e7bea2ce0daebed779534a92011e7d2c0"
+      "source_sha256": "418ba707dda2bda98c3477a9f251f87f53011862f09aac22201a8190905345ac"
     },
     {
       "source": "docs/java-compatibility.md",
@@ -84,7 +89,7 @@
     {
       "source": "docs/performance.md",
       "translation": "docs/zh-CN/performance.md",
-      "source_sha256": "63ffd74a5f69aa4f07e3a27242bc01f6973f3e716e9fe1baa9fb7c6990621e8d"
+      "source_sha256": "ffccd94d401807e4f52d4dbafd30bac9aea033c44290c39f40efa602d5be8748"
     },
     {
       "source": "docs/plugin-capabilities.md",
@@ -310,6 +315,76 @@
       "source": "reports/java17/kernel/report.md",
       "translation": "docs/zh-CN/reports/java17/kernel/report.md",
       "source_sha256": "299f25e68aab535770a1df29d349e2dbf1da2be97119471ef98b6da0f1c91016"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/README.md",
+      "translation": "docs/zh-CN/reports/mechanisms/java17-2026-11-02/README.md",
+      "source_sha256": "fb790b0a37ec38933ef40c93356e85ab003f2b355ef6c752bb0d5a01a43de906"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/earlier-measurements/41386037966/summary.md",
+      "translation": "docs/zh-CN/reports/mechanisms/java17-2026-11-02/earlier-measurements/41386037966/summary.md",
+      "source_sha256": "6a8f3d5554934e8d53ac4d953f9468c5d5147687519586dfd7e6e3d082901aa9"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/earlier-measurements/41387434975/summary.md",
+      "translation": "docs/zh-CN/reports/mechanisms/java17-2026-11-02/earlier-measurements/41387434975/summary.md",
+      "source_sha256": "97ac6a1b3c699efe6b346675c097d039cdc0801c9355f8e9d79a43e2efdb1f6c"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/camel-caller/profiles.md",
+      "translation": "docs/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/diagnostics/camel-caller/profiles.md",
+      "source_sha256": "6ee5ec8c7f43805aa89715ba0557e1922ec95806e33a1b810b5cc51128bcf0dc"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/camel-caller/report.md",
+      "translation": "docs/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/diagnostics/camel-caller/report.md",
+      "source_sha256": "21cea296b436a721bab7b7d71f6d4f674617bd3b85f12d410212479d8c041043"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/camel-handoff/profiles.md",
+      "translation": "docs/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/diagnostics/camel-handoff/profiles.md",
+      "source_sha256": "03e8f0d7ddd122dd1facdf92c8a74dae5ebf6b82efd6769115c2a99fa7f15933"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/camel-handoff/report.md",
+      "translation": "docs/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/diagnostics/camel-handoff/report.md",
+      "source_sha256": "c4110814366884307ef2d1d97c9742a123433085872a48ae37836d1bdf99e7d6"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/correlated-copy/profiles.md",
+      "translation": "docs/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/diagnostics/correlated-copy/profiles.md",
+      "source_sha256": "3afb9536a6e324e624dbf08cddd69d42621f1e9fe2066821b1afde3ed9923b4c"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/correlated-copy/report.md",
+      "translation": "docs/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/diagnostics/correlated-copy/report.md",
+      "source_sha256": "8045ae52f664b0cb13a8e607eaea87a85dfd0a06d53d4e52debe7846b3be7fdb"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/ominicat-caller/profiles.md",
+      "translation": "docs/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/diagnostics/ominicat-caller/profiles.md",
+      "source_sha256": "0d221258cd68c306c0ce221273d50f91f5d048f9f5a15a0e7279b00b55ba0974"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/ominicat-caller/report.md",
+      "translation": "docs/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/diagnostics/ominicat-caller/report.md",
+      "source_sha256": "46ef299b4f6004a1af1550ac4e8582bd26ed5278b14d5ab8321551815bbdd45d"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/ominicat-handoff/profiles.md",
+      "translation": "docs/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/diagnostics/ominicat-handoff/profiles.md",
+      "source_sha256": "46b2cdf3076c70fbb3806b4423c1d383bb26802a8c3f7eb0c7174d48c9a28f6c"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/ominicat-handoff/report.md",
+      "translation": "docs/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/diagnostics/ominicat-handoff/report.md",
+      "source_sha256": "45d6238bd6b8bb845e1942e7d0cfc0c4bd88e8103064e762c953e05300f6b996"
+    },
+    {
+      "source": "reports/mechanisms/java17-2026-11-02/evidence/measurements/summary.md",
+      "translation": "docs/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/measurements/summary.md",
+      "source_sha256": "c2590096b9c3596854cfd4fdef9a9a35b43d4c7583ecf7f8a70e6371ef6ea6d9"
     },
     {
       "source": "reports/performance-audit/linux-java17-2026-11-01/profiles.md",

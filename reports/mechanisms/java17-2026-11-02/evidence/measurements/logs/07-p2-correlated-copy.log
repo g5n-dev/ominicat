@@ -1,0 +1,113 @@
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: /usr/lib/jvm/temurin-17-jdk-amd64/bin/java
+# VM options: -Xms256m -Xmx256m -Dominicat.mechanism.jarSha256=a3156be9d9908ad00aa9fb6d6c6b9e8dbf281c189de75e1e15503df3702a002c
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: io.ominicat.mechanisms.ExchangeCopyBenchmark.copy
+# Parameters: (operation = correlated-copy)
+
+# Run progress: 0.00% complete, ETA 00:00:08
+# Fork: 1 of 1
+# Warmup Iteration   1: MECHANISM_ORIGIN_SHA256=a3156be9d9908ad00aa9fb6d6c6b9e8dbf281c189de75e1e15503df3702a002c
+SLF4J(W): No SLF4J providers were found.
+SLF4J(W): Defaulting to no-operation (NOP) logger implementation
+SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
+123.988 ns/op
+# Warmup Iteration   2: 90.819 ns/op
+# Warmup Iteration   3: 90.059 ns/op
+Iteration   1: 90.125 ns/op
+                 gc.alloc.rate:      7447.106 MB/sec
+                 gc.alloc.rate.norm: 704.001 B/op
+                 gc.count:           49.000 counts
+                 gc.time:            28.000 ms
+                 process.cpu.ns/op:  91.910 ns/op
+
+Iteration   2: 89.987 ns/op
+                 gc.alloc.rate:      7458.667 MB/sec
+                 gc.alloc.rate.norm: 704.001 B/op
+                 gc.count:           50.000 counts
+                 gc.time:            28.000 ms
+                 process.cpu.ns/op:  92.671 ns/op
+
+Iteration   3: 89.875 ns/op
+                 gc.alloc.rate:      7467.891 MB/sec
+                 gc.alloc.rate.norm: 704.001 B/op
+                 gc.count:           49.000 counts
+                 gc.time:            25.000 ms
+                 process.cpu.ns/op:  92.558 ns/op
+
+Iteration   4: 90.148 ns/op
+                 gc.alloc.rate:      7445.340 MB/sec
+                 gc.alloc.rate.norm: 704.001 B/op
+                 gc.count:           49.000 counts
+                 gc.time:            27.000 ms
+                 process.cpu.ns/op:  92.837 ns/op
+
+Iteration   5: 89.980 ns/op
+                 gc.alloc.rate:      7381.704 MB/sec
+                 gc.alloc.rate.norm: 704.028 B/op
+                 gc.count:           49.000 counts
+                 gc.time:            28.000 ms
+                 process.cpu.ns/op:  94.462 ns/op
+
+
+
+Result "io.ominicat.mechanisms.ExchangeCopyBenchmark.copy":
+  90.023 ±(99.9%) 0.435 ns/op [Average]
+  (min, avg, max) = (89.875, 90.023, 90.148), stdev = 0.113
+  CI (99.9%): [89.588, 90.459] (assumes normal distribution)
+
+Secondary result "io.ominicat.mechanisms.ExchangeCopyBenchmark.copy:gc.alloc.rate":
+  7440.142 ±(99.9%) 130.635 MB/sec [Average]
+  (min, avg, max) = (7381.704, 7440.142, 7467.891), stdev = 33.925
+  CI (99.9%): [7309.507, 7570.776] (assumes normal distribution)
+
+Secondary result "io.ominicat.mechanisms.ExchangeCopyBenchmark.copy:gc.alloc.rate.norm":
+  704.006 ±(99.9%) 0.047 B/op [Average]
+  (min, avg, max) = (704.001, 704.006, 704.028), stdev = 0.012
+  CI (99.9%): [703.959, 704.053] (assumes normal distribution)
+
+Secondary result "io.ominicat.mechanisms.ExchangeCopyBenchmark.copy:gc.count":
+  246.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (49.000, 49.200, 50.000), stdev = 0.447
+  CI (99.9%): [246.000, 246.000] (assumes normal distribution)
+
+Secondary result "io.ominicat.mechanisms.ExchangeCopyBenchmark.copy:gc.time":
+  136.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (25.000, 27.200, 28.000), stdev = 1.304
+  CI (99.9%): [136.000, 136.000] (assumes normal distribution)
+
+Secondary result "io.ominicat.mechanisms.ExchangeCopyBenchmark.copy:process.cpu.ns/op":
+  92.888 ±(99.9%) 3.650 ns/op [Average]
+  (min, avg, max) = (91.910, 92.888, 94.462), stdev = 0.948
+  CI (99.9%): [89.238, 96.538] (assumes normal distribution)
+
+
+# Run complete. Total time: 00:00:08
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                                          (operation)  Mode  Cnt     Score     Error   Units
+ExchangeCopyBenchmark.copy                     correlated-copy  avgt    5    90.023 ±   0.435   ns/op
+ExchangeCopyBenchmark.copy:gc.alloc.rate       correlated-copy  avgt    5  7440.142 ± 130.635  MB/sec
+ExchangeCopyBenchmark.copy:gc.alloc.rate.norm  correlated-copy  avgt    5   704.006 ±   0.047    B/op
+ExchangeCopyBenchmark.copy:gc.count            correlated-copy  avgt    5   246.000            counts
+ExchangeCopyBenchmark.copy:gc.time             correlated-copy  avgt    5   136.000                ms
+ExchangeCopyBenchmark.copy:process.cpu.ns/op   correlated-copy  avgt    5    92.888 ±   3.650   ns/op
+
+Benchmark result is saved to reports/local/mechanism-capture/evidence/measurements/raw/07-p2-correlated-copy.json
