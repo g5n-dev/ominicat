@@ -47,11 +47,14 @@ public final class Pipeline {
 
     void dispatch(int index, Frame frame, FrameSink output) throws Exception {
         if (index == processors.length) output.accept(frame);
-        else {
-            DirectInvocation invocation = new DirectInvocation(this, index + 1, output);
-            try { processors[index].process(frame, invocation); }
-            finally { invocation.retire(); }
-        }
+        else invokeDirect(processors[index], frame, this, index + 1, output);
+    }
+
+    private static void invokeDirect(Processor processor, Frame frame, Pipeline pipeline,
+                                     int nextIndex, FrameSink output) throws Exception {
+        DirectInvocation invocation = new DirectInvocation(pipeline, nextIndex, output);
+        try { processor.process(frame, invocation); }
+        finally { invocation.retire(); }
     }
 
     /** One direct invocation owns both the synchronous boundary and its continuation. */
@@ -75,6 +78,10 @@ public final class Pipeline {
             if (Thread.currentThread() != invocationOwner) {
                 throw new IllegalStateException("synchronous sink may only emit on its invocation thread; use AsyncProcessor for callbacks");
             }
+            dispatchNext(frame);
+        }
+
+        private void dispatchNext(Frame frame) throws Exception {
             pipeline.dispatch(nextIndex, Objects.requireNonNull(frame, "emitted frame"), output);
         }
 

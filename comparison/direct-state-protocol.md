@@ -4,7 +4,7 @@
 
 # Direct invocation state: paired structural experiment
 
-Status: a bounded prototype, pending the complete Linux experiment and lifecycle checks. This is a causal comparison within OminiCat, not another framework ranking. No benefit is accepted before measurement. A negative or inconclusive result remains publishable evidence; it does not authorize shipping a worse runtime.
+This preregistered protocol defines a bounded structural experiment. Its recorded outcome belongs in the source-bound result report. This is a causal comparison within OminiCat, not another framework ranking. No benefit is accepted before the complete Linux experiment and lifecycle checks. A negative or inconclusive result remains publishable evidence; it does not authorize shipping a worse runtime.
 
 ## One controlled change
 
