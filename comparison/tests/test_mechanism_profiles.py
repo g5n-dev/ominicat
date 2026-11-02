@@ -84,6 +84,62 @@ def raw_result(case, java, arguments):
 
 
 class MechanismProfilesTest(unittest.TestCase):
+    def test_diagnostic_sampling_uses_ten_ms_without_changing_stack_depth_or_event_selection(self):
+        settings = profiles.settings()
+        self.assertEqual(settings['executionSamplePeriod'], '10ms')
+        self.assertIn('10ms', profiles.SCOPE)
+        self.assertEqual(settings['recordingStackDepth'], 64)
+        self.assertEqual(settings['exportStackDepth'], 64)
+        self.assertEqual(settings['selectedEvents'], sorted(profiles.guard.EVENTS))
+        self.assertEqual(profiles.MAX_SELECTED_BYTES, 128 * 1024 ** 2)
+        command = profiles.configuration_command('synthetic-jfr', 'reports/local/synthetic/safe.jfc')
+        self.assertEqual(command, ['synthetic-jfr', 'configure', '--input', 'profile.jfc', '--output',
+                         'reports/local/synthetic/safe.jfc']
+                         + [event + '#enabled=false' for event in profiles.DISABLED]
+                         + ['jdk.ExecutionSample#period=10ms'])
+
+    def test_tool_output_limit_reports_only_safe_numeric_stdout_stderr_and_fixed_case(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            directory = Path(temporary)
+            output, error = directory / 'stdout', directory / 'stderr'
+            output.write_bytes(b'12345678')
+            error.write_bytes(b'')
+            with mock.patch.object(profiles, 'MAX_SELECTED_BYTES', 4), mock.patch.object(profiles, 'MAX_BYTES', 4):
+                with self.assertRaises(profiles.ToolOutputLimitError) as raised:
+                    profiles.check_tool_sizes(output, error)
+                failure = profiles.DiagnosticFailure('JFR_EXPORT', raised.exception, 'ominicat-caller')
+                self.assertEqual(failure.metadata(), {'schemaVersion': 1, 'phase': 'JFR_EXPORT',
+                    'reason': 'JFR_OUTPUT_SIZE', 'case': 'ominicat-caller', 'stdoutBytes': 8,
+                    'stderrBytes': 0, 'stdoutLimitBytes': 4, 'stderrLimitBytes': 4})
+                stream = io.StringIO()
+                with mock.patch.object(profiles, 'collect', side_effect=failure), redirect_stderr(stream):
+                    self.assertEqual(profiles.main(['collect', '--root', str(directory), '--output', str(directory)]), 1)
+                text = stream.getvalue()
+                payload = json.loads(text.split('DIAGNOSTIC_FAILURE=', 1)[1])
+                self.assertEqual(payload, failure.metadata())
+                self.assertNotIn(str(directory), text)
+                output.write_bytes(b'1234')
+                error.write_bytes(b'1234')
+                profiles.check_tool_sizes(output, error)  # Exact caps remain valid.
+                error.write_bytes(b'12345')
+                with self.assertRaises(profiles.ToolOutputLimitError) as raised:
+                    profiles.check_tool_sizes(output, error)
+                self.assertEqual(raised.exception.stdout_bytes, 4)
+                self.assertEqual(raised.exception.stderr_bytes, 5)
+        unknown = profiles.DiagnosticFailure('JFR_EXPORT', ValueError('/Users/synthetic/private'), '/Users/private')
+        self.assertEqual(unknown.metadata()['case'], None)
+        self.assertEqual(set(unknown.metadata()), {'schemaVersion', 'phase', 'reason', 'case'})
+
+    def test_private_exporter_keeps_same_size_guard_after_a_successful_tool_exit(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            directory = Path(temporary)
+            with mock.patch.object(profiles, 'MAX_SELECTED_BYTES', 4):
+                with self.assertRaises(profiles.ToolOutputLimitError) as raised:
+                    profiles.command_to_file([sys.executable, '-c', 'import sys;sys.stdout.write("12345678")'],
+                                             directory, directory / 'stdout', directory / 'stderr')
+                self.assertEqual(raised.exception.stdout_bytes, 8)
+                self.assertEqual(raised.exception.stderr_bytes, 0)
+
     def test_private_jfr_tool_output_can_contain_an_absolute_path_without_becoming_public(self):
         with tempfile.TemporaryDirectory() as temporary:
             directory = Path(temporary)

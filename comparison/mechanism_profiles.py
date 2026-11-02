@@ -39,11 +39,14 @@ SVG_FILES = ('cpu-flamegraph.svg', 'allocation-flamegraph.svg', 'cpu-hotspots.sv
 CASE_FILES = frozenset(('report.md', 'profiles.md', 'load.json', 'jfr-hotspots.json',
                         'diagnostic-context.json', 'validation.json', 'jfr-events.json.gz') + SVG_FILES)
 ANNOTATION_HEAP_ARGS = ('-Xms256m', '-Xmx256m')
+EXECUTION_SAMPLE_PERIOD = '10ms'
 MAX_BYTES = 16 * 1024 * 1024
 MAX_SELECTED_BYTES = 128 * 1024 * 1024
 SCOPE = ('Separate instrumented Java 17 JMH diagnostic JVM: whole recording includes '
          'JVM/framework startup, setup, two 1-second warmup iterations, two 1-second '
          'measurement iterations, harness and teardown. No phase filtering. '
+         'CPU execution sampling requests a 10ms period; allocation uses profile.jfc defaults. '
+         'Recording and exported stacks retain up to 64 frames. '
          'These are not headline timings, framework-exclusive CPU, retained heap, '
          'exact object counts, p99 latency or RSS measurements.')
 OLD_SCOPE = ('Generated from the selected JFR events for the bounded kernel load. Samples include the load harness '
@@ -80,14 +83,30 @@ SAFE_REASONS = {
 }
 
 
+class ToolOutputLimitError(ValueError):
+    """Safe numeric context; the tool's private stdout/stderr are never attached."""
+    def __init__(self, stdout_bytes, stderr_bytes):
+        if type(stdout_bytes) is not int or type(stderr_bytes) is not int or min(stdout_bytes, stderr_bytes) < 0:
+            raise ValueError('invalid tool byte counts')
+        self.stdout_bytes, self.stderr_bytes = stdout_bytes, stderr_bytes
+        super().__init__('JFR tool output exceeds bound')
+
+
 class DiagnosticFailure(ValueError):
     """Only constant, allowlisted phase/reason codes may reach the public CLI."""
-    def __init__(self, phase, error):
+    def __init__(self, phase, error, case=None):
         self.phase = phase if phase in PHASES else 'UNCLASSIFIED'
         # Never print arbitrary exception text, command arguments or paths.
         self.reason = next((code for text, code in SAFE_REASONS.items()
                             if error.args == (text,)), 'DETAILS_PRIVATE')
+        self.case = case if case in {item['id'] for item in cases()} else None
+        self.sizes = ({'stdoutBytes': error.stdout_bytes, 'stderrBytes': error.stderr_bytes,
+                       'stdoutLimitBytes': MAX_SELECTED_BYTES, 'stderrLimitBytes': MAX_BYTES}
+                      if isinstance(error, ToolOutputLimitError) else {})
         super().__init__(self.phase + '/' + self.reason)
+
+    def metadata(self):
+        return {'schemaVersion': 1, 'phase': self.phase, 'reason': self.reason, 'case': self.case, **self.sizes}
 
 require = measurement.require
 digest = measurement.digest
@@ -107,7 +126,8 @@ def settings():
             'measurementBatchSize': 1, 'fixedApplicationStages': 4,
             'minHeapBytes': 256 * 1024 ** 2, 'maxHeapBytes': 256 * 1024 ** 2,
             'profilers': ['gc', measurement.CPU_PROFILER], 'jfrBase': 'profile.jfc',
-            'executionSamplePeriod': '1ms', 'recordingStackDepth': 64, 'exportStackDepth': 64,
+            'executionSamplePeriod': EXECUTION_SAMPLE_PERIOD, 'allocationSampling': 'profile.jfc defaults',
+            'recordingStackDepth': 64, 'exportStackDepth': 64,
             'selectedEvents': sorted(guard.EVENTS), 'disabledEvents': list(DISABLED),
             'reportedJvmArgsAnnotationSuffix': list(ANNOTATION_HEAP_ARGS),
             'jvmArgsScope': 'The collector starts one JVM with five explicit parent options. '
@@ -397,24 +417,34 @@ def command_to_file(command, root, output, error, timeout=60):
         started = time.monotonic()
         try:
             while process.poll() is None:
-                require(output.stat().st_size <= MAX_SELECTED_BYTES and error.stat().st_size <= MAX_BYTES,
-                        'JFR tool output exceeds bound')
+                check_tool_sizes(output, error)
                 if time.monotonic() - started > timeout:
                     raise TimeoutError('JFR tool deadline exceeded')
                 time.sleep(.05)
             require(process.returncode == 0, 'JFR tool failed; inspect private local output')
         finally:
             measurement.stop_owned(process)
-    require(output.stat().st_size <= MAX_SELECTED_BYTES and error.stat().st_size <= MAX_BYTES,
-            'JFR tool output exceeds bound')
+    check_tool_sizes(output, error)
+
+
+def check_tool_sizes(output, error):
+    stdout_bytes, stderr_bytes = output.stat().st_size, error.stat().st_size
+    if stdout_bytes > MAX_SELECTED_BYTES or stderr_bytes > MAX_BYTES:
+        raise ToolOutputLimitError(stdout_bytes, stderr_bytes)
+
+
+def configuration_command(jfr, config):
+    return [str(jfr), 'configure', '--input', 'profile.jfc', '--output', str(config)] + [
+        event + '#enabled=false' for event in DISABLED] + [
+        'jdk.ExecutionSample#period=' + EXECUTION_SAMPLE_PERIOD]
 
 
 def collect(root, output):
-    phase = {'code': 'CAPTURE_LAYOUT'}
+    phase = {'code': 'CAPTURE_LAYOUT', 'case': None}
     try:
         return _collect(root, output, phase)
     except Exception as error:
-        raise DiagnosticFailure(phase['code'], error) from None
+        raise DiagnosticFailure(phase['code'], error, phase['case']) from None
 
 
 def _collect(root, output, phase):
@@ -460,6 +490,7 @@ def _collect(root, output, phase):
     stage = private / 'publish'
     stage.mkdir()
     for case in cases():
+        phase['case'] = case['id']
         phase['code'] = 'PRIVATE_PREPARATION'
         folder = private / case['id']
         folder.mkdir()
@@ -469,9 +500,7 @@ def _collect(root, output, phase):
         phase['code'] = 'JFR_CONFIGURE'
         # The JDK tool prints the absolute output path, even for relative --output.
         # These bounded, private logs must not pass through the PUBLIC log checker.
-        command_to_file([str(jfr), 'configure', '--input', 'profile.jfc', '--output', relative(config)]
-                        + [event + '#enabled=false' for event in DISABLED]
-                        + ['jdk.ExecutionSample#period=1ms'], root,
+        command_to_file(configuration_command(jfr, relative(config)), root,
                         folder / 'configure.log', folder / 'configure-error.txt', timeout=60)
         jvm_args = ['-Xms256m', '-Xmx256m', '-Dominicat.mechanism.jarSha256=' + jar_sha,
                     '-XX:FlightRecorderOptions=stackdepth=64',
@@ -511,6 +540,7 @@ def _collect(root, output, phase):
         require(digest(read_bytes(jar, 256 * 1024 ** 2)) == jar_sha
                 and measurement.source_fingerprint(root) == source and tool_hashes(root) == tools,
                 'artifact, source or diagnostic tools changed during profiling')
+    phase['case'] = None
     phase['code'] = 'ARCHIVE_PUBLISH'
     write_json(stage / 'manifest.json', manifest_for(measured, manifest_bytes, tools))
     stage.rename(evidence / 'diagnostics')
@@ -540,6 +570,7 @@ def main(argv=None):
     except DiagnosticFailure as error:
         print('Mechanism diagnostics failed [' + error.phase + '/' + error.reason + ']. '
               'Measurement evidence remains independently checkable; raw diagnostics stay private.', file=sys.stderr)
+        print('DIAGNOSTIC_FAILURE=' + canonical(error.metadata()).decode('utf-8'), file=sys.stderr)
         return 1
     except (ValueError, OSError, KeyError, TypeError, AttributeError, IndexError,
             OverflowError, RecursionError, ET.ParseError, subprocess.SubprocessError):
