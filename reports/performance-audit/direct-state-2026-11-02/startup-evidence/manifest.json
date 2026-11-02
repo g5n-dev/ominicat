@@ -1,0 +1,1058 @@
+{
+  "schemaVersion": 1,
+  "protocol": "ominicat-direct-plan-startup-v1",
+  "status": "complete",
+  "recordedAt": "2026-11-02T06:57:53.711926+00:00",
+  "binding": {
+    "measurementManifestSha256": "20f4660045480aa46038ee830cc7cb70e24750e3ea32c50776b84162f13d91c2",
+    "primaryManifest": {
+      "schemaVersion": 1,
+      "protocol": "ominicat-direct-invocation-state-v1",
+      "status": "complete",
+      "recordedAt": "2026-11-02T06:45:49.143239+00:00",
+      "artifacts": {
+        "baseline": {
+          "relativeJar": "ominicat-core/target/ominicat-core-0.1.0-SNAPSHOT.jar",
+          "sha256": "c662ff8d90a828c4dbc45f72b3fb3353f36596d7f36532621a8e07aa55a9df97"
+        },
+        "candidate": {
+          "relativeJar": "ominicat-core/target/ominicat-core-0.1.0-SNAPSHOT.jar",
+          "sha256": "92c4ae8b34ae3b308ad6fbb0efc02ace89076141d12bfc75b26e101a5cf36c9f"
+        },
+        "probe": {
+          "relativeJar": "ominicat-benchmarks/target/ominicat-benchmarks.jar",
+          "sha256": "cf3d64bc6d3cb2698c6599004f468b2fe016349f942935504500483d4293c381"
+        }
+      },
+      "sources": {
+        "baseline": {
+          "revision": "c2def9dcbdf3857d8bbfed8f9b27182993c764f3",
+          "files": {
+            "ominicat-core/pom.xml": "c54cdb223664b92c023c3e7bfa587c3a1a20eee67e1cf813d13479e1289708dc",
+            "ominicat-core/src/main/java/io/ominicat/core/AsyncEmitter.java": "44f9efb11ea681c9757f6b8775071da3a34f437877d5ed1cbb0b15c8bd381154",
+            "ominicat-core/src/main/java/io/ominicat/core/AsyncOutlet.java": "e268a2a7b966ee805dd515789dbfaaf24d003af3f427ea36f08aa29bf9901b36",
+            "ominicat-core/src/main/java/io/ominicat/core/AsyncProcessor.java": "38c4854af52081b33f2037e7f6aaa8fde98972bda4f2564aae8346fb3fbe9fb1",
+            "ominicat-core/src/main/java/io/ominicat/core/EnvelopeProcessor.java": "cdb01f8141bff2762d1f8c75488160efac00ccf68d8a72af5267aa3a8dbbf69b",
+            "ominicat-core/src/main/java/io/ominicat/core/FallbackProcessor.java": "42f2b34a365931b85b783bbea10f2ee40d1eebbdcbad945f07ac9f214083cef7",
+            "ominicat-core/src/main/java/io/ominicat/core/Frame.java": "fdcc1ee0ba7e83a9b564f67a16b33e25673073f7265d0d832e38aafcf1de757a",
+            "ominicat-core/src/main/java/io/ominicat/core/FrameEnvelope.java": "977d8556417420128bcb4351f6ea57630edc621b8a36a75f87468c37468d52b3",
+            "ominicat-core/src/main/java/io/ominicat/core/FrameSink.java": "e1373e4404361b374b597a9bf1d0970102b662f410e11a6163fe62d67e4016fd",
+            "ominicat-core/src/main/java/io/ominicat/core/ParallelProcessor.java": "676d542294a265141588592877e25ae5baa0d356aefdb5de42824d530de2d751",
+            "ominicat-core/src/main/java/io/ominicat/core/Pipeline.java": "51912a2028db89ba280928c59964ba157034f172e27c4178e765601420d4777b",
+            "ominicat-core/src/main/java/io/ominicat/core/PipelineSession.java": "260ac9ccf80186fad92a02cef20797a864f76cd5035263c5f12615cf6b3feefe",
+            "ominicat-core/src/main/java/io/ominicat/core/Processor.java": "01d05e653b58ca5243f7f74c7f0389b4d5a1ae7837743afde04ca8d26357c356",
+            "ominicat-core/src/main/java/io/ominicat/core/SessionMetrics.java": "58b3279acc9f42c269709b36ecc3d037393d244f735aaac3cb23e382172787a0",
+            "ominicat-core/src/main/java/io/ominicat/core/SessionOptions.java": "5bed3b1247e246166192f6ba66c421099dcba5dbe77741c09e4fdd002634c414",
+            "ominicat-core/src/main/java/io/ominicat/core/SynchronousSink.java": "9d22b891c7efc690c348ce1fe5127b5074567d6750fdca10bd50f259d1f5a594",
+            "ominicat-core/src/main/java/io/ominicat/core/WorkerThreads.java": "046dd215331c3d7b9f98f29b2748a5c35231b4fc3d12c006ba4ce2f3be623499",
+            "ominicat-core/src/main/java/io/ominicat/core/spi/DescribedProcessorFactory.java": "61a686173dbc053ff8e7210772bfa2e6ec00bb6e948b1dd844dca401009124cd",
+            "ominicat-core/src/main/java/io/ominicat/core/spi/PluginRegistry.java": "ad3bf8c4c9ce3df2925bd72e19123650dbdb420dc74c06cfca4258b5e19b7ea6",
+            "ominicat-core/src/main/java/io/ominicat/core/spi/ProcessorDescription.java": "cc34223726ef1fc47fbb4d1a8e4849e9b7d225ddd3ec6f3313c2c820d34db88c",
+            "ominicat-core/src/main/java/io/ominicat/core/spi/ProcessorFactory.java": "1b76527adc33c7baf64c23ce32e755b96343a1253e8f56d3c6a6c9af9da6de20",
+            "pom.xml": "edb54f636b19a4c8794761980258278a0a6de97a0b78e871f973ebfc5cc8ad49"
+          },
+          "aggregate": "0a53528ab1131529222f50ebbf085549e024b38e382ec808c61dd3b531234d9b"
+        },
+        "candidate": {
+          "revision": "f5454f40d60166b3d6edfecb0ba384c814fe9b9f",
+          "files": {
+            "ominicat-core/pom.xml": "c54cdb223664b92c023c3e7bfa587c3a1a20eee67e1cf813d13479e1289708dc",
+            "ominicat-core/src/main/java/io/ominicat/core/AsyncEmitter.java": "44f9efb11ea681c9757f6b8775071da3a34f437877d5ed1cbb0b15c8bd381154",
+            "ominicat-core/src/main/java/io/ominicat/core/AsyncOutlet.java": "e268a2a7b966ee805dd515789dbfaaf24d003af3f427ea36f08aa29bf9901b36",
+            "ominicat-core/src/main/java/io/ominicat/core/AsyncProcessor.java": "38c4854af52081b33f2037e7f6aaa8fde98972bda4f2564aae8346fb3fbe9fb1",
+            "ominicat-core/src/main/java/io/ominicat/core/EnvelopeProcessor.java": "cdb01f8141bff2762d1f8c75488160efac00ccf68d8a72af5267aa3a8dbbf69b",
+            "ominicat-core/src/main/java/io/ominicat/core/FallbackProcessor.java": "42f2b34a365931b85b783bbea10f2ee40d1eebbdcbad945f07ac9f214083cef7",
+            "ominicat-core/src/main/java/io/ominicat/core/Frame.java": "fdcc1ee0ba7e83a9b564f67a16b33e25673073f7265d0d832e38aafcf1de757a",
+            "ominicat-core/src/main/java/io/ominicat/core/FrameEnvelope.java": "977d8556417420128bcb4351f6ea57630edc621b8a36a75f87468c37468d52b3",
+            "ominicat-core/src/main/java/io/ominicat/core/FrameSink.java": "e1373e4404361b374b597a9bf1d0970102b662f410e11a6163fe62d67e4016fd",
+            "ominicat-core/src/main/java/io/ominicat/core/ParallelProcessor.java": "676d542294a265141588592877e25ae5baa0d356aefdb5de42824d530de2d751",
+            "ominicat-core/src/main/java/io/ominicat/core/Pipeline.java": "c4133f3f1cc47e7bcd5923dcae6434ef9fc0f79f2f3c1338910f8075d2fc18eb",
+            "ominicat-core/src/main/java/io/ominicat/core/PipelineSession.java": "260ac9ccf80186fad92a02cef20797a864f76cd5035263c5f12615cf6b3feefe",
+            "ominicat-core/src/main/java/io/ominicat/core/Processor.java": "01d05e653b58ca5243f7f74c7f0389b4d5a1ae7837743afde04ca8d26357c356",
+            "ominicat-core/src/main/java/io/ominicat/core/SessionMetrics.java": "58b3279acc9f42c269709b36ecc3d037393d244f735aaac3cb23e382172787a0",
+            "ominicat-core/src/main/java/io/ominicat/core/SessionOptions.java": "5bed3b1247e246166192f6ba66c421099dcba5dbe77741c09e4fdd002634c414",
+            "ominicat-core/src/main/java/io/ominicat/core/SynchronousSink.java": "9d22b891c7efc690c348ce1fe5127b5074567d6750fdca10bd50f259d1f5a594",
+            "ominicat-core/src/main/java/io/ominicat/core/WorkerThreads.java": "046dd215331c3d7b9f98f29b2748a5c35231b4fc3d12c006ba4ce2f3be623499",
+            "ominicat-core/src/main/java/io/ominicat/core/spi/DescribedProcessorFactory.java": "61a686173dbc053ff8e7210772bfa2e6ec00bb6e948b1dd844dca401009124cd",
+            "ominicat-core/src/main/java/io/ominicat/core/spi/PluginRegistry.java": "ad3bf8c4c9ce3df2925bd72e19123650dbdb420dc74c06cfca4258b5e19b7ea6",
+            "ominicat-core/src/main/java/io/ominicat/core/spi/ProcessorDescription.java": "cc34223726ef1fc47fbb4d1a8e4849e9b7d225ddd3ec6f3313c2c820d34db88c",
+            "ominicat-core/src/main/java/io/ominicat/core/spi/ProcessorFactory.java": "1b76527adc33c7baf64c23ce32e755b96343a1253e8f56d3c6a6c9af9da6de20",
+            "pom.xml": "edb54f636b19a4c8794761980258278a0a6de97a0b78e871f973ebfc5cc8ad49"
+          },
+          "aggregate": "b575d3ec580760f9edd554bcade8c213cba5f89f3b7dbe8efb6f130cca579ffe"
+        },
+        "probe": {
+          "revision": "f5454f40d60166b3d6edfecb0ba384c814fe9b9f",
+          "files": {
+            ".github/workflows/direct-state-evidence.yml": "aadc9b46e986739fd0039de0415c4e3adb49fa88b3df1d0180739c35d551956a",
+            "comparison/direct-state-protocol.md": "c6af3f3c94dac050dc0ffa0a94d12a75738509d0ceceec986151f0ed3ed2bec6",
+            "comparison/direct_state_evidence.py": "1c1b093380a9ec8ee21d087b055350e94aff2b067c8e1937e64967fb6870a687",
+            "comparison/mechanism_evidence.py": "b3ebe4c6b21df8d99834293bb2e5b2cb78d4b9a4bfa8c549840d3b59a73af10c",
+            "comparison/tests/test_direct_state_evidence.py": "177ebb454c68e150e31a0560c55b5e032b7fc4c3f3c9ab597d3d3e955861d7f7",
+            "ominicat-benchmarks/pom.xml": "f16932a2011d86e519782054d2c0b389dbaadfb5263a0d2130e46dde1819fe6d",
+            "ominicat-benchmarks/src/main/java/io/ominicat/benchmarks/CoreLoad.java": "c3dfcc64c2188b99e0430f47e98d39d5a104e0487afb21c1cec4d09be5cd38fe",
+            "ominicat-benchmarks/src/main/java/io/ominicat/benchmarks/DirectPlanStartupProbe.java": "7df261d63bbf67adcd978a328da650b98d40870c0c3618c1589f84a35bababe8",
+            "ominicat-benchmarks/src/main/java/io/ominicat/benchmarks/DirectStateProbe.java": "8caba9a688b8bfe74715829530effd211c67d7569d599b78db4b0d55c4529fb0",
+            "ominicat-benchmarks/src/main/java/io/ominicat/benchmarks/PipelineBenchmark.java": "fc6c43c52f96d3ca753bf5f4f76ae61c1863791580b939f40659216b2260076e",
+            "ominicat-benchmarks/src/main/java/io/ominicat/benchmarks/PromptCostProbe.java": "5ef80171a0b31381de04e830c6dbad645165c509b8cd49ea4edc89df96bc1f0d",
+            "ominicat-benchmarks/src/main/java/io/ominicat/benchmarks/SessionBenchmark.java": "fc6eb96030dfed0df3203eadd285d36b51077c7f2fb561fc5216679c419e91d3",
+            "scripts/package_profiles.py": "2cd1f03e99f0f4232c4a0c086bd52f5036434ec93a687e92fcf349aa2a99ee25"
+          },
+          "aggregate": "bc9f4c49ca6e7811f9da8363e2974949613c63be224efe0a7cbd5bac2c853dfa"
+        }
+      },
+      "environment": {
+        "os": "Linux",
+        "kernelRelease": "7.0.0-1017-azure",
+        "architecture": "x86_64",
+        "distro": {
+          "PRETTY_NAME": "Ubuntu 24.04.5 LTS",
+          "VERSION_ID": "24.04",
+          "ID": "ubuntu"
+        },
+        "cpuModel": "INTEL(R) XEON(R) PLATINUM 8573C",
+        "logicalProcessors": 4,
+        "affinityCount": 4,
+        "java": {
+          "vendor": "Eclipse Adoptium",
+          "version": "17.0.21",
+          "vmName": "OpenJDK 64-Bit Server VM",
+          "vmVersion": "17.0.21+9",
+          "architecture": "amd64",
+          "os": "Linux"
+        },
+        "scope": "Shared runner; sequential cases; no exclusive CPU isolation. No RSS or p99 measurement."
+      },
+      "settings": {
+        "jmhVersion": "1.37",
+        "mode": "avgt",
+        "unit": "ns/op",
+        "threads": 1,
+        "forksPerCommand": 1,
+        "blocks": 3,
+        "sideOrder": [
+          "baseline",
+          "candidate",
+          "candidate",
+          "baseline"
+        ],
+        "scenarios": [
+          "raw-direct-1",
+          "raw-direct-4",
+          "raw-direct-16",
+          "envelope-direct-4",
+          "raw-session-4",
+          "audio-direct-4",
+          "image-direct-4"
+        ],
+        "reverseScenarioBlocks": [
+          2
+        ],
+        "warmupIterations": 3,
+        "measurementIterations": 5,
+        "warmupTime": "1 s",
+        "measurementTime": "1 s",
+        "warmupBatchSize": 1,
+        "measurementBatchSize": 1,
+        "heapArgs": [
+          "-Xms256m",
+          "-Xmx256m"
+        ],
+        "profilers": [
+          "gc"
+        ],
+        "benchmark": "io.ominicat.benchmarks.DirectStateProbe.invoke",
+        "decisionRule": {
+          "primaryScenario": "raw-direct-4",
+          "primaryAllocationRatioMax": 0.9,
+          "directTimeRatioMax": 1.05,
+          "directAllocationRatioMax": 1.01,
+          "negativeControl": "raw-session-4",
+          "blockStatistic": "mean of two candidate fork means / mean of two baseline fork means within the same ABBA block",
+          "pointStatistic": "arithmetic mean of the three paired-block ratios",
+          "zeroAllocationBaseline": "0/0 is 1; positive candidate over zero baseline is null, zeroBaselineIncrease and targets-not-met.",
+          "rangeScope": "Observed three-block ratio range, not a confidence interval; iterations are not independent forks.",
+          "use": "Observed experiment targets, not a CI performance gate or production guarantee."
+        },
+        "classpathOrder": [
+          "selected core JAR",
+          "same candidate probe JAR"
+        ]
+      },
+      "caseOrder": [
+        {
+          "position": 1,
+          "block": 1,
+          "scenario": "raw-direct-1",
+          "slot": 1,
+          "side": "baseline",
+          "raw": "raw/001-b1-raw-direct-1-1-baseline.json",
+          "log": "logs/001-b1-raw-direct-1-1-baseline.log"
+        },
+        {
+          "position": 2,
+          "block": 1,
+          "scenario": "raw-direct-1",
+          "slot": 2,
+          "side": "candidate",
+          "raw": "raw/002-b1-raw-direct-1-2-candidate.json",
+          "log": "logs/002-b1-raw-direct-1-2-candidate.log"
+        },
+        {
+          "position": 3,
+          "block": 1,
+          "scenario": "raw-direct-1",
+          "slot": 3,
+          "side": "candidate",
+          "raw": "raw/003-b1-raw-direct-1-3-candidate.json",
+          "log": "logs/003-b1-raw-direct-1-3-candidate.log"
+        },
+        {
+          "position": 4,
+          "block": 1,
+          "scenario": "raw-direct-1",
+          "slot": 4,
+          "side": "baseline",
+          "raw": "raw/004-b1-raw-direct-1-4-baseline.json",
+          "log": "logs/004-b1-raw-direct-1-4-baseline.log"
+        },
+        {
+          "position": 5,
+          "block": 1,
+          "scenario": "raw-direct-4",
+          "slot": 1,
+          "side": "baseline",
+          "raw": "raw/005-b1-raw-direct-4-1-baseline.json",
+          "log": "logs/005-b1-raw-direct-4-1-baseline.log"
+        },
+        {
+          "position": 6,
+          "block": 1,
+          "scenario": "raw-direct-4",
+          "slot": 2,
+          "side": "candidate",
+          "raw": "raw/006-b1-raw-direct-4-2-candidate.json",
+          "log": "logs/006-b1-raw-direct-4-2-candidate.log"
+        },
+        {
+          "position": 7,
+          "block": 1,
+          "scenario": "raw-direct-4",
+          "slot": 3,
+          "side": "candidate",
+          "raw": "raw/007-b1-raw-direct-4-3-candidate.json",
+          "log": "logs/007-b1-raw-direct-4-3-candidate.log"
+        },
+        {
+          "position": 8,
+          "block": 1,
+          "scenario": "raw-direct-4",
+          "slot": 4,
+          "side": "baseline",
+          "raw": "raw/008-b1-raw-direct-4-4-baseline.json",
+          "log": "logs/008-b1-raw-direct-4-4-baseline.log"
+        },
+        {
+          "position": 9,
+          "block": 1,
+          "scenario": "raw-direct-16",
+          "slot": 1,
+          "side": "baseline",
+          "raw": "raw/009-b1-raw-direct-16-1-baseline.json",
+          "log": "logs/009-b1-raw-direct-16-1-baseline.log"
+        },
+        {
+          "position": 10,
+          "block": 1,
+          "scenario": "raw-direct-16",
+          "slot": 2,
+          "side": "candidate",
+          "raw": "raw/010-b1-raw-direct-16-2-candidate.json",
+          "log": "logs/010-b1-raw-direct-16-2-candidate.log"
+        },
+        {
+          "position": 11,
+          "block": 1,
+          "scenario": "raw-direct-16",
+          "slot": 3,
+          "side": "candidate",
+          "raw": "raw/011-b1-raw-direct-16-3-candidate.json",
+          "log": "logs/011-b1-raw-direct-16-3-candidate.log"
+        },
+        {
+          "position": 12,
+          "block": 1,
+          "scenario": "raw-direct-16",
+          "slot": 4,
+          "side": "baseline",
+          "raw": "raw/012-b1-raw-direct-16-4-baseline.json",
+          "log": "logs/012-b1-raw-direct-16-4-baseline.log"
+        },
+        {
+          "position": 13,
+          "block": 1,
+          "scenario": "envelope-direct-4",
+          "slot": 1,
+          "side": "baseline",
+          "raw": "raw/013-b1-envelope-direct-4-1-baseline.json",
+          "log": "logs/013-b1-envelope-direct-4-1-baseline.log"
+        },
+        {
+          "position": 14,
+          "block": 1,
+          "scenario": "envelope-direct-4",
+          "slot": 2,
+          "side": "candidate",
+          "raw": "raw/014-b1-envelope-direct-4-2-candidate.json",
+          "log": "logs/014-b1-envelope-direct-4-2-candidate.log"
+        },
+        {
+          "position": 15,
+          "block": 1,
+          "scenario": "envelope-direct-4",
+          "slot": 3,
+          "side": "candidate",
+          "raw": "raw/015-b1-envelope-direct-4-3-candidate.json",
+          "log": "logs/015-b1-envelope-direct-4-3-candidate.log"
+        },
+        {
+          "position": 16,
+          "block": 1,
+          "scenario": "envelope-direct-4",
+          "slot": 4,
+          "side": "baseline",
+          "raw": "raw/016-b1-envelope-direct-4-4-baseline.json",
+          "log": "logs/016-b1-envelope-direct-4-4-baseline.log"
+        },
+        {
+          "position": 17,
+          "block": 1,
+          "scenario": "raw-session-4",
+          "slot": 1,
+          "side": "baseline",
+          "raw": "raw/017-b1-raw-session-4-1-baseline.json",
+          "log": "logs/017-b1-raw-session-4-1-baseline.log"
+        },
+        {
+          "position": 18,
+          "block": 1,
+          "scenario": "raw-session-4",
+          "slot": 2,
+          "side": "candidate",
+          "raw": "raw/018-b1-raw-session-4-2-candidate.json",
+          "log": "logs/018-b1-raw-session-4-2-candidate.log"
+        },
+        {
+          "position": 19,
+          "block": 1,
+          "scenario": "raw-session-4",
+          "slot": 3,
+          "side": "candidate",
+          "raw": "raw/019-b1-raw-session-4-3-candidate.json",
+          "log": "logs/019-b1-raw-session-4-3-candidate.log"
+        },
+        {
+          "position": 20,
+          "block": 1,
+          "scenario": "raw-session-4",
+          "slot": 4,
+          "side": "baseline",
+          "raw": "raw/020-b1-raw-session-4-4-baseline.json",
+          "log": "logs/020-b1-raw-session-4-4-baseline.log"
+        },
+        {
+          "position": 21,
+          "block": 1,
+          "scenario": "audio-direct-4",
+          "slot": 1,
+          "side": "baseline",
+          "raw": "raw/021-b1-audio-direct-4-1-baseline.json",
+          "log": "logs/021-b1-audio-direct-4-1-baseline.log"
+        },
+        {
+          "position": 22,
+          "block": 1,
+          "scenario": "audio-direct-4",
+          "slot": 2,
+          "side": "candidate",
+          "raw": "raw/022-b1-audio-direct-4-2-candidate.json",
+          "log": "logs/022-b1-audio-direct-4-2-candidate.log"
+        },
+        {
+          "position": 23,
+          "block": 1,
+          "scenario": "audio-direct-4",
+          "slot": 3,
+          "side": "candidate",
+          "raw": "raw/023-b1-audio-direct-4-3-candidate.json",
+          "log": "logs/023-b1-audio-direct-4-3-candidate.log"
+        },
+        {
+          "position": 24,
+          "block": 1,
+          "scenario": "audio-direct-4",
+          "slot": 4,
+          "side": "baseline",
+          "raw": "raw/024-b1-audio-direct-4-4-baseline.json",
+          "log": "logs/024-b1-audio-direct-4-4-baseline.log"
+        },
+        {
+          "position": 25,
+          "block": 1,
+          "scenario": "image-direct-4",
+          "slot": 1,
+          "side": "baseline",
+          "raw": "raw/025-b1-image-direct-4-1-baseline.json",
+          "log": "logs/025-b1-image-direct-4-1-baseline.log"
+        },
+        {
+          "position": 26,
+          "block": 1,
+          "scenario": "image-direct-4",
+          "slot": 2,
+          "side": "candidate",
+          "raw": "raw/026-b1-image-direct-4-2-candidate.json",
+          "log": "logs/026-b1-image-direct-4-2-candidate.log"
+        },
+        {
+          "position": 27,
+          "block": 1,
+          "scenario": "image-direct-4",
+          "slot": 3,
+          "side": "candidate",
+          "raw": "raw/027-b1-image-direct-4-3-candidate.json",
+          "log": "logs/027-b1-image-direct-4-3-candidate.log"
+        },
+        {
+          "position": 28,
+          "block": 1,
+          "scenario": "image-direct-4",
+          "slot": 4,
+          "side": "baseline",
+          "raw": "raw/028-b1-image-direct-4-4-baseline.json",
+          "log": "logs/028-b1-image-direct-4-4-baseline.log"
+        },
+        {
+          "position": 29,
+          "block": 2,
+          "scenario": "image-direct-4",
+          "slot": 1,
+          "side": "baseline",
+          "raw": "raw/029-b2-image-direct-4-1-baseline.json",
+          "log": "logs/029-b2-image-direct-4-1-baseline.log"
+        },
+        {
+          "position": 30,
+          "block": 2,
+          "scenario": "image-direct-4",
+          "slot": 2,
+          "side": "candidate",
+          "raw": "raw/030-b2-image-direct-4-2-candidate.json",
+          "log": "logs/030-b2-image-direct-4-2-candidate.log"
+        },
+        {
+          "position": 31,
+          "block": 2,
+          "scenario": "image-direct-4",
+          "slot": 3,
+          "side": "candidate",
+          "raw": "raw/031-b2-image-direct-4-3-candidate.json",
+          "log": "logs/031-b2-image-direct-4-3-candidate.log"
+        },
+        {
+          "position": 32,
+          "block": 2,
+          "scenario": "image-direct-4",
+          "slot": 4,
+          "side": "baseline",
+          "raw": "raw/032-b2-image-direct-4-4-baseline.json",
+          "log": "logs/032-b2-image-direct-4-4-baseline.log"
+        },
+        {
+          "position": 33,
+          "block": 2,
+          "scenario": "audio-direct-4",
+          "slot": 1,
+          "side": "baseline",
+          "raw": "raw/033-b2-audio-direct-4-1-baseline.json",
+          "log": "logs/033-b2-audio-direct-4-1-baseline.log"
+        },
+        {
+          "position": 34,
+          "block": 2,
+          "scenario": "audio-direct-4",
+          "slot": 2,
+          "side": "candidate",
+          "raw": "raw/034-b2-audio-direct-4-2-candidate.json",
+          "log": "logs/034-b2-audio-direct-4-2-candidate.log"
+        },
+        {
+          "position": 35,
+          "block": 2,
+          "scenario": "audio-direct-4",
+          "slot": 3,
+          "side": "candidate",
+          "raw": "raw/035-b2-audio-direct-4-3-candidate.json",
+          "log": "logs/035-b2-audio-direct-4-3-candidate.log"
+        },
+        {
+          "position": 36,
+          "block": 2,
+          "scenario": "audio-direct-4",
+          "slot": 4,
+          "side": "baseline",
+          "raw": "raw/036-b2-audio-direct-4-4-baseline.json",
+          "log": "logs/036-b2-audio-direct-4-4-baseline.log"
+        },
+        {
+          "position": 37,
+          "block": 2,
+          "scenario": "raw-session-4",
+          "slot": 1,
+          "side": "baseline",
+          "raw": "raw/037-b2-raw-session-4-1-baseline.json",
+          "log": "logs/037-b2-raw-session-4-1-baseline.log"
+        },
+        {
+          "position": 38,
+          "block": 2,
+          "scenario": "raw-session-4",
+          "slot": 2,
+          "side": "candidate",
+          "raw": "raw/038-b2-raw-session-4-2-candidate.json",
+          "log": "logs/038-b2-raw-session-4-2-candidate.log"
+        },
+        {
+          "position": 39,
+          "block": 2,
+          "scenario": "raw-session-4",
+          "slot": 3,
+          "side": "candidate",
+          "raw": "raw/039-b2-raw-session-4-3-candidate.json",
+          "log": "logs/039-b2-raw-session-4-3-candidate.log"
+        },
+        {
+          "position": 40,
+          "block": 2,
+          "scenario": "raw-session-4",
+          "slot": 4,
+          "side": "baseline",
+          "raw": "raw/040-b2-raw-session-4-4-baseline.json",
+          "log": "logs/040-b2-raw-session-4-4-baseline.log"
+        },
+        {
+          "position": 41,
+          "block": 2,
+          "scenario": "envelope-direct-4",
+          "slot": 1,
+          "side": "baseline",
+          "raw": "raw/041-b2-envelope-direct-4-1-baseline.json",
+          "log": "logs/041-b2-envelope-direct-4-1-baseline.log"
+        },
+        {
+          "position": 42,
+          "block": 2,
+          "scenario": "envelope-direct-4",
+          "slot": 2,
+          "side": "candidate",
+          "raw": "raw/042-b2-envelope-direct-4-2-candidate.json",
+          "log": "logs/042-b2-envelope-direct-4-2-candidate.log"
+        },
+        {
+          "position": 43,
+          "block": 2,
+          "scenario": "envelope-direct-4",
+          "slot": 3,
+          "side": "candidate",
+          "raw": "raw/043-b2-envelope-direct-4-3-candidate.json",
+          "log": "logs/043-b2-envelope-direct-4-3-candidate.log"
+        },
+        {
+          "position": 44,
+          "block": 2,
+          "scenario": "envelope-direct-4",
+          "slot": 4,
+          "side": "baseline",
+          "raw": "raw/044-b2-envelope-direct-4-4-baseline.json",
+          "log": "logs/044-b2-envelope-direct-4-4-baseline.log"
+        },
+        {
+          "position": 45,
+          "block": 2,
+          "scenario": "raw-direct-16",
+          "slot": 1,
+          "side": "baseline",
+          "raw": "raw/045-b2-raw-direct-16-1-baseline.json",
+          "log": "logs/045-b2-raw-direct-16-1-baseline.log"
+        },
+        {
+          "position": 46,
+          "block": 2,
+          "scenario": "raw-direct-16",
+          "slot": 2,
+          "side": "candidate",
+          "raw": "raw/046-b2-raw-direct-16-2-candidate.json",
+          "log": "logs/046-b2-raw-direct-16-2-candidate.log"
+        },
+        {
+          "position": 47,
+          "block": 2,
+          "scenario": "raw-direct-16",
+          "slot": 3,
+          "side": "candidate",
+          "raw": "raw/047-b2-raw-direct-16-3-candidate.json",
+          "log": "logs/047-b2-raw-direct-16-3-candidate.log"
+        },
+        {
+          "position": 48,
+          "block": 2,
+          "scenario": "raw-direct-16",
+          "slot": 4,
+          "side": "baseline",
+          "raw": "raw/048-b2-raw-direct-16-4-baseline.json",
+          "log": "logs/048-b2-raw-direct-16-4-baseline.log"
+        },
+        {
+          "position": 49,
+          "block": 2,
+          "scenario": "raw-direct-4",
+          "slot": 1,
+          "side": "baseline",
+          "raw": "raw/049-b2-raw-direct-4-1-baseline.json",
+          "log": "logs/049-b2-raw-direct-4-1-baseline.log"
+        },
+        {
+          "position": 50,
+          "block": 2,
+          "scenario": "raw-direct-4",
+          "slot": 2,
+          "side": "candidate",
+          "raw": "raw/050-b2-raw-direct-4-2-candidate.json",
+          "log": "logs/050-b2-raw-direct-4-2-candidate.log"
+        },
+        {
+          "position": 51,
+          "block": 2,
+          "scenario": "raw-direct-4",
+          "slot": 3,
+          "side": "candidate",
+          "raw": "raw/051-b2-raw-direct-4-3-candidate.json",
+          "log": "logs/051-b2-raw-direct-4-3-candidate.log"
+        },
+        {
+          "position": 52,
+          "block": 2,
+          "scenario": "raw-direct-4",
+          "slot": 4,
+          "side": "baseline",
+          "raw": "raw/052-b2-raw-direct-4-4-baseline.json",
+          "log": "logs/052-b2-raw-direct-4-4-baseline.log"
+        },
+        {
+          "position": 53,
+          "block": 2,
+          "scenario": "raw-direct-1",
+          "slot": 1,
+          "side": "baseline",
+          "raw": "raw/053-b2-raw-direct-1-1-baseline.json",
+          "log": "logs/053-b2-raw-direct-1-1-baseline.log"
+        },
+        {
+          "position": 54,
+          "block": 2,
+          "scenario": "raw-direct-1",
+          "slot": 2,
+          "side": "candidate",
+          "raw": "raw/054-b2-raw-direct-1-2-candidate.json",
+          "log": "logs/054-b2-raw-direct-1-2-candidate.log"
+        },
+        {
+          "position": 55,
+          "block": 2,
+          "scenario": "raw-direct-1",
+          "slot": 3,
+          "side": "candidate",
+          "raw": "raw/055-b2-raw-direct-1-3-candidate.json",
+          "log": "logs/055-b2-raw-direct-1-3-candidate.log"
+        },
+        {
+          "position": 56,
+          "block": 2,
+          "scenario": "raw-direct-1",
+          "slot": 4,
+          "side": "baseline",
+          "raw": "raw/056-b2-raw-direct-1-4-baseline.json",
+          "log": "logs/056-b2-raw-direct-1-4-baseline.log"
+        },
+        {
+          "position": 57,
+          "block": 3,
+          "scenario": "raw-direct-1",
+          "slot": 1,
+          "side": "baseline",
+          "raw": "raw/057-b3-raw-direct-1-1-baseline.json",
+          "log": "logs/057-b3-raw-direct-1-1-baseline.log"
+        },
+        {
+          "position": 58,
+          "block": 3,
+          "scenario": "raw-direct-1",
+          "slot": 2,
+          "side": "candidate",
+          "raw": "raw/058-b3-raw-direct-1-2-candidate.json",
+          "log": "logs/058-b3-raw-direct-1-2-candidate.log"
+        },
+        {
+          "position": 59,
+          "block": 3,
+          "scenario": "raw-direct-1",
+          "slot": 3,
+          "side": "candidate",
+          "raw": "raw/059-b3-raw-direct-1-3-candidate.json",
+          "log": "logs/059-b3-raw-direct-1-3-candidate.log"
+        },
+        {
+          "position": 60,
+          "block": 3,
+          "scenario": "raw-direct-1",
+          "slot": 4,
+          "side": "baseline",
+          "raw": "raw/060-b3-raw-direct-1-4-baseline.json",
+          "log": "logs/060-b3-raw-direct-1-4-baseline.log"
+        },
+        {
+          "position": 61,
+          "block": 3,
+          "scenario": "raw-direct-4",
+          "slot": 1,
+          "side": "baseline",
+          "raw": "raw/061-b3-raw-direct-4-1-baseline.json",
+          "log": "logs/061-b3-raw-direct-4-1-baseline.log"
+        },
+        {
+          "position": 62,
+          "block": 3,
+          "scenario": "raw-direct-4",
+          "slot": 2,
+          "side": "candidate",
+          "raw": "raw/062-b3-raw-direct-4-2-candidate.json",
+          "log": "logs/062-b3-raw-direct-4-2-candidate.log"
+        },
+        {
+          "position": 63,
+          "block": 3,
+          "scenario": "raw-direct-4",
+          "slot": 3,
+          "side": "candidate",
+          "raw": "raw/063-b3-raw-direct-4-3-candidate.json",
+          "log": "logs/063-b3-raw-direct-4-3-candidate.log"
+        },
+        {
+          "position": 64,
+          "block": 3,
+          "scenario": "raw-direct-4",
+          "slot": 4,
+          "side": "baseline",
+          "raw": "raw/064-b3-raw-direct-4-4-baseline.json",
+          "log": "logs/064-b3-raw-direct-4-4-baseline.log"
+        },
+        {
+          "position": 65,
+          "block": 3,
+          "scenario": "raw-direct-16",
+          "slot": 1,
+          "side": "baseline",
+          "raw": "raw/065-b3-raw-direct-16-1-baseline.json",
+          "log": "logs/065-b3-raw-direct-16-1-baseline.log"
+        },
+        {
+          "position": 66,
+          "block": 3,
+          "scenario": "raw-direct-16",
+          "slot": 2,
+          "side": "candidate",
+          "raw": "raw/066-b3-raw-direct-16-2-candidate.json",
+          "log": "logs/066-b3-raw-direct-16-2-candidate.log"
+        },
+        {
+          "position": 67,
+          "block": 3,
+          "scenario": "raw-direct-16",
+          "slot": 3,
+          "side": "candidate",
+          "raw": "raw/067-b3-raw-direct-16-3-candidate.json",
+          "log": "logs/067-b3-raw-direct-16-3-candidate.log"
+        },
+        {
+          "position": 68,
+          "block": 3,
+          "scenario": "raw-direct-16",
+          "slot": 4,
+          "side": "baseline",
+          "raw": "raw/068-b3-raw-direct-16-4-baseline.json",
+          "log": "logs/068-b3-raw-direct-16-4-baseline.log"
+        },
+        {
+          "position": 69,
+          "block": 3,
+          "scenario": "envelope-direct-4",
+          "slot": 1,
+          "side": "baseline",
+          "raw": "raw/069-b3-envelope-direct-4-1-baseline.json",
+          "log": "logs/069-b3-envelope-direct-4-1-baseline.log"
+        },
+        {
+          "position": 70,
+          "block": 3,
+          "scenario": "envelope-direct-4",
+          "slot": 2,
+          "side": "candidate",
+          "raw": "raw/070-b3-envelope-direct-4-2-candidate.json",
+          "log": "logs/070-b3-envelope-direct-4-2-candidate.log"
+        },
+        {
+          "position": 71,
+          "block": 3,
+          "scenario": "envelope-direct-4",
+          "slot": 3,
+          "side": "candidate",
+          "raw": "raw/071-b3-envelope-direct-4-3-candidate.json",
+          "log": "logs/071-b3-envelope-direct-4-3-candidate.log"
+        },
+        {
+          "position": 72,
+          "block": 3,
+          "scenario": "envelope-direct-4",
+          "slot": 4,
+          "side": "baseline",
+          "raw": "raw/072-b3-envelope-direct-4-4-baseline.json",
+          "log": "logs/072-b3-envelope-direct-4-4-baseline.log"
+        },
+        {
+          "position": 73,
+          "block": 3,
+          "scenario": "raw-session-4",
+          "slot": 1,
+          "side": "baseline",
+          "raw": "raw/073-b3-raw-session-4-1-baseline.json",
+          "log": "logs/073-b3-raw-session-4-1-baseline.log"
+        },
+        {
+          "position": 74,
+          "block": 3,
+          "scenario": "raw-session-4",
+          "slot": 2,
+          "side": "candidate",
+          "raw": "raw/074-b3-raw-session-4-2-candidate.json",
+          "log": "logs/074-b3-raw-session-4-2-candidate.log"
+        },
+        {
+          "position": 75,
+          "block": 3,
+          "scenario": "raw-session-4",
+          "slot": 3,
+          "side": "candidate",
+          "raw": "raw/075-b3-raw-session-4-3-candidate.json",
+          "log": "logs/075-b3-raw-session-4-3-candidate.log"
+        },
+        {
+          "position": 76,
+          "block": 3,
+          "scenario": "raw-session-4",
+          "slot": 4,
+          "side": "baseline",
+          "raw": "raw/076-b3-raw-session-4-4-baseline.json",
+          "log": "logs/076-b3-raw-session-4-4-baseline.log"
+        },
+        {
+          "position": 77,
+          "block": 3,
+          "scenario": "audio-direct-4",
+          "slot": 1,
+          "side": "baseline",
+          "raw": "raw/077-b3-audio-direct-4-1-baseline.json",
+          "log": "logs/077-b3-audio-direct-4-1-baseline.log"
+        },
+        {
+          "position": 78,
+          "block": 3,
+          "scenario": "audio-direct-4",
+          "slot": 2,
+          "side": "candidate",
+          "raw": "raw/078-b3-audio-direct-4-2-candidate.json",
+          "log": "logs/078-b3-audio-direct-4-2-candidate.log"
+        },
+        {
+          "position": 79,
+          "block": 3,
+          "scenario": "audio-direct-4",
+          "slot": 3,
+          "side": "candidate",
+          "raw": "raw/079-b3-audio-direct-4-3-candidate.json",
+          "log": "logs/079-b3-audio-direct-4-3-candidate.log"
+        },
+        {
+          "position": 80,
+          "block": 3,
+          "scenario": "audio-direct-4",
+          "slot": 4,
+          "side": "baseline",
+          "raw": "raw/080-b3-audio-direct-4-4-baseline.json",
+          "log": "logs/080-b3-audio-direct-4-4-baseline.log"
+        },
+        {
+          "position": 81,
+          "block": 3,
+          "scenario": "image-direct-4",
+          "slot": 1,
+          "side": "baseline",
+          "raw": "raw/081-b3-image-direct-4-1-baseline.json",
+          "log": "logs/081-b3-image-direct-4-1-baseline.log"
+        },
+        {
+          "position": 82,
+          "block": 3,
+          "scenario": "image-direct-4",
+          "slot": 2,
+          "side": "candidate",
+          "raw": "raw/082-b3-image-direct-4-2-candidate.json",
+          "log": "logs/082-b3-image-direct-4-2-candidate.log"
+        },
+        {
+          "position": 83,
+          "block": 3,
+          "scenario": "image-direct-4",
+          "slot": 3,
+          "side": "candidate",
+          "raw": "raw/083-b3-image-direct-4-3-candidate.json",
+          "log": "logs/083-b3-image-direct-4-3-candidate.log"
+        },
+        {
+          "position": 84,
+          "block": 3,
+          "scenario": "image-direct-4",
+          "slot": 4,
+          "side": "baseline",
+          "raw": "raw/084-b3-image-direct-4-4-baseline.json",
+          "log": "logs/084-b3-image-direct-4-4-baseline.log"
+        }
+      ],
+      "changedCoreSources": [
+        "ominicat-core/src/main/java/io/ominicat/core/Pipeline.java"
+      ]
+    }
+  },
+  "toolSources": {
+    "revision": "f5454f40d60166b3d6edfecb0ba384c814fe9b9f",
+    "files": {
+      "comparison/direct_plan_startup.py": "ecb35f281a5585157b93065c0cab74f48101e1d876b0e43323a586528c4ae29c",
+      "comparison/tests/test_direct_plan_startup.py": "a4d5145f0ed7b4dbe5e5d2fb16076e7c0d18337c3ecf8517633da46dc6c4a657",
+      "ominicat-benchmarks/src/main/java/io/ominicat/benchmarks/DirectPlanStartupProbe.java": "7df261d63bbf67adcd978a328da650b98d40870c0c3618c1589f84a35bababe8"
+    },
+    "aggregate": "b63a4da9e1c7224fe7773f0ecb711e446421d95b239f1b1d5362a40df68b09ea"
+  },
+  "settings": {
+    "benchmark": "io.ominicat.benchmarks.DirectPlanStartupProbe.invoke",
+    "scenarios": [
+      "build-4",
+      "first-direct-4"
+    ],
+    "sideOrder": [
+      "baseline",
+      "candidate",
+      "candidate",
+      "baseline"
+    ],
+    "jmhVersion": "1.37",
+    "mode": "avgt",
+    "unit": "ns/op",
+    "threads": 1,
+    "forksPerCommand": 1,
+    "warmupIterations": 3,
+    "measurementIterations": 5,
+    "warmupTime": "1 s",
+    "measurementTime": "1 s",
+    "warmupBatchSize": 1,
+    "measurementBatchSize": 1,
+    "heapArgs": [
+      "-Xms256m",
+      "-Xmx256m"
+    ],
+    "profilers": [
+      "gc"
+    ],
+    "scope": "Separate pipeline-construction and first-direct-call diagnostics in warmed-up Java 17 JVMs. Every operation builds a fresh four-stage pipeline. This is not OS/JVM cold-start latency, a main acceptance case, a saturated-load capacity measurement or a main-result correction.",
+    "acceptanceImpact": "none",
+    "headlineEligible": false,
+    "classpathOrder": [
+      "selected core JAR",
+      "same candidate probe JAR"
+    ]
+  },
+  "caseOrder": [
+    {
+      "position": 1,
+      "scenario": "build-4",
+      "slot": 1,
+      "side": "baseline",
+      "raw": "raw/001-build-4-1-baseline.json",
+      "log": "logs/001-build-4-1-baseline.log"
+    },
+    {
+      "position": 2,
+      "scenario": "build-4",
+      "slot": 2,
+      "side": "candidate",
+      "raw": "raw/002-build-4-2-candidate.json",
+      "log": "logs/002-build-4-2-candidate.log"
+    },
+    {
+      "position": 3,
+      "scenario": "build-4",
+      "slot": 3,
+      "side": "candidate",
+      "raw": "raw/003-build-4-3-candidate.json",
+      "log": "logs/003-build-4-3-candidate.log"
+    },
+    {
+      "position": 4,
+      "scenario": "build-4",
+      "slot": 4,
+      "side": "baseline",
+      "raw": "raw/004-build-4-4-baseline.json",
+      "log": "logs/004-build-4-4-baseline.log"
+    },
+    {
+      "position": 5,
+      "scenario": "first-direct-4",
+      "slot": 1,
+      "side": "baseline",
+      "raw": "raw/005-first-direct-4-1-baseline.json",
+      "log": "logs/005-first-direct-4-1-baseline.log"
+    },
+    {
+      "position": 6,
+      "scenario": "first-direct-4",
+      "slot": 2,
+      "side": "candidate",
+      "raw": "raw/006-first-direct-4-2-candidate.json",
+      "log": "logs/006-first-direct-4-2-candidate.log"
+    },
+    {
+      "position": 7,
+      "scenario": "first-direct-4",
+      "slot": 3,
+      "side": "candidate",
+      "raw": "raw/007-first-direct-4-3-candidate.json",
+      "log": "logs/007-first-direct-4-3-candidate.log"
+    },
+    {
+      "position": 8,
+      "scenario": "first-direct-4",
+      "slot": 4,
+      "side": "baseline",
+      "raw": "raw/008-first-direct-4-4-baseline.json",
+      "log": "logs/008-first-direct-4-4-baseline.log"
+    }
+  ]
+}

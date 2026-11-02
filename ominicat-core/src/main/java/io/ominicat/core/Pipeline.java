@@ -14,11 +14,21 @@ import java.util.function.BooleanSupplier;
 public final class Pipeline {
     private final Processor[] processors;
     private final boolean hasAsync;
+    private final DirectStage[] directStages;
     private final AtomicBoolean claimed = new AtomicBoolean();
 
     private Pipeline(List<Processor> processors) {
         this.processors = processors.toArray(Processor[]::new);
         this.hasAsync = processors.stream().anyMatch(AsyncProcessor.class::isInstance);
+        // Prebind only immutable topology; request state always belongs to a fresh invocation.
+        this.directStages = hasAsync ? null : new DirectStage[this.processors.length];
+        if (directStages != null) {
+            DirectStage next = null;
+            for (int index = this.processors.length - 1; index >= 0; index--) {
+                next = new DirectStage(this.processors[index], next);
+                directStages[index] = next;
+            }
+        }
     }
 
     /** Begin building a processor chain. An empty chain passes frames through unchanged. */
@@ -47,8 +57,61 @@ public final class Pipeline {
 
     void dispatch(int index, Frame frame, FrameSink output) throws Exception {
         if (index == processors.length) output.accept(frame);
-        else invoke(processors[index], frame, emitted ->
-                dispatch(index + 1, Objects.requireNonNull(emitted, "emitted frame"), output));
+        else directStages[index].invoke(frame, output);
+    }
+
+    /** Privately owned topology, shared without storing any per-call cursor, output or thread. */
+    private static final class DirectStage {
+        private final Processor processor;
+        private final DirectStage next;
+
+        DirectStage(Processor processor, DirectStage next) {
+            this.processor = processor;
+            this.next = next;
+        }
+
+        void invoke(Frame frame, FrameSink output) throws Exception {
+            DirectInvocation invocation = new DirectInvocation(next, output);
+            try { processor.process(frame, invocation); }
+            finally { invocation.retire(); }
+        }
+    }
+
+    /** One direct invocation owns both the synchronous boundary and its continuation. */
+    private static final class DirectInvocation implements FrameSink {
+        private Thread owner = Thread.currentThread();
+        private DirectStage nextStage;
+        private FrameSink output;
+
+        DirectInvocation(DirectStage nextStage, FrameSink output) {
+            this.nextStage = nextStage;
+            this.output = output;
+        }
+
+        @Override public void accept(Frame frame) throws Exception {
+            Thread invocationOwner = owner;
+            if (invocationOwner == null) {
+                throw new IllegalStateException("synchronous sink is no longer valid after process returns");
+            }
+            if (Thread.currentThread() != invocationOwner) {
+                throw new IllegalStateException("synchronous sink may only emit on its invocation thread; use AsyncProcessor for callbacks");
+            }
+            dispatchNext(frame);
+        }
+
+        private void dispatchNext(Frame frame) throws Exception {
+            Frame emitted = Objects.requireNonNull(frame, "emitted frame");
+            DirectStage next = nextStage;
+            if (next == null) output.accept(emitted);
+            else next.invoke(emitted, output);
+        }
+
+        void retire() {
+            // A plugin may retain this handle permanently. Detach every owned graph.
+            owner = null;
+            nextStage = null;
+            output = null;
+        }
     }
 
     void dispatchSession(int index, Frame frame, FrameSink output, BooleanSupplier valid) throws Exception {

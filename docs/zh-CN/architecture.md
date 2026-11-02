@@ -24,8 +24,14 @@ OminiCat 是用于多模态会话的 Java 17+ 微内核。内核提供调度与�
 
 | 入口 | 执行与所有权 | 成本边界 |
 | --- | --- | --- |
-| `Pipeline.process(frame, sink)` | 在调用方线程同步调用处理器。调用方串行访问并关闭处理器。已被会话接管或包含 `AsyncProcessor` 的管线拒绝直接使用。 | 没有会话 FIFO 或阶段间编解码；每次调用仍创建具有作用域的 `SynchronousSink` 和续接。 |
-| `openSession(...).trySubmit(frame)` | 有界 FIFO 为一个所有者工作线程提供任务。已接纳回调将 `(frame, generation, nextStage)` 放入同一 FIFO，由该工作线程续接下游阶段。 | 执行仍有队列锁、待处理记录、generation 检查和线程交接成本。已接纳的入队顺序决定续接顺序。 |
+| `Pipeline.process(frame, sink)` | 在调用方线程同步调用处理器。调用方串行访问有状态处理器，并负责清理。已被会话接管或包含 `AsyncProcessor` 的管线拒绝直接使用。 | 预绑定的 `DirectStage` 计划提供后继节点；每次处理器调用创建新的作用域内 `DirectInvocation`。不引入会话 FIFO 或阶段间编解码。 |
+| `openSession(...).trySubmit(frame)` | 有界 FIFO 为一个所有者工作线程提供任务。已接纳回调将 `(frame, generation, nextStage)` 放入同一 FIFO，由该工作线程续接下游阶段。 | 同步调用仍使用 `SynchronousSink` 和捕获式续接。执行仍有队列锁、待处理记录、generation 检查和线程交接成本。已接纳的入队顺序决定续接顺序。 |
+
+[![预绑定的直接阶段拓扑与逐次调用状态](../assets/previews/reports--performance-audit--direct-state-2026-11-02--structure-zh-CN.png)](../assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/structure.svg)
+
+在源码层面，构造具有 N 个阶段的非异步管线时，会创建 N 个私有不可变 `DirectStage` 节点和一个包含 N 个引用的数组。这描述拓扑结构，不是精确的物理堆对象数量。每个节点的 `processor` 和 `next` 引用均为 final；计划不保存逐次调用的帧、所属线程或输出。直接调用复用这份拓扑，同时保持调用状态独立。包含 `AsyncProcessor` 的管线跳过计划；仅通过会话使用的非异步管线仍需支付这笔组装成本。会话分发与锁机制保持不变。
+
+[配对结构实验报告](reports/performance-audit/direct-state-2026-11-02/README.md) 记录了这项取舍。在采用预建处理器桩的四阶段构造 fixture 中，管线构建的分配增加约 **136 B/op**；构建管线并进行首次直接调用的合计分配增加约 **32 B/op**。这些是在已预热 JVM 中测得的新管线成本，不是 JVM 冷启动延迟，也不是存活堆统计。评估实测稳态直接分发收益时，需要同时考虑新增的组装工作。这些不同的 fixture 无法给出精确的盈亏平衡调用次数，直接路径收益也不能证明默认会话执行变快。
 
 独立服务器使用 Netty NIO 事件循环处理传输。帧解码和连接／阶段组装发生在 I/O 回调中；正常处理器执行与输出编码发生在会话工作线程上，之后交由 Netty 写出。这是处理边界，不表示所有昂贵操作都已移出事件循环。
 
@@ -69,7 +75,9 @@ OminiCat 是用于多模态会话的 Java 17+ 微内核。内核提供调度与�
 
 对于带信封且开启观测的异步输出，包装器嵌套顺序为信封 monitor → 观测 monitor → 会话锁。观测包装器追加 journal 事件前，核心已释放自己的锁，但包装器 monitor 可能仍被持有。这是当前实现的嵌套关系，不表示任意插件调用都无锁，或总在所有锁外执行。Studio 观测需要显式启用；序号表示 journal 插入顺序，不是全局因果顺序。
 
-`SynchronousSink` 只允许在所属调用线程上输出。`process` 返回或抛出时，`finally` 路径会清除所属线程与下游委托引用。因此，即使缓存了已失效的 sink，也无法继续调用或通过它保留下游对象图。核心异步句柄则以弱引用指向所属会话。会话强引用活跃句柄，并在各操作结束时移除；已完成句柄会清除取消动作引用。信封包装器在结束时还会断开 emitter、元数据、ID 供应器与时钟引用。插件或 SDK 如果自行捕获了媒体或应用对象，仍需自行管理那些引用。
+直接路径每次新建的 `DirectInvocation` 仅持有 `owner`、`nextStage` 和 `output` 引用，只允许在所属调用线程上输出。处理器返回或抛出时，`finally` 调用 `retire()` 并清除全部三个引用。`owner == null` 表示调用已退休；所属线程仍有效时，`nextStage == null` 是合法的末端调用，会转发给输出。句柄不会池化或重新激活。无状态的直接调用可以重叠执行，不共享调用所属线程、输出或可变游标；有状态处理器仍由调用方串行访问。
+
+会话与组合包装器继续使用 `SynchronousSink`。`process` 返回或抛出时，它的 `finally` 路径会清除所属线程与下游委托引用。两种已退休的同步表示都会拒绝复用并断开下游对象图；直接路径的变化不改变会话锁或 generation 隔离。核心异步句柄则以弱引用指向所属会话。会话强引用活跃句柄，并在各操作结束时移除；已完成句柄会清除取消动作引用。信封包装器在结束时还会断开 emitter、元数据、ID 供应器与时钟引用。插件或 SDK 如果自行捕获了媒体或应用对象，仍需自行管理那些引用。
 
 ## 生命周期、取消与释放
 
@@ -104,7 +112,7 @@ Chat 可能在稍后的提供方错误发生前就已经输出文本；没有 `[
 | 契约 | 实现 | 本地可执行证据 |
 | --- | --- | --- |
 | 有界回调 → FIFO → 工作线程续接；END 与排空的区别 | [PipelineSession](../../ominicat-core/src/main/java/io/ominicat/core/PipelineSession.java)、[AsyncEmitter](../../ominicat-core/src/main/java/io/ominicat/core/AsyncEmitter.java) | [AsyncSessionTest](../../ominicat-core/src/test/java/io/ominicat/core/AsyncSessionTest.java)、[AsyncRaceStressTest](../../ominicat-core/src/test/java/io/ominicat/core/AsyncRaceStressTest.java) |
-| 调用生命周期与回调引用释放 | [SynchronousSink](../../ominicat-core/src/main/java/io/ominicat/core/SynchronousSink.java)、[EnvelopeProcessor](../../ominicat-core/src/main/java/io/ominicat/core/EnvelopeProcessor.java) | [SinkLifetimeTest](../../ominicat-core/src/test/java/io/ominicat/core/SinkLifetimeTest.java)、[RetiredCallbackRetentionTest](../../ominicat-core/src/test/java/io/ominicat/core/RetiredCallbackRetentionTest.java) |
+| 直接／会话调用生命周期与回调引用释放 | [Pipeline](../../ominicat-core/src/main/java/io/ominicat/core/Pipeline.java)、[SynchronousSink](../../ominicat-core/src/main/java/io/ominicat/core/SynchronousSink.java)、[EnvelopeProcessor](../../ominicat-core/src/main/java/io/ominicat/core/EnvelopeProcessor.java) | [DirectInvocationLifecycleTest](../../ominicat-core/src/test/java/io/ominicat/core/DirectInvocationLifecycleTest.java)、[SinkLifetimeTest](../../ominicat-core/src/test/java/io/ominicat/core/SinkLifetimeTest.java)、[RetiredCallbackRetentionTest](../../ominicat-core/src/test/java/io/ominicat/core/RetiredCallbackRetentionTest.java) |
 | 并行分支处理／重置／关闭的串行化 | [ParallelProcessor](../../ominicat-core/src/main/java/io/ominicat/core/ParallelProcessor.java) | [CompositeLifetimeTest](../../ominicat-core/src/test/java/io/ominicat/core/CompositeLifetimeTest.java) |
 | HTTP 需求量、终态顺序、取消与截止时间 | [CompatibleClient](../../ominicat-providers/src/main/java/io/ominicat/providers/CompatibleClient.java) | [PublisherInputStreamTest](../../ominicat-providers/src/test/java/io/ominicat/providers/PublisherInputStreamTest.java)、[ProviderFaultMatrixTest](../../ominicat-providers/src/test/java/io/ominicat/providers/ProviderFaultMatrixTest.java) |
 | 提供方响应体保持开启：断连释放及同一 socket 的中断恢复 | [ChatFactory](../../ominicat-providers/src/main/java/io/ominicat/providers/ChatFactory.java)、[服务器生命周期](../../ominicat-server/src/main/java/io/ominicat/server/OminiCatServer.java) | [HttpBodyCancellationTest](../../ominicat-server/src/test/java/io/ominicat/server/HttpBodyCancellationTest.java)、[SpeechFactoryTest](../../ominicat-providers/src/test/java/io/ominicat/providers/SpeechFactoryTest.java) |
@@ -144,6 +152,6 @@ Chat 可能在稍后的提供方错误发生前就已经输出文本；没有 `[
 
 ## 性能证据与图表源码
 
-[Linux 性能指南](performance.md)将这些实现机制与明确的负载、诊断范围对应起来。当前公开图表使用 [Ubuntu 和 CentOS CI 记录](reports/comparison/README.md)；测量不为单项架构选择分配因果加速比。
+[Linux 性能指南](performance.md)将这些实现机制与明确的负载、诊断范围对应起来。[Ubuntu 和 CentOS 框架比较](reports/comparison/README.md)测量各自声明的完整路径。独立的[直接状态配对实验](reports/performance-audit/direct-state-2026-11-02/README.md)在 OminiCat 内检验一项受控的表示变化，不将其解释为此前跨框架差距中的某个百分比。
 
-五张图都有可编辑的 SVG 原图，带可访问标题／描述，不依赖外部资源。文档嵌入预渲染 PNG，因此读者无需 Mermaid 或 SVG 支持；点击图表可打开矢量原图。使用 `python3 scripts/render_architecture.py` 重新生成 SVG，再用 `python3 scripts/localize_readme.py` 更新中文入口图，最后用 `python3 scripts/render_doc_previews.py` 刷新 2× PNG 预览（本地化预览需要 librsvg 和中文字体）。共享图在两份 README 与本指南间复用；中文版本沿用相同的源图几何和翻译目录。CI 校验翻译新鲜度、源图／预览哈希及图片链接。[图表源码](../../scripts/render_architecture.py) · [预览导出器](../../scripts/render_doc_previews.py) · [翻译维护](i18n/README.md)。
+五张通用架构图都有可编辑的 SVG 原图，带可访问标题／描述，不依赖外部资源。文档嵌入预渲染 PNG，因此读者无需 Mermaid 或 SVG 支持；点击图表可打开矢量原图。使用 `python3 scripts/render_architecture.py` 重新生成这些 SVG；独立且绑定源码的直接状态图使用[该实验的渲染器](../../comparison/render_direct_state.py)。再用 `python3 scripts/localize_readme.py` 更新中文入口图，最后用 `python3 scripts/render_doc_previews.py` 刷新 2× PNG 预览（本地化预览需要 librsvg 和中文字体）。共享图在两份 README 与本指南间复用；中文版本沿用相同的源图几何和翻译目录。CI 校验翻译新鲜度、源图／预览哈希及图片链接。[图表源码](../../scripts/render_architecture.py) · [预览导出器](../../scripts/render_doc_previews.py) · [翻译维护](i18n/README.md)。

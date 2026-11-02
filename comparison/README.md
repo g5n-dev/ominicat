@@ -64,7 +64,7 @@ Java JFR covers the whole diagnostic process, including startup and warmup. Pipe
 
 ## Linux CI
 
-The [comparison workflow](../.github/workflows/framework-comparison.yml) runs automatically on pull requests and protected-main pushes that change the kernel, comparison tooling or its build/workflow inputs. It also supports manual dispatch. Each target runs the complete **45-process matrix**, then separate JFR/cProfile diagnostics, report validation and allowlisted publication.
+The [comparison workflow](../.github/workflows/framework-comparison.yml) uses manual dispatch only to control CI cost. Reuse the source-bound archive for documentation changes; collect again when a relevant runtime, harness or workload change needs new evidence. Each target runs the complete **45-process matrix**, then separate JFR/cProfile diagnostics, report validation and allowlisted publication.
 
 | Target | Java / Python | Execution environment |
 | --- | --- | --- |

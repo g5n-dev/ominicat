@@ -33,7 +33,7 @@ def events():
             'sumOfPauses': 'PT0.001S', 'gcId': 1, 'name': 'Synthetic GC', 'cause': 'synthetic fixture'}}]}}
 
 
-def fixture(folder):
+def fixture(folder, version=profiles.PROTOCOL):
     """Make complete synthetic archives, exercising the real measurement checker too."""
     measured, suite = measurement_fixture.fixture(folder / 'measurements')
     files = measured['sourceFingerprint']['files']
@@ -52,9 +52,9 @@ def fixture(folder):
         with redirect_stdout(io.StringIO()):
             profiles.publish_case(directory, case, measured, raw_manifest, tools,
                 {key: profiles.digest(('synthetic ' + key).encode())
-                 for key in ('recording', 'settings', 'jmhResult', 'jmhLog')}, '2026-11-02T00:00:00Z')
+                 for key in ('recording', 'settings', 'jmhResult', 'jmhLog')}, '2026-11-02T00:00:00Z', version)
         (directory / 'jfr-events.json').unlink()
-    profiles.write_json(diagnostics / 'manifest.json', profiles.manifest_for(measured, raw_manifest, tools))
+    profiles.write_json(diagnostics / 'manifest.json', profiles.manifest_for(measured, raw_manifest, tools, version))
     reindex(folder)
     return measured
 
@@ -91,12 +91,95 @@ class MechanismProfilesTest(unittest.TestCase):
         self.assertEqual(settings['recordingStackDepth'], 64)
         self.assertEqual(settings['exportStackDepth'], 64)
         self.assertEqual(settings['selectedEvents'], sorted(profiles.guard.EVENTS))
+        self.assertEqual(settings['allocationThrottle'], '50/s')
+        self.assertIn('50 events/second', profiles.SCOPE)
         self.assertEqual(profiles.MAX_SELECTED_BYTES, 128 * 1024 ** 2)
         command = profiles.configuration_command('synthetic-jfr', 'reports/local/synthetic/safe.jfc')
         self.assertEqual(command, ['synthetic-jfr', 'configure', '--input', 'profile.jfc', '--output',
                          'reports/local/synthetic/safe.jfc']
                          + [event + '#enabled=false' for event in profiles.DISABLED]
-                         + ['jdk.ExecutionSample#period=10ms'])
+                         + ['jdk.ExecutionSample#period=10ms', 'jdk.ObjectAllocationSample#throttle=50/s'])
+
+    def test_legacy_and_current_profiles_are_explicit_and_small_complete_archives_both_validate(self):
+        self.assertEqual(profiles.LEGACY_PROTOCOL, 'ominicat-camel-mechanism-profiles-v1')
+        self.assertEqual(profiles.PROTOCOL, 'ominicat-camel-mechanism-profiles-v2')
+        old = profiles.settings(profiles.LEGACY_PROTOCOL)
+        self.assertEqual(old['allocationSampling'], 'profile.jfc defaults')
+        self.assertNotIn('allocationThrottle', old)
+        self.assertNotIn('ObjectAllocationSample#throttle', ' '.join(
+            profiles.configuration_command('jfr', 'synthetic.jfc', profiles.LEGACY_PROTOCOL)))
+        for version in (profiles.LEGACY_PROTOCOL, profiles.PROTOCOL):
+            with self.subTest(version=version), tempfile.TemporaryDirectory() as temporary:
+                folder = Path(temporary) / 'evidence'
+                fixture(folder, version)
+                result = profiles.check(folder)
+                self.assertEqual(result['protocol'], version)
+                self.assertEqual(result['settings'], profiles.settings(version))
+                self.assertEqual(result['scope'], profiles.profile_for_version(version)['scope'])
+
+    def test_real_published_v1_metadata_hashes_scopes_and_figures_are_compatible_without_reparsing_large_events(self):
+        # Event decoding is independently covered by the small v1/v2 archives.
+        # This check reads the actual immutable archive and every file hash, but
+        # substitutes its recorded compact summary to avoid repeatedly parsing
+        # hundreds of megabytes in every source-hygiene run. Root also runs the
+        # full, unmocked historical archive checker before publication.
+        folder = HERE.parents[1] / 'reports/mechanisms/java17-2026-11-02/evidence'
+        recorded = profiles.read_json(folder / 'diagnostics/manifest.json')
+        self.assertEqual(recorded['protocol'], profiles.LEGACY_PROTOCOL)
+        self.assertEqual(recorded['settings'], profiles.settings(profiles.LEGACY_PROTOCOL))
+        self.assertEqual(recorded['scope'], profiles.LEGACY_SCOPE)
+        before = profiles.read_bytes(folder / 'evidence-index.json')
+        versions = []
+        def recorded_summary(path, version):
+            versions.append(version)
+            return profiles.read_json(path.parent / 'jfr-hotspots.json')
+        with mock.patch.object(profiles, 'selected_events', side_effect=recorded_summary):
+            self.assertEqual(profiles.check(folder), recorded)
+        self.assertEqual(versions, [profiles.LEGACY_PROTOCOL] * 5)
+        self.assertEqual(profiles.read_bytes(folder / 'evidence-index.json'), before)
+
+    def test_unknown_protocols_types_and_cross_version_metadata_fail_closed(self):
+        for invalid in ('ominicat-camel-mechanism-profiles-v3', 'v2', '', None, 2, True, [], {}):
+            with self.subTest(invalid=invalid):
+                with self.assertRaises(ValueError): profiles.profile_for_version(invalid)
+                with self.assertRaises(ValueError): profiles.settings(invalid)
+        for target in ('manifest', 'index', 'context', 'load', 'summary', 'report', 'validation'):
+            with self.subTest(target=target), tempfile.TemporaryDirectory() as temporary:
+                folder = Path(temporary) / 'evidence'
+                fixture(folder)
+                directory = folder / 'diagnostics/ominicat-caller'
+                if target == 'manifest':
+                    rewrite_json(folder / 'diagnostics/manifest.json', lambda d: d.update(protocol='unknown-version'))
+                    profiles.write_json(folder / 'evidence-index.json', profiles.index_for(folder, profiles.PROTOCOL))
+                elif target == 'index':
+                    rewrite_json(folder / 'evidence-index.json', lambda d: d.update(protocol=profiles.LEGACY_PROTOCOL))
+                else:
+                    if target == 'context':
+                        rewrite_json(directory / 'diagnostic-context.json', lambda d: d.update(protocol=profiles.LEGACY_PROTOCOL))
+                    elif target == 'load':
+                        rewrite_json(directory / 'load.json', lambda d: d.update(kind=profiles.LEGACY_PROTOCOL))
+                    elif target == 'summary':
+                        rewrite_json(directory / 'jfr-hotspots.json', lambda d: d.update(scope=profiles.LEGACY_SCOPE))
+                    elif target == 'report':
+                        (directory / 'report.md').write_text(profiles.report_text(profiles.cases()[0], profiles.LEGACY_PROTOCOL))
+                    else:
+                        rewrite_json(directory / 'validation.json', lambda d: d.update(jmhSettingsValidated=profiles.settings(profiles.LEGACY_PROTOCOL)))
+                    reindex(folder)
+                with self.assertRaises(ValueError): profiles.check(folder)
+
+    def test_selected_event_helper_default_is_still_single_argument_and_versions_change_only_scope(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / 'events.gz'
+            path.write_bytes(gzip.compress(json.dumps(events()).encode()))
+            current = profiles.selected_events(path)
+            old = profiles.selected_events(path, profiles.LEGACY_PROTOCOL)
+            self.assertEqual(current.pop('scope'), profiles.SCOPE)
+            self.assertEqual(old.pop('scope'), profiles.LEGACY_SCOPE)
+            self.assertEqual(current, old)
+            for invalid in (None, 1, 'unknown-version'):
+                with self.assertRaises(ValueError): profiles.selected_events(path, invalid)
+            path.write_bytes(b'\x1f\x8b\x08\x00' + b'\x00' * 6 + b'\xff' * 10)
+            with self.assertRaises(ValueError): profiles.selected_events(path)
 
     def test_tool_output_limit_reports_only_safe_numeric_stdout_stderr_and_fixed_case(self):
         with tempfile.TemporaryDirectory() as temporary:
@@ -243,7 +326,9 @@ class MechanismProfilesTest(unittest.TestCase):
             with self.subTest(name=name), tempfile.TemporaryDirectory() as temporary:
                 folder = Path(temporary) / 'evidence'
                 fixture(folder)
-                with (folder / name).open('ab') as destination: destination.write(b' altered')
+                # Keep JSON/SVG syntactically valid so this specifically proves
+                # byte binding rather than only a parser failure.
+                with (folder / name).open('ab') as destination: destination.write(b'\n')
                 with self.assertRaisesRegex(ValueError, 'hash mismatch'): profiles.check(folder)
 
     def test_rehashed_metadata_cannot_change_artifact_scope_or_completeness(self):
@@ -252,6 +337,7 @@ class MechanismProfilesTest(unittest.TestCase):
             'measurement-manifest': lambda data: data.update(measurementManifestSha256='b' * 64),
             'source': lambda data: data.update(profilerSourceSha256='b' * 64),
             'settings': lambda data: data['settings'].update(forks=1),
+            'allocation-throttle': lambda data: data['settings'].update(allocationThrottle='150/s'),
             'headline': lambda data: data.update(headlineEligible=True),
             'boolean-schema': lambda data: data.update(schemaVersion=True),
             'missing-case': lambda data: data['cases'].pop(),

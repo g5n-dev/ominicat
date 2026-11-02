@@ -1,0 +1,175 @@
+{
+  "schemaVersion": 1,
+  "protocol": "ominicat-direct-state-diagnostics-v1",
+  "status": "complete",
+  "recordedAt": "2026-11-02T05:31:57.119646+00:00",
+  "case": {
+    "id": "baseline-raw-direct-4",
+    "side": "baseline",
+    "scenario": "raw-direct-4"
+  },
+  "scope": "Independent instrumented Java 17 JMH diagnostic JVM, including startup, setup, two 1-second warmups, two 1-second measurements, harness and teardown. No phase filtering. CPU sampling requests 10ms; allocation sampling is throttled to 50 events/second; recording and export retain up to 64 frames. This is not main timing evidence, per-operation allocation, retained heap, method duration, p99 latency, RSS or production capacity.",
+  "instrumented": true,
+  "headlineEligible": false,
+  "bindings": {
+    "measurementManifestSha256": "9b28c13cd59347d73849fd2c0f1b78e6b638b721b04df307dd282b4b0a3c79fb",
+    "artifactSha256": {
+      "baseline": "c662ff8d90a828c4dbc45f72b3fb3353f36596d7f36532621a8e07aa55a9df97",
+      "candidate": "2c37a53ebab8f41f0d2d332de159e9f9312ddf9cb2ee18527f697e263143efe5",
+      "probe": "2507e0b4ac810134df265ac962e17602f886a351332c1821fe5f1516d40e09ce"
+    },
+    "sourceAggregateSha256": {
+      "baseline": "0a53528ab1131529222f50ebbf085549e024b38e382ec808c61dd3b531234d9b",
+      "candidate": "877456c462c4fa39e5a579e479e0915617abfd800f18a8ed78412c087f319b45",
+      "probe": "a7e7ca0313ce2a1c72f0008abe258848bc95fa970f673f2323ea7ce357e3c207"
+    }
+  },
+  "settings": {
+    "jmhVersion": "1.37",
+    "mode": "avgt",
+    "threads": 1,
+    "forks": 0,
+    "warmupIterations": 2,
+    "measurementIterations": 2,
+    "warmupTime": "1 s",
+    "measurementTime": "1 s",
+    "warmupBatchSize": 1,
+    "measurementBatchSize": 1,
+    "heapArgs": [
+      "-Xms256m",
+      "-Xmx256m"
+    ],
+    "profilers": [
+      "gc"
+    ],
+    "executionSamplePeriod": "10ms",
+    "allocationThrottle": "50/s",
+    "recordingStackDepth": 64,
+    "exportStackDepth": 64,
+    "selectedJsonMaxBytes": 134217728,
+    "selectedEvents": [
+      "jdk.ExecutionSample",
+      "jdk.GarbageCollection",
+      "jdk.JavaMonitorEnter",
+      "jdk.ObjectAllocationSample",
+      "jdk.VirtualThreadPinned"
+    ],
+    "disabledEvents": [
+      "jdk.InitialEnvironmentVariable",
+      "jdk.InitialSystemProperty",
+      "jdk.InitialSecurityProperty",
+      "jdk.SecurityPropertyModification",
+      "jdk.SystemProcess",
+      "jdk.ProcessStart",
+      "jdk.OSInformation",
+      "jdk.JVMInformation"
+    ]
+  },
+  "toolSha256": {
+    "comparison/direct_state_profiles.py": "a3bbef25aab81ef2d19d5b1e879aff75a34dfbad742a28ee94fe582bfd79d4a6",
+    "comparison/direct_state_evidence.py": "1c1b093380a9ec8ee21d087b055350e94aff2b067c8e1937e64967fb6870a687",
+    "comparison/mechanism_profiles.py": "dda6124d1a60d56aa3a2617cb2c4ac894171cfb2167817de300abf71951b74bc",
+    "comparison/mechanism_evidence.py": "b3ebe4c6b21df8d99834293bb2e5b2cb78d4b9a4bfa8c549840d3b59a73af10c",
+    "scripts/summarize_profiles.py": "3deb3c444b94b13f2ed84c9d0542738be2bba70dcd7c94cd3c6d6a10a9d3be9e",
+    "scripts/package_profiles.py": "2cd1f03e99f0f4232c4a0c086bd52f5036434ec93a687e92fcf349aa2a99ee25"
+  },
+  "eventSummary": {
+    "schemaVersion": 1,
+    "scope": "Independent instrumented Java 17 JMH diagnostic JVM, including startup, setup, two 1-second warmups, two 1-second measurements, harness and teardown. No phase filtering. CPU sampling requests 10ms; allocation sampling is throttled to 50 events/second; recording and export retain up to 64 frames. This is not main timing evidence, per-operation allocation, retained heap, method duration, p99 latency, RSS or production capacity.",
+    "selectedEventCounts": {
+      "jdk.ExecutionSample": 339,
+      "jdk.GarbageCollection": 151,
+      "jdk.ObjectAllocationSample": 216
+    },
+    "cpuLeafSamples": [
+      {
+        "method": "io.ominicat.core.Pipeline.lambda$dispatch$1",
+        "samples": 132
+      },
+      {
+        "method": "io.ominicat.benchmarks.DirectStateProbe$Harness.expected",
+        "samples": 97
+      },
+      {
+        "method": "io.ominicat.benchmarks.DirectStateProbe$Harness.invoke",
+        "samples": 66
+      },
+      {
+        "method": "io.ominicat.core.Pipeline.process",
+        "samples": 24
+      },
+      {
+        "method": "io.ominicat.benchmarks.DirectStateProbe$Harness$$Lambda$125+0x00007fe1c0094a28.1669521372.accept",
+        "samples": 15
+      },
+      {
+        "method": "io.ominicat.benchmarks.DirectStateProbe.invoke",
+        "samples": 4
+      },
+      {
+        "method": "io.ominicat.benchmarks.jmh_generated.DirectStateProbe_invoke_jmhTest.invoke_avgt_jmhStub",
+        "samples": 1
+      }
+    ],
+    "allocationClassWeights": [
+      {
+        "class": "io.ominicat.benchmarks.DirectStateProbe$Value",
+        "bytes": 12219258984
+      },
+      {
+        "class": "io.ominicat.core.Pipeline$$Lambda$131+0x00007fe1c0095978.1682136925",
+        "bytes": 8564856800
+      },
+      {
+        "class": "io.ominicat.core.SynchronousSink",
+        "bytes": 3193508608
+      },
+      {
+        "class": "[Ljava.util.concurrent.ConcurrentHashMap$Node;",
+        "bytes": 19994104
+      },
+      {
+        "class": "[B",
+        "bytes": 4475280
+      },
+      {
+        "class": "java.lang.NoSuchFieldException",
+        "bytes": 409976
+      },
+      {
+        "class": "java.lang.String",
+        "bytes": 358888
+      },
+      {
+        "class": "jdk.internal.org.objectweb.asm.SymbolTable$Entry",
+        "bytes": 226880
+      },
+      {
+        "class": "[Ljava.lang.Object;",
+        "bytes": 207016
+      },
+      {
+        "class": "java.net.URL",
+        "bytes": 182912
+      },
+      {
+        "class": "java.util.concurrent.ConcurrentHashMap$ForwardingNode",
+        "bytes": 177896
+      },
+      {
+        "class": "java.lang.invoke.MethodType",
+        "bytes": 32
+      }
+    ],
+    "sampledAllocationWeightBytes": 24003657376,
+    "gcCollectionCount": 151,
+    "gcPauseSumMillis": 92.860925,
+    "maxCollectionPauseSumMillis": 5.206454999999999
+  },
+  "rawSha256": {
+    "recording": "ca0f1c291f07249353cb123ab03622c36ad0292f1258f9dd5a7d99609fd6a7cf",
+    "settings": "f22bb321cbfe767740bfe78927faa64cec4f09096d851269d6a15023c7bf62f1",
+    "jmhResult": "c156b2dce27498c86176c65f231e4c6e810068288561368a5fb616e4b185b633",
+    "jmhLog": "42846935d0290dd7d2e23940472d417e1ecb0b4cd59b127876ed1fa90e70e023"
+  }
+}

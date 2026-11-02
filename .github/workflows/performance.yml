@@ -1,13 +1,11 @@
 name: Performance evidence
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '23 1 * * 1'
 permissions:
   contents: read
 concurrency:
   group: performance-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   profile:
     runs-on: ubuntu-latest

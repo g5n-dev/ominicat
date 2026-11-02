@@ -19,6 +19,7 @@ import subprocess
 import sys
 import time
 import xml.etree.ElementTree as ET
+import zlib
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'comparison'))
@@ -27,7 +28,8 @@ import mechanism_evidence as measurement
 import package_profiles as guard
 import summarize_profiles as renderer
 
-PROTOCOL = 'ominicat-camel-mechanism-profiles-v1'
+LEGACY_PROTOCOL = 'ominicat-camel-mechanism-profiles-v1'
+PROTOCOL = 'ominicat-camel-mechanism-profiles-v2'
 PROFILER_SOURCE = 'comparison/mechanisms/src/main/java/io/ominicat/mechanisms/ProcessCpuProfiler.java'
 TOOLS = ('comparison/mechanism_profiles.py', 'comparison/mechanism_evidence.py',
          'scripts/summarize_profiles.py', 'scripts/package_profiles.py')
@@ -42,13 +44,15 @@ ANNOTATION_HEAP_ARGS = ('-Xms256m', '-Xmx256m')
 EXECUTION_SAMPLE_PERIOD = '10ms'
 MAX_BYTES = 16 * 1024 * 1024
 MAX_SELECTED_BYTES = 128 * 1024 * 1024
-SCOPE = ('Separate instrumented Java 17 JMH diagnostic JVM: whole recording includes '
+LEGACY_SCOPE = ('Separate instrumented Java 17 JMH diagnostic JVM: whole recording includes '
          'JVM/framework startup, setup, two 1-second warmup iterations, two 1-second '
          'measurement iterations, harness and teardown. No phase filtering. '
          'CPU execution sampling requests a 10ms period; allocation uses profile.jfc defaults. '
          'Recording and exported stacks retain up to 64 frames. '
          'These are not headline timings, framework-exclusive CPU, retained heap, '
          'exact object counts, p99 latency or RSS measurements.')
+SCOPE = LEGACY_SCOPE.replace('allocation uses profile.jfc defaults.',
+                             'allocation sampling is explicitly throttled to 50 events/second.')
 OLD_SCOPE = ('Generated from the selected JFR events for the bounded kernel load. Samples include the load harness '
              'and warmup; they are not a model or network profile.')
 OLD_ALLOCATION = ('Weights estimate sampled allocation distribution, not retained heap or exact object counts. '
@@ -119,8 +123,16 @@ def cases():
     return [case for case in measurement.cases() if case['id'] != 'identity']
 
 
-def settings():
-    return {'jmhVersion': '1.37', 'mode': 'avgt', 'unit': 'ns/op', 'threads': 1,
+def profile_for_version(version):
+    require(type(version) is str and version in (LEGACY_PROTOCOL, PROTOCOL),
+            'unsupported diagnostic protocol version')
+    return {'protocol': version, 'scope': LEGACY_SCOPE if version == LEGACY_PROTOCOL else SCOPE,
+            'allocationThrottle': None if version == LEGACY_PROTOCOL else '50/s'}
+
+
+def settings(version=PROTOCOL):
+    profile = profile_for_version(version)
+    result = {'jmhVersion': '1.37', 'mode': 'avgt', 'unit': 'ns/op', 'threads': 1,
             'forks': 0, 'warmupIterations': 2, 'measurementIterations': 2,
             'warmupTime': '1 s', 'measurementTime': '1 s', 'warmupBatchSize': 1,
             'measurementBatchSize': 1, 'fixedApplicationStages': 4,
@@ -133,6 +145,10 @@ def settings():
             'jvmArgsScope': 'The collector starts one JVM with five explicit parent options. '
                            'JMH -f 0 reports those options followed by the two @Fork heap annotation '
                            'values as metadata; no child JVM is started.'}
+    if profile['allocationThrottle'] is not None:
+        result['allocationSampling'] = 'explicit throttle'
+        result['allocationThrottle'] = profile['allocationThrottle']
+    return result
 
 
 def read_bytes(path, limit=MAX_BYTES):
@@ -146,12 +162,13 @@ def read_json(path):
     return guard.parse_json('diagnostic JSON', guard.privacy_check('diagnostic JSON', read_bytes(path)))
 
 
-def selected_events(path):
+def selected_events(path, version=PROTOCOL):
+    profile = profile_for_version(version)
     packed = read_bytes(path)
     try:
         with gzip.GzipFile(fileobj=io.BytesIO(packed)) as stream:
             raw = stream.read(MAX_SELECTED_BYTES + 1)
-    except (OSError, EOFError):
+    except (OSError, EOFError, zlib.error):
         raise ValueError('invalid selected-event gzip') from None
     require(0 < len(raw) <= MAX_SELECTED_BYTES, 'selected-event export exceeds bound')
     payload = guard.parse_json('selected JFR events', guard.privacy_check('selected JFR events', raw))
@@ -196,7 +213,7 @@ def selected_events(path):
             pauses.append(guard.pause_ms(values.get('sumOfPauses')))
     require(counts['jdk.ExecutionSample'] > 0 and sum(allocations.values()) > 0,
             'CPU and positive-weight allocation samples are required')
-    summary = {'schemaVersion': 1, 'scope': SCOPE,
+    summary = {'schemaVersion': 1, 'scope': profile['scope'],
                'selectedEventCounts': dict(sorted(counts.items())),
                'cpuLeafSamples': [{'method': name, 'samples': value} for name, value in leaves.most_common(20)],
                'allocationClassWeights': [{'class': name, 'bytes': value} for name, value in allocations.most_common(20)],
@@ -207,21 +224,24 @@ def selected_events(path):
     return summary
 
 
-def replace_renderer_scope(text):
+def replace_renderer_scope(text, version=PROTOCOL):
+    profile = profile_for_version(version)
     require(text.count(OLD_SCOPE) == 1 and text.count(OLD_ALLOCATION) == 1,
             'profile renderer wording changed; review scope before publishing')
-    return text.replace(OLD_SCOPE, SCOPE).replace(OLD_ALLOCATION, NEW_ALLOCATION).replace(
+    return text.replace(OLD_SCOPE, profile['scope']).replace(OLD_ALLOCATION, NEW_ALLOCATION).replace(
         'not the measured-load start', 'not the JMH measurement start').replace(
         '[measurement report](report.md)', '[diagnostic report](report.md)')
 
 
-def load_context(case, java):
-    return {'schemaVersion': 1, 'kind': PROTOCOL, 'case': case, 'instrumented': True,
-            'headlineEligible': False, 'scope': SCOPE, 'environment': {'javaVersion': java['version']}}
+def load_context(case, java, version=PROTOCOL):
+    profile = profile_for_version(version)
+    return {'schemaVersion': 1, 'kind': version, 'case': case, 'instrumented': True,
+            'headlineEligible': False, 'scope': profile['scope'], 'environment': {'javaVersion': java['version']}}
 
 
-def report_text(case):
-    return ('# Separate mechanism diagnostic: ' + case['id'] + '\n\n' + SCOPE + '\n\n'
+def report_text(case, version=PROTOCOL):
+    profile = profile_for_version(version)
+    return ('# Separate mechanism diagnostic: ' + case['id'] + '\n\n' + profile['scope'] + '\n\n'
             'This is one independent `-f 0` diagnostic JVM, not either of the two fresh measurement forks. '
             'The identity copy control is measured in the main matrix but intentionally not profiled here. '
             'CPU stacks cover all JVM threads; allocation weights are sampled allocated-byte weights. '
@@ -244,10 +264,11 @@ def binding(measured, manifest_bytes):
             'profilerSourceSha256': measured['sourceFingerprint']['files'][PROFILER_SOURCE]}
 
 
-def manifest_for(measured, manifest_bytes, tools):
-    return {'schemaVersion': 1, 'protocol': PROTOCOL, 'status': 'complete', 'instrumented': True,
-            'headlineEligible': False, 'scope': SCOPE, **binding(measured, manifest_bytes),
-            'toolSha256': tools, 'environment': measured['environment'], 'settings': settings(), 'cases': cases()}
+def manifest_for(measured, manifest_bytes, tools, version=PROTOCOL):
+    profile = profile_for_version(version)
+    return {'schemaVersion': 1, 'protocol': version, 'status': 'complete', 'instrumented': True,
+            'headlineEligible': False, 'scope': profile['scope'], **binding(measured, manifest_bytes),
+            'toolSha256': tools, 'environment': measured['environment'], 'settings': settings(version), 'cases': cases()}
 
 
 def allowed_files():
@@ -272,9 +293,12 @@ def inventory(folder):
     require(found == allowed, 'incomplete evidence file inventory')
 
 
-def index_for(folder):
+def index_for(folder, version=None):
+    if version is None:
+        version = read_json(folder / 'diagnostics/manifest.json').get('protocol')
+    profile_for_version(version)
     files = {name: digest(read_bytes(folder / name)) for name in sorted(allowed_files() - {'evidence-index.json'})}
-    return {'schemaVersion': 1, 'protocol': PROTOCOL, 'status': 'complete', 'files': files}
+    return {'schemaVersion': 1, 'protocol': version, 'status': 'complete', 'files': files}
 
 
 def validate_svg(path):
@@ -300,16 +324,19 @@ def validate_svg(path):
 def check(folder):
     folder = Path(folder)
     inventory(folder)
+    manifest = read_json(folder / 'diagnostics/manifest.json')
+    require(isinstance(manifest, dict), 'invalid diagnostic manifest')
+    version = manifest.get('protocol')
+    profile = profile_for_version(version)
     index = read_json(folder / 'evidence-index.json')
-    require(canonical(index) == canonical(index_for(folder)), 'evidence index or file hash mismatch')
+    require(canonical(index) == canonical(index_for(folder, version)), 'evidence index or file hash mismatch')
     measured, _ = measurement.check(folder / 'measurements')
     manifest_bytes = read_bytes(folder / 'measurements/manifest.json')
-    manifest = read_json(folder / 'diagnostics/manifest.json')
     tools = manifest.get('toolSha256') if isinstance(manifest, dict) else None
     require(isinstance(tools, dict) and set(tools) == set(TOOLS)
             and all(isinstance(value, str) and measurement.SHA.fullmatch(value) for value in tools.values()),
             'missing or invalid diagnostic tool hashes')
-    require(canonical(manifest) == canonical(manifest_for(measured, manifest_bytes, tools)),
+    require(canonical(manifest) == canonical(manifest_for(measured, manifest_bytes, tools, version)),
             'diagnostic manifest binding mismatch')
     for case in cases():
         directory = folder / 'diagnostics' / case['id']
@@ -319,11 +346,11 @@ def check(folder):
                     'rawSha256', 'eventSummary'}
         require(isinstance(context, dict) and set(context) == expected, 'unexpected diagnostic context fields')
         require(context['schemaVersion'] == 1 and type(context['schemaVersion']) is int
-                and context['protocol'] == PROTOCOL and context['status'] == 'complete'
+                and context['protocol'] == version and context['status'] == 'complete'
                 and context['instrumented'] is True and context['headlineEligible'] is False
-                and context['scope'] == SCOPE and context['case'] == case
+                and context['scope'] == profile['scope'] and context['case'] == case
                 and context['bindings'] == binding(measured, manifest_bytes)
-                and context['toolSha256'] == tools and canonical(context['settings']) == canonical(settings()),
+                and context['toolSha256'] == tools and canonical(context['settings']) == canonical(settings(version)),
                 'diagnostic case or context binding mismatch')
         try:
             instant = datetime.fromisoformat(context['recordedAt'].replace('Z', '+00:00'))
@@ -335,18 +362,18 @@ def check(folder):
         require(isinstance(hashes, dict) and set(hashes) == {'recording', 'settings', 'jmhResult', 'jmhLog'}
                 and all(isinstance(value, str) and measurement.SHA.fullmatch(value) for value in hashes.values()),
                 'missing private diagnostic fingerprints')
-        summary = selected_events(directory / 'jfr-events.json.gz')
+        summary = selected_events(directory / 'jfr-events.json.gz', version)
         require(canonical(context['eventSummary']) == canonical(summary)
                 and canonical(read_json(directory / 'jfr-hotspots.json')) == canonical(summary),
                 'event summaries disagree with selected events')
-        require(canonical(read_json(directory / 'load.json')) == canonical(load_context(case, measured['environment']['java'])),
+        require(canonical(read_json(directory / 'load.json')) == canonical(load_context(case, measured['environment']['java'], version)),
                 'unexpected renderer context')
-        require(canonical(read_json(directory / 'validation.json')) == canonical(validation_for(case, measured['environment']['java'])),
+        require(canonical(read_json(directory / 'validation.json')) == canonical(validation_for(case, measured['environment']['java'], version)),
                 'incomplete diagnostic validation')
-        require(guard.privacy_check('diagnostic report', read_bytes(directory / 'report.md')) == report_text(case),
+        require(guard.privacy_check('diagnostic report', read_bytes(directory / 'report.md')) == report_text(case, version),
                 'diagnostic report scope mismatch')
         text = guard.privacy_check('profile Markdown', read_bytes(directory / 'profiles.md'))
-        require(SCOPE in text and NEW_ALLOCATION in text and OLD_SCOPE not in text and OLD_ALLOCATION not in text,
+        require(profile['scope'] in text and NEW_ALLOCATION in text and OLD_SCOPE not in text and OLD_ALLOCATION not in text,
                 'stale kernel profile scope')
         for name in SVG_FILES:
             require('(' + name + ')' in text, 'missing profile figure link')
@@ -354,22 +381,24 @@ def check(folder):
     return manifest
 
 
-def validation_for(case, java):
+def validation_for(case, java, version=PROTOCOL):
+    profile = profile_for_version(version)
     return {'schemaVersion': 1, 'status': 'complete', 'case': case, 'instrumented': True,
             'headlineEligible': False, 'originValidatedExactlyOnce': True, 'runtime': java,
-            'jmhSettingsValidated': settings(), 'metrics': sorted(measurement.METRICS),
-            'iterationsPerMetric': 2, 'scope': SCOPE}
+            'jmhSettingsValidated': settings(version), 'metrics': sorted(measurement.METRICS),
+            'iterationsPerMetric': 2, 'scope': profile['scope']}
 
 
-def validate_result(data, case, java, jvm_args, log, jar_sha):
+def validate_result(data, case, java, jvm_args, log, jar_sha, version=PROTOCOL):
     """Validate the private JMH output without publishing its instrumented timings."""
     require(isinstance(data, list) and len(data) == 1 and isinstance(data[0], dict), 'expected one diagnostic JMH case')
     result = data[0]
+    expected = settings(version)
     require(result.get('benchmark') == case['benchmark'] and result.get('params') == case['params'],
             'diagnostic JMH case mismatch')
     for key in ('jmhVersion', 'mode', 'threads', 'warmupIterations', 'measurementIterations',
                 'warmupTime', 'measurementTime', 'warmupBatchSize', 'measurementBatchSize', 'forks'):
-        require(type(result.get(key)) is type(settings()[key]) and result[key] == settings()[key],
+        require(type(result.get(key)) is type(expected[key]) and result[key] == expected[key],
                 'diagnostic JMH settings mismatch')
     # JMH 1.37 combines current-process arguments with @Fork jvmArgsAppend in
     # result metadata even in non-forked mode. The actual process receives only
@@ -389,24 +418,25 @@ def validate_result(data, case, java, jvm_args, log, jar_sha):
                 'incomplete diagnostic iteration data')
         values = [measurement.number(value, name, positive=name == 'timeNsPerOp') for value in raw[0]]
         require(abs(score - sum(values) / 2) <= max(1e-6, abs(score) * 1e-6), 'diagnostic metric mean mismatch')
-    return validation_for(case, java)
+    return validation_for(case, java, version)
 
 
-def publish_case(directory, case, measured, manifest_bytes, tools, raw_hashes, recorded_at):
+def publish_case(directory, case, measured, manifest_bytes, tools, raw_hashes, recorded_at, version=PROTOCOL):
     """Finish a private render directory; callers copy only CASE_FILES afterward."""
-    write_json(directory / 'load.json', load_context(case, measured['environment']['java']))
+    profile = profile_for_version(version)
+    write_json(directory / 'load.json', load_context(case, measured['environment']['java'], version))
     renderer.main(directory)
     profiles = directory / 'profiles.md'
-    profiles.write_text(replace_renderer_scope(profiles.read_text(encoding='utf-8')), encoding='utf-8')
-    summary = selected_events(directory / 'jfr-events.json.gz')
+    profiles.write_text(replace_renderer_scope(profiles.read_text(encoding='utf-8'), version), encoding='utf-8')
+    summary = selected_events(directory / 'jfr-events.json.gz', version)
     write_json(directory / 'jfr-hotspots.json', summary)
     write_json(directory / 'diagnostic-context.json', {
-        'schemaVersion': 1, 'protocol': PROTOCOL, 'status': 'complete', 'recordedAt': recorded_at,
-        'case': case, 'scope': SCOPE, 'instrumented': True, 'headlineEligible': False,
+        'schemaVersion': 1, 'protocol': version, 'status': 'complete', 'recordedAt': recorded_at,
+        'case': case, 'scope': profile['scope'], 'instrumented': True, 'headlineEligible': False,
         'bindings': binding(measured, manifest_bytes), 'toolSha256': tools,
-        'settings': settings(), 'rawSha256': raw_hashes, 'eventSummary': summary})
-    write_json(directory / 'validation.json', validation_for(case, measured['environment']['java']))
-    (directory / 'report.md').write_text(report_text(case), encoding='utf-8')
+        'settings': settings(version), 'rawSha256': raw_hashes, 'eventSummary': summary})
+    write_json(directory / 'validation.json', validation_for(case, measured['environment']['java'], version))
+    (directory / 'report.md').write_text(report_text(case, version), encoding='utf-8')
 
 
 def command_to_file(command, root, output, error, timeout=60):
@@ -433,10 +463,14 @@ def check_tool_sizes(output, error):
         raise ToolOutputLimitError(stdout_bytes, stderr_bytes)
 
 
-def configuration_command(jfr, config):
-    return [str(jfr), 'configure', '--input', 'profile.jfc', '--output', str(config)] + [
+def configuration_command(jfr, config, version=PROTOCOL):
+    profile = profile_for_version(version)
+    command = [str(jfr), 'configure', '--input', 'profile.jfc', '--output', str(config)] + [
         event + '#enabled=false' for event in DISABLED] + [
         'jdk.ExecutionSample#period=' + EXECUTION_SAMPLE_PERIOD]
+    if profile['allocationThrottle'] is not None:
+        command.append('jdk.ObjectAllocationSample#throttle=' + profile['allocationThrottle'])
+    return command
 
 
 def collect(root, output):

@@ -107,12 +107,26 @@ The inline cell summaries are **66.34 / 1,122.60 ns/op** and **368 / 1,624 B/op*
 
 [Complete results, CPU/allocation/GC profiles and all attempts](reports/mechanisms/java17-2026-11-02/README.md) · [Runnable protocol and failure controls](comparison/mechanism-protocol.md). This increment verifies mechanisms; it changes no production scheduler and makes no blanket framework-speed claim.
 
+### Paired evidence for a structural improvement
+
+The direct path now binds immutable processor/successor references when building a pipeline. Each stage invocation creates one fresh guarded object containing its owner, successor and output; `finally` detaches all three references. Filtering, ordered fan-out, nested calls and wrong-thread/retired-handle rejection remain checked. Session/async dispatch and generation fencing retain their original source.
+
+[![Source-bound direct plan and invocation lifetime](docs/assets/previews/direct-state-final-structure.png)](reports/performance-audit/direct-state-2026-11-02/structure.svg)
+
+One Ubuntu 24.04 / Java 17 job compared two actual core JARs through the same probe: **84 fresh JVMs, seven scenarios and three ABBA blocks**. Four-stage numeric dispatch went from **352 to 256 B/op**, a **27.27%** allocation reduction; the mean paired time ratio improved by **20.09%**. Envelope allocation/time improved by **8.39% / 3.57%**. Every changed direct scenario met the preregistered targets in every block. These are matched in-framework effects; the older cross-framework results above retain their recorded revisions and different oracle.
+
+[![All paired structural results, fork means and block ratios](docs/assets/previews/direct-state-final-costs.png)](reports/performance-audit/direct-state-2026-11-02/costs.svg)
+
+Read these units within their fixture: `ns/op` is timed work per operation; `B/op` is normalized allocation, not retained memory. Lower is better for both. Paired `C/B` divides the candidate block mean by the baseline block mean; percentage reductions use `100 × (1 − mean block ratio)`, averaging the three paired block ratios. The observed fork/block ranges are not confidence intervals. One request in flight does not measure saturated capacity. [Metric definitions and timing boundaries](docs/performance.md).
+
+The tradeoff is explicit: building a four-stage pipeline costs about **136 B** more per pipeline; build-plus-first-call costs about **32 B** more in its separate warmed-JVM probe. Non-async session-only pipelines also pay for the plan; async pipelines skip its nodes. [Complete source changes, initialization costs, CPU/allocation/GC profiles and the two rejected prototypes](reports/performance-audit/direct-state-2026-11-02/README.md). The measurements do not establish production capacity or a universal framework ranking.
+
 <details>
 <summary>OminiCat's direct and queued execution paths</summary>
 
 [![Direct synchronous calls and queued session execution with asynchronous re-entry](docs/assets/previews/execution-path.png)](docs/assets/execution-path.svg)
 
-[Pipeline](ominicat-core/src/main/java/io/ominicat/core/Pipeline.java) still allocates scoped sinks and continuations; [PipelineSession](ominicat-core/src/main/java/io/ominicat/core/PipelineSession.java) uses a lock and FIFO. Direct embedding omits session scheduling and leaves serialization/cleanup to the caller. Media constructors make defensive copies; transport JSON/Base64 has separate costs.
+[Pipeline](ominicat-core/src/main/java/io/ominicat/core/Pipeline.java) prebinds direct successors and allocates fresh scoped invocations; envelope adapters retain their own guards and derivation work. [PipelineSession](ominicat-core/src/main/java/io/ominicat/core/PipelineSession.java) uses a lock and FIFO. Direct embedding omits session scheduling and leaves serialization/cleanup to the caller. Media constructors make defensive copies; transport JSON/Base64 has separate costs.
 
 In the container, processor work runs on session workers. JSON decoding and connection assembly remain on Netty's I/O callbacks. The published Java 17 runs use platform workers; they do not measure a virtual-thread speedup.
 
@@ -226,7 +240,7 @@ Swap stages without changing the kernel. For a model pipeline, select provider p
 | Media references | Optional source/producer-scoped range versions, explicit frame boundaries and bounded binary import/export; [Java API](docs/media-references.md) |
 | Transport | JSON over WebSocket, explicit overload handling, bearer authentication, Prometheus metrics |
 
-Speech recognition and synthesis adapters use **utterance/turn requests**. They do not provide continuous provider-native streaming ASR/TTS, WebRTC, acoustic echo cancellation, or automatic speaker diarization. The browser supports manual interruption. The [scenario coverage matrix](docs/scenario-coverage.md) distinguishes implemented behavior from extension points.
+Speech recognition and synthesis adapters use **utterance/turn requests**. They do not provide continuous provider-native streaming ASR/TTS, WebRTC, acoustic echo cancellation, or automatic speaker diarization. The browser supports manual interruption. The [ASR/TTS interaction guide](docs/scenario-coverage.md) maps practical needs to technical mechanisms, runnable fixtures and remaining gaps, including assistant history and automatic barge-in.
 
 Ready-to-edit configurations include [voice](config/voice.yaml), [vision](config/vision.yaml), [separate audio tracks](config/dual-stream.yaml), [transcript policies](config/conversation.yaml), and [a step sequence](config/steps.yaml).
 
@@ -309,7 +323,7 @@ The [Linux profiles above](#linux-profiles) expose the recorded execution and al
 - [Configuration and deployment](docs/configuration.md)
 - [Frame protocol and metadata](docs/protocol.md)
 - [Plugin development](docs/plugins.md)
-- [Scenario coverage and current limits](docs/scenario-coverage.md)
+- [ASR/TTS interactions, technical abstractions and current limits](docs/scenario-coverage.md)
 - [Immutable media references and import/export](docs/media-references.md)
 - [Studio operation overview and pipeline debugger](docs/studio.md)
 - [Performance methodology](docs/performance.md) and [Linux measurements](reports/comparison/README.md)

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "kind": "ominicat-direct-state-diagnostics-v1",
+  "case": {
+    "id": "baseline-envelope-direct-4",
+    "side": "baseline",
+    "scenario": "envelope-direct-4"
+  },
+  "instrumented": true,
+  "headlineEligible": false,
+  "scope": "Independent instrumented Java 17 JMH diagnostic JVM, including startup, setup, two 1-second warmups, two 1-second measurements, harness and teardown. No phase filtering. CPU sampling requests 10ms; allocation sampling is throttled to 50 events/second; recording and export retain up to 64 frames. This is not main timing evidence, per-operation allocation, retained heap, method duration, p99 latency, RSS or production capacity.",
+  "environment": {
+    "javaVersion": "17.0.21"
+  }
+}

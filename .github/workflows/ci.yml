@@ -1,15 +1,17 @@
 name: CI
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
   workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 jobs:
   verify:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     strategy:
       matrix:
         java: ['17', '21', '25']
@@ -60,6 +62,7 @@ jobs:
         if: always()
         with:
           name: verification-java-${{ matrix.java }}
+          retention-days: 7
           path: |
             **/target/surefire-reports/
             **/target/site/jacoco/
@@ -67,6 +70,7 @@ jobs:
             reports/local/ci-soak/
   source-hygiene:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - name: Whitespace and shell syntax
@@ -85,6 +89,13 @@ jobs:
           python3 comparison/mechanism_evidence.py check reports/mechanisms/java17-2026-11-02/earlier-measurements/41386037966
           python3 comparison/mechanism_evidence.py check reports/mechanisms/java17-2026-11-02/earlier-measurements/41387434975
           python3 comparison/render_mechanisms.py reports/mechanisms/java17-2026-11-02 --check
+          python3 comparison/direct_state_profiles.py check reports/performance-audit/direct-state-2026-11-02/evidence
+          python3 comparison/render_direct_state.py reports/performance-audit/direct-state-2026-11-02 --check
+          python3 comparison/direct_state_profiles.py check reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence
+          python3 comparison/render_direct_state.py reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4 --check
+          python3 comparison/direct_state_profiles.py check reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence
+          python3 comparison/render_direct_state.py reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc --check
+          python3 comparison/direct_plan_startup.py check reports/performance-audit/direct-state-2026-11-02/startup-evidence
       - name: Archived kernel audit checksums
         working-directory: reports/performance-audit/linux-java17-2026-11-01
         run: sha256sum --check SHA256SUMS

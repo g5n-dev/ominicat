@@ -29,6 +29,7 @@ README_ALIASES = {
     'why-the-execution-path-stays-small': '高性能从哪里来',
     'bounded-work-and-cancellation': '高性能从哪里来',
     'controlled-mechanism-verification': '机制的受控验证',
+    'paired-evidence-for-a-structural-improvement': '结构提升的配对证据',
     'linux-profiles': 'linux-cpu分配与-gc', 'profiles': 'linux-cpu分配与-gc',
     'quick-start': '先运行起来', 'a-kernel-with-replaceable-capabilities': '小内核可组合的能力',
     'configure-a-pipeline': '配置管线', 'embed-the-runtime': '嵌入-java-应用',

@@ -1,0 +1,80 @@
+name: Paired direct invocation state
+on:
+  workflow_dispatch:
+    inputs:
+      baseline:
+        description: Baseline Git revision
+        required: true
+        default: 'c2def9dcbdf3857d8bbfed8f9b27182993c764f3'
+permissions:
+  contents: read
+concurrency:
+  group: direct-state-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  paired:
+    name: Ubuntu 24.04 / Java 17 paired invocation state
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: candidate
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/checkout@v4
+        with:
+          path: baseline
+          ref: ${{ github.event.pull_request.base.sha || inputs.baseline }}
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+      - name: Build the unchanged baseline core
+        working-directory: baseline
+        run: ./mvnw -B -ntp -pl ominicat-core -am package -DskipTests
+      - name: Verify the same lifecycle fixture against baseline
+        run: |
+          task_fixture=ominicat-core/src/test/java/io/ominicat/core/DirectInvocationLifecycleTest.java
+          if test -e "baseline/$task_fixture"; then
+            cmp "baseline/$task_fixture" "candidate/$task_fixture"
+          else
+            cp "candidate/$task_fixture" "baseline/$task_fixture"
+            trap 'rm "baseline/$task_fixture"' EXIT
+          fi
+          baseline/mvnw -B -ntp -f baseline/pom.xml -pl ominicat-core -am test -Dtest=DirectInvocationLifecycleTest -Dsurefire.failIfNoSpecifiedTests=false
+      - name: Build candidate and the one shared probe
+        working-directory: candidate
+        run: ./mvnw -B -ntp -pl ominicat-benchmarks -am verify -Dominicat.stress.seeds=512
+      - name: Collect all three paired ABBA blocks
+        run: |
+          python3 candidate/comparison/direct_state_evidence.py collect --baseline baseline --candidate candidate --output "$RUNNER_TEMP/direct-state/evidence/measurements"
+          python3 candidate/comparison/direct_state_evidence.py check "$RUNNER_TEMP/direct-state/evidence/measurements"
+          cat "$RUNNER_TEMP/direct-state/evidence/measurements/summary.md" >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: direct-state-measurements-java17-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/direct-state/evidence/measurements/
+          if-no-files-found: error
+          retention-days: 30
+      - name: Measure new-pipeline and first-direct-call setup costs
+        run: |
+          python3 candidate/comparison/direct_plan_startup.py collect --baseline baseline --candidate candidate --measurements "$RUNNER_TEMP/direct-state/evidence/measurements" --output "$RUNNER_TEMP/direct-state/startup-evidence"
+          python3 candidate/comparison/direct_plan_startup.py check "$RUNNER_TEMP/direct-state/startup-evidence" --measurements "$RUNNER_TEMP/direct-state/evidence/measurements"
+          cat "$RUNNER_TEMP/direct-state/startup-evidence/summary.md" >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: direct-state-startup-java17-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/direct-state/startup-evidence/
+          if-no-files-found: error
+          retention-days: 30
+      - name: Collect independent baseline and candidate profiles
+        run: python3 candidate/comparison/direct_state_profiles.py collect --baseline baseline --candidate candidate --output "$RUNNER_TEMP/direct-state"
+      - name: Validate the complete diagnostic allowlist
+        run: python3 candidate/comparison/direct_state_profiles.py check "$RUNNER_TEMP/direct-state/evidence"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: direct-state-evidence-java17-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/direct-state/evidence/
+          if-no-files-found: error
+          retention-days: 30

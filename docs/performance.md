@@ -110,7 +110,7 @@ The numeric comparison uses no envelopes, media byte snapshots, parallel branche
 
 | Mechanism and source | Work avoided or controlled | Costs and boundaries that remain |
 | --- | --- | --- |
-| [Typed dispatch](../ominicat-core/src/main/java/io/ominicat/core/Pipeline.java) | Synchronous stages invoke the next processor on the same call stack; no per-stage wire codec, queue or worker handoff is introduced. Direct embedding can avoid session scheduling. | [Scoped sinks](../ominicat-core/src/main/java/io/ominicat/core/SynchronousSink.java) enforce invocation thread/lifetime. Sinks and captured continuations allocate; direct callers manage serialized access and cleanup. |
+| [Typed dispatch](../ominicat-core/src/main/java/io/ominicat/core/Pipeline.java) | Synchronous stages invoke the next processor on the same call stack; no per-stage wire codec, queue or worker handoff is introduced. Direct embedding can avoid session scheduling. | Current direct calls use an immutable per-pipeline `DirectStage` plan and fresh `DirectInvocation` state. Session [scoped sinks](../ominicat-core/src/main/java/io/ominicat/core/SynchronousSink.java) and captured continuations remain. Direct callers serialize mutable processors and own cleanup; the eager plan has a setup cost. |
 | [Session ownership](../ominicat-core/src/main/java/io/ominicat/core/PipelineSession.java) | One owner worker serializes linear stage execution, reset and reverse cleanup. External callbacks enqueue a continuation at its next stage. | The FIFO uses `ReentrantLock`, `Condition` and `ArrayDeque`. Queue entries and worker handoffs have costs. Async continuation order follows callback arrival. |
 | [Independent work limits](../ominicat-core/src/main/java/io/ominicat/core/PipelineSession.java) | Pending entries and active asynchronous handles each have a count limit using the configured capacity. Saturation is explicit. | The two counts do not share a combined reservation pool and are not a total-memory limit. Payload size, current work and plugin state must be budgeted separately. |
 | [Bounded parallel composition](../ominicat-core/src/main/java/io/ominicat/core/ParallelProcessor.java) | Explicit branch workers and per-branch output buffers bound concurrency and retained frame references; results are joined in declaration order after every branch succeeds. | A shared deadline covers branch scheduling/wait, not all downstream delivery. Buffered frame references are not payload-byte/RSS limits; already-emitted sink effects cannot be rolled back. |
@@ -118,7 +118,41 @@ The numeric comparison uses no envelopes, media byte snapshots, parallel branche
 | [Worker capability discovery](../ominicat-core/src/main/java/io/ominicat/core/WorkerThreads.java) | Java 17 platform workers and Java 21+ virtual workers share the Java 17-compatible API; discovery happens outside frame dispatch. | Virtual workers do not make CPU computation inherently faster. Branch executors keep explicit limits on either backend. The published comparison used Java 17 platform workers. |
 | [Media snapshots](../ominicat-core/src/main/java/io/ominicat/core/Frame.java) | Constructed immutable frame instances can pass between stages by reference without sharing mutable payload storage. | Audio/image construction copies bytes; getters create read-only views. JSON/Base64, new media construction and optional envelope identities add costs. The numeric profile does not measure those costs. |
 
-These are source-backed mechanisms, not measured causal speedup ratios. The peer comparison retains runtime, frame-object, scheduler and harness differences. It measures the whole declared path; it does not isolate the contribution of each design choice. [Architecture, limits and lifecycle diagrams](architecture.md).
+These mechanisms need workload-specific evidence. The direct-path experiment below measures one combined representation change. The peer comparison retains runtime, frame-object, scheduler and harness differences; it does not isolate the contribution of each design choice. [Architecture, limits and lifecycle diagrams](architecture.md).
+
+## Verified direct-invocation allocation change
+
+The [controlled direct-path report](../reports/performance-audit/direct-state-2026-11-02/README.md) compares baseline c2def9d with candidate f5454f4 in [Ubuntu run 41401882524](https://github.com/g5n-dev/ominicat/actions/runs/41401882524). The collector swaps the two actual core JARs ahead of one shared probe JAR, verifies loaded origins and source/artifact hashes, and retains all seven scenarios. On the same Ubuntu 24.04 / Java 17 host, three ABBA blocks produce 84 fresh JVMs and six forks per side/scenario. Each fork has three 1-second warmups and five 1-second measurements with a 256 MiB heap.
+
+[![Paired direct-state time and allocation](assets/previews/direct-state-final-costs.png)](../reports/performance-audit/direct-state-2026-11-02/costs.svg)
+
+| Direct workload | Baseline → candidate B/op, rounded | Less allocation | Less mean paired-block time |
+| --- | ---: | ---: | ---: |
+| `raw-direct-4` | 352 → 256 | 27.27% | 20.09% |
+| `envelope-direct-4` | 1144 → 1048 | 8.39% | 3.57% |
+
+Only `Pipeline.java` changes among production core sources. It prebinds immutable processor/successor topology once per pipeline; each direct stage invocation still receives fresh, unpooled state containing `owner`, `nextStage` and `output`, cleared in `finally`. The same nine lifecycle regressions run against both source versions, covering wrong-thread and retired sinks, rejection of null frames, filtering/fan-out, nested calls, exceptions and reference release. This source change, behavioral checks and paired actual-JAR measurements support the combined direct-path effect; allocation expressions and sampled stacks do not prove a physical-object count or isolate one JIT transformation.
+
+All six direct cases met the unchanged per-block rules: primary allocation ratio ≤0.90, direct time ratio ≤1.05 and direct allocation ratio ≤1.01. The unchanged session control does not adjust runner noise or rescue a failed case. The first candidate's `targets-not-met` and second candidate's `uncertain` results remain in the report with their complete evidence. Absolute times from those different hosted jobs are not pooled or used to rank prototypes. The result does not explain a percentage of the earlier Camel SEDA gap or establish a session/async speedup.
+
+The separate eight-JVM construction diagnostic records approximately **136 B/op more** for building a four-stage pipeline and **32 B/op more** for building it plus its first direct call. These are new-pipeline costs in warmed JVMs, not OS/JVM cold-start latency. Non-async pipelines used only through sessions also pay the eager plan's setup work. The two-fork results and full ranges remain archived; do not subtract different probes to derive an exact amortization point or production capacity. Main media cases use prebuilt immutable frames, excluding their constructors and codecs. Broader session/async allocation and media-construction optimizations remain separate experiments.
+
+### Reading the metrics
+
+API names, case IDs, units and hashes remain literal in both languages for reproduction; the surrounding text and labels explain their meaning.
+
+| Metric | Meaning and interpretation |
+| --- | --- |
+| `ns/op` | Mean wall time per declared benchmark operation; lower is better. Probe boundaries include their stated checks and differ between steady-state and construction work. |
+| `B/op` | GC-profiler allocated bytes normalized by benchmark operations, including timed harness work; lower is better. This is not retained heap or an exact physical-object count. |
+| `frames/s` | Validated whole-loop output rate at one frame outstanding, including caller acknowledgment; higher is better. This is not saturated throughput. |
+| `p50` / `p95` / `p99` | Measured latency sample percentiles under the declared timer; lower is better, without an SLA guarantee. The peer tables take the median of per-process percentiles, not a pooled percentile. |
+| Process CPU, `ns/frame` or `µs/frame` | Process CPU time divided by validated output count, including harness, checks, acknowledgment and runtime work. It is neither wall latency nor method duration. |
+| Peak `RSS`, MiB | Sampled process-resident memory, including runtime, dependencies and harness buffers; brief peaks can be missed. It is not allocated B/op or retained heap. |
+| Paired C/B | Within one ABBA block, the mean of two candidate fork means divided by the mean of two baseline fork means; lower is better. Reported reduction is `100 × (1 − mean block ratio)`, using the arithmetic mean of all three block ratios, not a ratio of global column means. |
+| Fork/block ranges | As labelled, the range of six fork means or three paired-block ratios; neither is a confidence interval or a significance claim. Iterations within one fork are not independent replications. |
+| `W=1` | One frame outstanding in the queued comparison/session control; this does not establish saturated throughput or production capacity. |
+| Construction cost | Fresh-pipeline build or build-plus-first-call work after JVM warmup, with two forks per side/scenario; not operating-system/JVM cold startup and not a main acceptance target. |
 
 ## What the comparison measures
 
@@ -142,7 +176,7 @@ To inspect the whole exported stacks, use [Ubuntu CPU](../reports/comparison/lin
 
 ## Run the Linux workflow
 
-The [comparison workflow](../.github/workflows/framework-comparison.yml) runs on relevant pull requests and protected-main pushes, and supports manual dispatch. Ubuntu uses a native runner; CentOS uses its native RPM Python/JDK inside the official digest-pinned image. Each job completes all 45 cells, separate diagnostics and allowlisted/checksummed publication before uploading. The job summary includes four-stage medians and artifact instructions. Artifacts expire after 30 days; the committed baseline remains available.
+The [comparison workflow](../.github/workflows/framework-comparison.yml) runs on demand through `workflow_dispatch`. Ubuntu uses a native runner; CentOS uses its native RPM Python/JDK inside the official digest-pinned image. Each job completes all 45 cells, separate diagnostics and allowlisted/checksummed publication before uploading. The job summary includes four-stage medians and artifact instructions. Artifacts expire after 30 days; use the committed baseline until a relevant source or workload change calls for new evidence.
 
 Actual distribution and architecture are checked, and context is bound to the measured Git revision and kernel. Manifests include actual JDK/Python versions, CPU model, libc, dependency inventory, source hashes, affinity and readable cgroup limits. Shared hosted runners have no exclusive CPU isolation. CI collects evidence without imposing fixed throughput thresholds or automatically replacing recorded headline values.
 
@@ -204,6 +238,6 @@ java scripts/WebSocketLoad.java ws://127.0.0.1:8080/ws 32 5000
 
 This warms each connection for 100 frames and times from `sendText` to matching response. It has a different workload and timing scope from numeric kernel dispatch. Slow peers, TLS, large payloads, independent arrivals and actual provider chains need their own probes.
 
-The separate [weekly profile workflow](../.github/workflows/performance.yml) runs Linux profiling on Java 17 and 21 and retains allowlisted artifacts for 30 days. Its success means collection and validation completed. Proposed experiments and their acceptance boundaries are in the [iteration plan](iteration-plan.md).
+The separate [on-demand profile workflow](../.github/workflows/performance.yml) runs Linux profiling on Java 17 and 21 through `workflow_dispatch` and retains allowlisted artifacts for 30 days. Its success means collection and validation completed. Reuse archived evidence until a relevant source or workload change warrants another run. Proposed experiments and their acceptance boundaries are in the [iteration plan](iteration-plan.md).
 
 For changes, retain raw observations and report uncertainty alongside throughput, latency and allocation. A matching before/after experiment is needed to attribute an improvement; the existing framework comparison is not an optimization ablation or a model-latency claim.

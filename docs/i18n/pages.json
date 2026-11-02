@@ -9,12 +9,12 @@
     {
       "source": "CONTRIBUTING.md",
       "translation": "docs/zh-CN/CONTRIBUTING.md",
-      "source_sha256": "5f89988e66780388651a7527c076ab19f98c511b5e009154c536a884e75176ef"
+      "source_sha256": "a0213750dada03e96bc596ed755d9dbfaa29782e736fb2e116ed99eb6a7f16fe"
     },
     {
       "source": "README.md",
       "translation": "README.zh-CN.md",
-      "source_sha256": "fbfa689b9551000620dbe419078230f2aaa7b565f7cbfbc786c0c74e376c7e4b"
+      "source_sha256": "34ba1a29d9cd26f4127da1ec45003ca0e90181858f12bc603c048aefea0f7a11"
     },
     {
       "source": "SECURITY.md",
@@ -24,7 +24,7 @@
     {
       "source": "comparison/README.md",
       "translation": "docs/zh-CN/comparison/README.md",
-      "source_sha256": "283d70b3a138e50d77015c7dc38c5f0ec094df5ff94e23b5d6a6a678778630b8"
+      "source_sha256": "34df8ecb8747275e4227d3dac4b96fbb68ef44ba1160d7d012beb3a4468e90f7"
     },
     {
       "source": "comparison/benchmarks/README.md",
@@ -32,9 +32,14 @@
       "source_sha256": "6b3fb7702e98c3fc2a782317485425c2897165af66e2441c0ffb0d88d38b7572"
     },
     {
+      "source": "comparison/direct-state-protocol.md",
+      "translation": "docs/zh-CN/comparison/direct-state-protocol.md",
+      "source_sha256": "edf0cb68e6e86579443459a6ce661757e65332220441fe14f6343ad763729587"
+    },
+    {
       "source": "comparison/mechanism-protocol.md",
       "translation": "docs/zh-CN/comparison/mechanism-protocol.md",
-      "source_sha256": "fafca76ad16121d64b0812eba3c41787f37a7e6e9e54f3b141bcf002c05f5e80"
+      "source_sha256": "497f72a55d5ae0291ba7348a760abdc00ac5335e1f77a4c47a54eb2f0d056639"
     },
     {
       "source": "comparison/profile_java.md",
@@ -49,7 +54,7 @@
     {
       "source": "docs/architecture.md",
       "translation": "docs/zh-CN/architecture.md",
-      "source_sha256": "3ca6da2f41aca2af47fb14b364eea21b95eeacba4b5830b6fa7f4dac0d10df2b"
+      "source_sha256": "282acbadcb9a0c05f689c21856a21ff3a76a46b101e9d90951263da15dc980e9"
     },
     {
       "source": "docs/configuration.md",
@@ -69,7 +74,7 @@
     {
       "source": "docs/iteration-plan.md",
       "translation": "docs/zh-CN/iteration-plan.md",
-      "source_sha256": "418ba707dda2bda98c3477a9f251f87f53011862f09aac22201a8190905345ac"
+      "source_sha256": "55dad948ac546275844b751650977d818c9c5ace5a9db35bd32333f41df52ad9"
     },
     {
       "source": "docs/java-compatibility.md",
@@ -84,12 +89,12 @@
     {
       "source": "docs/performance-audit.md",
       "translation": "docs/zh-CN/performance-audit.md",
-      "source_sha256": "eea4e29f50abe99e99e04c8db6ab2eef4541f19b5f27ba7cf1f6fbe425f33f1d"
+      "source_sha256": "2d565914ff8e23d53b6ece2a3be7d1fb051653b249b95498dd515bd1701c3572"
     },
     {
       "source": "docs/performance.md",
       "translation": "docs/zh-CN/performance.md",
-      "source_sha256": "ffccd94d401807e4f52d4dbafd30bac9aea033c44290c39f40efa602d5be8748"
+      "source_sha256": "e93df220a31b746c83f0d7c9913a05ee285c6f1a4984aec7ed165ac3d5f4f861"
     },
     {
       "source": "docs/plugin-capabilities.md",
@@ -109,7 +114,7 @@
     {
       "source": "docs/scenario-coverage.md",
       "translation": "docs/zh-CN/scenario-coverage.md",
-      "source_sha256": "1f3722e69d5fc2f16da4a078cd9b1db446f3912651e2dccb51e0489207642789"
+      "source_sha256": "a5550f1bbde5f371d67165ad71f1400a61cb33dc3c0ae1b0821eb21fc01c0615"
     },
     {
       "source": "docs/studio.md",
@@ -385,6 +390,151 @@
       "source": "reports/mechanisms/java17-2026-11-02/evidence/measurements/summary.md",
       "translation": "docs/zh-CN/reports/mechanisms/java17-2026-11-02/evidence/measurements/summary.md",
       "source_sha256": "c2590096b9c3596854cfd4fdef9a9a35b43d4c7583ecf7f8a70e6371ef6ea6d9"
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/README.md",
+      "translation": "docs/zh-CN/reports/performance-audit/direct-state-2026-11-02/README.md",
+      "source_sha256": "e54bf9b6528238e8ed1ca968c86fe46d397041d72b69a768be2da7bb06d58958"
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/baseline-envelope-direct-4/profiles.md",
+      "translation": "docs/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/baseline-envelope-direct-4/profiles.md",
+      "source_sha256": "c5ce2c70ac812196fb3049c2791964146a590204257c1a7e98d6171050cccbe2"
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/baseline-envelope-direct-4/report.md",
+      "translation": "docs/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/baseline-envelope-direct-4/report.md",
+      "source_sha256": "f05516c9dfbbba56c2c8a028b18fa2564905f6fd8e3b41c42092ffae13f1d0ee"
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/baseline-raw-direct-4/profiles.md",
+      "translation": "docs/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/baseline-raw-direct-4/profiles.md",
+      "source_sha256": "7a5d24554bbe73a5fc359992d50239543c84245104381fc40fffc14f9e1eaa1e"
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/baseline-raw-direct-4/report.md",
+      "translation": "docs/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/baseline-raw-direct-4/report.md",
+      "source_sha256": "9c921db6127b4dabe66130debe55a5668f7b065271107703c4e778b8c81617a7"
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/candidate-envelope-direct-4/profiles.md",
+      "translation": "docs/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/candidate-envelope-direct-4/profiles.md",
+      "source_sha256": "6d2125f25cf941552c8b69d2179d9814f3ed9e7aba52fb1d4392a13bafcac792"
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/candidate-envelope-direct-4/report.md",
+      "translation": "docs/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/candidate-envelope-direct-4/report.md",
+      "source_sha256": "ab0b960f3d200565782e54a743b01b4d07bf73f774b00ad9e7b5f798893b88cc"
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/candidate-raw-direct-4/profiles.md",
+      "translation": "docs/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/candidate-raw-direct-4/profiles.md",
+      "source_sha256": "20d12e05854197119f694ef97e47bd58af612d1efc42803428751257aff29300"
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/candidate-raw-direct-4/report.md",
+      "translation": "docs/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/candidate-raw-direct-4/report.md",
+      "source_sha256": "c94c375563d1d15a3d8d46f1628afab927748790cb3ff5b8343e228ac9530d9e"
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/measurements/summary.md",
+      "translation": "docs/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/measurements/summary.md",
+      "source_sha256": "775314650266215c7ca3268e057bf93e28cc9745b7cb195ff5e8e901d85b8200"
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/baseline-envelope-direct-4/profiles.md",
+      "translation": "docs/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/baseline-envelope-direct-4/profiles.md",
+      "source_sha256": "f9546db7ce8e8108265195ef6e7c6f04a216d8f5c69dceedd85d9d53ca352821"
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/baseline-envelope-direct-4/report.md",
+      "translation": "docs/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/baseline-envelope-direct-4/report.md",
+      "source_sha256": "f05516c9dfbbba56c2c8a028b18fa2564905f6fd8e3b41c42092ffae13f1d0ee"
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/baseline-raw-direct-4/profiles.md",
+      "translation": "docs/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/baseline-raw-direct-4/profiles.md",
+      "source_sha256": "a6709710c6b092f5c950d98a749cb24984b7f5bc7304ebf8378a8c31f12fd6db"
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/baseline-raw-direct-4/report.md",
+      "translation": "docs/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/baseline-raw-direct-4/report.md",
+      "source_sha256": "9c921db6127b4dabe66130debe55a5668f7b065271107703c4e778b8c81617a7"
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/candidate-envelope-direct-4/profiles.md",
+      "translation": "docs/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/candidate-envelope-direct-4/profiles.md",
+      "source_sha256": "27368ccf271d6883e1d416ea35da5e345b3a9a57fc6fa7470ace0c0ee5380150"
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/candidate-envelope-direct-4/report.md",
+      "translation": "docs/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/candidate-envelope-direct-4/report.md",
+      "source_sha256": "ab0b960f3d200565782e54a743b01b4d07bf73f774b00ad9e7b5f798893b88cc"
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/candidate-raw-direct-4/profiles.md",
+      "translation": "docs/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/candidate-raw-direct-4/profiles.md",
+      "source_sha256": "b70500efb09b6f1cce6b36c44e48973f186891094aca67645bc677ced4cbaf23"
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/candidate-raw-direct-4/report.md",
+      "translation": "docs/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/candidate-raw-direct-4/report.md",
+      "source_sha256": "c94c375563d1d15a3d8d46f1628afab927748790cb3ff5b8343e228ac9530d9e"
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/measurements/summary.md",
+      "translation": "docs/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/measurements/summary.md",
+      "source_sha256": "72b017ab14f27b3f2f71ace5cfd86800887b1a417ffe78216a516363a7b3b3cd"
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/baseline-envelope-direct-4/profiles.md",
+      "translation": "docs/zh-CN/reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/baseline-envelope-direct-4/profiles.md",
+      "source_sha256": "0494bdd3bfc5ccacfac4c4811e5dfc14bc6c86c8b54e6cf93fc50f26dd85778c"
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/baseline-envelope-direct-4/report.md",
+      "translation": "docs/zh-CN/reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/baseline-envelope-direct-4/report.md",
+      "source_sha256": "f05516c9dfbbba56c2c8a028b18fa2564905f6fd8e3b41c42092ffae13f1d0ee"
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/baseline-raw-direct-4/profiles.md",
+      "translation": "docs/zh-CN/reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/baseline-raw-direct-4/profiles.md",
+      "source_sha256": "dbc0f83059670c190eb4f6ee55f55d1d17c87c4430c85cff8221fdb54cd57122"
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/baseline-raw-direct-4/report.md",
+      "translation": "docs/zh-CN/reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/baseline-raw-direct-4/report.md",
+      "source_sha256": "9c921db6127b4dabe66130debe55a5668f7b065271107703c4e778b8c81617a7"
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/candidate-envelope-direct-4/profiles.md",
+      "translation": "docs/zh-CN/reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/candidate-envelope-direct-4/profiles.md",
+      "source_sha256": "3277ffd51941eb933db095e1a6d9c31782f7c489083988f0eebf6d7b4c9bfa32"
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/candidate-envelope-direct-4/report.md",
+      "translation": "docs/zh-CN/reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/candidate-envelope-direct-4/report.md",
+      "source_sha256": "ab0b960f3d200565782e54a743b01b4d07bf73f774b00ad9e7b5f798893b88cc"
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/candidate-raw-direct-4/profiles.md",
+      "translation": "docs/zh-CN/reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/candidate-raw-direct-4/profiles.md",
+      "source_sha256": "b97cc69e6c01b8609b3bd3d20de5c79d8aaca8a9428cae2b3692ba22cfc16961"
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/candidate-raw-direct-4/report.md",
+      "translation": "docs/zh-CN/reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/candidate-raw-direct-4/report.md",
+      "source_sha256": "c94c375563d1d15a3d8d46f1628afab927748790cb3ff5b8343e228ac9530d9e"
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/evidence/measurements/summary.md",
+      "translation": "docs/zh-CN/reports/performance-audit/direct-state-2026-11-02/evidence/measurements/summary.md",
+      "source_sha256": "694a9bc418d8736294311cebf323114ef48edce675c4cc4595d325280c11e2b4"
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/startup-evidence/summary.md",
+      "translation": "docs/zh-CN/reports/performance-audit/direct-state-2026-11-02/startup-evidence/summary.md",
+      "source_sha256": "768023d706d4398e6694af895aaae20df3ceae839171797fd758ec61f8e9d62a"
     },
     {
       "source": "reports/performance-audit/linux-java17-2026-11-01/profiles.md",

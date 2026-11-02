@@ -6,13 +6,6 @@ on:
         description: Baseline Git revision
         required: true
         default: '208b0c48416b663de06d82f2e072a923b0ecf569'
-  pull_request:
-    branches: [main]
-    paths:
-      - 'ominicat-conversation/**'
-      - 'ominicat-benchmarks/**'
-      - 'scripts/prompt_cost.py'
-      - '.github/workflows/prompt-cost.yml'
 permissions:
   contents: read
 concurrency:

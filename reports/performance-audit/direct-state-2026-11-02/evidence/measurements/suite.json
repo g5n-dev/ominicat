@@ -1,0 +1,2444 @@
+{
+  "schemaVersion": 1,
+  "protocol": "ominicat-direct-invocation-state-v1",
+  "status": "complete",
+  "manifestSha256": "076b925355c2127f95232c42198065acc8d461ceab59da8555e0d2dd77803583",
+  "results": [
+    {
+      "position": 1,
+      "raw": "raw/001-b1-raw-direct-1-1-baseline.json",
+      "log": "logs/001-b1-raw-direct-1-1-baseline.log",
+      "rawSha256": "f17c390140fb2d59225a7f1037dff0b1aa446a53aea9ab4096d6e7209f6deeb4",
+      "logSha256": "4633c5f4e45ed03edbce6e4f2257a65169b01e6b5055547cf81985b35f6109b2",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 27.506549817597545,
+          "iterations": [
+            27.56675552526839,
+            27.429571253214533,
+            27.545402848906434,
+            27.462192561928326,
+            27.52882689867004
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 112.00016387420055,
+          "iterations": [
+            112.00016427393594,
+            112.0001632500924,
+            112.0001641430499,
+            112.00016365394221,
+            112.00016404998229
+          ]
+        }
+      }
+    },
+    {
+      "position": 2,
+      "raw": "raw/002-b1-raw-direct-1-2-candidate.json",
+      "log": "logs/002-b1-raw-direct-1-2-candidate.log",
+      "rawSha256": "6e9ef5f9618de2b8b25434a474fb1375f22751944d98a0ce8b26e9c08f7a4049",
+      "logSha256": "5d4faf3bac8d2d2451933fe5eddf43a34dbddd01085e31f559f9695f6fb7af32",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 25.323860441976752,
+          "iterations": [
+            25.357067610412905,
+            25.31365151179098,
+            25.329520815727168,
+            25.296949035814762,
+            25.32211323613794
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 88.00015031897343,
+          "iterations": [
+            88.00015110919729,
+            88.00014985221812,
+            88.00015013122426,
+            88.0001507495846,
+            88.00014975264288
+          ]
+        }
+      }
+    },
+    {
+      "position": 3,
+      "raw": "raw/003-b1-raw-direct-1-3-candidate.json",
+      "log": "logs/003-b1-raw-direct-1-3-candidate.log",
+      "rawSha256": "cfc468d4beae08bd57068478b746c92260502b73140e9c426d510cbd97cb699b",
+      "logSha256": "92d2d75765c38281c2a153f8bd60b7ed5d52c5dc5bdb4cd7d1ae19121fd52d68",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 25.54531036073235,
+          "iterations": [
+            25.485606776368094,
+            25.442212394087885,
+            25.291016303839754,
+            25.432355252995553,
+            26.075361076370466
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 88.00015151808124,
+          "iterations": [
+            88.0001509285966,
+            88.0001516169194,
+            88.00014989967114,
+            88.00015073978831,
+            88.00015440543073
+          ]
+        }
+      }
+    },
+    {
+      "position": 4,
+      "raw": "raw/004-b1-raw-direct-1-4-baseline.json",
+      "log": "logs/004-b1-raw-direct-1-4-baseline.log",
+      "rawSha256": "4e8784abacf98440381866e08f0c4b52a44aafe3dc936fc2d76df1f8cf9f74a8",
+      "logSha256": "59ce874159ab1deb03cb71a511c04011cbf31b54d624915d2aee84440624d3b9",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 27.828269326587986,
+          "iterations": [
+            27.412144690790733,
+            27.41997087652862,
+            27.77735736970079,
+            28.879614860648466,
+            27.652258835271304
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 112.00016537770189,
+          "iterations": [
+            112.00016303434266,
+            112.00016236921445,
+            112.00016552543912,
+            112.00017117355847,
+            112.0001647859548
+          ]
+        }
+      }
+    },
+    {
+      "position": 5,
+      "raw": "raw/005-b1-raw-direct-4-1-baseline.json",
+      "log": "logs/005-b1-raw-direct-4-1-baseline.log",
+      "rawSha256": "05192653fa4ebe5a8f82c05bb8a4243c5bd2d136a22b3ca041988a22cf0d8ebb",
+      "logSha256": "9478f62d639849b673889f825969a9f56700795547d08aa236b0cb3aaff240da",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 61.77591082064824,
+          "iterations": [
+            61.25929563980184,
+            61.828016950754574,
+            61.357063911486634,
+            64.0013416164381,
+            60.433835984760094
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 352.0003668718194,
+          "iterations": [
+            352.00036505312164,
+            352.0003684355343,
+            352.00036366884444,
+            352.00037900792245,
+            352.00035819367423
+          ]
+        }
+      }
+    },
+    {
+      "position": 6,
+      "raw": "raw/006-b1-raw-direct-4-2-candidate.json",
+      "log": "logs/006-b1-raw-direct-4-2-candidate.log",
+      "rawSha256": "a0fe48f4fee51c217d041aa32e1a375838d80c1eb33b78666c537a08b53cfffa",
+      "logSha256": "75c241477f65b1dc071e7ba594d21bd0105b7bf5fb185702c99e12e7bb610bc8",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 46.34850799009725,
+          "iterations": [
+            44.73658724668681,
+            46.12375203217613,
+            46.8075236319611,
+            47.15387218722177,
+            46.92080485244043
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 256.0002758584809,
+          "iterations": [
+            256.0002651581992,
+            256.0002748614486,
+            256.0002788915111,
+            256.0002807719854,
+            256.00027960926013
+          ]
+        }
+      }
+    },
+    {
+      "position": 7,
+      "raw": "raw/007-b1-raw-direct-4-3-candidate.json",
+      "log": "logs/007-b1-raw-direct-4-3-candidate.log",
+      "rawSha256": "4450f2ed8fc9ca42442294e7f96f307ccf6b023e00898e5128e44901cf0d8194",
+      "logSha256": "7c5004d78fff3fd4cacbbccd9d2c76cd989bfc86188be5a0f8ebe57e0360b5b1",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 47.0299564200681,
+          "iterations": [
+            46.52573318550587,
+            47.16309421470456,
+            47.07132278759619,
+            47.61591143300427,
+            46.773720479529636
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 256.0002790392101,
+          "iterations": [
+            256.0002772579063,
+            256.0002795389117,
+            256.00027897082356,
+            256.0002821939072,
+            256.00027723450165
+          ]
+        }
+      }
+    },
+    {
+      "position": 8,
+      "raw": "raw/008-b1-raw-direct-4-4-baseline.json",
+      "log": "logs/008-b1-raw-direct-4-4-baseline.log",
+      "rawSha256": "74c4f5aadbfa28c8bc944eb98321dd9211ca19322b195a0eecbb1a132a4ed486",
+      "logSha256": "2b4e333569f7bf8b09d1391551767f26a7420281c8334282537318be7260cdc5",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 58.13124425021416,
+          "iterations": [
+            56.05126722966572,
+            57.65211945989565,
+            62.16232840608662,
+            58.70779776995247,
+            56.08270838547034
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 352.00034562141246,
+          "iterations": [
+            352.0003338957647,
+            352.0003417112343,
+            352.0003684387464,
+            352.00034986110046,
+            352.00033420021657
+          ]
+        }
+      }
+    },
+    {
+      "position": 9,
+      "raw": "raw/009-b1-raw-direct-16-1-baseline.json",
+      "log": "logs/009-b1-raw-direct-16-1-baseline.log",
+      "rawSha256": "a56064d4a9fa6db3d2106aadd97d8bf712179632126773d1c972282152760296",
+      "logSha256": "9b13ef968717813f568897305221a08b1bbba38de1d5589c853b6f85203326de",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 185.41958416703795,
+          "iterations": [
+            178.80811875764172,
+            187.59305438743516,
+            181.9371866088522,
+            186.18713713748187,
+            192.5724239437788
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 1312.0011034715667,
+          "iterations": [
+            1312.0010649050707,
+            1312.0011178943373,
+            1312.0010842033034,
+            1312.0011095190216,
+            1312.0011408361013
+          ]
+        }
+      }
+    },
+    {
+      "position": 10,
+      "raw": "raw/010-b1-raw-direct-16-2-candidate.json",
+      "log": "logs/010-b1-raw-direct-16-2-candidate.log",
+      "rawSha256": "69047b91a711560fac7a5e7c48cf047586d991d46885b4696d6e2b8e7aba13ab",
+      "logSha256": "4094bbdab8afb8f2eb1a90463a2c5e24fce3ce88b47ea6b903724ad72eab055a",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 143.07599888037913,
+          "iterations": [
+            154.57025736403247,
+            145.13886748380398,
+            137.8223051112877,
+            139.52699617979115,
+            138.32156826298038
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 928.0008517088985,
+          "iterations": [
+            928.0009211222607,
+            928.0008649105499,
+            928.0008212962673,
+            928.0008269260975,
+            928.0008242893167
+          ]
+        }
+      }
+    },
+    {
+      "position": 11,
+      "raw": "raw/011-b1-raw-direct-16-3-candidate.json",
+      "log": "logs/011-b1-raw-direct-16-3-candidate.log",
+      "rawSha256": "4e25729127459133c2b6560265a7f00ba3e5d1d5692d0fb2955872299a9ebab1",
+      "logSha256": "fa2d5df96ca2056d02e97d8a716f4ae221e1a07dfdf67c3453ff3a806af035d9",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 131.46941367682422,
+          "iterations": [
+            130.84226849655712,
+            130.23625958221598,
+            134.26393088129598,
+            124.17628649306747,
+            137.8283229309846
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 928.0007820117465,
+          "iterations": [
+            928.0007797085303,
+            928.0007746224333,
+            928.0007958010486,
+            928.0007399739122,
+            928.0008199528087
+          ]
+        }
+      }
+    },
+    {
+      "position": 12,
+      "raw": "raw/012-b1-raw-direct-16-4-baseline.json",
+      "log": "logs/012-b1-raw-direct-16-4-baseline.log",
+      "rawSha256": "a4e1f46d7c5f3bcba351dceda5ac3e24df81ca94df76ec6343195f9967716bc8",
+      "logSha256": "0b548147330795a38269fa9a84993f0687781c083933c96cd2acd0949811f71c",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 196.95389101686655,
+          "iterations": [
+            168.9793521628308,
+            175.04105061372377,
+            214.17855093964994,
+            212.5085164421878,
+            214.06198492594064
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 1312.0011709379278,
+          "iterations": [
+            1312.0010069972793,
+            1312.0010431019894,
+            1312.0012694412637,
+            1312.0012663854554,
+            1312.001268763651
+          ]
+        }
+      }
+    },
+    {
+      "position": 13,
+      "raw": "raw/013-b1-envelope-direct-4-1-baseline.json",
+      "log": "logs/013-b1-envelope-direct-4-1-baseline.log",
+      "rawSha256": "8463ebb6cf1b3f1206d9fa162e409a709cbdefbf2c2227fe89f5ea91f29dfa37",
+      "logSha256": "2ca2e1ce211456887121e20115b4bad4b8cde502710291a793b625be5a99b8fd",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 266.0039656356318,
+          "iterations": [
+            269.2176436893303,
+            268.6468800246691,
+            264.1310432432218,
+            261.65538112222407,
+            266.3688800987137
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 1144.0015833965747,
+          "iterations": [
+            1144.0016043094552,
+            1144.0015923147712,
+            1144.0015739692944,
+            1144.0015590442222,
+            1144.0015873451307
+          ]
+        }
+      }
+    },
+    {
+      "position": 14,
+      "raw": "raw/014-b1-envelope-direct-4-2-candidate.json",
+      "log": "logs/014-b1-envelope-direct-4-2-candidate.log",
+      "rawSha256": "bf661bd2b60c59a36fa3e16cf02d069579321212ab1bd54e2d495608a27c9cef",
+      "logSha256": "692ebce6fe7d00205dd1330599a717d8ca13980d4e45fa30f9a9de46a79f71db",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 254.20034940664067,
+          "iterations": [
+            254.25140487521497,
+            254.6072410819111,
+            255.04795521263674,
+            253.32663150738782,
+            253.76851435605283
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 1048.0015129297562,
+          "iterations": [
+            1048.0015145943619,
+            1048.0015171926439,
+            1048.0015112675858,
+            1048.001509576184,
+            1048.0015120180062
+          ]
+        }
+      }
+    },
+    {
+      "position": 15,
+      "raw": "raw/015-b1-envelope-direct-4-3-candidate.json",
+      "log": "logs/015-b1-envelope-direct-4-3-candidate.log",
+      "rawSha256": "61a3ab0e441767f7480d14cb2b4075da88dd823828c287dd5595d0cb475657c0",
+      "logSha256": "11fec3b71c9f2f6d08d99ced0e174b26eebd811c969a1c7afbe272b0caa82027",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 240.7642268584933,
+          "iterations": [
+            239.81446395879567,
+            239.51383560216823,
+            245.65271077739436,
+            240.10231121189722,
+            238.73781274221088
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 1048.0014346972664,
+          "iterations": [
+            1048.0014291075152,
+            1048.001427276548,
+            1048.0014636125297,
+            1048.0014308085244,
+            1048.0014226812145
+          ]
+        }
+      }
+    },
+    {
+      "position": 16,
+      "raw": "raw/016-b1-envelope-direct-4-4-baseline.json",
+      "log": "logs/016-b1-envelope-direct-4-4-baseline.log",
+      "rawSha256": "f403392d2b6afd83eab6e20a53db611c4acc3c6f20bd6dd910f98eb1e99de7c3",
+      "logSha256": "708b07381fc62ffc58ec952b302254bec02b68b127047d86c9fbc5d155272a70",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 253.7502484921419,
+          "iterations": [
+            252.79293748568787,
+            258.13091465918467,
+            253.54973668159488,
+            252.71399011046572,
+            251.56366352377643
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 1144.0015104761983,
+          "iterations": [
+            1144.0015064055092,
+            1144.001529985312,
+            1144.001510905646,
+            1144.0015059947941,
+            1144.0014990897305
+          ]
+        }
+      }
+    },
+    {
+      "position": 17,
+      "raw": "raw/017-b1-raw-session-4-1-baseline.json",
+      "log": "logs/017-b1-raw-session-4-1-baseline.log",
+      "rawSha256": "981cf362936a7777a679a7c5c47a92d22179728a6566e6246fa478a87bc5bc62",
+      "logSha256": "85a878e1611614ea2abb4e1829cf590e46016b14348bab582bf8fff7d1f73e60",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 26099.40124060274,
+          "iterations": [
+            27423.829718390964,
+            26678.468244018244,
+            27015.26533589044,
+            27876.48287203501,
+            21502.960032679035
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 592.1832443392868,
+          "iterations": [
+            592.1864597329238,
+            592.1446824401825,
+            592.171578293401,
+            592.204699389581,
+            592.2088018403457
+          ]
+        }
+      }
+    },
+    {
+      "position": 18,
+      "raw": "raw/018-b1-raw-session-4-2-candidate.json",
+      "log": "logs/018-b1-raw-session-4-2-candidate.log",
+      "rawSha256": "b198ce22a0423ac84c494b89519bee9fea12677373db22575150697df216f4d0",
+      "logSha256": "d888d23f4e7b01e9369c91f2f9321ad41016ca99ff4eb26d381d64b8655fbd17",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 27987.681613976787,
+          "iterations": [
+            27697.381289983106,
+            27724.61243554915,
+            28052.03430190161,
+            27515.99383735006,
+            28948.386205100003
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 592.2044120789889,
+          "iterations": [
+            592.1954083469495,
+            592.2071297887676,
+            592.1826443035844,
+            592.1791570375261,
+            592.2577209181163
+          ]
+        }
+      }
+    },
+    {
+      "position": 19,
+      "raw": "raw/019-b1-raw-session-4-3-candidate.json",
+      "log": "logs/019-b1-raw-session-4-3-candidate.log",
+      "rawSha256": "8d5b6d5c50a5d58d9bf4f965481546b8febc425489b3ecb466f1462e3e55a262",
+      "logSha256": "ae96843b79065c1f8f7e81401f2e161108aa10bd365ce97696844659174b2d0d",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 26990.89286631269,
+          "iterations": [
+            26501.046344630224,
+            26414.64416448776,
+            24202.651292227278,
+            28451.686210918608,
+            29384.436319299584
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 592.18811447376,
+          "iterations": [
+            592.1818808129522,
+            592.1567757441302,
+            592.1513890233279,
+            592.1879889619072,
+            592.2625378264829
+          ]
+        }
+      }
+    },
+    {
+      "position": 20,
+      "raw": "raw/020-b1-raw-session-4-4-baseline.json",
+      "log": "logs/020-b1-raw-session-4-4-baseline.log",
+      "rawSha256": "529b9c0c44730d9b7cb327ef77759b574e6ef80a13ac4da647198fd42aa1cd11",
+      "logSha256": "e634864c660bdab678cb884695d7bf40fb18825c5c32d6914c446161ebd228c3",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 26678.84262123534,
+          "iterations": [
+            27771.49564034211,
+            26052.017521056463,
+            26771.058111833827,
+            27758.30032436029,
+            25041.341508584013
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 592.190134861897,
+          "iterations": [
+            592.1870487615239,
+            592.1867526255589,
+            592.1588907626007,
+            592.180532838014,
+            592.2374493217878
+          ]
+        }
+      }
+    },
+    {
+      "position": 21,
+      "raw": "raw/021-b1-audio-direct-4-1-baseline.json",
+      "log": "logs/021-b1-audio-direct-4-1-baseline.log",
+      "rawSha256": "0ed984b14c80ef3ebcd45f6980a61ee76792981d8bef1ac43fc930e54d55e8ee",
+      "logSha256": "2d1950fc28f31f940293b31e87bb6d1c529ee0ec258b643784b67989f43d21ee",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 41.65085290569758,
+          "iterations": [
+            41.21747664434964,
+            41.431973196603835,
+            44.01903028536097,
+            40.7369450153232,
+            40.84883938685026
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 192.00024820493826,
+          "iterations": [
+            192.00024562553693,
+            192.0002468938803,
+            192.00026231914063,
+            192.00024275669617,
+            192.00024342943718
+          ]
+        }
+      }
+    },
+    {
+      "position": 22,
+      "raw": "raw/022-b1-audio-direct-4-2-candidate.json",
+      "log": "logs/022-b1-audio-direct-4-2-candidate.log",
+      "rawSha256": "a296f7568e08dbeca985a57005463d69669c928cf79c185abcd0c14b9d25eac4",
+      "logSha256": "7feb85253648edb6025a865964acb1b64a04fcbba72b58152b56ef9d2a441363",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 34.7608154829869,
+          "iterations": [
+            34.90995330489968,
+            34.664337742180344,
+            34.98806054579372,
+            34.83713978429902,
+            34.404586037761774
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 96.00020686547676,
+          "iterations": [
+            96.0002077382643,
+            96.00020545867801,
+            96.0002085011444,
+            96.00020760306516,
+            96.00020502623184
+          ]
+        }
+      }
+    },
+    {
+      "position": 23,
+      "raw": "raw/023-b1-audio-direct-4-3-candidate.json",
+      "log": "logs/023-b1-audio-direct-4-3-candidate.log",
+      "rawSha256": "78e9697499c08dc9c77f7fe27a6450c29f12548b6f5e5f439366a57e3a076936",
+      "logSha256": "807db518475e2fbefba29da94d4db0baf54018f7fb1c46e40529e014c9d126a5",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 34.85597529424188,
+          "iterations": [
+            35.188116292653596,
+            34.88208779192617,
+            34.718264773339605,
+            34.91524086670429,
+            34.57616674658575
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 96.00020771270484,
+          "iterations": [
+            96.00020968946889,
+            96.00020786847757,
+            96.00020689165116,
+            96.00020806443797,
+            96.00020604948853
+          ]
+        }
+      }
+    },
+    {
+      "position": 24,
+      "raw": "raw/024-b1-audio-direct-4-4-baseline.json",
+      "log": "logs/024-b1-audio-direct-4-4-baseline.log",
+      "rawSha256": "7b7b09d9237bd7d5a6e3b569fc9c3029fa048ee14f95c05a949170099005dbe3",
+      "logSha256": "ed23b46ee21c74dae317ba1dac7fa23af2cb70449f83c47b923a5e4d18c690dc",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 41.05243403740067,
+          "iterations": [
+            40.54502619129721,
+            40.38206899219291,
+            40.777544084026026,
+            41.9539057778798,
+            41.60362514160742
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 192.0002443718745,
+          "iterations": [
+            192.00024161488906,
+            192.0002406379522,
+            192.0002430034476,
+            192.00025001461916,
+            192.0002465884644
+          ]
+        }
+      }
+    },
+    {
+      "position": 25,
+      "raw": "raw/025-b1-image-direct-4-1-baseline.json",
+      "log": "logs/025-b1-image-direct-4-1-baseline.log",
+      "rawSha256": "818d01fb670ea03c4c743faabf95e54975cb2f996d83f0b162bf507d01deed18",
+      "logSha256": "725f5da850855ab107c679ea962459d55fb0230a77f20fbeffc2d707838996c7",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 40.95496080432632,
+          "iterations": [
+            41.04798787061707,
+            40.23606941999234,
+            40.60852771060739,
+            42.3771793922091,
+            40.505039628205715
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 192.00024343326362,
+          "iterations": [
+            192.0002446168291,
+            192.0002397771553,
+            192.0002406927664,
+            192.00025070099431,
+            192.00024137857298
+          ]
+        }
+      }
+    },
+    {
+      "position": 26,
+      "raw": "raw/026-b1-image-direct-4-2-candidate.json",
+      "log": "logs/026-b1-image-direct-4-2-candidate.log",
+      "rawSha256": "f494fbc3e63e75cfa8b82e25e9c2462ee94980b13f69b7e7f0342f5cb14ab617",
+      "logSha256": "1b07e956d6ecb116547740209aab349d2be428e27189ccc6536924645a41eef4",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 33.93007761900974,
+          "iterations": [
+            33.93983748439866,
+            34.11868104772038,
+            34.419875188266566,
+            33.99342198643271,
+            33.17857238823037
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 96.00020175905102,
+          "iterations": [
+            96.00020116861728,
+            96.00020222653185,
+            96.00020511264607,
+            96.00020257402245,
+            96.00019771343746
+          ]
+        }
+      }
+    },
+    {
+      "position": 27,
+      "raw": "raw/027-b1-image-direct-4-3-candidate.json",
+      "log": "logs/027-b1-image-direct-4-3-candidate.log",
+      "rawSha256": "597c990089a25d0389b78b0b677019af920e583c6a5803cdbd74b50238501cfb",
+      "logSha256": "22ba3e1626bca37373d34eb2225fad657ac9aee0eaa7b29ef1c240e95841a953",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 34.5687203072825,
+          "iterations": [
+            34.916241313527266,
+            34.4622645699543,
+            34.544758229136406,
+            34.531504851732564,
+            34.388832572061936
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 96.00020555060283,
+          "iterations": [
+            96.00020806549846,
+            96.0002053641035,
+            96.00020473353747,
+            96.00020466943934,
+            96.00020492043534
+          ]
+        }
+      }
+    },
+    {
+      "position": 28,
+      "raw": "raw/028-b1-image-direct-4-4-baseline.json",
+      "log": "logs/028-b1-image-direct-4-4-baseline.log",
+      "rawSha256": "47caeec109c1b93d08aaac5f24575a9f1d2bf70d891bdb828bd89e64a21466cd",
+      "logSha256": "118c1d920c713f093e57b29aa7fcc6cc90449132e5d4c904fb4ac07fcd28c8ec",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 41.15321949303496,
+          "iterations": [
+            40.32378098075818,
+            41.123403451522414,
+            41.76618770861515,
+            41.50508249733771,
+            41.04764282694134
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 192.00024442833552,
+          "iterations": [
+            192.00024021949935,
+            192.00024374252337,
+            192.00024755692056,
+            192.00024600861602,
+            192.00024461411834
+          ]
+        }
+      }
+    },
+    {
+      "position": 29,
+      "raw": "raw/029-b2-image-direct-4-1-baseline.json",
+      "log": "logs/029-b2-image-direct-4-1-baseline.log",
+      "rawSha256": "5d1584f5d77032dfebf853256983d1980da380afe10d6347316bce6a822284f2",
+      "logSha256": "429fb791d54c6dcf08b4e5fd77de8ca112fd4632eb43b4621aa27a6eba369f56",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 39.133705141974964,
+          "iterations": [
+            38.9500024885796,
+            39.44802525110094,
+            39.172530853221026,
+            39.44587373622679,
+            38.652093380746464
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 192.00023266531122,
+          "iterations": [
+            192.00023211164975,
+            192.0002350774158,
+            192.00023218348198,
+            192.00023506373105,
+            192.00022889027753
+          ]
+        }
+      }
+    },
+    {
+      "position": 30,
+      "raw": "raw/030-b2-image-direct-4-2-candidate.json",
+      "log": "logs/030-b2-image-direct-4-2-candidate.log",
+      "rawSha256": "ae2b2ebc0a01189ae76aa07f56c1321cf168b97a7766fba667a0f3fb85e277ca",
+      "logSha256": "c66055bf7b1d2380ae31b76e025393299d5307da1306c915aa3c24e4e1926e82",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 34.509464457538954,
+          "iterations": [
+            34.5079212846617,
+            34.40164863695013,
+            34.56648833974165,
+            34.56241400591127,
+            34.508850020430025
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 96.00020564639468,
+          "iterations": [
+            96.0002056275712,
+            96.000205003009,
+            96.000205987817,
+            96.00020596765714,
+            96.000205645919
+          ]
+        }
+      }
+    },
+    {
+      "position": 31,
+      "raw": "raw/031-b2-image-direct-4-3-candidate.json",
+      "log": "logs/031-b2-image-direct-4-3-candidate.log",
+      "rawSha256": "a2788107b9e8073c638fcd4f7cc7b269dbb2fa76812420a0acfd580022f03165",
+      "logSha256": "1c2877a2841d17997565ea42c564c20d6fb220c57fe3d858323f27199a26ef34",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 34.5138809426188,
+          "iterations": [
+            34.78283725970907,
+            34.47033317484851,
+            34.57804153196771,
+            34.44466758923828,
+            34.293525157330414
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 96.00020541428303,
+          "iterations": [
+            96.0002072755239,
+            96.00020541563147,
+            96.00020605015814,
+            96.00020525571021,
+            96.00020307439145
+          ]
+        }
+      }
+    },
+    {
+      "position": 32,
+      "raw": "raw/032-b2-image-direct-4-4-baseline.json",
+      "log": "logs/032-b2-image-direct-4-4-baseline.log",
+      "rawSha256": "6f81c42d829aff585b40970dedb1d43f3a8661d6b0b43b307fb95d4b8289284f",
+      "logSha256": "e134e1a36bc9b3cf0f90f1beb559b7b09f6d5918cd54892f1b668e9c52b5a89d",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 40.43266323248368,
+          "iterations": [
+            40.66788146468647,
+            42.00343448758401,
+            39.47860249742824,
+            39.42151601775966,
+            40.59188169496001
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 192.00024039441865,
+          "iterations": [
+            192.0002423469595,
+            192.00025030626819,
+            192.0002339954956,
+            192.0002334392421,
+            192.000241884128
+          ]
+        }
+      }
+    },
+    {
+      "position": 33,
+      "raw": "raw/033-b2-audio-direct-4-1-baseline.json",
+      "log": "logs/033-b2-audio-direct-4-1-baseline.log",
+      "rawSha256": "ef420aba2a81d156d67b7197cd14589be20d783e59102a2280019a0be1ba7df5",
+      "logSha256": "4e2a7299a0c73e8e47065d13c8a113418daa605b0a72e7d9671cdbbdfbce2253",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 41.148695194271184,
+          "iterations": [
+            40.826034191135875,
+            41.88947714731474,
+            41.86001294988178,
+            40.41993472201084,
+            40.74801696101269
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 192.00024494453334,
+          "iterations": [
+            192.00024329226687,
+            192.00024828539418,
+            192.00024945473632,
+            192.00024086625854,
+            192.00024282401066
+          ]
+        }
+      }
+    },
+    {
+      "position": 34,
+      "raw": "raw/034-b2-audio-direct-4-2-candidate.json",
+      "log": "logs/034-b2-audio-direct-4-2-candidate.log",
+      "rawSha256": "c9aa0129bdcd281aa78dbb0a55e8df67db1cfe030dff2948ba95f8f252229091",
+      "logSha256": "2c81c8a5191e27f7d6a56df2c9e59709a2b85c3cddf22a3b66d58b26f24bb4f3",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 34.50313010772313,
+          "iterations": [
+            34.5967619014476,
+            34.816947363792885,
+            34.68788765340783,
+            34.262163078009515,
+            34.15189054195784
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 96.00020506972044,
+          "iterations": [
+            96.00020617207944,
+            96.00020636585037,
+            96.00020671380065,
+            96.00020276400032,
+            96.0002033328714
+          ]
+        }
+      }
+    },
+    {
+      "position": 35,
+      "raw": "raw/035-b2-audio-direct-4-3-candidate.json",
+      "log": "logs/035-b2-audio-direct-4-3-candidate.log",
+      "rawSha256": "aab3f94ab2e5819ce773d486e20e96969707ab22c3c2dde77045cf23f3d96d12",
+      "logSha256": "eb5bd494a0ad86954d9d63998225312ba32d78eb0aca20501415cbc00052ddfd",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 34.51292246019303,
+          "iterations": [
+            34.42724825402866,
+            34.61017913969221,
+            34.455742484591056,
+            34.47827631675247,
+            34.59316610590075
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 96.00020492567744,
+          "iterations": [
+            96.00020405479036,
+            96.00020474883986,
+            96.00020532398194,
+            96.00020435972235,
+            96.00020614105264
+          ]
+        }
+      }
+    },
+    {
+      "position": 36,
+      "raw": "raw/036-b2-audio-direct-4-4-baseline.json",
+      "log": "logs/036-b2-audio-direct-4-4-baseline.log",
+      "rawSha256": "43268db4dde07baf771b27fd66f13715e3909a86abff2eb715658764e729b27f",
+      "logSha256": "d80a9a5ff84b033af74660f8890b228ecbfffe56cb6a305da9f329f84d849f39",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 40.4129173391212,
+          "iterations": [
+            40.28915632801424,
+            40.68161861010924,
+            39.923665275501385,
+            40.44194380326448,
+            40.72820267871666
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 192.0002407656032,
+          "iterations": [
+            192.00024009417172,
+            192.00024220737396,
+            192.00023791293512,
+            192.0002410027039,
+            192.00024261083124
+          ]
+        }
+      }
+    },
+    {
+      "position": 37,
+      "raw": "raw/037-b2-raw-session-4-1-baseline.json",
+      "log": "logs/037-b2-raw-session-4-1-baseline.log",
+      "rawSha256": "33c164518dc11fddf16a5e32804c7edcb620d1f4507a529d8153bc31c65fe449",
+      "logSha256": "f9d4ddfa0a3145f215a55b8611296c13393647888d79302f5862e49f3431bf41",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 26861.869810352713,
+          "iterations": [
+            27057.621459297134,
+            28766.756356419697,
+            28604.987873241047,
+            22234.19444197421,
+            27645.788920831492
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 592.2009945529561,
+          "iterations": [
+            592.2402402402403,
+            592.1900598251266,
+            592.1908248484156,
+            592.1483325922633,
+            592.2355152587351
+          ]
+        }
+      }
+    },
+    {
+      "position": 38,
+      "raw": "raw/038-b2-raw-session-4-2-candidate.json",
+      "log": "logs/038-b2-raw-session-4-2-candidate.log",
+      "rawSha256": "d89e02f59b1591cceb0d91ee7e8476fba91424d913494c8ba55fd542f5bd9f04",
+      "logSha256": "7bae5872920f9095b25039203c888720e7ae75b438b046d142170e0c07191068",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 26608.645718150285,
+          "iterations": [
+            26554.023683092608,
+            26612.65312258854,
+            27146.479479941372,
+            28264.69948845491,
+            24465.372816674004
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 592.1879436946,
+          "iterations": [
+            592.1771452846219,
+            592.1605066389931,
+            592.1628576081646,
+            592.1939914648277,
+            592.2452174763931
+          ]
+        }
+      }
+    },
+    {
+      "position": 39,
+      "raw": "raw/039-b2-raw-session-4-3-candidate.json",
+      "log": "logs/039-b2-raw-session-4-3-candidate.log",
+      "rawSha256": "4a695341d2549e96e8011d8f27aa2875a3f4546fa1d617e1a22cb67b86a53441",
+      "logSha256": "ff73b845ef7e25bacdb9da1f07b64bbe69fb5141452ccd1beb745f8dcd63fe00",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 26498.408221494486,
+          "iterations": [
+            25922.679576187762,
+            27045.209107379465,
+            27330.158687216484,
+            26830.874315913723,
+            25363.119420775005
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 592.2063322790975,
+          "iterations": [
+            592.1711828402673,
+            592.185608826154,
+            592.188446193365,
+            592.2322137568409,
+            592.2542097788598
+          ]
+        }
+      }
+    },
+    {
+      "position": 40,
+      "raw": "raw/040-b2-raw-session-4-4-baseline.json",
+      "log": "logs/040-b2-raw-session-4-4-baseline.log",
+      "rawSha256": "2b5904a2ccb826a2d0d5679cb812e3ff5c11d66161a9853190e9d17035ef9f43",
+      "logSha256": "a80fc26090279299cdf512c764f9b2a35759768507a1d676834562e9e1b5fe19",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 27269.83726236673,
+          "iterations": [
+            29352.345835534426,
+            26976.326805847762,
+            27286.145737280043,
+            26837.37339666184,
+            25896.99453650958
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 592.1949228230719,
+          "iterations": [
+            592.1976873862769,
+            592.1756487025948,
+            592.1724184967944,
+            592.1850480330596,
+            592.2438114966338
+          ]
+        }
+      }
+    },
+    {
+      "position": 41,
+      "raw": "raw/041-b2-envelope-direct-4-1-baseline.json",
+      "log": "logs/041-b2-envelope-direct-4-1-baseline.log",
+      "rawSha256": "2b6e85d8c949811aa79c9552751c9ec675f7a1a015d02a0c597f5c24d1d8dc83",
+      "logSha256": "a0dde396ceb68cf123d0f4e3b14b22863fa8eed1d237adea4868159d788bf675",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 244.36598950890743,
+          "iterations": [
+            245.6553659175189,
+            246.4232301139238,
+            243.34504532820068,
+            244.5657068603103,
+            241.84059932458345
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 1144.0014520817917,
+          "iterations": [
+            1144.001463876394,
+            1144.001455851452,
+            1144.0014420950663,
+            1144.0014574136874,
+            1144.0014411723598
+          ]
+        }
+      }
+    },
+    {
+      "position": 42,
+      "raw": "raw/042-b2-envelope-direct-4-2-candidate.json",
+      "log": "logs/042-b2-envelope-direct-4-2-candidate.log",
+      "rawSha256": "770bd6b6404c1ca8d8e20641302c2f7ab69accc478a2537ea3fe8bd13703fd91",
+      "logSha256": "0c4de3b8776c141ac4d08af8adcc3032192915755f02197598a2ef51b59a53c5",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 236.3253582035461,
+          "iterations": [
+            234.82396053747476,
+            238.40906494795573,
+            235.83135384978877,
+            236.25220013388113,
+            236.3102115486301
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 1048.0014067669995,
+          "iterations": [
+            1048.0013993803282,
+            1048.0014207112042,
+            1048.0013978095797,
+            1048.0014077833412,
+            1048.0014081505456
+          ]
+        }
+      }
+    },
+    {
+      "position": 43,
+      "raw": "raw/043-b2-envelope-direct-4-3-candidate.json",
+      "log": "logs/043-b2-envelope-direct-4-3-candidate.log",
+      "rawSha256": "834b64b789d545c917ca5e3a0eabf8c33382125332a03a1962e1e80bae0c96a8",
+      "logSha256": "f9189a7562d266094d7f037ccdb88b69c3d4288250704a37cf4093cbf1aac210",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 238.80475366800647,
+          "iterations": [
+            237.73376858913227,
+            242.0654174916765,
+            236.35530858601481,
+            242.33694784612905,
+            235.5323258270797
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 1048.0014198855183,
+          "iterations": [
+            1048.0014090707264,
+            1048.0014345612126,
+            1048.0014085236003,
+            1048.0014437057698,
+            1048.001403566283
+          ]
+        }
+      }
+    },
+    {
+      "position": 44,
+      "raw": "raw/044-b2-envelope-direct-4-4-baseline.json",
+      "log": "logs/044-b2-envelope-direct-4-4-baseline.log",
+      "rawSha256": "f1f220b44b1b8b019973a4f76fd8e16c828aa256ce1fa6414f7b5e3dde3a8148",
+      "logSha256": "4f5159135a46818af3f5298545ae3d565fa6e591df2563ddbb5b2b6fd07d56b5",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 246.70145062732868,
+          "iterations": [
+            247.8202283374686,
+            246.47538710673527,
+            246.89286403728562,
+            245.57330472600412,
+            246.74546892914978
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 1144.0014644478276,
+          "iterations": [
+            1144.001452624236,
+            1144.00146880116,
+            1144.0014712816196,
+            1144.0014634328402,
+            1144.0014660992829
+          ]
+        }
+      }
+    },
+    {
+      "position": 45,
+      "raw": "raw/045-b2-raw-direct-16-1-baseline.json",
+      "log": "logs/045-b2-raw-direct-16-1-baseline.log",
+      "rawSha256": "8388babd92e2aed2b846e7f7fdfd728cca28b97af6624c3d388e919edd0560d5",
+      "logSha256": "20b2c8acafc14228edd90539825fde9a3e5a58c5e01bbf36199cc654a254258d",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 162.9105302247967,
+          "iterations": [
+            164.53641010420898,
+            163.68346189858246,
+            155.96925909401315,
+            163.71276054531955,
+            166.6507594818594
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 1312.00096808621,
+          "iterations": [
+            1312.00097836468,
+            1312.0009754298069,
+            1312.0009244541034,
+            1312.0009690907777,
+            1312.000993091681
+          ]
+        }
+      }
+    },
+    {
+      "position": 46,
+      "raw": "raw/046-b2-raw-direct-16-2-candidate.json",
+      "log": "logs/046-b2-raw-direct-16-2-candidate.log",
+      "rawSha256": "fb16557d39119500e0c4458d4f71cb675cf8451135bf610db68404c22a3c0285",
+      "logSha256": "27901fb5eff41aed5a2c1f02e3df4463a040dcf77b2101363c32fcf75e974399",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 139.2969955465976,
+          "iterations": [
+            146.62714060024183,
+            146.2837563951445,
+            135.43967757041366,
+            133.56742291056005,
+            134.56698025662791
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 928.0008282940216,
+          "iterations": [
+            928.0008690828186,
+            928.0008717244333,
+            928.0008071031579,
+            928.0007959618558,
+            928.0007975978419
+          ]
+        }
+      }
+    },
+    {
+      "position": 47,
+      "raw": "raw/047-b2-raw-direct-16-3-candidate.json",
+      "log": "logs/047-b2-raw-direct-16-3-candidate.log",
+      "rawSha256": "48c6b7f332674b831072100d2e124b4366ed24cf3fd5138e6e08b531cf01b8f9",
+      "logSha256": "b1831780ccb63847045bf1214c16aaa27c42341073663eb067eb9106a43e3cd2",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 139.43216982180928,
+          "iterations": [
+            135.8874691287658,
+            140.82550365999288,
+            142.16955206619113,
+            138.51790871115975,
+            139.76041554293687
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 928.000829089748,
+          "iterations": [
+            928.0008097818385,
+            928.000839192781,
+            928.0008426557815,
+            928.0008254489799,
+            928.0008283693588
+          ]
+        }
+      }
+    },
+    {
+      "position": 48,
+      "raw": "raw/048-b2-raw-direct-16-4-baseline.json",
+      "log": "logs/048-b2-raw-direct-16-4-baseline.log",
+      "rawSha256": "5950bed9a3f365c619dedcf8f44c4213f1550067d90771ab07644c178b76ffcf",
+      "logSha256": "dde00c39d4b9e67971cae55418030328832e667d627a256dc38281b4fe4108d6",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 166.1791871857786,
+          "iterations": [
+            160.9728046367701,
+            164.56177484712927,
+            166.37645732622278,
+            171.4218155585614,
+            167.56308356020944
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 1312.000986891057,
+          "iterations": [
+            1312.0009589145345,
+            1312.0009753715397,
+            1312.0009856139927,
+            1312.001016021187,
+            1312.0009985340314
+          ]
+        }
+      }
+    },
+    {
+      "position": 49,
+      "raw": "raw/049-b2-raw-direct-4-1-baseline.json",
+      "log": "logs/049-b2-raw-direct-4-1-baseline.log",
+      "rawSha256": "28a8a0539d74cb37b67b39f8bd7ea7c82bac24f32e04e1b5efaa25fde6761ee1",
+      "logSha256": "2b3b6565066ab17117e73333bd1c16286ccd09de11f4397501745c1df41915bc",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 52.658322357508986,
+          "iterations": [
+            53.285648851065524,
+            53.253625180103576,
+            52.82605518060171,
+            52.65072560019574,
+            51.27555697557837
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 352.0003131238874,
+          "iterations": [
+            352.00031754490476,
+            352.00031734436016,
+            352.00031310660114,
+            352.00031206346387,
+            352.00030556010705
+          ]
+        }
+      }
+    },
+    {
+      "position": 50,
+      "raw": "raw/050-b2-raw-direct-4-2-candidate.json",
+      "log": "logs/050-b2-raw-direct-4-2-candidate.log",
+      "rawSha256": "b36527e67838e94654b56a201058dae8dd7bb6887b618ea75582752063d3d640",
+      "logSha256": "2ec6cb7d83f803bb4ae2f5f358ac19ec0942289d528fa8f4b84313bddfc3a283",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 43.12954647030926,
+          "iterations": [
+            43.31987269104605,
+            43.406241559330596,
+            43.68775192521215,
+            42.96641623532624,
+            42.26744994063125
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 256.00025582910195,
+          "iterations": [
+            256.00025676279546,
+            256.00025713204167,
+            256.00025893868076,
+            256.0002546672018,
+            256.00025164479
+          ]
+        }
+      }
+    },
+    {
+      "position": 51,
+      "raw": "raw/051-b2-raw-direct-4-3-candidate.json",
+      "log": "logs/051-b2-raw-direct-4-3-candidate.log",
+      "rawSha256": "9d2f9d0a8dd35b3a399efb51f2223615171c71338f5f65f49dd9af46efb1d3c7",
+      "logSha256": "42ab06154333d42cc2b470f2cc5234993daefa69ede88797dbf02fb69a2135f9",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 42.074087605601264,
+          "iterations": [
+            42.721688090502425,
+            41.676275035708535,
+            42.84806180122711,
+            41.38277541044349,
+            41.741637690124776
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 256.00025037282114,
+          "iterations": [
+            256.00025321434424,
+            256.0002479586265,
+            256.0002553387323,
+            256.0002466064205,
+            256.00024874598216
+          ]
+        }
+      }
+    },
+    {
+      "position": 52,
+      "raw": "raw/052-b2-raw-direct-4-4-baseline.json",
+      "log": "logs/052-b2-raw-direct-4-4-baseline.log",
+      "rawSha256": "b1d79c7ab93ec9884cebdd69df745ea48d5b77a047c8532f5ee7a83e5ec6a197",
+      "logSha256": "013161979600f91b58d8c7097bfafc7f87a2926349e8f45581f69aafe54dd6be",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 51.81223258366299,
+          "iterations": [
+            52.040087516007425,
+            52.88124500734635,
+            52.20886873370413,
+            50.737156011332466,
+            51.19380564992458
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 352.0003080988835,
+          "iterations": [
+            352.00031011903314,
+            352.0003151306936,
+            352.00030944799863,
+            352.0003007218542,
+            352.000305074838
+          ]
+        }
+      }
+    },
+    {
+      "position": 53,
+      "raw": "raw/053-b2-raw-direct-1-1-baseline.json",
+      "log": "logs/053-b2-raw-direct-1-1-baseline.log",
+      "rawSha256": "5837abf8b5351278852d1a304db51d6c68cfc06fdd27db7bb26609a252942c9b",
+      "logSha256": "d445816d85d34f0badd896fbf8944d5d1aba9eab4fe47a7355efe56c55902a22",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 27.15011769625603,
+          "iterations": [
+            27.125604396957524,
+            27.290053041461952,
+            27.207637452808946,
+            27.022453506540163,
+            27.10484008351156
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 112.00016172642654,
+          "iterations": [
+            112.00016164806385,
+            112.00016231457535,
+            112.00016211575641,
+            112.00016103315413,
+            112.00016152058295
+          ]
+        }
+      }
+    },
+    {
+      "position": 54,
+      "raw": "raw/054-b2-raw-direct-1-2-candidate.json",
+      "log": "logs/054-b2-raw-direct-1-2-candidate.log",
+      "rawSha256": "ff87a6268cc0faba463ba25ddf3ceccffdf1662b80b15cc31042d66094d504d3",
+      "logSha256": "b2bef9a5a8aa88f08e09fb4228b50ceedd017bdafec0324ffec614e3abf3adf1",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 25.23311365587886,
+          "iterations": [
+            25.307915655751835,
+            25.236859480023167,
+            25.3737965650634,
+            25.08348982237884,
+            25.16350675617707
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 88.00015003231752,
+          "iterations": [
+            88.00015081010964,
+            88.00015032416422,
+            88.00015120792297,
+            88.00014867452074,
+            88.00014914487004
+          ]
+        }
+      }
+    },
+    {
+      "position": 55,
+      "raw": "raw/055-b2-raw-direct-1-3-candidate.json",
+      "log": "logs/055-b2-raw-direct-1-3-candidate.log",
+      "rawSha256": "93d2e3f270178ac5bf113e58bf1d7f67b232cebb226896a901e51109b3d0fca5",
+      "logSha256": "20bcce3d1bbe890f3fa4d540414eb1d888259b57b32c309a864a11a1de749535",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 25.524023480180887,
+          "iterations": [
+            25.40836381927548,
+            25.162177242330188,
+            25.339610918841743,
+            25.610936228423697,
+            26.099029192033328
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 88.00015169627726,
+          "iterations": [
+            88.00015132628987,
+            88.00014884455646,
+            88.0001509993178,
+            88.0001526211661,
+            88.0001546900561
+          ]
+        }
+      }
+    },
+    {
+      "position": 56,
+      "raw": "raw/056-b2-raw-direct-1-4-baseline.json",
+      "log": "logs/056-b2-raw-direct-1-4-baseline.log",
+      "rawSha256": "41b7122fb30e92a42bbf1a3376b5ca38a983fe7ba6a6487c7314f40862dd714e",
+      "logSha256": "44a143a5a2cf9b2d51c0285a550ec303e17819c7f078086ca795dc4aa4d25f03",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 26.417616769278993,
+          "iterations": [
+            26.522161619801615,
+            26.47276210830298,
+            26.04294783703461,
+            26.646138392109005,
+            26.404073889146744
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 112.00015723969462,
+          "iterations": [
+            112.00015796881367,
+            112.00015690590865,
+            112.00015518856699,
+            112.00015879099732,
+            112.00015734418642
+          ]
+        }
+      }
+    },
+    {
+      "position": 57,
+      "raw": "raw/057-b3-raw-direct-1-1-baseline.json",
+      "log": "logs/057-b3-raw-direct-1-1-baseline.log",
+      "rawSha256": "63d9b6a81473ab47a11890035d2192c2c3e478cfcdaafee5ad403b1b23a94518",
+      "logSha256": "62867a7f6dac81f2a75f2b65c0df384ce590e02bc0cc6b43afa8f52de5c33962",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 26.18378413634141,
+          "iterations": [
+            25.957675350112694,
+            26.197336994186042,
+            26.443604199448252,
+            26.139890717351992,
+            26.18041342060805
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 112.00015585747283,
+          "iterations": [
+            112.00015466794609,
+            112.00015610046374,
+            112.00015757898608,
+            112.00015576785226,
+            112.00015517211592
+          ]
+        }
+      }
+    },
+    {
+      "position": 58,
+      "raw": "raw/058-b3-raw-direct-1-2-candidate.json",
+      "log": "logs/058-b3-raw-direct-1-2-candidate.log",
+      "rawSha256": "bb48bbe8f52e880c8cc248d5ee63e168e3a26e25a901df6d1ad6c2d34d02dad0",
+      "logSha256": "50dab5f268b503ed432cfb787b834caaa7a3b33c0c5a40d962a8dfd642ced981",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 25.042274564039673,
+          "iterations": [
+            25.205718834909053,
+            25.075952530000958,
+            25.048477395140193,
+            24.880030856377665,
+            25.001193203770498
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 88.00014873673608,
+          "iterations": [
+            88.00014934130733,
+            88.00014862831708,
+            88.00014926725181,
+            88.00014826185979,
+            88.00014818494441
+          ]
+        }
+      }
+    },
+    {
+      "position": 59,
+      "raw": "raw/059-b3-raw-direct-1-3-candidate.json",
+      "log": "logs/059-b3-raw-direct-1-3-candidate.log",
+      "rawSha256": "0bc0baf780bfb2750089ce56204d3d7f7a2be3337bc1afc74189be3ef6ad909b",
+      "logSha256": "af86a5ef8b0e17cf52b64e4a826ddc1d82fd8dedb4748867c2f013e16f1fcb22",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 25.14284408975235,
+          "iterations": [
+            25.21242785582438,
+            25.128295069156867,
+            25.076800212383493,
+            25.175381691566958,
+            25.12131561983007
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 88.00014983025999,
+          "iterations": [
+            88.00015024259642,
+            88.00014974375101,
+            88.00014943870721,
+            88.0001500247629,
+            88.00014970148243
+          ]
+        }
+      }
+    },
+    {
+      "position": 60,
+      "raw": "raw/060-b3-raw-direct-1-4-baseline.json",
+      "log": "logs/060-b3-raw-direct-1-4-baseline.log",
+      "rawSha256": "0b3e15af1172a5c5434e2a3c62cf114fa3d6fdf7f2bf106702de6ba343e623bd",
+      "logSha256": "cd527ee44a1be71799e125abe254332da128fcff0348c76e10519bca108258bf",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 27.23360918620155,
+          "iterations": [
+            27.239379841692955,
+            27.20712741172081,
+            27.304803674065887,
+            27.170421699733097,
+            27.246313303795013
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 112.0001622907243,
+          "iterations": [
+            112.00016232485801,
+            112.00016213340577,
+            112.00016271424839,
+            112.00016191478909,
+            112.00016236632021
+          ]
+        }
+      }
+    },
+    {
+      "position": 61,
+      "raw": "raw/061-b3-raw-direct-4-1-baseline.json",
+      "log": "logs/061-b3-raw-direct-4-1-baseline.log",
+      "rawSha256": "bc177587699c68e38ab7e030d3d1db3a04b16f77c94d40cdb9ccc6d100d2f85a",
+      "logSha256": "8d4f66f4a3fb886fd01e9f2f89b23b58fa6c2218adab938bdf4ca77564308901",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 53.9384046047208,
+          "iterations": [
+            53.414656463745025,
+            54.63073765389972,
+            54.70497402614309,
+            54.01126302394139,
+            52.93039185587477
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 352.00032089720105,
+          "iterations": [
+            352.00031769082693,
+            352.0003252646773,
+            352.0003242424743,
+            352.0003218654892,
+            352.0003154225373
+          ]
+        }
+      }
+    },
+    {
+      "position": 62,
+      "raw": "raw/062-b3-raw-direct-4-2-candidate.json",
+      "log": "logs/062-b3-raw-direct-4-2-candidate.log",
+      "rawSha256": "64a10e953c5d2d6aebc17d881bc5ccd72fcfabbc1bb5f4739de20e80a84f7d54",
+      "logSha256": "260c24d4141d5c02dd868f703cc21e98dbe3116e340d002aa813fccd369c1bd6",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 42.824987405899364,
+          "iterations": [
+            42.73355489966513,
+            42.81881545780687,
+            43.028754450921795,
+            42.7010619828878,
+            42.842750238215224
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 256.0002549287398,
+          "iterations": [
+            256.00025329028483,
+            256.0002551621202,
+            256.0002564188721,
+            256.0002544653329,
+            256.00025530708905
+          ]
+        }
+      }
+    },
+    {
+      "position": 63,
+      "raw": "raw/063-b3-raw-direct-4-3-candidate.json",
+      "log": "logs/063-b3-raw-direct-4-3-candidate.log",
+      "rawSha256": "003d3352d085786a0958d4c3db5b9a125527aab690961fd4b587bfab377b1efc",
+      "logSha256": "fe90a91784f4c046adf4fa7d28e097e7781d239b8349848f742df5f92dab98a5",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 43.02606939070335,
+          "iterations": [
+            43.28250514796566,
+            43.207506403963954,
+            42.90573007332689,
+            43.11762747338838,
+            42.61697785487186
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 256.00025557696716,
+          "iterations": [
+            256.00025792842104,
+            256.000257480522,
+            256.00025430994873,
+            256.0002555667244,
+            256.00025259921955
+          ]
+        }
+      }
+    },
+    {
+      "position": 64,
+      "raw": "raw/064-b3-raw-direct-4-4-baseline.json",
+      "log": "logs/064-b3-raw-direct-4-4-baseline.log",
+      "rawSha256": "dc4f7e4da5cd44ae373b9b50a0f2787523229d966d17a7c050cfb8d8578aee97",
+      "logSha256": "34307f2af513f6ac304ee64c38056b41ebfbdee393bfeaf2220c910903cc7d4d",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 52.97130135500512,
+          "iterations": [
+            51.53921141619197,
+            51.467761062984174,
+            54.407016554364716,
+            53.90713522760415,
+            53.53538251388057
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 352.00031431066685,
+          "iterations": [
+            352.0003071306882,
+            352.0003033710513,
+            352.00032421992466,
+            352.000321243735,
+            352.00031558793506
+          ]
+        }
+      }
+    },
+    {
+      "position": 65,
+      "raw": "raw/065-b3-raw-direct-16-1-baseline.json",
+      "log": "logs/065-b3-raw-direct-16-1-baseline.log",
+      "rawSha256": "9151332de38e39a6ff0c51065a59c95597396942944d3214fc85978a659d1a81",
+      "logSha256": "46def1da8da961db87102e2baa8ef87e81b9f74907bd26beba49b80dd9cf6b9d",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 166.362759151106,
+          "iterations": [
+            166.60292203211282,
+            169.47279425507662,
+            161.35409524611583,
+            166.22780338475206,
+            168.15618083747253
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 1312.0009888500485,
+          "iterations": [
+            1312.0009874814077,
+            1312.0010099265955,
+            1312.0009615507167,
+            1312.0009852401781,
+            1312.0010000513448
+          ]
+        }
+      }
+    },
+    {
+      "position": 66,
+      "raw": "raw/066-b3-raw-direct-16-2-candidate.json",
+      "log": "logs/066-b3-raw-direct-16-2-candidate.log",
+      "rawSha256": "bfb1430b8e478e0568396aa91e84666d7d8eb181314cd1380f9236c88e4b09a2",
+      "logSha256": "b566c54139cf237ae4312a643c8fb643f19c3011c1651669795970f97126bea8",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 128.998395280452,
+          "iterations": [
+            126.46534686767549,
+            128.07475879025364,
+            129.09777953208388,
+            132.90617987360156,
+            128.44791133864544
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 928.0007662276308,
+          "iterations": [
+            928.0007455386542,
+            928.0007591167968,
+            928.0007693016626,
+            928.0007920001606,
+            928.0007651808805
+          ]
+        }
+      }
+    },
+    {
+      "position": 67,
+      "raw": "raw/067-b3-raw-direct-16-3-candidate.json",
+      "log": "logs/067-b3-raw-direct-16-3-candidate.log",
+      "rawSha256": "fd9b00e1932adab58fad88c8a2f88cb168d2dfb28f50bda7dc6e5880ca759a80",
+      "logSha256": "e6f18da1b692649f51f1decf97092a5283d6878fb913fddbedb89a161e60403e",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 127.79317817192839,
+          "iterations": [
+            128.16287685456766,
+            127.86082481205159,
+            126.86623017047289,
+            129.57608689739385,
+            126.49987212515596
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 928.0007612674177,
+          "iterations": [
+            928.0007637331327,
+            928.0007611936334,
+            928.0007556399776,
+            928.0007719285339,
+            928.0007538418106
+          ]
+        }
+      }
+    },
+    {
+      "position": 68,
+      "raw": "raw/068-b3-raw-direct-16-4-baseline.json",
+      "log": "logs/068-b3-raw-direct-16-4-baseline.log",
+      "rawSha256": "1fef55cd513c4204db2c120885afe9e986d0d93086484770ad89b30f12108f15",
+      "logSha256": "dc4e6b1c7449841d3c37b99a05c834f52975f471e259f33e2fee1df335928550",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 169.15137546452402,
+          "iterations": [
+            160.5025867396713,
+            176.88522357956515,
+            175.37380407378558,
+            169.56799056032796,
+            163.4272723692701
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 1312.0010057370368,
+          "iterations": [
+            1312.0009564766226,
+            1312.001048427147,
+            1312.0010394707817,
+            1312.0010104246667,
+            1312.0009738859667
+          ]
+        }
+      }
+    },
+    {
+      "position": 69,
+      "raw": "raw/069-b3-envelope-direct-4-1-baseline.json",
+      "log": "logs/069-b3-envelope-direct-4-1-baseline.log",
+      "rawSha256": "c79f6cc4db58cf38e91ceb46e243ac62896d786f3d43180053c380d258efe11d",
+      "logSha256": "c9ad53ab324467d11b732e601ef3320f0d6053326c38b6cbcc0d704e2b03d094",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 247.5051872373362,
+          "iterations": [
+            243.97618009125364,
+            246.76299403358584,
+            245.88234577106238,
+            247.60145923528782,
+            253.3029570554913
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 1144.0014713290107,
+          "iterations": [
+            1144.0014538911591,
+            1144.0014691715548,
+            1144.001464669277,
+            1144.0014675534044,
+            1144.0015013596574
+          ]
+        }
+      }
+    },
+    {
+      "position": 70,
+      "raw": "raw/070-b3-envelope-direct-4-2-candidate.json",
+      "log": "logs/070-b3-envelope-direct-4-2-candidate.log",
+      "rawSha256": "f9b4558465707f699ca309dd85d5da2528cc5a57785ebb178d643bbf5f4e344b",
+      "logSha256": "0e04ea66fbba77eb31fcafe6fdee3bf729c90caf6e5225b3b8bf600f1648ba6a",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 240.75321242204672,
+          "iterations": [
+            241.9343329937509,
+            241.21062064424396,
+            238.03285652642987,
+            240.35632479166466,
+            242.23192715414427
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 1048.0014305286104,
+          "iterations": [
+            1048.001441190133,
+            1048.001426668791,
+            1048.0014184967695,
+            1048.0014244658253,
+            1048.0014418215335
+          ]
+        }
+      }
+    },
+    {
+      "position": 71,
+      "raw": "raw/071-b3-envelope-direct-4-3-candidate.json",
+      "log": "logs/071-b3-envelope-direct-4-3-candidate.log",
+      "rawSha256": "229b2ecc88a2db167053665be4210fdcb49d306f03807bef3ec219c2d05210fb",
+      "logSha256": "290527d4ee3a40a4f0f9d23818ea03642384b3504077e0aa6e56501046d8a0d0",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 247.86440738880304,
+          "iterations": [
+            249.45825638646534,
+            247.87166324995093,
+            247.48227329942867,
+            246.02327722073522,
+            248.486566787435
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 1048.0014722939932,
+          "iterations": [
+            1048.0014865586168,
+            1048.0014691216793,
+            1048.0014668427473,
+            1048.001458224022,
+            1048.0014807229009
+          ]
+        }
+      }
+    },
+    {
+      "position": 72,
+      "raw": "raw/072-b3-envelope-direct-4-4-baseline.json",
+      "log": "logs/072-b3-envelope-direct-4-4-baseline.log",
+      "rawSha256": "321360b98fb3c86cb799a3308d7df87170d7f3b2ca83a425e71138caa544d305",
+      "logSha256": "b1c337ce4128ff81361469e983742656d0e01b1d25259d0c076d1fd7d4ced74e",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 254.62537973719265,
+          "iterations": [
+            256.320065279277,
+            255.38485938597051,
+            254.45953936940361,
+            254.61971259425363,
+            252.3427220570585
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 1144.0015124240922,
+          "iterations": [
+            1144.001519219355,
+            1144.0015216697518,
+            1144.0015163704402,
+            1144.0015091780326,
+            1144.0014956828809
+          ]
+        }
+      }
+    },
+    {
+      "position": 73,
+      "raw": "raw/073-b3-raw-session-4-1-baseline.json",
+      "log": "logs/073-b3-raw-session-4-1-baseline.log",
+      "rawSha256": "8ac3ca32fb7e1fb62bed7e889c1dfd9a8aa180dd38d3397058270943ef691878",
+      "logSha256": "a594b8f0cc43ef0b86e74103203fef964fdd63058b72166d64f2238ac5f4b971",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 28202.02060075049,
+          "iterations": [
+            29307.465846153846,
+            27645.05641181174,
+            27972.26961264159,
+            27758.09350541216,
+            28327.21762773309
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 555.5745720491439,
+          "iterations": [
+            528.1805128205128,
+            528.1583721635557,
+            537.0567473080688,
+            592.1967249514294,
+            592.2805030021525
+          ]
+        }
+      }
+    },
+    {
+      "position": 74,
+      "raw": "raw/074-b3-raw-session-4-2-candidate.json",
+      "log": "logs/074-b3-raw-session-4-2-candidate.log",
+      "rawSha256": "5d1fc7a482f13aba9fbfa55dd4011555b7856239f8e12515fd781553bb2e6e79",
+      "logSha256": "5912be0a50d8f149a2e1e696b1e83fe99e7a91dc0b688538bf5cf1b0f9c81d08",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 26585.654471421312,
+          "iterations": [
+            27137.562164215553,
+            29350.540791172672,
+            26981.824340365834,
+            26354.46608516918,
+            23103.878976183325
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 592.1945545465721,
+          "iterations": [
+            592.1888533130732,
+            592.1995539382557,
+            592.1903631360276,
+            592.1572678402024,
+            592.2367345053016
+          ]
+        }
+      }
+    },
+    {
+      "position": 75,
+      "raw": "raw/075-b3-raw-session-4-3-candidate.json",
+      "log": "logs/075-b3-raw-session-4-3-candidate.log",
+      "rawSha256": "8fd19460935daff9ef190611859cbf99c8e0470a08b5f60ff4e010a80cd08bca",
+      "logSha256": "0dfcecf4996cab0d827e12423001ff2cdc4d6d2af1503812be154ca829815cb6",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 25931.238847404045,
+          "iterations": [
+            25960.63338092148,
+            27906.749993024358,
+            25879.956889636433,
+            23532.067835294118,
+            26376.78613814384
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 592.176523473981,
+          "iterations": [
+            592.1532511356262,
+            592.1817014983677,
+            592.1511191615991,
+            592.1615058823529,
+            592.2350396919587
+          ]
+        }
+      }
+    },
+    {
+      "position": 76,
+      "raw": "raw/076-b3-raw-session-4-4-baseline.json",
+      "log": "logs/076-b3-raw-session-4-4-baseline.log",
+      "rawSha256": "daeda5db6cdcb686208ff6d58fda758287acd4f3092444274bf9831b8472e959",
+      "logSha256": "da537ea8384396e399a1581cbc84c936b69eb73f6984b776279978b8d968a630",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 26329.915010718956,
+          "iterations": [
+            24695.440208400207,
+            28084.644323383225,
+            24071.993549629344,
+            27513.694478797373,
+            27283.80249338462
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 592.1903445764995,
+          "iterations": [
+            592.1718560952122,
+            592.1774732526467,
+            592.1682872821797,
+            592.181603319867,
+            592.2525029325914
+          ]
+        }
+      }
+    },
+    {
+      "position": 77,
+      "raw": "raw/077-b3-audio-direct-4-1-baseline.json",
+      "log": "logs/077-b3-audio-direct-4-1-baseline.log",
+      "rawSha256": "7f668d4a334e15b01c7460407cb300e1e018f9c32c129a56241db422b86f146f",
+      "logSha256": "74cebc1e86014d92216d65a930963416549e2ad506eb1d200973dc8079935f83",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 40.94404469433939,
+          "iterations": [
+            40.569450450820646,
+            41.44096053027236,
+            40.85840929574969,
+            40.709300122882574,
+            41.14210307197168
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 192.00024366775222,
+          "iterations": [
+            192.0002417649523,
+            192.0002469574613,
+            192.00024339554759,
+            192.00024259031096,
+            192.00024363048882
+          ]
+        }
+      }
+    },
+    {
+      "position": 78,
+      "raw": "raw/078-b3-audio-direct-4-2-candidate.json",
+      "log": "logs/078-b3-audio-direct-4-2-candidate.log",
+      "rawSha256": "cede2edba5eed9af77d5047489cc5173294fc2ccd5d4b7353fbb2b971f94fff5",
+      "logSha256": "5253279b5e743a538b6581a3ab8943fd0550cb79d60502f9a4fa1eef7f406bc4",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 34.57805754734958,
+          "iterations": [
+            34.58553659568506,
+            34.42908386157825,
+            34.64128533476178,
+            34.49825334011881,
+            34.73612860460401
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 96.00020576038801,
+          "iterations": [
+            96.00020603002169,
+            96.00020490444285,
+            96.00020639959251,
+            96.00020447489584,
+            96.00020699298717
+          ]
+        }
+      }
+    },
+    {
+      "position": 79,
+      "raw": "raw/079-b3-audio-direct-4-3-candidate.json",
+      "log": "logs/079-b3-audio-direct-4-3-candidate.log",
+      "rawSha256": "fa022a7daaf3be26aaf940b2422ce02b3ad291af9bf4dd0a17405ec01db16fe5",
+      "logSha256": "ba97bcf71557758f08e9d58c86c24e4000ca34ea1ad81f6ae26e4ffa771c8e5e",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 34.74331277409222,
+          "iterations": [
+            34.691509680629316,
+            34.59484892422903,
+            34.90382810090594,
+            34.792545290197786,
+            34.73383187449904
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 96.00020651117129,
+          "iterations": [
+            96.00020673172611,
+            96.00020488505699,
+            96.00020799907922,
+            96.00020595731534,
+            96.00020698267875
+          ]
+        }
+      }
+    },
+    {
+      "position": 80,
+      "raw": "raw/080-b3-audio-direct-4-4-baseline.json",
+      "log": "logs/080-b3-audio-direct-4-4-baseline.log",
+      "rawSha256": "68ac504608d4b06c203829cb2017ea973a37ebb4b1c1d2fbe498c18a88d4d4cb",
+      "logSha256": "7660793f49facad350ad8916e307546322b5c4065b4c8e2a79845dae79932992",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 40.83827854614133,
+          "iterations": [
+            40.988730339937284,
+            40.64124886237895,
+            40.51142445395772,
+            40.8823668968095,
+            41.1676221776232
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 192.00024257532408,
+          "iterations": [
+            192.0002442549274,
+            192.00024218320192,
+            192.00024011828984,
+            192.0002423144166,
+            192.00024400578468
+          ]
+        }
+      }
+    },
+    {
+      "position": 81,
+      "raw": "raw/081-b3-image-direct-4-1-baseline.json",
+      "log": "logs/081-b3-image-direct-4-1-baseline.log",
+      "rawSha256": "622b492011b19e7c4852110ae519282210d6306b3b575af80a75615823e74f05",
+      "logSha256": "2898bb6f06afb507ba9f1b98d34d98eda60fc2f9e49d1f63320acebe148e7fca",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 37.507015168461,
+          "iterations": [
+            36.49797553511063,
+            37.03199840949485,
+            37.652829652087945,
+            37.913108712878035,
+            38.43916353273357
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 192.0002234592336,
+          "iterations": [
+            192.00021742158285,
+            192.00022049243358,
+            192.00022438239216,
+            192.0002259313118,
+            192.0002290684478
+          ]
+        }
+      }
+    },
+    {
+      "position": 82,
+      "raw": "raw/082-b3-image-direct-4-2-candidate.json",
+      "log": "logs/082-b3-image-direct-4-2-candidate.log",
+      "rawSha256": "8b1b85d9f5871cb2efa224d4b41e0227b17691a5323261c543aa293d81b316da",
+      "logSha256": "dd783b3916bb67a76ca96659a30672a425829973b295579c28050465f23253a5",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 34.00992378872688,
+          "iterations": [
+            34.04176553570494,
+            34.13685039636682,
+            34.06942298087385,
+            34.022554590438666,
+            33.779025440250116
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 96.00020219514943,
+          "iterations": [
+            96.00020286064829,
+            96.00020342431384,
+            96.00020193526748,
+            96.00020164602068,
+            96.0002011094968
+          ]
+        }
+      }
+    },
+    {
+      "position": 83,
+      "raw": "raw/083-b3-image-direct-4-3-candidate.json",
+      "log": "logs/083-b3-image-direct-4-3-candidate.log",
+      "rawSha256": "c79caf2ce44c5d93b97261c01548bd9d8937c296184e553650a0d0df29f693c3",
+      "logSha256": "3dcdf22d582ad4f0e89b96f86c358d7995adf1d5f47ebdea2fa913b20f713053",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 34.38170891055713,
+          "iterations": [
+            34.443382945157545,
+            34.46738648411361,
+            34.38794036992268,
+            34.39531041168296,
+            34.21452434190887
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 96.00020400673675,
+          "iterations": [
+            96.00020415169752,
+            96.00020429282357,
+            96.00020492617071,
+            96.00020386763171,
+            96.00020279536025
+          ]
+        }
+      }
+    },
+    {
+      "position": 84,
+      "raw": "raw/084-b3-image-direct-4-4-baseline.json",
+      "log": "logs/084-b3-image-direct-4-4-baseline.log",
+      "rawSha256": "7235ca868a304f252fca2db929fa8136ca4d4da538026d6b63a7b4a4cb7ddeef",
+      "logSha256": "d6c67418dd8cb39312924d0d08362de050e4c4c3cb94069e59c64e895e84ddae",
+      "metrics": {
+        "timeNsPerOp": {
+          "mean": 39.81102062278188,
+          "iterations": [
+            41.33891798836358,
+            39.0577230785829,
+            39.16329540679025,
+            39.59858501466902,
+            39.89658162550363
+          ]
+        },
+        "allocatedBytesPerOp": {
+          "mean": 192.00023688159604,
+          "iterations": [
+            192.0002450172692,
+            192.00023230328395,
+            192.00023338286584,
+            192.00023596814066,
+            192.0002377364206
+          ]
+        }
+      }
+    }
+  ]
+}

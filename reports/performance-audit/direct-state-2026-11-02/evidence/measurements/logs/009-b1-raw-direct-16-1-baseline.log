@@ -1,0 +1,100 @@
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: /usr/lib/jvm/temurin-17-jdk-amd64/bin/java
+# VM options: -Xms256m -Xmx256m -Dominicat.directState.coreSha256=c662ff8d90a828c4dbc45f72b3fb3353f36596d7f36532621a8e07aa55a9df97 -Dominicat.directState.probeSha256=cf3d64bc6d3cb2698c6599004f468b2fe016349f942935504500483d4293c381
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: io.ominicat.benchmarks.DirectStateProbe.invoke
+# Parameters: (scenario = raw-direct-16)
+
+# Run progress: 0.00% complete, ETA 00:00:08
+# Fork: 1 of 1
+# Warmup Iteration   1: DIRECT_STATE_CORE_SHA256=c662ff8d90a828c4dbc45f72b3fb3353f36596d7f36532621a8e07aa55a9df97
+DIRECT_STATE_PROBE_SHA256=cf3d64bc6d3cb2698c6599004f468b2fe016349f942935504500483d4293c381
+225.311 ns/op
+# Warmup Iteration   2: 198.808 ns/op
+# Warmup Iteration   3: 188.827 ns/op
+Iteration   1: 178.808 ns/op
+                 gc.alloc.rate:      6995.746 MB/sec
+                 gc.alloc.rate.norm: 1312.001 B/op
+                 gc.count:           46.000 counts
+                 gc.time:            21.000 ms
+
+Iteration   2: 187.593 ns/op
+                 gc.alloc.rate:      6668.025 MB/sec
+                 gc.alloc.rate.norm: 1312.001 B/op
+                 gc.count:           44.000 counts
+                 gc.time:            21.000 ms
+
+Iteration   3: 181.937 ns/op
+                 gc.alloc.rate:      6873.942 MB/sec
+                 gc.alloc.rate.norm: 1312.001 B/op
+                 gc.count:           45.000 counts
+                 gc.time:            21.000 ms
+
+Iteration   4: 186.187 ns/op
+                 gc.alloc.rate:      6718.380 MB/sec
+                 gc.alloc.rate.norm: 1312.001 B/op
+                 gc.count:           45.000 counts
+                 gc.time:            20.000 ms
+
+Iteration   5: 192.572 ns/op
+                 gc.alloc.rate:      6495.416 MB/sec
+                 gc.alloc.rate.norm: 1312.001 B/op
+                 gc.count:           43.000 counts
+                 gc.time:            21.000 ms
+
+
+
+Result "io.ominicat.benchmarks.DirectStateProbe.invoke":
+  185.420 ±(99.9%) 20.404 ns/op [Average]
+  (min, avg, max) = (178.808, 185.420, 192.572), stdev = 5.299
+  CI (99.9%): [165.015, 205.824] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.DirectStateProbe.invoke:gc.alloc.rate":
+  6750.302 ±(99.9%) 741.399 MB/sec [Average]
+  (min, avg, max) = (6495.416, 6750.302, 6995.746), stdev = 192.539
+  CI (99.9%): [6008.903, 7491.701] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.DirectStateProbe.invoke:gc.alloc.rate.norm":
+  1312.001 ±(99.9%) 0.001 B/op [Average]
+  (min, avg, max) = (1312.001, 1312.001, 1312.001), stdev = 0.001
+  CI (99.9%): [1312.001, 1312.001] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.DirectStateProbe.invoke:gc.count":
+  223.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (43.000, 44.600, 46.000), stdev = 1.140
+  CI (99.9%): [223.000, 223.000] (assumes normal distribution)
+
+Secondary result "io.ominicat.benchmarks.DirectStateProbe.invoke:gc.time":
+  104.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (20.000, 20.800, 21.000), stdev = 0.447
+  CI (99.9%): [104.000, 104.000] (assumes normal distribution)
+
+
+# Run complete. Total time: 00:00:08
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                                      (scenario)  Mode  Cnt     Score     Error   Units
+DirectStateProbe.invoke                     raw-direct-16  avgt    5   185.420 ±  20.404   ns/op
+DirectStateProbe.invoke:gc.alloc.rate       raw-direct-16  avgt    5  6750.302 ± 741.399  MB/sec
+DirectStateProbe.invoke:gc.alloc.rate.norm  raw-direct-16  avgt    5  1312.001 ±   0.001    B/op
+DirectStateProbe.invoke:gc.count            raw-direct-16  avgt    5   223.000            counts
+DirectStateProbe.invoke:gc.time             raw-direct-16  avgt    5   104.000                ms
+
+Benchmark result is saved to ../../../_temp/direct-state/evidence/measurements/raw/009-b1-raw-direct-16-1-baseline.json

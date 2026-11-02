@@ -1,0 +1,191 @@
+{
+  "schemaVersion": 1,
+  "protocol": "ominicat-direct-state-diagnostics-v1",
+  "status": "complete",
+  "recordedAt": "2026-11-02T06:59:23.229014+00:00",
+  "case": {
+    "id": "baseline-raw-direct-4",
+    "side": "baseline",
+    "scenario": "raw-direct-4"
+  },
+  "scope": "Independent instrumented Java 17 JMH diagnostic JVM, including startup, setup, two 1-second warmups, two 1-second measurements, harness and teardown. No phase filtering. CPU sampling requests 10ms; allocation sampling is throttled to 50 events/second; recording and export retain up to 64 frames. This is not main timing evidence, per-operation allocation, retained heap, method duration, p99 latency, RSS or production capacity.",
+  "instrumented": true,
+  "headlineEligible": false,
+  "bindings": {
+    "measurementManifestSha256": "20f4660045480aa46038ee830cc7cb70e24750e3ea32c50776b84162f13d91c2",
+    "artifactSha256": {
+      "baseline": "c662ff8d90a828c4dbc45f72b3fb3353f36596d7f36532621a8e07aa55a9df97",
+      "candidate": "92c4ae8b34ae3b308ad6fbb0efc02ace89076141d12bfc75b26e101a5cf36c9f",
+      "probe": "cf3d64bc6d3cb2698c6599004f468b2fe016349f942935504500483d4293c381"
+    },
+    "sourceAggregateSha256": {
+      "baseline": "0a53528ab1131529222f50ebbf085549e024b38e382ec808c61dd3b531234d9b",
+      "candidate": "b575d3ec580760f9edd554bcade8c213cba5f89f3b7dbe8efb6f130cca579ffe",
+      "probe": "bc9f4c49ca6e7811f9da8363e2974949613c63be224efe0a7cbd5bac2c853dfa"
+    }
+  },
+  "settings": {
+    "jmhVersion": "1.37",
+    "mode": "avgt",
+    "threads": 1,
+    "forks": 0,
+    "warmupIterations": 2,
+    "measurementIterations": 2,
+    "warmupTime": "1 s",
+    "measurementTime": "1 s",
+    "warmupBatchSize": 1,
+    "measurementBatchSize": 1,
+    "heapArgs": [
+      "-Xms256m",
+      "-Xmx256m"
+    ],
+    "profilers": [
+      "gc"
+    ],
+    "executionSamplePeriod": "10ms",
+    "allocationThrottle": "50/s",
+    "recordingStackDepth": 64,
+    "exportStackDepth": 64,
+    "selectedJsonMaxBytes": 134217728,
+    "selectedEvents": [
+      "jdk.ExecutionSample",
+      "jdk.GarbageCollection",
+      "jdk.JavaMonitorEnter",
+      "jdk.ObjectAllocationSample",
+      "jdk.VirtualThreadPinned"
+    ],
+    "disabledEvents": [
+      "jdk.InitialEnvironmentVariable",
+      "jdk.InitialSystemProperty",
+      "jdk.InitialSecurityProperty",
+      "jdk.SecurityPropertyModification",
+      "jdk.SystemProcess",
+      "jdk.ProcessStart",
+      "jdk.OSInformation",
+      "jdk.JVMInformation"
+    ]
+  },
+  "toolSha256": {
+    "comparison/direct_state_profiles.py": "a3bbef25aab81ef2d19d5b1e879aff75a34dfbad742a28ee94fe582bfd79d4a6",
+    "comparison/direct_state_evidence.py": "1c1b093380a9ec8ee21d087b055350e94aff2b067c8e1937e64967fb6870a687",
+    "comparison/mechanism_profiles.py": "dda6124d1a60d56aa3a2617cb2c4ac894171cfb2167817de300abf71951b74bc",
+    "comparison/mechanism_evidence.py": "b3ebe4c6b21df8d99834293bb2e5b2cb78d4b9a4bfa8c549840d3b59a73af10c",
+    "scripts/summarize_profiles.py": "3deb3c444b94b13f2ed84c9d0542738be2bba70dcd7c94cd3c6d6a10a9d3be9e",
+    "scripts/package_profiles.py": "2cd1f03e99f0f4232c4a0c086bd52f5036434ec93a687e92fcf349aa2a99ee25"
+  },
+  "eventSummary": {
+    "schemaVersion": 1,
+    "scope": "Independent instrumented Java 17 JMH diagnostic JVM, including startup, setup, two 1-second warmups, two 1-second measurements, harness and teardown. No phase filtering. CPU sampling requests 10ms; allocation sampling is throttled to 50 events/second; recording and export retain up to 64 frames. This is not main timing evidence, per-operation allocation, retained heap, method duration, p99 latency, RSS or production capacity.",
+    "selectedEventCounts": {
+      "jdk.ExecutionSample": 342,
+      "jdk.GarbageCollection": 154,
+      "jdk.ObjectAllocationSample": 225
+    },
+    "cpuLeafSamples": [
+      {
+        "method": "io.ominicat.benchmarks.DirectStateProbe$Harness.acceptOutput",
+        "samples": 99
+      },
+      {
+        "method": "java.lang.invoke.DirectMethodHandle.allocateInstance",
+        "samples": 79
+      },
+      {
+        "method": "io.ominicat.core.Pipeline.lambda$dispatch$1",
+        "samples": 64
+      },
+      {
+        "method": "io.ominicat.benchmarks.DirectStateProbe$Harness.invoke",
+        "samples": 57
+      },
+      {
+        "method": "io.ominicat.core.Pipeline.process",
+        "samples": 34
+      },
+      {
+        "method": "io.ominicat.benchmarks.DirectStateProbe.invoke",
+        "samples": 6
+      },
+      {
+        "method": "jdk.jfr.internal.EventWriter.putStringValue",
+        "samples": 1
+      },
+      {
+        "method": "io.ominicat.benchmarks.jmh_generated.DirectStateProbe_invoke_jmhTest.invoke_avgt_jmhStub",
+        "samples": 1
+      },
+      {
+        "method": "java.lang.invoke.LambdaForm$MH+0x00007fab10090400.130668770.invoke",
+        "samples": 1
+      }
+    ],
+    "allocationClassWeights": [
+      {
+        "class": "io.ominicat.benchmarks.DirectStateProbe$Value",
+        "bytes": 11023632936
+      },
+      {
+        "class": "io.ominicat.core.Pipeline$$Lambda$131+0x00007fab10095978.1805199446",
+        "bytes": 8435199960
+      },
+      {
+        "class": "io.ominicat.core.SynchronousSink",
+        "bytes": 4848519232
+      },
+      {
+        "class": "[Ljava.util.concurrent.ConcurrentHashMap$Node;",
+        "bytes": 19994544
+      },
+      {
+        "class": "[B",
+        "bytes": 3629160
+      },
+      {
+        "class": "java.lang.NoSuchFieldException",
+        "bytes": 628312
+      },
+      {
+        "class": "java.util.ArrayList$Itr",
+        "bytes": 425296
+      },
+      {
+        "class": "[J",
+        "bytes": 409912
+      },
+      {
+        "class": "java.security.Provider$UString",
+        "bytes": 179504
+      },
+      {
+        "class": "java.lang.StringBuilder",
+        "bytes": 177704
+      },
+      {
+        "class": "java.util.jar.JarFile$JarFileEntry",
+        "bytes": 177616
+      },
+      {
+        "class": "jdk.internal.ref.CleanerImpl$PhantomCleanableRef",
+        "bytes": 99528
+      },
+      {
+        "class": "java.util.regex.Pattern",
+        "bytes": 64760
+      },
+      {
+        "class": "jdk.jfr.internal.EventWriter",
+        "bytes": 1040
+      }
+    ],
+    "sampledAllocationWeightBytes": 24333139504,
+    "gcCollectionCount": 154,
+    "gcPauseSumMillis": 97.77562999999999,
+    "maxCollectionPauseSumMillis": 5.463273999999999
+  },
+  "rawSha256": {
+    "recording": "6ff75d7ec829bc67eac73f768a735c726e9c52e46a850fa44f14420edfdde44a",
+    "settings": "f22bb321cbfe767740bfe78927faa64cec4f09096d851269d6a15023c7bf62f1",
+    "jmhResult": "a9b54644ec8f0b448a8c07c0ce3f24738c9a2b4d82cd5b293c5fa19a1b3181a4",
+    "jmhLog": "405b50dae06d0cac760d2fa2262c02e0f2132232546af19f940ae4d453bf8ee6"
+  }
+}

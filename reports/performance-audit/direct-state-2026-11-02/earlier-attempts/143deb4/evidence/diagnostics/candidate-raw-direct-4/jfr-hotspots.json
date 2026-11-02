@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "scope": "Independent instrumented Java 17 JMH diagnostic JVM, including startup, setup, two 1-second warmups, two 1-second measurements, harness and teardown. No phase filtering. CPU sampling requests 10ms; allocation sampling is throttled to 50 events/second; recording and export retain up to 64 frames. This is not main timing evidence, per-operation allocation, retained heap, method duration, p99 latency, RSS or production capacity.",
+  "selectedEventCounts": {
+    "jdk.ExecutionSample": 350,
+    "jdk.GarbageCollection": 149,
+    "jdk.ObjectAllocationSample": 215
+  },
+  "cpuLeafSamples": [
+    {
+      "method": "io.ominicat.core.Pipeline.dispatch",
+      "samples": 94
+    },
+    {
+      "method": "io.ominicat.benchmarks.DirectStateProbe$Harness.acceptOutput",
+      "samples": 88
+    },
+    {
+      "method": "io.ominicat.benchmarks.DirectStateProbe$Harness.invoke",
+      "samples": 59
+    },
+    {
+      "method": "io.ominicat.core.Pipeline$DirectInvocation.accept",
+      "samples": 58
+    },
+    {
+      "method": "io.ominicat.core.Pipeline.process",
+      "samples": 36
+    },
+    {
+      "method": "io.ominicat.benchmarks.DirectStateProbe.invoke",
+      "samples": 6
+    },
+    {
+      "method": "sun.security.provider.SHA2.implCompress0",
+      "samples": 2
+    },
+    {
+      "method": "java.lang.invoke.VarHandleByteArrayAsInts$ArrayHandle.get",
+      "samples": 2
+    },
+    {
+      "method": "java.lang.invoke.InvokerBytecodeGenerator.lookupPregenerated",
+      "samples": 1
+    },
+    {
+      "method": "io.ominicat.benchmarks.DirectStateProbe$Harness.expected",
+      "samples": 1
+    },
+    {
+      "method": "io.ominicat.benchmarks.DirectStateProbe$Harness.lambda$new$4",
+      "samples": 1
+    },
+    {
+      "method": "java.lang.Math.multiplyExact",
+      "samples": 1
+    },
+    {
+      "method": "java.util.jar.JavaUtilJarAccessImpl.ensureInitialization",
+      "samples": 1
+    }
+  ],
+  "allocationClassWeights": [
+    {
+      "class": "io.ominicat.benchmarks.DirectStateProbe$Value",
+      "bytes": 11862294504
+    },
+    {
+      "class": "io.ominicat.core.Pipeline$DirectInvocation",
+      "bytes": 11618654232
+    },
+    {
+      "class": "[Ljava.util.concurrent.ConcurrentHashMap$Node;",
+      "bytes": 19969584
+    },
+    {
+      "class": "[B",
+      "bytes": 2137872
+    },
+    {
+      "class": "java.util.HashMap",
+      "bytes": 425248
+    },
+    {
+      "class": "java.lang.Object",
+      "bytes": 410944
+    },
+    {
+      "class": "java.lang.invoke.MethodType$ConcurrentWeakInternSet$WeakEntry",
+      "bytes": 209160
+    },
+    {
+      "class": "java.util.zip.ZipFile$InflaterCleanupAction",
+      "bytes": 162240
+    },
+    {
+      "class": "java.util.concurrent.CopyOnWriteArrayList$COWIterator",
+      "bytes": 24
+    }
+  ],
+  "sampledAllocationWeightBytes": 23504263808,
+  "gcCollectionCount": 149,
+  "gcPauseSumMillis": 98.78410099999999,
+  "maxCollectionPauseSumMillis": 6.333399
+}
