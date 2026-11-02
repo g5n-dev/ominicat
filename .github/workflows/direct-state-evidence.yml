@@ -11,6 +11,10 @@ on:
     paths:
       - 'ominicat-benchmarks/src/main/java/io/ominicat/benchmarks/DirectStateProbe.java'
       - 'ominicat-benchmarks/src/test/java/io/ominicat/benchmarks/DirectStateProbeTest.java'
+      - 'ominicat-benchmarks/src/main/java/io/ominicat/benchmarks/DirectPlanStartupProbe.java'
+      - 'ominicat-benchmarks/src/test/java/io/ominicat/benchmarks/DirectPlanStartupProbeTest.java'
+      - 'comparison/direct_plan_startup.py'
+      - 'comparison/tests/test_direct_plan_startup.py'
       - 'comparison/direct_state_*.py'
       - 'comparison/tests/test_direct_state_*.py'
       - 'comparison/direct-state-protocol.md'
@@ -64,6 +68,17 @@ jobs:
         with:
           name: direct-state-measurements-java17-${{ github.run_id }}-${{ github.run_attempt }}
           path: ${{ runner.temp }}/direct-state/evidence/measurements/
+          if-no-files-found: error
+          retention-days: 30
+      - name: Measure new-pipeline and first-direct-call setup costs
+        run: |
+          python3 candidate/comparison/direct_plan_startup.py collect --baseline baseline --candidate candidate --measurements "$RUNNER_TEMP/direct-state/evidence/measurements" --output "$RUNNER_TEMP/direct-state/startup-evidence"
+          python3 candidate/comparison/direct_plan_startup.py check "$RUNNER_TEMP/direct-state/startup-evidence" --measurements "$RUNNER_TEMP/direct-state/evidence/measurements"
+          cat "$RUNNER_TEMP/direct-state/startup-evidence/summary.md" >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: direct-state-startup-java17-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/direct-state/startup-evidence/
           if-no-files-found: error
           retention-days: 30
       - name: Collect independent baseline and candidate profiles

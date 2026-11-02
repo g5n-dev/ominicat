@@ -198,6 +198,32 @@ class DirectInvocationLifecycleTest {
         assertRetired(outer.get());
     }
 
+    @Test void concurrentStatelessDirectCallsKeepTheirOwnerOutputAndFanoutIndependent() throws Exception {
+        CountDownLatch entered = new CountDownLatch(2);
+        CountDownLatch release = new CountDownLatch(1);
+        Pipeline pipeline = Pipeline.builder().add((frame, next) -> {
+            entered.countDown();
+            release.await();
+            String text = ((Frame.Text) frame).text();
+            next.accept(new Frame.Text(text + "-first"));
+            next.accept(new Frame.Text(text + "-second"));
+        }).add((frame, next) -> next.accept(frame)).build();
+        CompletableFuture<List<Frame>> alpha = new CompletableFuture<>();
+        CompletableFuture<List<Frame>> beta = new CompletableFuture<>();
+        Thread first = startDirect(pipeline, "alpha", alpha);
+        Thread second = startDirect(pipeline, "beta", beta);
+        try { assertTrue(entered.await(2, TimeUnit.SECONDS), "direct calls did not overlap"); }
+        finally {
+            release.countDown();
+            first.join(2_000);
+            second.join(2_000);
+        }
+        assertFalse(first.isAlive());
+        assertFalse(second.isAlive());
+        assertEquals(List.of(new Frame.Text("alpha-first"), new Frame.Text("alpha-second")), alpha.get(2, TimeUnit.SECONDS));
+        assertEquals(List.of(new Frame.Text("beta-first"), new Frame.Text("beta-second")), beta.get(2, TimeUnit.SECONDS));
+    }
+
     @Test void retiredDirectHandlesDoNotPinPipelineProcessorOutputInputOrTheirOwnerThread() throws Exception {
         assumeFalse(ManagementFactory.getRuntimeMXBean().getInputArguments().contains("-XX:+DisableExplicitGC"));
         for (int outcome = 0; outcome < 3; outcome++) {
@@ -216,6 +242,20 @@ class DirectInvocationLifecycleTest {
 
     private record Referent(String label, WeakReference<?> reference) { }
     private record Retired(FrameSink handle, List<Referent> references) { }
+
+    private static Thread startDirect(Pipeline pipeline, String label, CompletableFuture<List<Frame>> completed) {
+        return WorkerThreads.start("direct-concurrent-" + label, () -> {
+            Thread owner = Thread.currentThread();
+            List<Frame> delivered = new ArrayList<>();
+            try {
+                pipeline.process(new Frame.Text(label), frame -> {
+                    assertSame(owner, Thread.currentThread(), "direct output changed its invocation thread");
+                    delivered.add(frame);
+                });
+                completed.complete(List.copyOf(delivered));
+            } catch (Throwable failure) { completed.completeExceptionally(failure); }
+        });
+    }
 
     private static Retired retireGraphOnOwnedThread(int outcome) throws Exception {
         CompletableFuture<Retired> completed = new CompletableFuture<>();
@@ -238,21 +278,27 @@ class DirectInvocationLifecycleTest {
         AtomicReference<FrameSink> captured = new AtomicReference<>();
         Throwable failure = outcome == 1 ? new IOException("synthetic processor failure")
                 : outcome == 2 ? new AssertionError("synthetic processor error") : null;
-        Processor processor = (frame, next) -> {
+        Processor first = (frame, next) -> {
             captured.set(next);
-            Reference.reachabilityFence(processorState);
             next.accept(frame);
             if (failure != null) throwFailure(failure);
         };
-        Pipeline pipeline = Pipeline.builder().add(processor).build();
+        // The retained first-stage handle has a nonterminal successor. A missed
+        // nextStage detach must retain this downstream processor and its payload.
+        Processor processor = (frame, next) -> {
+            Reference.reachabilityFence(processorState);
+            next.accept(frame);
+        };
+        Pipeline pipeline = Pipeline.builder().add(first).add(processor).build();
         FrameSink output = frame -> Reference.reachabilityFence(outputState);
         Frame input = new Frame.Text("synthetic input");
         if (failure == null) pipeline.process(input, output);
         else assertSame(failure, assertThrows(Throwable.class, () -> pipeline.process(input, output)));
         return new Retired(captured.get(), List.of(
                 new Referent("pipeline", new WeakReference<>(pipeline)),
-                new Referent("processor", new WeakReference<>(processor)),
-                new Referent("processor state", new WeakReference<>(processorState)),
+                new Referent("first processor", new WeakReference<>(first)),
+                new Referent("downstream processor", new WeakReference<>(processor)),
+                new Referent("downstream processor state", new WeakReference<>(processorState)),
                 new Referent("output sink", new WeakReference<>(output)),
                 new Referent("output state", new WeakReference<>(outputState)),
                 new Referent("input", new WeakReference<>(input)),

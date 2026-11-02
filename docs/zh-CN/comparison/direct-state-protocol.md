@@ -8,9 +8,17 @@
 
 ## 唯一受控改动
 
-基线直接分发先求值捕获式 continuation，再用新的同步 sink 包装。候选用一个私有静态、每次新建的对象同时表示 continuation 和调用生命周期。它仍按顺序调用各处理器，支持过滤及多次输出，检查调用线程与有效期，拒绝空输出帧，并在 `finally` 中清除所属线程、流水线和输出引用。它不池化、不重新激活已退休句柄。
+基线直接分发先求值捕获式 continuation，再用新的同步 sink 包装。实验保留以下候选变体，以源码与 JAR 哈希区分：
 
-生产内核源码只允许 `Pipeline.java` 不同。会话分发、异步续接、generation 栅栏、共享同步 sink 与媒体构造器保持不变。少一个分配表达式本身不能证明堆字节数或速度改善：内联和逃逸分析可能消除或改变分配。必须用同一可执行探针比较实际 JAR。
+- 第一版将 continuation 和生命周期合成一个四字段私有静态调用对象，内联直接分发；信封耗时未达目标。
+- 第二版保留该表示，分离构造／清理及转发辅助方法；按相同目标，信封块范围仍不能通过验收。
+- 第三版在流水线构造时绑定固定的处理器／后继引用。不可变 `DirectStage` 节点仅持有处理器和后继；每个全新调用仅持有所属线程、后继阶段与最终输出，共享计划不存输入载荷、游标或输出。
+
+各变体仍按顺序调用处理器，支持过滤及多次输出，先检查线程／有效期再检查输出帧，并在 `finally` 清除全部调用图引用。它们不池化、不重新激活已退休句柄。空后继表示仍有效的最终输出；只有空 owner 表示退休。
+
+生产内核源码只允许 `Pipeline.java` 不同。公开入口方法体、会话／异步分发、generation 栅栏、共享同步 sink 及媒体构造器不变。第三版改变私有构造／字段结构：每个非 async 流水线拥有 N 个不可变阶段节点和一个 N 项引用数组，只用于会话的流水线也付这笔成本；async 流水线不构造该计划。必须将这项有界组装成本与热路径收益一起测量。计划不会复制处理器实例／状态，也不将它们全局共享。
+
+减少源码分配表达式本身不能证明堆字节数或速度改善：内联和逃逸分析可能消除或改变分配。每次比较用同一可执行探针加载真实 JAR；不混合不同 runner 或候选版本的数据。
 
 ## 固定行为范围
 
@@ -44,6 +52,12 @@
 
 证据不完整、混用、变更、非有限或来源绑定错误时，采集必须失败，不能丢弃用例。不支持或不确定时，保留证据并保持生产行为不变。本结果不能解释旧 Camel SEDA 差距的某个百分比：原比较还有不同 API、元数据及确认机制，而且 Camel 入口队列之后本就使用同步路由。
 
+## 新流水线初始化成本
+
+独立的 `DirectPlanStartupProbe.invoke` 实验报告 `build-4`、`first-direct-4`。两者均新建真实的四阶段 builder 与流水线，复用四个不同的处理器及预建输入／终端校验。仅构建用例消费返回的流水线，在准备阶段和最后实例清理时校验配置图。首次调用用例还在每次计时中执行并校验第一次处理和同步返回。处理器／输入构造在计时之外；builder、流水线、计划及所选首次调用工作在计时之内。
+
+这是预热 JVM 中新建流水线的成本，不是 OS／JVM 冷启动延迟。两个场景使用一个 ABBA 块，共八个全新 JVM，每侧每场景两个进程，各进行三次一秒预热、五次一秒测量。严格的 21 文件归档绑定实际完整主清单、运行时／探针哈希及主机。它没有性能目标，也不能覆盖七个热路径目标。单独报告其耗时／B/op 和进程范围；不推生产容量，不将不同校验范围的探针耗时相减。
+
 ## 独立诊断
 
 分别记录基线与候选的 `raw-direct-4`、`envelope-direct-4`，共四个独立插桩 JVM。JMH 不再派生进程，进行两次一秒预热及两次一秒测量。请求 10 ms 执行采样、每秒最多 50 个分配采样事件，以及 64 层记录／导出栈。选定事件 JSON 的 128 MiB 上限保持严格；超限、不完整或缺失时失败，不截断证据。
@@ -58,6 +72,7 @@ CPU／分配／GC 图包含启动、准备、预热、测量程序及清理，�
 # Build the one shared probe in the candidate checkout:
 ./mvnw -B -ntp -pl ominicat-benchmarks -am package -DskipTests
 python3 comparison/direct_state_evidence.py collect --baseline BASELINE_CHECKOUT --candidate . --output reports/local/direct-state/evidence/measurements
+python3 comparison/direct_plan_startup.py collect --baseline BASELINE_CHECKOUT --candidate . --measurements reports/local/direct-state/evidence/measurements --output reports/local/direct-state/startup-evidence
 python3 comparison/direct_state_profiles.py collect --baseline BASELINE_CHECKOUT --candidate . --output reports/local/direct-state
 python3 comparison/direct_state_evidence.py check reports/local/direct-state/evidence/measurements
 python3 comparison/direct_state_profiles.py check reports/local/direct-state/evidence

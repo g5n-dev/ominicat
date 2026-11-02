@@ -8,9 +8,17 @@ This preregistered protocol defines a bounded structural experiment. Its recorde
 
 ## One controlled change
 
-The baseline direct dispatch evaluates a captured continuation and wraps it in a fresh synchronous sink. The candidate represents the continuation and its invocation lifetime in one private static, freshly allocated object. It still invokes each processor in order, allows filtering and multiple outputs, checks the invocation thread and lifetime, rejects null emitted frames, and clears the owning thread, pipeline and output references in `finally`. It never pools or reactivates a retired handle.
+The baseline direct dispatch evaluates a captured continuation and wraps it in a fresh synchronous sink. The experiment preserves these recorded candidate variants, identified by their source and JAR hashes:
 
-Only `Pipeline.java` may differ among production kernel sources. Session dispatch, asynchronous continuation, generation fences, shared synchronous sinks and media constructors remain unchanged. Reducing allocation expressions does not by itself establish heap bytes or speed: inlining and escape analysis may eliminate or reshape allocations. Compare actual JARs with the same executable probe.
+- The first variant combines continuation and lifetime into one four-field private static invocation, with inline dispatch. It failed the envelope time target.
+- The second retains that representation with separate construction/cleanup and forwarding helpers. Its envelope block range was inconclusive under the same target.
+- The third binds fixed processor/successor references once during pipeline construction. Its immutable `DirectStage` nodes hold only processor and successor; each fresh invocation holds only owner thread, next stage and final output. It stores no input payload, cursor or output in the shared plan.
+
+Each variant still invokes processors in order, allows filtering and multiple outputs, checks thread/lifetime before inspecting an emitted frame, and clears all invocation graph references in `finally`. It never pools or reactivates a retired handle. A null successor means an active terminal output; only a null owner marks retirement.
+
+Only `Pipeline.java` may differ among production kernel sources. Public entry-point bodies, session/async dispatch, generation fences, shared synchronous sinks and media constructors remain unchanged. Variant three changes private constructor/field structure: a non-async pipeline owns N immutable stage nodes and one N-entry reference array, including session-only pipelines; async pipelines do not build the plan. This bounded setup cost must be measured alongside hot-path benefits. Processor instances and state are not copied or globally shared by this plan.
+
+Reducing source allocation expressions does not itself establish heap bytes or speed: inlining and escape analysis may eliminate or reshape allocations. Actual JARs use the same executable probe within each comparison; different runners and candidate variants are not pooled.
 
 ## Fixed behavior profile
 
@@ -44,6 +52,12 @@ Shipping also requires Java 17 coverage/SBOM verification, Java 17/21/25 compati
 
 If the declared evidence is incomplete, mixed, changed, nonfinite or misbound, collection fails instead of omitting cells. If the optimization is unsupported or uncertain, keep the evidence and leave production behavior unchanged. A result here cannot explain a percentage of the old Camel SEDA difference: that comparison also has different APIs, metadata and acknowledgment machinery, and Camel already has a synchronous route behind its entrance queue.
 
+## New-pipeline initialization costs
+
+A separate `DirectPlanStartupProbe.invoke` experiment reports `build-4` and `first-direct-4`. Both create a new real four-stage builder and pipeline, using four cached distinct processors and one prebuilt input/terminal oracle. Build-only consumes the resulting pipeline, checking the configured graph during setup and last-instance teardown. First-direct also executes and validates every timed first call, including synchronous return. Processor/input construction is outside timing; builder, pipeline, plan and selected first-call work are inside.
+
+These are warmed-JVM costs for a new pipeline, not OS/JVM cold-start latency. Two scenarios use one ABBA block, eight fresh JVMs total, two forks per side/scenario, with the same three one-second warmups and five one-second measurements. The strict 21-file archive binds the actual complete main manifest, runtime/probe hashes and host. It has no performance target and cannot override the seven hot-path targets. Report its time/B/op and fork ranges separately; do not derive production capacity or subtract timings across different probe oracles.
+
 ## Independent diagnostics
 
 Record baseline and candidate `raw-direct-4` and `envelope-direct-4` in four separate instrumented JVMs. Use JMH without an additional fork, two one-second warmups and two one-second measurements. Request 10 ms execution sampling, allocation sampling throttled to 50 events per second, and 64-frame recording/export stacks. The 128 MiB selected-event JSON bound remains strict; oversized, partial or missing evidence fails rather than being truncated.
@@ -58,6 +72,7 @@ CPU/allocation/GC figures include startup, setup, warmup, harness and teardown. 
 # Build the one shared probe in the candidate checkout:
 ./mvnw -B -ntp -pl ominicat-benchmarks -am package -DskipTests
 python3 comparison/direct_state_evidence.py collect --baseline BASELINE_CHECKOUT --candidate . --output reports/local/direct-state/evidence/measurements
+python3 comparison/direct_plan_startup.py collect --baseline BASELINE_CHECKOUT --candidate . --measurements reports/local/direct-state/evidence/measurements --output reports/local/direct-state/startup-evidence
 python3 comparison/direct_state_profiles.py collect --baseline BASELINE_CHECKOUT --candidate . --output reports/local/direct-state
 python3 comparison/direct_state_evidence.py check reports/local/direct-state/evidence/measurements
 python3 comparison/direct_state_profiles.py check reports/local/direct-state/evidence
