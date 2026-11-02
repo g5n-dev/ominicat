@@ -36,6 +36,7 @@
 
 - [可复现、无模型调用的框架对比 · comparison](comparison/README.md)
 - [Java 排队适配器 · comparison/benchmarks](comparison/benchmarks/README.md)
+- [直接调用状态：结构变化的配对实验 · comparison/direct-state-protocol](comparison/direct-state-protocol.md)
 - [Java 机制受控实验 · comparison/mechanism-protocol](comparison/mechanism-protocol.md)
 - [独立 Java JFR 诊断 · comparison/profile_java](comparison/profile_java.md)
 - [无模型框架路径对比：协议 1 · comparison/protocol](comparison/protocol.md)

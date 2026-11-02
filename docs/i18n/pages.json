@@ -32,6 +32,11 @@
       "source_sha256": "6b3fb7702e98c3fc2a782317485425c2897165af66e2441c0ffb0d88d38b7572"
     },
     {
+      "source": "comparison/direct-state-protocol.md",
+      "translation": "docs/zh-CN/comparison/direct-state-protocol.md",
+      "source_sha256": "b8632f53893938b9818757c7b0fceefadff4964de86d18c4984a9728655d65d6"
+    },
+    {
       "source": "comparison/mechanism-protocol.md",
       "translation": "docs/zh-CN/comparison/mechanism-protocol.md",
       "source_sha256": "fafca76ad16121d64b0812eba3c41787f37a7e6e9e54f3b141bcf002c05f5e80"
@@ -69,7 +74,7 @@
     {
       "source": "docs/iteration-plan.md",
       "translation": "docs/zh-CN/iteration-plan.md",
-      "source_sha256": "418ba707dda2bda98c3477a9f251f87f53011862f09aac22201a8190905345ac"
+      "source_sha256": "a72e9b1a05166b8ab4d25c90bf7eb4565a317f99bf6c73e32478b3d982b58cf1"
     },
     {
       "source": "docs/java-compatibility.md",

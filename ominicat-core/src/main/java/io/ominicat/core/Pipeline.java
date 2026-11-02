@@ -47,8 +47,43 @@ public final class Pipeline {
 
     void dispatch(int index, Frame frame, FrameSink output) throws Exception {
         if (index == processors.length) output.accept(frame);
-        else invoke(processors[index], frame, emitted ->
-                dispatch(index + 1, Objects.requireNonNull(emitted, "emitted frame"), output));
+        else {
+            DirectInvocation invocation = new DirectInvocation(this, index + 1, output);
+            try { processors[index].process(frame, invocation); }
+            finally { invocation.retire(); }
+        }
+    }
+
+    /** One direct invocation owns both the synchronous boundary and its continuation. */
+    private static final class DirectInvocation implements FrameSink {
+        private Thread owner = Thread.currentThread();
+        private Pipeline pipeline;
+        private final int nextIndex;
+        private FrameSink output;
+
+        DirectInvocation(Pipeline pipeline, int nextIndex, FrameSink output) {
+            this.pipeline = pipeline;
+            this.nextIndex = nextIndex;
+            this.output = output;
+        }
+
+        @Override public void accept(Frame frame) throws Exception {
+            Thread invocationOwner = owner;
+            if (invocationOwner == null) {
+                throw new IllegalStateException("synchronous sink is no longer valid after process returns");
+            }
+            if (Thread.currentThread() != invocationOwner) {
+                throw new IllegalStateException("synchronous sink may only emit on its invocation thread; use AsyncProcessor for callbacks");
+            }
+            pipeline.dispatch(nextIndex, Objects.requireNonNull(frame, "emitted frame"), output);
+        }
+
+        void retire() {
+            // A plugin may retain this handle permanently. Detach every owned graph.
+            owner = null;
+            pipeline = null;
+            output = null;
+        }
     }
 
     void dispatchSession(int index, Frame frame, FrameSink output, BooleanSupplier valid) throws Exception {
