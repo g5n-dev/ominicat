@@ -6,6 +6,7 @@ import importlib.util
 import io
 import json
 from pathlib import Path
+import sys
 import tempfile
 import unittest
 from unittest import mock
@@ -83,6 +84,56 @@ def raw_result(case, java, arguments):
 
 
 class MechanismProfilesTest(unittest.TestCase):
+    def test_private_jfr_tool_output_can_contain_an_absolute_path_without_becoming_public(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            directory = Path(temporary)
+            output, error = directory / 'configure.log', directory / 'configure-error.txt'
+            # JDK17 Configure prints output.toPath().toAbsolutePath(), including
+            # /home/runner on Ubuntu. This child is Python, not a JFR/Java run.
+            content = 'Configuration written successfully to:\n/home/runner/work/synthetic/safe-profile.jfc\n'
+            profiles.command_to_file([sys.executable, '-c', 'import sys;sys.stdout.write(' + repr(content) + ')'],
+                                     directory, output, error)
+            self.assertEqual(output.read_text(), content)
+            self.assertEqual(error.read_bytes(), b'')
+            # Retaining private tool output never relaxes the publication guard.
+            with self.assertRaises(ValueError): profiles.guard.privacy_check('public log', output.read_bytes())
+            self.assertNotIn('configure.log', profiles.CASE_FILES)
+            self.assertNotIn('configure-error.txt', profiles.CASE_FILES)
+
+    def test_collect_reports_a_fixed_preflight_phase_without_echoing_exception_text(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary).resolve()
+            capture = root / 'reports/local/capture'
+            (capture / 'evidence/measurements').mkdir(parents=True)
+            private_message = 'private path /Users/synthetic/secret and sk-' + 'a' * 40
+            with mock.patch.object(profiles.measurement, 'check', side_effect=ValueError(private_message)):
+                with self.assertRaises(profiles.DiagnosticFailure) as raised:
+                    profiles.collect(root, capture)
+                self.assertEqual(raised.exception.phase, 'MEASUREMENT_VALIDATION')
+                self.assertEqual(raised.exception.reason, 'DETAILS_PRIVATE')
+                error = io.StringIO()
+                with redirect_stderr(error):
+                    self.assertEqual(profiles.main(['collect', '--root', str(root), '--output', str(capture)]), 1)
+                self.assertIn('[MEASUREMENT_VALIDATION/DETAILS_PRIVATE]', error.getvalue())
+                self.assertNotIn(private_message, error.getvalue())
+                self.assertNotIn(str(root), error.getvalue())
+            measured = {'artifact': {'sha256': 'a' * 64}}
+            with mock.patch.object(profiles.measurement, 'check', return_value=(measured, {})):
+                (capture / 'evidence/measurements/manifest.json').write_text('{}')
+                with self.assertRaises(profiles.DiagnosticFailure) as raised:
+                    profiles.collect(root, capture)
+                self.assertEqual(raised.exception.phase, 'ARTIFACT_BINDING')
+                self.assertEqual(raised.exception.reason, 'MISSING_OR_NONREGULAR_FILE')
+
+    def test_known_stage_reason_codes_do_not_accept_dynamic_or_lookalike_error_text(self):
+        known = profiles.DiagnosticFailure('JFR_CONFIGURE', ValueError('JFR tool deadline exceeded'))
+        self.assertEqual(str(known), 'JFR_CONFIGURE/JFR_TOOL_DEADLINE')
+        for error in (ValueError('JFR tool deadline exceeded /Users/synthetic/private'),
+                      ValueError('JFR tool deadline exceeded', '/Users/synthetic/private')):
+            failure = profiles.DiagnosticFailure('JFR_CONFIGURE', error)
+            self.assertEqual(str(failure), 'JFR_CONFIGURE/DETAILS_PRIVATE')
+        self.assertEqual(profiles.DiagnosticFailure('private-user-input', ValueError()).phase, 'UNCLASSIFIED')
+
     def test_complete_archive_checks_measurements_profiles_and_all_hashes(self):
         with tempfile.TemporaryDirectory() as temporary:
             folder = Path(temporary) / 'evidence'

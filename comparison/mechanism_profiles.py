@@ -54,6 +54,40 @@ OLD_ALLOCATION = ('Weights estimate sampled allocation distribution, not retaine
 NEW_ALLOCATION = ('Weights estimate sampled allocation distribution, not retained heap or exact object counts. '
                   'This JMH mechanism experiment has no exact latency array. Use the separate uninstrumented '
                   'JMH measurements for per-operation allocation; no such estimate is inferred from these samples.')
+PHASES = frozenset(('CAPTURE_LAYOUT', 'MEASUREMENT_VALIDATION', 'ARTIFACT_BINDING', 'SOURCE_BINDING',
+                    'TOOL_ORIGIN', 'RUNTIME_BINDING', 'PRIVATE_PREPARATION', 'JFR_CONFIGURE',
+                    'JMH_EXECUTION', 'JMH_VALIDATION', 'JFR_EXPORT', 'PROFILE_RENDER',
+                    'SOURCE_RECHECK', 'ARCHIVE_PUBLISH', 'ARCHIVE_VALIDATION'))
+SAFE_REASONS = {
+    'capture path must not be a symlink': 'CAPTURE_SYMLINK',
+    'capture must be under reports/local': 'CAPTURE_OUTSIDE_LOCAL',
+    'symlink in capture path': 'CAPTURE_SYMLINK',
+    'capture must contain only the completed measurement evidence': 'CAPTURE_CONTENTS',
+    'capture must contain only evidence/measurements before profiling': 'EVIDENCE_CONTENTS',
+    'expected a regular diagnostic file': 'MISSING_OR_NONREGULAR_FILE',
+    'empty or oversized diagnostic file': 'FILE_SIZE',
+    'diagnostic artifact differs from measured artifact': 'ARTIFACT_MISMATCH',
+    'diagnostic source differs from measured source': 'SOURCE_MISMATCH',
+    'collector origin differs from selected root': 'COLLECTOR_ORIGIN_MISMATCH',
+    'diagnostic helper origins differ from selected root': 'HELPER_ORIGIN_MISMATCH',
+    'JFR tool is unavailable': 'JFR_TOOL_MISSING',
+    'diagnostic host/JDK differs from measurements': 'HOST_OR_JDK_MISMATCH',
+    'capture path is unsafe for JFR arguments': 'JFR_PATH_SYNTAX',
+    'JFR tool failed; inspect private local output': 'JFR_TOOL_EXIT',
+    'JFR tool output exceeds bound': 'JFR_OUTPUT_SIZE',
+    'JFR tool deadline exceeded': 'JFR_TOOL_DEADLINE',
+    'artifact, source or diagnostic tools changed during profiling': 'SOURCE_CHANGED',
+}
+
+
+class DiagnosticFailure(ValueError):
+    """Only constant, allowlisted phase/reason codes may reach the public CLI."""
+    def __init__(self, phase, error):
+        self.phase = phase if phase in PHASES else 'UNCLASSIFIED'
+        # Never print arbitrary exception text, command arguments or paths.
+        self.reason = next((code for text, code in SAFE_REASONS.items()
+                            if error.args == (text,)), 'DETAILS_PRIVATE')
+        super().__init__(self.phase + '/' + self.reason)
 
 require = measurement.require
 digest = measurement.digest
@@ -376,6 +410,14 @@ def command_to_file(command, root, output, error, timeout=60):
 
 
 def collect(root, output):
+    phase = {'code': 'CAPTURE_LAYOUT'}
+    try:
+        return _collect(root, output, phase)
+    except Exception as error:
+        raise DiagnosticFailure(phase['code'], error) from None
+
+
+def _collect(root, output, phase):
     root, output = Path(root).resolve(), Path(output).absolute()
     require(not output.is_symlink(), 'capture path must not be a symlink')
     require(output.is_relative_to(root / 'reports/local'), 'capture must be under reports/local')
@@ -390,36 +432,47 @@ def collect(root, output):
     require(not evidence.is_symlink() and evidence.is_dir()
             and {path.name for path in evidence.iterdir()} == {'measurements'},
             'capture must contain only evidence/measurements before profiling')
+    phase['code'] = 'MEASUREMENT_VALIDATION'
     measured, _ = measurement.check(evidence / 'measurements')
     manifest_bytes = read_bytes(evidence / 'measurements/manifest.json')
+    phase['code'] = 'ARTIFACT_BINDING'
     jar = root / measurement.JAR
     jar_sha = digest(read_bytes(jar, 256 * 1024 ** 2))
     require(jar_sha == measured['artifact']['sha256'], 'diagnostic artifact differs from measured artifact')
+    phase['code'] = 'SOURCE_BINDING'
     source = measurement.source_fingerprint(root)
     require(source == measured['sourceFingerprint'], 'diagnostic source differs from measured source')
+    phase['code'] = 'TOOL_ORIGIN'
     tools = tool_hashes(root)
     require(digest(read_bytes(Path(__file__))) == tools[TOOLS[0]], 'collector origin differs from selected root')
     require(digest(read_bytes(Path(renderer.__file__))) == tools['scripts/summarize_profiles.py']
             and digest(read_bytes(Path(guard.__file__))) == tools['scripts/package_profiles.py']
             and digest(read_bytes(Path(measurement.__file__))) == tools['comparison/mechanism_evidence.py'],
             'diagnostic helper origins differ from selected root')
+    phase['code'] = 'RUNTIME_BINDING'
     java = (Path(os.environ.get('JAVA_HOME', '/usr')) / 'bin/java').resolve()
     jfr = java.parent / 'jfr'
     require(jfr.is_file(), 'JFR tool is unavailable')
     require(measurement.host_environment(java) == measured['environment'], 'diagnostic host/JDK differs from measurements')
+    phase['code'] = 'PRIVATE_PREPARATION'
     private = output / 'raw'
     private.mkdir()
     stage = private / 'publish'
     stage.mkdir()
     for case in cases():
+        phase['code'] = 'PRIVATE_PREPARATION'
         folder = private / case['id']
         folder.mkdir()
         config, recording = folder / 'safe-profile.jfc', folder / 'recording.jfr'
         relative = lambda path: os.path.relpath(path, root)
         require(',' not in relative(folder), 'capture path is unsafe for JFR arguments')
-        measurement.run_command([str(jfr), 'configure', '--input', 'profile.jfc', '--output', relative(config)]
-                                + [event + '#enabled=false' for event in DISABLED]
-                                + ['jdk.ExecutionSample#period=1ms'], root, folder / 'configure.log', timeout=60)
+        phase['code'] = 'JFR_CONFIGURE'
+        # The JDK tool prints the absolute output path, even for relative --output.
+        # These bounded, private logs must not pass through the PUBLIC log checker.
+        command_to_file([str(jfr), 'configure', '--input', 'profile.jfc', '--output', relative(config)]
+                        + [event + '#enabled=false' for event in DISABLED]
+                        + ['jdk.ExecutionSample#period=1ms'], root,
+                        folder / 'configure.log', folder / 'configure-error.txt', timeout=60)
         jvm_args = ['-Xms256m', '-Xmx256m', '-Dominicat.mechanism.jarSha256=' + jar_sha,
                     '-XX:FlightRecorderOptions=stackdepth=64',
                     '-XX:StartFlightRecording=filename=' + relative(recording) + ',settings=' + relative(config) + ',dumponexit=true']
@@ -430,11 +483,14 @@ def collect(root, output):
                    '-rf', 'json', '-rff', relative(result)]
         for key, value in sorted(case['params'].items()):
             command.extend(['-p', key + '=' + value])
+        phase['code'] = 'JMH_EXECUTION'
         measurement.run_command(command, root, log)
+        phase['code'] = 'JMH_VALIDATION'
         validate_result(read_json(result), case, measured['environment']['java'], jvm_args,
                         guard.privacy_check('private JMH log', read_bytes(log)), jar_sha)
         render = folder / 'render'
         render.mkdir()
+        phase['code'] = 'JFR_EXPORT'
         command_to_file([str(jfr), 'print', '--json', '--stack-depth', '64', '--events',
                          ','.join(sorted(guard.EVENTS)), relative(recording)], root,
                         render / 'jfr-events.json', folder / 'export-error.txt')
@@ -445,18 +501,22 @@ def collect(root, output):
         selected_events(render / 'jfr-events.json.gz')
         raw_hashes = {name: digest(read_bytes(path, 256 * 1024 ** 2)) for name, path in
                       (('recording', recording), ('settings', config), ('jmhResult', result), ('jmhLog', log))}
+        phase['code'] = 'PROFILE_RENDER'
         publish_case(render, case, measured, manifest_bytes, tools, raw_hashes, datetime.now(timezone.utc).isoformat())
         destination = stage / case['id']
         destination.mkdir()
         for name in CASE_FILES:
             shutil.copyfile(render / name, destination / name)
+        phase['code'] = 'SOURCE_RECHECK'
         require(digest(read_bytes(jar, 256 * 1024 ** 2)) == jar_sha
                 and measurement.source_fingerprint(root) == source and tool_hashes(root) == tools,
                 'artifact, source or diagnostic tools changed during profiling')
+    phase['code'] = 'ARCHIVE_PUBLISH'
     write_json(stage / 'manifest.json', manifest_for(measured, manifest_bytes, tools))
     stage.rename(evidence / 'diagnostics')
     write_json(evidence / 'evidence-index.json', index_for(evidence))
     try:
+        phase['code'] = 'ARCHIVE_VALIDATION'
         return check(evidence)
     except Exception:
         (evidence / 'evidence-index.json').unlink(missing_ok=True)
@@ -477,6 +537,10 @@ def main(argv=None):
             collect(args.root, args.output)
         else:
             check(args.evidence)
+    except DiagnosticFailure as error:
+        print('Mechanism diagnostics failed [' + error.phase + '/' + error.reason + ']. '
+              'Measurement evidence remains independently checkable; raw diagnostics stay private.', file=sys.stderr)
+        return 1
     except (ValueError, OSError, KeyError, TypeError, AttributeError, IndexError,
             OverflowError, RecursionError, ET.ParseError, subprocess.SubprocessError):
         print('Mechanism diagnostics failed validation; inspect local inputs without publishing raw output.', file=sys.stderr)

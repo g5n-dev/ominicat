@@ -36,6 +36,14 @@ jobs:
         run: |
           python3 comparison/mechanism_evidence.py collect --root . --output reports/local/mechanism-capture/evidence/measurements
           cat reports/local/mechanism-capture/evidence/measurements/summary.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Validate measurements before independent diagnostic collection
+        run: python3 comparison/mechanism_evidence.py check reports/local/mechanism-capture/evidence/measurements
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mechanism-measurements-java17-${{ github.run_id }}-${{ github.run_attempt }}
+          path: reports/local/mechanism-capture/evidence/measurements/
+          if-no-files-found: error
+          retention-days: 30
       - name: Collect independent CPU, allocation and GC diagnostics
         run: python3 comparison/mechanism_profiles.py collect --root . --output reports/local/mechanism-capture
       - name: Verify the complete diagnostic allowlist
