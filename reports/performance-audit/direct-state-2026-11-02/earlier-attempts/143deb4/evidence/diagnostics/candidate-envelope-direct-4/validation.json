@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "status": "complete",
+  "case": {
+    "id": "candidate-envelope-direct-4",
+    "side": "candidate",
+    "scenario": "envelope-direct-4"
+  },
+  "instrumented": true,
+  "headlineEligible": false,
+  "originVerifiedExactlyOnce": true,
+  "runtime": {
+    "vendor": "Eclipse Adoptium",
+    "version": "17.0.21",
+    "vmName": "OpenJDK 64-Bit Server VM",
+    "vmVersion": "17.0.21+9",
+    "architecture": "amd64",
+    "os": "Linux"
+  },
+  "settings": {
+    "jmhVersion": "1.37",
+    "mode": "avgt",
+    "threads": 1,
+    "forks": 0,
+    "warmupIterations": 2,
+    "measurementIterations": 2,
+    "warmupTime": "1 s",
+    "measurementTime": "1 s",
+    "warmupBatchSize": 1,
+    "measurementBatchSize": 1,
+    "heapArgs": [
+      "-Xms256m",
+      "-Xmx256m"
+    ],
+    "profilers": [
+      "gc"
+    ],
+    "executionSamplePeriod": "10ms",
+    "allocationThrottle": "50/s",
+    "recordingStackDepth": 64,
+    "exportStackDepth": 64,
+    "selectedJsonMaxBytes": 134217728,
+    "selectedEvents": [
+      "jdk.ExecutionSample",
+      "jdk.GarbageCollection",
+      "jdk.JavaMonitorEnter",
+      "jdk.ObjectAllocationSample",
+      "jdk.VirtualThreadPinned"
+    ],
+    "disabledEvents": [
+      "jdk.InitialEnvironmentVariable",
+      "jdk.InitialSystemProperty",
+      "jdk.InitialSecurityProperty",
+      "jdk.SecurityPropertyModification",
+      "jdk.SystemProcess",
+      "jdk.ProcessStart",
+      "jdk.OSInformation",
+      "jdk.JVMInformation"
+    ]
+  },
+  "metrics": [
+    "allocatedBytesPerOp",
+    "timeNsPerOp"
+  ],
+  "scope": "Independent instrumented Java 17 JMH diagnostic JVM, including startup, setup, two 1-second warmups, two 1-second measurements, harness and teardown. No phase filtering. CPU sampling requests 10ms; allocation sampling is throttled to 50 events/second; recording and export retain up to 64 frames. This is not main timing evidence, per-operation allocation, retained heap, method duration, p99 latency, RSS or production capacity."
+}

@@ -4,7 +4,7 @@
 
 # 迭代计划
 
-这是 OminiCat 高性能 Java 17+ 多模态微内核的持续更新队列，用于安排范围小、由证据驱动的改进。已完成工作附有拉取请求与验证链接，新故障可以优先于队列。每个增量开始时应重新审视假设，不能把提案当作已确认缺陷。
+这是 OminiCat 高性能 Java 17+ 多模态微内核的持续更新队列，用于安排范围小、由证据驱动的改进。已完成工作附有拉取请求与验证链接，新故障可以优先于队列。每个增量开始时应重新审视假设，不能把提案当作已确认缺陷。选择下一项可选能力前，结合[实际交互覆盖](scenario-coverage.md)共同审视使用流程与技术机制。
 
 ## 执行循环
 
@@ -14,7 +14,7 @@
 4. 用证据和下一项有用行动更新本队列，随后创建或更新范围集中的拉取请求，包含实现与计划变更。当前提交上的全部五项必需检查通过、审查会话解决后，通过受保护 `main` 合并。不得为了完成一次运行而削弱门禁。
 5. 确认合并结果，将剩余工作带入下一个增量。实验优化中，测得负面结果同样有效；保留结论，不交付更差的运行时。
 
-定时 profiling 是独立的证据采集作业。它每周在 Java 17 和 21 上运行，生成 CPU／分配火焰图及 GC 汇总，将带白名单与校验和的产物保留 30 天。成功表示采集与校验完成，不表示性能改进。CI 运行器波动不得自动更新对外性能主张。见[性能测量方法](performance.md)。
+性能采集改为按需执行：五个基准／profile 工作流都只接受手动触发。没有每日迭代或每周 profile 定时任务，文档提交不会启动新的性能矩阵。标准 PR CI 保留受保护主分支的全部五项检查；并发控制会取消已过期运行，合并后不再因 main 推送重复完整构建。在相关源码／负载变化需要新测量之前，复用绑定来源的归档。可选诊断产物仍保留 30 天；必需验证产物保留 7 天，标准作业均设 15 分钟超时；CI 运行器波动不得自动更新对外主张。见[性能测量方法](performance.md)。
 
 ## 单次源码审查 — 2026-11-01
 
@@ -60,7 +60,7 @@
 
 [Java 机制受控实验](comparison/mechanism-protocol.md)已有 [Ubuntu／Java 17 证据](reports/mechanisms/java17-2026-11-02/README.md)：固定阶段数的四个公开 API／交接用例与两个独立 Exchange 复制用例，不改变生产调度。精确的结果／线程／失败校验、十二个全新基准 JVM 和五个独立白名单 JFR 诊断确定了声明范围。组件成本不能相加解释此前 SEDA 差距；1/16 阶段、饱和负载与媒体实验仍是独立后续工作。
 
-[直接调用状态实验](comparison/direct-state-protocol.md)是本轮选定的因果原型：只在直接公开调用中合并 continuation 与生命周期边界，会话／异步调度、generation 检查和媒体构造器不变。七个场景使用同一探针比较两份真实 core JAR，进行三个 ABBA 块；分配／时间目标及生命周期反例均预先登记。该直接调用子集不表示下方更广的会话／异步分配前置工作已经完成；完整 Linux 证据和正常门禁通过前，结果保持待定。
+[直接调用状态实验](comparison/direct-state-protocol.md)现已有[完整 Ubuntu／Java 17 证据](reports/performance-audit/direct-state-2026-11-02/README.md)。保留前两次未达到或未能一致满足预登记目标的尝试后，最终原型在管线组装时预绑定不可变后继，每次直接调用仅保留三个引用。84 个全新基准 JVM 中，四阶段原始帧分配从 352 降至 256 B/op（27.27%），三个配对块比值的均值显示耗时减少 20.09%；envelope 分配／耗时减少 8.39%/3.57%。所有已改变的直接调用用例均达到原定逐块目标。独立的预热 JVM 构造探针呈现每条管线约 +136 B、构造加首次直接调用约 +32 B 的代价。会话／异步派发及媒体构造器保持不变；仅用于非异步会话的管线仍承担预绑定初始化。此直接调用结果不代表下方更广的会话／异步前置工作已经完成。九项生命周期回归在两份 core 修订上均通过；完整 Java 17 验证通过 390 项测试及 512 个压力种子。发布仍需当前 PR 的正常受保护主分支门禁。
 
 [性能深度审计](performance-audit.md)以 Ubuntu 配对测量验证了有界的提示词统计／历史优化，完整的不使用历史／完整历史／截短历史矩阵均通过逐字输出和运行时来源检查。其他源码可确认的候选仍需各自负载验证。
 
@@ -86,6 +86,7 @@
 
 | 增量 | 结果 | 证据 |
 | --- | --- | --- |
+| 直接调用拓扑与生命周期状态 | 不可变预绑定后继及每次新建的三引用调用保护减少了实测直接调用分配，并保留终点、失败、线程、退役与引用图释放行为。七个配对场景、独立构造探针及 CPU／分配／GC 诊断同时保留前两次未成功尝试和初始化代价。 | [PR #38](https://github.com/g5n-dev/ominicat/pull/38)、[结果与不可变证据](reports/performance-audit/direct-state-2026-11-02/README.md)、[预登记协议](comparison/direct-state-protocol.md)、[生命周期回归](../../ominicat-core/src/test/java/io/ominicat/core/DirectInvocationLifecycleTest.java) |
 | Java 机制的受控验证 | 可执行的真实 API、相同交接和预建关联复制探针；每格两个全新进程，在 Ubuntu 保留完整时间／分配／进程 CPU 观察及独立 CPU／分配／GC 图。保留早期完整测量和诊断失败／取消记录；生产运行时未改动，不相加归因 SEDA。 | [PR #37](https://github.com/g5n-dev/ominicat/pull/37)、[结果与不可变证据](reports/mechanisms/java17-2026-11-02/README.md)、[协议](comparison/mechanism-protocol.md)、[失败控制](../../comparison/mechanisms/src/test/java/io/ominicat/mechanisms/PathHarnessTest.java) |
 | 锁与生命周期架构 | 中英文锁范围表、真实会话状态转换、回调／引用所有权、HTTP 响应清理与独立的服务器接纳释放条件。两张本地化 SVG 图及静态预览呈现这些边界；CI 检查生成图与源码的新鲜度。运行时行为和已记录性能证据保持不变。 | [PR #35](https://github.com/g5n-dev/ominicat/pull/35)、[锁与生命周期指南](architecture.md#锁职责与回调边界)、[源码与可执行证据](architecture.md#源码与可执行证据)、[确定性生成器](../../scripts/render_architecture.py) |
 | Unicode 完整的证据摘录 | 裁剪不再在任一边界切断合法补充字符。正文保持在原始 180 个 UTF-16 单元内，最多另加两个省略号；元数据、规则结果与默认线协议结构保留。 | [PR #34](https://github.com/g5n-dev/ominicat/pull/34)、[边界与独立 oracle 回归](../../ominicat-conversation/src/test/java/io/ominicat/conversation/EvidenceUnicodeTest.java)、[评估／严格 UTF-8／JSON 回归](../../ominicat-server/src/test/java/io/ominicat/server/EvidenceUnicodeWireTest.java) |
@@ -100,13 +101,13 @@
 | Java 17 基线与可中断 HTTP 响应体读取 | 最低 Java 17，在 17/21/25 验证；取消可释放阻塞的本地 HTTP 读取，无需等待对端 EOF。 | [PR #12](https://github.com/g5n-dev/ominicat/pull/12)、[PR #14](https://github.com/g5n-dev/ominicat/pull/14)、[当前 Java 17 验证](reports/java17/http-cancellation/README.md) |
 | 性能与 profile 文档 | README 展示实测吞吐、分配、CPU 栈、GC 和资源排空，并区分负载范围。 | [PR #13](https://github.com/g5n-dev/ominicat/pull/13)、[PR #15](https://github.com/g5n-dev/ominicat/pull/15)、[内核 profile](reports/java17/kernel/profiles.md) |
 | 完整 profile 导出与可读图形 | 显式采集／导出 64 帧栈，完整渲染提供的栈，汇总保留热点权重，并提供 GC 暂停时间线。从原始 Java 17 记录恢复更深栈，不替换测量结果。成功采集会先生成全部图，再移动本地原始导出。 | [生成器回归](../../scripts/test_summarize_profiles.py)、[打包控制](../../scripts/test_package_profiles.py)、[已恢复 profile](reports/java17/kernel/profiles.md) |
-| 可重复规划与证据采集 | 持续维护验收队列、每周 profiling、完整结果校验、白名单／校验和诊断以及经隐私检查的失败输出。 | [工作流](../../.github/workflows/performance.yml)、[报告校验](../../scripts/test_report.py)、[打包控制](../../scripts/test_package_profiles.py)、[失败控制](../../scripts/test_profile_failure.py) |
+| 可重复规划与证据采集 | 持续维护验收队列、按需 profiling、完整结果校验、白名单／校验和诊断以及经隐私检查的失败输出。 | [工作流](../../.github/workflows/performance.yml)、[报告校验](../../scripts/test_report.py)、[打包控制](../../scripts/test_package_profiles.py)、[失败控制](../../scripts/test_profile_failure.py) |
 | 跨项目契约审查 | 根据源码区分现有机制、拟议兼容契约与外部职责，并提供显式负向验收案例。I1a 声明子集已经实现；其余 I1 及 I2/I3 仍在队列中。 | [设计与验收计划](integration-contracts.md) |
 | 时间／注释覆盖审查 | 区分中间转写修订与通用片段变更、规则结果与独立注释，以及本地归约与外部发布保证。可选能力的实现仍在队列中。 | [语义与验收计划](temporal-annotations.md) |
 | 最小能力架构审查 | 移除强制的编辑／媒体依赖，限定跨生产者引用，并将缓存可用性与结果有效性分开。指标与一致性检查针对实际声明的能力。 | [可选能力](temporal-annotations.md)、仓库架构审查指引 |
 | T1a 不可变媒体引用 | 可选的来源／生产者限定区间版本值、显式区间／点／未知位置、PCM 每通道单位、精确给定帧边界和有界二进制导入导出。新增二十项测试；对应 Java 17 全量验证共 276 项、512 个压力种子。无内核源码或依赖变化。 | [API 指南](media-references.md)、[值／映射测试](../../ominicat-conversation/src/test/java/io/ominicat/conversation/reference/MediaReferenceTest.java)、[I/O 测试](../../ominicat-conversation/src/test/java/io/ominicat/conversation/reference/MediaReferenceIOTest.java)、[验证](reports/verification.md) |
 | Studio 任务大盘与独立管线调试器 | 任务／内容列、阶段调用观测、输出卡片及有界活动回放与详情；独立多模态调试器。连接级显式启用的服务端观测、游标缺口及脱敏预览，帧载荷与内核派发不变。HTTP/WS、异步取消、记录边界与浏览器生命周期测试，以及资源排空证据。原生滚动／拖动审查、可见模块端口和独立列滚动。 | [Studio 指南](studio.md)、[运行时 API 测试](../../ominicat-server/src/test/java/io/ominicat/server/RuntimeApiTest.java)、[浏览器控制](../../scripts/test_console.cjs)、[验证](reports/studio/README.md) |
 | 可复现的跨框架排队比较 | 同机 Java 17／CPython 3.12 原生排队 W=1 路径，Pipecat 1.15.0 与 Camel 4.22.2 LTS；1/4/16 阶段共 45 个全新进程，精确输出／生命周期校验、源码／依赖哈希，以及可读吞吐／延迟／RSS 图。独立插桩不进入主计时。 | [PR #24](https://github.com/g5n-dev/ominicat/pull/24)、[协议](comparison/protocol.md)、[结果](reports/comparison/java17-2026-10-31/README.md)、[失败控制](../../comparison/tests/test_evidence.py) |
-| 自动 Linux 框架性能证据 | Ubuntu 24.04 原生环境与以摘要固定的 CentOS Stream 9 用户态各通过 45 个全新进程及独立 JFR/cProfile 诊断，共验证 17,406,385 个测量输出。校验发行版／源码／内核／架构绑定、CPU/libc／资源范围、真实图形导出控制及不可变 CI 产物。相关 PR/main 变更自动触发采集，受保护 main 的五项检查仍为必需。 | [PR #25](https://github.com/g5n-dev/ominicat/pull/25)、[成功 Linux 运行](https://github.com/g5n-dev/ominicat/actions/runs/41222330745)、[图表及源码／归档溯源](reports/comparison/README.md)、[Linux 失败控制](../../comparison/tests/test_linux_evidence.py) |
+| 自动 Linux 框架性能证据 | Ubuntu 24.04 原生环境与以摘要固定的 CentOS Stream 9 用户态各通过 45 个全新进程及独立 JFR/cProfile 诊断，共验证 17,406,385 个测量输出。校验发行版／源码／内核／架构绑定、CPU/libc／资源范围、真实图形导出控制及不可变 CI 产物。采集现改为手动触发以控制 CI 成本，受保护 main 的五项 PR 检查仍为必需。 | [PR #25](https://github.com/g5n-dev/ominicat/pull/25)、[成功 Linux 运行](https://github.com/g5n-dev/ominicat/actions/runs/41222330745)、[图表及源码／归档溯源](reports/comparison/README.md)、[Linux 失败控制](../../comparison/tests/test_linux_evidence.py) |
 
 本队列提出工作，不声称尚未实现的优化正确或更快。已记录主指标始终绑定原始源码、负载和主机，直到出现经审查的替代测量。

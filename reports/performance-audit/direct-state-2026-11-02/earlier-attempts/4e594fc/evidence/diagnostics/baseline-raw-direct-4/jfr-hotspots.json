@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "scope": "Independent instrumented Java 17 JMH diagnostic JVM, including startup, setup, two 1-second warmups, two 1-second measurements, harness and teardown. No phase filtering. CPU sampling requests 10ms; allocation sampling is throttled to 50 events/second; recording and export retain up to 64 frames. This is not main timing evidence, per-operation allocation, retained heap, method duration, p99 latency, RSS or production capacity.",
+  "selectedEventCounts": {
+    "jdk.ExecutionSample": 328,
+    "jdk.GarbageCollection": 134,
+    "jdk.ObjectAllocationSample": 220
+  },
+  "cpuLeafSamples": [
+    {
+      "method": "io.ominicat.core.Pipeline.lambda$dispatch$1",
+      "samples": 130
+    },
+    {
+      "method": "io.ominicat.benchmarks.DirectStateProbe$Harness.acceptOutput",
+      "samples": 125
+    },
+    {
+      "method": "io.ominicat.core.Pipeline.process",
+      "samples": 42
+    },
+    {
+      "method": "java.lang.invoke.DirectMethodHandle.allocateInstance",
+      "samples": 12
+    },
+    {
+      "method": "io.ominicat.benchmarks.DirectStateProbe$Harness.invoke",
+      "samples": 11
+    },
+    {
+      "method": "io.ominicat.benchmarks.DirectStateProbe.invoke",
+      "samples": 6
+    },
+    {
+      "method": "java.util.StringTokenizer.scanToken",
+      "samples": 1
+    },
+    {
+      "method": "java.lang.Character.compareTo",
+      "samples": 1
+    }
+  ],
+  "allocationClassWeights": [
+    {
+      "class": "io.ominicat.benchmarks.DirectStateProbe$Value",
+      "bytes": 9048113888
+    },
+    {
+      "class": "io.ominicat.core.Pipeline$$Lambda$131+0x00007f3c78095978.1682136925",
+      "bytes": 7551387400
+    },
+    {
+      "class": "io.ominicat.core.SynchronousSink",
+      "bytes": 4404341896
+    },
+    {
+      "class": "[Ljava.util.concurrent.ConcurrentHashMap$Node;",
+      "bytes": 19959416
+    },
+    {
+      "class": "[B",
+      "bytes": 3933224
+    },
+    {
+      "class": "jdk.internal.org.objectweb.asm.SymbolTable$Entry",
+      "bytes": 389512
+    },
+    {
+      "class": "[Ljava.lang.Object;",
+      "bytes": 389280
+    },
+    {
+      "class": "[C",
+      "bytes": 383560
+    },
+    {
+      "class": "java.lang.Object",
+      "bytes": 243672
+    },
+    {
+      "class": "[Ljava.nio.file.LinkOption;",
+      "bytes": 188176
+    },
+    {
+      "class": "java.lang.String",
+      "bytes": 188168
+    },
+    {
+      "class": "[Ljdk.internal.org.objectweb.asm.SymbolTable$Entry;",
+      "bytes": 188016
+    },
+    {
+      "class": "java.util.zip.ZipFile$InflaterCleanupAction",
+      "bytes": 54224
+    },
+    {
+      "class": "java.lang.invoke.MethodType",
+      "bytes": 32
+    },
+    {
+      "class": "java.util.concurrent.CopyOnWriteArrayList$COWIterator",
+      "bytes": 24
+    }
+  ],
+  "sampledAllocationWeightBytes": 21029760488,
+  "gcCollectionCount": 134,
+  "gcPauseSumMillis": 91.279104,
+  "maxCollectionPauseSumMillis": 4.717134000000001
+}

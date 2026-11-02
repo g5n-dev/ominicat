@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "scope": "Independent instrumented Java 17 JMH diagnostic JVM, including startup, setup, two 1-second warmups, two 1-second measurements, harness and teardown. No phase filtering. CPU sampling requests 10ms; allocation sampling is throttled to 50 events/second; recording and export retain up to 64 frames. This is not main timing evidence, per-operation allocation, retained heap, method duration, p99 latency, RSS or production capacity.",
+  "selectedEventCounts": {
+    "jdk.ExecutionSample": 339,
+    "jdk.GarbageCollection": 151,
+    "jdk.ObjectAllocationSample": 216
+  },
+  "cpuLeafSamples": [
+    {
+      "method": "io.ominicat.core.Pipeline.lambda$dispatch$1",
+      "samples": 132
+    },
+    {
+      "method": "io.ominicat.benchmarks.DirectStateProbe$Harness.expected",
+      "samples": 97
+    },
+    {
+      "method": "io.ominicat.benchmarks.DirectStateProbe$Harness.invoke",
+      "samples": 66
+    },
+    {
+      "method": "io.ominicat.core.Pipeline.process",
+      "samples": 24
+    },
+    {
+      "method": "io.ominicat.benchmarks.DirectStateProbe$Harness$$Lambda$125+0x00007fe1c0094a28.1669521372.accept",
+      "samples": 15
+    },
+    {
+      "method": "io.ominicat.benchmarks.DirectStateProbe.invoke",
+      "samples": 4
+    },
+    {
+      "method": "io.ominicat.benchmarks.jmh_generated.DirectStateProbe_invoke_jmhTest.invoke_avgt_jmhStub",
+      "samples": 1
+    }
+  ],
+  "allocationClassWeights": [
+    {
+      "class": "io.ominicat.benchmarks.DirectStateProbe$Value",
+      "bytes": 12219258984
+    },
+    {
+      "class": "io.ominicat.core.Pipeline$$Lambda$131+0x00007fe1c0095978.1682136925",
+      "bytes": 8564856800
+    },
+    {
+      "class": "io.ominicat.core.SynchronousSink",
+      "bytes": 3193508608
+    },
+    {
+      "class": "[Ljava.util.concurrent.ConcurrentHashMap$Node;",
+      "bytes": 19994104
+    },
+    {
+      "class": "[B",
+      "bytes": 4475280
+    },
+    {
+      "class": "java.lang.NoSuchFieldException",
+      "bytes": 409976
+    },
+    {
+      "class": "java.lang.String",
+      "bytes": 358888
+    },
+    {
+      "class": "jdk.internal.org.objectweb.asm.SymbolTable$Entry",
+      "bytes": 226880
+    },
+    {
+      "class": "[Ljava.lang.Object;",
+      "bytes": 207016
+    },
+    {
+      "class": "java.net.URL",
+      "bytes": 182912
+    },
+    {
+      "class": "java.util.concurrent.ConcurrentHashMap$ForwardingNode",
+      "bytes": 177896
+    },
+    {
+      "class": "java.lang.invoke.MethodType",
+      "bytes": 32
+    }
+  ],
+  "sampledAllocationWeightBytes": 24003657376,
+  "gcCollectionCount": 151,
+  "gcPauseSumMillis": 92.860925,
+  "maxCollectionPauseSumMillis": 5.206454999999999
+}

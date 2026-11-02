@@ -93,12 +93,26 @@ OminiCat／Camel 的调用线程用例汇总分别为 **66.34／1,122.60 ns/op**
 
 [完整结果、CPU／分配／GC 图及各次运行记录](docs/zh-CN/reports/mechanisms/java17-2026-11-02/README.md) · [可执行协议与失败控制](docs/zh-CN/comparison/mechanism-protocol.md)。本轮验证机制，生产调度器没有改动；不将局部结果宣传为整个框架普遍更快。
 
+### 结构提升的配对证据
+
+直接路径现在在组装流水线时绑定不可变的处理器／后继引用，每次阶段调用新建一个受保护的调用对象，持有所属线程、后继和输出，`finally` 清除全部三个引用。过滤、有序多输出、嵌套调用及错误线程／退休句柄拒绝均有测试；会话／异步分发和 generation 栅栏源码保持原样。
+
+[![绑定源码的直接计划与调用生命周期](docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--structure-zh-CN.png)](docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/structure.svg)
+
+同一 Ubuntu 24.04／Java 17 任务，用同一探针比较两份真实 core JAR：**84 个全新 JVM、七个场景、三个 ABBA 块**。四阶段数值派发从 **352 降到 256 B/op**，分配减少 **27.27%**，配对耗时比均值改善 **20.09%**；信封分配／耗时改善 **8.39%／3.57%**。所有改动影响的直接路径场景，每个块都达到预先登记的目标。这里是框架内部的配对效果；上方跨框架结果保留原测量版本，校验范围也不同。
+
+[![全部配对结构结果、进程均值与块比值](docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--costs-zh-CN.png)](docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/costs.svg)
+
+指标应在对应测试范围内阅读：`ns/op` 是每次操作的计时工作；`B/op` 是归一化分配量，不是保留内存，两者越低越好。配对 `C/B` 为候选块均值除以基线块均值；降幅使用 `100 × (1 − mean block ratio)` 计算，式中均值取三个配对块比值的算术平均。观察到的进程／块范围不是置信区间，单请求在途不代表饱和容量。[指标定义与计时边界](docs/zh-CN/performance.md)。
+
+代价也已实测：四阶段流水线构建每个实例约增加 **136 B**；独立预热 JVM 探针中，构建并首次调用约增加 **32 B**。只用于会话的非 async 流水线也付计划成本；async 流水线不组装这些节点。[完整源码改动、初始化成本、CPU／分配／GC 图及两次未通过的原型](docs/zh-CN/reports/performance-audit/direct-state-2026-11-02/README.md)。这些测量不建立生产容量或全框架排名。
+
 <details>
 <summary>查看 OminiCat 的直接调用、异步续接与资源边界</summary>
 
 [![同步分发、会话工作线程与异步续接路径](docs/assets/previews/execution-path-zh-CN.png)](docs/assets/zh-CN/execution-path.svg)
 
-[Pipeline](ominicat-core/src/main/java/io/ominicat/core/Pipeline.java) 的同步阶段保留调用生命周期保护和 continuation 分配；[PipelineSession](ominicat-core/src/main/java/io/ominicat/core/PipelineSession.java) 用锁和 FIFO 管理会话工作。直接嵌入可省去会话调度，调用方自行负责串行访问和清理。配置发现和处理器组装在派发帧之前完成。
+[Pipeline](ominicat-core/src/main/java/io/ominicat/core/Pipeline.java) 预绑定直接路径的后继，每次新建受保护的调用对象；信封适配器仍有自己的保护与派生工作。[PipelineSession](ominicat-core/src/main/java/io/ominicat/core/PipelineSession.java) 用锁和 FIFO 管理会话工作。直接嵌入可省去会话调度，调用方自行负责串行访问和清理。配置发现和处理器组装在派发帧之前完成。
 
 媒体构造会防御性复制字节；JSON／Base64 在网络边缘处理，均有实际成本。服务器的处理器在会话 worker 运行，解码与连接组装仍在 Netty I/O 回调中。这组实测使用 **Java 17 平台线程**，不证明虚拟线程或外部异步模型回调更快。
 
@@ -337,7 +351,7 @@ java -cp 'ominicat-server/target/ominicat-server.jar:plugins/*' \
 - [独立音轨](config/dual-stream.yaml)：声道拆分、各流隔离及可配置归属。
 - [会话策略](config/conversation.yaml)、[步骤流程](config/steps.yaml)和[确定性回放](docs/zh-CN/examples/README.md)。
 
-现有兼容 HTTP 转写适配器将有界 PCM 语音片段封装为 WAV 上传，产出最终转写；语音合成收集文字至轮次边界，再返回 24 kHz 单声道 PCM；文本模型通过 SSE 输出。RMS 检测器提供可配置静音时长的能量事件。厂商原生双向语音流可通过 `AsyncProcessor` 接入，具体适配器需要独立实现和验证。WebRTC、自动说话人分离、回声消除、持久化消息投递与自动重连不包含在当前发行物中。
+现有兼容 HTTP 转写适配器将有界 PCM 语音片段封装为 WAV 上传，产出最终转写；语音合成收集文字至轮次边界，再返回 24 kHz 单声道 PCM；文本模型通过 SSE 输出。RMS 检测器提供可配置静音时长的能量事件。厂商原生双向语音流可通过 `AsyncProcessor` 接入，具体适配器需要独立实现和验证。WebRTC、自动说话人分离、回声消除、持久化消息投递与自动重连不包含在当前发行物中。[ASR/TTS 交互指南](docs/zh-CN/scenario-coverage.md)共同呈现实际需求、技术机制、可运行测试与缺口，包括助手历史和自动语音打断。
 
 ## 复跑与验证
 
@@ -363,7 +377,7 @@ java scripts/WebSocketLoad.java ws://127.0.0.1:8080/ws 32 5000
 - [架构、所有权与生命周期](docs/zh-CN/architecture.md)
 - [配置、鉴权与部署](docs/zh-CN/configuration.md)
 - [帧协议](docs/zh-CN/protocol.md)与[插件开发](docs/zh-CN/plugins.md)
-- [通用场景覆盖矩阵](docs/zh-CN/scenario-coverage.md)
+- [ASR/TTS 交互、技术抽象与当前边界](docs/zh-CN/scenario-coverage.md)
 - [不可变媒体引用与导入导出 API](docs/zh-CN/media-references.md)
 - [Studio 运行大盘与独立流程调试](docs/zh-CN/studio.md)
 - [性能深度审计与有界提示词实验](docs/zh-CN/performance-audit.md)

@@ -1,0 +1,243 @@
+{
+  "schemaVersion": 1,
+  "protocol": "ominicat-direct-state-diagnostics-v1",
+  "status": "complete",
+  "recordedAt": "2026-11-02T05:32:30.109348+00:00",
+  "case": {
+    "id": "baseline-envelope-direct-4",
+    "side": "baseline",
+    "scenario": "envelope-direct-4"
+  },
+  "scope": "Independent instrumented Java 17 JMH diagnostic JVM, including startup, setup, two 1-second warmups, two 1-second measurements, harness and teardown. No phase filtering. CPU sampling requests 10ms; allocation sampling is throttled to 50 events/second; recording and export retain up to 64 frames. This is not main timing evidence, per-operation allocation, retained heap, method duration, p99 latency, RSS or production capacity.",
+  "instrumented": true,
+  "headlineEligible": false,
+  "bindings": {
+    "measurementManifestSha256": "9b28c13cd59347d73849fd2c0f1b78e6b638b721b04df307dd282b4b0a3c79fb",
+    "artifactSha256": {
+      "baseline": "c662ff8d90a828c4dbc45f72b3fb3353f36596d7f36532621a8e07aa55a9df97",
+      "candidate": "2c37a53ebab8f41f0d2d332de159e9f9312ddf9cb2ee18527f697e263143efe5",
+      "probe": "2507e0b4ac810134df265ac962e17602f886a351332c1821fe5f1516d40e09ce"
+    },
+    "sourceAggregateSha256": {
+      "baseline": "0a53528ab1131529222f50ebbf085549e024b38e382ec808c61dd3b531234d9b",
+      "candidate": "877456c462c4fa39e5a579e479e0915617abfd800f18a8ed78412c087f319b45",
+      "probe": "a7e7ca0313ce2a1c72f0008abe258848bc95fa970f673f2323ea7ce357e3c207"
+    }
+  },
+  "settings": {
+    "jmhVersion": "1.37",
+    "mode": "avgt",
+    "threads": 1,
+    "forks": 0,
+    "warmupIterations": 2,
+    "measurementIterations": 2,
+    "warmupTime": "1 s",
+    "measurementTime": "1 s",
+    "warmupBatchSize": 1,
+    "measurementBatchSize": 1,
+    "heapArgs": [
+      "-Xms256m",
+      "-Xmx256m"
+    ],
+    "profilers": [
+      "gc"
+    ],
+    "executionSamplePeriod": "10ms",
+    "allocationThrottle": "50/s",
+    "recordingStackDepth": 64,
+    "exportStackDepth": 64,
+    "selectedJsonMaxBytes": 134217728,
+    "selectedEvents": [
+      "jdk.ExecutionSample",
+      "jdk.GarbageCollection",
+      "jdk.JavaMonitorEnter",
+      "jdk.ObjectAllocationSample",
+      "jdk.VirtualThreadPinned"
+    ],
+    "disabledEvents": [
+      "jdk.InitialEnvironmentVariable",
+      "jdk.InitialSystemProperty",
+      "jdk.InitialSecurityProperty",
+      "jdk.SecurityPropertyModification",
+      "jdk.SystemProcess",
+      "jdk.ProcessStart",
+      "jdk.OSInformation",
+      "jdk.JVMInformation"
+    ]
+  },
+  "toolSha256": {
+    "comparison/direct_state_profiles.py": "a3bbef25aab81ef2d19d5b1e879aff75a34dfbad742a28ee94fe582bfd79d4a6",
+    "comparison/direct_state_evidence.py": "1c1b093380a9ec8ee21d087b055350e94aff2b067c8e1937e64967fb6870a687",
+    "comparison/mechanism_profiles.py": "dda6124d1a60d56aa3a2617cb2c4ac894171cfb2167817de300abf71951b74bc",
+    "comparison/mechanism_evidence.py": "b3ebe4c6b21df8d99834293bb2e5b2cb78d4b9a4bfa8c549840d3b59a73af10c",
+    "scripts/summarize_profiles.py": "3deb3c444b94b13f2ed84c9d0542738be2bba70dcd7c94cd3c6d6a10a9d3be9e",
+    "scripts/package_profiles.py": "2cd1f03e99f0f4232c4a0c086bd52f5036434ec93a687e92fcf349aa2a99ee25"
+  },
+  "eventSummary": {
+    "schemaVersion": 1,
+    "scope": "Independent instrumented Java 17 JMH diagnostic JVM, including startup, setup, two 1-second warmups, two 1-second measurements, harness and teardown. No phase filtering. CPU sampling requests 10ms; allocation sampling is throttled to 50 events/second; recording and export retain up to 64 frames. This is not main timing evidence, per-operation allocation, retained heap, method duration, p99 latency, RSS or production capacity.",
+    "selectedEventCounts": {
+      "jdk.ExecutionSample": 352,
+      "jdk.GarbageCollection": 99,
+      "jdk.ObjectAllocationSample": 220
+    },
+    "cpuLeafSamples": [
+      {
+        "method": "io.ominicat.core.FrameEnvelope.<init>",
+        "samples": 76
+      },
+      {
+        "method": "io.ominicat.benchmarks.DirectStateProbe$Harness.lambda$new$4",
+        "samples": 58
+      },
+      {
+        "method": "java.lang.StringLatin1.indexOfNonWhitespace",
+        "samples": 51
+      },
+      {
+        "method": "jdk.internal.misc.Unsafe.allocateUninitializedArray",
+        "samples": 43
+      },
+      {
+        "method": "java.lang.Long.getChars",
+        "samples": 36
+      },
+      {
+        "method": "io.ominicat.benchmarks.DirectStateProbe$Harness.invoke",
+        "samples": 33
+      },
+      {
+        "method": "io.ominicat.benchmarks.DirectStateProbe$Harness.acceptOutput",
+        "samples": 17
+      },
+      {
+        "method": "java.lang.invoke.DirectMethodHandle.allocateInstance",
+        "samples": 9
+      },
+      {
+        "method": "java.lang.Record.<init>",
+        "samples": 9
+      },
+      {
+        "method": "sun.security.provider.SHA2.implCompress0",
+        "samples": 2
+      },
+      {
+        "method": "java.lang.invoke.VarHandleByteArrayAsInts$ArrayHandle.get",
+        "samples": 2
+      },
+      {
+        "method": "io.ominicat.core.FrameEnvelope.derive",
+        "samples": 2
+      },
+      {
+        "method": "java.lang.CharacterDataLatin1.getProperties",
+        "samples": 2
+      },
+      {
+        "method": "org.openjdk.jmh.util.InputStreamDrainer.run",
+        "samples": 1
+      },
+      {
+        "method": "java.util.StringTokenizer.nextToken",
+        "samples": 1
+      },
+      {
+        "method": "java.lang.String.getBytes",
+        "samples": 1
+      },
+      {
+        "method": "java.lang.String.indexOfNonWhitespace",
+        "samples": 1
+      },
+      {
+        "method": "java.lang.StringConcatHelper.mix",
+        "samples": 1
+      },
+      {
+        "method": "io.ominicat.core.EnvelopeProcessor.process",
+        "samples": 1
+      },
+      {
+        "method": "jdk.internal.misc.Unsafe.allocateUninitializedArray0",
+        "samples": 1
+      }
+    ],
+    "allocationClassWeights": [
+      {
+        "class": "io.ominicat.core.SynchronousSink",
+        "bytes": 3628879424
+      },
+      {
+        "class": "io.ominicat.core.FrameEnvelope",
+        "bytes": 3121306560
+      },
+      {
+        "class": "io.ominicat.core.Pipeline$$Lambda$133+0x00007fc334096030.284879437",
+        "bytes": 2593351688
+      },
+      {
+        "class": "io.ominicat.core.EnvelopeProcessor$$Lambda$134+0x00007fc334096258.1201448536",
+        "bytes": 2065463720
+      },
+      {
+        "class": "io.ominicat.benchmarks.DirectStateProbe$Value",
+        "bytes": 1953916256
+      },
+      {
+        "class": "[B",
+        "bytes": 1041077528
+      },
+      {
+        "class": "java.lang.String",
+        "bytes": 1008118224
+      },
+      {
+        "class": "[Ljava.util.concurrent.ConcurrentHashMap$Node;",
+        "bytes": 19784760
+      },
+      {
+        "class": "java.util.ArrayList$Itr",
+        "bytes": 389424
+      },
+      {
+        "class": "java.util.zip.ZipFile$InflaterCleanupAction",
+        "bytes": 239408
+      },
+      {
+        "class": "java.util.HashMap",
+        "bytes": 199152
+      },
+      {
+        "class": "java.util.ArrayList",
+        "bytes": 68592
+      },
+      {
+        "class": "jdk.internal.org.objectweb.asm.SymbolTable$Entry",
+        "bytes": 39976
+      },
+      {
+        "class": "jdk.jfr.events.ActiveSettingEvent",
+        "bytes": 5824
+      },
+      {
+        "class": "java.lang.invoke.MethodType",
+        "bytes": 32
+      },
+      {
+        "class": "java.util.concurrent.CopyOnWriteArrayList$COWIterator",
+        "bytes": 24
+      }
+    ],
+    "sampledAllocationWeightBytes": 15432840592,
+    "gcCollectionCount": 99,
+    "gcPauseSumMillis": 75.228699,
+    "maxCollectionPauseSumMillis": 4.927559
+  },
+  "rawSha256": {
+    "recording": "34aa9c97a7efff905cc4872ac61b6b8ac21b205ec3273b679120dc0642c4c157",
+    "settings": "f22bb321cbfe767740bfe78927faa64cec4f09096d851269d6a15023c7bf62f1",
+    "jmhResult": "8aa6930a562a11827c9abc62555510c96ce6ff8e190414e3a317cd17d9d1d906",
+    "jmhLog": "20a4a0b12abcdcce1e1297c470b76132f31661df16a701b3357e56dc7184697c"
+  }
+}

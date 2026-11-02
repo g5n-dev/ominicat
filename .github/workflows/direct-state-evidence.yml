@@ -6,19 +6,6 @@ on:
         description: Baseline Git revision
         required: true
         default: 'c2def9dcbdf3857d8bbfed8f9b27182993c764f3'
-  pull_request:
-    branches: [main]
-    paths:
-      - 'ominicat-benchmarks/src/main/java/io/ominicat/benchmarks/DirectStateProbe.java'
-      - 'ominicat-benchmarks/src/test/java/io/ominicat/benchmarks/DirectStateProbeTest.java'
-      - 'ominicat-benchmarks/src/main/java/io/ominicat/benchmarks/DirectPlanStartupProbe.java'
-      - 'ominicat-benchmarks/src/test/java/io/ominicat/benchmarks/DirectPlanStartupProbeTest.java'
-      - 'comparison/direct_plan_startup.py'
-      - 'comparison/tests/test_direct_plan_startup.py'
-      - 'comparison/direct_state_*.py'
-      - 'comparison/tests/test_direct_state_*.py'
-      - 'comparison/direct-state-protocol.md'
-      - '.github/workflows/direct-state-evidence.yml'
 permissions:
   contents: read
 concurrency:

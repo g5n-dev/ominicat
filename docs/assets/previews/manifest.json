@@ -103,6 +103,666 @@
       ]
     },
     {
+      "source": "reports/performance-audit/direct-state-2026-11-02/costs.svg",
+      "source_sha256": "ecc6ccd2838412e25677cf667d942cafe13f06d930b8878af577c5f3a5ac7e74",
+      "preview": "docs/assets/previews/direct-state-final-costs.png",
+      "preview_sha256": "ffdd01fc2b178a3772df5f3715a25eef4d94d98c58363c9eaa743ff554404b7e",
+      "pixels": [
+        3360,
+        2660
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/structure.svg",
+      "source_sha256": "a32d8206e73420da5a0a1673245c2f237dc9fdbd18fd838071580544f33e3f32",
+      "preview": "docs/assets/previews/direct-state-final-structure.png",
+      "preview_sha256": "c4306ef65d4858cb31d46f053ac7773fe16a9e0e463d7284ff409ee306bc8f31",
+      "pixels": [
+        3200,
+        2480
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/costs.svg",
+      "source_sha256": "25abbc635e68fbf6f931f00baac068ba630a8bf374b90e1febbdfedeacfbdb4d",
+      "preview": "docs/assets/previews/direct-state-143deb4-costs.png",
+      "preview_sha256": "12ebaac46a30d2f1c248da794dcab37d9d915ff763aaa755f6c673d2cf07cb90",
+      "pixels": [
+        3360,
+        2660
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/structure.svg",
+      "source_sha256": "d54cd347f3ab269bc7d88ef79827b6659b97b7e091cb8a6d7c6b3fb2845d9bd1",
+      "preview": "docs/assets/previews/direct-state-143deb4-structure.png",
+      "preview_sha256": "5331f45ae1a465528b3ec662024bb1d55019daf929f26dd830baa209c72ea4e2",
+      "pixels": [
+        3200,
+        2220
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/costs.svg",
+      "source_sha256": "fc08ac791f574c2d1b0c7a9ca882b025951b4e329edc60380a53e0cccf7161c0",
+      "preview": "docs/assets/previews/direct-state-4e594fc-costs.png",
+      "preview_sha256": "cec1aea55eb12fb0965e2149b75398f0c9ab7981f80da582dda1937f160c7074",
+      "pixels": [
+        3360,
+        2660
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/structure.svg",
+      "source_sha256": "63228dff0d09220ac6b69ec533c592d6f2d8013c214d04af9650a4cd55edb3cb",
+      "preview": "docs/assets/previews/direct-state-4e594fc-structure.png",
+      "preview_sha256": "4d56d77bc93a8d99776a21cd2dfb09cfa558e12e4ebed2e09e1c1bbc11fe2584",
+      "pixels": [
+        3200,
+        2220
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/baseline-raw-direct-4/cpu-hotspots.svg",
+      "source_sha256": "d30cf90feabc4bc6a2f81b780aadb27dc419bce2e07098ebd5ce684bfbf11a62",
+      "preview": "docs/assets/previews/direct-state-final-baseline-raw-direct-4-cpu-hotspots.png",
+      "preview_sha256": "8cec8587c65512a068782fa01dfc63e1794a19efc5ea670ef9cb6cdea29dd1ba",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/baseline-raw-direct-4/allocation-hotspots.svg",
+      "source_sha256": "1c2d1136c85131517e4f79e0f056ff88571622cdd1707fbb91a6f4392bb498bc",
+      "preview": "docs/assets/previews/direct-state-final-baseline-raw-direct-4-allocation-hotspots.png",
+      "preview_sha256": "6168f75c4cca017323d387ef06510be9c3c6225b611fbfdd724d675980203daa",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/baseline-raw-direct-4/gc-pauses.svg",
+      "source_sha256": "4d512c0bb48035eac0d867e4108130418756ba3ccf8a376b28d85253f26c2d7b",
+      "preview": "docs/assets/previews/direct-state-final-baseline-raw-direct-4-gc-pauses.png",
+      "preview_sha256": "a964e634ff9deb0f6a08fbcd607dbff37358602a2fd0fae91c2a0d5a0514ee8e",
+      "pixels": [
+        2200,
+        840
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/baseline-raw-direct-4/cpu-flamegraph.svg",
+      "source_sha256": "b46b983ce62e7152824300e8f67877b03c70135ff06339973ab95f908b19cea6",
+      "preview": "docs/assets/previews/direct-state-final-baseline-raw-direct-4-cpu-flamegraph.png",
+      "preview_sha256": "71fb75ab945bd11d130da8bbfa31ab291205a1e0950e2f33b0e6f1e33d45d198",
+      "pixels": [
+        2560,
+        2770
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/baseline-raw-direct-4/allocation-flamegraph.svg",
+      "source_sha256": "e852ed04afcdb4adf7129f62e124346a4a87f0468e4e79604aea277061d4a687",
+      "preview": "docs/assets/previews/direct-state-final-baseline-raw-direct-4-allocation-flamegraph.png",
+      "preview_sha256": "31f574da0fe48a0c6611e1c2f56803e01e6187f9b9710d6e99acebda121153f5",
+      "pixels": [
+        2560,
+        2434
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/candidate-raw-direct-4/cpu-hotspots.svg",
+      "source_sha256": "11c3e89f09cf9fb0140e6c2887ae6ac85c3607fab67628f24a2693ff97b906c1",
+      "preview": "docs/assets/previews/direct-state-final-candidate-raw-direct-4-cpu-hotspots.png",
+      "preview_sha256": "f625278c038cdf23f0568aa18ee5f2033a582a6069682cd6a22528e54aa3b379",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/candidate-raw-direct-4/allocation-hotspots.svg",
+      "source_sha256": "25b881bab06e9e1526f61ba039ab32d88ee8a6d3994dae688b5bd4cdfa8cd24b",
+      "preview": "docs/assets/previews/direct-state-final-candidate-raw-direct-4-allocation-hotspots.png",
+      "preview_sha256": "8b61e32dfcf3e1f0d6b4a7072610592f30e74ccbacf05f8db8593c2a2bfbe2f6",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/candidate-raw-direct-4/gc-pauses.svg",
+      "source_sha256": "004265f1574ae331d3aa836fde0936ab64b7ff69b7693fd1ccf558a0b7b1ef64",
+      "preview": "docs/assets/previews/direct-state-final-candidate-raw-direct-4-gc-pauses.png",
+      "preview_sha256": "c663d4456f63214d6cdad691d52cfbc13fdd8156c4cffd8664eab2903a464053",
+      "pixels": [
+        2200,
+        840
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/candidate-raw-direct-4/cpu-flamegraph.svg",
+      "source_sha256": "73d6350acb8caf13f5abff78f83e4d6ff6e855cb743af70ec2127fdd3f75bf2e",
+      "preview": "docs/assets/previews/direct-state-final-candidate-raw-direct-4-cpu-flamegraph.png",
+      "preview_sha256": "55b632fe73eaddf8a8d95fd019eb4021c3ac8717754dc748cdf8b24eaef06416",
+      "pixels": [
+        2560,
+        2626
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/candidate-raw-direct-4/allocation-flamegraph.svg",
+      "source_sha256": "5bf286d61a4c42c840b08304017c9b3b9ad1c537fe301fb2397f5214e0d58f1e",
+      "preview": "docs/assets/previews/direct-state-final-candidate-raw-direct-4-allocation-flamegraph.png",
+      "preview_sha256": "e4be92ce5e558341094819e3226af1405aba4389a834ab0bb8bfc22cca1f474a",
+      "pixels": [
+        2560,
+        2146
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/baseline-envelope-direct-4/cpu-hotspots.svg",
+      "source_sha256": "377d1b18bd110d6f5a30b9abcd1cd767248502804f2503375a8b9a4f9e1dcc63",
+      "preview": "docs/assets/previews/direct-state-final-baseline-envelope-direct-4-cpu-hotspots.png",
+      "preview_sha256": "16070f252e4a928c7549697a41efd089080da71938c61733c63f8d71ac783496",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/baseline-envelope-direct-4/allocation-hotspots.svg",
+      "source_sha256": "37f96ce1518e4e0314612752e44f6acf9bf5f7883c84e03359d342a824b4e852",
+      "preview": "docs/assets/previews/direct-state-final-baseline-envelope-direct-4-allocation-hotspots.png",
+      "preview_sha256": "d4cb3c9cfe3ea76d58c467dade3f82e6755e09e57e5c944dba963d776b23933d",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/baseline-envelope-direct-4/gc-pauses.svg",
+      "source_sha256": "b1953c44ae7f2cb2f94daedccb48ae6d16680bcfd9f49ac20106fe9f276fa39c",
+      "preview": "docs/assets/previews/direct-state-final-baseline-envelope-direct-4-gc-pauses.png",
+      "preview_sha256": "47b0d7a290debbedbdf9be707af3414919f77f417e93557d36c61b92780ca511",
+      "pixels": [
+        2200,
+        840
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/baseline-envelope-direct-4/cpu-flamegraph.svg",
+      "source_sha256": "2d0f8b6aada978c4a5bb05d40d924a85b3c9ff648290bb3d73a9d951f03f0f04",
+      "preview": "docs/assets/previews/direct-state-final-baseline-envelope-direct-4-cpu-flamegraph.png",
+      "preview_sha256": "beb55bb6d390eb38cefeb8cd0071f7b0feff22d841bd7745e478f58542fa9097",
+      "pixels": [
+        2560,
+        3490
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/baseline-envelope-direct-4/allocation-flamegraph.svg",
+      "source_sha256": "c7a0de2e57e241ae0e5064a30a6aae72a7ad68d258c1f52c0d6950dc40271be5",
+      "preview": "docs/assets/previews/direct-state-final-baseline-envelope-direct-4-allocation-flamegraph.png",
+      "preview_sha256": "1bd2f926dfb156296ec36dbe71057991b0507bf29ccfe6407e87900d601723ef",
+      "pixels": [
+        2560,
+        3442
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/candidate-envelope-direct-4/cpu-hotspots.svg",
+      "source_sha256": "9abf5df8e60cff542ad9e3f4a9b68df7042887c930c0f9287191e2b051095214",
+      "preview": "docs/assets/previews/direct-state-final-candidate-envelope-direct-4-cpu-hotspots.png",
+      "preview_sha256": "2a42e6878be92ed2b1c85c7b0d1b5703417a4bb4c8ed52c3140232f3fd30bcaf",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/candidate-envelope-direct-4/allocation-hotspots.svg",
+      "source_sha256": "f1283e75dc5688bad986fa629ac0d09e68b5ff3fb9216d006ba67862d79d3bd4",
+      "preview": "docs/assets/previews/direct-state-final-candidate-envelope-direct-4-allocation-hotspots.png",
+      "preview_sha256": "d559fff5ee84df5dc1b7c962e606ba85fa59fb4eb3c561a59cfcaa72d22ebb8c",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/candidate-envelope-direct-4/gc-pauses.svg",
+      "source_sha256": "17a00c6b7b8d7dddbd5bb556762f692d16440e530dd757bc92955c507c0b3470",
+      "preview": "docs/assets/previews/direct-state-final-candidate-envelope-direct-4-gc-pauses.png",
+      "preview_sha256": "2fb105ce393ee2c7237ad3a7b433e43d96329dd3a0fc97a28c8da90d207834b2",
+      "pixels": [
+        2200,
+        840
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/candidate-envelope-direct-4/cpu-flamegraph.svg",
+      "source_sha256": "b071930d8bf678bbe15fa39135163eb130f0592e9f2343aa0e210fdb9d09fcaf",
+      "preview": "docs/assets/previews/direct-state-final-candidate-envelope-direct-4-cpu-flamegraph.png",
+      "preview_sha256": "cdf216fb744901f674eeac7facb57667b03dd550001efbda2925281eb67200fa",
+      "pixels": [
+        2560,
+        3298
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/candidate-envelope-direct-4/allocation-flamegraph.svg",
+      "source_sha256": "ea72113557e2eaa55ca8a21928bdf3bc34ea5f6583ccdfcc82cb2fc8d1cdfc1d",
+      "preview": "docs/assets/previews/direct-state-final-candidate-envelope-direct-4-allocation-flamegraph.png",
+      "preview_sha256": "226268ccb04a01486e5bf4c3d445ad44eab620d960cec3d0d3155e62a4d1c89d",
+      "pixels": [
+        2560,
+        3154
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/baseline-raw-direct-4/cpu-hotspots.svg",
+      "source_sha256": "58127b446111772aaed6bf6d79c5f439db6261e66c053bc9d3db0324a6f46111",
+      "preview": "docs/assets/previews/direct-state-143deb4-baseline-raw-direct-4-cpu-hotspots.png",
+      "preview_sha256": "0d751089007c4300a5fd9354172fc9f73ffbadc34720dd12c2d41514d15195fa",
+      "pixels": [
+        2200,
+        828
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/baseline-raw-direct-4/allocation-hotspots.svg",
+      "source_sha256": "19e2f6a355779db08655bf10b11a8fdc914c51631576c1d8a6e39766f64cd671",
+      "preview": "docs/assets/previews/direct-state-143deb4-baseline-raw-direct-4-allocation-hotspots.png",
+      "preview_sha256": "fcc535b4af670b8c7503b0442a512ca05405ab7beebc32eb009074c1c2ac15b7",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/baseline-raw-direct-4/gc-pauses.svg",
+      "source_sha256": "afa2e9abf4668fdadabbeb71f8b169c9b2cad899842d27ade17dfa79520958a5",
+      "preview": "docs/assets/previews/direct-state-143deb4-baseline-raw-direct-4-gc-pauses.png",
+      "preview_sha256": "135075606d73b99d87cb924782db1c9a29bbea81d25d4304b8303da77e0bc10a",
+      "pixels": [
+        2200,
+        840
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/baseline-raw-direct-4/cpu-flamegraph.svg",
+      "source_sha256": "abb24b7bebd3cf4767ddd3b4fe9fc4b765c28fdae770b14a80a9db405c60fc0a",
+      "preview": "docs/assets/previews/direct-state-143deb4-baseline-raw-direct-4-cpu-flamegraph.png",
+      "preview_sha256": "dd739fd7cd3767c148ad6a46386ae0802c46a6f9c94ce7fd4158b2db3c7f0fdf",
+      "pixels": [
+        2560,
+        3250
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/baseline-raw-direct-4/allocation-flamegraph.svg",
+      "source_sha256": "1c064b0b98921e94489b96607d964cc5dac0a13b8c603a7fbafd8efacfbf0952",
+      "preview": "docs/assets/previews/direct-state-143deb4-baseline-raw-direct-4-allocation-flamegraph.png",
+      "preview_sha256": "110493556bb2dca584e49b58c6e6abe1d64fbaeb8d1922f75844e5f19e09e82a",
+      "pixels": [
+        2560,
+        2818
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/candidate-raw-direct-4/cpu-hotspots.svg",
+      "source_sha256": "b01f0a7c1258d9c9950482ab02eba4e4413b8ff2778267dc4562623b6a25373c",
+      "preview": "docs/assets/previews/direct-state-143deb4-candidate-raw-direct-4-cpu-hotspots.png",
+      "preview_sha256": "64ac01683fd16b11a31ff050c3dd29143ef97c2ab57a3ba739a9802ead31fd58",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/candidate-raw-direct-4/allocation-hotspots.svg",
+      "source_sha256": "e0de9058d6aed59bfd83a08b4aa67b3f44f3ccd1a1aca408e71014044a309426",
+      "preview": "docs/assets/previews/direct-state-143deb4-candidate-raw-direct-4-allocation-hotspots.png",
+      "preview_sha256": "f9377e47364180929b6f00412aa9fb7d525742272908a16965d6014419e374cf",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/candidate-raw-direct-4/gc-pauses.svg",
+      "source_sha256": "c08ef7cd844608e9d893a573590999fa8c01e5af6322f11144b52e63c1da0742",
+      "preview": "docs/assets/previews/direct-state-143deb4-candidate-raw-direct-4-gc-pauses.png",
+      "preview_sha256": "537ebfc0e5fac130764d50ed15bc40f227a84f4326e8eca59b273ffbdd9fd45f",
+      "pixels": [
+        2200,
+        840
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/candidate-raw-direct-4/cpu-flamegraph.svg",
+      "source_sha256": "e3f46ce6cdd48dcd418241d5811751e5f7ae25fc920fdffd1c48de7df951d0b8",
+      "preview": "docs/assets/previews/direct-state-143deb4-candidate-raw-direct-4-cpu-flamegraph.png",
+      "preview_sha256": "cf76a41f442a874634621bfd860ad3c83e59e215907bb88080fb087e491d8b6e",
+      "pixels": [
+        2560,
+        2914
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/candidate-raw-direct-4/allocation-flamegraph.svg",
+      "source_sha256": "88674efbd2b9cb62ccdfbe4e7cdcf4c53e0bd6fa74a2a4dbbed8197d8d340f4f",
+      "preview": "docs/assets/previews/direct-state-143deb4-candidate-raw-direct-4-allocation-flamegraph.png",
+      "preview_sha256": "8b356bdfc679b97d812c11dd0ba1e13f8da33d2a978da085215acd049ecf1368",
+      "pixels": [
+        2560,
+        2002
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/baseline-envelope-direct-4/cpu-hotspots.svg",
+      "source_sha256": "a3a642b4df4f18db0227e53e1da7908a6f7cba9ff282ae045b6a839737a007b0",
+      "preview": "docs/assets/previews/direct-state-143deb4-baseline-envelope-direct-4-cpu-hotspots.png",
+      "preview_sha256": "cd03f79c3c13333faa2f38130ed4c555c47063d640a5bb342af1f358df435eb0",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/baseline-envelope-direct-4/allocation-hotspots.svg",
+      "source_sha256": "90cd2816c461d7a56734ea0da90c835942f1dec397896bfb4f302de342026c2e",
+      "preview": "docs/assets/previews/direct-state-143deb4-baseline-envelope-direct-4-allocation-hotspots.png",
+      "preview_sha256": "9483db243d62c4f624fa541510427711bc03e179ab17b81461acf0fac58701d1",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/baseline-envelope-direct-4/gc-pauses.svg",
+      "source_sha256": "40ab4ecbb1a4712bb55c2fd5adb5d5f6f9813b6555c292b13d259b64ebf689e2",
+      "preview": "docs/assets/previews/direct-state-143deb4-baseline-envelope-direct-4-gc-pauses.png",
+      "preview_sha256": "6766703f362e7ec69d8afab07e4cd1f3ca411f13058ea28ac8723f342ef9e5ec",
+      "pixels": [
+        2200,
+        840
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/baseline-envelope-direct-4/cpu-flamegraph.svg",
+      "source_sha256": "fbad6e58e897a88e6b30374b58d9135b9034cf659afccd5118caf7c25aea8e80",
+      "preview": "docs/assets/previews/direct-state-143deb4-baseline-envelope-direct-4-cpu-flamegraph.png",
+      "preview_sha256": "026427bfd24e5770f40682858bf05a22ef98a553b6fec87c15192eba458baf0a",
+      "pixels": [
+        2560,
+        3490
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/baseline-envelope-direct-4/allocation-flamegraph.svg",
+      "source_sha256": "c8499db086d3d7a84844a40052e59eafaab51a7e19c124ac58817a298388ca29",
+      "preview": "docs/assets/previews/direct-state-143deb4-baseline-envelope-direct-4-allocation-flamegraph.png",
+      "preview_sha256": "a9e724ff0cba3c709c78e8dcfe6bcd05d19cdce4849f41630de358cbae54292a",
+      "pixels": [
+        2560,
+        3442
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/candidate-envelope-direct-4/cpu-hotspots.svg",
+      "source_sha256": "75ee226bba4a10c1b70c39c6bd1ea895e2ae554ab1055e40bc6cf0ceb4fb83a7",
+      "preview": "docs/assets/previews/direct-state-143deb4-candidate-envelope-direct-4-cpu-hotspots.png",
+      "preview_sha256": "64956557b9c8e478344236de98934cff31b43569548e609e84db5089fead4266",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/candidate-envelope-direct-4/allocation-hotspots.svg",
+      "source_sha256": "a8b5f2751d44dfe00b7f4eedc7d9e97f6bc587fc6b0e59152fb8cad576a0ea0f",
+      "preview": "docs/assets/previews/direct-state-143deb4-candidate-envelope-direct-4-allocation-hotspots.png",
+      "preview_sha256": "6028468e1238c9611f0d432e2c2d1410388d3a18ca9be0ea2c0cfc62335eebe1",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/candidate-envelope-direct-4/gc-pauses.svg",
+      "source_sha256": "e4cfc2d9d4c85969ae915ab6258a6c5c9e7cab49016bd7fea5ac0d564aaad915",
+      "preview": "docs/assets/previews/direct-state-143deb4-candidate-envelope-direct-4-gc-pauses.png",
+      "preview_sha256": "7427231809fb38c7543b6b8f4c990afb51beddd1474303922a99d084ea29839a",
+      "pixels": [
+        2200,
+        840
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/candidate-envelope-direct-4/cpu-flamegraph.svg",
+      "source_sha256": "863bd50b5f5ffe8334454821128c890a0f7787045b81b4dfd8192d7b9cccf0d2",
+      "preview": "docs/assets/previews/direct-state-143deb4-candidate-envelope-direct-4-cpu-flamegraph.png",
+      "preview_sha256": "6e67368d86c9146cfdc2f7f0a0d53b2d8813effca770c47f29c016bb4876ea07",
+      "pixels": [
+        2560,
+        3106
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/candidate-envelope-direct-4/allocation-flamegraph.svg",
+      "source_sha256": "dafc29ecf3485625cc1adbedcdff50c2aebe5403485ad9a5872952a4abc9293d",
+      "preview": "docs/assets/previews/direct-state-143deb4-candidate-envelope-direct-4-allocation-flamegraph.png",
+      "preview_sha256": "bd5b57447ab54c5648f3d9782fd8420d181627aea2b99125fddbf9630d6f6410",
+      "pixels": [
+        2560,
+        2962
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/baseline-raw-direct-4/cpu-hotspots.svg",
+      "source_sha256": "ab1be0f701585b8ca6f562622cc18df31705b62a7ac9d1146e2c78eb6f24b026",
+      "preview": "docs/assets/previews/direct-state-4e594fc-baseline-raw-direct-4-cpu-hotspots.png",
+      "preview_sha256": "4ed6fd224d37ca1d57653a3edd9e34ad0c9c51c17c5f51bd7bcd4c10a9e4b759",
+      "pixels": [
+        2200,
+        902
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/baseline-raw-direct-4/allocation-hotspots.svg",
+      "source_sha256": "63cb2fe4cbe810ee2919c5fe51f1d4be34ba96768882bb13a79b7996b02ff8f6",
+      "preview": "docs/assets/previews/direct-state-4e594fc-baseline-raw-direct-4-allocation-hotspots.png",
+      "preview_sha256": "58df48a99fca28451d63a41920c26f24ac012e0d61f6e5115d2d25d3641d030c",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/baseline-raw-direct-4/gc-pauses.svg",
+      "source_sha256": "8f063ff5ca5b8a3f55ef464c159edb57ee83301c1ea275dac5f791e7478c5b8c",
+      "preview": "docs/assets/previews/direct-state-4e594fc-baseline-raw-direct-4-gc-pauses.png",
+      "preview_sha256": "323540bf103c58a0da2730c50fc9d5e19bf055c256c863ebd2709095644a84d0",
+      "pixels": [
+        2200,
+        840
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/baseline-raw-direct-4/cpu-flamegraph.svg",
+      "source_sha256": "4ce88c4eea0a49e4b39dd96481bc9d34cee9643cc79e79101cf2f72afe67700a",
+      "preview": "docs/assets/previews/direct-state-4e594fc-baseline-raw-direct-4-cpu-flamegraph.png",
+      "preview_sha256": "25ce11c51c0bdcaf52a627fb4bb0014a7f32f2c98623b2cc0141c60ace2fa5e1",
+      "pixels": [
+        2560,
+        2770
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/baseline-raw-direct-4/allocation-flamegraph.svg",
+      "source_sha256": "a37eddeed7999eb51596a2cf04aaf5bb7c5bd88885a778041555252449696158",
+      "preview": "docs/assets/previews/direct-state-4e594fc-baseline-raw-direct-4-allocation-flamegraph.png",
+      "preview_sha256": "c1b4924e054b9cb2461ce483187708f24166e2db921d0790967b97aca90cc043",
+      "pixels": [
+        2560,
+        3154
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/candidate-raw-direct-4/cpu-hotspots.svg",
+      "source_sha256": "0b27811003e113160f0501da9f012d7acffb552f35f4d9efe5af46a0498a02f4",
+      "preview": "docs/assets/previews/direct-state-4e594fc-candidate-raw-direct-4-cpu-hotspots.png",
+      "preview_sha256": "f4f23c7c9632d9e04a04d119bc7eea3d88db575514892820a56dd07c5c7334c4",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/candidate-raw-direct-4/allocation-hotspots.svg",
+      "source_sha256": "6b958b6820946a81c45fbcfa314f3376d344fbb0c7d9ac97bfc227851dc84a9b",
+      "preview": "docs/assets/previews/direct-state-4e594fc-candidate-raw-direct-4-allocation-hotspots.png",
+      "preview_sha256": "ee4cf5c48e36bb22d3bcc56e0bc9395a4520672428f439c24e1cc93e2c9bed51",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/candidate-raw-direct-4/gc-pauses.svg",
+      "source_sha256": "47eab17ccadf0535640b9d06ab010dcca67340875c9de5e4746cddc6d565957c",
+      "preview": "docs/assets/previews/direct-state-4e594fc-candidate-raw-direct-4-gc-pauses.png",
+      "preview_sha256": "f4d9ff3064a99d9eea08f6bbf8c3bd730348076a5b304a9aa2fca68f4aa573eb",
+      "pixels": [
+        2200,
+        840
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/candidate-raw-direct-4/cpu-flamegraph.svg",
+      "source_sha256": "2c2ca0673d249101aa8d5a2b1aa10202da6c36f6925ba2e53d39e763994da7fe",
+      "preview": "docs/assets/previews/direct-state-4e594fc-candidate-raw-direct-4-cpu-flamegraph.png",
+      "preview_sha256": "6acdb263f050efd842a40e82047d4e9fba79377fe12bc171ebbb39f01619730a",
+      "pixels": [
+        2560,
+        2962
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/candidate-raw-direct-4/allocation-flamegraph.svg",
+      "source_sha256": "10ce618f6188a8e8fe6db4c4833726085e8fb15759a28ba5082b07bf3b8faa8e",
+      "preview": "docs/assets/previews/direct-state-4e594fc-candidate-raw-direct-4-allocation-flamegraph.png",
+      "preview_sha256": "b3eeff16315a3cb665d107a897b1ed2120af2a370f6fc4a75933daafd0d4886a",
+      "pixels": [
+        2560,
+        3010
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/baseline-envelope-direct-4/cpu-hotspots.svg",
+      "source_sha256": "7bb1f6f0b4b294c047c0d45a6ba9d9e7141362f9b993038b14b1a717f97f3665",
+      "preview": "docs/assets/previews/direct-state-4e594fc-baseline-envelope-direct-4-cpu-hotspots.png",
+      "preview_sha256": "329540f11997d6b88abb3ddc794420ac6b2b6f10fc26f705f19a05a049853273",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/baseline-envelope-direct-4/allocation-hotspots.svg",
+      "source_sha256": "d2ffd002ca3a8a763dcc99133c8485d886ab3f391ee155341978957d8449ade3",
+      "preview": "docs/assets/previews/direct-state-4e594fc-baseline-envelope-direct-4-allocation-hotspots.png",
+      "preview_sha256": "9643acbcd3d06c4ce04ec5ede2b6b54377ca73aacad7dc77d1d57bbf6c204b7c",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/baseline-envelope-direct-4/gc-pauses.svg",
+      "source_sha256": "39882ae67bc200fb7bbeacdabf7e9a6afdb7a34eb706948e15439e0da1593710",
+      "preview": "docs/assets/previews/direct-state-4e594fc-baseline-envelope-direct-4-gc-pauses.png",
+      "preview_sha256": "13703af80d735b2a3f87191841eaedbff17c3ef0aa38a83e9e024b67271cf8d3",
+      "pixels": [
+        2200,
+        840
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/baseline-envelope-direct-4/cpu-flamegraph.svg",
+      "source_sha256": "a6ceeaeecafa54f2e0a904eeeaa44a253e2796e7407b75a231642f0ac48cbb85",
+      "preview": "docs/assets/previews/direct-state-4e594fc-baseline-envelope-direct-4-cpu-flamegraph.png",
+      "preview_sha256": "1f18154c4897a91a4e7e856f8a2cd776c1193b3110f1ed0fb6e4e74217d38693",
+      "pixels": [
+        2560,
+        3490
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/baseline-envelope-direct-4/allocation-flamegraph.svg",
+      "source_sha256": "a299f3d2c18b79946268fc8516456ebe8b42ff04869bf05b68c97843a4be3120",
+      "preview": "docs/assets/previews/direct-state-4e594fc-baseline-envelope-direct-4-allocation-flamegraph.png",
+      "preview_sha256": "678d4b5f6ab77b1f99c96c3b3273c4101051740ed8f25c774016d347905f0a69",
+      "pixels": [
+        2560,
+        3442
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/candidate-envelope-direct-4/cpu-hotspots.svg",
+      "source_sha256": "faf00209ee6f2799a2d6252442f1999456ca67df50d230c07d26594e5be491f8",
+      "preview": "docs/assets/previews/direct-state-4e594fc-candidate-envelope-direct-4-cpu-hotspots.png",
+      "preview_sha256": "b197f2adf6a0ef691e6c86c54f512f2c931fff18833ed3bafcea481a75f53b0b",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/candidate-envelope-direct-4/allocation-hotspots.svg",
+      "source_sha256": "a7808dac482fa7c10ba9e68dc7edeed5787d1de002cc4d33ef0ae88bfc377502",
+      "preview": "docs/assets/previews/direct-state-4e594fc-candidate-envelope-direct-4-allocation-hotspots.png",
+      "preview_sha256": "52f3b6ad71fdbdb86332c90aff14819aa267ffa1eb18ba1443e74cdce4546408",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/candidate-envelope-direct-4/gc-pauses.svg",
+      "source_sha256": "9c673941c7e3fd0879b168e309259a378619496a7c401690e0fd05f5ce55f265",
+      "preview": "docs/assets/previews/direct-state-4e594fc-candidate-envelope-direct-4-gc-pauses.png",
+      "preview_sha256": "7bfb6f4c67f8245ea745aefbffebbe39b4ad54846667cbdc635d6fc13a1a39e8",
+      "pixels": [
+        2200,
+        840
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/candidate-envelope-direct-4/cpu-flamegraph.svg",
+      "source_sha256": "5113c87d70eb8fa3cb4a5910d56bd1034cb0be7e73d16b491070d7ac3c45a948",
+      "preview": "docs/assets/previews/direct-state-4e594fc-candidate-envelope-direct-4-cpu-flamegraph.png",
+      "preview_sha256": "e960fbb77fcd1fe4b8dd72b63e0351e9bc3c9bea05c40c781c89f27d04c9e485",
+      "pixels": [
+        2560,
+        3490
+      ]
+    },
+    {
+      "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/candidate-envelope-direct-4/allocation-flamegraph.svg",
+      "source_sha256": "0308f8f6d276e9930a2babefc571821a2d01bdf3b1b43b7ff69392b9cfeef2e6",
+      "preview": "docs/assets/previews/direct-state-4e594fc-candidate-envelope-direct-4-allocation-flamegraph.png",
+      "preview_sha256": "50fb2be0327769d15e9ee5c46c607167b665da9afa83ebd5cd99c78895b66b03",
+      "pixels": [
+        2560,
+        3298
+      ]
+    },
+    {
       "source": "reports/mechanisms/java17-2026-11-02/evidence/diagnostics/ominicat-caller/cpu-hotspots.svg",
       "source_sha256": "8e536cbcf70645a1331cba695aa82dee13efaf9c67814c624d1d12f8b81a6970",
       "preview": "docs/assets/previews/mechanism-ominicat-caller-cpu-hotspots.png",
@@ -1330,6 +1990,666 @@
       "pixels": [
         2200,
         840
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/costs.svg",
+      "source_sha256": "96fde30b2de8396308ebb8623bf42c92adfe066b0a5a7927de12cfb0c79dfe65",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--costs-zh-CN.png",
+      "preview_sha256": "fa9067e761d4dd9f796aa4c0aa8a5bfa9cce755c91ce813f866104461e6f6fe4",
+      "pixels": [
+        3360,
+        2660
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/costs.svg",
+      "source_sha256": "4d4d07e75eca08e10927976c15747fe943ac8a2b280c436d91c86d07539dea11",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--143deb4--costs-zh-CN.png",
+      "preview_sha256": "f15b542d60aadf897d2622aa8109a7d0c73c034977957266b37a40f5300b0e41",
+      "pixels": [
+        3360,
+        2660
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/baseline-envelope-direct-4/allocation-flamegraph.svg",
+      "source_sha256": "97e69ef3a79021220a0808baa4ffc9e24ba634ff76397b241baa20bbad659bc9",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--143deb4--evidence--diagnostics--baseline-envelope-direct-4--allocation-flamegraph-zh-CN.png",
+      "preview_sha256": "767cfdc094e5c6a272fe3533f23bc034be3e2307853ee60bbb008c1bd83aa842",
+      "pixels": [
+        2560,
+        3442
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/baseline-envelope-direct-4/allocation-hotspots.svg",
+      "source_sha256": "2805a32f3407ae9bbd7abb433d91690be726d998542ac1842707b4786a8fd06f",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--143deb4--evidence--diagnostics--baseline-envelope-direct-4--allocation-hotspots-zh-CN.png",
+      "preview_sha256": "b7855e57ef768088d5ccfa6ae4672652390ad2cb258814e7737d0dd9469a2a52",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/baseline-envelope-direct-4/cpu-flamegraph.svg",
+      "source_sha256": "350ae2b5f6143f7e26295638f2ea20bf9fe605b66a1b987419cb2af6195eb153",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--143deb4--evidence--diagnostics--baseline-envelope-direct-4--cpu-flamegraph-zh-CN.png",
+      "preview_sha256": "f2de44754c732f4f9010eeb9a7ec3206aa3a432d42c8da0a48d3dd23461bc20e",
+      "pixels": [
+        2560,
+        3490
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/baseline-envelope-direct-4/cpu-hotspots.svg",
+      "source_sha256": "8362f7f975471baeab319c52cd5b7c303e71043cd4681b81727bdf6a80676a2e",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--143deb4--evidence--diagnostics--baseline-envelope-direct-4--cpu-hotspots-zh-CN.png",
+      "preview_sha256": "dec2446e493f28d939edcace946bce11b5993bb4bdb6842fac9a70d623acc6e8",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/baseline-envelope-direct-4/gc-pauses.svg",
+      "source_sha256": "c9ff2dbea27164a1178af4e36f9d54850cda567efca8b71b4f7e505a24a02794",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--143deb4--evidence--diagnostics--baseline-envelope-direct-4--gc-pauses-zh-CN.png",
+      "preview_sha256": "504d31a5ed214c30c0b09ee25ec09ca44664fff23116c22fb5f4c777b8e9af96",
+      "pixels": [
+        2200,
+        840
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/baseline-raw-direct-4/allocation-flamegraph.svg",
+      "source_sha256": "824bc615d7f48f7d7a24d01cc887fb385e56b9130b8897fd46a94c84e01ca7a6",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--143deb4--evidence--diagnostics--baseline-raw-direct-4--allocation-flamegraph-zh-CN.png",
+      "preview_sha256": "c9dcecd46189e3b757732699abc432f43ec7168fb18d35033281b2b4a7dfde6e",
+      "pixels": [
+        2560,
+        2818
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/baseline-raw-direct-4/allocation-hotspots.svg",
+      "source_sha256": "dc42400a90e777650523023984e0ac054bcfe168a0957324154f44caa0b8082d",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--143deb4--evidence--diagnostics--baseline-raw-direct-4--allocation-hotspots-zh-CN.png",
+      "preview_sha256": "3f3d3dac50597c0cf315fc0fb2dd22ce81c5e3abe297424e4b6518a4d04bedcb",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/baseline-raw-direct-4/cpu-flamegraph.svg",
+      "source_sha256": "19931cf0e62f379a56be1cb23893c548296229630f5445c81c32227a6ad98846",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--143deb4--evidence--diagnostics--baseline-raw-direct-4--cpu-flamegraph-zh-CN.png",
+      "preview_sha256": "b53a05b213efeb43f32b409f6930b4e9d55e4f654152047b8d0abc6135847e71",
+      "pixels": [
+        2560,
+        3250
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/baseline-raw-direct-4/cpu-hotspots.svg",
+      "source_sha256": "462522289415c358a30e3df90f12163816b1d18c7d8ecb34210fc875206eea23",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--143deb4--evidence--diagnostics--baseline-raw-direct-4--cpu-hotspots-zh-CN.png",
+      "preview_sha256": "633b4d13738f9ad16665c8d488666fe5c90cec96bef6bbfe4460c02910381b1f",
+      "pixels": [
+        2200,
+        828
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/baseline-raw-direct-4/gc-pauses.svg",
+      "source_sha256": "1069057b45d77eeed0e204fbd48f34bce22c099662fb0657fd8f8245bf7f1e7f",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--143deb4--evidence--diagnostics--baseline-raw-direct-4--gc-pauses-zh-CN.png",
+      "preview_sha256": "203fb39e1711a898fb59d0bc0aff357554a76bbcf90ee297878cf8b9ab563d75",
+      "pixels": [
+        2200,
+        840
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/candidate-envelope-direct-4/allocation-flamegraph.svg",
+      "source_sha256": "9ccc329272d824b73f6d40f69b88d435ada394053f00ef1cda0da7ec3b754251",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--143deb4--evidence--diagnostics--candidate-envelope-direct-4--allocation-flamegraph-zh-CN.png",
+      "preview_sha256": "bfa3a5388dd2fc57aa110ff34b8a73a534141b26f8c5f6f30eaae8511b8d2635",
+      "pixels": [
+        2560,
+        2962
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/candidate-envelope-direct-4/allocation-hotspots.svg",
+      "source_sha256": "0399c299099797724fd0b673c3ccd4ed8ae14b1c7dde45d7c99146633781004a",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--143deb4--evidence--diagnostics--candidate-envelope-direct-4--allocation-hotspots-zh-CN.png",
+      "preview_sha256": "33aa576d6f177daf4952a72d2751659ba24dab504eafb5236d10c6dbc245c555",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/candidate-envelope-direct-4/cpu-flamegraph.svg",
+      "source_sha256": "76a7e8fa436b73027c86b38c37193ba7000b9fceba7dd1f68006cce85fb6b76c",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--143deb4--evidence--diagnostics--candidate-envelope-direct-4--cpu-flamegraph-zh-CN.png",
+      "preview_sha256": "1a4cdcac53c36e091625f4de5f5ebe35c634875204f22e67a21f4fed05e6ec0d",
+      "pixels": [
+        2560,
+        3106
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/candidate-envelope-direct-4/cpu-hotspots.svg",
+      "source_sha256": "d8a17570772c8e7773ad3e16c3c2a7d8a0fd9811f7570d95e0bdc5a63fc0f445",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--143deb4--evidence--diagnostics--candidate-envelope-direct-4--cpu-hotspots-zh-CN.png",
+      "preview_sha256": "5c44af6b4a39da7724b20c18ee3bb393cc9fb3a5447bd04c163cb225a11295d6",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/candidate-envelope-direct-4/gc-pauses.svg",
+      "source_sha256": "4cbf5e4ae5002b5fd3df5883dd2f8996ac7470a21e9991f1757e0b6a6098dbb5",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--143deb4--evidence--diagnostics--candidate-envelope-direct-4--gc-pauses-zh-CN.png",
+      "preview_sha256": "91ec88fe402347312232a13af0d4ef045a268b71e1d1f2e68baa02df467c3e95",
+      "pixels": [
+        2200,
+        840
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/candidate-raw-direct-4/allocation-flamegraph.svg",
+      "source_sha256": "0b0332f2142636ef1cafa55f06b5b8667c23a8d60d37c8635ae26a0d3a6533c5",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--143deb4--evidence--diagnostics--candidate-raw-direct-4--allocation-flamegraph-zh-CN.png",
+      "preview_sha256": "58f50ce437d310cac439a5198957f5f99e4956a4cf9bc6a7a50efd3218a26bcc",
+      "pixels": [
+        2560,
+        2002
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/candidate-raw-direct-4/allocation-hotspots.svg",
+      "source_sha256": "07d58b4b307866bf4b9bfb8838bff888816c381ad846614ee3b27dec8ed6adf9",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--143deb4--evidence--diagnostics--candidate-raw-direct-4--allocation-hotspots-zh-CN.png",
+      "preview_sha256": "435ce6e586892de51394da0b7add95763f43afbe05e744c576dc56adacbe526a",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/candidate-raw-direct-4/cpu-flamegraph.svg",
+      "source_sha256": "21d378cfbdb377b09c605765165f3b5a95c1c23a0ace79942aedc8f03c937c90",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--143deb4--evidence--diagnostics--candidate-raw-direct-4--cpu-flamegraph-zh-CN.png",
+      "preview_sha256": "4ef9985546d74f2078f15ef9693b90c16b863a175a067b2b10e44a5b50219865",
+      "pixels": [
+        2560,
+        2914
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/candidate-raw-direct-4/cpu-hotspots.svg",
+      "source_sha256": "afa822e58c79a248006ed6b113639d45b6435cbd2842d6c8b3b4445628af9203",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--143deb4--evidence--diagnostics--candidate-raw-direct-4--cpu-hotspots-zh-CN.png",
+      "preview_sha256": "ac26ec12ca7066a4178b79c28e3c8be7bb35cf76bb4997c3bd7408b80727b8e0",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/candidate-raw-direct-4/gc-pauses.svg",
+      "source_sha256": "4ec99a4d2392269436e953b5fbdc7fdd9433e585f30d60732498d0ca38dd6785",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--143deb4--evidence--diagnostics--candidate-raw-direct-4--gc-pauses-zh-CN.png",
+      "preview_sha256": "78599bd5302d1d6543f9d0f1063246821878ae4fc72200f187e3b915582a0e3e",
+      "pixels": [
+        2200,
+        840
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/structure.svg",
+      "source_sha256": "4f44a5298b43d867f827732741ebbece59fa215aa742eba88f50266b19f60b97",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--143deb4--structure-zh-CN.png",
+      "preview_sha256": "798c82033238986ee297d47c03c37dc6cd14dad122eb88c7482555cf5f43ca27",
+      "pixels": [
+        3200,
+        2220
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/costs.svg",
+      "source_sha256": "3e3bcb1a17efe3481ef24773454a3d5d38361a707540a0d1383d1ba1b844c91c",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--4e594fc--costs-zh-CN.png",
+      "preview_sha256": "b8438319cc68174c0eb8eab697ba86286d2bd753115b6691d3c9fbfe613d62d6",
+      "pixels": [
+        3360,
+        2660
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/baseline-envelope-direct-4/allocation-flamegraph.svg",
+      "source_sha256": "ac2b003ed72bf5137860484c47b326bf3453115081a0ed4fdf5c87ce3d647c13",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--4e594fc--evidence--diagnostics--baseline-envelope-direct-4--allocation-flamegraph-zh-CN.png",
+      "preview_sha256": "237c5b329aa501c587ffaf0992aba282e702fae6eb9353c00a0f0f6551f5ba24",
+      "pixels": [
+        2560,
+        3442
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/baseline-envelope-direct-4/allocation-hotspots.svg",
+      "source_sha256": "7a0ed24799f9689f5a22c8e39add721224154b2839012c7facb30405332554ed",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--4e594fc--evidence--diagnostics--baseline-envelope-direct-4--allocation-hotspots-zh-CN.png",
+      "preview_sha256": "d003dad2bbfce58749fcd33401403bfddc2b6e3ec2eb831d2536caf25daa383e",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/baseline-envelope-direct-4/cpu-flamegraph.svg",
+      "source_sha256": "7dbccb92c14c5f0e20ffa6c083fdb73de75c8ba3898d3bc858da40ab66718667",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--4e594fc--evidence--diagnostics--baseline-envelope-direct-4--cpu-flamegraph-zh-CN.png",
+      "preview_sha256": "10aa77ded96235f9620058556097a76289ee276b8581e4c84a0a69b883899de9",
+      "pixels": [
+        2560,
+        3490
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/baseline-envelope-direct-4/cpu-hotspots.svg",
+      "source_sha256": "018925688a8a2291efe3023518d7212ff522075164ce0a568f68a576b0d534bb",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--4e594fc--evidence--diagnostics--baseline-envelope-direct-4--cpu-hotspots-zh-CN.png",
+      "preview_sha256": "a6f996849b0eca65407c28098c1f80bfd9e7f86a6fc2d5b25e9bbb704b1241eb",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/baseline-envelope-direct-4/gc-pauses.svg",
+      "source_sha256": "11dda531270a75d28f4f182d4bd8fe2f3abd747f8f94bebabce609d4995ff0ec",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--4e594fc--evidence--diagnostics--baseline-envelope-direct-4--gc-pauses-zh-CN.png",
+      "preview_sha256": "426692062808c4751f488a2c8c01566fc245e344adb4143bfe6bc91ca959b7e5",
+      "pixels": [
+        2200,
+        840
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/baseline-raw-direct-4/allocation-flamegraph.svg",
+      "source_sha256": "9b26ee1cf7ed68120f80642e1590735c36b107bf821e0c9a24a5ebe982f66246",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--4e594fc--evidence--diagnostics--baseline-raw-direct-4--allocation-flamegraph-zh-CN.png",
+      "preview_sha256": "7a26cf7a791b9f0d7129c1197ae750bc837d9f85505ce60cee4be74b102a55c9",
+      "pixels": [
+        2560,
+        3154
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/baseline-raw-direct-4/allocation-hotspots.svg",
+      "source_sha256": "c376f58da471ae27cf0791b77aa3b40a0f4e5dbbd7dcb6d83b0f5a1bb390270f",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--4e594fc--evidence--diagnostics--baseline-raw-direct-4--allocation-hotspots-zh-CN.png",
+      "preview_sha256": "6662577bd0defa766ed30b50b1f8241be5a246d5f9b4d5890df142cd3c7babd7",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/baseline-raw-direct-4/cpu-flamegraph.svg",
+      "source_sha256": "08d5ad4ed6c3dd0d91647f62b44fe9dadafec0e956110b9d2fc7cecc3ce8ccf4",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--4e594fc--evidence--diagnostics--baseline-raw-direct-4--cpu-flamegraph-zh-CN.png",
+      "preview_sha256": "3262f9d911a0a3f8284284d0230d3306b6ee73e7ea10ca156cbfccc223089dec",
+      "pixels": [
+        2560,
+        2770
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/baseline-raw-direct-4/cpu-hotspots.svg",
+      "source_sha256": "248385de26a067bfe2c982901cd155c30258c535a7d0656b956b237b3db344de",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--4e594fc--evidence--diagnostics--baseline-raw-direct-4--cpu-hotspots-zh-CN.png",
+      "preview_sha256": "f3f1dae7777b4e14c777272f7a65a552191c5390e3a98531d94f5516d23e8020",
+      "pixels": [
+        2200,
+        902
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/baseline-raw-direct-4/gc-pauses.svg",
+      "source_sha256": "5b558d2f7be97baaa8fd39ac873fbefb986b7ae8df67250d47b5e36e24b8abed",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--4e594fc--evidence--diagnostics--baseline-raw-direct-4--gc-pauses-zh-CN.png",
+      "preview_sha256": "af13d4d6ad2046cb203123a034587669d8c249a634bbc714a31b7e2e2bed354e",
+      "pixels": [
+        2200,
+        840
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/candidate-envelope-direct-4/allocation-flamegraph.svg",
+      "source_sha256": "80ac7ac4d9487d83545cacfc6e64a6cf669c86beff9060213093f0fafb4b7756",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--4e594fc--evidence--diagnostics--candidate-envelope-direct-4--allocation-flamegraph-zh-CN.png",
+      "preview_sha256": "9e1fb80820f8bd7c7a2249d4cd4d6e92aa9e572b439857d2ccaba0bcbedfa209",
+      "pixels": [
+        2560,
+        3298
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/candidate-envelope-direct-4/allocation-hotspots.svg",
+      "source_sha256": "2b9ea6f3c320335c964585950338bf1427f614ecffeac29129d74f758becfbe0",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--4e594fc--evidence--diagnostics--candidate-envelope-direct-4--allocation-hotspots-zh-CN.png",
+      "preview_sha256": "ea87cf18c724f73c6c92836036a53f138d77c13579f8d8fd5d124ba26a571c89",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/candidate-envelope-direct-4/cpu-flamegraph.svg",
+      "source_sha256": "2eb4b97cd00a414fef97f170e99d6bc1fd240c2fd96b8d74143bf39d347b0fa3",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--4e594fc--evidence--diagnostics--candidate-envelope-direct-4--cpu-flamegraph-zh-CN.png",
+      "preview_sha256": "9f47227f44c3cf3955d368dd50bb3a090149a1d985ebc8733a9833c1e5112ed6",
+      "pixels": [
+        2560,
+        3490
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/candidate-envelope-direct-4/cpu-hotspots.svg",
+      "source_sha256": "ed5ab704f276039141724193d2fc162f38c3d74ff895968e104eee8b96caef0b",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--4e594fc--evidence--diagnostics--candidate-envelope-direct-4--cpu-hotspots-zh-CN.png",
+      "preview_sha256": "cd70daae2fd1e322529b88c611f660ce55fe1e65c3037d2ccd00a3793af25483",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/candidate-envelope-direct-4/gc-pauses.svg",
+      "source_sha256": "fa8faab496b2349db240a6aa3c4fd519faa6e92449dda8e3d63999d7b7b85b30",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--4e594fc--evidence--diagnostics--candidate-envelope-direct-4--gc-pauses-zh-CN.png",
+      "preview_sha256": "6e1790831eff54fe06c5c2000fdf0163ee9c3c827af88d6e688dc81a0aed3c36",
+      "pixels": [
+        2200,
+        840
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/candidate-raw-direct-4/allocation-flamegraph.svg",
+      "source_sha256": "87dcdbf8ef92a7e7086d945a75dd9900231774c1125635092c9e3f4ca506e502",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--4e594fc--evidence--diagnostics--candidate-raw-direct-4--allocation-flamegraph-zh-CN.png",
+      "preview_sha256": "4f88b10cc54488ea57615e30da5b43aea77262e61ddf218e6fa3d1beb3534f95",
+      "pixels": [
+        2560,
+        3010
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/candidate-raw-direct-4/allocation-hotspots.svg",
+      "source_sha256": "7a21b6598ceaa97851717062ca7f7ca9cef7ac4965a0d76611ad7a578fbdf67f",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--4e594fc--evidence--diagnostics--candidate-raw-direct-4--allocation-hotspots-zh-CN.png",
+      "preview_sha256": "825b7a099b29929b66ae7dadca743a4d3c03dfd4820914dffc8e0aa02999264b",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/candidate-raw-direct-4/cpu-flamegraph.svg",
+      "source_sha256": "61f528bd2dea83b182999740f8ffb8051d8459dfc71da0a2ec0fd0d949bb4b84",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--4e594fc--evidence--diagnostics--candidate-raw-direct-4--cpu-flamegraph-zh-CN.png",
+      "preview_sha256": "364ff69e0d76fb3b44cb040f325e8b26ef8dfb3b223587f3ebabfb18722c19a9",
+      "pixels": [
+        2560,
+        2962
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/candidate-raw-direct-4/cpu-hotspots.svg",
+      "source_sha256": "0c935058c2a74eae0c5a412f14efb17d75f7d703215a189bd5eba5cd1be5fa58",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--4e594fc--evidence--diagnostics--candidate-raw-direct-4--cpu-hotspots-zh-CN.png",
+      "preview_sha256": "bcf170400b930b3f541213f53735f706f4606f07051e09c7d545913cfc9b1eb3",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/evidence/diagnostics/candidate-raw-direct-4/gc-pauses.svg",
+      "source_sha256": "72eebda4d9b7f3253e6a82ae67aa23628872e56445403f5c6045618c64c29084",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--4e594fc--evidence--diagnostics--candidate-raw-direct-4--gc-pauses-zh-CN.png",
+      "preview_sha256": "f3f1378c31bea0f2a434dafa70439ec886b61fb6a1972c63f24beb5446ddfa5e",
+      "pixels": [
+        2200,
+        840
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/earlier-attempts/4e594fc/structure.svg",
+      "source_sha256": "2f66e48967719a20238ba3c7b94987dbe66c61b53675a29c629c20fdb2e3072a",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--earlier-attempts--4e594fc--structure-zh-CN.png",
+      "preview_sha256": "f6bfe48375bb7d00fa3b15bad343d0dee06fb9976af80402db1120c7d0cb2c71",
+      "pixels": [
+        3200,
+        2220
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/baseline-envelope-direct-4/allocation-flamegraph.svg",
+      "source_sha256": "74c4794137fe7731b01df103e6ab8444f3150e5e111fba1ee15f7e556f066892",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--evidence--diagnostics--baseline-envelope-direct-4--allocation-flamegraph-zh-CN.png",
+      "preview_sha256": "6285934624cdf8516661f6aa1c80da663c0ab7c3bfd707ffacc4ea2171e9dfc2",
+      "pixels": [
+        2560,
+        3442
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/baseline-envelope-direct-4/allocation-hotspots.svg",
+      "source_sha256": "3ab54600ee7274a9c310581771b37a58b4970e89329710fc595e8c836a95118c",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--evidence--diagnostics--baseline-envelope-direct-4--allocation-hotspots-zh-CN.png",
+      "preview_sha256": "9298de8dac6c67699a008ff43607bab9d8f7f40b82e93a0c0915c760bc03a338",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/baseline-envelope-direct-4/cpu-flamegraph.svg",
+      "source_sha256": "56ca38bdb7e133e80cf0a74648cc10477f2caccd716cd81b82eb00e75f53501c",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--evidence--diagnostics--baseline-envelope-direct-4--cpu-flamegraph-zh-CN.png",
+      "preview_sha256": "fa82dcac2ddfb3b54e160692929f6d31d92da8a2932cbd6f8f51e8aa50dc0d26",
+      "pixels": [
+        2560,
+        3490
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/baseline-envelope-direct-4/cpu-hotspots.svg",
+      "source_sha256": "be69641fa033c08e4eff8274247d9fa3833c25ce2103597dbe80677615d165a4",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--evidence--diagnostics--baseline-envelope-direct-4--cpu-hotspots-zh-CN.png",
+      "preview_sha256": "5bc7abc10897336917ac50e944407b9b05895e6e676c91f9a9997401cdf23532",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/baseline-envelope-direct-4/gc-pauses.svg",
+      "source_sha256": "d659437c4b2296e739b409ba41399fa4582d8a980e3df6b9f545058468610023",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--evidence--diagnostics--baseline-envelope-direct-4--gc-pauses-zh-CN.png",
+      "preview_sha256": "f822053a3f2111e5351c1c75db10f2a3ef853b905755eb154397306b4583be5d",
+      "pixels": [
+        2200,
+        840
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/baseline-raw-direct-4/allocation-flamegraph.svg",
+      "source_sha256": "8a81686ffd0a1776eb37f93ce2eeaa416dd456e3d671f2bae61c2cb19fdb09b7",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--evidence--diagnostics--baseline-raw-direct-4--allocation-flamegraph-zh-CN.png",
+      "preview_sha256": "817a60e0bb7e4c1c350c0c8d5e8476473622159890a77b943cd68da91648c029",
+      "pixels": [
+        2560,
+        2434
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/baseline-raw-direct-4/allocation-hotspots.svg",
+      "source_sha256": "eeeb8734c25885a2f9241b69fb7557253ebb4f879a42ca8ce065716c8248736e",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--evidence--diagnostics--baseline-raw-direct-4--allocation-hotspots-zh-CN.png",
+      "preview_sha256": "a4d81779ff70949e0c1eef56440c63331d4577b6a1b92b19c91f253d37362964",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/baseline-raw-direct-4/cpu-flamegraph.svg",
+      "source_sha256": "e3f3b0863c3d3dfc6bf6bc89eb0562552394475a54f91a5b4426031a176c4039",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--evidence--diagnostics--baseline-raw-direct-4--cpu-flamegraph-zh-CN.png",
+      "preview_sha256": "1709069b74db41167acf8dbc6d8933800bfde8d67b5efe7caa825a63607d6d3f",
+      "pixels": [
+        2560,
+        2770
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/baseline-raw-direct-4/cpu-hotspots.svg",
+      "source_sha256": "37a3d3a0d1d682fb293e6befc3c1743b1585440c55eef95fb04da625b1218ccf",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--evidence--diagnostics--baseline-raw-direct-4--cpu-hotspots-zh-CN.png",
+      "preview_sha256": "ab1c423cd48813d1a96a01047f6c578895f86fa713755b2f2c11826b96519859",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/baseline-raw-direct-4/gc-pauses.svg",
+      "source_sha256": "c5723cd358bd5b53dad22ab220b41eff0ac5a7bcd71235edbfb029e80da589ef",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--evidence--diagnostics--baseline-raw-direct-4--gc-pauses-zh-CN.png",
+      "preview_sha256": "5ed1767fa8bd08af49c8b8658a35533521ddeab6dcfb2ddf6a245e9ec617c4e8",
+      "pixels": [
+        2200,
+        840
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/candidate-envelope-direct-4/allocation-flamegraph.svg",
+      "source_sha256": "74608147b416b2d86dfc4aac783283d05723dcd1d06c7482c093316cbfd23f21",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--evidence--diagnostics--candidate-envelope-direct-4--allocation-flamegraph-zh-CN.png",
+      "preview_sha256": "49e656670fa564272097e60e49f49f1374acc23943aa8a343e099e9031312b01",
+      "pixels": [
+        2560,
+        3154
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/candidate-envelope-direct-4/allocation-hotspots.svg",
+      "source_sha256": "344c4f2a6392b5ca98756975bae2dbfe8b0bfd8313bd644910ad0ecfe664b15c",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--evidence--diagnostics--candidate-envelope-direct-4--allocation-hotspots-zh-CN.png",
+      "preview_sha256": "e80f62cf856a4de8721cf8794af3367c849064d8189f76bb036f30cf12292128",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/candidate-envelope-direct-4/cpu-flamegraph.svg",
+      "source_sha256": "98500a615e937aacf3b39a894f934c38267b45d5e38a20658ef7986cc8fc5f2c",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--evidence--diagnostics--candidate-envelope-direct-4--cpu-flamegraph-zh-CN.png",
+      "preview_sha256": "0a5eb6c7e0d3764b8e952a53c3941a3755211366b3a682d4beb8d3bbc49d8fa0",
+      "pixels": [
+        2560,
+        3298
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/candidate-envelope-direct-4/cpu-hotspots.svg",
+      "source_sha256": "708365389040eafaafe90f89d36d276bc1bd99232b979b72c3a0509dd31146a8",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--evidence--diagnostics--candidate-envelope-direct-4--cpu-hotspots-zh-CN.png",
+      "preview_sha256": "204a2657c835f939155c1659de42821c578e5397694104c023728d01a4603681",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/candidate-envelope-direct-4/gc-pauses.svg",
+      "source_sha256": "8d178b5c6f3c4e937266e4ada6cf344f0a0fe2c2fc42eebeae5dae4a5544d0ab",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--evidence--diagnostics--candidate-envelope-direct-4--gc-pauses-zh-CN.png",
+      "preview_sha256": "d82b30ee89a116c30717057904178d0cbb642a33644aa9c4b549fea2a3d11e75",
+      "pixels": [
+        2200,
+        840
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/candidate-raw-direct-4/allocation-flamegraph.svg",
+      "source_sha256": "2a77314202fad0fa0dee12b3708943277fe764144279b5e0aaa536e68669b7f2",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--evidence--diagnostics--candidate-raw-direct-4--allocation-flamegraph-zh-CN.png",
+      "preview_sha256": "0a8ff636d3faec789c491e3a841730d2b84c44565c0aa88687603c6e8100304a",
+      "pixels": [
+        2560,
+        2146
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/candidate-raw-direct-4/allocation-hotspots.svg",
+      "source_sha256": "23847bd09c21c3974356f7f41c902548ef468a04f3e536a9b2a3318f1c825afc",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--evidence--diagnostics--candidate-raw-direct-4--allocation-hotspots-zh-CN.png",
+      "preview_sha256": "fc91c25cfea0c98cb936c2e0f93cb7c942835586abee35da38d3598245f6895c",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/candidate-raw-direct-4/cpu-flamegraph.svg",
+      "source_sha256": "2339319aec74bd1d1ef91d12dc69fdfc175d98432dd7353f09f579d3b0824c4c",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--evidence--diagnostics--candidate-raw-direct-4--cpu-flamegraph-zh-CN.png",
+      "preview_sha256": "99ef950009c5bf207c00eb6cdafdedc5bb1c966fdfcf7f1de6858ec703017e38",
+      "pixels": [
+        2560,
+        2626
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/candidate-raw-direct-4/cpu-hotspots.svg",
+      "source_sha256": "228ec6d37fa893727bc97bde68a0fda9bbe72230d1af644da66e3e31fbee67fe",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--evidence--diagnostics--candidate-raw-direct-4--cpu-hotspots-zh-CN.png",
+      "preview_sha256": "efe0e607f8a81047ce847af2842432b0c4442af18c5072aaf683e3e76e9b3053",
+      "pixels": [
+        2200,
+        976
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/evidence/diagnostics/candidate-raw-direct-4/gc-pauses.svg",
+      "source_sha256": "c4325fa74b48427bd3cee01f083b9db2b2de0ee27154d07c2ad51748cd4e552f",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--evidence--diagnostics--candidate-raw-direct-4--gc-pauses-zh-CN.png",
+      "preview_sha256": "21ee257e85e30be9a6c6e553235750b13e4fea47ab797bee812d8118d3a925fc",
+      "pixels": [
+        2200,
+        840
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/reports/performance-audit/direct-state-2026-11-02/structure.svg",
+      "source_sha256": "a82306006a51ca79174a8fb123bd939060a4a5d0e90644758a5fc2331469e0c4",
+      "preview": "docs/assets/previews/reports--performance-audit--direct-state-2026-11-02--structure-zh-CN.png",
+      "preview_sha256": "263b4669051774c67d079dcdd26a68fa9e025230fbbf863a0b89e5f97083c1e5",
+      "pixels": [
+        3200,
+        2480
       ]
     },
     {

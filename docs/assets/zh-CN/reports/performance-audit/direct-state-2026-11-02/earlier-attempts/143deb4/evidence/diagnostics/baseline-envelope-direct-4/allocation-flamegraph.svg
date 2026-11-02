@@ -1,0 +1,713 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="1721" viewBox="0 0 1280 1721" role="img" xml:lang="zh-CN">
+<title>分配采样调用栈</title><desc>宽度：采样字节。覆盖选定 JFR 导出全集，包含预热与测量驱动。</desc>
+<rect width="1280" height="1721" fill="#101e28" />
+<text x="28" y="34" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" font-size="22" fill="#f2eee1" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">分配采样调用栈</text>
+<text x="28" y="61" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" font-size="13" fill="#b8cbd1" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">宽度：采样字节。覆盖选定 JFR 导出全集，包含预热与测量驱动。</text>
+<text x="28" y="86" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" font-size="13" fill="#b8cbd1" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">220 个事件；采样字节总计 15,432,840,592；观测栈深 63；来源标记截断栈 0。</text>
+<text x="28" y="109" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" font-size="13" fill="#b8cbd1" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">保留所有正权重的已提供栈帧；直接打开 SVG 可查看提示与缩放。</text>
+<text x="28" y="130" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" font-size="12" fill="#b8cbd1" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">不可用调用栈：0；零权重事件：0。不能从观测深度推断导出/记录上限。</text>
+<g data-depth="0" data-weight="15432840592"><title>全部样本 — 15,432,840,592 个采样字节 (100.000%)</title><rect x="28" y="1657" width="1224" height="22" fill="#38576b" stroke="#101e28" stroke-width="0.35" />
+<text x="32" y="1673" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" font-size="12" fill="#f2eee1" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">全部样本</text>
+</g>
+<g data-depth="1" data-weight="15410768504"><title>java.lang.Thread.run — 15,410,768,504 个采样字节 (99.857%)</title><rect x="28" y="1633" width="1222.24943208" height="22" fill="hsl(160,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="32" y="1649" font-family="monospace" font-size="12" fill="#152430">Thread.run</text>
+</g>
+<g data-depth="2" data-weight="15410768480"><title>java.util.concurrent.ThreadPoolExecutor$Worker.run — 15,410,768,480 个采样字节 (99.857%)</title><rect x="28" y="1609" width="1222.24943017" height="22" fill="hsl(182,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="32" y="1625" font-family="monospace" font-size="12" fill="#152430">ThreadPoolExecutor$Worker.run</text>
+</g>
+<g data-depth="3" data-weight="15410768480"><title>java.util.concurrent.ThreadPoolExecutor.runWorker — 15,410,768,480 个采样字节 (99.857%)</title><rect x="28" y="1585" width="1222.24943017" height="22" fill="hsl(164,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="32" y="1601" font-family="monospace" font-size="12" fill="#152430">ThreadPoolExecutor.runWorker</text>
+</g>
+<g data-depth="4" data-weight="15410768480"><title>java.util.concurrent.FutureTask.run — 15,410,768,480 个采样字节 (99.857%)</title><rect x="28" y="1561" width="1222.24943017" height="22" fill="hsl(185,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="32" y="1577" font-family="monospace" font-size="12" fill="#152430">FutureTask.run</text>
+</g>
+<g data-depth="5" data-weight="32"><title>java.lang.invoke.MethodHandleNatives.findMethodHandleType — 32 个采样字节 (0.000%)</title><rect x="28" y="1537" width="2.53796439913e-06" height="22" fill="hsl(190,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="6" data-weight="32"><title>java.lang.invoke.MethodType.makeImpl — 32 个采样字节 (0.000%)</title><rect x="28" y="1513" width="2.53796439913e-06" height="22" fill="hsl(189,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="5" data-weight="15410768448"><title>java.util.concurrent.Executors$RunnableAdapter.call — 15,410,768,448 个采样字节 (99.857%)</title><rect x="28.0000025" y="1537" width="1222.24942763" height="22" fill="hsl(169,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="32.0000025" y="1553" font-family="monospace" font-size="12" fill="#152430">Executors$RunnableAdapter.call</text>
+</g>
+<g data-depth="6" data-weight="15410768448"><title>java.util.concurrent.FutureTask.run — 15,410,768,448 个采样字节 (99.857%)</title><rect x="28.0000025" y="1513" width="1222.24942763" height="22" fill="hsl(185,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="32.0000025" y="1529" font-family="monospace" font-size="12" fill="#152430">FutureTask.run</text>
+</g>
+<g data-depth="7" data-weight="15410768448"><title>org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call — 15,410,768,448 个采样字节 (99.857%)</title><rect x="28.0000025" y="1489" width="1222.24942763" height="22" fill="hsl(186,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="32.0000025" y="1505" font-family="monospace" font-size="12" fill="#152430">BenchmarkHandler$BenchmarkTask.call</text>
+</g>
+<g data-depth="8" data-weight="15410768448"><title>org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call — 15,410,768,448 个采样字节 (99.857%)</title><rect x="28.0000025" y="1465" width="1222.24942763" height="22" fill="hsl(186,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="32.0000025" y="1481" font-family="monospace" font-size="12" fill="#152430">BenchmarkHandler$BenchmarkTask.call</text>
+</g>
+<g data-depth="9" data-weight="15410768448"><title>java.lang.reflect.Method.invoke — 15,410,768,448 个采样字节 (99.857%)</title><rect x="28.0000025" y="1441" width="1222.24942763" height="22" fill="hsl(178,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="32.0000025" y="1457" font-family="monospace" font-size="12" fill="#152430">Method.invoke</text>
+</g>
+<g data-depth="10" data-weight="15410768448"><title>jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke — 15,410,768,448 个采样字节 (99.857%)</title><rect x="28.0000025" y="1417" width="1222.24942763" height="22" fill="hsl(177,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="32.0000025" y="1433" font-family="monospace" font-size="12" fill="#152430">DelegatingMethodAccessorImpl.invoke</text>
+</g>
+<g data-depth="11" data-weight="15410768448"><title>jdk.internal.reflect.NativeMethodAccessorImpl.invoke — 15,410,768,448 个采样字节 (99.857%)</title><rect x="28.0000025" y="1393" width="1222.24942763" height="22" fill="hsl(176,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="32.0000025" y="1409" font-family="monospace" font-size="12" fill="#152430">NativeMethodAccessorImpl.invoke</text>
+</g>
+<g data-depth="12" data-weight="15410768448"><title>jdk.internal.reflect.NativeMethodAccessorImpl.invoke0 — 15,410,768,448 个采样字节 (99.857%)</title><rect x="28.0000025" y="1369" width="1222.24942763" height="22" fill="hsl(186,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="32.0000025" y="1385" font-family="monospace" font-size="12" fill="#152430">NativeMethodAccessorImpl.invoke0</text>
+</g>
+<g data-depth="13" data-weight="15410768448"><title>io.ominicat.benchmarks.jmh_generated.DirectStateProbe_invoke_jmhTest.invoke_AverageTime — 15,410,768,448 个采样字节 (99.857%)</title><rect x="28.0000025" y="1345" width="1222.24942763" height="22" fill="hsl(164,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="32.0000025" y="1361" font-family="monospace" font-size="12" fill="#152430">DirectStateProbe_invoke_jmhTest.invoke_AverageTime</text>
+</g>
+<g data-depth="14" data-weight="1240128"><title>io.ominicat.benchmarks.jmh_generated.DirectStateProbe_invoke_jmhTest._jmh_tryInit_f_directstateprobe0_0 — 1,240,128 个采样字节 (0.008%)</title><rect x="28.0000025" y="1321" width="0.098356272324" height="22" fill="hsl(189,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="15" data-weight="1043200"><title>io.ominicat.benchmarks.DirectStateProbe.setup — 1,043,200 个采样字节 (0.007%)</title><rect x="28.0000025" y="1297" width="0.0827376394118" height="22" fill="hsl(187,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="16" data-weight="444968"><title>io.ominicat.benchmarks.DirectStateProbe$Harness.invoke — 444,968 个采样字节 (0.003%)</title><rect x="28.0000025" y="1273" width="0.0352910294611" height="22" fill="hsl(181,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="17" data-weight="198192"><title>io.ominicat.core.Pipeline.process — 198,192 个采样字节 (0.001%)</title><rect x="28.0000025" y="1249" width="0.015718882506" height="22" fill="hsl(177,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="18" data-weight="198192"><title>io.ominicat.core.Pipeline.dispatch — 198,192 个采样字节 (0.001%)</title><rect x="28.0000025" y="1225" width="0.015718882506" height="22" fill="hsl(172,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="19" data-weight="198192"><title>java.lang.invoke.MethodHandleNatives.linkCallSite — 198,192 个采样字节 (0.001%)</title><rect x="28.0000025" y="1201" width="0.015718882506" height="22" fill="hsl(167,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="20" data-weight="198192"><title>java.lang.invoke.MethodHandleNatives.linkCallSiteImpl — 198,192 个采样字节 (0.001%)</title><rect x="28.0000025" y="1177" width="0.015718882506" height="22" fill="hsl(175,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="21" data-weight="198192"><title>java.lang.invoke.CallSite.makeSite — 198,192 个采样字节 (0.001%)</title><rect x="28.0000025" y="1153" width="0.015718882506" height="22" fill="hsl(190,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="22" data-weight="198192"><title>java.lang.invoke.BootstrapMethodInvoker.invoke — 198,192 个采样字节 (0.001%)</title><rect x="28.0000025" y="1129" width="0.015718882506" height="22" fill="hsl(188,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="23" data-weight="198192"><title>java.lang.invoke.Invokers$Holder.invokeExact_MT — 198,192 个采样字节 (0.001%)</title><rect x="28.0000025" y="1105" width="0.015718882506" height="22" fill="hsl(179,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="24" data-weight="198192"><title>java.lang.invoke.DirectMethodHandle$Holder.invokeStatic — 198,192 个采样字节 (0.001%)</title><rect x="28.0000025" y="1081" width="0.015718882506" height="22" fill="hsl(169,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="25" data-weight="198192"><title>java.lang.invoke.LambdaMetafactory.metafactory — 198,192 个采样字节 (0.001%)</title><rect x="28.0000025" y="1057" width="0.015718882506" height="22" fill="hsl(175,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="26" data-weight="198192"><title>java.lang.invoke.InnerClassLambdaMetafactory.buildCallSite — 198,192 个采样字节 (0.001%)</title><rect x="28.0000025" y="1033" width="0.015718882506" height="22" fill="hsl(163,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="27" data-weight="198192"><title>java.lang.invoke.MethodHandles$Lookup.findConstructor — 198,192 个采样字节 (0.001%)</title><rect x="28.0000025" y="1009" width="0.015718882506" height="22" fill="hsl(179,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="28" data-weight="198192"><title>java.lang.invoke.MethodHandles$Lookup.getDirectConstructor — 198,192 个采样字节 (0.001%)</title><rect x="28.0000025" y="985" width="0.015718882506" height="22" fill="hsl(180,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="29" data-weight="198192"><title>java.lang.invoke.MethodHandles$Lookup.getDirectConstructorCommon — 198,192 个采样字节 (0.001%)</title><rect x="28.0000025" y="961" width="0.015718882506" height="22" fill="hsl(183,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="30" data-weight="198192"><title>java.lang.invoke.DirectMethodHandle.make — 198,192 个采样字节 (0.001%)</title><rect x="28.0000025" y="937" width="0.015718882506" height="22" fill="hsl(180,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="31" data-weight="198192"><title>java.lang.invoke.DirectMethodHandle.makeAllocator — 198,192 个采样字节 (0.001%)</title><rect x="28.0000025" y="913" width="0.015718882506" height="22" fill="hsl(190,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="32" data-weight="198192"><title>java.lang.invoke.DirectMethodHandle.preparedLambdaForm — 198,192 个采样字节 (0.001%)</title><rect x="28.0000025" y="889" width="0.015718882506" height="22" fill="hsl(190,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="33" data-weight="198192"><title>java.lang.invoke.DirectMethodHandle.preparedLambdaForm — 198,192 个采样字节 (0.001%)</title><rect x="28.0000025" y="865" width="0.015718882506" height="22" fill="hsl(190,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="34" data-weight="198192"><title>java.lang.invoke.DirectMethodHandle.preparedLambdaForm — 198,192 个采样字节 (0.001%)</title><rect x="28.0000025" y="841" width="0.015718882506" height="22" fill="hsl(190,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="35" data-weight="198192"><title>java.lang.invoke.DirectMethodHandle.makePreparedLambdaForm — 198,192 个采样字节 (0.001%)</title><rect x="28.0000025" y="817" width="0.015718882506" height="22" fill="hsl(164,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="36" data-weight="198192"><title>java.lang.invoke.LambdaForm.compileToBytecode — 198,192 个采样字节 (0.001%)</title><rect x="28.0000025" y="793" width="0.015718882506" height="22" fill="hsl(170,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="37" data-weight="198192"><title>java.lang.invoke.InvokerBytecodeGenerator.generateCustomizedCode — 198,192 个采样字节 (0.001%)</title><rect x="28.0000025" y="769" width="0.015718882506" height="22" fill="hsl(184,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="38" data-weight="198192"><title>java.lang.invoke.InvokerBytecodeGenerator.generateCustomizedCodeBytes — 198,192 个采样字节 (0.001%)</title><rect x="28.0000025" y="745" width="0.015718882506" height="22" fill="hsl(170,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="39" data-weight="198192"><title>java.lang.invoke.InvokerBytecodeGenerator.addMethod — 198,192 个采样字节 (0.001%)</title><rect x="28.0000025" y="721" width="0.015718882506" height="22" fill="hsl(178,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="40" data-weight="198192"><title>java.lang.invoke.InvokerBytecodeGenerator.emitStaticInvoke — 198,192 个采样字节 (0.001%)</title><rect x="28.0000025" y="697" width="0.015718882506" height="22" fill="hsl(176,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="41" data-weight="198192"><title>jdk.internal.org.objectweb.asm.MethodWriter.visitMethodInsn — 198,192 个采样字节 (0.001%)</title><rect x="28.0000025" y="673" width="0.015718882506" height="22" fill="hsl(176,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="42" data-weight="198192"><title>jdk.internal.org.objectweb.asm.SymbolTable.addConstantMethodref — 198,192 个采样字节 (0.001%)</title><rect x="28.0000025" y="649" width="0.015718882506" height="22" fill="hsl(176,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="43" data-weight="198192"><title>jdk.internal.org.objectweb.asm.SymbolTable.addConstantMemberReference — 198,192 个采样字节 (0.001%)</title><rect x="28.0000025" y="625" width="0.015718882506" height="22" fill="hsl(167,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="44" data-weight="198192"><title>jdk.internal.org.objectweb.asm.SymbolTable.addConstantNameAndType — 198,192 个采样字节 (0.001%)</title><rect x="28.0000025" y="601" width="0.015718882506" height="22" fill="hsl(186,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="45" data-weight="198192"><title>jdk.internal.org.objectweb.asm.SymbolTable.addConstantUtf8 — 198,192 个采样字节 (0.001%)</title><rect x="28.0000025" y="577" width="0.015718882506" height="22" fill="hsl(163,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="46" data-weight="198192"><title>jdk.internal.org.objectweb.asm.ByteVector.putUTF8 — 198,192 个采样字节 (0.001%)</title><rect x="28.0000025" y="553" width="0.015718882506" height="22" fill="hsl(178,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="47" data-weight="198192"><title>jdk.internal.org.objectweb.asm.ByteVector.enlarge — 198,192 个采样字节 (0.001%)</title><rect x="28.0000025" y="529" width="0.015718882506" height="22" fill="hsl(161,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="17" data-weight="246776"><title>java.lang.invoke.MethodHandleNatives.linkCallSite — 246,776 个采样字节 (0.002%)</title><rect x="28.0157214" y="1249" width="0.019572146955" height="22" fill="hsl(167,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="18" data-weight="246776"><title>java.lang.invoke.MethodHandleNatives.linkCallSiteImpl — 246,776 个采样字节 (0.002%)</title><rect x="28.0157214" y="1225" width="0.019572146955" height="22" fill="hsl(175,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="19" data-weight="246776"><title>java.lang.invoke.CallSite.makeSite — 246,776 个采样字节 (0.002%)</title><rect x="28.0157214" y="1201" width="0.019572146955" height="22" fill="hsl(190,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="20" data-weight="246776"><title>java.lang.invoke.BootstrapMethodInvoker.invoke — 246,776 个采样字节 (0.002%)</title><rect x="28.0157214" y="1177" width="0.019572146955" height="22" fill="hsl(188,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="21" data-weight="246776"><title>java.lang.invoke.Invokers$Holder.invokeExact_MT — 246,776 个采样字节 (0.002%)</title><rect x="28.0157214" y="1153" width="0.019572146955" height="22" fill="hsl(179,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="22" data-weight="246776"><title>java.lang.invoke.DelegatingMethodHandle$Holder.delegate — 246,776 个采样字节 (0.002%)</title><rect x="28.0157214" y="1129" width="0.019572146955" height="22" fill="hsl(176,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="23" data-weight="246776"><title>java.lang.invoke.DirectMethodHandle$Holder.invokeStatic — 246,776 个采样字节 (0.002%)</title><rect x="28.0157214" y="1105" width="0.019572146955" height="22" fill="hsl(169,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="24" data-weight="246776"><title>java.lang.invoke.StringConcatFactory.makeConcatWithConstants — 246,776 个采样字节 (0.002%)</title><rect x="28.0157214" y="1081" width="0.019572146955" height="22" fill="hsl(184,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="25" data-weight="246776"><title>java.lang.invoke.StringConcatFactory.generateMHInlineCopy — 246,776 个采样字节 (0.002%)</title><rect x="28.0157214" y="1057" width="0.019572146955" height="22" fill="hsl(178,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="26" data-weight="206800"><title>java.lang.invoke.MethodHandles.filterArgumentsWithCombiner — 206,800 个采样字节 (0.001%)</title><rect x="28.0157214" y="1033" width="0.0164015949294" height="22" fill="hsl(166,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="27" data-weight="206800"><title>java.lang.invoke.MethodHandles.argumentsWithCombiner — 206,800 个采样字节 (0.001%)</title><rect x="28.0157214" y="1009" width="0.0164015949294" height="22" fill="hsl(173,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="28" data-weight="206800"><title>java.lang.invoke.BoundMethodHandle$Species_L.copyWithExtendL — 206,800 个采样字节 (0.001%)</title><rect x="28.0157214" y="985" width="0.0164015949294" height="22" fill="hsl(165,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="29" data-weight="206800"><title>java.lang.invoke.DirectMethodHandle$Holder.invokeStatic — 206,800 个采样字节 (0.001%)</title><rect x="28.0157214" y="961" width="0.0164015949294" height="22" fill="hsl(169,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="30" data-weight="206800"><title>java.lang.invoke.BoundMethodHandle$Species_LL.make — 206,800 个采样字节 (0.001%)</title><rect x="28.0157214" y="937" width="0.0164015949294" height="22" fill="hsl(186,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="31" data-weight="206800"><title>java.lang.invoke.BoundMethodHandle$Species_LL.&lt;init&gt; — 206,800 个采样字节 (0.001%)</title><rect x="28.0157214" y="913" width="0.0164015949294" height="22" fill="hsl(169,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="32" data-weight="206800"><title>java.lang.invoke.BoundMethodHandle.&lt;init&gt; — 206,800 个采样字节 (0.001%)</title><rect x="28.0157214" y="889" width="0.0164015949294" height="22" fill="hsl(174,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="33" data-weight="206800"><title>java.lang.invoke.MethodHandle.&lt;init&gt; — 206,800 个采样字节 (0.001%)</title><rect x="28.0157214" y="865" width="0.0164015949294" height="22" fill="hsl(167,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="34" data-weight="206800"><title>java.lang.invoke.LambdaForm.prepare — 206,800 个采样字节 (0.001%)</title><rect x="28.0157214" y="841" width="0.0164015949294" height="22" fill="hsl(182,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="35" data-weight="206800"><title>java.lang.invoke.LambdaForm.compileToBytecode — 206,800 个采样字节 (0.001%)</title><rect x="28.0157214" y="817" width="0.0164015949294" height="22" fill="hsl(170,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="36" data-weight="206800"><title>java.lang.invoke.InvokerBytecodeGenerator.generateCustomizedCode — 206,800 个采样字节 (0.001%)</title><rect x="28.0157214" y="793" width="0.0164015949294" height="22" fill="hsl(184,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="37" data-weight="206800"><title>java.lang.invoke.InvokerBytecodeGenerator.generateCustomizedCodeBytes — 206,800 个采样字节 (0.001%)</title><rect x="28.0157214" y="769" width="0.0164015949294" height="22" fill="hsl(170,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="38" data-weight="206800"><title>java.lang.invoke.InvokerBytecodeGenerator.addMethod — 206,800 个采样字节 (0.001%)</title><rect x="28.0157214" y="745" width="0.0164015949294" height="22" fill="hsl(178,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="39" data-weight="206800"><title>jdk.internal.org.objectweb.asm.MethodWriter.visitAnnotation — 206,800 个采样字节 (0.001%)</title><rect x="28.0157214" y="721" width="0.0164015949294" height="22" fill="hsl(182,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="40" data-weight="206800"><title>jdk.internal.org.objectweb.asm.AnnotationWriter.create — 206,800 个采样字节 (0.001%)</title><rect x="28.0157214" y="697" width="0.0164015949294" height="22" fill="hsl(162,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="41" data-weight="206800"><title>jdk.internal.org.objectweb.asm.ByteVector.&lt;init&gt; — 206,800 个采样字节 (0.001%)</title><rect x="28.0157214" y="673" width="0.0164015949294" height="22" fill="hsl(185,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="26" data-weight="39976"><title>java.lang.invoke.MethodHandles.insertArguments — 39,976 个采样字节 (0.000%)</title><rect x="28.032123" y="1033" width="0.00317055202562" height="22" fill="hsl(191,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="27" data-weight="39976"><title>java.lang.invoke.MethodHandles.insertArgumentPrimitive — 39,976 个采样字节 (0.000%)</title><rect x="28.032123" y="1009" width="0.00317055202562" height="22" fill="hsl(163,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="28" data-weight="39976"><title>java.lang.invoke.BoundMethodHandle.bindArgumentJ — 39,976 个采样字节 (0.000%)</title><rect x="28.032123" y="985" width="0.00317055202562" height="22" fill="hsl(162,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="29" data-weight="39976"><title>java.lang.invoke.LambdaFormEditor.bindArgumentJ — 39,976 个采样字节 (0.000%)</title><rect x="28.032123" y="961" width="0.00317055202562" height="22" fill="hsl(188,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="30" data-weight="39976"><title>java.lang.invoke.BoundMethodHandle$Species_L.copyWithExtendJ — 39,976 个采样字节 (0.000%)</title><rect x="28.032123" y="937" width="0.00317055202562" height="22" fill="hsl(180,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="31" data-weight="39976"><title>java.lang.invoke.DirectMethodHandle$Holder.invokeStatic — 39,976 个采样字节 (0.000%)</title><rect x="28.032123" y="913" width="0.00317055202562" height="22" fill="hsl(169,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="32" data-weight="39976"><title>java.lang.invoke.BoundMethodHandle$Species_LJ.make — 39,976 个采样字节 (0.000%)</title><rect x="28.032123" y="889" width="0.00317055202562" height="22" fill="hsl(182,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="33" data-weight="39976"><title>java.lang.invoke.BoundMethodHandle$Species_LJ.&lt;init&gt; — 39,976 个采样字节 (0.000%)</title><rect x="28.032123" y="865" width="0.00317055202562" height="22" fill="hsl(175,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="34" data-weight="39976"><title>java.lang.invoke.BoundMethodHandle.&lt;init&gt; — 39,976 个采样字节 (0.000%)</title><rect x="28.032123" y="841" width="0.00317055202562" height="22" fill="hsl(174,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="35" data-weight="39976"><title>java.lang.invoke.MethodHandle.&lt;init&gt; — 39,976 个采样字节 (0.000%)</title><rect x="28.032123" y="817" width="0.00317055202562" height="22" fill="hsl(167,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="36" data-weight="39976"><title>java.lang.invoke.LambdaForm.prepare — 39,976 个采样字节 (0.000%)</title><rect x="28.032123" y="793" width="0.00317055202562" height="22" fill="hsl(182,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="37" data-weight="39976"><title>java.lang.invoke.LambdaForm.compileToBytecode — 39,976 个采样字节 (0.000%)</title><rect x="28.032123" y="769" width="0.00317055202562" height="22" fill="hsl(170,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="38" data-weight="39976"><title>java.lang.invoke.InvokerBytecodeGenerator.generateCustomizedCode — 39,976 个采样字节 (0.000%)</title><rect x="28.032123" y="745" width="0.00317055202562" height="22" fill="hsl(184,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="39" data-weight="39976"><title>java.lang.invoke.InvokerBytecodeGenerator.generateCustomizedCodeBytes — 39,976 个采样字节 (0.000%)</title><rect x="28.032123" y="721" width="0.00317055202562" height="22" fill="hsl(170,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="40" data-weight="39976"><title>java.lang.invoke.InvokerBytecodeGenerator.clinit — 39,976 个采样字节 (0.000%)</title><rect x="28.032123" y="697" width="0.00317055202562" height="22" fill="hsl(173,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="41" data-weight="39976"><title>jdk.internal.org.objectweb.asm.MethodWriter.visitMethodInsn — 39,976 个采样字节 (0.000%)</title><rect x="28.032123" y="673" width="0.00317055202562" height="22" fill="hsl(176,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="42" data-weight="39976"><title>jdk.internal.org.objectweb.asm.SymbolTable.addConstantMethodref — 39,976 个采样字节 (0.000%)</title><rect x="28.032123" y="649" width="0.00317055202562" height="22" fill="hsl(176,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="43" data-weight="39976"><title>jdk.internal.org.objectweb.asm.SymbolTable.addConstantMemberReference — 39,976 个采样字节 (0.000%)</title><rect x="28.032123" y="625" width="0.00317055202562" height="22" fill="hsl(167,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="16" data-weight="598232"><title>io.ominicat.benchmarks.DirectStateProbe.verifyConfiguredOrigins — 598,232 个采样字节 (0.004%)</title><rect x="28.0352936" y="1273" width="0.0474466099507" height="22" fill="hsl(168,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="17" data-weight="396976"><title>io.ominicat.benchmarks.DirectStateProbe.verifyArtifact — 396,976 个采样字节 (0.003%)</title><rect x="28.0352936" y="1249" width="0.0314847173535" height="22" fill="hsl(190,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="18" data-weight="199152"><title>java.security.MessageDigest.getInstance — 199,152 个采样字节 (0.001%)</title><rect x="28.0352936" y="1225" width="0.015795021438" height="22" fill="hsl(187,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="19" data-weight="199152"><title>sun.security.jca.GetInstance.getInstance — 199,152 个采样字节 (0.001%)</title><rect x="28.0352936" y="1201" width="0.015795021438" height="22" fill="hsl(166,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="20" data-weight="199152"><title>sun.security.jca.ProviderList.getService — 199,152 个采样字节 (0.001%)</title><rect x="28.0352936" y="1177" width="0.015795021438" height="22" fill="hsl(168,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="21" data-weight="199152"><title>sun.security.jca.ProviderList.getProvider — 199,152 个采样字节 (0.001%)</title><rect x="28.0352936" y="1153" width="0.015795021438" height="22" fill="hsl(178,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="22" data-weight="199152"><title>sun.security.jca.ProviderConfig.getProvider — 199,152 个采样字节 (0.001%)</title><rect x="28.0352936" y="1129" width="0.015795021438" height="22" fill="hsl(169,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="23" data-weight="199152"><title>sun.security.provider.Sun.&lt;init&gt; — 199,152 个采样字节 (0.001%)</title><rect x="28.0352936" y="1105" width="0.015795021438" height="22" fill="hsl(162,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="24" data-weight="199152"><title>sun.security.provider.SunEntries.&lt;init&gt; — 199,152 个采样字节 (0.001%)</title><rect x="28.0352936" y="1081" width="0.015795021438" height="22" fill="hsl(191,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="25" data-weight="199152"><title>sun.security.provider.SunEntries.addWithAlias — 199,152 个采样字节 (0.001%)</title><rect x="28.0352936" y="1057" width="0.015795021438" height="22" fill="hsl(167,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="26" data-weight="199152"><title>java.security.Provider$Service.&lt;init&gt; — 199,152 个采样字节 (0.001%)</title><rect x="28.0352936" y="1033" width="0.015795021438" height="22" fill="hsl(174,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="17" data-weight="201256"><title>java.lang.Class.getDeclaredClasses — 201,256 个采样字节 (0.001%)</title><rect x="28.0667783" y="1249" width="0.0159618925973" height="22" fill="hsl(174,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="18" data-weight="201256"><title>java.lang.Class.getDeclaredClasses0 — 201,256 个采样字节 (0.001%)</title><rect x="28.0667783" y="1225" width="0.0159618925973" height="22" fill="hsl(177,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="19" data-weight="201256"><title>java.lang.ClassLoader.loadClass — 201,256 个采样字节 (0.001%)</title><rect x="28.0667783" y="1201" width="0.0159618925973" height="22" fill="hsl(187,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="20" data-weight="201256"><title>jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass — 201,256 个采样字节 (0.001%)</title><rect x="28.0667783" y="1177" width="0.0159618925973" height="22" fill="hsl(171,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="21" data-weight="201256"><title>jdk.internal.loader.BuiltinClassLoader.loadClass — 201,256 个采样字节 (0.001%)</title><rect x="28.0667783" y="1153" width="0.0159618925973" height="22" fill="hsl(184,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="22" data-weight="201256"><title>jdk.internal.loader.BuiltinClassLoader.loadClassOrNull — 201,256 个采样字节 (0.001%)</title><rect x="28.0667783" y="1129" width="0.0159618925973" height="22" fill="hsl(188,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="23" data-weight="201256"><title>jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull — 201,256 个采样字节 (0.001%)</title><rect x="28.0667783" y="1105" width="0.0159618925973" height="22" fill="hsl(162,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="24" data-weight="201256"><title>jdk.internal.loader.BuiltinClassLoader.defineClass — 201,256 个采样字节 (0.001%)</title><rect x="28.0667783" y="1081" width="0.0159618925973" height="22" fill="hsl(164,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="25" data-weight="201256"><title>jdk.internal.loader.Resource.getByteBuffer — 201,256 个采样字节 (0.001%)</title><rect x="28.0667783" y="1057" width="0.0159618925973" height="22" fill="hsl(173,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="26" data-weight="201256"><title>jdk.internal.loader.Resource.cachedInputStream — 201,256 个采样字节 (0.001%)</title><rect x="28.0667783" y="1033" width="0.0159618925973" height="22" fill="hsl(162,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="27" data-weight="201256"><title>jdk.internal.loader.URLClassPath$JarLoader$2.getInputStream — 201,256 个采样字节 (0.001%)</title><rect x="28.0667783" y="1009" width="0.0159618925973" height="22" fill="hsl(180,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="28" data-weight="201256"><title>java.util.jar.JarFile.getInputStream — 201,256 个采样字节 (0.001%)</title><rect x="28.0667783" y="985" width="0.0159618925973" height="22" fill="hsl(171,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="29" data-weight="201256"><title>java.util.zip.ZipFile.getInputStream — 201,256 个采样字节 (0.001%)</title><rect x="28.0667783" y="961" width="0.0159618925973" height="22" fill="hsl(191,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="30" data-weight="201256"><title>java.util.zip.ZipFile$ZipFileInflaterInputStream.&lt;init&gt; — 201,256 个采样字节 (0.001%)</title><rect x="28.0667783" y="937" width="0.0159618925973" height="22" fill="hsl(178,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="31" data-weight="201256"><title>java.util.zip.ZipFile$ZipFileInflaterInputStream.&lt;init&gt; — 201,256 个采样字节 (0.001%)</title><rect x="28.0667783" y="913" width="0.0159618925973" height="22" fill="hsl(178,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="32" data-weight="201256"><title>java.util.zip.InflaterInputStream.&lt;init&gt; — 201,256 个采样字节 (0.001%)</title><rect x="28.0667783" y="889" width="0.0159618925973" height="22" fill="hsl(161,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="15" data-weight="196928"><title>java.lang.Class.getDeclaredField — 196,928 个采样字节 (0.001%)</title><rect x="28.0827402" y="1297" width="0.0156186329123" height="22" fill="hsl(177,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="16" data-weight="196928"><title>java.lang.Class.privateGetDeclaredFields — 196,928 个采样字节 (0.001%)</title><rect x="28.0827402" y="1273" width="0.0156186329123" height="22" fill="hsl(170,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="17" data-weight="196928"><title>java.lang.Class.getDeclaredFields0 — 196,928 个采样字节 (0.001%)</title><rect x="28.0827402" y="1249" width="0.0156186329123" height="22" fill="hsl(186,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="18" data-weight="196928"><title>java.lang.ClassLoader.loadClass — 196,928 个采样字节 (0.001%)</title><rect x="28.0827402" y="1225" width="0.0156186329123" height="22" fill="hsl(187,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="19" data-weight="196928"><title>jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass — 196,928 个采样字节 (0.001%)</title><rect x="28.0827402" y="1201" width="0.0156186329123" height="22" fill="hsl(171,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="20" data-weight="196928"><title>jdk.internal.loader.BuiltinClassLoader.loadClass — 196,928 个采样字节 (0.001%)</title><rect x="28.0827402" y="1177" width="0.0156186329123" height="22" fill="hsl(184,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="21" data-weight="196928"><title>jdk.internal.loader.BuiltinClassLoader.loadClassOrNull — 196,928 个采样字节 (0.001%)</title><rect x="28.0827402" y="1153" width="0.0156186329123" height="22" fill="hsl(188,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="22" data-weight="196928"><title>jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull — 196,928 个采样字节 (0.001%)</title><rect x="28.0827402" y="1129" width="0.0156186329123" height="22" fill="hsl(162,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="23" data-weight="196928"><title>jdk.internal.loader.BuiltinClassLoader.defineClass — 196,928 个采样字节 (0.001%)</title><rect x="28.0827402" y="1105" width="0.0156186329123" height="22" fill="hsl(164,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="24" data-weight="196928"><title>jdk.internal.loader.URLClassPath$JarLoader$2.getBytes — 196,928 个采样字节 (0.001%)</title><rect x="28.0827402" y="1081" width="0.0156186329123" height="22" fill="hsl(178,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="25" data-weight="196928"><title>jdk.internal.loader.Resource.getBytes — 196,928 个采样字节 (0.001%)</title><rect x="28.0827402" y="1057" width="0.0156186329123" height="22" fill="hsl(179,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="26" data-weight="196928"><title>java.util.Arrays.copyOf — 196,928 个采样字节 (0.001%)</title><rect x="28.0827402" y="1033" width="0.0156186329123" height="22" fill="hsl(175,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="14" data-weight="15409528320"><title>io.ominicat.benchmarks.jmh_generated.DirectStateProbe_invoke_jmhTest.invoke_avgt_jmhStub — 15,409,528,320 个采样字节 (99.849%)</title><rect x="28.0983588" y="1321" width="1222.15107136" height="22" fill="hsl(191,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="32.0983588" y="1337" font-family="monospace" font-size="12" fill="#152430">DirectStateProbe_invoke_jmhTest.invoke_avgt_jmhStub</text>
+</g>
+<g data-depth="15" data-weight="15409528320"><title>io.ominicat.benchmarks.DirectStateProbe.invoke — 15,409,528,320 个采样字节 (99.849%)</title><rect x="28.0983588" y="1297" width="1222.15107136" height="22" fill="hsl(176,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="32.0983588" y="1313" font-family="monospace" font-size="12" fill="#152430">DirectStateProbe.invoke</text>
+</g>
+<g data-depth="16" data-weight="15409528320"><title>io.ominicat.benchmarks.DirectStateProbe$Harness.invoke — 15,409,528,320 个采样字节 (99.849%)</title><rect x="28.0983588" y="1273" width="1222.15107136" height="22" fill="hsl(181,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="32.0983588" y="1289" font-family="monospace" font-size="12" fill="#152430">DirectStateProbe$Harness.invoke</text>
+</g>
+<g data-depth="17" data-weight="12912013744"><title>io.ominicat.core.Pipeline.process — 12,912,013,744 个采样字节 (83.666%)</title><rect x="28.0983588" y="1249" width="1024.06972511" height="22" fill="hsl(177,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="32.0983588" y="1265" font-family="monospace" font-size="12" fill="#152430">Pipeline.process</text>
+</g>
+<g data-depth="18" data-weight="12912013744"><title>io.ominicat.core.Pipeline.dispatch — 12,912,013,744 个采样字节 (83.666%)</title><rect x="28.0983588" y="1225" width="1024.06972511" height="22" fill="hsl(172,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="32.0983588" y="1241" font-family="monospace" font-size="12" fill="#152430">Pipeline.dispatch</text>
+</g>
+<g data-depth="19" data-weight="12498292456"><title>io.ominicat.core.Pipeline.invoke — 12,498,292,456 个采样字节 (80.985%)</title><rect x="28.0983588" y="1201" width="991.256915728" height="22" fill="hsl(188,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="32.0983588" y="1217" font-family="monospace" font-size="12" fill="#152430">Pipeline.invoke</text>
+</g>
+<g data-depth="20" data-weight="12369590144"><title>io.ominicat.benchmarks.DirectStateProbe$Harness$1.process — 12,369,590,144 个采样字节 (80.151%)</title><rect x="28.0983588" y="1177" width="981.049356792" height="22" fill="hsl(171,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="32.0983588" y="1193" font-family="monospace" font-size="12" fill="#152430">DirectStateProbe$Harness$1.process</text>
+</g>
+<g data-depth="21" data-weight="12369590144"><title>io.ominicat.core.EnvelopeProcessor.process — 12,369,590,144 个采样字节 (80.151%)</title><rect x="28.0983588" y="1153" width="981.049356792" height="22" fill="hsl(183,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="32.0983588" y="1169" font-family="monospace" font-size="12" fill="#152430">EnvelopeProcessor.process</text>
+</g>
+<g data-depth="22" data-weight="11312768160"><title>io.ominicat.benchmarks.DirectStateProbe$Harness$$Lambda$126+0x00007fc334094c50.985300877.process — 11,312,768,160 个采样字节 (73.303%)</title><rect x="28.0983588" y="1129" width="897.231338929" height="22" fill="hsl(165,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="32.0983588" y="1145" font-family="monospace" font-size="12" fill="#152430">DirectStateProbe$Harness$$Lambda$126.process</text>
+</g>
+<g data-depth="23" data-weight="11312768160"><title>io.ominicat.benchmarks.DirectStateProbe$Harness.lambda$new$4 — 11,312,768,160 个采样字节 (73.303%)</title><rect x="28.0983588" y="1105" width="897.231338929" height="22" fill="hsl(181,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="32.0983588" y="1121" font-family="monospace" font-size="12" fill="#152430">DirectStateProbe$Harness.lambda$new$4</text>
+</g>
+<g data-depth="24" data-weight="11312768160"><title>io.ominicat.core.SynchronousSink.accept — 11,312,768,160 个采样字节 (73.303%)</title><rect x="28.0983588" y="1081" width="897.231338929" height="22" fill="hsl(171,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="32.0983588" y="1097" font-family="monospace" font-size="12" fill="#152430">SynchronousSink.accept</text>
+</g>
+<g data-depth="25" data-weight="11312768160"><title>io.ominicat.core.EnvelopeProcessor$$Lambda$134+0x00007fc334096258.1201448536.accept — 11,312,768,160 个采样字节 (73.303%)</title><rect x="28.0983588" y="1057" width="897.231338929" height="22" fill="hsl(165,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="32.0983588" y="1073" font-family="monospace" font-size="12" fill="#152430">EnvelopeProcessor$$Lambda$134.accept</text>
+</g>
+<g data-depth="26" data-weight="11312768160"><title>io.ominicat.core.EnvelopeProcessor.lambda$process$2 — 11,312,768,160 个采样字节 (73.303%)</title><rect x="28.0983588" y="1033" width="897.231338929" height="22" fill="hsl(185,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="32.0983588" y="1049" font-family="monospace" font-size="12" fill="#152430">EnvelopeProcessor.lambda$process$2</text>
+</g>
+<g data-depth="27" data-weight="24090128"><title>io.ominicat.core.FrameEnvelope.derive — 24,090,128 个采样字节 (0.156%)</title><rect x="28.0983588" y="1009" width="1.91062147608" height="22" fill="hsl(181,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="27" data-weight="11288678032"><title>io.ominicat.core.SynchronousSink.accept — 11,288,678,032 个采样字节 (73.147%)</title><rect x="30.0089803" y="1009" width="895.320717453" height="22" fill="hsl(171,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="34.0089803" y="1025" font-family="monospace" font-size="12" fill="#152430">SynchronousSink.accept</text>
+</g>
+<g data-depth="28" data-weight="11288678032"><title>io.ominicat.core.Pipeline$$Lambda$133+0x00007fc334096030.284879437.accept — 11,288,678,032 个采样字节 (73.147%)</title><rect x="30.0089803" y="985" width="895.320717453" height="22" fill="hsl(161,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="34.0089803" y="1001" font-family="monospace" font-size="12" fill="#152430">Pipeline$$Lambda$133.accept</text>
+</g>
+<g data-depth="29" data-weight="11288678032"><title>io.ominicat.core.Pipeline.lambda$dispatch$1 — 11,288,678,032 个采样字节 (73.147%)</title><rect x="30.0089803" y="961" width="895.320717453" height="22" fill="hsl(174,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="34.0089803" y="977" font-family="monospace" font-size="12" fill="#152430">Pipeline.lambda$dispatch$1</text>
+</g>
+<g data-depth="30" data-weight="11288678032"><title>io.ominicat.core.Pipeline.dispatch — 11,288,678,032 个采样字节 (73.147%)</title><rect x="30.0089803" y="937" width="895.320717453" height="22" fill="hsl(172,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="34.0089803" y="953" font-family="monospace" font-size="12" fill="#152430">Pipeline.dispatch</text>
+</g>
+<g data-depth="31" data-weight="10395773144"><title>io.ominicat.core.Pipeline.invoke — 10,395,773,144 个采样字节 (67.361%)</title><rect x="30.0089803" y="913" width="824.503191904" height="22" fill="hsl(188,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="34.0089803" y="929" font-family="monospace" font-size="12" fill="#152430">Pipeline.invoke</text>
+</g>
+<g data-depth="32" data-weight="9463286248"><title>io.ominicat.benchmarks.DirectStateProbe$Harness$1.process — 9,463,286,248 个采样字节 (61.319%)</title><rect x="30.0089803" y="889" width="750.546362382" height="22" fill="hsl(171,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="34.0089803" y="905" font-family="monospace" font-size="12" fill="#152430">DirectStateProbe$Harness$1.process</text>
+</g>
+<g data-depth="33" data-weight="9463286248"><title>io.ominicat.core.EnvelopeProcessor.process — 9,463,286,248 个采样字节 (61.319%)</title><rect x="30.0089803" y="865" width="750.546362382" height="22" fill="hsl(183,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="34.0089803" y="881" font-family="monospace" font-size="12" fill="#152430">EnvelopeProcessor.process</text>
+</g>
+<g data-depth="34" data-weight="8674597616"><title>io.ominicat.benchmarks.DirectStateProbe$Harness$$Lambda$126+0x00007fc334094c50.985300877.process — 8,674,597,616 个采样字节 (56.209%)</title><rect x="30.0089803" y="841" width="687.994372694" height="22" fill="hsl(165,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="34.0089803" y="857" font-family="monospace" font-size="12" fill="#152430">DirectStateProbe$Harness$$Lambda$126.process</text>
+</g>
+<g data-depth="35" data-weight="8674597616"><title>io.ominicat.benchmarks.DirectStateProbe$Harness.lambda$new$4 — 8,674,597,616 个采样字节 (56.209%)</title><rect x="30.0089803" y="817" width="687.994372694" height="22" fill="hsl(181,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="34.0089803" y="833" font-family="monospace" font-size="12" fill="#152430">DirectStateProbe$Harness.lambda$new$4</text>
+</g>
+<g data-depth="36" data-weight="7963416184"><title>io.ominicat.core.SynchronousSink.accept — 7,963,416,184 个采样字节 (51.600%)</title><rect x="30.0089803" y="793" width="631.589586577" height="22" fill="hsl(171,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="34.0089803" y="809" font-family="monospace" font-size="12" fill="#152430">SynchronousSink.accept</text>
+</g>
+<g data-depth="37" data-weight="7963416184"><title>io.ominicat.core.EnvelopeProcessor$$Lambda$134+0x00007fc334096258.1201448536.accept — 7,963,416,184 个采样字节 (51.600%)</title><rect x="30.0089803" y="769" width="631.589586577" height="22" fill="hsl(165,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="34.0089803" y="785" font-family="monospace" font-size="12" fill="#152430">EnvelopeProcessor$$Lambda$134.accept</text>
+</g>
+<g data-depth="38" data-weight="7963416184"><title>io.ominicat.core.EnvelopeProcessor.lambda$process$2 — 7,963,416,184 个采样字节 (51.600%)</title><rect x="30.0089803" y="745" width="631.589586577" height="22" fill="hsl(185,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="34.0089803" y="761" font-family="monospace" font-size="12" fill="#152430">EnvelopeProcessor.lambda$process$2</text>
+</g>
+<g data-depth="39" data-weight="1098398576"><title>io.ominicat.core.FrameEnvelope.derive — 1,098,398,576 个采样字节 (7.117%)</title><rect x="30.0089803" y="721" width="87.1155150608" height="22" fill="hsl(181,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="34.0089803" y="737" font-family="monospace" font-size="12" fill="#152430">FrameEnve…</text>
+</g>
+<g data-depth="39" data-weight="6865017608"><title>io.ominicat.core.SynchronousSink.accept — 6,865,017,608 个采样字节 (44.483%)</title><rect x="117.124495" y="721" width="544.474071517" height="22" fill="hsl(171,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="121.124495" y="737" font-family="monospace" font-size="12" fill="#152430">SynchronousSink.accept</text>
+</g>
+<g data-depth="40" data-weight="6865017608"><title>io.ominicat.core.Pipeline$$Lambda$133+0x00007fc334096030.284879437.accept — 6,865,017,608 个采样字节 (44.483%)</title><rect x="117.124495" y="697" width="544.474071517" height="22" fill="hsl(161,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="121.124495" y="713" font-family="monospace" font-size="12" fill="#152430">Pipeline$$Lambda$133.accept</text>
+</g>
+<g data-depth="41" data-weight="6865017608"><title>io.ominicat.core.Pipeline.lambda$dispatch$1 — 6,865,017,608 个采样字节 (44.483%)</title><rect x="117.124495" y="673" width="544.474071517" height="22" fill="hsl(174,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="121.124495" y="689" font-family="monospace" font-size="12" fill="#152430">Pipeline.lambda$dispatch$1</text>
+</g>
+<g data-depth="42" data-weight="6865017608"><title>io.ominicat.core.Pipeline.dispatch — 6,865,017,608 个采样字节 (44.483%)</title><rect x="117.124495" y="649" width="544.474071517" height="22" fill="hsl(172,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="121.124495" y="665" font-family="monospace" font-size="12" fill="#152430">Pipeline.dispatch</text>
+</g>
+<g data-depth="43" data-weight="6865017608"><title>io.ominicat.core.Pipeline.invoke — 6,865,017,608 个采样字节 (44.483%)</title><rect x="117.124495" y="625" width="544.474071517" height="22" fill="hsl(188,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="121.124495" y="641" font-family="monospace" font-size="12" fill="#152430">Pipeline.invoke</text>
+</g>
+<g data-depth="44" data-weight="5974207680"><title>io.ominicat.benchmarks.DirectStateProbe$Harness$1.process — 5,974,207,680 个采样字节 (38.711%)</title><rect x="117.124495" y="601" width="473.822700152" height="22" fill="hsl(171,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="121.124495" y="617" font-family="monospace" font-size="12" fill="#152430">DirectStateProbe$Harness$1.process</text>
+</g>
+<g data-depth="45" data-weight="5974207680"><title>io.ominicat.core.EnvelopeProcessor.process — 5,974,207,680 个采样字节 (38.711%)</title><rect x="117.124495" y="577" width="473.822700152" height="22" fill="hsl(183,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="121.124495" y="593" font-family="monospace" font-size="12" fill="#152430">EnvelopeProcessor.process</text>
+</g>
+<g data-depth="46" data-weight="5217464400"><title>io.ominicat.benchmarks.DirectStateProbe$Harness$$Lambda$126+0x00007fc334094c50.985300877.process — 5,217,464,400 个采样字节 (33.808%)</title><rect x="117.124495" y="553" width="413.804340655" height="22" fill="hsl(165,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="121.124495" y="569" font-family="monospace" font-size="12" fill="#152430">DirectStateProbe$Harness$$Lambda$126.process</text>
+</g>
+<g data-depth="47" data-weight="5217464400"><title>io.ominicat.benchmarks.DirectStateProbe$Harness.lambda$new$4 — 5,217,464,400 个采样字节 (33.808%)</title><rect x="117.124495" y="529" width="413.804340655" height="22" fill="hsl(181,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="121.124495" y="545" font-family="monospace" font-size="12" fill="#152430">DirectStateProbe$Harness.lambda$new$4</text>
+</g>
+<g data-depth="48" data-weight="5217464400"><title>io.ominicat.core.SynchronousSink.accept — 5,217,464,400 个采样字节 (33.808%)</title><rect x="117.124495" y="505" width="413.804340655" height="22" fill="hsl(171,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="121.124495" y="521" font-family="monospace" font-size="12" fill="#152430">SynchronousSink.accept</text>
+</g>
+<g data-depth="49" data-weight="5217464400"><title>io.ominicat.core.EnvelopeProcessor$$Lambda$134+0x00007fc334096258.1201448536.accept — 5,217,464,400 个采样字节 (33.808%)</title><rect x="117.124495" y="481" width="413.804340655" height="22" fill="hsl(165,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="121.124495" y="497" font-family="monospace" font-size="12" fill="#152430">EnvelopeProcessor$$Lambda$134.accept</text>
+</g>
+<g data-depth="50" data-weight="5217464400"><title>io.ominicat.core.EnvelopeProcessor.lambda$process$2 — 5,217,464,400 个采样字节 (33.808%)</title><rect x="117.124495" y="457" width="413.804340655" height="22" fill="hsl(185,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="121.124495" y="473" font-family="monospace" font-size="12" fill="#152430">EnvelopeProcessor.lambda$process$2</text>
+</g>
+<g data-depth="51" data-weight="772641488"><title>io.ominicat.core.FrameEnvelope.derive — 772,641,488 个采样字节 (5.006%)</title><rect x="117.124495" y="433" width="61.2792684324" height="22" fill="hsl(181,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="121.124495" y="449" font-family="monospace" font-size="12" fill="#152430">FrameE…</text>
+</g>
+<g data-depth="51" data-weight="4444822912"><title>io.ominicat.core.SynchronousSink.accept — 4,444,822,912 个采样字节 (28.801%)</title><rect x="178.403764" y="433" width="352.525072222" height="22" fill="hsl(171,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="182.403764" y="449" font-family="monospace" font-size="12" fill="#152430">SynchronousSink.accept</text>
+</g>
+<g data-depth="52" data-weight="4444822912"><title>io.ominicat.core.Pipeline$$Lambda$133+0x00007fc334096030.284879437.accept — 4,444,822,912 个采样字节 (28.801%)</title><rect x="178.403764" y="409" width="352.525072222" height="22" fill="hsl(161,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="182.403764" y="425" font-family="monospace" font-size="12" fill="#152430">Pipeline$$Lambda$133.accept</text>
+</g>
+<g data-depth="53" data-weight="4444822912"><title>io.ominicat.core.Pipeline.lambda$dispatch$1 — 4,444,822,912 个采样字节 (28.801%)</title><rect x="178.403764" y="385" width="352.525072222" height="22" fill="hsl(174,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="182.403764" y="401" font-family="monospace" font-size="12" fill="#152430">Pipeline.lambda$dispatch$1</text>
+</g>
+<g data-depth="54" data-weight="4444822912"><title>io.ominicat.core.Pipeline.dispatch — 4,444,822,912 个采样字节 (28.801%)</title><rect x="178.403764" y="361" width="352.525072222" height="22" fill="hsl(172,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="182.403764" y="377" font-family="monospace" font-size="12" fill="#152430">Pipeline.dispatch</text>
+</g>
+<g data-depth="55" data-weight="3158097400"><title>io.ominicat.core.Pipeline.invoke — 3,158,097,400 个采样字节 (20.463%)</title><rect x="178.403764" y="337" width="250.473086569" height="22" fill="hsl(188,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="182.403764" y="353" font-family="monospace" font-size="12" fill="#152430">Pipeline.invoke</text>
+</g>
+<g data-depth="56" data-weight="3128246544"><title>io.ominicat.benchmarks.DirectStateProbe$Harness$1.process — 3,128,246,544 个采样字节 (20.270%)</title><rect x="178.403764" y="313" width="248.105573762" height="22" fill="hsl(171,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="182.403764" y="329" font-family="monospace" font-size="12" fill="#152430">DirectStateProbe$Harness$1.proc…</text>
+</g>
+<g data-depth="57" data-weight="3128246544"><title>io.ominicat.core.EnvelopeProcessor.process — 3,128,246,544 个采样字节 (20.270%)</title><rect x="178.403764" y="289" width="248.105573762" height="22" fill="hsl(183,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="182.403764" y="305" font-family="monospace" font-size="12" fill="#152430">EnvelopeProcessor.process</text>
+</g>
+<g data-depth="58" data-weight="2018007288"><title>io.ominicat.benchmarks.DirectStateProbe$Harness$$Lambda$126+0x00007fc334094c50.985300877.process — 2,018,007,288 个采样字节 (13.076%)</title><rect x="178.403764" y="265" width="160.050957942" height="22" fill="hsl(165,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="182.403764" y="281" font-family="monospace" font-size="12" fill="#152430">DirectStateProbe$Ha…</text>
+</g>
+<g data-depth="59" data-weight="2018007288"><title>io.ominicat.benchmarks.DirectStateProbe$Harness.lambda$new$4 — 2,018,007,288 个采样字节 (13.076%)</title><rect x="178.403764" y="241" width="160.050957942" height="22" fill="hsl(181,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="182.403764" y="257" font-family="monospace" font-size="12" fill="#152430">DirectStateProbe$Ha…</text>
+</g>
+<g data-depth="60" data-weight="844400616"><title>io.ominicat.core.SynchronousSink.accept — 844,400,616 个采样字节 (5.471%)</title><rect x="178.403764" y="217" width="66.970584438" height="22" fill="hsl(171,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="182.403764" y="233" font-family="monospace" font-size="12" fill="#152430">Synchro…</text>
+</g>
+<g data-depth="61" data-weight="844400616"><title>io.ominicat.core.EnvelopeProcessor$$Lambda$134+0x00007fc334096258.1201448536.accept — 844,400,616 个采样字节 (5.471%)</title><rect x="178.403764" y="193" width="66.970584438" height="22" fill="hsl(165,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="182.403764" y="209" font-family="monospace" font-size="12" fill="#152430">Envelop…</text>
+</g>
+<g data-depth="62" data-weight="844400616"><title>io.ominicat.core.EnvelopeProcessor.lambda$process$2 — 844,400,616 个采样字节 (5.471%)</title><rect x="178.403764" y="169" width="66.970584438" height="22" fill="hsl(185,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="182.403764" y="185" font-family="monospace" font-size="12" fill="#152430">Envelop…</text>
+</g>
+<g data-depth="63" data-weight="844400616"><title>io.ominicat.core.FrameEnvelope.derive — 844,400,616 个采样字节 (5.471%)</title><rect x="178.403764" y="145" width="66.970584438" height="22" fill="hsl(181,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="182.403764" y="161" font-family="monospace" font-size="12" fill="#152430">FrameEn…</text>
+</g>
+<g data-depth="58" data-weight="1110239256"><title>java.lang.invoke.Invokers$Holder.linkToTargetMethod — 1,110,239,256 个采样字节 (7.194%)</title><rect x="338.454722" y="265" width="88.0546158203" height="22" fill="hsl(174,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="342.454722" y="281" font-family="monospace" font-size="12" fill="#152430">Invokers$H…</text>
+</g>
+<g data-depth="59" data-weight="1110239256"><title>java.lang.invoke.DirectMethodHandle$Holder.newInvokeSpecial — 1,110,239,256 个采样字节 (7.194%)</title><rect x="338.454722" y="241" width="88.0546158203" height="22" fill="hsl(172,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="342.454722" y="257" font-family="monospace" font-size="12" fill="#152430">DirectMeth…</text>
+</g>
+<g data-depth="60" data-weight="1110239256"><title>java.lang.invoke.DirectMethodHandle.allocateInstance — 1,110,239,256 个采样字节 (7.194%)</title><rect x="338.454722" y="217" width="88.0546158203" height="22" fill="hsl(179,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="342.454722" y="233" font-family="monospace" font-size="12" fill="#152430">DirectMeth…</text>
+</g>
+<g data-depth="61" data-weight="1047408"><title>jdk.internal.misc.Unsafe.allocateInstance — 1,047,408 个采样字节 (0.007%)</title><rect x="338.454722" y="193" width="0.0830713817302" height="22" fill="hsl(183,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="55" data-weight="1286725512"><title>java.lang.invoke.LambdaForm$MH+0x00007fc33409b000.1799718115.linkToTargetMethod — 1,286,725,512 个采样字节 (8.338%)</title><rect x="428.87685" y="337" width="102.051985654" height="22" fill="hsl(174,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="432.87685" y="353" font-family="monospace" font-size="12" fill="#152430">LambdaForm$…</text>
+</g>
+<g data-depth="56" data-weight="1286725512"><title>java.lang.invoke.LambdaForm$DMH+0x00007fc33409a800.1051562392.newInvokeSpecial — 1,286,725,512 个采样字节 (8.338%)</title><rect x="428.87685" y="313" width="102.051985654" height="22" fill="hsl(167,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="432.87685" y="329" font-family="monospace" font-size="12" fill="#152430">LambdaForm$…</text>
+</g>
+<g data-depth="57" data-weight="1286725512"><title>java.lang.invoke.DirectMethodHandle.allocateInstance — 1,286,725,512 个采样字节 (8.338%)</title><rect x="428.87685" y="289" width="102.051985654" height="22" fill="hsl(179,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="432.87685" y="305" font-family="monospace" font-size="12" fill="#152430">DirectMetho…</text>
+</g>
+<g data-depth="46" data-weight="57083032"><title>java.lang.invoke.Invokers$Holder.linkToTargetMethod — 57,083,032 个采样字节 (0.370%)</title><rect x="530.928836" y="553" width="4.52733446908" height="22" fill="hsl(174,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="47" data-weight="57083032"><title>java.lang.invoke.DirectMethodHandle$Holder.newInvokeSpecial — 57,083,032 个采样字节 (0.370%)</title><rect x="530.928836" y="529" width="4.52733446908" height="22" fill="hsl(172,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="48" data-weight="57083032"><title>java.lang.invoke.DirectMethodHandle.allocateInstance — 57,083,032 个采样字节 (0.370%)</title><rect x="530.928836" y="505" width="4.52733446908" height="22" fill="hsl(179,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="34" data-weight="763027536"><title>java.lang.invoke.Invokers$Holder.linkToTargetMethod — 763,027,536 个采样字节 (4.944%)</title><rect x="718.003353" y="841" width="60.5167725602" height="22" fill="hsl(174,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="722.003353" y="857" font-family="monospace" font-size="12" fill="#152430">Invoke…</text>
+</g>
+<g data-depth="35" data-weight="763027536"><title>java.lang.invoke.DirectMethodHandle$Holder.newInvokeSpecial — 763,027,536 个采样字节 (4.944%)</title><rect x="718.003353" y="817" width="60.5167725602" height="22" fill="hsl(172,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="722.003353" y="833" font-family="monospace" font-size="12" fill="#152430">Direct…</text>
+</g>
+<g data-depth="36" data-weight="763027536"><title>java.lang.invoke.DirectMethodHandle.allocateInstance — 763,027,536 个采样字节 (4.944%)</title><rect x="718.003353" y="793" width="60.5167725602" height="22" fill="hsl(179,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="722.003353" y="809" font-family="monospace" font-size="12" fill="#152430">Direct…</text>
+</g>
+<g data-depth="31" data-weight="892904888"><title>java.lang.invoke.LambdaForm$MH+0x00007fc33409b000.1799718115.linkToTargetMethod — 892,904,888 个采样字节 (5.786%)</title><rect x="854.512172" y="913" width="70.8175255486" height="22" fill="hsl(174,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="858.512172" y="929" font-family="monospace" font-size="12" fill="#152430">LambdaF…</text>
+</g>
+<g data-depth="32" data-weight="892904888"><title>java.lang.invoke.LambdaForm$DMH+0x00007fc33409a800.1051562392.newInvokeSpecial — 892,904,888 个采样字节 (5.786%)</title><rect x="854.512172" y="889" width="70.8175255486" height="22" fill="hsl(167,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="858.512172" y="905" font-family="monospace" font-size="12" fill="#152430">LambdaF…</text>
+</g>
+<g data-depth="33" data-weight="892904888"><title>java.lang.invoke.DirectMethodHandle.allocateInstance — 892,904,888 个采样字节 (5.786%)</title><rect x="854.512172" y="865" width="70.8175255486" height="22" fill="hsl(179,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="858.512172" y="881" font-family="monospace" font-size="12" fill="#152430">DirectM…</text>
+</g>
+<g data-depth="22" data-weight="135113896"><title>java.lang.invoke.Invokers$Holder.linkToTargetMethod — 135,113,896 个采样字节 (0.875%)</title><rect x="925.329698" y="1129" width="10.7160705586" height="22" fill="hsl(174,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="23" data-weight="135113896"><title>java.lang.invoke.DirectMethodHandle$Holder.newInvokeSpecial — 135,113,896 个采样字节 (0.875%)</title><rect x="925.329698" y="1105" width="10.7160705586" height="22" fill="hsl(172,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="24" data-weight="135113896"><title>java.lang.invoke.DirectMethodHandle.allocateInstance — 135,113,896 个采样字节 (0.875%)</title><rect x="925.329698" y="1081" width="10.7160705586" height="22" fill="hsl(179,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="19" data-weight="413721288"><title>java.lang.invoke.LambdaForm$MH+0x00007fc33409b000.1799718115.linkToTargetMethod — 413,721,288 个采样字节 (2.681%)</title><rect x="1019.35527" y="1201" width="32.8128093784" height="22" fill="hsl(174,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="20" data-weight="413721288"><title>java.lang.invoke.LambdaForm$DMH+0x00007fc33409a800.1051562392.newInvokeSpecial — 413,721,288 个采样字节 (2.681%)</title><rect x="1019.35527" y="1177" width="32.8128093784" height="22" fill="hsl(167,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="21" data-weight="413721288"><title>java.lang.invoke.DirectMethodHandle.allocateInstance — 413,721,288 个采样字节 (2.681%)</title><rect x="1019.35527" y="1153" width="32.8128093784" height="22" fill="hsl(179,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="22" data-weight="1047352"><title>jdk.internal.misc.Unsafe.allocateInstance — 1,047,352 个采样字节 (0.007%)</title><rect x="1019.35527" y="1129" width="0.0830669402925" height="22" fill="hsl(183,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="17" data-weight="939513736"><title>java.lang.invoke.Invokers$Holder.linkToTargetMethod — 939,513,736 个采样字节 (6.088%)</title><rect x="1052.16808" y="1249" width="74.514137952" height="22" fill="hsl(174,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1056.16808" y="1265" font-family="monospace" font-size="12" fill="#152430">Invokers…</text>
+</g>
+<g data-depth="18" data-weight="939513736"><title>java.lang.invoke.LambdaForm$MH+0x00007fc334098000.1923580633.invoke — 939,513,736 个采样字节 (6.088%)</title><rect x="1052.16808" y="1225" width="74.514137952" height="22" fill="hsl(178,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1056.16808" y="1241" font-family="monospace" font-size="12" fill="#152430">LambdaFo…</text>
+</g>
+<g data-depth="19" data-weight="939513736"><title>java.lang.invoke.DirectMethodHandle$Holder.invokeStatic — 939,513,736 个采样字节 (6.088%)</title><rect x="1052.16808" y="1201" width="74.514137952" height="22" fill="hsl(169,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1056.16808" y="1217" font-family="monospace" font-size="12" fill="#152430">DirectMe…</text>
+</g>
+<g data-depth="20" data-weight="866719808"><title>java.lang.StringConcatHelper.newArray — 866,719,808 个采样字节 (5.616%)</title><rect x="1052.16808" y="1177" width="68.7407505227" height="22" fill="hsl(180,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1056.16808" y="1193" font-family="monospace" font-size="12" fill="#152430">StringC…</text>
+</g>
+<g data-depth="21" data-weight="866719808"><title>jdk.internal.misc.Unsafe.allocateUninitializedArray — 866,719,808 个采样字节 (5.616%)</title><rect x="1052.16808" y="1153" width="68.7407505227" height="22" fill="hsl(168,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1056.16808" y="1169" font-family="monospace" font-size="12" fill="#152430">Unsafe.…</text>
+</g>
+<g data-depth="20" data-weight="72793928"><title>java.lang.StringConcatHelper.newString — 72,793,928 个采样字节 (0.472%)</title><rect x="1120.90883" y="1177" width="5.77338742928" height="22" fill="hsl(187,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="17" data-weight="1107096936"><title>java.lang.invoke.LambdaForm$MH+0x00007fc33409a400.512224744.linkToTargetMethod — 1,107,096,936 个采样字节 (7.174%)</title><rect x="1126.68222" y="1249" width="87.8053940612" height="22" fill="hsl(188,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1130.68222" y="1265" font-family="monospace" font-size="12" fill="#152430">LambdaForm…</text>
+</g>
+<g data-depth="18" data-weight="1107096936"><title>java.lang.invoke.LambdaForm$MH+0x00007fc334099c00.1522201090.invoke — 1,107,096,936 个采样字节 (7.174%)</title><rect x="1126.68222" y="1225" width="87.8053940612" height="22" fill="hsl(169,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1130.68222" y="1241" font-family="monospace" font-size="12" fill="#152430">LambdaForm…</text>
+</g>
+<g data-depth="19" data-weight="1107096936"><title>java.lang.invoke.DirectMethodHandle$Holder.invokeStatic — 1,107,096,936 个采样字节 (7.174%)</title><rect x="1126.68222" y="1201" width="87.8053940612" height="22" fill="hsl(169,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1130.68222" y="1217" font-family="monospace" font-size="12" fill="#152430">DirectMeth…</text>
+</g>
+<g data-depth="20" data-weight="171772640"><title>java.lang.StringConcatHelper.newArray — 171,772,640 个采样字节 (1.113%)</title><rect x="1126.68222" y="1177" width="13.6235264083" height="22" fill="hsl(180,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="21" data-weight="171772640"><title>jdk.internal.misc.Unsafe.allocateUninitializedArray — 171,772,640 个采样字节 (1.113%)</title><rect x="1126.68222" y="1153" width="13.6235264083" height="22" fill="hsl(168,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="20" data-weight="935324296"><title>java.lang.StringConcatHelper.newString — 935,324,296 个采样字节 (6.061%)</title><rect x="1140.30575" y="1177" width="74.1818676529" height="22" fill="hsl(187,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="1144.30575" y="1193" font-family="monospace" font-size="12" fill="#152430">StringCo…</text>
+</g>
+<g data-depth="2" data-weight="24"><title>jdk.jfr.internal.PlatformRecorder$$Lambda$75+0x00007fc334042338.1353170030.run — 24 个采样字节 (0.000%)</title><rect x="1250.24943" y="1609" width="1.90347329935e-06" height="22" fill="hsl(166,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="3" data-weight="24"><title>jdk.jfr.internal.PlatformRecorder.lambda$startDiskMonitor$1 — 24 个采样字节 (0.000%)</title><rect x="1250.24943" y="1585" width="1.90347329935e-06" height="22" fill="hsl(191,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="4" data-weight="24"><title>jdk.jfr.internal.PlatformRecorder.periodicTask — 24 个采样字节 (0.000%)</title><rect x="1250.24943" y="1561" width="1.90347329935e-06" height="22" fill="hsl(191,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="5" data-weight="24"><title>jdk.jfr.internal.RequestEngine.doPeriodic — 24 个采样字节 (0.000%)</title><rect x="1250.24943" y="1537" width="1.90347329935e-06" height="22" fill="hsl(162,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="6" data-weight="24"><title>jdk.jfr.internal.RequestEngine.run_requests — 24 个采样字节 (0.000%)</title><rect x="1250.24943" y="1513" width="1.90347329935e-06" height="22" fill="hsl(171,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="7" data-weight="24"><title>java.util.concurrent.CopyOnWriteArrayList.iterator — 24 个采样字节 (0.000%)</title><rect x="1250.24943" y="1489" width="1.90347329935e-06" height="22" fill="hsl(182,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="1" data-weight="20180008"><title>jdk.jfr.internal.dcmd.AbstractDCmd.execute — 20,180,008 个采样字节 (0.131%)</title><rect x="1250.24943" y="1633" width="1.60050443369" height="22" fill="hsl(183,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="2" data-weight="20180008"><title>jdk.jfr.internal.dcmd.DCmdStart.execute — 20,180,008 个采样字节 (0.131%)</title><rect x="1250.24943" y="1609" width="1.60050443369" height="22" fill="hsl(184,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="3" data-weight="20180008"><title>jdk.jfr.Recording.start — 20,180,008 个采样字节 (0.131%)</title><rect x="1250.24943" y="1585" width="1.60050443369" height="22" fill="hsl(168,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="4" data-weight="20180008"><title>jdk.jfr.internal.PlatformRecording.start — 20,180,008 个采样字节 (0.131%)</title><rect x="1250.24943" y="1561" width="1.60050443369" height="22" fill="hsl(160,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="5" data-weight="20180008"><title>jdk.jfr.internal.PlatformRecorder.start — 20,180,008 个采样字节 (0.131%)</title><rect x="1250.24943" y="1537" width="1.60050443369" height="22" fill="hsl(167,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="6" data-weight="20180008"><title>jdk.jfr.internal.PlatformRecorder.writeMetaEvents — 20,180,008 个采样字节 (0.131%)</title><rect x="1250.24943" y="1513" width="1.60050443369" height="22" fill="hsl(167,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="7" data-weight="19784760"><title>jdk.jfr.events.ActiveRecordingEvent.commit — 19,784,760 个采样字节 (0.128%)</title><rect x="1250.24943" y="1489" width="1.56915676642" height="22" fill="hsl(188,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="8" data-weight="19784760"><title>jdk.jfr.internal.handlers.EventHandler1409_1793597531849-20856.write — 19,784,760 个采样字节 (0.128%)</title><rect x="1250.24943" y="1465" width="1.56915676642" height="22" fill="hsl(164,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="9" data-weight="19784760"><title>jdk.jfr.internal.EventWriter.putString — 19,784,760 个采样字节 (0.128%)</title><rect x="1250.24943" y="1441" width="1.56915676642" height="22" fill="hsl(178,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="10" data-weight="19784760"><title>jdk.jfr.internal.StringPool.addString — 19,784,760 个采样字节 (0.128%)</title><rect x="1250.24943" y="1417" width="1.56915676642" height="22" fill="hsl(190,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="11" data-weight="19784760"><title>jdk.jfr.internal.StringPool$SimpleStringIdPool.addString — 19,784,760 个采样字节 (0.128%)</title><rect x="1250.24943" y="1393" width="1.56915676642" height="22" fill="hsl(184,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="12" data-weight="19784760"><title>jdk.jfr.internal.StringPool$SimpleStringIdPool.storeString — 19,784,760 个采样字节 (0.128%)</title><rect x="1250.24943" y="1369" width="1.56915676642" height="22" fill="hsl(185,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="13" data-weight="19784760"><title>java.util.concurrent.ConcurrentHashMap.put — 19,784,760 个采样字节 (0.128%)</title><rect x="1250.24943" y="1345" width="1.56915676642" height="22" fill="hsl(170,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="14" data-weight="19784760"><title>java.util.concurrent.ConcurrentHashMap.putVal — 19,784,760 个采样字节 (0.128%)</title><rect x="1250.24943" y="1321" width="1.56915676642" height="22" fill="hsl(161,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="15" data-weight="19784760"><title>java.util.concurrent.ConcurrentHashMap.initTable — 19,784,760 个采样字节 (0.128%)</title><rect x="1250.24943" y="1297" width="1.56915676642" height="22" fill="hsl(167,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="7" data-weight="395248"><title>jdk.jfr.internal.EventControl.writeActiveSettingEvent — 395,248 个采样字节 (0.003%)</title><rect x="1251.81859" y="1489" width="0.0313476672759" height="22" fill="hsl(178,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="8" data-weight="389424"><title>java.util.ArrayList.iterator — 389,424 个采样字节 (0.003%)</title><rect x="1251.81859" y="1465" width="0.0308857577553" height="22" fill="hsl(167,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="1" data-weight="1892080"><title>org.openjdk.jmh.Main.main — 1,892,080 个采样字节 (0.012%)</title><rect x="1251.84994" y="1633" width="0.15006349001" height="22" fill="hsl(169,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="2" data-weight="774824"><title>java.lang.ClassLoader.loadClass — 774,824 个采样字节 (0.005%)</title><rect x="1251.84994" y="1609" width="0.0614523664873" height="22" fill="hsl(187,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="3" data-weight="774824"><title>jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass — 774,824 个采样字节 (0.005%)</title><rect x="1251.84994" y="1585" width="0.0614523664873" height="22" fill="hsl(171,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="4" data-weight="774824"><title>jdk.internal.loader.BuiltinClassLoader.loadClass — 774,824 个采样字节 (0.005%)</title><rect x="1251.84994" y="1561" width="0.0614523664873" height="22" fill="hsl(184,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="5" data-weight="774824"><title>jdk.internal.loader.BuiltinClassLoader.loadClassOrNull — 774,824 个采样字节 (0.005%)</title><rect x="1251.84994" y="1537" width="0.0614523664873" height="22" fill="hsl(188,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="6" data-weight="774824"><title>jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull — 774,824 个采样字节 (0.005%)</title><rect x="1251.84994" y="1513" width="0.0614523664873" height="22" fill="hsl(162,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="7" data-weight="774824"><title>jdk.internal.loader.BuiltinClassLoader.defineClass — 774,824 个采样字节 (0.005%)</title><rect x="1251.84994" y="1489" width="0.0614523664873" height="22" fill="hsl(164,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="8" data-weight="389384"><title>java.security.SecureClassLoader.defineClass — 389,384 个采样字节 (0.003%)</title><rect x="1251.84994" y="1465" width="0.0308825852998" height="22" fill="hsl(160,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="9" data-weight="389384"><title>java.lang.ClassLoader.defineClass — 389,384 个采样字节 (0.003%)</title><rect x="1251.84994" y="1441" width="0.0308825852998" height="22" fill="hsl(174,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="10" data-weight="389384"><title>java.lang.ClassLoader.defineClassSourceLocation — 389,384 个采样字节 (0.003%)</title><rect x="1251.84994" y="1417" width="0.0308825852998" height="22" fill="hsl(164,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="11" data-weight="389384"><title>java.net.URL.toString — 389,384 个采样字节 (0.003%)</title><rect x="1251.84994" y="1393" width="0.0308825852998" height="22" fill="hsl(180,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="12" data-weight="389384"><title>java.net.URL.toExternalForm — 389,384 个采样字节 (0.003%)</title><rect x="1251.84994" y="1369" width="0.0308825852998" height="22" fill="hsl(171,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="13" data-weight="389384"><title>java.net.URLStreamHandler.toExternalForm — 389,384 个采样字节 (0.003%)</title><rect x="1251.84994" y="1345" width="0.0308825852998" height="22" fill="hsl(180,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="14" data-weight="389384"><title>java.lang.StringBuilder.append — 389,384 个采样字节 (0.003%)</title><rect x="1251.84994" y="1321" width="0.0308825852998" height="22" fill="hsl(171,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="15" data-weight="389384"><title>java.lang.AbstractStringBuilder.append — 389,384 个采样字节 (0.003%)</title><rect x="1251.84994" y="1297" width="0.0308825852998" height="22" fill="hsl(163,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="16" data-weight="389384"><title>java.lang.AbstractStringBuilder.ensureCapacityInternal — 389,384 个采样字节 (0.003%)</title><rect x="1251.84994" y="1273" width="0.0308825852998" height="22" fill="hsl(169,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="17" data-weight="389384"><title>java.util.Arrays.copyOf — 389,384 个采样字节 (0.003%)</title><rect x="1251.84994" y="1249" width="0.0308825852998" height="22" fill="hsl(175,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="8" data-weight="385440"><title>jdk.internal.loader.URLClassPath$JarLoader$2.getBytes — 385,440 个采样字节 (0.002%)</title><rect x="1251.88082" y="1465" width="0.0305697811876" height="22" fill="hsl(178,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="9" data-weight="385440"><title>jdk.internal.loader.Resource.getBytes — 385,440 个采样字节 (0.002%)</title><rect x="1251.88082" y="1441" width="0.0305697811876" height="22" fill="hsl(179,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="10" data-weight="385440"><title>java.util.Arrays.copyOf — 385,440 个采样字节 (0.002%)</title><rect x="1251.88082" y="1417" width="0.0305697811876" height="22" fill="hsl(175,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="2" data-weight="659816"><title>org.openjdk.jmh.runner.Runner.run — 659,816 个采样字节 (0.004%)</title><rect x="1251.91139" y="1609" width="0.0523309224368" height="22" fill="hsl(179,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="3" data-weight="659816"><title>org.openjdk.jmh.runner.Runner.internalRun — 659,816 个采样字节 (0.004%)</title><rect x="1251.91139" y="1585" width="0.0523309224368" height="22" fill="hsl(186,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="4" data-weight="420408"><title>java.lang.ClassLoader.loadClass — 420,408 个采样字节 (0.003%)</title><rect x="1251.91139" y="1561" width="0.0333431417847" height="22" fill="hsl(187,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="5" data-weight="420408"><title>jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass — 420,408 个采样字节 (0.003%)</title><rect x="1251.91139" y="1537" width="0.0333431417847" height="22" fill="hsl(171,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="6" data-weight="420408"><title>jdk.internal.loader.BuiltinClassLoader.loadClass — 420,408 个采样字节 (0.003%)</title><rect x="1251.91139" y="1513" width="0.0333431417847" height="22" fill="hsl(184,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="7" data-weight="420408"><title>jdk.internal.loader.BuiltinClassLoader.loadClassOrNull — 420,408 个采样字节 (0.003%)</title><rect x="1251.91139" y="1489" width="0.0333431417847" height="22" fill="hsl(188,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="8" data-weight="420408"><title>jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull — 420,408 个采样字节 (0.003%)</title><rect x="1251.91139" y="1465" width="0.0333431417847" height="22" fill="hsl(162,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="9" data-weight="420408"><title>jdk.internal.loader.BuiltinClassLoader.defineClass — 420,408 个采样字节 (0.003%)</title><rect x="1251.91139" y="1441" width="0.0333431417847" height="22" fill="hsl(164,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="10" data-weight="420408"><title>jdk.internal.loader.URLClassPath$JarLoader$2.getBytes — 420,408 个采样字节 (0.003%)</title><rect x="1251.91139" y="1417" width="0.0333431417847" height="22" fill="hsl(178,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="11" data-weight="420408"><title>jdk.internal.loader.Resource.getBytes — 420,408 个采样字节 (0.003%)</title><rect x="1251.91139" y="1393" width="0.0333431417847" height="22" fill="hsl(179,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="12" data-weight="420408"><title>java.util.Arrays.copyOf — 420,408 个采样字节 (0.003%)</title><rect x="1251.91139" y="1369" width="0.0333431417847" height="22" fill="hsl(175,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="4" data-weight="239408"><title>org.openjdk.jmh.profile.ProfilerFactory.&lt;clinit&gt; — 239,408 个采样字节 (0.002%)</title><rect x="1251.94473" y="1561" width="0.0189877806521" height="22" fill="hsl(178,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="5" data-weight="239408"><title>java.lang.ClassLoader.loadClass — 239,408 个采样字节 (0.002%)</title><rect x="1251.94473" y="1537" width="0.0189877806521" height="22" fill="hsl(187,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="6" data-weight="239408"><title>jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass — 239,408 个采样字节 (0.002%)</title><rect x="1251.94473" y="1513" width="0.0189877806521" height="22" fill="hsl(171,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="7" data-weight="239408"><title>jdk.internal.loader.BuiltinClassLoader.loadClass — 239,408 个采样字节 (0.002%)</title><rect x="1251.94473" y="1489" width="0.0189877806521" height="22" fill="hsl(184,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="8" data-weight="239408"><title>jdk.internal.loader.BuiltinClassLoader.loadClassOrNull — 239,408 个采样字节 (0.002%)</title><rect x="1251.94473" y="1465" width="0.0189877806521" height="22" fill="hsl(188,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="9" data-weight="239408"><title>jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull — 239,408 个采样字节 (0.002%)</title><rect x="1251.94473" y="1441" width="0.0189877806521" height="22" fill="hsl(162,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="10" data-weight="239408"><title>jdk.internal.loader.BuiltinClassLoader.defineClass — 239,408 个采样字节 (0.002%)</title><rect x="1251.94473" y="1417" width="0.0189877806521" height="22" fill="hsl(164,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="11" data-weight="239408"><title>jdk.internal.loader.Resource.getByteBuffer — 239,408 个采样字节 (0.002%)</title><rect x="1251.94473" y="1393" width="0.0189877806521" height="22" fill="hsl(173,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="12" data-weight="239408"><title>jdk.internal.loader.Resource.cachedInputStream — 239,408 个采样字节 (0.002%)</title><rect x="1251.94473" y="1369" width="0.0189877806521" height="22" fill="hsl(162,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="13" data-weight="239408"><title>jdk.internal.loader.URLClassPath$JarLoader$2.getInputStream — 239,408 个采样字节 (0.002%)</title><rect x="1251.94473" y="1345" width="0.0189877806521" height="22" fill="hsl(180,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="14" data-weight="239408"><title>java.util.jar.JarFile.getInputStream — 239,408 个采样字节 (0.002%)</title><rect x="1251.94473" y="1321" width="0.0189877806521" height="22" fill="hsl(171,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="15" data-weight="239408"><title>java.util.zip.ZipFile.getInputStream — 239,408 个采样字节 (0.002%)</title><rect x="1251.94473" y="1297" width="0.0189877806521" height="22" fill="hsl(191,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="16" data-weight="239408"><title>java.util.zip.ZipFile$ZipFileInflaterInputStream.&lt;init&gt; — 239,408 个采样字节 (0.002%)</title><rect x="1251.94473" y="1273" width="0.0189877806521" height="22" fill="hsl(178,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="17" data-weight="239408"><title>java.util.zip.ZipFile$ZipFileInflaterInputStream.&lt;init&gt; — 239,408 个采样字节 (0.002%)</title><rect x="1251.94473" y="1249" width="0.0189877806521" height="22" fill="hsl(178,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="2" data-weight="457440"><title>org.openjdk.jmh.runner.options.CommandLineOptions.&lt;init&gt; — 457,440 个采样字节 (0.003%)</title><rect x="1251.96372" y="1609" width="0.0362802010856" height="22" fill="hsl(188,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="3" data-weight="388848"><title>joptsimple.OptionParser.accepts — 388,848 个采样字节 (0.003%)</title><rect x="1251.96372" y="1585" width="0.0308400743961" height="22" fill="hsl(169,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="4" data-weight="388848"><title>joptsimple.OptionParser.acceptsAll — 388,848 个采样字节 (0.003%)</title><rect x="1251.96372" y="1561" width="0.0308400743961" height="22" fill="hsl(164,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="5" data-weight="388848"><title>java.lang.ClassLoader.loadClass — 388,848 个采样字节 (0.003%)</title><rect x="1251.96372" y="1537" width="0.0308400743961" height="22" fill="hsl(187,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="6" data-weight="388848"><title>jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass — 388,848 个采样字节 (0.003%)</title><rect x="1251.96372" y="1513" width="0.0308400743961" height="22" fill="hsl(171,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="7" data-weight="388848"><title>jdk.internal.loader.BuiltinClassLoader.loadClass — 388,848 个采样字节 (0.003%)</title><rect x="1251.96372" y="1489" width="0.0308400743961" height="22" fill="hsl(184,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="8" data-weight="388848"><title>jdk.internal.loader.BuiltinClassLoader.loadClassOrNull — 388,848 个采样字节 (0.003%)</title><rect x="1251.96372" y="1465" width="0.0308400743961" height="22" fill="hsl(188,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="9" data-weight="388848"><title>jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull — 388,848 个采样字节 (0.003%)</title><rect x="1251.96372" y="1441" width="0.0308400743961" height="22" fill="hsl(162,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="10" data-weight="388848"><title>jdk.internal.loader.BuiltinClassLoader.defineClass — 388,848 个采样字节 (0.003%)</title><rect x="1251.96372" y="1417" width="0.0308400743961" height="22" fill="hsl(164,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="11" data-weight="388848"><title>jdk.internal.loader.Resource.getByteBuffer — 388,848 个采样字节 (0.003%)</title><rect x="1251.96372" y="1393" width="0.0308400743961" height="22" fill="hsl(173,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="12" data-weight="388848"><title>jdk.internal.loader.Resource.cachedInputStream — 388,848 个采样字节 (0.003%)</title><rect x="1251.96372" y="1369" width="0.0308400743961" height="22" fill="hsl(162,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="13" data-weight="388848"><title>jdk.internal.loader.URLClassPath$JarLoader$2.getInputStream — 388,848 个采样字节 (0.003%)</title><rect x="1251.96372" y="1345" width="0.0308400743961" height="22" fill="hsl(180,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="14" data-weight="388848"><title>java.util.jar.JarFile.getInputStream — 388,848 个采样字节 (0.003%)</title><rect x="1251.96372" y="1321" width="0.0308400743961" height="22" fill="hsl(171,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="15" data-weight="388848"><title>java.util.zip.ZipFile.getInputStream — 388,848 个采样字节 (0.003%)</title><rect x="1251.96372" y="1297" width="0.0308400743961" height="22" fill="hsl(191,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="16" data-weight="388848"><title>java.util.zip.ZipFile$ZipFileInflaterInputStream.&lt;init&gt; — 388,848 个采样字节 (0.003%)</title><rect x="1251.96372" y="1273" width="0.0308400743961" height="22" fill="hsl(178,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="17" data-weight="388848"><title>java.util.zip.ZipFile$ZipFileInflaterInputStream.&lt;init&gt; — 388,848 个采样字节 (0.003%)</title><rect x="1251.96372" y="1249" width="0.0308400743961" height="22" fill="hsl(178,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="18" data-weight="388848"><title>java.util.zip.InflaterInputStream.&lt;init&gt; — 388,848 个采样字节 (0.003%)</title><rect x="1251.96372" y="1225" width="0.0308400743961" height="22" fill="hsl(161,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="3" data-weight="68592"><title>joptsimple.OptionSpecBuilder.withRequiredArg — 68,592 个采样字节 (0.000%)</title><rect x="1251.99456" y="1585" width="0.00544012668954" height="22" fill="hsl(177,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="4" data-weight="68592"><title>joptsimple.RequiredArgumentOptionSpec.&lt;init&gt; — 68,592 个采样字节 (0.000%)</title><rect x="1251.99456" y="1561" width="0.00544012668954" height="22" fill="hsl(162,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<g data-depth="5" data-weight="68592"><title>joptsimple.ArgumentAcceptingOptionSpec.&lt;init&gt; — 68,592 个采样字节 (0.000%)</title><rect x="1251.99456" y="1537" width="0.00544012668954" height="22" fill="hsl(189,68%,66%)" stroke="#101e28" stroke-width="0" />
+</g>
+<metadata id="ominicat-locale-source">{"geometrySha256": "35775cab2b33ab233cde69ab0c4924bf9c22e37c6c3e9ee9476047f9969abc22", "language": "zh-CN", "recoveredGlyphLabels": 0, "sha256": "c8499db086d3d7a84844a40052e59eafaab51a7e19c124ac58817a298388ca29", "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/baseline-envelope-direct-4/allocation-flamegraph.svg"}</metadata></svg>

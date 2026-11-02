@@ -1,0 +1,330 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="1553" viewBox="0 0 1280 1553" role="img" xml:lang="zh-CN">
+<title>CPU 采样调用栈</title><desc>宽度：样本数。覆盖选定 JFR 导出全集，包含预热与测量驱动。</desc>
+<rect width="1280" height="1553" fill="#101e28" />
+<text x="28" y="34" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" font-size="22" fill="#f2eee1" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">CPU 采样调用栈</text>
+<text x="28" y="61" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" font-size="13" fill="#b8cbd1" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">宽度：样本数。覆盖选定 JFR 导出全集，包含预热与测量驱动。</text>
+<text x="28" y="86" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" font-size="13" fill="#b8cbd1" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">353 个事件；样本总计 353；观测栈深 56；来源标记截断栈 0。</text>
+<text x="28" y="109" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" font-size="13" fill="#b8cbd1" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">保留所有正权重的已提供栈帧；直接打开 SVG 可查看提示与缩放。</text>
+<text x="28" y="130" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" font-size="12" fill="#b8cbd1" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">不可用调用栈：0；零权重事件：0。不能从观测深度推断导出/记录上限。</text>
+<g data-depth="0" data-weight="353"><title>全部样本 — 353 个样本 (100.000%)</title><rect x="28" y="1489" width="1224" height="22" fill="#38576b" stroke="#101e28" stroke-width="0.35" />
+<text x="32" y="1505" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" font-size="12" fill="#f2eee1" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">全部样本</text>
+</g>
+<g data-depth="1" data-weight="1"><title>java.lang.CharacterData00.&lt;clinit&gt; — 1 个样本 (0.283%)</title><rect x="28" y="1465" width="3.46742209632" height="22" fill="hsl(23,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="1" data-weight="352"><title>java.lang.Thread.run — 352 个样本 (99.717%)</title><rect x="31.4674221" y="1465" width="1220.5325779" height="22" fill="hsl(18,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="35.4674221" y="1481" font-family="monospace" font-size="12" fill="#152430">Thread.run</text>
+</g>
+<g data-depth="2" data-weight="352"><title>java.util.concurrent.ThreadPoolExecutor$Worker.run — 352 个样本 (99.717%)</title><rect x="31.4674221" y="1441" width="1220.5325779" height="22" fill="hsl(40,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="35.4674221" y="1457" font-family="monospace" font-size="12" fill="#152430">ThreadPoolExecutor$Worker.run</text>
+</g>
+<g data-depth="3" data-weight="352"><title>java.util.concurrent.ThreadPoolExecutor.runWorker — 352 个样本 (99.717%)</title><rect x="31.4674221" y="1417" width="1220.5325779" height="22" fill="hsl(22,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="35.4674221" y="1433" font-family="monospace" font-size="12" fill="#152430">ThreadPoolExecutor.runWorker</text>
+</g>
+<g data-depth="4" data-weight="352"><title>java.util.concurrent.FutureTask.run — 352 个样本 (99.717%)</title><rect x="31.4674221" y="1393" width="1220.5325779" height="22" fill="hsl(43,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="35.4674221" y="1409" font-family="monospace" font-size="12" fill="#152430">FutureTask.run</text>
+</g>
+<g data-depth="5" data-weight="352"><title>java.util.concurrent.Executors$RunnableAdapter.call — 352 个样本 (99.717%)</title><rect x="31.4674221" y="1369" width="1220.5325779" height="22" fill="hsl(27,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="35.4674221" y="1385" font-family="monospace" font-size="12" fill="#152430">Executors$RunnableAdapter.call</text>
+</g>
+<g data-depth="6" data-weight="352"><title>java.util.concurrent.FutureTask.run — 352 个样本 (99.717%)</title><rect x="31.4674221" y="1345" width="1220.5325779" height="22" fill="hsl(43,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="35.4674221" y="1361" font-family="monospace" font-size="12" fill="#152430">FutureTask.run</text>
+</g>
+<g data-depth="7" data-weight="352"><title>org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call — 352 个样本 (99.717%)</title><rect x="31.4674221" y="1321" width="1220.5325779" height="22" fill="hsl(44,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="35.4674221" y="1337" font-family="monospace" font-size="12" fill="#152430">BenchmarkHandler$BenchmarkTask.call</text>
+</g>
+<g data-depth="8" data-weight="352"><title>org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call — 352 个样本 (99.717%)</title><rect x="31.4674221" y="1297" width="1220.5325779" height="22" fill="hsl(44,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="35.4674221" y="1313" font-family="monospace" font-size="12" fill="#152430">BenchmarkHandler$BenchmarkTask.call</text>
+</g>
+<g data-depth="9" data-weight="352"><title>java.lang.reflect.Method.invoke — 352 个样本 (99.717%)</title><rect x="31.4674221" y="1273" width="1220.5325779" height="22" fill="hsl(36,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="35.4674221" y="1289" font-family="monospace" font-size="12" fill="#152430">Method.invoke</text>
+</g>
+<g data-depth="10" data-weight="352"><title>jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke — 352 个样本 (99.717%)</title><rect x="31.4674221" y="1249" width="1220.5325779" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="35.4674221" y="1265" font-family="monospace" font-size="12" fill="#152430">DelegatingMethodAccessorImpl.invoke</text>
+</g>
+<g data-depth="11" data-weight="352"><title>jdk.internal.reflect.NativeMethodAccessorImpl.invoke — 352 个样本 (99.717%)</title><rect x="31.4674221" y="1225" width="1220.5325779" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="35.4674221" y="1241" font-family="monospace" font-size="12" fill="#152430">NativeMethodAccessorImpl.invoke</text>
+</g>
+<g data-depth="12" data-weight="352"><title>jdk.internal.reflect.NativeMethodAccessorImpl.invoke0 — 352 个样本 (99.717%)</title><rect x="31.4674221" y="1201" width="1220.5325779" height="22" fill="hsl(44,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="35.4674221" y="1217" font-family="monospace" font-size="12" fill="#152430">NativeMethodAccessorImpl.invoke0</text>
+</g>
+<g data-depth="13" data-weight="352"><title>io.ominicat.benchmarks.jmh_generated.DirectStateProbe_invoke_jmhTest.invoke_AverageTime — 352 个样本 (99.717%)</title><rect x="31.4674221" y="1177" width="1220.5325779" height="22" fill="hsl(22,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="35.4674221" y="1193" font-family="monospace" font-size="12" fill="#152430">DirectStateProbe_invoke_jmhTest.invoke_AverageTime</text>
+</g>
+<g data-depth="14" data-weight="3"><title>io.ominicat.benchmarks.jmh_generated.DirectStateProbe_invoke_jmhTest._jmh_tryInit_f_directstateprobe0_0 — 3 个样本 (0.850%)</title><rect x="31.4674221" y="1153" width="10.402266289" height="22" fill="hsl(47,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="15" data-weight="3"><title>io.ominicat.benchmarks.DirectStateProbe.setup — 3 个样本 (0.850%)</title><rect x="31.4674221" y="1129" width="10.402266289" height="22" fill="hsl(45,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="16" data-weight="3"><title>io.ominicat.benchmarks.DirectStateProbe.verifyConfiguredOrigins — 3 个样本 (0.850%)</title><rect x="31.4674221" y="1105" width="10.402266289" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="17" data-weight="3"><title>io.ominicat.benchmarks.DirectStateProbe.verifyArtifact — 3 个样本 (0.850%)</title><rect x="31.4674221" y="1081" width="10.402266289" height="22" fill="hsl(48,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="18" data-weight="3"><title>java.security.MessageDigest.update — 3 个样本 (0.850%)</title><rect x="31.4674221" y="1057" width="10.402266289" height="22" fill="hsl(25,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="19" data-weight="3"><title>java.security.MessageDigest$Delegate.engineUpdate — 3 个样本 (0.850%)</title><rect x="31.4674221" y="1033" width="10.402266289" height="22" fill="hsl(47,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="20" data-weight="3"><title>sun.security.provider.DigestBase.engineUpdate — 3 个样本 (0.850%)</title><rect x="31.4674221" y="1009" width="10.402266289" height="22" fill="hsl(39,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="21" data-weight="3"><title>sun.security.provider.DigestBase.implCompressMultiBlock — 3 个样本 (0.850%)</title><rect x="31.4674221" y="985" width="10.402266289" height="22" fill="hsl(36,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="22" data-weight="3"><title>sun.security.provider.DigestBase.implCompressMultiBlock0 — 3 个样本 (0.850%)</title><rect x="31.4674221" y="961" width="10.402266289" height="22" fill="hsl(19,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="23" data-weight="3"><title>sun.security.provider.SHA2.implCompress — 3 个样本 (0.850%)</title><rect x="31.4674221" y="937" width="10.402266289" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="24" data-weight="3"><title>sun.security.provider.SHA2.implCompress0 — 3 个样本 (0.850%)</title><rect x="31.4674221" y="913" width="10.402266289" height="22" fill="hsl(28,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="25" data-weight="1"><title>sun.security.provider.ByteArrayAccess.b2iBig64 — 1 个样本 (0.283%)</title><rect x="31.4674221" y="889" width="3.46742209632" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="26" data-weight="1"><title>java.lang.invoke.VarHandleGuards.guard_LI_I — 1 个样本 (0.283%)</title><rect x="31.4674221" y="865" width="3.46742209632" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="27" data-weight="1"><title>java.lang.invoke.VarHandleByteArrayAsInts$ArrayHandle.get — 1 个样本 (0.283%)</title><rect x="31.4674221" y="841" width="3.46742209632" height="22" fill="hsl(30,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="28" data-weight="1"><title>jdk.internal.misc.Unsafe.getIntUnaligned — 1 个样本 (0.283%)</title><rect x="31.4674221" y="817" width="3.46742209632" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="14" data-weight="349"><title>io.ominicat.benchmarks.jmh_generated.DirectStateProbe_invoke_jmhTest.invoke_avgt_jmhStub — 349 个样本 (98.867%)</title><rect x="41.8696884" y="1153" width="1210.13031161" height="22" fill="hsl(49,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="45.8696884" y="1169" font-family="monospace" font-size="12" fill="#152430">DirectStateProbe_invoke_jmhTest.invoke_avgt_jmhStub</text>
+</g>
+<g data-depth="15" data-weight="349"><title>io.ominicat.benchmarks.DirectStateProbe.invoke — 349 个样本 (98.867%)</title><rect x="41.8696884" y="1129" width="1210.13031161" height="22" fill="hsl(34,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="45.8696884" y="1145" font-family="monospace" font-size="12" fill="#152430">DirectStateProbe.invoke</text>
+</g>
+<g data-depth="16" data-weight="347"><title>io.ominicat.benchmarks.DirectStateProbe$Harness.invoke — 347 个样本 (98.300%)</title><rect x="41.8696884" y="1105" width="1203.19546742" height="22" fill="hsl(39,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="45.8696884" y="1121" font-family="monospace" font-size="12" fill="#152430">DirectStateProbe$Harness.invoke</text>
+</g>
+<g data-depth="17" data-weight="9"><title>io.ominicat.core.FrameEnvelope.&lt;init&gt; — 9 个样本 (2.550%)</title><rect x="41.8696884" y="1081" width="31.2067988669" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="17" data-weight="197"><title>io.ominicat.core.Pipeline.process — 197 个样本 (55.807%)</title><rect x="73.0764873" y="1081" width="683.082152975" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="77.0764873" y="1097" font-family="monospace" font-size="12" fill="#152430">Pipeline.process</text>
+</g>
+<g data-depth="18" data-weight="197"><title>io.ominicat.core.Pipeline.dispatch — 197 个样本 (55.807%)</title><rect x="73.0764873" y="1057" width="683.082152975" height="22" fill="hsl(30,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="77.0764873" y="1073" font-family="monospace" font-size="12" fill="#152430">Pipeline.dispatch</text>
+</g>
+<g data-depth="19" data-weight="1"><title>io.ominicat.benchmarks.DirectStateProbe$Harness$$Lambda$125+0x00007ffa38094c70.857831642.accept — 1 个样本 (0.283%)</title><rect x="73.0764873" y="1033" width="3.46742209632" height="22" fill="hsl(27,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="20" data-weight="1"><title>io.ominicat.benchmarks.DirectStateProbe$Harness.acceptOutput — 1 个样本 (0.283%)</title><rect x="73.0764873" y="1009" width="3.46742209632" height="22" fill="hsl(22,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="19" data-weight="196"><title>io.ominicat.benchmarks.DirectStateProbe$Harness$1.process — 196 个样本 (55.524%)</title><rect x="76.5439093" y="1033" width="679.614730878" height="22" fill="hsl(29,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="80.5439093" y="1049" font-family="monospace" font-size="12" fill="#152430">DirectStateProbe$Harness$1.process</text>
+</g>
+<g data-depth="20" data-weight="196"><title>io.ominicat.core.EnvelopeProcessor.process — 196 个样本 (55.524%)</title><rect x="76.5439093" y="1009" width="679.614730878" height="22" fill="hsl(41,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="80.5439093" y="1025" font-family="monospace" font-size="12" fill="#152430">EnvelopeProcessor.process</text>
+</g>
+<g data-depth="21" data-weight="196"><title>io.ominicat.benchmarks.DirectStateProbe$Harness$$Lambda$126+0x00007ffa38094e98.485300020.process — 196 个样本 (55.524%)</title><rect x="76.5439093" y="985" width="679.614730878" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="80.5439093" y="1001" font-family="monospace" font-size="12" fill="#152430">DirectStateProbe$Harness$$Lambda$126.process</text>
+</g>
+<g data-depth="22" data-weight="196"><title>io.ominicat.benchmarks.DirectStateProbe$Harness.lambda$new$4 — 196 个样本 (55.524%)</title><rect x="76.5439093" y="961" width="679.614730878" height="22" fill="hsl(39,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="80.5439093" y="977" font-family="monospace" font-size="12" fill="#152430">DirectStateProbe$Harness.lambda$new$4</text>
+</g>
+<g data-depth="23" data-weight="196"><title>io.ominicat.core.SynchronousSink.accept — 196 个样本 (55.524%)</title><rect x="76.5439093" y="937" width="679.614730878" height="22" fill="hsl(29,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="80.5439093" y="953" font-family="monospace" font-size="12" fill="#152430">SynchronousSink.accept</text>
+</g>
+<g data-depth="24" data-weight="196"><title>io.ominicat.core.EnvelopeProcessor$$Lambda$133+0x00007ffa38096278.2119816728.accept — 196 个样本 (55.524%)</title><rect x="76.5439093" y="913" width="679.614730878" height="22" fill="hsl(19,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="80.5439093" y="929" font-family="monospace" font-size="12" fill="#152430">EnvelopeProcessor$$Lambda$133.accept</text>
+</g>
+<g data-depth="25" data-weight="196"><title>io.ominicat.core.EnvelopeProcessor.lambda$process$2 — 196 个样本 (55.524%)</title><rect x="76.5439093" y="889" width="679.614730878" height="22" fill="hsl(43,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="80.5439093" y="905" font-family="monospace" font-size="12" fill="#152430">EnvelopeProcessor.lambda$process$2</text>
+</g>
+<g data-depth="26" data-weight="46"><title>io.ominicat.core.FrameEnvelope.derive — 46 个样本 (13.031%)</title><rect x="76.5439093" y="865" width="159.501416431" height="22" fill="hsl(39,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="80.5439093" y="881" font-family="monospace" font-size="12" fill="#152430">FrameEnvelope.derive</text>
+</g>
+<g data-depth="27" data-weight="14"><title>io.ominicat.core.FrameEnvelope.&lt;init&gt; — 14 个样本 (3.966%)</title><rect x="76.5439093" y="841" width="48.5439093484" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="80.5439093" y="857" font-family="monospace" font-size="12" fill="#152430">Fram…</text>
+</g>
+<g data-depth="26" data-weight="150"><title>io.ominicat.core.Pipeline$DirectInvocation.accept — 150 个样本 (42.493%)</title><rect x="236.045326" y="865" width="520.113314448" height="22" fill="hsl(27,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="240.045326" y="881" font-family="monospace" font-size="12" fill="#152430">Pipeline$DirectInvocation.accept</text>
+</g>
+<g data-depth="27" data-weight="150"><title>io.ominicat.core.Pipeline.dispatch — 150 个样本 (42.493%)</title><rect x="236.045326" y="841" width="520.113314448" height="22" fill="hsl(30,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="240.045326" y="857" font-family="monospace" font-size="12" fill="#152430">Pipeline.dispatch</text>
+</g>
+<g data-depth="28" data-weight="2"><title>io.ominicat.benchmarks.DirectStateProbe$Harness$$Lambda$125+0x00007ffa38094c70.857831642.accept — 2 个样本 (0.567%)</title><rect x="236.045326" y="817" width="6.93484419263" height="22" fill="hsl(27,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="29" data-weight="2"><title>io.ominicat.benchmarks.DirectStateProbe$Harness.acceptOutput — 2 个样本 (0.567%)</title><rect x="236.045326" y="793" width="6.93484419263" height="22" fill="hsl(22,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="30" data-weight="2"><title>io.ominicat.benchmarks.DirectStateProbe$Harness.checkEnvelope — 2 个样本 (0.567%)</title><rect x="236.045326" y="769" width="6.93484419263" height="22" fill="hsl(19,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="31" data-weight="2"><title>io.ominicat.benchmarks.DirectStateProbe$Harness.checkNumeric — 2 个样本 (0.567%)</title><rect x="236.045326" y="745" width="6.93484419263" height="22" fill="hsl(32,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="32" data-weight="2"><title>io.ominicat.benchmarks.DirectStateProbe$Harness.expected — 2 个样本 (0.567%)</title><rect x="236.045326" y="721" width="6.93484419263" height="22" fill="hsl(42,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="28" data-weight="148"><title>io.ominicat.benchmarks.DirectStateProbe$Harness$1.process — 148 个样本 (41.926%)</title><rect x="242.98017" y="817" width="513.178470255" height="22" fill="hsl(29,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="246.98017" y="833" font-family="monospace" font-size="12" fill="#152430">DirectStateProbe$Harness$1.process</text>
+</g>
+<g data-depth="29" data-weight="148"><title>io.ominicat.core.EnvelopeProcessor.process — 148 个样本 (41.926%)</title><rect x="242.98017" y="793" width="513.178470255" height="22" fill="hsl(41,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="246.98017" y="809" font-family="monospace" font-size="12" fill="#152430">EnvelopeProcessor.process</text>
+</g>
+<g data-depth="30" data-weight="148"><title>io.ominicat.benchmarks.DirectStateProbe$Harness$$Lambda$126+0x00007ffa38094e98.485300020.process — 148 个样本 (41.926%)</title><rect x="242.98017" y="769" width="513.178470255" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="246.98017" y="785" font-family="monospace" font-size="12" fill="#152430">DirectStateProbe$Harness$$Lambda$126.process</text>
+</g>
+<g data-depth="31" data-weight="148"><title>io.ominicat.benchmarks.DirectStateProbe$Harness.lambda$new$4 — 148 个样本 (41.926%)</title><rect x="242.98017" y="745" width="513.178470255" height="22" fill="hsl(39,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="246.98017" y="761" font-family="monospace" font-size="12" fill="#152430">DirectStateProbe$Harness.lambda$new$4</text>
+</g>
+<g data-depth="32" data-weight="13"><title>io.ominicat.benchmarks.DirectStateProbe$Harness.enterStage — 13 个样本 (3.683%)</title><rect x="242.98017" y="721" width="45.0764872521" height="22" fill="hsl(18,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="246.98017" y="737" font-family="monospace" font-size="12" fill="#152430">Dire…</text>
+</g>
+<g data-depth="33" data-weight="1"><title>io.ominicat.benchmarks.DirectStateProbe$Harness.checkNumeric — 1 个样本 (0.283%)</title><rect x="242.98017" y="697" width="3.46742209632" height="22" fill="hsl(32,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="34" data-weight="1"><title>io.ominicat.benchmarks.DirectStateProbe$Harness.expected — 1 个样本 (0.283%)</title><rect x="242.98017" y="673" width="3.46742209632" height="22" fill="hsl(42,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="33" data-weight="1"><title>io.ominicat.benchmarks.DirectStateProbe$Harness.checkThread — 1 个样本 (0.283%)</title><rect x="246.447592" y="697" width="3.46742209632" height="22" fill="hsl(44,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="32" data-weight="2"><title>io.ominicat.benchmarks.DirectStateProbe$Value.&lt;init&gt; — 2 个样本 (0.567%)</title><rect x="288.056657" y="721" width="6.93484419263" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="32" data-weight="133"><title>io.ominicat.core.SynchronousSink.accept — 133 个样本 (37.677%)</title><rect x="294.991501" y="721" width="461.16713881" height="22" fill="hsl(29,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="298.991501" y="737" font-family="monospace" font-size="12" fill="#152430">SynchronousSink.accept</text>
+</g>
+<g data-depth="33" data-weight="131"><title>io.ominicat.core.EnvelopeProcessor$$Lambda$133+0x00007ffa38096278.2119816728.accept — 131 个样本 (37.110%)</title><rect x="294.991501" y="697" width="454.232294618" height="22" fill="hsl(19,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="298.991501" y="713" font-family="monospace" font-size="12" fill="#152430">EnvelopeProcessor$$Lambda$133.accept</text>
+</g>
+<g data-depth="34" data-weight="131"><title>io.ominicat.core.EnvelopeProcessor.lambda$process$2 — 131 个样本 (37.110%)</title><rect x="294.991501" y="673" width="454.232294618" height="22" fill="hsl(43,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="298.991501" y="689" font-family="monospace" font-size="12" fill="#152430">EnvelopeProcessor.lambda$process$2</text>
+</g>
+<g data-depth="35" data-weight="21"><title>io.ominicat.core.FrameEnvelope.derive — 21 个样本 (5.949%)</title><rect x="294.991501" y="649" width="72.8158640227" height="22" fill="hsl(39,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="298.991501" y="665" font-family="monospace" font-size="12" fill="#152430">FrameEn…</text>
+</g>
+<g data-depth="36" data-weight="14"><title>io.ominicat.core.FrameEnvelope.&lt;init&gt; — 14 个样本 (3.966%)</title><rect x="294.991501" y="625" width="48.5439093484" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="298.991501" y="641" font-family="monospace" font-size="12" fill="#152430">Fram…</text>
+</g>
+<g data-depth="35" data-weight="110"><title>io.ominicat.core.Pipeline$DirectInvocation.accept — 110 个样本 (31.161%)</title><rect x="367.807365" y="649" width="381.416430595" height="22" fill="hsl(27,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="371.807365" y="665" font-family="monospace" font-size="12" fill="#152430">Pipeline$DirectInvocation.accept</text>
+</g>
+<g data-depth="36" data-weight="110"><title>io.ominicat.core.Pipeline.dispatch — 110 个样本 (31.161%)</title><rect x="367.807365" y="625" width="381.416430595" height="22" fill="hsl(30,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="371.807365" y="641" font-family="monospace" font-size="12" fill="#152430">Pipeline.dispatch</text>
+</g>
+<g data-depth="37" data-weight="105"><title>io.ominicat.benchmarks.DirectStateProbe$Harness$1.process — 105 个样本 (29.745%)</title><rect x="367.807365" y="601" width="364.079320113" height="22" fill="hsl(29,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="371.807365" y="617" font-family="monospace" font-size="12" fill="#152430">DirectStateProbe$Harness$1.process</text>
+</g>
+<g data-depth="38" data-weight="105"><title>io.ominicat.core.EnvelopeProcessor.process — 105 个样本 (29.745%)</title><rect x="367.807365" y="577" width="364.079320113" height="22" fill="hsl(41,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="371.807365" y="593" font-family="monospace" font-size="12" fill="#152430">EnvelopeProcessor.process</text>
+</g>
+<g data-depth="39" data-weight="105"><title>io.ominicat.benchmarks.DirectStateProbe$Harness$$Lambda$126+0x00007ffa38094e98.485300020.process — 105 个样本 (29.745%)</title><rect x="367.807365" y="553" width="364.079320113" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="371.807365" y="569" font-family="monospace" font-size="12" fill="#152430">DirectStateProbe$Harness$$Lambda$126.process</text>
+</g>
+<g data-depth="40" data-weight="105"><title>io.ominicat.benchmarks.DirectStateProbe$Harness.lambda$new$4 — 105 个样本 (29.745%)</title><rect x="367.807365" y="529" width="364.079320113" height="22" fill="hsl(39,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="371.807365" y="545" font-family="monospace" font-size="12" fill="#152430">DirectStateProbe$Harness.lambda$new$4</text>
+</g>
+<g data-depth="41" data-weight="105"><title>io.ominicat.core.SynchronousSink.accept — 105 个样本 (29.745%)</title><rect x="367.807365" y="505" width="364.079320113" height="22" fill="hsl(29,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="371.807365" y="521" font-family="monospace" font-size="12" fill="#152430">SynchronousSink.accept</text>
+</g>
+<g data-depth="42" data-weight="105"><title>io.ominicat.core.EnvelopeProcessor$$Lambda$133+0x00007ffa38096278.2119816728.accept — 105 个样本 (29.745%)</title><rect x="367.807365" y="481" width="364.079320113" height="22" fill="hsl(19,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="371.807365" y="497" font-family="monospace" font-size="12" fill="#152430">EnvelopeProcessor$$Lambda$133.accept</text>
+</g>
+<g data-depth="43" data-weight="105"><title>io.ominicat.core.EnvelopeProcessor.lambda$process$2 — 105 个样本 (29.745%)</title><rect x="367.807365" y="457" width="364.079320113" height="22" fill="hsl(43,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="371.807365" y="473" font-family="monospace" font-size="12" fill="#152430">EnvelopeProcessor.lambda$process$2</text>
+</g>
+<g data-depth="44" data-weight="105"><title>io.ominicat.core.Pipeline$DirectInvocation.accept — 105 个样本 (29.745%)</title><rect x="367.807365" y="433" width="364.079320113" height="22" fill="hsl(27,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="371.807365" y="449" font-family="monospace" font-size="12" fill="#152430">Pipeline$DirectInvocation.accept</text>
+</g>
+<g data-depth="45" data-weight="105"><title>io.ominicat.core.Pipeline.dispatch — 105 个样本 (29.745%)</title><rect x="367.807365" y="409" width="364.079320113" height="22" fill="hsl(30,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="371.807365" y="425" font-family="monospace" font-size="12" fill="#152430">Pipeline.dispatch</text>
+</g>
+<g data-depth="46" data-weight="38"><title>io.ominicat.benchmarks.DirectStateProbe$Harness$$Lambda$125+0x00007ffa38094c70.857831642.accept — 38 个样本 (10.765%)</title><rect x="367.807365" y="385" width="131.76203966" height="22" fill="hsl(27,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="371.807365" y="401" font-family="monospace" font-size="12" fill="#152430">DirectStateProbe…</text>
+</g>
+<g data-depth="47" data-weight="38"><title>io.ominicat.benchmarks.DirectStateProbe$Harness.acceptOutput — 38 个样本 (10.765%)</title><rect x="367.807365" y="361" width="131.76203966" height="22" fill="hsl(22,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="371.807365" y="377" font-family="monospace" font-size="12" fill="#152430">DirectStateProbe…</text>
+</g>
+<g data-depth="46" data-weight="67"><title>io.ominicat.benchmarks.DirectStateProbe$Harness$1.process — 67 个样本 (18.980%)</title><rect x="499.569405" y="385" width="232.317280453" height="22" fill="hsl(29,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="503.569405" y="401" font-family="monospace" font-size="12" fill="#152430">DirectStateProbe$Harness$1.pr…</text>
+</g>
+<g data-depth="47" data-weight="67"><title>io.ominicat.core.EnvelopeProcessor.process — 67 个样本 (18.980%)</title><rect x="499.569405" y="361" width="232.317280453" height="22" fill="hsl(41,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="503.569405" y="377" font-family="monospace" font-size="12" fill="#152430">EnvelopeProcessor.process</text>
+</g>
+<g data-depth="48" data-weight="67"><title>io.ominicat.benchmarks.DirectStateProbe$Harness$$Lambda$126+0x00007ffa38094e98.485300020.process — 67 个样本 (18.980%)</title><rect x="499.569405" y="337" width="232.317280453" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="503.569405" y="353" font-family="monospace" font-size="12" fill="#152430">DirectStateProbe$Harness$$Lam…</text>
+</g>
+<g data-depth="49" data-weight="67"><title>io.ominicat.benchmarks.DirectStateProbe$Harness.lambda$new$4 — 67 个样本 (18.980%)</title><rect x="499.569405" y="313" width="232.317280453" height="22" fill="hsl(39,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="503.569405" y="329" font-family="monospace" font-size="12" fill="#152430">DirectStateProbe$Harness.lamb…</text>
+</g>
+<g data-depth="50" data-weight="16"><title>io.ominicat.benchmarks.DirectStateProbe$Harness.enterStage — 16 个样本 (4.533%)</title><rect x="499.569405" y="289" width="55.4787535411" height="22" fill="hsl(18,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="503.569405" y="305" font-family="monospace" font-size="12" fill="#152430">Direc…</text>
+</g>
+<g data-depth="51" data-weight="16"><title>io.ominicat.benchmarks.DirectStateProbe$Harness.checkNumeric — 16 个样本 (4.533%)</title><rect x="499.569405" y="265" width="55.4787535411" height="22" fill="hsl(32,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="503.569405" y="281" font-family="monospace" font-size="12" fill="#152430">Direc…</text>
+</g>
+<g data-depth="52" data-weight="16"><title>io.ominicat.benchmarks.DirectStateProbe$Harness.expected — 16 个样本 (4.533%)</title><rect x="499.569405" y="241" width="55.4787535411" height="22" fill="hsl(42,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="503.569405" y="257" font-family="monospace" font-size="12" fill="#152430">Direc…</text>
+</g>
+<g data-depth="50" data-weight="51"><title>io.ominicat.core.SynchronousSink.accept — 51 个样本 (14.448%)</title><rect x="555.048159" y="289" width="176.838526912" height="22" fill="hsl(29,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="559.048159" y="305" font-family="monospace" font-size="12" fill="#152430">SynchronousSink.accept</text>
+</g>
+<g data-depth="51" data-weight="51"><title>io.ominicat.core.EnvelopeProcessor$$Lambda$133+0x00007ffa38096278.2119816728.accept — 51 个样本 (14.448%)</title><rect x="555.048159" y="265" width="176.838526912" height="22" fill="hsl(19,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="559.048159" y="281" font-family="monospace" font-size="12" fill="#152430">EnvelopeProcessor$$Lam…</text>
+</g>
+<g data-depth="52" data-weight="51"><title>io.ominicat.core.EnvelopeProcessor.lambda$process$2 — 51 个样本 (14.448%)</title><rect x="555.048159" y="241" width="176.838526912" height="22" fill="hsl(43,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="559.048159" y="257" font-family="monospace" font-size="12" fill="#152430">EnvelopeProcessor.lamb…</text>
+</g>
+<g data-depth="53" data-weight="1"><title>io.ominicat.benchmarks.DirectStateProbe$Harness$$Lambda$127+0x00007ffa380950f8.1037753655.get — 1 个样本 (0.283%)</title><rect x="555.048159" y="217" width="3.46742209632" height="22" fill="hsl(30,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="54" data-weight="1"><title>io.ominicat.benchmarks.DirectStateProbe$Harness.lambda$new$5 — 1 个样本 (0.283%)</title><rect x="555.048159" y="193" width="3.46742209632" height="22" fill="hsl(18,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="55" data-weight="1"><title>io.ominicat.benchmarks.DirectStateProbe$Harness.nextId — 1 个样本 (0.283%)</title><rect x="555.048159" y="169" width="3.46742209632" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="53" data-weight="1"><title>io.ominicat.core.FrameEnvelope.&lt;init&gt; — 1 个样本 (0.283%)</title><rect x="558.515581" y="217" width="3.46742209632" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="53" data-weight="25"><title>io.ominicat.core.FrameEnvelope.derive — 25 个样本 (7.082%)</title><rect x="561.983003" y="217" width="86.6855524079" height="22" fill="hsl(39,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="565.983003" y="233" font-family="monospace" font-size="12" fill="#152430">FrameEnve…</text>
+</g>
+<g data-depth="54" data-weight="20"><title>io.ominicat.core.FrameEnvelope.&lt;init&gt; — 20 个样本 (5.666%)</title><rect x="561.983003" y="193" width="69.3484419263" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="565.983003" y="209" font-family="monospace" font-size="12" fill="#152430">FrameEn…</text>
+</g>
+<g data-depth="53" data-weight="21"><title>io.ominicat.core.Pipeline$DirectInvocation.accept — 21 个样本 (5.949%)</title><rect x="648.668555" y="217" width="72.8158640227" height="22" fill="hsl(27,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="652.668555" y="233" font-family="monospace" font-size="12" fill="#152430">Pipelin…</text>
+</g>
+<g data-depth="54" data-weight="19"><title>io.ominicat.core.Pipeline.dispatch — 19 个样本 (5.382%)</title><rect x="648.668555" y="193" width="65.88101983" height="22" fill="hsl(30,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="652.668555" y="209" font-family="monospace" font-size="12" fill="#152430">Pipelin…</text>
+</g>
+<g data-depth="55" data-weight="12"><title>io.ominicat.benchmarks.DirectStateProbe$Harness$$Lambda$125+0x00007ffa38094c70.857831642.accept — 12 个样本 (3.399%)</title><rect x="648.668555" y="169" width="41.6090651558" height="22" fill="hsl(27,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="56" data-weight="12"><title>io.ominicat.benchmarks.DirectStateProbe$Harness.acceptOutput — 12 个样本 (3.399%)</title><rect x="648.668555" y="145" width="41.6090651558" height="22" fill="hsl(22,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+</g>
+<g data-depth="17" data-weight="14"><title>java.lang.invoke.Invokers$Holder.linkToTargetMethod — 14 个样本 (3.966%)</title><rect x="756.15864" y="1081" width="48.5439093484" height="22" fill="hsl(32,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="760.15864" y="1097" font-family="monospace" font-size="12" fill="#152430">Invo…</text>
+</g>
+<g data-depth="18" data-weight="14"><title>java.lang.invoke.LambdaForm$MH+0x00007ffa38098000.1632812581.invoke — 14 个样本 (3.966%)</title><rect x="756.15864" y="1057" width="48.5439093484" height="22" fill="hsl(49,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="760.15864" y="1073" font-family="monospace" font-size="12" fill="#152430">Lamb…</text>
+</g>
+<g data-depth="19" data-weight="14"><title>java.lang.invoke.LambdaForm$MH+0x00007ffa38093000.2043456712.invoke — 14 个样本 (3.966%)</title><rect x="756.15864" y="1033" width="48.5439093484" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="760.15864" y="1049" font-family="monospace" font-size="12" fill="#152430">Lamb…</text>
+</g>
+<g data-depth="20" data-weight="14"><title>java.lang.invoke.DirectMethodHandle$Holder.invokeStatic — 14 个样本 (3.966%)</title><rect x="756.15864" y="1009" width="48.5439093484" height="22" fill="hsl(27,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="760.15864" y="1025" font-family="monospace" font-size="12" fill="#152430">Dire…</text>
+</g>
+<g data-depth="21" data-weight="14"><title>java.lang.StringConcatHelper.prepend — 14 个样本 (3.966%)</title><rect x="756.15864" y="985" width="48.5439093484" height="22" fill="hsl(28,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="760.15864" y="1001" font-family="monospace" font-size="12" fill="#152430">Stri…</text>
+</g>
+<g data-depth="22" data-weight="14"><title>java.lang.StringConcatHelper.prepend — 14 个样本 (3.966%)</title><rect x="756.15864" y="961" width="48.5439093484" height="22" fill="hsl(28,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="760.15864" y="977" font-family="monospace" font-size="12" fill="#152430">Stri…</text>
+</g>
+<g data-depth="23" data-weight="14"><title>java.lang.Long.getChars — 14 个样本 (3.966%)</title><rect x="756.15864" y="937" width="48.5439093484" height="22" fill="hsl(31,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="760.15864" y="953" font-family="monospace" font-size="12" fill="#152430">Long…</text>
+</g>
+<g data-depth="17" data-weight="66"><title>java.lang.invoke.LambdaForm$MH+0x00007ffa3809a400.284879437.linkToTargetMethod — 66 个样本 (18.697%)</title><rect x="804.70255" y="1081" width="228.849858357" height="22" fill="hsl(35,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="808.70255" y="1097" font-family="monospace" font-size="12" fill="#152430">LambdaForm$MH.linkToTargetMet…</text>
+</g>
+<g data-depth="18" data-weight="66"><title>java.lang.invoke.LambdaForm$MH+0x00007ffa38099c00.512224744.invoke — 66 个样本 (18.697%)</title><rect x="804.70255" y="1057" width="228.849858357" height="22" fill="hsl(46,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="808.70255" y="1073" font-family="monospace" font-size="12" fill="#152430">LambdaForm$MH.invoke</text>
+</g>
+<g data-depth="19" data-weight="45"><title>java.lang.invoke.DirectMethodHandle$Holder.invokeStatic — 45 个样本 (12.748%)</title><rect x="804.70255" y="1033" width="156.033994334" height="22" fill="hsl(27,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="808.70255" y="1049" font-family="monospace" font-size="12" fill="#152430">DirectMethodHandle$…</text>
+</g>
+<g data-depth="20" data-weight="45"><title>java.lang.StringConcatHelper.newArray — 45 个样本 (12.748%)</title><rect x="804.70255" y="1009" width="156.033994334" height="22" fill="hsl(38,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="808.70255" y="1025" font-family="monospace" font-size="12" fill="#152430">StringConcatHelper.…</text>
+</g>
+<g data-depth="21" data-weight="45"><title>jdk.internal.misc.Unsafe.allocateUninitializedArray — 45 个样本 (12.748%)</title><rect x="804.70255" y="985" width="156.033994334" height="22" fill="hsl(26,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="808.70255" y="1001" font-family="monospace" font-size="12" fill="#152430">Unsafe.allocateUnin…</text>
+</g>
+<g data-depth="19" data-weight="21"><title>java.lang.invoke.LambdaForm$MH+0x00007ffa38093000.2043456712.invoke — 21 个样本 (5.949%)</title><rect x="960.736544" y="1033" width="72.8158640227" height="22" fill="hsl(37,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="964.736544" y="1049" font-family="monospace" font-size="12" fill="#152430">LambdaF…</text>
+</g>
+<g data-depth="20" data-weight="21"><title>java.lang.invoke.DirectMethodHandle$Holder.invokeStatic — 21 个样本 (5.949%)</title><rect x="960.736544" y="1009" width="72.8158640227" height="22" fill="hsl(27,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="964.736544" y="1025" font-family="monospace" font-size="12" fill="#152430">DirectM…</text>
+</g>
+<g data-depth="21" data-weight="21"><title>java.lang.StringConcatHelper.prepend — 21 个样本 (5.949%)</title><rect x="960.736544" y="985" width="72.8158640227" height="22" fill="hsl(28,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="964.736544" y="1001" font-family="monospace" font-size="12" fill="#152430">StringC…</text>
+</g>
+<g data-depth="22" data-weight="21"><title>java.lang.StringConcatHelper.prepend — 21 个样本 (5.949%)</title><rect x="960.736544" y="961" width="72.8158640227" height="22" fill="hsl(28,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="964.736544" y="977" font-family="monospace" font-size="12" fill="#152430">StringC…</text>
+</g>
+<g data-depth="23" data-weight="21"><title>java.lang.Long.getChars — 21 个样本 (5.949%)</title><rect x="960.736544" y="937" width="72.8158640227" height="22" fill="hsl(31,68%,66%)" stroke="#101e28" stroke-width="0.35" />
+<text x="964.736544" y="953" font-family="monospace" font-size="12" fill="#152430">Long.ge…</text>
+</g>
+<metadata id="ominicat-locale-source">{"geometrySha256": "444d676771bfd6f859265041e7c052dee6b06473f286e5a62c107ba7e1b298bc", "language": "zh-CN", "recoveredGlyphLabels": 0, "sha256": "863bd50b5f5ffe8334454821128c890a0f7787045b81b4dfd8192d7b9cccf0d2", "source": "reports/performance-audit/direct-state-2026-11-02/earlier-attempts/143deb4/evidence/diagnostics/candidate-envelope-direct-4/cpu-flamegraph.svg"}</metadata></svg>

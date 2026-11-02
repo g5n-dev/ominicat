@@ -7,3 +7,4 @@ reports/performance-audit/linux-java17-2026-11-01/jmh.json whitespace=-blank-at-
 reports/performance-audit/linux-java17-2026-11-01/jfr-summary.txt whitespace=-blank-at-eol
 reports/performance-audit/prompt-render-2026-11-01/[0-3]-*.json whitespace=-blank-at-eof
 reports/mechanisms/java17-2026-11-02/**/raw/*.json whitespace=-blank-at-eof
+reports/performance-audit/direct-state-2026-11-02/**/raw/*.json whitespace=-blank-at-eof

@@ -64,7 +64,7 @@ Java JFR 覆盖整个诊断进程，包括启动和预热；Pipecat cProfile 仅
 
 ## Linux CI
 
-[对比工作流](../../../.github/workflows/framework-comparison.yml) 会在修改内核、对比工具或相关构建/工作流输入的拉取请求，以及受保护 main 的推送上自动运行，也支持手动触发。每个目标都运行完整的 **45 进程矩阵**，随后分别采集 JFR/cProfile 诊断、校验报告，并按允许清单发布。
+[对比工作流](../../../.github/workflows/framework-comparison.yml) 现仅接受手动触发以控制 CI 成本。文档变更复用绑定来源的归档；相关运行时、测量程序或负载变化需要新证据时再采集。每个目标都运行完整的 **45 进程矩阵**，随后分别采集 JFR/cProfile 诊断、校验报告，并按允许清单发布。
 
 | 目标 | Java / Python | 执行环境 |
 | --- | --- | --- |

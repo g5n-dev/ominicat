@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "scope": "Independent instrumented Java 17 JMH diagnostic JVM, including startup, setup, two 1-second warmups, two 1-second measurements, harness and teardown. No phase filtering. CPU sampling requests 10ms; allocation sampling is throttled to 50 events/second; recording and export retain up to 64 frames. This is not main timing evidence, per-operation allocation, retained heap, method duration, p99 latency, RSS or production capacity.",
+  "selectedEventCounts": {
+    "jdk.ExecutionSample": 327,
+    "jdk.GarbageCollection": 130,
+    "jdk.ObjectAllocationSample": 215
+  },
+  "cpuLeafSamples": [
+    {
+      "method": "io.ominicat.core.Pipeline$DirectInvocation.dispatchNext",
+      "samples": 194
+    },
+    {
+      "method": "io.ominicat.core.Pipeline.process",
+      "samples": 45
+    },
+    {
+      "method": "io.ominicat.benchmarks.DirectStateProbe$Harness.invoke",
+      "samples": 24
+    },
+    {
+      "method": "io.ominicat.benchmarks.DirectStateProbe$Harness.expected",
+      "samples": 24
+    },
+    {
+      "method": "io.ominicat.benchmarks.DirectStateProbe$Harness$$Lambda$125+0x00007feba4094c70.857831642.accept",
+      "samples": 22
+    },
+    {
+      "method": "io.ominicat.benchmarks.DirectStateProbe.invoke",
+      "samples": 8
+    },
+    {
+      "method": "jdk.internal.loader.BuiltinClassLoader.loadClassOrNull",
+      "samples": 1
+    },
+    {
+      "method": "java.util.zip.ZipFile$Source.readAt",
+      "samples": 1
+    },
+    {
+      "method": "java.lang.invoke.LambdaForm$NamedFunction.returnType",
+      "samples": 1
+    },
+    {
+      "method": "java.nio.DirectByteBuffer.get",
+      "samples": 1
+    },
+    {
+      "method": "java.lang.StringBuilder.<init>",
+      "samples": 1
+    },
+    {
+      "method": "sun.util.resources.Bundles.loadBundleOf",
+      "samples": 1
+    },
+    {
+      "method": "java.security.Provider.addEngine",
+      "samples": 1
+    },
+    {
+      "method": "sun.security.provider.ByteArrayAccess.b2iBig64",
+      "samples": 1
+    },
+    {
+      "method": "java.lang.invoke.VarHandleByteArrayAsInts$ArrayHandle.get",
+      "samples": 1
+    },
+    {
+      "method": "io.ominicat.benchmarks.DirectStateProbe$Harness.acceptOutput",
+      "samples": 1
+    }
+  ],
+  "allocationClassWeights": [
+    {
+      "class": "io.ominicat.benchmarks.DirectStateProbe$Value",
+      "bytes": 13146080592
+    },
+    {
+      "class": "io.ominicat.core.Pipeline$DirectInvocation",
+      "bytes": 7349031552
+    },
+    {
+      "class": "[Ljava.util.concurrent.ConcurrentHashMap$Node;",
+      "bytes": 19907704
+    },
+    {
+      "class": "[B",
+      "bytes": 4934888
+    },
+    {
+      "class": "[J",
+      "bytes": 389424
+    },
+    {
+      "class": "java.util.ArrayList$Itr",
+      "bytes": 267968
+    },
+    {
+      "class": "java.util.ArrayList",
+      "bytes": 198696
+    },
+    {
+      "class": "java.lang.Class",
+      "bytes": 198608
+    },
+    {
+      "class": "java.lang.invoke.MethodType",
+      "bytes": 32
+    },
+    {
+      "class": "java.util.concurrent.CopyOnWriteArrayList$COWIterator",
+      "bytes": 24
+    }
+  ],
+  "sampledAllocationWeightBytes": 20521009488,
+  "gcCollectionCount": 130,
+  "gcPauseSumMillis": 95.602768,
+  "maxCollectionPauseSumMillis": 6.041555
+}

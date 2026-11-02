@@ -1,0 +1,161 @@
+{
+  "schemaVersion": 1,
+  "scope": "Independent instrumented Java 17 JMH diagnostic JVM, including startup, setup, two 1-second warmups, two 1-second measurements, harness and teardown. No phase filtering. CPU sampling requests 10ms; allocation sampling is throttled to 50 events/second; recording and export retain up to 64 frames. This is not main timing evidence, per-operation allocation, retained heap, method duration, p99 latency, RSS or production capacity.",
+  "selectedEventCounts": {
+    "jdk.ExecutionSample": 352,
+    "jdk.GarbageCollection": 99,
+    "jdk.ObjectAllocationSample": 220
+  },
+  "cpuLeafSamples": [
+    {
+      "method": "io.ominicat.core.FrameEnvelope.<init>",
+      "samples": 76
+    },
+    {
+      "method": "io.ominicat.benchmarks.DirectStateProbe$Harness.lambda$new$4",
+      "samples": 58
+    },
+    {
+      "method": "java.lang.StringLatin1.indexOfNonWhitespace",
+      "samples": 51
+    },
+    {
+      "method": "jdk.internal.misc.Unsafe.allocateUninitializedArray",
+      "samples": 43
+    },
+    {
+      "method": "java.lang.Long.getChars",
+      "samples": 36
+    },
+    {
+      "method": "io.ominicat.benchmarks.DirectStateProbe$Harness.invoke",
+      "samples": 33
+    },
+    {
+      "method": "io.ominicat.benchmarks.DirectStateProbe$Harness.acceptOutput",
+      "samples": 17
+    },
+    {
+      "method": "java.lang.invoke.DirectMethodHandle.allocateInstance",
+      "samples": 9
+    },
+    {
+      "method": "java.lang.Record.<init>",
+      "samples": 9
+    },
+    {
+      "method": "sun.security.provider.SHA2.implCompress0",
+      "samples": 2
+    },
+    {
+      "method": "java.lang.invoke.VarHandleByteArrayAsInts$ArrayHandle.get",
+      "samples": 2
+    },
+    {
+      "method": "io.ominicat.core.FrameEnvelope.derive",
+      "samples": 2
+    },
+    {
+      "method": "java.lang.CharacterDataLatin1.getProperties",
+      "samples": 2
+    },
+    {
+      "method": "org.openjdk.jmh.util.InputStreamDrainer.run",
+      "samples": 1
+    },
+    {
+      "method": "java.util.StringTokenizer.nextToken",
+      "samples": 1
+    },
+    {
+      "method": "java.lang.String.getBytes",
+      "samples": 1
+    },
+    {
+      "method": "java.lang.String.indexOfNonWhitespace",
+      "samples": 1
+    },
+    {
+      "method": "java.lang.StringConcatHelper.mix",
+      "samples": 1
+    },
+    {
+      "method": "io.ominicat.core.EnvelopeProcessor.process",
+      "samples": 1
+    },
+    {
+      "method": "jdk.internal.misc.Unsafe.allocateUninitializedArray0",
+      "samples": 1
+    }
+  ],
+  "allocationClassWeights": [
+    {
+      "class": "io.ominicat.core.SynchronousSink",
+      "bytes": 3628879424
+    },
+    {
+      "class": "io.ominicat.core.FrameEnvelope",
+      "bytes": 3121306560
+    },
+    {
+      "class": "io.ominicat.core.Pipeline$$Lambda$133+0x00007fc334096030.284879437",
+      "bytes": 2593351688
+    },
+    {
+      "class": "io.ominicat.core.EnvelopeProcessor$$Lambda$134+0x00007fc334096258.1201448536",
+      "bytes": 2065463720
+    },
+    {
+      "class": "io.ominicat.benchmarks.DirectStateProbe$Value",
+      "bytes": 1953916256
+    },
+    {
+      "class": "[B",
+      "bytes": 1041077528
+    },
+    {
+      "class": "java.lang.String",
+      "bytes": 1008118224
+    },
+    {
+      "class": "[Ljava.util.concurrent.ConcurrentHashMap$Node;",
+      "bytes": 19784760
+    },
+    {
+      "class": "java.util.ArrayList$Itr",
+      "bytes": 389424
+    },
+    {
+      "class": "java.util.zip.ZipFile$InflaterCleanupAction",
+      "bytes": 239408
+    },
+    {
+      "class": "java.util.HashMap",
+      "bytes": 199152
+    },
+    {
+      "class": "java.util.ArrayList",
+      "bytes": 68592
+    },
+    {
+      "class": "jdk.internal.org.objectweb.asm.SymbolTable$Entry",
+      "bytes": 39976
+    },
+    {
+      "class": "jdk.jfr.events.ActiveSettingEvent",
+      "bytes": 5824
+    },
+    {
+      "class": "java.lang.invoke.MethodType",
+      "bytes": 32
+    },
+    {
+      "class": "java.util.concurrent.CopyOnWriteArrayList$COWIterator",
+      "bytes": 24
+    }
+  ],
+  "sampledAllocationWeightBytes": 15432840592,
+  "gcCollectionCount": 99,
+  "gcPauseSumMillis": 75.228699,
+  "maxCollectionPauseSumMillis": 4.927559
+}
