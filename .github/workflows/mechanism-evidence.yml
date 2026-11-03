@@ -30,7 +30,7 @@ jobs:
           cat reports/local/mechanism-capture/evidence/measurements/summary.md >> "$GITHUB_STEP_SUMMARY"
       - name: Validate measurements before independent diagnostic collection
         run: python3 comparison/mechanism_evidence.py check reports/local/mechanism-capture/evidence/measurements
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: mechanism-measurements-java17-${{ github.run_id }}-${{ github.run_attempt }}
           path: reports/local/mechanism-capture/evidence/measurements/
@@ -42,7 +42,7 @@ jobs:
         run: |
           python3 comparison/mechanism_evidence.py check reports/local/mechanism-capture/evidence/measurements
           python3 comparison/mechanism_profiles.py check reports/local/mechanism-capture/evidence
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: mechanism-evidence-java17-${{ github.run_id }}-${{ github.run_attempt }}
           path: reports/local/mechanism-capture/evidence/
