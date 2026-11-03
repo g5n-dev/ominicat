@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render five editable, dependency-free SVG architecture plates.
+"""Render six editable, dependency-free SVG architecture plates.
 
 Run from any directory with Python 3. Source of truth: docs/architecture.md and
 the core/server implementations. Run render_doc_previews.py afterwards to
@@ -123,6 +123,42 @@ def overview():
     p.text(455, 785, 'Dashed arrows: assembly / SPI relationship', 16, BLUE)
     p.text(56, 817, 'Embedding can construct processors directly; YAML is not required by the kernel.', 18, MUTED)
     p.footer('01 / The dependency boundary', 'Transport and model adapters stay optional')
+    p.save()
+
+
+def deployment():
+    p = Plate('deployment-topology.svg', 830, '06 / DEPLOYMENT', 'Deploy around session ownership',
+              'A shared application edge, independent runtime instances and optional model services.',
+              'A browser or client connects over HTTPS or WSS to an application gateway that terminates TLS and owns identity, routing and quotas. The gateway routes HTTP and WebSocket connections to independent OminiCat instances A and B. Each instance owns session-local pipelines, queues, workers and state, and calls configured external model services over HTTPS. Reconnecting creates a fresh session; persistence and recovery require application integration.')
+    for x, label in ((56, 'CLIENT'), (366, 'APPLICATION EDGE'), (756, 'RUNTIME INSTANCES'), (1156, 'EXTERNAL SERVICES')):
+        p.text(x, 190, label, 13, MUTED, 700, spacing=1.4)
+
+    p.node(56, 334, 216, 132, 'Browser / client', ('Studio or your UI', 'WebSocket frames'), TEAL, 21, 16)
+    p.node(366, 294, 286, 212, 'Application gateway',
+           ('TLS termination', 'Identity · routing · quotas', 'Same-origin UI + /ws'), AMBER, 21, 17)
+    p.path('M272 400H366', AMBER)
+    p.text(319, 382, 'HTTPS / WSS', 13, AMBER, anchor='middle')
+
+    for y, name in ((218, 'OminiCat instance A'), (420, 'OminiCat instance B')):
+        p.node(756, y, 296, 160, name,
+               ('HTTP / WS listener', 'Session-local pipelines', 'Own queues, workers and state'), TEAL, 22, 16)
+    p.path('M652 350H704V298H756')
+    p.path('M652 450H704V500H756')
+    p.text(704, 271, 'HTTP / WS', 13, TEAL, anchor='middle')
+    p.text(704, 530, 'HTTP / WS', 13, TEAL, anchor='middle')
+    p.text(904, 405, 'Independent replicas', 16, MUTED, anchor='middle')
+
+    p.node(1156, 334, 228, 160, 'Model services',
+           ('Configured endpoints', 'Independent capacity', 'Optional providers'), BLUE, 21, 16)
+    p.path('M1052 298H1106V380H1156', BLUE)
+    p.path('M1052 500H1106V440H1156', BLUE)
+    p.text(1106, 280, 'HTTPS', 13, BLUE, anchor='middle')
+    p.text(1106, 526, 'HTTPS', 13, BLUE, anchor='middle')
+
+    p.text(56, 614, 'Start with one instance. Replicas distribute new connections; active sessions stay local.', 20, MUTED)
+    p.node(56, 648, 640, 100, 'Connection ownership', ('A reconnect creates a fresh session.',), TEAL, 21, 18)
+    p.node(720, 648, 664, 100, 'Application-owned state', ('Persistence and recovery are optional integrations.',), AMBER, 21, 18)
+    p.footer('06 / Private runtime listeners behind the application edge', 'Java 17+ · no built-in cluster coordinator')
     p.save()
 
 
@@ -361,6 +397,7 @@ if __name__ == '__main__':
         bounded()
         locking()
         lifecycle()
+        deployment()
     except (OSError, ValueError) as error:
         parser.exit(1, str(error) + '\n')
-    print(('Checked' if CHECK_ONLY else 'Rendered') + ' five editable SVG architecture plates in docs/assets.')
+    print(('Checked' if CHECK_ONLY else 'Rendered') + ' six editable SVG architecture plates in docs/assets.')

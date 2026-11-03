@@ -4,13 +4,58 @@
 
 <p align="center"><a href="docs/assets/zh-CN/banner.svg"><img src="docs/assets/previews/banner-zh-CN.png" alt="OminiCat：Java 17 多模态会话微内核" width="100%"></a></p>
 
-<p align="center"><a href="#先运行起来">快速开始</a> · <a href="#嵌入-java-应用">嵌入应用</a> · <a href="#开发插件">开发插件</a> · <a href="#linux-框架性能实测">Linux 实测</a> · <a href="#高性能从哪里来">执行机制</a> · <a href="docs/zh-CN/configuration.md">配置</a> · <a href="docs/zh-CN/studio.md">Studio</a></p>
+<p align="center"><a href="#先运行起来">快速开始</a> · <a href="#部署架构">部署架构</a> · <a href="#嵌入-java-应用">嵌入应用</a> · <a href="#开发插件">开发插件</a> · <a href="#linux-框架性能实测">Linux 实测</a> · <a href="#高性能从哪里来">执行机制</a> · <a href="docs/zh-CN/configuration.md">配置</a> · <a href="docs/zh-CN/studio.md">Studio</a></p>
 
 **OminiCat 是 Java 17+ 多模态会话微内核。** 用统一帧连接音频、文本、图像、转写、模型与会话处理器；通过配置组合插件，可嵌入现有 Java 应用，也可独立运行为 WebSocket 服务容器。
 
 内核仅依赖 JDK，负责有界调度、取消、排空与生命周期，媒体、模型和应用策略由插件提供。当前为 **0.1 开发预览版**；[验证报告](docs/zh-CN/reports/verification.md)记录了 **297 项通过测试、512 个随机种子**及本地协议故障验证。真实服务兼容性与部署容量仍需在目标环境验证。
 
 [![OminiCat 模块与接入边界](docs/assets/previews/architecture-overview-zh-CN.png)](docs/assets/zh-CN/architecture-overview.svg)
+
+## 部署架构
+
+围绕应用选择部署边界。内核、会话和提供方模块是运行在同一个 JVM 内的库，无需将每个处理阶段拆成独立服务。
+
+| 形态 | 适用场景 | 部署内容与职责 |
+| --- | --- | --- |
+| 嵌入 Java 应用 | 已有后端或工作进程负责传输和应用状态 | 引入 `ominicat-core` 及所需插件，每个会话创建独立流水线；应用负责准入、身份认证、持久化和关闭。参见[嵌入示例](#嵌入-java-应用)。 |
+| 单实例独立服务 | 浏览器或客户端需要内置 WebSocket 协议与 Studio | 使用 YAML 启动服务端 JAR 或 Docker 镜像。每条 WebSocket 连接拥有独立处理器、有界会话队列和工作线程。建议从这里起步，再测量实际媒体与模型负载。 |
+| 多实例独立服务 | 需要把新会话分配到多个进程或主机 | 在支持 WebSocket 的负载均衡器后部署独立实例。路由、全局配额、持久化状态和恢复由应用及基础设施负责；OminiCat 不内置集群协调器。 |
+
+### 独立服务拓扑
+
+[![客户端、网关、独立运行时实例与外部模型服务](docs/assets/previews/deployment-topology-zh-CN.png)](docs/assets/zh-CN/deployment-topology.svg)
+
+初期部署一个实例即可，图中的第二个实例用于说明副本之间相互独立。网关负责 TLS 终止、应用身份、租户路由与配额，运行时监听端口放在私有网络。Studio 与 `/ws` 应保持浏览器同源；代理须保留外部 `Host`、`Origin`、WebSocket 升级及 `Sec-WebSocket-Protocol` 请求头。经代理访问时配置 `tokenEnv`，避免在访问日志中记录携带凭据的请求头。服务端 bearer token 是共享服务凭据，不是用户账户体系。参见[鉴权与浏览器来源](docs/zh-CN/configuration.md#鉴权与浏览器来源)。
+
+模型服务独立部署，按自身限制扩容。通过 YAML 分别选择提供方端点、模型及凭据环境变量名。对话持久化属于可选的应用集成：快照 API 不会自动连接数据库、恢复 WebSocket 会话或重放外部副作用。
+
+### 运行容器
+
+在仓库根目录执行；需先准备 Docker，并在当前 shell 环境中将 `OMINICAT_TOKEN` 设置为非空密钥：
+
+```sh
+docker build -t ominicat:local .
+docker run --detach --rm --name ominicat \
+  --publish 127.0.0.1:8080:8080 \
+  --env OMINICAT_TOKEN ominicat:local
+curl --fail --retry 30 --retry-connrefused --retry-delay 1 \
+  http://127.0.0.1:8080/health
+curl --fail -H "Authorization: Bearer ${OMINICAT_TOKEN}" \
+  http://127.0.0.1:8080/metrics
+docker stop ominicat
+```
+
+首个探测在启动期间会重试，使用结束再停止容器。[Dockerfile](Dockerfile) 默认使用 Java 17 和非 root 用户；[容器配置](config/container.yaml) 在容器内监听 `0.0.0.0:8080`，要求设置 `OMINICAT_TOKEN`，默认运行无需模型凭据的 `echo`。上面的主机端口仅绑定回环地址。接入实际流水线时，将自己的 YAML 只读挂载，在镜像名后用 `--config /app/config/runtime.yaml` 指定该文件，并通过部署环境的密钥机制注入配置引用的提供方凭据。配置及 classpath 插件在启动时加载，修改后需要重启。[配置与插件启动方式](docs/zh-CN/configuration.md#部署与嵌入)。
+
+### 扩容、状态与运维
+
+- **按连接路由，保持会话归属。** 已建立的 WebSocket 始终由同一实例处理。断线重连会创建新会话，即使回到原实例也一样；仅设置负载均衡粘性不能恢复对话状态。需要恢复时，由应用定义身份、快照存储、还原及外部副作用处理。Studio 的 `/api/runtime` 与 `/api/activity` 应路由到被观察的实例，或另行实现聚合；这两个视图都只反映当前进程。
+- **按实际负载确定单实例容量。** 联合调整实例级 `maxSessions`、`maxConnections`，会话级 `queueCapacity`、`maxFrameBytes` 及提供方限制。预算应包含媒体载荷、JSON/Base64、待发输出、JVM／原生内存和模型延迟。队列条数及数值帧基准吞吐不构成内存或生产容量保证。代理超时和客户端心跳须与 `idleTimeoutSeconds` 协调，该参数测量的是入站活动。
+- **分别观察存活与容量。** `/health` 说明 HTTP 监听器能够响应，不检查模型服务可用性或剩余会话容量。逐实例抓取需要认证的 `/metrics`，关注已准入会话、存活工作线程、拒绝帧、失败及待发字节；按应用需要增加就绪判断和提供方探测。
+- **发布时安排会话收尾。** 先停止向旧实例分配新连接，再由应用在选定期限内完成活跃会话。服务端关闭会断开 socket 并协作取消工作线程，不会自动排空所有对话或迁移会话。终止宽限时间应覆盖插件清理，并显式处理客户端重连。
+
+[运行时边界与生命周期](docs/zh-CN/architecture.md) · [配置与限制](docs/zh-CN/configuration.md) · [传输协议](docs/zh-CN/protocol.md)。
 
 ## Linux 框架性能实测
 
