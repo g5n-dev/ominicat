@@ -86,6 +86,77 @@ Use one instance initially; the second illustrates independent replicas. The gat
 
 Model services run separately and scale according to their own limits. Select each provider's endpoint, model and credential environment-variable name in YAML. Durable conversation storage is optional application integration: snapshot APIs do not automatically connect to a database, restore a WebSocket session or replay external effects.
 
+### Example: a voice support service in YAML
+
+For a customer asking a spoken question, deploy a gateway and one OminiCat conversation service, then connect three independently operated model services. The gateway forwards the browser's WebSocket; the conversation service owns the turn and calls ASR → LLM → TTS through its configured stages.
+
+| Service / component | Processing responsibility | Configuration location |
+| --- | --- | --- |
+| Gateway | Forward the same-origin Studio, HTTP and WebSocket traffic | `services.gateway` in [Compose](deploy/voice-assistant/compose.yaml), plus [NGINX routing](deploy/voice-assistant/gateway.conf) |
+| Conversation service | Isolate sessions, buffer PCM until `turn_end`, gate duplicate transcripts and compose bounded prompts | `services.conversation` and the ordered `stages` in [runtime YAML](deploy/voice-assistant/runtime.yaml) |
+| ASR service | Accept a multipart WAV utterance at `/v1/audio/transcriptions`; return final transcript JSON | `openai-transcribe` → its own `baseUrl`, `model`, `apiKeyEnv` |
+| LLM service | Accept prompt messages at `/v1/chat/completions`; return SSE text chunks and `[DONE]` | `openai-chat` → its own endpoint/model/credential |
+| TTS service | Accept the completed reply at `/v1/audio/speech`; return 24 kHz mono PCM16 | `openai-speech` → its own endpoint/model/credential |
+
+The two YAML files describe different boundaries. This excerpt from `compose.yaml` shows **which processes run and which runtime configuration they load**; the complete file also declares the network, gateway configuration and credential environment variables:
+
+```yaml
+services:
+  gateway:
+    image: nginx:stable-alpine
+    ports:
+      - "127.0.0.1:${OMINICAT_GATEWAY_PORT:-18088}:8080"
+    depends_on:
+      - conversation
+  conversation:
+    image: ${OMINICAT_IMAGE:-ominicat:voice-example}
+    build:
+      context: ../..
+    command: ["--config", "/app/config/voice-service.yaml"]
+    configs:
+      - source: pipeline
+        target: /app/config/voice-service.yaml
+configs:
+  pipeline:
+    file: ./runtime.yaml
+```
+
+The corresponding `runtime.yaml` excerpt shows **how one conversation is processed and which external service handles each step**. Gate and prompt stages run inside the conversation process:
+
+```yaml
+host: 0.0.0.0
+port: 8080
+tokenEnv: OMINICAT_TOKEN
+stages:
+  - type: openai-transcribe
+    options:
+      baseUrl: https://asr.example.invalid/v1
+      model: replace-with-asr-model
+      apiKeyEnv: ASR_API_KEY
+  - type: transcript-gate
+  - type: prompt-template
+    options:
+      inputSpeaker: user
+      role: assistant
+      instruction: "Answer the customer's latest question briefly. Do not invent account or order information."
+      maxTurns: "16"
+  - type: openai-chat
+    options:
+      baseUrl: https://llm.example.invalid/v1
+      model: replace-with-chat-model
+      apiKeyEnv: LLM_API_KEY
+  - type: openai-speech
+    options:
+      baseUrl: https://tts.example.invalid/v1
+      model: replace-with-speech-model
+      apiKeyEnv: TTS_API_KEY
+      voice: alloy
+```
+
+Use the [complete example and startup guide](docs/voice-service-deployment.md), which includes per-service deadlines and size limits. Replace all placeholder endpoints/models and select a supported voice; ASR, LLM and TTS are operator-supplied compatible services, not model servers installed by Compose. Set `OMINICAT_TOKEN`, `ASR_API_KEY`, `LLM_API_KEY` and `TTS_API_KEY` in the deployment environment. Compose expands its own variables; mounted runtime YAML uses literal endpoint/model values, with environment lookups only through `tokenEnv` and `apiKeyEnv`. Separately addressed providers require HTTPS.
+
+The example publishes local HTTP on `127.0.0.1:18088`; add HTTPS/WSS and application identity before external deployment. ASR works on complete utterances and TTS returns completed-turn audio. Incoming transcript history is bounded; assistant replies, order lookups and durable recovery require application integration. The example is checked with three local protocol fixtures and a gateway probe, not a live-provider trial.
+
 ### Run the container
 
 From the repository root, with Docker available and `OMINICAT_TOKEN` already set to a nonempty secret in your shell environment:

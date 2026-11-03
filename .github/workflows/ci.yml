@@ -131,3 +131,15 @@ jobs:
           curl --fail --silent http://127.0.0.1:18080/health
           test "$(curl --silent --output /dev/null --write-out '%{http_code}' http://127.0.0.1:18080/metrics)" = 401
           curl --fail --silent -H 'Authorization: Bearer synthetic-ci-token' http://127.0.0.1:18080/metrics
+      - name: Check voice-service Compose topology and gateway
+        env:
+          OMINICAT_IMAGE: ominicat:ci
+          OMINICAT_TOKEN: synthetic-voice-ci-token
+          ASR_API_KEY: synthetic-asr-key
+          LLM_API_KEY: synthetic-llm-key
+          TTS_API_KEY: synthetic-tts-key
+        run: |
+          docker compose -p ominicat-voice-ci -f deploy/voice-assistant/compose.yaml config --quiet
+          trap 'docker compose -p ominicat-voice-ci -f deploy/voice-assistant/compose.yaml down' EXIT
+          docker compose -p ominicat-voice-ci -f deploy/voice-assistant/compose.yaml up --no-build --detach
+          python3 scripts/check_voice_gateway.py
