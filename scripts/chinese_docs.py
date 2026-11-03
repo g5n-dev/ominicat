@@ -28,6 +28,7 @@ README_ALIASES = {
     'microkernel-architecture': '小内核可组合的能力',
     'deployment-architecture': '部署架构',
     'standalone-service-topology': '独立服务拓扑',
+    'example-a-voice-support-service-in-yaml': '示例用-yaml-配置语音客服服务',
     'run-the-container': '运行容器',
     'scaling-state-and-operations': '扩容状态与运维',
     'why-the-execution-path-stays-small': '高性能从哪里来',

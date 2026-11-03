@@ -1,0 +1,58 @@
+# Replace each HTTPS endpoint and model with an operator-supplied compatible service.
+# These .invalid endpoints are placeholders; this file does not deploy model servers.
+# RuntimeConfig does not interpolate ${ENV}; only tokenEnv/apiKeyEnv name environment variables.
+host: 0.0.0.0
+port: 8080
+tokenEnv: OMINICAT_TOKEN
+maxSessions: 32
+maxConnections: 64
+queueCapacity: 128
+maxFrameBytes: 4194304
+idleTimeoutSeconds: 120
+
+stages:
+  # ASR service: PCM + turn_end -> multipart WAV -> final Transcript.
+  - type: openai-transcribe
+    options:
+      baseUrl: https://asr.example.invalid/v1
+      model: replace-with-asr-model
+      apiKeyEnv: ASR_API_KEY
+      speaker: user
+      maxAudioBytes: "4194304"
+      maxStreams: "1"
+      timeoutSeconds: "30"
+      maxResponseBytes: "1048576"
+
+  # In-process state: suppress duplicate finals, then build bounded input history.
+  - type: transcript-gate
+    options:
+      maxSegments: "256"
+      passPartials: "false"
+  - type: prompt-template
+    options:
+      inputSpeaker: user
+      role: assistant
+      instruction: "Answer the customer's latest question briefly. Do not invent account or order information."
+      maxTurns: "16"
+
+  # LLM service: prompt text -> SSE text chunks + TURN_END.
+  - type: openai-chat
+    options:
+      baseUrl: https://llm.example.invalid/v1
+      model: replace-with-chat-model
+      apiKeyEnv: LLM_API_KEY
+      maxOutputTokens: "256"
+      timeoutSeconds: "30"
+      maxResponseBytes: "1048576"
+
+  # TTS service: completed reply -> 24 kHz mono PCM16. Text passes through immediately.
+  - type: openai-speech
+    options:
+      baseUrl: https://tts.example.invalid/v1
+      model: replace-with-speech-model
+      apiKeyEnv: TTS_API_KEY
+      voice: alloy
+      maxTextChars: "4096"
+      timeoutSeconds: "30"
+      # 2 MiB raw PCM leaves room for Base64/JSON inside the 4 MiB message limit.
+      maxResponseBytes: "2097152"

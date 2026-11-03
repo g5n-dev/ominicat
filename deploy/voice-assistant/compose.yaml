@@ -1,0 +1,43 @@
+# Process topology. Model services are supplied separately via runtime.yaml.
+services:
+  gateway:
+    image: nginx:stable-alpine
+    ports:
+      - "127.0.0.1:${OMINICAT_GATEWAY_PORT:-18088}:8080"
+    configs:
+      - source: gateway
+        target: /etc/nginx/conf.d/default.conf
+    depends_on:
+      - conversation
+    networks:
+      - voice
+
+  conversation:
+    image: ${OMINICAT_IMAGE:-ominicat:voice-example}
+    build:
+      context: ../..
+    command: ["--config", "/app/config/voice-service.yaml"]
+    expose:
+      - "8080"
+    configs:
+      - source: pipeline
+        target: /app/config/voice-service.yaml
+    environment:
+      OMINICAT_TOKEN: ${OMINICAT_TOKEN:?Set the gateway-facing runtime token}
+      ASR_API_KEY: ${ASR_API_KEY:?Set the ASR service credential}
+      LLM_API_KEY: ${LLM_API_KEY:?Set the LLM service credential}
+      TTS_API_KEY: ${TTS_API_KEY:?Set the TTS service credential}
+    stop_grace_period: 30s
+    networks:
+      - voice
+
+configs:
+  gateway:
+    file: ./gateway.conf
+  pipeline:
+    file: ./runtime.yaml
+
+# Bridge networking permits outbound HTTPS to the configured model services.
+networks:
+  voice:
+    driver: bridge

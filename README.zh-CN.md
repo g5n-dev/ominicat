@@ -30,6 +30,77 @@
 
 模型服务独立部署，按自身限制扩容。通过 YAML 分别选择提供方端点、模型及凭据环境变量名。对话持久化属于可选的应用集成：快照 API 不会自动连接数据库、恢复 WebSocket 会话或重放外部副作用。
 
+### 示例：用 YAML 配置语音客服服务
+
+以用户语音提问为例：部署一个接入网关和一个 OminiCat 会话服务，再连接三个独立运营的模型服务。网关转发浏览器 WebSocket；会话服务持有当前对话轮次，按配置依次调用 ASR → LLM → TTS。
+
+| 服务／组件 | 处理职责 | 配置位置 |
+| --- | --- | --- |
+| 接入网关 | 同源转发 Studio、HTTP 和 WebSocket 请求 | [Compose](deploy/voice-assistant/compose.yaml) 的 `services.gateway` 及 [NGINX 路由](deploy/voice-assistant/gateway.conf) |
+| 会话服务 | 隔离会话，缓存 PCM 至 `turn_end`，过滤重复转写并构建有界提示词 | `services.conversation` 及[运行时 YAML](deploy/voice-assistant/runtime.yaml) 中按顺序排列的 `stages` |
+| ASR 服务 | 在 `/v1/audio/transcriptions` 接收 multipart WAV 语句，返回最终转写 JSON | `openai-transcribe` → 独立的 `baseUrl`、`model`、`apiKeyEnv` |
+| LLM 服务 | 在 `/v1/chat/completions` 接收提示消息，返回 SSE 文本块和 `[DONE]` | `openai-chat` → 独立端点、模型及凭据 |
+| TTS 服务 | 在 `/v1/audio/speech` 接收完整回复，返回 24 kHz 单声道 PCM16 | `openai-speech` → 独立端点、模型及凭据 |
+
+两份 YAML 分别描述不同边界。下面的 `compose.yaml` 摘录说明**启动哪些进程、加载哪份运行时配置**；完整文件还声明网络、网关配置和凭据环境变量：
+
+```yaml
+services:
+  gateway:
+    image: nginx:stable-alpine
+    ports:
+      - "127.0.0.1:${OMINICAT_GATEWAY_PORT:-18088}:8080"
+    depends_on:
+      - conversation
+  conversation:
+    image: ${OMINICAT_IMAGE:-ominicat:voice-example}
+    build:
+      context: ../..
+    command: ["--config", "/app/config/voice-service.yaml"]
+    configs:
+      - source: pipeline
+        target: /app/config/voice-service.yaml
+configs:
+  pipeline:
+    file: ./runtime.yaml
+```
+
+对应的 `runtime.yaml` 摘录说明**一轮对话如何处理、每一步交给哪个外部服务**。转写门控和提示词阶段在会话进程内执行：
+
+```yaml
+host: 0.0.0.0
+port: 8080
+tokenEnv: OMINICAT_TOKEN
+stages:
+  - type: openai-transcribe
+    options:
+      baseUrl: https://asr.example.invalid/v1
+      model: replace-with-asr-model
+      apiKeyEnv: ASR_API_KEY
+  - type: transcript-gate
+  - type: prompt-template
+    options:
+      inputSpeaker: user
+      role: assistant
+      instruction: "Answer the customer's latest question briefly. Do not invent account or order information."
+      maxTurns: "16"
+  - type: openai-chat
+    options:
+      baseUrl: https://llm.example.invalid/v1
+      model: replace-with-chat-model
+      apiKeyEnv: LLM_API_KEY
+  - type: openai-speech
+    options:
+      baseUrl: https://tts.example.invalid/v1
+      model: replace-with-speech-model
+      apiKeyEnv: TTS_API_KEY
+      voice: alloy
+```
+
+使用含各服务超时和大小限制的[完整示例与启动指南](docs/zh-CN/voice-service-deployment.md)。先替换所有占位端点、模型并选择受支持的声音；ASR、LLM、TTS 是运营方提供的兼容服务，Compose 不会安装这些模型服务器。在部署环境设置 `OMINICAT_TOKEN`、`ASR_API_KEY`、`LLM_API_KEY`、`TTS_API_KEY`。Compose 会展开自身文件中的变量；挂载的运行时 YAML 使用端点和模型的字面值，只通过 `tokenEnv`、`apiKeyEnv` 查询环境变量。独立寻址的提供方服务需要 HTTPS。
+
+示例仅在 `127.0.0.1:18088` 暴露本地 HTTP；对外部署前补齐 HTTPS/WSS 和应用身份认证。ASR 按完整语句识别，TTS 按完整回复返回音频。输入转写历史有界；助手回复历史、订单查询和持久化恢复需要应用集成。示例通过三个本地协议夹具及网关探测验证，不作为真实提供方试用结果。
+
 ### 运行容器
 
 在仓库根目录执行；需先准备 Docker，并在当前 shell 环境中将 `OMINICAT_TOKEN` 设置为非空密钥：

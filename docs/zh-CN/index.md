@@ -20,6 +20,7 @@
 - [场景覆盖 · docs/scenario-coverage](scenario-coverage.md)
 - [OminiCat Studio · docs/studio](studio.md)
 - [时间片段与注释 · docs/temporal-annotations](temporal-annotations.md)
+- [用 YAML 部署语音服务 · docs/voice-service-deployment](voice-service-deployment.md)
 
 ## 模块、扩展与部署验证
 
