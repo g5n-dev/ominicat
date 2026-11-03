@@ -51,7 +51,7 @@ jobs:
           python3 candidate/comparison/direct_state_evidence.py collect --baseline baseline --candidate candidate --output "$RUNNER_TEMP/direct-state/evidence/measurements"
           python3 candidate/comparison/direct_state_evidence.py check "$RUNNER_TEMP/direct-state/evidence/measurements"
           cat "$RUNNER_TEMP/direct-state/evidence/measurements/summary.md" >> "$GITHUB_STEP_SUMMARY"
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: direct-state-measurements-java17-${{ github.run_id }}-${{ github.run_attempt }}
           path: ${{ runner.temp }}/direct-state/evidence/measurements/
@@ -62,7 +62,7 @@ jobs:
           python3 candidate/comparison/direct_plan_startup.py collect --baseline baseline --candidate candidate --measurements "$RUNNER_TEMP/direct-state/evidence/measurements" --output "$RUNNER_TEMP/direct-state/startup-evidence"
           python3 candidate/comparison/direct_plan_startup.py check "$RUNNER_TEMP/direct-state/startup-evidence" --measurements "$RUNNER_TEMP/direct-state/evidence/measurements"
           cat "$RUNNER_TEMP/direct-state/startup-evidence/summary.md" >> "$GITHUB_STEP_SUMMARY"
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: direct-state-startup-java17-${{ github.run_id }}-${{ github.run_attempt }}
           path: ${{ runner.temp }}/direct-state/startup-evidence/
@@ -72,7 +72,7 @@ jobs:
         run: python3 candidate/comparison/direct_state_profiles.py collect --baseline baseline --candidate candidate --output "$RUNNER_TEMP/direct-state"
       - name: Validate the complete diagnostic allowlist
         run: python3 candidate/comparison/direct_state_profiles.py check "$RUNNER_TEMP/direct-state/evidence"
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: direct-state-evidence-java17-${{ github.run_id }}-${{ github.run_attempt }}
           path: ${{ runner.temp }}/direct-state/evidence/
