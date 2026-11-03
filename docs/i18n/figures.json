@@ -17,6 +17,11 @@
       "preview": "docs/assets/previews/bounded-runtime-zh-CN.png"
     },
     {
+      "source": "docs/assets/deployment-topology.svg",
+      "localized": "docs/assets/zh-CN/deployment-topology.svg",
+      "preview": "docs/assets/previews/deployment-topology-zh-CN.png"
+    },
+    {
       "source": "docs/assets/execution-path.svg",
       "localized": "docs/assets/zh-CN/execution-path.svg",
       "preview": "docs/assets/previews/execution-path-zh-CN.png"

@@ -86,6 +86,7 @@
 
 | 增量 | 结果 | 证据 |
 | --- | --- | --- |
+| README 部署架构 | 用双语静态拓扑和容器命令说明嵌入式、单实例与多实例部署。源码审查确认会话与 Studio 视图仅在进程内、共享令牌及代理边界、仅反映存活的健康接口、应用负责持久化／恢复及协作关闭。目标负载容量、应用就绪判断与恢复仍需按部署场景实现。 | [部署指南](../../README.zh-CN.md#部署架构)、[图形源码](../../scripts/render_architecture.py)；Java 17 覆盖率／SBOM 验证通过 390 项测试和 512 个压力种子。发行包探测验证公开健康接口及需认证的指标／运行时／活动接口。检查文档新鲜度、链接与预览；PR 当前提交仍须通过受保护 main 的全部五项检查。 |
 | 直接调用拓扑与生命周期状态 | 不可变预绑定后继及每次新建的三引用调用保护减少了实测直接调用分配，并保留终点、失败、线程、退役与引用图释放行为。七个配对场景、独立构造探针及 CPU／分配／GC 诊断同时保留前两次未成功尝试和初始化代价。 | [PR #38](https://github.com/g5n-dev/ominicat/pull/38)、[结果与不可变证据](reports/performance-audit/direct-state-2026-11-02/README.md)、[预登记协议](comparison/direct-state-protocol.md)、[生命周期回归](../../ominicat-core/src/test/java/io/ominicat/core/DirectInvocationLifecycleTest.java) |
 | Java 机制的受控验证 | 可执行的真实 API、相同交接和预建关联复制探针；每格两个全新进程，在 Ubuntu 保留完整时间／分配／进程 CPU 观察及独立 CPU／分配／GC 图。保留早期完整测量和诊断失败／取消记录；生产运行时未改动，不相加归因 SEDA。 | [PR #37](https://github.com/g5n-dev/ominicat/pull/37)、[结果与不可变证据](reports/mechanisms/java17-2026-11-02/README.md)、[协议](comparison/mechanism-protocol.md)、[失败控制](../../comparison/mechanisms/src/test/java/io/ominicat/mechanisms/PathHarnessTest.java) |
 | 锁与生命周期架构 | 中英文锁范围表、真实会话状态转换、回调／引用所有权、HTTP 响应清理与独立的服务器接纳释放条件。两张本地化 SVG 图及静态预览呈现这些边界；CI 检查生成图与源码的新鲜度。运行时行为和已记录性能证据保持不变。 | [PR #35](https://github.com/g5n-dev/ominicat/pull/35)、[锁与生命周期指南](architecture.md#锁职责与回调边界)、[源码与可执行证据](architecture.md#源码与可执行证据)、[确定性生成器](../../scripts/render_architecture.py) |

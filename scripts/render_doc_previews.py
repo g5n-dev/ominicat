@@ -25,6 +25,7 @@ DIRECT_STATE = 'reports/performance-audit/direct-state-2026-11-02'
 SOURCES = {
     'banner': 'docs/assets/banner.svg',
     'architecture-overview': 'docs/assets/architecture-overview.svg',
+    'deployment-topology': 'docs/assets/deployment-topology.svg',
     'execution-path': 'docs/assets/execution-path.svg',
     'bounded-runtime': 'docs/assets/bounded-runtime.svg',
     'locking-boundaries': 'docs/assets/locking-boundaries.svg',

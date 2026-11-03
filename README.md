@@ -13,7 +13,7 @@
 </p>
 
 <p align="center"><strong>High throughput. Measured latency. A small Java kernel.</strong><br>
-<a href="#quick-start">Quick start</a> · <a href="docs/architecture.md">Architecture</a> · <a href="docs/plugins.md">Build a plugin</a> · <a href="#linux-performance-on-java-17">Performance</a> · <a href="#linux-profiles">Profiles</a></p>
+<a href="#quick-start">Quick start</a> · <a href="#deployment-architecture">Deployment</a> · <a href="docs/architecture.md">Architecture</a> · <a href="docs/plugins.md">Build a plugin</a> · <a href="#linux-performance-on-java-17">Performance</a> · <a href="#linux-profiles">Profiles</a></p>
 
 OminiCat is a **high-performance Java microkernel for multimodal conversation pipelines**. Embed it in an application or run it as a standalone WebSocket container. Typed frames connect transport, speech, language, vision, and conversation processors through a small plugin contract.
 
@@ -67,6 +67,51 @@ Compare frameworks within each environment. The jobs use different CPU models an
 The kernel keeps execution mechanisms separate from capabilities. Applications can call a typed pipeline directly or open a bounded session; the standalone container adds Netty transport, wire codecs and YAML assembly. Conversation logic and provider adapters remain optional modules.
 
 [![Microkernel boundaries, embedding and container assembly](docs/assets/previews/architecture-overview.png)](docs/assets/architecture-overview.svg)
+
+## Deployment architecture
+
+Choose the deployment boundary around your application. The core, conversation and provider modules are libraries that run together in one JVM; each processing stage does not need its own service.
+
+| Shape | When to use it | What you deploy and own |
+| --- | --- | --- |
+| Embedded Java runtime | An existing backend or worker owns transport and application state | Add `ominicat-core` and the required plugins to the application. Create a fresh pipeline per session; the application owns admission, authentication, persistence and shutdown. See [embedding](#embed-the-runtime). |
+| One standalone instance | A browser/client needs the bundled WebSocket protocol and Studio | Run the server JAR or Docker image with YAML configuration. Each WebSocket gets isolated processors, a bounded session queue and a worker. Start here, then measure your actual media/provider workload. |
+| Multiple standalone instances | New sessions need to be distributed across processes or hosts | Deploy independent instances behind a WebSocket-capable load balancer. Routing, fleet-wide quotas, durable state and recovery belong to the application/infrastructure. OminiCat has no built-in cluster coordinator. |
+
+### Standalone service topology
+
+[![Client, gateway, independent runtime instances and external model services](docs/assets/previews/deployment-topology.png)](docs/assets/deployment-topology.svg)
+
+Use one instance initially; the second illustrates independent replicas. The gateway terminates TLS and implements application identity, tenant routing and quotas. Keep the runtime listener on a private network. Serve Studio and `/ws` on the same browser origin; preserve the external `Host`, `Origin`, WebSocket upgrade and `Sec-WebSocket-Protocol` headers. Configure `tokenEnv` behind a proxy, and keep credential-bearing headers out of access logs. The server's bearer token is a shared service credential, not a user-account system. See [authentication and browser origins](docs/configuration.md#authentication-and-browser-origins).
+
+Model services run separately and scale according to their own limits. Select each provider's endpoint, model and credential environment-variable name in YAML. Durable conversation storage is optional application integration: snapshot APIs do not automatically connect to a database, restore a WebSocket session or replay external effects.
+
+### Run the container
+
+From the repository root, with Docker available and `OMINICAT_TOKEN` already set to a nonempty secret in your shell environment:
+
+```sh
+docker build -t ominicat:local .
+docker run --detach --rm --name ominicat \
+  --publish 127.0.0.1:8080:8080 \
+  --env OMINICAT_TOKEN ominicat:local
+curl --fail --retry 30 --retry-connrefused --retry-delay 1 \
+  http://127.0.0.1:8080/health
+curl --fail -H "Authorization: Bearer ${OMINICAT_TOKEN}" \
+  http://127.0.0.1:8080/metrics
+docker stop ominicat
+```
+
+The first probe retries during startup; stop the container when finished. The [Dockerfile](Dockerfile) defaults to Java 17 and a non-root user. Its [container configuration](config/container.yaml) listens on `0.0.0.0:8080` inside the container, requires `OMINICAT_TOKEN` and runs credential-free `echo`; the host port above is restricted to loopback. For a real pipeline, mount your YAML read-only, select it with `--config /app/config/runtime.yaml` after the image name, and inject the referenced provider credentials through your deployment's secret mechanism. Configuration and classpath plugins load at startup and require a restart to change. [Configuration and plugin launch options](docs/configuration.md#deployment-and-embedding).
+
+### Scaling, state and operations
+
+- **Route connections, preserve ownership.** An established WebSocket stays on its owning instance. A reconnect creates a new session, even on the same instance; load-balancer affinity alone does not restore conversation state. Applications needing recovery must define identity, snapshot storage, restore and external-effect handling. Route Studio's `/api/runtime` and `/api/activity` to the instance being inspected, or build external aggregation; both views are local to one process.
+- **Size each instance from workload evidence.** Tune instance-level `maxSessions` and `maxConnections` together with per-session `queueCapacity`, `maxFrameBytes` and provider limits. Include media payloads, JSON/Base64, queued output, JVM/native memory and model latency. Queue counts and numeric-frame benchmark throughput are not memory or production-capacity guarantees. Align proxy timeouts and client heartbeats with `idleTimeoutSeconds`, which measures inbound activity.
+- **Observe capacity separately from liveness.** `/health` reports that the HTTP listener responds; it does not check provider availability or spare session capacity. Scrape authenticated `/metrics` per instance and track admitted sessions, live workers, rejected frames, failures and pending output bytes. Add application-specific readiness and provider checks where needed.
+- **Plan session-aware rollouts.** First stop routing new connections to the old instance and let the application finish active sessions within its chosen deadline. Server shutdown closes sockets and cooperatively cancels workers; it does not automatically drain every conversation or migrate it. Set termination time for your plugins' cleanup and handle client reconnects explicitly.
+
+[Runtime boundaries and lifecycle](docs/architecture.md) · [Configuration and limits](docs/configuration.md) · [Wire protocol](docs/protocol.md).
 
 ## Why the execution path stays small
 

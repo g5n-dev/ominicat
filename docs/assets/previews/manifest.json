@@ -23,6 +23,16 @@
       ]
     },
     {
+      "source": "docs/assets/deployment-topology.svg",
+      "source_sha256": "91dedfc4a9892e5d9d372dc26f6b25277781ac487f487eb89a8d30cc3f3e1d16",
+      "preview": "docs/assets/previews/deployment-topology.png",
+      "preview_sha256": "350de20f36df15c3d91106d16d378009d47d7d15ffc9075c3141381639b57519",
+      "pixels": [
+        2880,
+        1660
+      ]
+    },
+    {
       "source": "docs/assets/execution-path.svg",
       "source_sha256": "8b4e2e36b425fa1607be2f8dde3f9b85c835f56c3f2437cd3edbbbbd80d7892e",
       "preview": "docs/assets/previews/execution-path.png",
@@ -1110,6 +1120,16 @@
       "pixels": [
         2880,
         2360
+      ]
+    },
+    {
+      "source": "docs/assets/zh-CN/deployment-topology.svg",
+      "source_sha256": "8704d1f48d1bdcfb8ed538fce48b36747dd79d968f55dae20dc98483dab04d9e",
+      "preview": "docs/assets/previews/deployment-topology-zh-CN.png",
+      "preview_sha256": "e0f4b6f6359315bb9039d5c97c3fbb316ca87d8dfc96eaa7c2d38b3ea4f8bd4e",
+      "pixels": [
+        2880,
+        1660
       ]
     },
     {

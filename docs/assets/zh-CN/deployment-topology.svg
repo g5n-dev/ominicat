@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="830" viewBox="0 0 1440 830" role="img" aria-labelledby="title desc" xml:lang="zh-CN">
+<title id="title">OminiCat — 围绕会话归属部署</title>
+<desc id="desc">浏览器或客户端通过 HTTPS 或 WSS 连接应用网关，由网关负责 TLS 终止、身份、路由与配额。网关将 HTTP 和 WebSocket 连接分配到相互独立的 OminiCat 实例 A 与 B。每个实例独立持有会话流水线、队列、工作线程及状态，并通过 HTTPS 调用配置的外部模型服务。重连会创建新会话；持久化和恢复需要应用集成。</desc>
+<defs><linearGradient id="background" x2="1" y2="1"><stop stop-color="#101e28" /><stop offset="1" stop-color="#0b1220" /></linearGradient>
+<pattern id="dots" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#6a91a8" opacity=".13" /></pattern>
+<marker id="arrow-teal" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L7 4L1 7" fill="none" stroke="#64d8c3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></marker>
+<marker id="arrow-blue" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L7 4L1 7" fill="none" stroke="#76adf7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></marker>
+<marker id="arrow-amber" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L7 4L1 7" fill="none" stroke="#e9b96e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></marker>
+<marker id="arrow-muted" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L7 4L1 7" fill="none" stroke="#9badc2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></marker>
+</defs>
+<rect width="1440" height="100%" rx="22" fill="url(#background)" />
+<rect width="1440" height="100%" rx="22" fill="url(#dots)" />
+<g font-family="Arial,Helvetica,DejaVu Sans,sans-serif">
+<text x="56" y="55" font-size="14" font-weight="700" fill="#64d8c3" letter-spacing="2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">OMINICAT / 架构</text>
+<text x="1384" y="55" font-size="14" font-weight="400" fill="#9badc2" text-anchor="end" letter-spacing="2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">06 / 部署</text>
+<text x="56" y="111" font-size="40" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">围绕会话归属部署</text>
+<text x="56" y="150" font-size="19" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">统一的应用入口、独立的运行时实例，以及按需接入的模型服务。</text>
+<text x="56" y="190" font-size="13" font-weight="700" fill="#9badc2" letter-spacing="1.4" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">客户端</text>
+<text x="366" y="190" font-size="13" font-weight="700" fill="#9badc2" letter-spacing="1.4" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">应用入口</text>
+<text x="756" y="190" font-size="13" font-weight="700" fill="#9badc2" letter-spacing="1.4" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">运行时实例</text>
+<text x="1156" y="190" font-size="13" font-weight="700" fill="#9badc2" letter-spacing="1.4" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">外部服务</text>
+<rect x="56" y="334" width="216" height="132" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2" />
+<rect x="56" y="352" width="3" height="96" rx="1.5" fill="#64d8c3" />
+<text x="78" y="368" font-size="21" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">浏览器／客户端</text>
+<text x="78" y="397" font-size="16" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">Studio 或应用界面</text>
+<text x="78" y="422" font-size="16" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">WebSocket 帧</text>
+<rect x="366" y="294" width="286" height="212" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2" />
+<rect x="366" y="312" width="3" height="176" rx="1.5" fill="#e9b96e" />
+<text x="388" y="328" font-size="21" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">应用网关</text>
+<text x="388" y="357" font-size="17" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">TLS 终止</text>
+<text x="388" y="382" font-size="17" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">身份 · 路由 · 配额</text>
+<text x="388" y="407" font-size="17" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">同源界面与 /ws</text>
+<path d="M272 400H366" fill="none" stroke="#e9b96e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-amber)" />
+<text x="319" y="382" font-size="13" font-weight="400" fill="#e9b96e" text-anchor="middle">HTTPS / WSS</text>
+<rect x="756" y="218" width="296" height="160" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2" />
+<rect x="756" y="236" width="3" height="124" rx="1.5" fill="#64d8c3" />
+<text x="778" y="252" font-size="22" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">OminiCat 实例 A</text>
+<text x="778" y="281" font-size="16" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">HTTP / WS 监听器</text>
+<text x="778" y="306" font-size="16" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">会话独占流水线</text>
+<text x="778" y="331" font-size="16" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">独立队列、工作线程与状态</text>
+<rect x="756" y="420" width="296" height="160" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2" />
+<rect x="756" y="438" width="3" height="124" rx="1.5" fill="#64d8c3" />
+<text x="778" y="454" font-size="22" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">OminiCat 实例 B</text>
+<text x="778" y="483" font-size="16" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">HTTP / WS 监听器</text>
+<text x="778" y="508" font-size="16" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">会话独占流水线</text>
+<text x="778" y="533" font-size="16" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">独立队列、工作线程与状态</text>
+<path d="M652 350H704V298H756" fill="none" stroke="#64d8c3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)" />
+<path d="M652 450H704V500H756" fill="none" stroke="#64d8c3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)" />
+<text x="704" y="271" font-size="13" font-weight="400" fill="#64d8c3" text-anchor="middle">HTTP / WS</text>
+<text x="704" y="530" font-size="13" font-weight="400" fill="#64d8c3" text-anchor="middle">HTTP / WS</text>
+<text x="904" y="405" font-size="16" font-weight="400" fill="#9badc2" text-anchor="middle" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">相互独立的副本</text>
+<rect x="1156" y="334" width="228" height="160" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2" />
+<rect x="1156" y="352" width="3" height="124" rx="1.5" fill="#76adf7" />
+<text x="1178" y="368" font-size="21" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">模型服务</text>
+<text x="1178" y="397" font-size="16" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">按配置接入端点</text>
+<text x="1178" y="422" font-size="16" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">独立规划容量</text>
+<text x="1178" y="447" font-size="16" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">按需接入提供方</text>
+<path d="M1052 298H1106V380H1156" fill="none" stroke="#76adf7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-blue)" />
+<path d="M1052 500H1106V440H1156" fill="none" stroke="#76adf7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-blue)" />
+<text x="1106" y="280" font-size="13" font-weight="400" fill="#76adf7" text-anchor="middle">HTTPS</text>
+<text x="1106" y="526" font-size="13" font-weight="400" fill="#76adf7" text-anchor="middle">HTTPS</text>
+<text x="56" y="614" font-size="20" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">从单实例起步，副本分担新连接；活跃会话由原实例持续处理。</text>
+<rect x="56" y="648" width="640" height="100" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2" />
+<rect x="56" y="666" width="3" height="64" rx="1.5" fill="#64d8c3" />
+<text x="78" y="682" font-size="21" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">连接归属</text>
+<text x="78" y="711" font-size="18" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">重连会创建新会话。</text>
+<rect x="720" y="648" width="664" height="100" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2" />
+<rect x="720" y="666" width="3" height="64" rx="1.5" fill="#e9b96e" />
+<text x="742" y="682" font-size="21" font-weight="700" fill="#e4edf8" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">应用负责持久化状态</text>
+<text x="742" y="711" font-size="18" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">持久化与恢复属于可选的应用集成。</text>
+<path d="M56 757H1384" fill="none" stroke="#9badc2" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" />
+<text x="56" y="785" font-size="14" font-weight="400" fill="#9badc2" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">06 / 运行时通过私有监听端口接入应用网关</text>
+<text x="1384" y="785" font-size="14" font-weight="400" fill="#9badc2" text-anchor="end" font-family="Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" style=";font-family:Noto Sans CJK SC,Hiragino Sans GB,Microsoft YaHei,sans-serif">Java 17+ · 不内置集群协调器</text>
+</g>
+<metadata id="ominicat-locale-source">{"geometrySha256": "10fb326b8bd8b1ec5314918e96fb98181dae3e584fc074edb7bfe8f5fbe09010", "language": "zh-CN", "recoveredGlyphLabels": 0, "sha256": "91dedfc4a9892e5d9d372dc26f6b25277781ac487f487eb89a8d30cc3f3e1d16", "source": "docs/assets/deployment-topology.svg"}</metadata></svg>

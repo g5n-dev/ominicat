@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="830" viewBox="0 0 1440 830" role="img" aria-labelledby="title desc">
+<title id="title">OminiCat — Deploy around session ownership</title>
+<desc id="desc">A browser or client connects over HTTPS or WSS to an application gateway that terminates TLS and owns identity, routing and quotas. The gateway routes HTTP and WebSocket connections to independent OminiCat instances A and B. Each instance owns session-local pipelines, queues, workers and state, and calls configured external model services over HTTPS. Reconnecting creates a fresh session; persistence and recovery require application integration.</desc>
+<defs><linearGradient id="background" x2="1" y2="1"><stop stop-color="#101e28"/><stop offset="1" stop-color="#0b1220"/></linearGradient>
+<pattern id="dots" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#6a91a8" opacity=".13"/></pattern>
+<marker id="arrow-teal" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L7 4L1 7" fill="none" stroke="#64d8c3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+<marker id="arrow-blue" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L7 4L1 7" fill="none" stroke="#76adf7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+<marker id="arrow-amber" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L7 4L1 7" fill="none" stroke="#e9b96e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+<marker id="arrow-muted" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L7 4L1 7" fill="none" stroke="#9badc2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+</defs>
+<rect width="1440" height="100%" rx="22" fill="url(#background)"/>
+<rect width="1440" height="100%" rx="22" fill="url(#dots)"/>
+<g font-family="Arial,Helvetica,DejaVu Sans,sans-serif">
+<text x="56" y="55" font-size="14" font-weight="700" fill="#64d8c3" letter-spacing="2">OMINICAT / ARCHITECTURE</text>
+<text x="1384" y="55" font-size="14" font-weight="400" fill="#9badc2" text-anchor="end" letter-spacing="2">06 / DEPLOYMENT</text>
+<text x="56" y="111" font-size="40" font-weight="700" fill="#e4edf8">Deploy around session ownership</text>
+<text x="56" y="150" font-size="19" font-weight="400" fill="#9badc2">A shared application edge, independent runtime instances and optional model services.</text>
+<text x="56" y="190" font-size="13" font-weight="700" fill="#9badc2" letter-spacing="1.4">CLIENT</text>
+<text x="366" y="190" font-size="13" font-weight="700" fill="#9badc2" letter-spacing="1.4">APPLICATION EDGE</text>
+<text x="756" y="190" font-size="13" font-weight="700" fill="#9badc2" letter-spacing="1.4">RUNTIME INSTANCES</text>
+<text x="1156" y="190" font-size="13" font-weight="700" fill="#9badc2" letter-spacing="1.4">EXTERNAL SERVICES</text>
+<rect x="56" y="334" width="216" height="132" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2"/>
+<rect x="56" y="352" width="3" height="96" rx="1.5" fill="#64d8c3"/>
+<text x="78" y="368" font-size="21" font-weight="700" fill="#e4edf8">Browser / client</text>
+<text x="78" y="397" font-size="16" font-weight="400" fill="#9badc2">Studio or your UI</text>
+<text x="78" y="422" font-size="16" font-weight="400" fill="#9badc2">WebSocket frames</text>
+<rect x="366" y="294" width="286" height="212" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2"/>
+<rect x="366" y="312" width="3" height="176" rx="1.5" fill="#e9b96e"/>
+<text x="388" y="328" font-size="21" font-weight="700" fill="#e4edf8">Application gateway</text>
+<text x="388" y="357" font-size="17" font-weight="400" fill="#9badc2">TLS termination</text>
+<text x="388" y="382" font-size="17" font-weight="400" fill="#9badc2">Identity · routing · quotas</text>
+<text x="388" y="407" font-size="17" font-weight="400" fill="#9badc2">Same-origin UI + /ws</text>
+<path d="M272 400H366" fill="none" stroke="#e9b96e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-amber)"/>
+<text x="319" y="382" font-size="13" font-weight="400" fill="#e9b96e" text-anchor="middle">HTTPS / WSS</text>
+<rect x="756" y="218" width="296" height="160" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2"/>
+<rect x="756" y="236" width="3" height="124" rx="1.5" fill="#64d8c3"/>
+<text x="778" y="252" font-size="22" font-weight="700" fill="#e4edf8">OminiCat instance A</text>
+<text x="778" y="281" font-size="16" font-weight="400" fill="#9badc2">HTTP / WS listener</text>
+<text x="778" y="306" font-size="16" font-weight="400" fill="#9badc2">Session-local pipelines</text>
+<text x="778" y="331" font-size="16" font-weight="400" fill="#9badc2">Own queues, workers and state</text>
+<rect x="756" y="420" width="296" height="160" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2"/>
+<rect x="756" y="438" width="3" height="124" rx="1.5" fill="#64d8c3"/>
+<text x="778" y="454" font-size="22" font-weight="700" fill="#e4edf8">OminiCat instance B</text>
+<text x="778" y="483" font-size="16" font-weight="400" fill="#9badc2">HTTP / WS listener</text>
+<text x="778" y="508" font-size="16" font-weight="400" fill="#9badc2">Session-local pipelines</text>
+<text x="778" y="533" font-size="16" font-weight="400" fill="#9badc2">Own queues, workers and state</text>
+<path d="M652 350H704V298H756" fill="none" stroke="#64d8c3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)"/>
+<path d="M652 450H704V500H756" fill="none" stroke="#64d8c3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)"/>
+<text x="704" y="271" font-size="13" font-weight="400" fill="#64d8c3" text-anchor="middle">HTTP / WS</text>
+<text x="704" y="530" font-size="13" font-weight="400" fill="#64d8c3" text-anchor="middle">HTTP / WS</text>
+<text x="904" y="405" font-size="16" font-weight="400" fill="#9badc2" text-anchor="middle">Independent replicas</text>
+<rect x="1156" y="334" width="228" height="160" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2"/>
+<rect x="1156" y="352" width="3" height="124" rx="1.5" fill="#76adf7"/>
+<text x="1178" y="368" font-size="21" font-weight="700" fill="#e4edf8">Model services</text>
+<text x="1178" y="397" font-size="16" font-weight="400" fill="#9badc2">Configured endpoints</text>
+<text x="1178" y="422" font-size="16" font-weight="400" fill="#9badc2">Independent capacity</text>
+<text x="1178" y="447" font-size="16" font-weight="400" fill="#9badc2">Optional providers</text>
+<path d="M1052 298H1106V380H1156" fill="none" stroke="#76adf7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-blue)"/>
+<path d="M1052 500H1106V440H1156" fill="none" stroke="#76adf7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-blue)"/>
+<text x="1106" y="280" font-size="13" font-weight="400" fill="#76adf7" text-anchor="middle">HTTPS</text>
+<text x="1106" y="526" font-size="13" font-weight="400" fill="#76adf7" text-anchor="middle">HTTPS</text>
+<text x="56" y="614" font-size="20" font-weight="400" fill="#9badc2">Start with one instance. Replicas distribute new connections; active sessions stay local.</text>
+<rect x="56" y="648" width="640" height="100" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2"/>
+<rect x="56" y="666" width="3" height="64" rx="1.5" fill="#64d8c3"/>
+<text x="78" y="682" font-size="21" font-weight="700" fill="#e4edf8">Connection ownership</text>
+<text x="78" y="711" font-size="18" font-weight="400" fill="#9badc2">A reconnect creates a fresh session.</text>
+<rect x="720" y="648" width="664" height="100" rx="15" fill="#111d2e" stroke="#2a3f53" stroke-width="1.2"/>
+<rect x="720" y="666" width="3" height="64" rx="1.5" fill="#e9b96e"/>
+<text x="742" y="682" font-size="21" font-weight="700" fill="#e4edf8">Application-owned state</text>
+<text x="742" y="711" font-size="18" font-weight="400" fill="#9badc2">Persistence and recovery are optional integrations.</text>
+<path d="M56 757H1384" fill="none" stroke="#9badc2" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="56" y="785" font-size="14" font-weight="400" fill="#9badc2">06 / Private runtime listeners behind the application edge</text>
+<text x="1384" y="785" font-size="14" font-weight="400" fill="#9badc2" text-anchor="end">Java 17+ · no built-in cluster coordinator</text>
+</g>
+</svg>
