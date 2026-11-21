@@ -79,6 +79,25 @@ class FrameTest {
         assertThrows(IllegalArgumentException.class, () -> new Frame.Transcript("x", "s", 0, 1, false, 1, "seg", 0, " "));
     }
 
+    @Test void failureAndCancelValidateLabelBoundsAndAcceptBoundaryLengths() {
+        assertEquals("provider_timeout", new Frame.Failure("provider_timeout", false, "request", "speech-1", "busy").code());
+        assertEquals("m".repeat(2048), new Frame.Failure("x".repeat(128), true, "y".repeat(128),
+                "z".repeat(256), "m".repeat(2048)).message());
+        assertThrows(IllegalArgumentException.class, () -> new Frame.Failure("", true, "request", "node", "busy"));
+        assertThrows(IllegalArgumentException.class, () -> new Frame.Failure(" ", true, "request", "node", "busy"));
+        assertThrows(IllegalArgumentException.class, () -> new Frame.Failure("x".repeat(129), true, "request", "node", "busy"));
+        assertThrows(IllegalArgumentException.class, () -> new Frame.Failure("code", true, "x".repeat(257), "node", "busy"));
+        assertThrows(IllegalArgumentException.class, () -> new Frame.Failure("code", true, "request", "x".repeat(257), "busy"));
+        assertThrows(IllegalArgumentException.class, () -> new Frame.Failure("code", true, "request", "node", "x".repeat(2049)));
+        assertThrows(NullPointerException.class, () -> new Frame.Failure(null, true, "request", "node", "busy"));
+        assertEquals("turn-1", new Frame.Cancel("user stop", Frame.CancelScope.SESSION, "turn-1").targetId());
+        assertThrows(IllegalArgumentException.class, () -> new Frame.Cancel("x".repeat(257), Frame.CancelScope.TURN, "turn-1"));
+        assertThrows(IllegalArgumentException.class, () -> new Frame.Cancel("stop", Frame.CancelScope.TURN, "x".repeat(257)));
+        assertThrows(IllegalArgumentException.class, () -> new Frame.Cancel(" ", Frame.CancelScope.TURN, "turn-1"));
+        assertThrows(IllegalArgumentException.class, () -> new Frame.Cancel("stop", Frame.CancelScope.TURN, ""));
+        assertThrows(NullPointerException.class, () -> new Frame.Cancel("stop", null, "turn-1"));
+    }
+
     private static Frame.Transcript transcript(long start, long end, double confidence) {
         return new Frame.Transcript("hello", "customer", start, end, true, confidence);
     }
