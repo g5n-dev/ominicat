@@ -68,8 +68,8 @@
 
 | 顺序 | 增量 | 证据与范围 | 验收 |
 | --- | --- | --- | --- |
-| 1 | 异步 continuation 与 envelope 成本 | 现有 JMH 覆盖同步数值派发与会话往返。增加有界外部回调基准，分别测试原始帧与 envelope，保持运行时契约不变。 | 校验 nonce、因果关系与帧输出；一个请求在途；清理时执行器／会话资源排空。记录 Java 17 预热、至少两个独立进程、延迟、B/op、源码哈希和计时边界。范围明确包含执行器、标识与时钟开销。在 17/21/25 编译验证。 |
-| 2 | 媒体快照与派发成本 | 数值帧结果不含音频／图像构造的防御性复制。将构造与预先构建的不可变帧派发分开测量。覆盖 640/3,840 字节 PCM 块及 64 KiB/1 MiB 图像字节。 | 在计时外准备可复用源数据，防止常量折叠，保留快照／只读回归。发布精确载荷大小对应的时间／吞吐、B/op 和 GC。不宣称编解码、模型或实时媒体容量。 |
+| 1 | 异步 continuation 与 envelope 成本 | **已实现为 [`AsyncContinuationProbe`](../../ominicat-benchmarks/src/main/java/io/ominicat/benchmarks/AsyncContinuationProbe.java)**：`raw-async-4`／`envelope-async-4` 有界外部回调用例，运行于真实单容量会话，单请求在途，精确 nonce／因果／时间校验，执行器／会话资源排空记账（异步重入会结算两个 accepted/processed 项）与 worker join 清理。运行时契约不变。剩余工作：配对 Linux 采集与 GC/B/op 证据。 | 校验、单请求在途与资源排空检查由[探针测试](../../ominicat-benchmarks/src/test/java/io/ominicat/benchmarks/AsyncContinuationProbeTest.java)强制执行；单台 macOS JVM 冒烟计时（非证据）：raw ≈8.3 µs、envelope ≈9.2 µs。在得出结论前发布 Java 17 配对测量（≥2 forks、源码哈希与计时边界）。 |
+| 2 | 媒体快照与派发成本 | **已实现为 [`MediaCostProbe`](../../ominicat-benchmarks/src/main/java/io/ominicat/benchmarks/MediaCostProbe.java)**：将构造（防御性快照）与预先构建的不可变帧四阶段直通派发分开测量；pcm-640、pcm-3840、image-64k、image-1m 载荷，复用并在计时内变更源数据防止常量折叠，计时内执行精确快照／只读校验。剩余工作：配对 Linux 采集。 | 快照语义、源变更隔离与派发身份由[探针测试](../../ominicat-benchmarks/src/test/java/io/ominicat/benchmarks/MediaCostProbeTest.java)强制执行；单台 macOS JVM 冒烟（非证据）：构造 0.8–40 µs 随载荷缩放，派发 0.02–0.04 µs。发布 Java 17 配对运行的精确载荷时间／吞吐、B/op 与 GC；不宣称编解码、模型或实时媒体容量。 |
 | 3 | 有证据时减少同步调用分配 | 采样 profile 可见调用保护与捕获 lambda，但采样本身不能建立逐操作成本或优化收益。先建立匹配的 Linux JMH B/op 基线，再测试合并逐调用状态的可丢弃原型。依赖项目 1 和 2。 | 目标至少降低 10% 分配；在受控主机和测量不确定性下，吞吐或平均往返不能出现超过 5% 的退化。通过 17/21/25 验证和 512 个压力种子，包括过期 sink、错误线程、关闭与引用释放测试。不池化／重新激活 sink，不改变公共 API。未达目标时发布实验结论，运行时保持不变。 |
 
 ## 有条件队列
