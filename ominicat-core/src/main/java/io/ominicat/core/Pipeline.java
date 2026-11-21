@@ -117,8 +117,7 @@ public final class Pipeline {
     void dispatchSession(int index, Frame frame, FrameSink output, BooleanSupplier valid) throws Exception {
         if (!valid.getAsBoolean()) throw StaleFrameException.INSTANCE;
         if (index == processors.length) output.accept(frame);
-        else invoke(processors[index], frame, emitted ->
-                dispatchSession(index + 1, Objects.requireNonNull(emitted, "emitted frame"), output, valid));
+        else invokeSession(processors, index, frame, output, valid);
     }
 
     boolean hasAsync() { return hasAsync; }
@@ -132,14 +131,75 @@ public final class Pipeline {
         if (!valid.getAsBoolean()) throw StaleFrameException.INSTANCE;
         if (index == processors.length) output.accept(frame);
         else if (processors[index] instanceof AsyncProcessor processor) async.start(processor, frame, index + 1);
-        else invoke(processors[index], frame, emitted -> dispatchAsyncSession(index + 1,
-                Objects.requireNonNull(emitted, "emitted frame"), output, valid, async));
+        else {
+            SessionInvocation invocation = new SessionInvocation(processors, index, output, valid, async);
+            invocation.run(processors[index], frame);
+        }
     }
 
-    private static void invoke(Processor processor, Frame frame, FrameSink next) throws Exception {
-        SynchronousSink invocation = new SynchronousSink(next);
-        try { processor.process(frame, invocation); }
-        finally { invocation.invalidate(); }
+    /**
+     * One combined invocation owns the synchronous boundary, the continuation cursor and the
+     * thread guard for exactly one stage call. Each session dispatch allocates a single object
+     * instead of a separate sink plus captured lambda; the guard still detaches the downstream
+     * graph when the stage returns, and a plugin may retain the retired handle harmlessly.
+     * The optional async hook routes a following AsyncProcessor stage back to the session
+     * scheduler instead of recursing synchronously.
+     */
+    private static final class SessionInvocation implements FrameSink {
+        private final Processor[] processors;
+        private final BooleanSupplier valid;
+        private final FrameSink output;
+        private final AsyncDispatch async;
+        private final int nextIndex;
+        private Thread owner = Thread.currentThread();
+
+        SessionInvocation(Processor[] processors, int index, FrameSink output, BooleanSupplier valid, AsyncDispatch async) {
+            this.processors = processors;
+            this.nextIndex = index + 1;
+            this.output = output;
+            this.valid = valid;
+            this.async = async;
+        }
+
+        void run(Processor processor, Frame frame) throws Exception {
+            if (!valid.getAsBoolean()) throw StaleFrameException.INSTANCE;
+            try { processor.process(frame, this); }
+            finally { retire(); }
+        }
+
+        @Override public void accept(Frame frame) throws Exception {
+            Thread invocationOwner = owner;
+            if (invocationOwner == null) {
+                throw new IllegalStateException("synchronous sink is no longer valid after process returns");
+            }
+            if (Thread.currentThread() != invocationOwner) {
+                throw new IllegalStateException("synchronous sink may only emit on its invocation thread; use AsyncProcessor for callbacks");
+            }
+            Frame emitted = Objects.requireNonNull(frame, "emitted frame");
+            if (nextIndex == processors.length) {
+                if (!valid.getAsBoolean()) throw StaleFrameException.INSTANCE;
+                output.accept(emitted);
+            } else {
+                Processor next = processors[nextIndex];
+                if (async != null && next instanceof AsyncProcessor processor) {
+                    if (!valid.getAsBoolean()) throw StaleFrameException.INSTANCE;
+                    async.start(processor, emitted, nextIndex + 1);
+                } else {
+                    SessionInvocation continuation = new SessionInvocation(processors, nextIndex, output, valid, async);
+                    continuation.run(next, emitted);
+                }
+            }
+        }
+
+        void retire() {
+            owner = null;
+        }
+    }
+
+    private static void invokeSession(Processor[] processors, int index, Frame frame,
+                                      FrameSink output, BooleanSupplier valid) throws Exception {
+        SessionInvocation invocation = new SessionInvocation(processors, index, output, valid, null);
+        invocation.run(processors[index], frame);
     }
 
     private static final class StaleFrameException extends RuntimeException {

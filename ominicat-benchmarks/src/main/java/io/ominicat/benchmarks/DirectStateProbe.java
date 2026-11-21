@@ -132,7 +132,10 @@ public class DirectStateProbe {
                 case "raw-direct-4" -> new Scenario(4, false, false, "");
                 case "raw-direct-16" -> new Scenario(16, false, false, "");
                 case "envelope-direct-4" -> new Scenario(4, true, false, "");
+                case "raw-session-1" -> new Scenario(1, false, true, "");
                 case "raw-session-4" -> new Scenario(4, false, true, "");
+                case "raw-session-16" -> new Scenario(16, false, true, "");
+                case "envelope-session-4" -> new Scenario(4, true, true, "");
                 case "audio-direct-4" -> new Scenario(4, false, false, "audio");
                 case "image-direct-4" -> new Scenario(4, false, false, "image");
                 default -> throw new IllegalArgumentException("unsupported direct-state scenario");
