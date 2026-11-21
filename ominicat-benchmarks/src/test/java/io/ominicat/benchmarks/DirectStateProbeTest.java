@@ -22,8 +22,8 @@ class DirectStateProbeTest {
     @TempDir Path temporary;
 
     @ParameterizedTest
-    @ValueSource(strings = {"raw-direct-1", "raw-direct-4", "raw-direct-16", "envelope-direct-4", "raw-session-4",
-            "audio-direct-4", "image-direct-4"})
+    @ValueSource(strings = {"raw-direct-1", "raw-direct-4", "raw-direct-16", "envelope-direct-4", "raw-session-1",
+            "raw-session-4", "raw-session-16", "envelope-session-4", "audio-direct-4", "image-direct-4"})
     void allScenariosValidateIndependentResultsAndReleaseOwnedWork(String name) throws Exception {
         var scenario = DirectStateProbe.Scenario.parse(name);
         var harness = harness(name, DirectStateProbe.Fault.NONE);
@@ -69,8 +69,8 @@ class DirectStateProbeTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"raw-direct-1", "raw-direct-4", "raw-direct-16", "envelope-direct-4", "raw-session-4",
-            "audio-direct-4", "image-direct-4"})
+    @ValueSource(strings = {"raw-direct-1", "raw-direct-4", "raw-direct-16", "envelope-direct-4", "raw-session-1",
+            "raw-session-4", "raw-session-16", "envelope-session-4", "audio-direct-4", "image-direct-4"})
     void numericEnvelopeAndMediaCorruptionCannotPassTheOracle(String scenario) throws Exception {
         try (var harness = harness(scenario, DirectStateProbe.Fault.CORRUPT_OUTPUT)) {
             assertThrows(Exception.class, harness::invoke);
@@ -140,7 +140,7 @@ class DirectStateProbeTest {
     }
 
     @Test void scenarioAndWatchdogAreExplicitAndBounded() {
-        for (String name : new String[]{"raw-direct-2", "raw-session-16", "envelope-session-4", "unknown"}) {
+        for (String name : new String[]{"raw-direct-2", "audio-session-4", "envelope-direct-2", "unknown"}) {
             assertThrows(IllegalArgumentException.class, () -> harness(name, DirectStateProbe.Fault.NONE));
         }
         assertThrows(IllegalArgumentException.class,
