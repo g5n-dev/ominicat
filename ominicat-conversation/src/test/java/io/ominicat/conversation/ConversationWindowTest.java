@@ -145,6 +145,37 @@ class ConversationWindowTest {
         assertThrows(IllegalArgumentException.class, () -> new ConversationWindow(1, 2, before));
     }
 
+    @Test
+    void turnRejectsInvalidSegmentRevisionAndRole() {
+        assertThrows(IllegalArgumentException.class, () -> new Turn("x", "user", 0, 1, 1, " ", 0, "user"));
+        assertThrows(IllegalArgumentException.class, () -> new Turn("x", "user", 0, 1, 1, "s".repeat(257), 0, "user"));
+        assertThrows(IllegalArgumentException.class, () -> new Turn("x", "user", 0, 1, 1, "seg", -1, "user"));
+        assertThrows(IllegalArgumentException.class, () -> new Turn("x", "user", 0, 1, 1, "seg", 0, " "));
+        assertThrows(IllegalArgumentException.class, () -> new Turn("x", "user", 0, 1, 1, "seg", 0, "r".repeat(129)));
+        Turn derived = new Turn("hello", "user", 10, 20, 1);
+        assertEquals("user:10-20", derived.segmentId());
+        assertEquals(0, derived.revision());
+        assertEquals("user", derived.role());
+        assertEquals(derived, Turn.from(new Frame.Transcript("hello", "user", 10, 20, true, 1)));
+    }
+
+    @Test
+    void evaluationFrameValidatesVersionSpeakerScoreAndCounts() {
+        ConversationMetrics metrics = new ConversationMetrics(0, 0, 0, java.util.Map.of());
+        assertEquals("v9", new EvaluationFrame("v9", "user", null, List.of(), metrics, 0, 0).policyVersion());
+        assertEquals(0.0, new EvaluationFrame("1", "user", 0.0, List.of(), metrics, 0, 0).score());
+        assertEquals(1.0, new EvaluationFrame("1", "user", 1.0, List.of(), metrics, 3, 7).score());
+        assertEquals("1", new EvaluationFrame("user", null, List.of(), metrics, 0, 0).policyVersion());
+        assertThrows(IllegalArgumentException.class, () -> new EvaluationFrame(" ", "user", null, List.of(), metrics, 0, 0));
+        assertThrows(IllegalArgumentException.class, () -> new EvaluationFrame("x".repeat(129), "user", null, List.of(), metrics, 0, 0));
+        assertThrows(IllegalArgumentException.class, () -> new EvaluationFrame("1", " ", null, List.of(), metrics, 0, 0));
+        assertThrows(IllegalArgumentException.class, () -> new EvaluationFrame("1", "user", Double.NaN, List.of(), metrics, 0, 0));
+        assertThrows(IllegalArgumentException.class, () -> new EvaluationFrame("1", "user", -0.1, List.of(), metrics, 0, 0));
+        assertThrows(IllegalArgumentException.class, () -> new EvaluationFrame("1", "user", 1.1, List.of(), metrics, 0, 0));
+        assertThrows(IllegalArgumentException.class, () -> new EvaluationFrame("1", "user", null, List.of(), metrics, -1, 0));
+        assertThrows(IllegalArgumentException.class, () -> new EvaluationFrame("1", "user", null, List.of(), metrics, 0, -1));
+    }
+
     static Frame.Transcript finalTurn(String text, String speaker, long start, long end) {
         return new Frame.Transcript(text, speaker, start, end, true, 1);
     }
