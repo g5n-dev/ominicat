@@ -125,6 +125,8 @@
 - [CPU、分配与 GC 剖析 · reports/performance-audit/linux-java17-2026-11-01/profiles](reports/performance-audit/linux-java17-2026-11-01/profiles.md)
 - [本地内核性能证据 · reports/performance-audit/linux-java17-2026-11-01/report](reports/performance-audit/linux-java17-2026-11-01/report.md)
 - [提示词生成成本配对测量 · reports/performance-audit/prompt-render-2026-11-01/summary](reports/performance-audit/prompt-render-2026-11-01/summary.md)
+- [配对会话调用证据 — 2026-11-22 · reports/performance-audit/session-state-2026-11-22](reports/performance-audit/session-state-2026-11-22/README.md)
+- [配对会话调用状态实验 · reports/performance-audit/session-state-2026-11-22/summary](reports/performance-audit/session-state-2026-11-22/summary.md)
 - [Studio 验证 · reports/studio](reports/studio/README.md)
 - [Studio 交互评审 · reports/studio/interaction-review](reports/studio/interaction-review.md)
 - [验证证据 · reports/verification](reports/verification.md)

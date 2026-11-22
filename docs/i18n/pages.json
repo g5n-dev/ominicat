@@ -74,7 +74,7 @@
     {
       "source": "docs/iteration-plan.md",
       "translation": "docs/zh-CN/iteration-plan.md",
-      "source_sha256": "d4e949c9ef9771f44800b96526cbaa0ed9126569cd8b71f3433042c16afdd239"
+      "source_sha256": "ca1685f9afcc700063d71954ce6edc6a215b849cb0f7a57c4e67a967ca79896a"
     },
     {
       "source": "docs/java-compatibility.md",
@@ -555,6 +555,16 @@
       "source": "reports/performance-audit/prompt-render-2026-11-01/summary.md",
       "translation": "docs/zh-CN/reports/performance-audit/prompt-render-2026-11-01/summary.md",
       "source_sha256": "adec4e91d128aea8a2e642173c377f7ae0d73135ce150f90eec70474fed129ca"
+    },
+    {
+      "source": "reports/performance-audit/session-state-2026-11-22/README.md",
+      "translation": "docs/zh-CN/reports/performance-audit/session-state-2026-11-22/README.md",
+      "source_sha256": "56952745dcd34a3a83f9b5824d182f8000bc9d2d4b2221331c0712700484af4c"
+    },
+    {
+      "source": "reports/performance-audit/session-state-2026-11-22/summary.md",
+      "translation": "docs/zh-CN/reports/performance-audit/session-state-2026-11-22/summary.md",
+      "source_sha256": "2ac3467c50ad054ba5be7b4897206e44e4a574156e2576620f6a7f6404fb099b"
     },
     {
       "source": "reports/studio/README.md",
