@@ -557,6 +557,16 @@
       "source_sha256": "adec4e91d128aea8a2e642173c377f7ae0d73135ce150f90eec70474fed129ca"
     },
     {
+      "source": "reports/performance-audit/session-state-2026-11-22/README.md",
+      "translation": "docs/zh-CN/reports/performance-audit/session-state-2026-11-22/README.md",
+      "source_sha256": "54eeb13b06e465149a3063ade6e8032647f081a249a32456cbd55b2a19cf1963"
+    },
+    {
+      "source": "reports/performance-audit/session-state-2026-11-22/evidence/summary.md",
+      "translation": "docs/zh-CN/reports/performance-audit/session-state-2026-11-22/evidence/summary.md",
+      "source_sha256": "2ac3467c50ad054ba5be7b4897206e44e4a574156e2576620f6a7f6404fb099b"
+    },
+    {
       "source": "reports/studio/README.md",
       "translation": "docs/zh-CN/reports/studio/README.md",
       "source_sha256": "3c1e5a7c64bb7c285abfa812324d6986d377238209c7948a7e34b07c425a8c5d"
