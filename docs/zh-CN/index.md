@@ -127,7 +127,6 @@
 - [提示词生成成本配对测量 · reports/performance-audit/prompt-render-2026-11-01/summary](reports/performance-audit/prompt-render-2026-11-01/summary.md)
 - [配对会话调用证据 — 2026-11-22 · reports/performance-audit/session-state-2026-11-22](reports/performance-audit/session-state-2026-11-22/README.md)
 - [配对会话调用状态实验 · reports/performance-audit/session-state-2026-11-22/evidence/summary](reports/performance-audit/session-state-2026-11-22/evidence/summary.md)
-- [配对会话调用状态实验 · reports/performance-audit/session-state-2026-11-22/summary](reports/performance-audit/session-state-2026-11-22/summary.md)
 - [Studio 验证 · reports/studio](reports/studio/README.md)
 - [Studio 交互评审 · reports/studio/interaction-review](reports/studio/interaction-review.md)
 - [验证证据 · reports/verification](reports/verification.md)
