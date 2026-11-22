@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -58,6 +61,55 @@ class PluginRegistryTest {
         assertThrows(NullPointerException.class, () -> registry.register(factory(null)));
         registry.register(factory("null-processor"));
         assertThrows(NullPointerException.class, () -> registry.create("null-processor", Map.of()));
+    }
+
+    @Test void createCallbackRunsOutsideTheRegistryMonitor() {
+        PluginRegistry registry = new PluginRegistry();
+        AtomicBoolean heldDuringCreate = new AtomicBoolean(true);
+        registry.register(new ProcessorFactory() {
+            @Override public String type() { return "create-outside-monitor"; }
+            @Override public Processor create(Map<String, String> options) {
+                heldDuringCreate.set(Thread.holdsLock(registry));
+                return (frame, next) -> next.accept(frame);
+            }
+        });
+        registry.create("create-outside-monitor", Map.of());
+        assertFalse(heldDuringCreate.get(), "factory construction must run outside the registry monitor");
+    }
+
+    @Test void concurrentCreatesOfDifferentTypesDoNotSerialize() throws Exception {
+        PluginRegistry registry = new PluginRegistry();
+        CountDownLatch slowEntered = new CountDownLatch(1);
+        CountDownLatch releaseSlow = new CountDownLatch(1);
+        registry.register(new ProcessorFactory() {
+            @Override public String type() { return "slow-create"; }
+            @Override public Processor create(Map<String, String> options) {
+                slowEntered.countDown();
+                try { releaseSlow.await(); }
+                catch (InterruptedException interrupted) { Thread.currentThread().interrupt(); }
+                return (frame, next) -> next.accept(frame);
+            }
+        });
+        registry.register(new ProcessorFactory() {
+            @Override public String type() { return "fast-create"; }
+            @Override public Processor create(Map<String, String> options) { return (frame, next) -> next.accept(frame); }
+        });
+        Thread slow = new Thread(() -> {
+            try { registry.create("slow-create", Map.of()); } catch (Exception ignored) { /* helper thread */ }
+        }, "test-slow-create");
+        slow.setDaemon(true);
+        slow.start();
+        try {
+            assertTrue(slowEntered.await(2, TimeUnit.SECONDS), "slow factory did not start");
+            long started = System.nanoTime();
+            registry.create("fast-create", Map.of());
+            long elapsed = System.nanoTime() - started;
+            assertTrue(elapsed < TimeUnit.SECONDS.toNanos(1), "fast create blocked behind slow create");
+        } finally {
+            releaseSlow.countDown();
+            slow.join(2000);
+            assertFalse(slow.isAlive(), "slow create helper did not terminate");
+        }
     }
 
     private static ProcessorFactory factory(String type) {

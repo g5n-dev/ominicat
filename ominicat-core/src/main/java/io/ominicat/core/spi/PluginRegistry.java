@@ -34,15 +34,23 @@ public final class PluginRegistry {
         return this;
     }
 
-    /** Create a fresh processor, reporting installed types when configuration names an unknown plugin. */
-    public synchronized Processor create(String type, Map<String, String> options) {
+    /**
+     * Create a fresh processor, reporting installed types when configuration names an unknown
+     * plugin. The factory callback executes outside the registry monitor, so a slow constructor
+     * (model loading, resource allocation) never blocks registration, lookup or unrelated creation;
+     * third-party constructors must themselves honor the discovery contract.
+     */
+    public Processor create(String type, Map<String, String> options) {
         Objects.requireNonNull(type, "type");
-        ProcessorFactory factory = factories.get(type);
-        if (factory == null) {
-            throw new IllegalArgumentException("unknown processor type '" + type + "'; installed: " + types());
+        Map<String, String> snapshot = Map.copyOf(Objects.requireNonNull(options, "options"));
+        ProcessorFactory factory;
+        synchronized (this) {
+            factory = factories.get(type);
+            if (factory == null) {
+                throw new IllegalArgumentException("unknown processor type '" + type + "'; installed: " + types());
+            }
         }
-        return Objects.requireNonNull(factory.create(Map.copyOf(Objects.requireNonNull(options, "options"))),
-                "processor factory returned null: " + type);
+        return Objects.requireNonNull(factory.create(snapshot), "processor factory returned null: " + type);
     }
 
     /** Installed configuration types in stable sorted order. */
