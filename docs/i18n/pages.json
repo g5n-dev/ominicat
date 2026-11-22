@@ -74,7 +74,7 @@
     {
       "source": "docs/iteration-plan.md",
       "translation": "docs/zh-CN/iteration-plan.md",
-      "source_sha256": "d4e949c9ef9771f44800b96526cbaa0ed9126569cd8b71f3433042c16afdd239"
+      "source_sha256": "ca1685f9afcc700063d71954ce6edc6a215b849cb0f7a57c4e67a967ca79896a"
     },
     {
       "source": "docs/java-compatibility.md",
@@ -564,6 +564,11 @@
     {
       "source": "reports/performance-audit/session-state-2026-11-22/evidence/summary.md",
       "translation": "docs/zh-CN/reports/performance-audit/session-state-2026-11-22/evidence/summary.md",
+      "source_sha256": "2ac3467c50ad054ba5be7b4897206e44e4a574156e2576620f6a7f6404fb099b"
+    },
+    {
+      "source": "reports/performance-audit/session-state-2026-11-22/summary.md",
+      "translation": "docs/zh-CN/reports/performance-audit/session-state-2026-11-22/summary.md",
       "source_sha256": "2ac3467c50ad054ba5be7b4897206e44e4a574156e2576620f6a7f6404fb099b"
     },
     {
