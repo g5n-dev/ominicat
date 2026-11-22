@@ -5,7 +5,8 @@
   const SVG = 'http://www.w3.org/2000/svg';
   const LIMIT = { logs: 80, preview: 800, pending: 64, pendingMs: 60000, samples: 60,
     particles: 32, frameBytes: 1048576, outgoingBytes: 2097152, imageBytes: 600000,
-    playbackSeconds: 15, playbackSources: 32, captureSeconds: 15 };
+    playbackSeconds: 15, playbackSources: 32, captureSeconds: 15,
+    bargeInRms: 0.12, bargeInChunks: 2, bargeInCooldownMs: 1500 };
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const state = { socket: null, sessionEpoch: 0, mediaEpoch: 0, captureEpoch: 0,
     sessionId: '', connectedAt: 0, finishing: false, runtime: null, runtimeState: 'loading',
@@ -14,6 +15,7 @@
     graphHeight: 250, zoom: 1, panX: 0, panY: 0, particles: [], motion: !reducedMotion.matches,
     recording: null, pendingCapture: null, recordPending: false, imageOperation: null,
     playback: null, playhead: 0, playbackSources: new Set(), sound: true, sequence: 0, disposed: false,
+    bargeInLoud: 0, bargeInAt: null, bargeInDisabled: false,
     view: null, recent: [] };
   const scene = { nodes: [], edges: [], ambient: [], particles: [], tokens: [], selected: 'current-pipeline',
     zoom: 1, panX: 0, panY: 0, width: 1280, height: 650, raf: 0, renderedAt: 0 };
@@ -229,6 +231,28 @@
   }
   function cancelMedia() {
     state.mediaEpoch++; stopRecording(false); state.imageOperation = null; stopPlayback(); controls();
+    state.bargeInLoud = 0; state.bargeInAt = null;
+  }
+  /**
+   * Client-side energy barge-in: while a reply is playing locally, sustained loud
+   * capture energy triggers the same interrupt path as the manual button. This is
+   * RMS energy detection, not speaker/echo discrimination: the browser echo
+   * canceller is requested but not guaranteed, so loud playback may retrigger.
+   * The cooldown bounds repeated interruptions and the current recording continues.
+   */
+  function considerBargeIn(rms) {
+    if (!state.sound || state.bargeInDisabled || state.playbackSources.size === 0) { state.bargeInLoud = 0; return; }
+    if (rms >= LIMIT.bargeInRms) {
+      if (++state.bargeInLoud >= LIMIT.bargeInChunks) {
+        const now = performance.now();
+        if (state.bargeInAt === null || now - state.bargeInAt >= LIMIT.bargeInCooldownMs) {
+          state.bargeInAt = now;
+          log('LOCAL', 'barge-in', '检测到持续高能量采集，已自动中断本轮回复。能量检测非说话人区分。', 'system');
+          send({ type: 'interrupt' }); state.pending.clear(); state.lastRtt = null; stopPlayback(); clientMetrics();
+        }
+        state.bargeInLoud = 0;
+      }
+    } else state.bargeInLoud = 0;
   }
   async function startRecording() {
     if (state.recording) { stopRecording(true); return; }
@@ -264,8 +288,10 @@
         if (chunk.length) {
           capture.chunks.push(chunk); capture.length += chunk.length;
           let energy = 0; for (const value of chunk) energy += value * value;
-          $('capture-level').style.width = Math.min(100, Math.sqrt(energy / chunk.length) * 400) + '%';
+          const rms = Math.sqrt(energy / chunk.length);
+          $('capture-level').style.width = Math.min(100, rms * 400) + '%';
           text('capture-time', '00:' + String(Math.floor(capture.length / capture.rate)).padStart(2, '0'));
+          considerBargeIn(rms);
         }
         if (capture.length >= capture.rate * LIMIT.captureSeconds) stopRecording(true);
       };
@@ -1254,6 +1280,14 @@
     if (!state.sound) stopPlayback(); else { try { audioContext(); } catch (_) { toast('浏览器不支持音频播放', true); } }
     $('sound').setAttribute('aria-pressed', state.sound);
     $('sound').replaceChildren(document.createTextNode('音频播放：' + (state.sound ? '开启' : '关闭') + ' '), element('span', 'mono', 'PCM OUT'));
+    if (!state.sound) { state.bargeInLoud = 0; }
+  };
+  $('barge-in').onclick = () => {
+    state.bargeInDisabled = !state.bargeInDisabled;
+    state.bargeInLoud = 0; state.bargeInAt = null;
+    $('barge-in').setAttribute('aria-pressed', !state.bargeInDisabled);
+    $('barge-in').replaceChildren(document.createTextNode('自动打断：' + (state.bargeInDisabled ? '关闭' : '开启') + ' '), element('span', 'mono', 'ENERGY'));
+    if (state.bargeInDisabled) log('LOCAL', 'barge-in', '自动打断已停用；手动中断仍可用。', 'system');
   };
   $('clear').onclick = () => { $('feed').replaceChildren(); state.recent.length = 0; renderRecent(); text('count', '0'); toast('时间线与详情记录已清空，会话计数保持不变'); };
   $('refresh-runtime').onclick = refreshSoon;

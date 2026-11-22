@@ -713,3 +713,61 @@ test('dragging a scaled module preserves task identity and moves both structural
   cards.scrollTop = 0; await viewport.emit('scroll', {target: cards}); await settle();
   assert.deepEqual([...handoffs().keys()], ['2', '4', '6'], 'scrolling the real cards back restores their original frame handoffs');
 });
+
+test('energy barge-in interrupts local playback, throttles, and stays a client energy heuristic', async t => {
+  const h = await harness(); t.after(() => h.dispose());
+  const socket = await connect(h); await mode(h, 'audio');
+  // Start a recording and let the worklet attach.
+  const recording = h.element('record').click(); await settle();
+  h.captures[0].resolve(h.stream()); await recording; await settle();
+  assert.equal(h.worklets.length, 1);
+  const loud = () => h.worklets[0].port.emit('message', {data: new Float32Array(480).fill(0.5)});
+
+  // Idle (nothing playing): energy never triggers an interrupt.
+  await loud(); await loud(); await settle();
+  assert.equal(socket.sent.filter(wire => payload(wire).type === 'interrupt').length, 0);
+
+  // Simulate one queued reply (echo of PCM) so playbackSources is nonempty.
+  await socket.message({type: 'audio', sampleRate: 16000, channels: 1, data: Buffer.alloc(320).toString('base64')});
+  assert.ok(h.contexts.some(context => context.nodes.some(node => node.started)), 'reply must be playing');
+
+  // Two loud chunks cross the sustained-energy threshold: interrupt sent, playback stopped.
+  const before = socket.sent.length;
+  await loud(); await loud(); await settle();
+  const interrupts = socket.sent.filter(wire => payload(wire).type === 'interrupt');
+  assert.equal(interrupts.length, 1, 'sustained loud energy must interrupt once');
+  assert.ok(h.contexts.some(context => context.nodes.some(node => node.stopped)), 'local playback must stop');
+  assert.equal(h.worklets.length, 1, 'the active recording continues for the new turn');
+
+  // Cooldown window: repeated bursts within 1500 ms must not retrigger.
+  await socket.message({type: 'audio', sampleRate: 16000, channels: 1, data: Buffer.alloc(320).toString('base64')});
+  await loud(); await loud(); await settle();
+  assert.equal(socket.sent.filter(wire => payload(wire).type === 'interrupt').length, 1);
+
+  // After the cooldown elapses (fake clock), a new burst interrupts again.
+  await h.time.tick(1600);
+  await socket.message({type: 'audio', sampleRate: 16000, channels: 1, data: Buffer.alloc(320).toString('base64')});
+  await loud(); await loud(); await settle();
+  assert.equal(socket.sent.filter(wire => payload(wire).type === 'interrupt').length, 2);
+
+  // Quiet energy never accumulates.
+  const sent = socket.sent.length;
+  await h.worklets[0].port.emit('message', {data: new Float32Array(480).fill(0.01)});
+  await settle();
+  assert.equal(socket.sent.length, sent);
+
+  // The toggle disables the heuristic; the manual button keeps working.
+  await h.element('barge-in').click(); await settle();
+  assert.equal(h.element('barge-in').getAttribute('aria-pressed'), 'false');
+  await socket.message({type: 'audio', sampleRate: 16000, channels: 1, data: Buffer.alloc(320).toString('base64')});
+  await loud(); await loud(); await settle();
+  assert.equal(socket.sent.filter(wire => payload(wire).type === 'interrupt').length, 2, 'disabled heuristic must not fire');
+  await h.element('barge-in').click(); await settle();
+  assert.equal(h.element('barge-in').getAttribute('aria-pressed'), 'true');
+
+  // Sending the recording still produces a valid audio frame afterwards.
+  await h.worklets[0].port.emit('message', {data: new Float32Array(480).fill(0.2)});
+  await h.element('record').click(); await settle();
+  const frames = socket.sent.map(payload);
+  assert.ok(frames.some(frame => frame.type === 'audio'), 'recording must still send after barge-in');
+});
